@@ -1,0 +1,75 @@
+---
+---
+
+//
+// IMPORTS
+//
+
+@import "reset";
+@import "variables";
+
+/**************/
+/* BASE RULES */
+/**************/
+
+html { 
+  font-family: var(--default-font);
+  scrollbar-color: var(--dark-bg-color) var(--dark-bg-color);
+  scrollbar-width: thin;
+
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+      background: var(--dark-bg-color); 
+  }
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--fg-color);
+  margin: 0px;
+  width: 100%;
+  min-height: 100%;
+  overflow-x: hidden;
+  line-height: 1.3;
+  font-size: 20px;
+}
+a {
+  color: var(--accent-color);
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+h1 {
+  font-size: 3rem;
+  margin: 0 20px;
+}
+h2 {
+  font-size: 2rem;
+  margin: 0 20px;
+}
+h3 {
+  font-size: 1.5rem;
+  margin: 0 20px;
+}
+.page-content {
+  max-width: 1080px;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0 auto;
+}
+.animateWhenVisible {
+  opacity: 0;
+}
+.accent-color {
+  color: var(--accent-color);
+}
+
+@import "header";
+@import "hero";
+@import "home";
+@import "card";
+@import "blog";

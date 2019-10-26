@@ -1,0 +1,39 @@
+{% assign post = include.post %}
+
+<a href="{{ site.baseurl }}{{ post.url }}" class="blog-post card hoverable {% if include.size %} {{ include.size }}{% endif %}">
+  {% if post.image %}
+  <div class="image" style="background-image: url({{ post.image }});"></div>
+  {% endif %}
+
+  <div class="content">
+    <div class="text">
+      <h1 class="title">
+        {{ post.title }}
+      </h1>
+
+      <p>
+        {{ post.excerpt | strip_html | truncatewords: 20 }}
+      </p>
+      <span class="accent-color">Click to read more…</span>
+    </div>
+
+    {% if post.tags %}
+    <ul class="tags">
+      {% if post.tags[0] %}
+      <li>
+        <span class="tag">
+          {{ post.tags[0] }}
+        </span>
+      </li>
+      {% endif %}
+      {% if post.tags[1] %}
+      <li>
+        <span class="tag">
+          {{ post.tags[1] }}
+        </span>
+      </li>
+      {% endif %}
+    </ul>
+    {% endif %}
+  </div>
+</a>

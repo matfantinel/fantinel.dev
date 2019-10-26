@@ -1,0 +1,21 @@
+<section class="blog-preview animateWhenVisible">
+  <h1>
+    Blog
+  </h1>
+  <h3>
+    See what I've been writing about recently
+  </h3>
+
+  <div class="cards-list">
+    {% assign post=site.posts.first %}
+    {% include blog/blog-post-card.html post=post %}
+
+    {% assign post=site.posts[1] %}
+    {% include blog/blog-post-card.html post=post %}
+
+    <a href="{{ site.baseurl }}/blog" class="card hoverable see-more">
+      {% include svg-icons/plus-svg-only.html %}
+      See more blog posts
+    </a>
+  </div>
+</section>

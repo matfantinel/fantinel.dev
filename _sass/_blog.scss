@@ -1,0 +1,30 @@
+section.hero.blog {
+  h1 {
+    font-size: 4rem;
+    color: var(--dark-subtle-accent-color);
+  }
+}
+
+.blog-post {
+  cursor: pointer;
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.pagination {
+  width: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--card-fg-color);
+  background: var(--card-bg-color) 50%;
+  border-radius: 5px;
+  box-shadow: 8px 14px 38px rgba(39, 44, 49, 0.06), 1px 3px 8px rgba(39, 44, 49, 0.03);
+  margin: 0 auto 40px;
+  padding: 12px;
+
+  span, a {
+    margin: 0 10px;
+  }
+}

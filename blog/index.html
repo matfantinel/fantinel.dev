@@ -1,0 +1,73 @@
+---
+layout: blog
+title: Blog
+redirect_from:
+  - /blog/page1/
+  - /blog/page1
+---
+
+{% unless paginator.previous_page %}
+  <section class="latest animated fadeInUpSmall delay-4">
+    <div class="cards-list">
+        {% assign post=paginator.posts.first %}
+        {% include blog/blog-post-card.html post=post size="large" %}
+
+        {% assign post=paginator.posts[1] %}
+        {% include blog/blog-post-card.html post=post size="medium" %}
+
+        {% assign post=paginator.posts[2] %}
+        {% include blog/blog-post-card.html post=post size="medium" %}
+    </div>
+  </section>
+{% endunless %}
+
+<section class="more animated fadeInUpSmall delay-4">
+{% if paginator.previous_page %}
+  <div class="cards-list">
+  {% for post in paginator.posts %}
+    {% unless post.hidden %}
+      {% if post == paginator.posts[3] %}
+        {% include blog/blog-post-card.html post=post size="large" %}
+      {% else %}
+        {% include blog/blog-post-card.html post=post %}
+      {% endif %}
+    {% endunless %}
+  {% endfor %}
+  </div>
+{% else %}
+  <div class="cards-list animated fadeInUpSmall delay-5">
+  {% for post in paginator.posts offset: 3 %}
+    {% unless post.hidden %}
+      {% if post == paginator.posts[6] %}
+        {% include blog/blog-post-card.html post=post size="large" %}
+      {% else %}
+        {% include blog/blog-post-card.html post=post %}
+      {% endif %}
+    {% endunless %}
+  {% endfor %}
+  </div>
+{% endif %}
+</section>
+
+
+{% if paginator.total_pages > 1 %}
+<div class="pagination">
+  {% if paginator.previous_page %}
+    <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">&laquo; Prev</a>
+  {% endif %}
+
+  {% for page in (1..paginator.total_pages) %}
+    {% if page == paginator.page %}
+      <span>{{ page }}</span>
+    {% elsif page == 1 %}
+      <a href="/">{{ page }}</a>
+    {% else %}
+      <a href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', page }}">{{ page }}</a>
+    {% endif %}
+  {% endfor %}
+
+  {% if paginator.next_page %}
+    <a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">Next &raquo;</a>
+  {% endif %}
+</div>
+{% endif %}

@@ -1,0 +1,38 @@
+title: Matheus Fantinel
+description: Software Developer
+permalink: /:title/
+
+#
+# Flags below are optional
+#
+
+disqus:
+
+# Enter your Google Analytics web tracking code (e.g. UA-2110908-2) to activate tracking
+google_analytics:
+
+# Your website URL (e.g. http://barryclark.github.io or http://www.barryclark.co)
+# Used for Sitemap.xml and your RSS feed
+url:
+
+plugins:
+  - jekyll-feed
+  - jekyll-paginate
+  - jekyll-redirect-from
+  - jekyll-sitemap
+
+paginate: 7
+paginate_path: "/blog/page:num/"
+
+markdown: kramdown
+kramdown:
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    block:
+      line_numbers: true
+
+future: false # Allows us to stage posts
+exclude: [README.md, Gemfile, Gemfile.lock, vendor]
+
+sass:
+  style: :expanded # You might prefer to minify using :compressed

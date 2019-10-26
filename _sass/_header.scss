@@ -1,0 +1,77 @@
+header {
+  display: flex;
+
+  .header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 25px;
+    width: 100%;
+    z-index: 5;
+    color: var(--dark-fg-color);
+
+    .logo {
+      width: 40px;
+      color: var(--dark-accent-color);
+    }
+
+    ul {
+      display: flex;
+      justify-content: space-between;
+
+      li {
+        font-size: 0.9rem;
+        padding-right: 20px;
+
+        &:last-child {
+          padding-right: 0;
+        }
+
+        a {
+          color: inherit;
+
+          svg {
+            fill: var(--dark-fg-color);
+            height: 1.3rem;
+          }
+
+          &:hover {
+            color: var(--dark-accent-color);
+            svg {
+              fill: var(--dark-accent-color);
+            }
+          }
+
+          &.featured {
+            border: 1px solid var(--dark-accent-color);
+          }
+        }
+      }
+
+      &.social {
+        li {
+          a {
+            &.telegram {
+              background-image: url("../images/icons/telegram.svg");
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@include for-phone-only {
+  header {
+    .header-content {
+      flex-direction: column;
+      padding: 10px 25px 20px 25px;
+
+      ul {
+        &.links {
+          margin-bottom: 30px;
+        }
+      }
+    }
+  }
+}

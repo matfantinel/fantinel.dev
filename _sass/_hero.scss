@@ -1,0 +1,150 @@
+section.hero {
+  min-height: 65vh;
+  padding: 40px 40px 160px 40px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--dark-fg-color);
+  background-color: var(--dark-bg-color);
+  // background-image: url(../images/cover2.jpg);
+  // background-size: cover;
+  // background-position: center;
+
+  margin-bottom: -120px;
+
+  .introduction {
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+
+    span {
+      font-size: 3.5rem;
+
+      &.intro {
+        font-weight: 600;
+      }
+
+      &.title {
+        font-size: 5rem;
+        font-weight: 600;
+        color: var(--dark-subtle-accent-color);
+        display: none;
+
+        &.small-only {
+          display: inherit;
+        }
+      }
+    }
+  }
+}
+
+@include for-phone-only {
+  section.hero .introduction {
+    span {
+      font-size: 2rem;
+      &.title {
+        font-size: 3rem;
+      }
+    }
+  }
+}
+
+@include for-tablet-landscape-up {
+  section.hero {
+    .introduction {
+      width: 700px;
+      span {
+        &.title {
+          display: inherit;
+          &.small-only {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+// Typewriter animation
+section.hero .introduction {
+  .title {
+    overflow: hidden;
+    border-right: 0.15em solid transparent;
+    white-space: nowrap;
+    animation: typing 1.5s steps(40, end), blink-caret 0.75s step-end infinite;
+    animation-fill-mode: forwards;
+
+    &.small-only {
+      width: 360px;
+      animation: typing-small 1.5s steps(40, end), blink-caret 0.75s step-end infinite;
+      animation-fill-mode: forwards;
+
+      &.stop {
+        animation: typing-small 1.5s steps(40, end), blink-caret 0.75s step-end 2;
+        animation-fill-mode: forwards;
+      }
+      &.delay {
+        width: 0;
+        animation-delay: 1.5s;
+      }
+    }
+  }
+}
+
+@include for-phone-only {
+  section.hero .introduction {
+    .title {
+      &.small-only {
+        width: 215px;
+        animation: typing-phone 1.5s steps(40, end), blink-caret 0.75s step-end infinite;
+        animation-fill-mode: forwards;
+        
+        &.stop {
+          animation: typing-phone 1.5s steps(40, end), blink-caret 0.75s step-end 2;
+          animation-fill-mode: forwards;
+        }
+      }
+    }
+  }
+}
+
+/* The typing effect */
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 700px;
+  }
+}
+@keyframes typing-small {
+  from {
+    width: 0;
+  }
+  to {
+    width: 360px;
+  }
+}
+@keyframes typing-phone {
+  from {
+    width: 0;
+  }
+  to {
+    width: 215px;
+  }
+}
+
+/* The typewriter cursor effect */
+@keyframes blink-caret {
+  from,
+  to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: var(--dark-accent-color);
+  }
+}
