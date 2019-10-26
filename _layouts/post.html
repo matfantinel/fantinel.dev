@@ -2,16 +2,29 @@
 layout: default
 ---
 
-<article class="post">
-  <h1>{{ page.title }}</h1>
+{% include blog/posts/hero.html image=page.image %}
 
-  <div class="entry">
-    {{ content }}
+<div class="page-content blog-post-page">
+  {% include base/header.html %}
+
+  <div id="main" role="main" class="container">
+    <div class="card animated fadeInUpSmall delay-4">
+      <div class="content">
+        <h1 class="title">
+          {{ page.title }}
+        </h1>
+        <ul class="tags">
+          {% for tag in page.tags %}
+          <li>
+            <span class="tag">
+              {{ tag }}
+            </span>
+          </li>
+          {% endfor %}
+        </ul>
+
+        {{ content }}
+      </div>
+    </div>
   </div>
-
-  <div class="date">
-    Written on {{ page.date | date: "%B %e, %Y" }}
-  </div>
-
-  {% include base/disqus.html %}
-</article>
+</div>

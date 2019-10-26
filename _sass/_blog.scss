@@ -3,6 +3,11 @@ section.hero.blog {
     font-size: 4rem;
     color: var(--dark-subtle-accent-color);
   }
+
+  &.post {
+    background-size: cover;
+    background-position: center;
+  }
 }
 
 .blog-post {
@@ -26,5 +31,14 @@ section.hero.blog {
 
   span, a {
     margin: 0 10px;
+  }
+}
+
+.blog-post-page {
+  .card {
+    .content ul.tags {
+      justify-content: flex-start;
+      margin: 10px 0 20px;
+    }
   }
 }
