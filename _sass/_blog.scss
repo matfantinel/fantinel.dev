@@ -7,6 +7,9 @@ section.hero.blog {
   &.post {
     background-size: cover;
     background-position: center;
+    position: fixed;
+    width: 100%;
+    top: 0;
   }
 }
 
@@ -29,16 +32,65 @@ section.hero.blog {
   margin: 0 auto 40px;
   padding: 12px;
 
-  span, a {
+  span,
+  a {
     margin: 0 10px;
   }
 }
 
 .blog-post-page {
+  margin-top: 30vh;
+
   .card {
-    .content ul.tags {
-      justify-content: flex-start;
-      margin: 10px 0 20px;
+    .content {
+      article {
+        margin-bottom: 8rem;
+
+        p,
+        ul,
+        li,
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+          margin: 40px 0 10px;
+        }
+
+        img {
+          display: block;
+          margin-left: auto;
+          margin-right: auto;
+          max-width: 100%;
+        }
+
+        > table {
+          font-family: var(--ui-font);
+          margin: 2em auto;
+          max-width: 100%;
+
+          th,
+          td {
+            padding: 0 0.5rem;
+          }
+        }
+
+        figcaption {
+          font-size: 0.85rem;
+          text-align: center;
+        }
+      }
+
+      h1.title {
+        font-size: 3rem;
+        margin: 0;
+      }
+
+      ul.tags {
+        justify-content: flex-start;
+        margin: 10px 0 20px;
+      }
     }
   }
 }

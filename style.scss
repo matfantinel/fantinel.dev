@@ -55,6 +55,9 @@ h3 {
   font-size: 1.5rem;
   margin: 0 20px;
 }
+strong {
+  font-weight: 700;
+}
 .page-content {
   max-width: 1080px;
   width: 100%;
@@ -73,3 +76,4 @@ h3 {
 @import "home";
 @import "card";
 @import "blog";
+@import "code";

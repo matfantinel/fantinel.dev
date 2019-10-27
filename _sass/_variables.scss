@@ -12,6 +12,7 @@
   --subtler-accent-color: #E3FFFF;
   --card-bg-color: #ffffff;
   --card-fg-color: #1c1e26;
+  --code-bg-color: #f5f5f5;
 
 
   --dark-bg-color: #1c1e26;
@@ -30,12 +31,14 @@
     --subtler-accent-color: #005B5B;
     --card-bg-color: #32343e;
     --card-fg-color: #dffcfd;
+    --code-bg-color: #5d6868;
   }
 }
 
 // Fonts
 :root {
   --default-font: Ubuntu, sans-serif;
+  --mono-font: Ubuntu Mono, sans-serif;
 }
 
 // Breakpoints
@@ -53,4 +56,21 @@
 }
 @mixin for-big-desktop-up {
   @media (min-width: 1800px) { @content; }
+}
+
+// Code colors
+
+:root {
+  --solarized-base01: #586e75;
+  --solarized-base02: #073642;
+  --solarized-base03: #002b36;
+  --solarized-base1: #93a1a1;
+  --solarized-base2: #eee8d5;
+  --solarized-base3: #fdf6e3;
+  --solarized-blue: #268bd2;
+  --solarized-cyan: #2aa198;
+  --solarized-green: #859900;
+  --solarized-orange: #cb4b16;
+  --solarized-red: #dc322f;
+  --solarized-yellow: #b58900;
 }
