@@ -94,3 +94,13 @@ section.hero.blog {
     }
   }
 }
+
+
+@include for-phone-only {
+  .blog-post-page {
+    .card {
+      margin-left: 0;
+      margin-right: 0;
+    }
+  }
+}
