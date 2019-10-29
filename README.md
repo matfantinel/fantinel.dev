@@ -12,6 +12,8 @@ It was built with a few goals in mind:
 
 I achieved this with the help of Jekyll and SASS. There is little to no JavaScript. While JS is awesome, it's important to know when it's not needed.
 
-# To-Do
+# Inspirations
 
-Credit projects I used as base/inspiration.
+* Thanks to [Jekyll Now](https://github.com/barryclark/jekyll-now) for providing the base for this project;
+* Thanks to the elementary OS team for publishing [their own blog's code](https://github.com/elementary/blog-template) for me to use as inspiration for the code;
+* This website's looks are inspired by [Ghost.org](https://ghost.org)'s [Casper theme](https://github.com/TryGhost/Casper).
