@@ -18,7 +18,7 @@
   flex: 1 1 100%;
   flex-direction: column;
 
-  &:hover {
+  &.hoverable:hover {
     box-shadow: 8px 28px 50px rgba(39,44,49,.5),1px 6px 12px rgba(39,44,49,.3);
   }
 
