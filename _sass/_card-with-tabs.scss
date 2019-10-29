@@ -1,0 +1,42 @@
+.card-with-tabs {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  .card {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
+
+  .tabs {
+    display: flex;
+    margin: 0 20px;
+
+    .tab {
+      color: var(--accent-color);
+      background: var(--bg-color) 50%;
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
+      box-shadow: 8px 14px 38px rgba(39, 44, 49, 0.06), 1px 3px 8px rgba(39, 44, 49, 0.03);
+      padding: 10px 20px;
+      margin-right: 5px;
+      cursor: pointer;
+      transition: all 0.5s ease;
+      border: 1px solid rgba(39, 44, 49, 0.1);
+      border-bottom: none;
+
+      &:hover {
+        box-shadow: 8px 28px 50px rgba(39, 44, 49, 0.5), 1px 6px 12px rgba(39, 44, 49, 0.3);
+      }
+
+      &.active {
+        background: var(--card-bg-color) 50%;
+        z-index: 1;
+        box-shadow: none;
+        cursor: inherit;
+        transition: none;
+        border-color: transparent;
+      }
+    }
+  }
+}

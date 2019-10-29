@@ -1,0 +1,53 @@
+<div class="card-with-tabs">
+  <ul class="tabs">
+    <li id="dynasty-tab" class="tab active" onclick="openTab('dynasty')">
+      Dynasty
+    </li>
+    <li id="sige-tab"  class="tab" onclick="openTab('sige')">
+      SIGE Cloud
+    </li>
+    <li id="promob-tab"  class="tab" onclick="openTab('promob')">
+      Promob Software Solutions
+    </li>
+  </ul>
+  <div class="card">
+    <div id="dynasty-content" class="content animated fadeIn">
+      Dynasty content here
+    </div>
+    <div id="sige-content" class="content animated fadeIn" style="display: none;">
+      Sige content here
+    </div>
+    <div id="promob-content" class="content animated fadeIn" style="display: none;">
+      Promob content here
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+
+    function openTab(prefix) {
+        var tab = document.getElementById(`${prefix}-tab`);
+        if (tab.classList.contains('active')) {
+            return;
+        }
+
+        tab.classList.add('active');
+        document.getElementById(`${prefix}-content`).style.display = 'block';
+        
+        if (prefix != 'dynasty') {
+            document.getElementById('dynasty-tab').classList.remove('active');
+            document.getElementById('dynasty-content').style.display = 'none';
+        }
+
+        if (prefix != 'sige') {
+            document.getElementById('sige-tab').classList.remove('active');
+            document.getElementById('sige-content').style.display = 'none';
+        }
+
+        if (prefix != 'promob') {
+            document.getElementById('promob-tab').classList.remove('active');
+            document.getElementById('promob-content').style.display = 'none';
+        }
+    }
+
+</script>
