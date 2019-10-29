@@ -3,7 +3,7 @@ layout: post
 title: How to transform your Angular 6+ app into a PWA
 images-path: /images/posts/2019-03-10-angular-pwa-how-to
 image: /images/posts/2019-03-10-angular-pwa-how-to/cover.jpg
-tags: [Angular, PWA, Software Development, Tutorials, Frontend, Javascript]
+tags: [Angular, PWA, Software Development, Tutorials, Frontend, JavaScript]
 ---
 
 Recently, I've converted my Angular 6 app into a PWA, allowing it to work offline and work like a native app on phones and desktop.
