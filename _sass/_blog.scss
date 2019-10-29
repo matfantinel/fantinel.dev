@@ -44,11 +44,8 @@ section.hero.blog {
   .card {
     .content {
       article {
-        margin-bottom: 8rem;
-
         p,
         ul,
-        li,
         h1,
         h2,
         h3,
@@ -87,14 +84,35 @@ section.hero.blog {
         margin: 0;
       }
 
-      ul.tags {
-        justify-content: flex-start;
-        margin: 10px 0 20px;
+      ol,
+      ul {
+        padding-left: 20px;
+
+        li {
+          margin-bottom: 10px;
+        }
+      }
+
+      ul {
+        list-style: inherit;
+
+        &.tags {
+          justify-content: flex-start;
+          margin: 10px 0 20px;
+          list-style: none;
+          padding-left: 0;
+        }
+      }
+
+      blockquote {
+        padding-left: 10px;
+        border-radius: 6px;
+        font-size: 1.2rem;
+        border-left: 2px solid var(--accent-color);
       }
     }
   }
 }
-
 
 @include for-phone-only {
   .blog-post-page {

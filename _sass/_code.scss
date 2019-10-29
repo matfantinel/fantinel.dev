@@ -43,6 +43,14 @@ code {
   text-align: left;
   background-color: var(--dark-bg-color);
   color: var(--dark-fg-color);
+  max-width: 100%;
+
+  scrollbar-color: var(--accent-color) var(--accent-color);
+  scrollbar-width: thin;
+  
+  ::-webkit-scrollbar-thumb {
+      background: var(--accent-color); 
+  }
 
   .gl {
     padding: 0 0.5em;
