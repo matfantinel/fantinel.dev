@@ -30,7 +30,7 @@ You probably have already found some of them in the wild. In Chrome for Android,
 
 <figure markdown="1">
 
-![PWA Install Prompt on Android]({{page.images-path}}/Android-Install-Prompt.png)
+![PWA Install Prompt on Android]({{page.images-path}}/Android-Install-Prompt.jpg)
 
 <figcaption>"Add Notepad to the home screen"</figcaption>
 </figure>
@@ -39,7 +39,7 @@ And on Desktop, this option shows up in the URL bar:
 
 <figure markdown="1">
 
-![Chrome prompts you to install PWA]({{page.images-path}}/Clipboard_2019-10-27-18-09-45.png)
+![Chrome prompts you to install PWA]({{page.images-path}}/Clipboard_2019-10-27-18-09-45.jpg)
 
 </figure>
 

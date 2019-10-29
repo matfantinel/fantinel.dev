@@ -12,7 +12,7 @@ After pushing code to the beta server, most of it was working fine. The front-en
 
 <figure markdown="1">
 
-![Dev console error]({{page.images-path}}/post1.png)
+![Dev console error]({{page.images-path}}/post1.jpg)
 
 <figcaption>405 (Method Not Allowed) | Access to XMLHttpRequest at "..." from origin "..." has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.</figcaption>
 </figure>

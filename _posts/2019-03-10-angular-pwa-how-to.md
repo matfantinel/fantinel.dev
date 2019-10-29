@@ -50,7 +50,7 @@ Your app should be up and running on `http://localhost:8080/` (or whichever port
 
 <figure markdown="1">
 
-![Registered Service Worker]({{page.images-path}}/Service-Workers-1.png)
+![Registered Service Worker]({{page.images-path}}/Service-Workers-1.jpg)
 
 <figcaption>On dev console > Application > Service Workers, there should be a registered service worker for your app.</figcaption>
 </figure>
@@ -59,14 +59,14 @@ Your app should be up and running on `http://localhost:8080/` (or whichever port
 
 <figure markdown="1">
 
-![Audits]({{page.images-path}}/Audits.png)
+![Audits]({{page.images-path}}/Audits.jpg)
 
 <figcaption>On dev console > Audits, test it for Progressive Web Apps.</figcaption>
 </figure>
 
 <figure markdown="1">
 
-![Audits passed]({{page.images-path}}/Passed-Audits.png)
+![Audits passed]({{page.images-path}}/Passed-Audits.jpg)
 
 <figcaption>If everything went alright, you should see the highlighted results on the "Passed audits" section.</figcaption>
 </figure>
@@ -79,7 +79,7 @@ On Chrome, you may also see the option to install the app appear in the URL bar:
 
 <figure markdown="1">
 
-![Chrome prompts you to install PWA]({{page.images-path}}/Clipboard_2019-10-27-18-09-45.png)
+![Chrome prompts you to install PWA]({{page.images-path}}/Clipboard_2019-10-27-18-09-45.jpg)
 
 </figure>
 
@@ -87,7 +87,7 @@ After this, the app should already open on a separate window, and show up on you
 
 <figure markdown="1">
 
-![Installed PWA on OS' dock]({{page.images-path}}/Clipboard_2019-10-27-18-11-28.png)
+![Installed PWA on OS' dock]({{page.images-path}}/Clipboard_2019-10-27-18-11-28.jpg)
 
 <figcaption>Notice the PWA's own icon on my OS' dock! Success!</figcaption>
 </figure>

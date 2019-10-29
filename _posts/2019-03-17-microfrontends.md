@@ -215,7 +215,7 @@ As with all things, there are some disadvantages in this approach:
 
 <figure markdown="1">
 
-![Browser support table]({{page.images-path}}/Browser-Support.png)
+![Browser support table]({{page.images-path}}/Browser-Support.jpg)
 
 </figure>
 
