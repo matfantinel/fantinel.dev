@@ -7,7 +7,7 @@ redirect_from:
 ---
 
 {% unless paginator.previous_page %}
-  <section class="latest animated fadeInUpSmall delay-4">
+  <section class="latest animated fadeInUpSmall delay-1">
     <div class="cards-list">
         {% assign post=paginator.posts.first %}
         {% include blog/blog-post-card.html post=post size="large" %}
@@ -21,7 +21,7 @@ redirect_from:
   </section>
 {% endunless %}
 
-<section class="more animated fadeInUpSmall delay-4">
+<section class="more animated fadeInUpSmall delay-1">
 {% if paginator.previous_page %}
   <div class="cards-list">
   {% for post in paginator.posts %}
@@ -60,7 +60,7 @@ redirect_from:
     {% if page == paginator.page %}
       <span>{{ page }}</span>
     {% elsif page == 1 %}
-      <a href="/">{{ page }}</a>
+      <a href="/blog">{{ page }}</a>
     {% else %}
       <a href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', page }}">{{ page }}</a>
     {% endif %}

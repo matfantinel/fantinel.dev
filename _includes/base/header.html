@@ -1,10 +1,10 @@
 <header>
   <div class="header-content">
-    <ul class="links animated fadeInUp delay-2">
+    <ul class="links animated fadeInUp {% if include.delay %} delay-2 {% endif %}">
       <li><a href="{{ site.baseurl }}/">Home</a></li>
       <li><a href="{{ site.baseurl }}/blog">Blog</a></li>
     </ul>
-    <ul class="social animated fadeInUp delay-3">
+    <ul class="social animated fadeInUp {% if include.delay %} delay-3 {% endif %}">
       <li>{% include svg-icons/telegram.html %}</li>
       <li>{% include svg-icons/twitter.html %}</li>
       <li>{% include svg-icons/linkedin.html %}</li>
