@@ -30,7 +30,7 @@
     justify-content: space-between;
 
     h1.title {
-      font-size: 2rem;
+      font-size: 1.3rem;
       margin: 0;
       font-weight: 600;
       display: flex;
@@ -134,6 +134,10 @@
 
     .content {
       padding: 40px;
+
+      h1.title {
+        font-size: 2rem;
+      }
     }
 
     .avatar-container {

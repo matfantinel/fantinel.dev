@@ -34,7 +34,11 @@ body {
   min-height: 100%;
   overflow-x: hidden;
   line-height: 1.3;
-  font-size: 20px;
+  font-size: 18px;
+
+  @include for-tablet-landscape-up {
+    font-size: 20px;
+  }
 }
 a {
   color: var(--accent-color);
@@ -44,15 +48,15 @@ a {
   }
 }
 h1 {
-  font-size: 3rem;
-  margin: 0 20px;
-}
-h2 {
   font-size: 2rem;
   margin: 0 20px;
 }
-h3 {
+h2 {
   font-size: 1.5rem;
+  margin: 0 20px;
+}
+h3 {
+  font-size: 1rem;
   margin: 0 20px;
 }
 strong {
@@ -72,6 +76,18 @@ em {
 }
 .accent-color {
   color: var(--accent-color);
+}
+
+@include for-tablet-landscape-up {
+  h1 {
+    font-size: 3rem;
+  }
+  h2 {
+    font-size: 2rem;
+  }
+  h3 {
+    font-size: 1.5rem;
+  }
 }
 
 @import "header";

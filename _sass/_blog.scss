@@ -80,7 +80,7 @@ section.hero.blog {
       }
 
       h1.title {
-        font-size: 3rem;
+        font-size: 1.3rem;
         margin: 0;
       }
 
@@ -119,6 +119,14 @@ section.hero.blog {
     .card {
       margin-left: 0;
       margin-right: 0;
+    }
+  }
+}
+
+@include for-tablet-landscape-up {
+  .blog-post-page .card .content article {
+    h1.title {
+      font-size: 3rem;
     }
   }
 }
