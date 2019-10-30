@@ -9,7 +9,7 @@
 
     .content {
       justify-content: flex-start;
-      
+
       span.timeframe {
         color: var(--subtle-accent-color);
         font-weight: 600;
@@ -34,6 +34,8 @@
   .tabs {
     display: flex;
     margin: 0 20px;
+    white-space: nowrap;
+    overflow: auto;
 
     .tab {
       color: var(--accent-color);
