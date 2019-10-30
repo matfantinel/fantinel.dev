@@ -124,7 +124,7 @@ section.hero.blog {
 }
 
 @include for-tablet-landscape-up {
-  .blog-post-page .card .content article {
+  .blog-post-page .card .content {
     h1.title {
       font-size: 3rem;
     }
