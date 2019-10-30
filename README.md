@@ -1,6 +1,12 @@
-# matfantinel.github.io
+# matfantinel.github.io / fantinel.dev
 
 This is my own personal website, built with Jekyll. It also holds my own personal blog.
+
+
+<p align="center">
+    <img src="images/projects/personal-website.png" alt="Screenshot" />
+</p>
+
 
 It was built with a few goals in mind:
 
