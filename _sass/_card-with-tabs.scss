@@ -6,6 +6,29 @@
   .card {
     border-top-left-radius: 0;
     border-top-right-radius: 0;
+
+    .content {
+      justify-content: flex-start;
+      
+      span.timeframe {
+        color: var(--subtle-accent-color);
+        font-weight: 600;
+        font-size: 1.25rem;
+      }
+
+      ul {
+        margin: 20px 0;
+        list-style: inside;
+
+        li {
+          margin: 10px 0;
+
+          &::marker {
+            color: var(--accent-color);
+          }
+        }
+      }
+    }
   }
 
   .tabs {
