@@ -1,8 +1,8 @@
 ---
 layout: post
 title: .NET Core - The project was restored using Microsoft.NETCore.App version x.x.x, but with current settings, version y.y.y would be used instead
-images-path: /images/posts/2019-06-03-dotnet-core-restored-version
-image: /images/posts/2019-06-03-dotnet-core-restored-version/cover.jpg
+images-path: /images/posts/2019-06-03-net-core-project-restored-different-version
+image: /images/posts/2019-06-03-net-core-project-restored-different-version/cover.jpg
 tags: [.NET, Backend, Software Development, Errors, C#]
 ---
 

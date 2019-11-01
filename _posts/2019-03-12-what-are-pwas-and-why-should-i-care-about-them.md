@@ -1,8 +1,8 @@
 ---
 layout: post
 title: What are PWAs and why should I care about them?
-images-path: /images/posts/2019-03-12-what-are-pwas
-image: /images/posts/2019-03-12-what-are-pwas/cover.jpg
+images-path: /images/posts/2019-03-12-what-are-pwas-and-why-should-i-care-about-them
+image: /images/posts/2019-03-12-what-are-pwas-and-why-should-i-care-about-them/cover.jpg
 tags: ["Series: Exploring the Front-End", PWA, JavaScript, Software Development, Concepts]
 ---
 
