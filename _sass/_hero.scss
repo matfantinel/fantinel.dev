@@ -7,9 +7,6 @@ section.hero {
   align-items: center;
   color: var(--dark-fg-color);
   background-color: var(--dark-bg-color);
-  // background-image: url(../images/cover2.jpg);
-  // background-size: cover;
-  // background-position: center;
 
   margin-bottom: -120px;
 
@@ -80,16 +77,16 @@ section.hero .introduction {
 
     &.small-only {
       width: 360px;
-      animation: typing-small 1.5s steps(40, end), blink-caret 0.75s step-end infinite;
+      animation: typing-small 0.75s steps(40, end), blink-caret 0.75s step-end infinite;
       animation-fill-mode: forwards;
 
       &.stop {
-        animation: typing-small 1.5s steps(40, end), blink-caret 0.75s step-end 2;
+        animation: typing-small 0.75s steps(40, end), blink-caret 0.75s step-end 1;
         animation-fill-mode: forwards;
       }
       &.delay {
         width: 0;
-        animation-delay: 1.5s;
+        animation-delay: 0.75s;
       }
     }
   }
@@ -100,11 +97,11 @@ section.hero .introduction {
     .title {
       &.small-only {
         width: 215px;
-        animation: typing-phone 1.5s steps(40, end), blink-caret 0.75s step-end infinite;
+        animation: typing-phone 0.75s steps(40, end), blink-caret 0.75s step-end infinite;
         animation-fill-mode: forwards;
         
         &.stop {
-          animation: typing-phone 1.5s steps(40, end), blink-caret 0.75s step-end 2;
+          animation: typing-phone 0.75s steps(40, end), blink-caret 0.75s step-end 1;
           animation-fill-mode: forwards;
         }
       }
