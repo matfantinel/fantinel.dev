@@ -23,3 +23,16 @@ I achieved this with the help of Jekyll and SASS. There is little to no JavaScri
 * Thanks to [Jekyll Now](https://github.com/barryclark/jekyll-now) for providing the base for this project;
 * Thanks to the elementary OS team for publishing [their own blog's code](https://github.com/elementary/blog-template) for me to use as inspiration for the code;
 * This website's looks are inspired by [Ghost.org](https://ghost.org)'s [Casper theme](https://github.com/TryGhost/Casper).
+
+
+# Building & Running Locally
+
+The blog is a simple Jekyll-powered site hosted by GitHub Pages. To run it locally, see [the GitHub docs](https://help.github.com/articles/setting-up-your-github-pages-site-locally-with-jekyll/).
+
+### Serve
+
+```shell
+bundle exec jekyll serve --host 0.0.0.0
+```
+
+The site should now be available at http://0.0.0.0:4000/ on your local machine, and your local machine's IP address on your network—great for testing on mobile OSes.
