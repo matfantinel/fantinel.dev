@@ -43,9 +43,10 @@ section.hero.blog {
 
   .card {
     .content {
-      article {
-        p,
-        ul,
+      article {      
+        padding-left: 20px;
+        padding-right: 20px;
+        
         h1,
         h2,
         h3,
@@ -53,6 +54,13 @@ section.hero.blog {
         h5,
         h6 {
           margin: 40px 0 10px;
+          font-weight: 600;
+        }
+
+        p,
+        ul,
+        ol {
+          margin: 10px 0 20px;
         }
 
         img {
@@ -86,7 +94,7 @@ section.hero.blog {
 
       ol,
       ul {
-        padding-left: 20px;
+        padding-left: 50px;
 
         li {
           margin-bottom: 10px;
