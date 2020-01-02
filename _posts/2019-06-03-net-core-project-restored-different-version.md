@@ -1,12 +1,14 @@
 ---
 layout: post
-title: .NET Core - The project was restored using Microsoft.NETCore.App version x.x.x, but with current settings, version y.y.y would be used instead
+title: .NET Core - Project version mismatch
 images-path: /images/posts/2019-06-03-net-core-project-restored-different-version
 image: /images/posts/2019-06-03-net-core-project-restored-different-version/cover.jpg
 tags: [.NET, Backend, Software Development, Errors, C#]
 ---
 
 This problem usually happens when you're working on a solution with multiple projects that were created using different versions of the .NET SDK.
+
+```The project was restored using Microsoft.NETCore.App version x.x.x, but with current settings, version y.y.y would be used instead```
 
 You may encounter this error when running `dotnet build` or maybe only on `dotnet publish`. In any case, the best way to get rid of this problem for good is the following:
 

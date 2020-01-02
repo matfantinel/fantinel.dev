@@ -1,6 +1,7 @@
 {% assign post = include.post %}
 
-<a href="{{ site.baseurl }}{{ post.url }}" class="blog-post card hoverable {% if include.size %} {{ include.size }}{% endif %}">
+<a href="{{ site.baseurl }}{{ post.url }}" class="blog-post card hoverable 
+    {% if include.size %} {{ include.size }}{% endif %} {% if include.hidePreview %}hide-preview{% endif %}">
   {% if post.image %}
   <div class="image" style="background-image: url({{ post.image }});"></div>
   {% endif %}

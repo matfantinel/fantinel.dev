@@ -133,11 +133,21 @@
       flex: 1 1 100%;
     }
 
+    &.hide-preview {
+      p {
+        display: none;
+      }
+      h1.title {
+        margin-bottom: 10px;
+      }
+    }
+
     .content {
       padding: 40px;
 
       h1.title {
-        font-size: 2rem;
+        font-size: 1.6rem;
+        word-wrap: anywhere;
       }
     }
 
