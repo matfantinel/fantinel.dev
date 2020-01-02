@@ -13,6 +13,9 @@ layout: default
         <h1 class="title">
           {{ page.title }}
         </h1>
+        <small class="published-date">
+          Published on {{ page.date | date_to_string }}
+        </small>
         <ul class="tags">
           {% for tag in page.tags %}
           <li>
