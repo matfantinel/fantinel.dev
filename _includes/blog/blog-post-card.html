@@ -1,7 +1,6 @@
 {% assign post = include.post %}
 
-<a href="{{ site.baseurl }}{{ post.url }}" class="blog-post card hoverable 
-    {% if include.size %} {{ include.size }}{% endif %} {% if include.hidePreview %}hide-preview{% endif %}">
+<a href="{{ site.baseurl }}{{ post.url }}" class="blog-post card hoverable {% if include.size %} {{ include.size }}{% endif %}">
   {% if post.image %}
   <div class="image" style="background-image: url({{ post.image }});"></div>
   {% endif %}
@@ -12,9 +11,11 @@
         {{ post.title }}
       </h1>
 
+      {% if include.hideExcerpt != true %}
       <p>
         {{ post.excerpt | strip_html | truncatewords: 20 }}
       </p>
+      {% endif %}
       <span class="accent-color">Click to read more…</span>
     </div>
 

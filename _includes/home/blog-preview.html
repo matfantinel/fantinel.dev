@@ -8,10 +8,10 @@
 
   <div class="cards-list">
     {% assign post=site.posts.first %}
-    {% include blog/blog-post-card.html post=post hidePreview=true %}
+    {% include blog/blog-post-card.html post=post hideExcerpt=true %}
 
     {% assign post=site.posts[1] %}
-    {% include blog/blog-post-card.html post=post hidePreview=true %}
+    {% include blog/blog-post-card.html post=post hideExcerpt=true %}
 
     <a href="{{ site.baseurl }}/blog" class="card hoverable see-more">
       {% include svg-icons/more-svg-only.html %}
