@@ -43,10 +43,10 @@ section.hero.blog {
 
   .card {
     .content {
-      article {      
+      article {
         padding-left: 20px;
         padding-right: 20px;
-        
+
         h1,
         h2,
         h3,
@@ -118,6 +118,12 @@ section.hero.blog {
         font-size: 1.2rem;
         border-left: 2px solid var(--accent-color);
       }
+    }
+
+    .footer {
+      font-size: 1rem;
+      padding: 25px 25px 0 25px;
+      border-top: 1px dashed var(--lighter-fg-color);
     }
   }
 }
