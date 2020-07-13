@@ -45,7 +45,7 @@ code {
   color: var(--dark-fg-color);
   max-width: 100%;
 
-  scrollbar-color: var(--accent-color) var(--accent-color);
+  scrollbar-color: var(--accent-color) var(--scrollbar-track-color);
   scrollbar-width: thin;
   
   ::-webkit-scrollbar-thumb {
