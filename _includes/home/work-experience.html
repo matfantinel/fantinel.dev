@@ -1,7 +1,7 @@
 <section class="work-experience animateWhenVisible">
   <h1>Work Experience</h1>
 
-  <div class="swipe-view">
+  <div id="swipe-view">
     <div class="card swipe-item">
       <div class="content animated fadeIn">
         <h1 class="title">Dynasty Sports & Entertainment</h1>
@@ -12,7 +12,7 @@
             processes;
           </li>
           <li>Working with Azure Service Bus messages to execute tasks on demand;</li>
-          <li>Automating of previously manual processes with Selenium, improving speed and capacity;</li>
+          <li>Automation of previously manual processes with Selenium, improving speed and capacity;</li>
         </ul>
       </div>
     </div>
@@ -43,6 +43,12 @@
           <li>Integration with third-party CRM, HelpDesk and ERP softwares;</li>
         </ul>
       </div>
+    </div>
+    <div class="arrow prev" onclick="scrollCards('p')">
+      {% include svg-icons/chevron-svg-only.html %}
+    </div>
+    <div class="arrow next" onclick="scrollCards('n')">
+      {% include svg-icons/chevron-svg-only.html %}
     </div>
   </div>
 
@@ -92,6 +98,40 @@
     </div>
   </div> -->
 </section>
+
+<script type="text/javascript">
+  checkIfArrowsShouldHide();
+  function scrollCards(direction) {
+    const width = document.querySelector('.swipe-item').offsetWidth;
+
+    document.querySelector('#swipe-view').scrollBy({
+      top: 0,
+      left: direction == 'p' ? width * -1 : width,
+      behavior: 'smooth',
+    });
+
+    setTimeout(() => {
+      checkIfArrowsShouldHide();
+    }, 1000);
+  }
+
+  function checkIfArrowsShouldHide() {
+    const numberOfCards = document.getElementsByClassName('swipe-item').length;
+    let swipeView = document.querySelector('#swipe-view');
+    const offsetForLastCard = (swipeView.scrollWidth / numberOfCards) * (numberOfCards - 1) - 100;
+
+    if (swipeView.scrollLeft === 0) {
+      document.querySelector('.arrow.prev').style.display = 'none';
+    } else {
+      document.querySelector('.arrow.prev').style.display = 'block';
+    }
+    if (swipeView.scrollLeft >= offsetForLastCard) {
+      document.querySelector('.arrow.next').style.display = 'none';
+    } else {
+      document.querySelector('.arrow.next').style.display = 'block';
+    }
+  }
+</script>
 
 <!-- <script type="text/javascript">
   function openTab(prefix) {

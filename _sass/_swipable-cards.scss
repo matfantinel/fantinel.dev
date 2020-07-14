@@ -1,4 +1,4 @@
-.swipe-view {
+#swipe-view {
   overflow-x: auto;
   overflow-y: hidden;
   scroll-snap-coordinate: 0 0;
@@ -12,6 +12,30 @@
 
   &::-webkit-scrollbar {
     display: none;
+  }
+
+  .arrow {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: calc(50% - 10px);
+    cursor: pointer;
+    z-index: 2;
+
+    &.prev {
+      left: 15px;
+    }
+
+    &.next {
+      right: 15px;
+      transform: rotateY(180deg);
+    }
+
+    svg {
+      color: var(--lighter-fg-color);
+      opacity: .7;
+      filter: drop-shadow(0px 6px 3px rgba(0, 0, 0, .3));
+    }
   }
 
   .swipe-item {
