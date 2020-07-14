@@ -1,7 +1,7 @@
 <section class="work-experience animateWhenVisible">
   <h1>Work Experience</h1>
 
-  <div id="swipe-view" onscroll="checkIfArrowsShouldHide()">
+  <div id="swipe-view" onscroll="handleScroll()">
     <div class="card swipe-item">
       <div class="content animated fadeIn">
         <h1 class="title">Dynasty Sports & Entertainment</h1>
@@ -50,11 +50,21 @@
     <div class="arrow next" onclick="scrollCards('n')">
       {% include svg-icons/chevron-svg-only.html %}
     </div>
-  </div>  
+  </div>
 </section>
 
 <script type="text/javascript">
+  var scrollEndedTimer = null;
   checkIfArrowsShouldHide();
+
+  function handleScroll() {
+    if (scrollEndedTimer !== null) {
+      clearTimeout(scrollEndedTimer);
+    }
+    scrollEndedTimer = setTimeout(function () {
+      checkIfArrowsShouldHide();
+    }, 150);
+  }
   function scrollCards(direction) {
     const width = document.querySelector('.swipe-item').offsetWidth;
 
@@ -63,16 +73,12 @@
       left: direction == 'p' ? width * -1 : width,
       behavior: 'smooth',
     });
-
-    setTimeout(() => {
-      checkIfArrowsShouldHide();
-    }, 1000);
   }
 
   function checkIfArrowsShouldHide() {
     const numberOfCards = document.getElementsByClassName('swipe-item').length;
     let swipeView = document.querySelector('#swipe-view');
-    const offsetForLastCard = (swipeView.scrollWidth / numberOfCards) * (numberOfCards - 1) - 100;
+    const offsetForLastCard = (swipeView.scrollWidth / numberOfCards) * (numberOfCards - 1) - 50;
 
     if (swipeView.scrollLeft === 0) {
       document.querySelector('.arrow.prev').style.display = 'none';
