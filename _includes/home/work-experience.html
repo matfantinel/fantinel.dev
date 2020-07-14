@@ -1,7 +1,52 @@
 <section class="work-experience animateWhenVisible">
   <h1>Work Experience</h1>
-  
-  <div class="cards-list">
+
+  <div class="swipe-view">
+    <div class="card swipe-item">
+      <div class="content animated fadeIn">
+        <h1 class="title">Dynasty Sports & Entertainment</h1>
+        <span class="timeframe">Software Engineer | 2019 ~ Now</span>
+        <ul>
+          <li>
+            Development and maintenance of a Vue front-end, aiming to solve current pains and create new and better
+            processes;
+          </li>
+          <li>Working with Azure Service Bus messages to execute tasks on demand;</li>
+          <li>Automating of previously manual processes with Selenium, improving speed and capacity;</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card swipe-item">
+      <div class="content animated fadeIn">
+        <h1 class="title">SIGE Cloud</h1>
+        <span class="timeframe">Software Developer | 2017 ~ 2019</span>
+        <ul>
+          <li>Bringing complex designs to reality, based on visual mockups and prototypes;</li>
+          <li>Analysis, planning and development of a web-based ERP software;</li>
+          <li>
+            Participating in the creation of new solutions to meet the market's needs, such as mobile and desktop apps;
+          </li>
+          <li>Development of internal tools to improve the company's customer support service;</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card swipe-item">
+      <div class="content animated fadeIn">
+        <h1 class="title">Promob Software Solutions</h1>
+        <span class="timeframe">Software Developer | 2014 ~ 2017</span>
+        <ul>
+          <li>Maintenance and modernization of the company's services portal;</li>
+          <li>Development and maintenance of many APIs used by other development teams;</li>
+          <li>
+            Refactoring of the company’s internal software structure, according to changes in the business model;
+          </li>
+          <li>Integration with third-party CRM, HelpDesk and ERP softwares;</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- <div class="cards-list">
     <div class="card-with-tabs">
       <ul class="tabs">
         <li id="dynasty-tab" class="tab active" onclick="openTab('dynasty')">
@@ -45,32 +90,32 @@
         </div>
       </div>
     </div>
-
-    <script type="text/javascript">
-      function openTab(prefix) {
-        var tab = document.getElementById(`${prefix}-tab`);
-        if (tab.classList.contains('active')) {
-          return;
-        }
-
-        tab.classList.add('active');
-        document.getElementById(`${prefix}-content`).style.display = 'block';
-
-        if (prefix != 'dynasty') {
-          document.getElementById('dynasty-tab').classList.remove('active');
-          document.getElementById('dynasty-content').style.display = 'none';
-        }
-
-        if (prefix != 'sige') {
-          document.getElementById('sige-tab').classList.remove('active');
-          document.getElementById('sige-content').style.display = 'none';
-        }
-
-        if (prefix != 'promob') {
-          document.getElementById('promob-tab').classList.remove('active');
-          document.getElementById('promob-content').style.display = 'none';
-        }
-      }
-    </script>
-  </div>
+  </div> -->
 </section>
+
+<!-- <script type="text/javascript">
+  function openTab(prefix) {
+    var tab = document.getElementById(`${prefix}-tab`);
+    if (tab.classList.contains('active')) {
+      return;
+    }
+
+    tab.classList.add('active');
+    document.getElementById(`${prefix}-content`).style.display = 'block';
+
+    if (prefix != 'dynasty') {
+      document.getElementById('dynasty-tab').classList.remove('active');
+      document.getElementById('dynasty-content').style.display = 'none';
+    }
+
+    if (prefix != 'sige') {
+      document.getElementById('sige-tab').classList.remove('active');
+      document.getElementById('sige-content').style.display = 'none';
+    }
+
+    if (prefix != 'promob') {
+      document.getElementById('promob-tab').classList.remove('active');
+      document.getElementById('promob-content').style.display = 'none';
+    }
+  }
+</script> -->

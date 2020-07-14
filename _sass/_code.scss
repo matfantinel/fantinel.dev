@@ -48,7 +48,7 @@ code {
   scrollbar-color: var(--accent-color) var(--scrollbar-track-color);
   scrollbar-width: thin;
   
-  ::-webkit-scrollbar-thumb {
+  &::-webkit-scrollbar-thumb {
       background: var(--accent-color); 
   }
 

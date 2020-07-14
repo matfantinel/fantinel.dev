@@ -1,0 +1,51 @@
+.swipe-view {
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-coordinate: 0 0;
+  scroll-snap-points-x: repeat(100%);
+  scroll-snap-type: x mandatory;
+  flex: 1;
+  display: flex;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  margin: 20px;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  .swipe-item {
+    flex: 1 0 calc(100% - 40px);
+    scroll-snap-align: center;
+    margin-right: 0;
+    margin-left: 10px;
+
+    &:first-child {
+      margin-left: 0;
+    }
+
+    &.card {
+      .content {
+        justify-content: flex-start;
+
+        span.timeframe {
+          color: var(--subtle-accent-color);
+          font-size: 1.25rem;
+        }
+
+        ul {
+          margin: 20px 0;
+          list-style: inside;
+
+          li {
+            margin: 10px 0;
+
+            &::marker {
+              color: var(--accent-color);
+            }
+          }
+        }
+      }
+    }
+  }
+}
