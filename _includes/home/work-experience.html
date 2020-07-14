@@ -83,12 +83,12 @@
     if (swipeView.scrollLeft === 0) {
       document.querySelector('.arrow.prev').style.display = 'none';
     } else {
-      document.querySelector('.arrow.prev').style.display = 'block';
+      document.querySelector('.arrow.prev').style.display = 'flex';
     }
     if (swipeView.scrollLeft >= offsetForLastCard) {
       document.querySelector('.arrow.next').style.display = 'none';
     } else {
-      document.querySelector('.arrow.next').style.display = 'block';
+      document.querySelector('.arrow.next').style.display = 'flex';
     }
   }
 </script>
