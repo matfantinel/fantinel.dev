@@ -1,76 +1,94 @@
 <section class="work-experience animateWhenVisible">
   <h1>Work Experience</h1>
-  
-  <div class="cards-list">
-    <div class="card-with-tabs">
-      <ul class="tabs">
-        <li id="dynasty-tab" class="tab active" onclick="openTab('dynasty')">
-          Dynasty
-        </li>
-        <li id="sige-tab" class="tab" onclick="openTab('sige')">
-          SIGE Cloud
-        </li>
-        <li id="promob-tab" class="tab" onclick="openTab('promob')">
-          Promob Software Solutions
-        </li>
-      </ul>
-      <div class="card">
-        <div id="dynasty-content" class="content animated fadeIn">
-          <span class="timeframe">Software Engineer | 2019 ~ Now</span>
-          <ul>
-            <li>Development and maintenance of a Vue front-end, aiming to solve current pains and create new and better processes;</li>
-            <li>Working with Azure Service Bus messages to execute tasks on demand;</li>
-            <li>Automating of previously manual processes with Selenium, improving speed and capacity;</li>
-          </ul>
-        </div>
-        <div id="sige-content" class="content animated fadeIn" style="display: none;">
-          <span class="timeframe">Software Developer | 2017 ~ 2019</span>
-          <ul>
-            <li>Bringing complex designs to reality, based on visual mockups and prototypes;</li>
-            <li>Analysis, planning and development of a web-based ERP software;</li>
-            <li>Participating in the creation of new solutions to meet the market's needs, such as mobile and desktop apps;</li>
-            <li>Development of internal tools to improve the company's customer support service;</li>
-          </ul>
-        </div>
-        <div id="promob-content" class="content animated fadeIn" style="display: none;">
-          <span class="timeframe">Software Developer | 2014 ~ 2017</span>
-          <ul>
-            <li>Maintenance and modernization of the company's services portal;</li>
-            <li>Development and maintenance of many APIs used by other development teams;</li>
-            <li>
-              Refactoring of the company’s internal software structure, according to changes in the business model;
-            </li>
-            <li>Integration with third-party CRM, HelpDesk and ERP softwares;</li>
-          </ul>
-        </div>
+
+  <div id="swipe-view" onscroll="handleScroll()">
+    <div class="card swipe-item">
+      <div class="content animated fadeIn">
+        <h1 class="title">Dynasty Sports & Entertainment</h1>
+        <span class="timeframe">Software Engineer | 2019 ~ Now</span>
+        <ul>
+          <li>
+            Development and maintenance of a Vue front-end, aiming to solve current pains and create new and better
+            processes;
+          </li>
+          <li>Working with Azure Service Bus messages to execute tasks on demand;</li>
+          <li>Automation of previously manual processes with Selenium, improving speed and capacity;</li>
+        </ul>
       </div>
     </div>
-
-    <script type="text/javascript">
-      function openTab(prefix) {
-        var tab = document.getElementById(`${prefix}-tab`);
-        if (tab.classList.contains('active')) {
-          return;
-        }
-
-        tab.classList.add('active');
-        document.getElementById(`${prefix}-content`).style.display = 'block';
-
-        if (prefix != 'dynasty') {
-          document.getElementById('dynasty-tab').classList.remove('active');
-          document.getElementById('dynasty-content').style.display = 'none';
-        }
-
-        if (prefix != 'sige') {
-          document.getElementById('sige-tab').classList.remove('active');
-          document.getElementById('sige-content').style.display = 'none';
-        }
-
-        if (prefix != 'promob') {
-          document.getElementById('promob-tab').classList.remove('active');
-          document.getElementById('promob-content').style.display = 'none';
-        }
-      }
-    </script>
+    <div class="card swipe-item">
+      <div class="content animated fadeIn">
+        <h1 class="title">SIGE Cloud</h1>
+        <span class="timeframe">Software Developer | 2017 ~ 2019</span>
+        <ul>
+          <li>Bringing complex designs to reality, based on visual mockups and prototypes;</li>
+          <li>Analysis, planning and development of a web-based ERP software;</li>
+          <li>
+            Participating in the creation of new solutions to meet the market's needs, such as mobile and desktop apps;
+          </li>
+          <li>Development of internal tools to improve the company's customer support service;</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card swipe-item">
+      <div class="content animated fadeIn">
+        <h1 class="title">Promob Software Solutions</h1>
+        <span class="timeframe">Software Developer | 2014 ~ 2017</span>
+        <ul>
+          <li>Maintenance and modernization of the company's services portal;</li>
+          <li>Development and maintenance of many APIs used by other development teams;</li>
+          <li>
+            Refactoring of the company’s internal software structure, according to changes in the business model;
+          </li>
+          <li>Integration with third-party CRM, HelpDesk and ERP softwares;</li>
+        </ul>
+      </div>
+    </div>
+    <div class="arrow prev" onclick="scrollCards('p')">
+      {% include svg-icons/chevron-svg-only.html %}
+    </div>
+    <div class="arrow next" onclick="scrollCards('n')">
+      {% include svg-icons/chevron-svg-only.html %}
+    </div>
   </div>
 </section>
+
+<script type="text/javascript">
+  var scrollEndedTimer = null;
+  checkIfArrowsShouldHide();
+
+  function handleScroll() {
+    if (scrollEndedTimer !== null) {
+      clearTimeout(scrollEndedTimer);
+    }
+    scrollEndedTimer = setTimeout(function () {
+      checkIfArrowsShouldHide();
+    }, 150);
+  }
+  function scrollCards(direction) {
+    const width = document.querySelector('.swipe-item').offsetWidth;
+
+    document.querySelector('#swipe-view').scrollBy({
+      top: 0,
+      left: direction == 'p' ? width * -1 : width,
+      behavior: 'smooth',
+    });
+  }
+
+  function checkIfArrowsShouldHide() {
+    const numberOfCards = document.getElementsByClassName('swipe-item').length;
+    let swipeView = document.querySelector('#swipe-view');
+    const offsetForLastCard = (swipeView.scrollWidth / numberOfCards) * (numberOfCards - 1) - 50;
+
+    if (swipeView.scrollLeft === 0) {
+      document.querySelector('.arrow.prev').style.display = 'none';
+    } else {
+      document.querySelector('.arrow.prev').style.display = 'flex';
+    }
+    if (swipeView.scrollLeft >= offsetForLastCard) {
+      document.querySelector('.arrow.next').style.display = 'none';
+    } else {
+      document.querySelector('.arrow.next').style.display = 'flex';
+    }
+  }
+</script>
