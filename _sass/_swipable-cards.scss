@@ -1,8 +1,6 @@
 #swipe-view {
   overflow-x: auto;
   overflow-y: hidden;
-  scroll-snap-coordinate: 0 0;
-  scroll-snap-points-x: repeat(100%);
   scroll-snap-type: x mandatory;
   flex: 1;
   display: flex;
