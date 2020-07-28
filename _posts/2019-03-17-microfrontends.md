@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Micro Frontends: Solving the Legacy JavaScript Problem with Custom Components"
+title: "Micro Frontends: Solving the Legacy JavaScript Problem"
 images-path: /images/posts/2019-03-17-microfrontends
 image: /images/posts/2019-03-17-microfrontends/cover.jpg
 tags: ["Series: Exploring the Front-End", JavaScript, Software Development, Concepts]
