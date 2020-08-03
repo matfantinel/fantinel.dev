@@ -53,6 +53,8 @@ This is a property you add to the children that specifies where the snap points 
 
 To make things even better, we can use the `scroll-padding` (for parent) and `scroll-margin` (for children) properties. They add some space before/after the elements that are only considered when scrolling. The best way to implement them is by trying it out after you build your scroll snapping goodiness.
 
+You can check the documentation over on [Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Scroll_Snap) for more info.
+
 ## Wrapping Up
 
 Scroll snapping is a sign that the web is maturing. For years we've been bloating websites with a lot of JavaScript for very simple visual tasks, and now CSS is slowly evolving to take some space back. It's an important evolution because Web technologies are being used to build every kind of application, and its native feature set needs to be good enough to compete with native or native-ish counterparts like Flutter, Swift, or Kotlin.
