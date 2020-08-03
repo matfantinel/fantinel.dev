@@ -11,7 +11,7 @@
     {% else %}
     <meta name="description" content="{{ site.description }}">
     <meta property="og:description" content="{{ site.description }}" />
-    <meta property="twitter:description" content="{{ site.description }}" />
+    <meta name="twitter:description" content="{{ site.description }}" />
     {% endif %}
     <meta name="author" content="Matheus Fantinel" />
     <meta name="twitter:card" content="summary_large_image" />
@@ -19,13 +19,13 @@
 
     {% if page.title %}
     <meta property="og:title" content="{{ page.title }}" />
-    <meta property="twitter:title" content="{{ page.title }}" />
+    <meta name="twitter:title" content="{{ page.title }}" />
     {% endif %}
 
     {% if page.image %}
     <meta property="og:image" content="https://fantinel.dev/{{ page.image }}" />
-    <meta property="twitter:image" content="https://fantinel.dev/{{ page.image }}" />
+    <meta name="twitter:image" content="https://fantinel.dev/{{ page.image }}" />
     {% else %}
     <meta property="og:image" content="https://www.gravatar.com/avatar/d3e0755978911619f8979bef9d843b44?s=250&d=mm&r=x" />
-    <meta property="twitter:image" content="https://www.gravatar.com/avatar/d3e0755978911619f8979bef9d843b44?s=250&d=mm&r=x" />
+    <meta name="twitter:image" content="https://www.gravatar.com/avatar/d3e0755978911619f8979bef9d843b44?s=250&d=mm&r=x" />
     {% endif %}
