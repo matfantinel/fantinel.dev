@@ -1,6 +1,6 @@
 ---
 layout: post
-title: CSS Scroll Snapping - Accurate Scrolling without JS
+title: CSS Scroll Snapping - Improve Scrolling without JS
 images-path: /images/posts/2020-08-03-css-scroll-snapping
 image: /images/posts/2020-08-03-css-scroll-snapping/cover.jpg
 tags: ["Series: Exploring the Front-End", CSS, Software Development]
