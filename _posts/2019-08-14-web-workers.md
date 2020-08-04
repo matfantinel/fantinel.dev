@@ -33,37 +33,49 @@ Let's make something clear: Web Workers are an universal JavaScript feature, not
 
 First of all, on our main.js file, we need to create our Worker object, passing our Worker file as a parameter:
 
-```
+<figure>
+<figcaption class="file-name">main.js</figcaption>
+{% highlight javascript %}
 if (window.Worker) { //just to make sure our browser supports it
 	const myWorker = new Worker("worker.js");
 }
-```
+{% endhighlight %}
+</figure>
 
 The main thread is able to communicate with workers using the `postMessage` and `onMessage` functions.
 
 Let's make our worker multiply two numbers for us!
 
-```
+<figure>
+<figcaption class="file-name">main.js</figcaption>
+{% highlight javascript %}
 // we pass an array with all the parameters we want
 myWorker.postMessage([123, 456]);
-```
+{% endhighlight %}
+</figure>
 
 And then listen to a message sent back from our worker:
 
-```
+<figure>
+<figcaption class="file-name">main.js</figcaption>
+{% highlight javascript %}
 myWorker.onmessage = function(e) {
     result.textContent = e.data;
 }
-```
+{% endhighlight %}
+</figure>
 
 We are now successfully passing and receiving data to/from our worker. Now, for the worker.js file:
 
-```
+<figure>
+<figcaption class="file-name">worker.js</figcaption>
+{% highlight javascript %}
 onmessage = function(e) {
   let result = e.data[0] * e.data[1];
   postMessage(result);
 }
-```
+{% endhighlight %}
+</figure>
 
 Very simple, right? The multiplication was done in a different thread, and therefore did not interfere with our main thread. Keep in mind though, that **setting up a Worker, starting another thread and passing parameters still take up minor resources from the main thread**. For simple examples like this, performance will likely be worse than before. **Web Workers are made for heavy tasks, so don't just use them everywhere**.
 

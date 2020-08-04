@@ -14,15 +14,15 @@ This seems like an error on Mongo's install script. The problem is that by defau
 
 Thankfully, the solution is quite simple. First, we'll make sure that the folder in question exists. Run the following command from your Terminal:
 
-```
+{% highlight bash %}
 sudo mkdir -p /data/db/
-```
+{% endhighlight %}
 
 And then, we'll set the ownership of the folder to the user that's going to start the mongod service. Since I only use if for local development in my computer, I set myself as the owner:
 
-```
+{% highlight bash %}
 sudo chown `id -u` /data/db
-```
+{% endhighlight %}
 
 Now, just running `mongod` should do the job. Hope that helps you!
 

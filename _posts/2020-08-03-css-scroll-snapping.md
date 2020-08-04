@@ -22,14 +22,14 @@ I've recently added scroll snapping to my own website. You can check it out on t
 
 There are two main CSS properties that make the magic happen, one for the parent element, and one for its children.
 
-```
+{% highlight css %}
 .parent {
   scroll-snap-type: y mandatory;
 }
 .child {
   scroll-snap-align: start;
 }
-```
+{% endhighlight %}
 
 ### scroll-snap-type
 

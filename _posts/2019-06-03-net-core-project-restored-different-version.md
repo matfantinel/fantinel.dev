@@ -8,14 +8,14 @@ tags: [.NET, Backend, Software Development, Errors, C#]
 
 This problem usually happens when you're working on a solution with multiple projects that were created using different versions of the .NET SDK.
 
-```The project was restored using Microsoft.NETCore.App version x.x.x, but with current settings, version y.y.y would be used instead```
+> The project was restored using Microsoft.NETCore.App version x.x.x, but with current settings, version y.y.y would be used instead
 
 You may encounter this error when running `dotnet build` or maybe only on `dotnet publish`. In any case, the best way to get rid of this problem for good is the following:
 
 1. On the folder where your `.sln` file resides, create a new file named `Directory.Build.props`. If you're not working with a solution (not using Visual Studio), you can use create it on the root directory of your repository (usually where `.gitignore` is;
 2. With a text editor, add the following content to it:
 
-```
+{% highlight xml %}
 <Project>
   <PropertyGroup>
     <TargetLatestRuntimePatch>true</TargetLatestRuntimePatch>
@@ -23,7 +23,7 @@ You may encounter this error when running `dotnet build` or maybe only on `dotne
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
 </Project>
-```
+{% endhighlight %}
 
 What these properties do is make your projects always restore and compile using the latest version available.
 

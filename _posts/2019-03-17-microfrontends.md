@@ -58,21 +58,21 @@ For this article, I am going to create a custom element with Angular 7 and use i
 
 First, we create a new Angular 7 app:
 
-```
+{% highlight bash %}
 ng new angular-elements-sample --prefix custom
-```
+{% endhighlight %}
 
 The CLI will ask you for some settings, you can choose whatever you like. Since we're just using Custom Components in this example, I chose not to apply Angular routing.
 
 Then, we need to add the Angular package that brings Custom Elements support:
 
-```
+{% highlight bash %}
 ng add @angular/elements
-```
+{% endhighlight %}
 
 Now, on tsconfig.json file, change target to "es2015".
 
-```
+{% highlight json %}
 {
   "compileOnSave": false,
   "compilerOptions": {
@@ -81,19 +81,21 @@ Now, on tsconfig.json file, change target to "es2015".
     ...
   }
 }
-```
+{% endhighlight %}
 
 Then, create a new component in your app:
 
-```
+{% highlight bash %}
 ng g component button
-```
+{% endhighlight %}
 
 On this component, we should set its encapsulation to ShadowDom. This means that its styles will be limited to itself, and styles from the parent application won't apply to the child component, or vice-versa. Also, we'll be declaring an Input() property, that the element will receive from the parent, and a CustomEvent, a way to communicate events with other applications/components in the same page.
 
 Below is the full component Typescript code:
 
-```
+<figure>
+<figcaption class="file-name">button.component.ts</figcaption>
+{% highlight typescript %}
 import { Component, OnInit, ViewEncapsulation, Input, ElementRef } from '@angular/core';
 
 @Component({
@@ -127,17 +129,20 @@ export class ButtonComponent implements OnInit {
   }
 
 }
-```
+{% endhighlight %}
+</figure>
 
 The HTML template is very simple:
 
-```
+{% highlight html %}
 <button (click)="handleClick()">{{ label }}</button>
-```
+{% endhighlight %}
 
 Then, we must declare our Custom Element in our app.module.ts file:
 
-```
+<figure>
+<figcaption class="file-name">app.module.ts</figcaption>
+{% highlight typescript %}
 @NgModule({
   declarations: [
     ...
@@ -159,13 +164,17 @@ export class AppModule {
     customElements.define('custom-button', buttonElement);
   }
 }
-```
+{% endhighlight %}
+</figure>
 
 To make it easier to use our component in another app, we can use some script magic to concat all the .js files produced by `ng build --prod` into a single properly-named file. To do that, I created the following script in package.json's script session:
 
-```
+<figure>
+<figcaption class="file-name">package.json</figcaption>
+{% highlight json %}
 "package": "ng build --prod && cat ./dist/runtime.js ./dist/polyfills.js ./dist/scripts.js ./dist/main.js > CustomElementsSample.js"
-```
+{% endhighlight %}
+</figure>
 
 If you're on a Windows system, you won't have access to cat. In that case install `jscat` from npm and change the cat command to jscat.
 
@@ -177,7 +186,7 @@ Now we have a single js file that contains our custom element, and we can use it
 
 Check this sample html file:
 
-```
+{% highlight html %}
 <html>
     <head>
         <meta charset="UTF-8">
@@ -203,7 +212,7 @@ Check this sample html file:
         </script>
     </body>
 </html>
-```
+{% endhighlight %}
 
 You can see that we are successfully being able to listen for events, pass the label parameter, and that the button style from the html does not apply to the component. Success!
 

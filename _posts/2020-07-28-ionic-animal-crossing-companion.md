@@ -44,7 +44,9 @@ First, I created a new page that I can use as the initial screen for my app. Ion
 
 After that, to remove the tabs, all I had to do was set the default route (`''`) to redirect to home, and then I could delete all the Tab pages.
 
-```
+<figure>
+<figcaption class="file-name">app-routing.module.ts</figcaption>
+{% highlight typescript %}
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
@@ -66,7 +68,8 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule {}
-```
+{% endhighlight %}
+</figure>
 
 ## Theming and Layout
 
@@ -84,7 +87,9 @@ Since I wanted to have the same header on all pages, I ended up creating a compo
 
 Also, to be able to import the same component into multiple Pages (each page with its own module), I had to create the ComponentsModule. This required a bit of searching because I wasn't familiar with this approach yet. ComponentsModule by itself is very simple, I just import the Components there:
 
-```
+<figure>
+<figcaption class="file-name">components.module.ts</figcaption>
+{% highlight typescript %}
 import { NgModule } from '@angular/core';
 import { CoolHeaderComponent } from './cool-header/cool-header.component';
 import { IonicModule } from '@ionic/angular';
@@ -95,7 +100,8 @@ import { IonicModule } from '@ionic/angular';
     exports: [CoolHeaderComponent]
 })
 export class ComponentsModule {}
-```
+{% endhighlight %}
+</figure>
 
 The annoying part was having to add ComponentsModule to each of the pages. There probably is an easier way of handling this, but right now I decided to not dig too deep into it.
 
@@ -139,11 +145,13 @@ The first step for this is installing Android Studio. Install instructions may v
 
 After installing Android Studio, we need to add an environment variable that points to the Android SDK. In the following command (Linux, Mac), replace the directory with the one where the Sdk is installed in your PC, then add it to the end of your `.bashrc` file:
 
-```export ANDROID_SDK_ROOT=$HOME/Library/Android/sdk```
+{% highlight bash %}
+export ANDROID_SDK_ROOT=$HOME/Library/Android/sdk
+{% endhighlight %}
 
 Adding these next lines to the `.bashrc` file will also give you a quick way to access these Android tools if needed:
 
-```
+{% highlight bash %}
 # avdmanager, sdkmanager
 export PATH=$PATH:$ANDROID_SDK_ROOT/tools/bin
 
@@ -152,11 +160,13 @@ export PATH=$PATH:$ANDROID_SDK_ROOT/platform-tools
 
 # emulator
 export PATH=$PATH:$ANDROID_SDK_ROOT/emulator
-```
+{% endhighlight %}
 
 Now, we have to register Android as a platform for our app. Since we're using Capacitor to make this bridge, we need only a single command:
 
-``` ionic capacitor add android ```
+{% highlight bash %}
+ionic capacitor add android
+{% endhighlight %}
 
 _If you get an error saying that "Capacitor could not find the web assets directory", be sure to run `ionic build` to generate this directory first._
 
@@ -175,14 +185,17 @@ After that, I edited `ngsw-config.json` and `manifest.webmanifest` files with my
 
 One issue I was having after publishing a PWA like that is that when refreshing my app on the browser, it was throwing a 404 error. This happened because the route had changed and Angular lost track of what it was supposed to open. I fixed this by changing a line in my `app-routing.module.ts` and adding `useHash: true` to the settings:
 
-```
+<figure>
+<figcaption class="file-name">app-routing.module.ts</figcaption>
+{% highlight typescript %}
 @NgModule({
   imports: [
     RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules, useHash: true })
   ],
   exports: [RouterModule]
 })
-```
+{% endhighlight %}
+</figure>
 
 ### Publishing
 

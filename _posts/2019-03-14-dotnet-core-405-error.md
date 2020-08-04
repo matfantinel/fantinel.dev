@@ -29,13 +29,16 @@ I ended up finding [this article](https://www.ryadel.com/en/error-405-methods-no
 
 So, to solve the issue, I ended up disabling WebDAV in the whole application, by adding these lines to the auto-generated web.config:
 
-```
+<figure>
+<figcaption class="file-name">web.config</figcaption>
+{% highlight xml %}
 <system.webServer>
   <modules runAllManagedModulesForAllRequests="false">
     <remove name="WebDAVModule" />
   </modules>
 </system.webServer>
-```
+{% endhighlight %}
+</figure>
 
 After restarting the API in IIS, TA-DA! Everything (or at least your PUT and DELETE requests) should be working normally.
 

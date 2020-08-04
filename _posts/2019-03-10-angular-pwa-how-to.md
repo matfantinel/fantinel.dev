@@ -34,15 +34,21 @@ This file is the one that can configure how your PWA works. You can set up diffe
 
 If you want to test out your app's new PWA capabilities locally, `ng serve` won't help you. Instead, you can run a web server in your machine easily by installing the `http-server` package from npm:
 
-```npm i http-server -g```
+{% highlight bash %}
+npm i http-server -g
+{% endhighlight %}
 
 Then, compile your app in production mode:
 
-```ng build --prod```
+{% highlight bash %}
+ng build --prod
+{% endhighlight %}
 
 And finally, start the web server:
 
-```http-server -p 8080 -c-1 dist/<project-name>```
+{% highlight bash %}
+http-server -p 8080 -c-1 dist/<project-name>
+{% endhighlight %}
 
 Your app should be up and running on `http://localhost:8080/` (or whichever port you chose). How do you know it's a PWA? There are a few ways:
 
@@ -100,10 +106,10 @@ Even though the proccess is quite straight-forward, I still faced some issues wh
 
 This was a [reported bug](https://github.com/angular/angular-cli/issues/11914) on the CLI. I had a bugged version (6.0.8) installed on my app. I updated it by running
 
-```
+{% highlight bash %}
 npm uninstall @angular/cli --save
 npm install @angular/cli@latest --save
-```
+{% endhighlight %}
 
 It updated itself to version 7.1.4 and worked flawlessly.
 
