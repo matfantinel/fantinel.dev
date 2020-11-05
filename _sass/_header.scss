@@ -5,19 +5,38 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 25px;
+    padding: 50px 25px;
     width: 100%;
     z-index: 5;
-    color: var(--dark-fg-color);
+    color: var(--fg-color);
 
-    .logo {
-      width: 40px;
-      color: var(--dark-accent-color);
+    .links {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .logo {
+        padding-right: 30px;
+        height: 24px;
+        svg {
+          width: auto;
+          height: 100%;
+        }
+      }
+      .inner-pages {
+        display: flex;
+
+        li {
+          font-size: 1.1rem;
+          padding-right: 30px;
+        }
+      }
     }
 
     ul {
       display: flex;
       justify-content: space-between;
+      align-items: center;
 
       li {
         font-size: 0.9rem;
@@ -31,19 +50,19 @@ header {
           color: inherit;
 
           svg {
-            fill: var(--dark-fg-color);
+            fill: var(--fg-color);
             height: 1.3rem;
           }
 
           &:hover {
-            color: var(--dark-accent-color);
+            color: var(--accent-color);
             svg {
-              fill: var(--dark-accent-color);
+              fill: var(--accent-color);
             }
           }
 
           &.featured {
-            border: 1px solid var(--dark-accent-color);
+            border: 1px solid var(--accent-color);
           }
         }
       }
@@ -52,7 +71,7 @@ header {
         li {
           a {
             &.telegram {
-              background-image: url("../images/icons/telegram.svg");
+              background-image: url('../images/icons/telegram.svg');
             }
           }
         }
