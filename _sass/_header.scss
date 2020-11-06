@@ -21,6 +21,14 @@ header {
         svg {
           width: auto;
           height: 100%;
+
+          &:hover {
+            path {
+              transition: all .3s ease-in-out;
+              fill: var(--accent-color) !important;
+              stroke: var(--accent-color) !important;
+            }
+          }
         }
       }
       .inner-pages {
