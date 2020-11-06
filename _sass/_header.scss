@@ -22,11 +22,27 @@ header {
           width: auto;
           height: 100%;
 
+          #name {
+            transition: all .3s ease-in-out;
+            fill: var(--fg-color);
+            stroke: var(--fg-color);
+          }
+
+          #web {
+            transition: all .3s ease-in-out;
+            fill: var(--bg-color);
+            stroke: var(--bg-color);
+          }
+
           &:hover {
-            path {
-              transition: all .3s ease-in-out;
-              fill: var(--accent-color) !important;
-              stroke: var(--accent-color) !important;
+            #name {              
+              fill: var(--accent-color);
+              stroke: var(--accent-color);
+            }
+
+            #web {              
+              fill: var(--fg-color);
+              stroke: var(--fg-color);
             }
           }
         }

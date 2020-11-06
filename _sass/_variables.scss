@@ -5,6 +5,7 @@
 // Colors
 :root {
   --bg-color: #F4F8FB;
+  --bg-color-rgb: 244, 248, 251;
   --fg-color: #1c1e26;
   --lighter-fg-color: #808080;
   --accent-color: #0CA4A5;
@@ -27,6 +28,7 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --bg-color: #1c1e26;
+    --bg-color-rgb: 28, 30, 38;
     --fg-color: #dffcfd;
     --lighter-fg-color: #9eb4b5;
     --accent-color: #00f9fb;
