@@ -1,0 +1,115 @@
+section.about {
+  position: relative;
+
+  --avatar-height: 220px;
+  .avatar-container {
+    width: 100%;
+    display: grid;
+    place-items: center;
+    margin-bottom: calc((var(--avatar-height) * -1) / 2);
+
+    img.avatar {
+      max-width: 100%;
+      max-height: var(--avatar-height);
+      border-radius: 50%;
+      box-shadow: 8px 14px 38px rgba(39, 44, 49, 0.06), 1px 3px 8px rgba(39, 44, 49, 0.03);
+    }
+  }
+
+  .card {
+    padding-top: calc(var(--avatar-height) / 2);
+
+    .content {
+      display: grid;
+      grid-template-columns: 1fr min(840px, 100%) 1fr;
+      padding: 40px 0;
+
+      > * {
+        grid-column: 2;
+      }
+      > .full-bleed {
+        width: 100%;
+        grid-column: 1 / 4;
+      }
+
+      h3.greetings {
+        font-weight: 700;
+        text-align: center;
+        font-size: 1.8rem;
+        padding-left: 40px;
+        padding-right: 40px;
+      }
+
+      .info-container {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        margin: 36px 0;
+        padding-left: 40px;
+        padding-right: 40px;
+
+        > div {
+          flex: 1 1 350px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+
+          &.bullet-list {
+            margin-bottom: 36px;
+
+            ul {
+              li {
+                font-size: 1.4rem;
+                line-height: 3.4rem;
+                display: flex;
+                align-items: center;
+
+                svg {
+                  margin-right: 10px;
+                  width: 2.3rem;
+                  fill: var(--accent-color);
+                }
+              }
+            }
+          }
+
+          &.buzzwords {
+            .subtitle {
+              font-size: 1.5rem;
+            }
+
+            ul.tags {
+              gap: 5px;
+              justify-content: center;
+            }
+          }
+        }
+
+        @include for-tablet-landscape-up {
+          > div {
+            align-items: flex-start;
+            &.bullet-list {
+              margin-bottom: 0;
+            }
+
+            &.buzzwords {
+              ul.tags {
+                justify-content: flex-start;
+              }
+            }
+          }
+        }
+      }
+
+      .introduction {
+        padding-left: 40px;
+        padding-right: 40px;
+      }
+
+      hr {
+        border: 1px solid var(--border-color);
+      }
+    }
+  }
+}

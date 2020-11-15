@@ -99,29 +99,7 @@
     min-height: 240px;
     min-width: 50%;
   }
-
-  .avatar-container {
-    flex: 1;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 30px 30px 20px 30px;
-
-    .filter {
-      max-width: 100%;
-      max-height: 200px;
-      position: absolute;
-    }
-
-    img.avatar {
-      max-width: 100%;
-      max-height: 200px;
-      border-radius: 50%;
-      border: 3px solid var(--accent-color);
-      box-shadow: 8px 14px 38px rgba(39, 44, 49, 0.06), 1px 3px 8px rgba(39, 44, 49, 0.03);
-    }
-  }
+  
 }
 
 @include for-tablet-landscape-up {
