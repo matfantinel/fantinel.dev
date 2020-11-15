@@ -23,24 +23,24 @@ header {
           height: 100%;
 
           #name {
-            transition: all .3s ease-in-out;
+            transition: all 0.3s ease-in-out;
             fill: var(--fg-color);
             stroke: var(--fg-color);
           }
 
           #web {
-            transition: all .3s ease-in-out;
+            transition: all 0.3s ease-in-out;
             fill: var(--bg-color);
             stroke: var(--bg-color);
           }
 
           &:hover {
-            #name {              
+            #name {
               fill: var(--accent-color);
               stroke: var(--accent-color);
             }
 
-            #web {              
+            #web {
               fill: var(--fg-color);
               stroke: var(--fg-color);
             }
@@ -53,6 +53,10 @@ header {
         li {
           font-size: 1.1rem;
           padding-right: 30px;
+
+          &:last-child {
+            padding-right: 0;
+          }
         }
       }
     }
@@ -90,8 +94,7 @@ header {
           }
         }
       }
-
-      &.social {
+      grid &.social {
         li {
           a {
             &.telegram {
@@ -107,13 +110,24 @@ header {
 @include for-phone-only {
   header {
     .header-content {
+      padding: 20px;
+      display: flex;
       flex-direction: column;
-      padding: 10px 25px 20px 25px;
 
-      ul {
-        &.links {
-          margin-bottom: 30px;
-        }
+      .links {
+        justify-content: space-between;
+        width: 100%;
+        overflow-x: visible;
+        overflow-y: hidden;
+
+        // Ugly fix for scrollbars - the setting above makes a vertical scrollbar appear even if it's set to hidden
+        // See https://stackoverflow.com/questions/6421966/css-overflow-x-visible-and-overflow-y-hidden-causing-scrollbar-issue
+        padding-bottom: 250px;
+        margin-bottom: -250px;
+      }
+
+      .social {
+        margin-top: 30px;
       }
     }
   }
