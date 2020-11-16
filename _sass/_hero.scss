@@ -1,5 +1,8 @@
 section.hero {
   background: linear-gradient(60deg, rgba(var(--accent-color-rgb), 0.6) 0%, rgba(var(--accent-color-rgb), 0.2) 100%);
+  @media (prefers-color-scheme: dark) {
+    background: linear-gradient(60deg, rgba(var(--accent-color-rgb), 0.2) 0%, rgba(var(--accent-color-rgb), 0.6) 100%);
+  }
   position: absolute;
   width: 100%;
   height: max(65vh, 400px);
