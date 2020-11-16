@@ -51,7 +51,7 @@ header {
         display: flex;
 
         li {
-          font-size: 1.1rem;
+          font-size: 1rem;
           padding-right: 30px;
 
           &:last-child {
@@ -94,15 +94,6 @@ header {
           }
         }
       }
-      grid &.social {
-        li {
-          a {
-            &.telegram {
-              background-image: url('../images/icons/telegram.svg');
-            }
-          }
-        }
-      }
     }
   }
 }
@@ -110,7 +101,7 @@ header {
 @include for-phone-only {
   header {
     .header-content {
-      padding: 20px;
+      padding: 20px 20px 80px 20px;
       display: flex;
       flex-direction: column;
 
@@ -127,7 +118,7 @@ header {
       }
 
       .social {
-        margin-top: 30px;
+        display: none;
       }
     }
   }

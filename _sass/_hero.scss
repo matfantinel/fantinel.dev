@@ -2,7 +2,7 @@ section.hero {
   background: linear-gradient(60deg, rgba(var(--accent-color-rgb), 0.6) 0%, rgba(var(--accent-color-rgb), 0.2) 100%);
   position: absolute;
   width: 100%;
-  height: 65vh;
+  height: max(65vh, 400px);
 }
 .waves {
   position: absolute;
