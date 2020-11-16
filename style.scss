@@ -46,6 +46,9 @@ a {
     text-decoration: underline;
   }
 }
+h1, h2, h3, h4, h5 {
+  font-family: var(--title-font);
+}
 h1 {
   font-size: 2rem;
   margin: 0 20px;
@@ -98,3 +101,7 @@ em {
 @import "highlights";
 @import "about-card";
 @import "swipable-cards";
+
+@import "fonts/wotfard.css";
+@import "fonts/lato.css";
+@import "fonts/ubuntu-mono.css";

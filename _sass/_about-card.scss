@@ -63,6 +63,10 @@ section.about {
       hr {
         border: 1px solid var(--border-color);
         width: 100%;
+
+        @include for-tablet-portrait-up {
+          display: none;
+        }
       }
 
       .info-container {
