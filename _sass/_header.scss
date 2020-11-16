@@ -31,8 +31,8 @@ header {
 
           #web {
             transition: all 0.3s ease-in-out;
-            fill: var(--bg-color);
-            stroke: var(--bg-color);
+            fill: var(--fg-color);
+            stroke: var(--fg-color);
           }
 
           &:hover {

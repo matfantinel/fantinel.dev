@@ -75,6 +75,7 @@ section.about {
         justify-content: space-between;
         flex-wrap: wrap;
         margin-top: var(--side-padding);
+        margin-bottom: var(--side-padding);
         padding-left: var(--side-padding);
         padding-right: var(--side-padding);
 
@@ -123,6 +124,8 @@ section.about {
         }
 
         @include for-tablet-landscape-up {
+          margin-bottom: 0;
+          
           > div {
             &.bullet-list {
               margin-bottom: 0;
@@ -136,7 +139,7 @@ section.about {
         justify-content: space-between;
         align-items: center;
         padding: var(--side-padding);
-        padding-bottom: 0;
+        padding-bottom: calc(var(--side-padding) / 2);
   
         li {
           font-size: 0.9rem;
