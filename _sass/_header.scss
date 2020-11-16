@@ -106,15 +106,16 @@ header {
       flex-direction: column;
 
       .links {
-        justify-content: space-between;
-        width: 100%;
-        overflow-x: visible;
-        overflow-y: hidden;
+        flex-wrap: wrap;
 
-        // Ugly fix for scrollbars - the setting above makes a vertical scrollbar appear even if it's set to hidden
-        // See https://stackoverflow.com/questions/6421966/css-overflow-x-visible-and-overflow-y-hidden-causing-scrollbar-issue
-        padding-bottom: 250px;
-        margin-bottom: -250px;
+        .logo {
+          padding: 0;
+          flex: 1 0 100%;
+          text-align: center;
+        }
+        .inner-pages {
+          margin-top: 16px;
+        }
       }
 
       .social {
