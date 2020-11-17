@@ -4,7 +4,7 @@ This is my own personal website, built with Jekyll. It also holds my own persona
 
 
 <p align="center">
-    <img src="images/projects/personal-website.png" alt="Screenshot" />
+    <img src="images/projects/personal-website-transparent.png" alt="Screenshot" />
 </p>
 
 
@@ -20,10 +20,8 @@ I achieved this with the help of Jekyll and SASS. There is little to no JavaScri
 
 # Inspirations
 
-* Thanks to [Jekyll Now](https://github.com/barryclark/jekyll-now) for providing the base for this project;
 * Thanks to the elementary OS team for publishing [their own blog's code](https://github.com/elementary/blog-template) for me to use as inspiration for the code;
 * This website's looks are inspired by [Ghost.org](https://ghost.org)'s [Casper theme](https://github.com/TryGhost/Casper).
-
 
 # Building & Running Locally
 
