@@ -96,9 +96,51 @@ header {
         }
       }
     }
+
+    &.dark {
+      color: var(--dark-fg-color);
+
+      a:hover {
+        color: var(--dark-accent-color);
+      }
+
+      .links {
+        .logo {
+          svg {
+            #name,
+            #web {
+              fill: var(--dark-fg-color);
+              stroke: var(--dark-fg-color);
+            }
+          }
+
+          &:hover {
+            svg {
+              #name {
+                fill: var(--dark-accent-color);
+                stroke: var(--dark-accent-color);
+              }
+            }
+          }
+        }
+      }
+
+      ul {
+        li {
+          a {
+            svg {
+              fill: var(--dark-fg-color);
+
+              &:hover {
+                fill: var(--dark-accent-color);
+              }
+            }
+          }
+        }
+      }
+    }
   }
 }
-
 @include for-phone-only {
   header {
     .header-content {

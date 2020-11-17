@@ -2,7 +2,7 @@
 layout: default
 ---
 
-{% include blog/posts/hero.html image=page.image %}
+{% include base/hero.html %}
 
 <div class="page-content blog-post-page">
   {% include base/header.html %}
@@ -29,6 +29,7 @@ layout: default
         </ul>
 
         <article>
+          <img src="{{page.image}}" alt="Cover image for this article">
           {{ content }}
         </article>
 
