@@ -15,12 +15,20 @@ section.about {
     justify-content: center;
     width: 100%;
     margin-bottom: calc((var(--avatar-height) * -1) / 2);
+    position: relative;
+    z-index: 2;
 
     img.avatar {
       max-width: 100%;
       max-height: var(--avatar-height);
       border-radius: 50%;
       box-shadow: 8px 14px 38px rgba(39, 44, 49, 0.06), 1px 3px 8px rgba(39, 44, 49, 0.03);
+      transition: all .3s ease-in-out;
+
+      &:hover {
+        transform: scale(1.05) rotate(10deg);
+        box-shadow: 8px 14px 38px rgba(39,44,49,0.3), 1px 3px 8px rgba(39,44,49,0.03);
+      }
     }
 
     @include for-tablet-portrait-up {
@@ -33,6 +41,7 @@ section.about {
   }
 
   .card {
+    position: relative;
     padding-top: calc(var(--avatar-height) / 2);
 
     @include for-tablet-portrait-up {

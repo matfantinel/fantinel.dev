@@ -5,23 +5,23 @@
 // IMPORTS
 //
 
-@import "reset";
-@import "variables";
+@import 'reset';
+@import 'variables';
 
 /**************/
 /* BASE RULES */
 /**************/
 
-html { 
+html {
   font-family: var(--default-font);
   scrollbar-color: var(--scrollbar-thumb-color) var(--scrollbar-track-color);
 
   ::-webkit-scrollbar {
     width: 8px;
   }
-  
+
   ::-webkit-scrollbar-thumb {
-      background: var(--scrollbar-thumb-color); 
+    background: var(--scrollbar-thumb-color);
   }
 }
 
@@ -46,7 +46,11 @@ a {
     text-decoration: underline;
   }
 }
-h1, h2, h3, h4, h5 {
+h1,
+h2,
+h3,
+h4,
+h5 {
   font-family: var(--title-font);
 }
 h1 {
@@ -77,7 +81,7 @@ em {
   box-sizing: border-box;
   margin: 0 auto;
 }
-.animateWhenVisible {
+.animate-when-visible {
   opacity: 0;
 }
 .accent-color {
@@ -99,16 +103,16 @@ em {
   }
 }
 
-@import "header";
-@import "hero";
-@import "home";
-@import "card";
-@import "blog";
-@import "code";
-@import "highlights";
-@import "about-card";
-@import "swipable-cards";
+@import 'header';
+@import 'hero';
+@import 'home';
+@import 'card';
+@import 'blog';
+@import 'code';
+@import 'highlights';
+@import 'about-card';
+@import 'swipable-cards';
 
-@import "fonts/wotfard.css";
-@import "fonts/lato.css";
-@import "fonts/ubuntu-mono.css";
+@import 'fonts/wotfard.css';
+@import 'fonts/lato.css';
+@import 'fonts/ubuntu-mono.css';
