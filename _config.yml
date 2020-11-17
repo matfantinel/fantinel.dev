@@ -1,19 +1,10 @@
-title: Matheus Fantinel
+title: Matt Fantinel
 description: Software Developer
 permalink: /:title/
 
-#
-# Flags below are optional
-#
-
-disqus:
-
-# Enter your Google Analytics web tracking code (e.g. UA-2110908-2) to activate tracking
-google_analytics:
-
 # Your website URL (e.g. http://barryclark.github.io or http://www.barryclark.co)
 # Used for Sitemap.xml and your RSS feed
-url:
+url: https://fantinel.dev
 
 plugins:
   - jekyll-feed
@@ -35,4 +26,4 @@ future: false # Allows us to stage posts
 exclude: [README.md, Gemfile, Gemfile.lock, vendor]
 
 sass:
-  style: :expanded # You might prefer to minify using :compressed
+  style: :compressed # You might prefer to minify using :compressed
