@@ -15,6 +15,10 @@
 .not-found-page {
   .hero {
     height: 100vh;
+
+    @include for-phone-only {
+      height: 90vh;
+    }
   }
 
   #main {
@@ -24,14 +28,16 @@
     position: relative;
   }
   .image {
-    height: 400px;
-    // background: var(--bg-color);
-    // border-radius: 50%;
-    // box-shadow: 8px 14px 38px rgba(39, 44, 49, 0.06), 1px 3px 8px rgba(39, 44, 49, 0.03);
+    max-height: 400px;
+    max-width: 100%;
 
     svg {
-      height: 100%;
+      width: 100%;
       animation: rotate-back-and-forth 3s ease-in-out infinite;
     }
+  }
+
+  p {
+    margin: 0 20px;
   }
 }

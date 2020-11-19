@@ -10,7 +10,7 @@
 
     {% if page.excerpt %}
     <meta name="description" content="{{ page.excerpt| strip_html }}" />
-    <meta property="og:description" content="{{ page.excerpt| strip_html }}" />
+    <meta property="og:description" conte🕸️nt="{{ page.excerpt| strip_html }}" />
     <meta name="twitter:description" content="{{ page.excerpt| strip_html }}" />
     {% else %}
     <meta name="description" content="{{ site.description }}">
@@ -22,14 +22,17 @@
     <meta name="twitter:creator" content="@matfantinel" />
 
     {% if page.title %}
-    <meta property="og:title" content="{{ page.title }}" />
-    <meta name="twitter:title" content="{{ page.title }}" />
+    <meta property="og:title" content="{{ page.title }} - Matt Fantinel" />
+    <meta name="twitter:title" content="{{ page.title }} - Matt Fantinel" />
+    {% else %}
+    <meta property="og:title" content="{{ site.title }}" />
+    <meta name="twitter:title" content="{{ site.title }}" />
     {% endif %}
 
     {% if page.image %}
-    <meta property="og:image" content="https://fantinel.dev/{{ page.image }}" />
-    <meta name="twitter:image" content="https://fantinel.dev/{{ page.image }}" />
+    <meta property="og:image" content="{{ site.url }}/{{ page.image }}" />
+    <meta name="twitter:image" content="{{ site.url }}/{{ page.image }}" />
     {% else %}
-    <meta property="og:image" content="https://www.gravatar.com/avatar/d3e0755978911619f8979bef9d843b44?s=250&d=mm&r=x" />
-    <meta name="twitter:image" content="https://www.gravatar.com/avatar/d3e0755978911619f8979bef9d843b44?s=250&d=mm&r=x" />
+    <meta property="og:image" content="{{ site.url }}/images/site-preview.png" />
+    <meta name="twitter:image" content="{{ site.url }}/images/site-preview.png" />
     {% endif %}
