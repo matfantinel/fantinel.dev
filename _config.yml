@@ -11,6 +11,7 @@ plugins:
   - jekyll-paginate
   - jekyll-redirect-from
   - jekyll-sitemap
+  - jekyll-gzip
 
 paginate: 7
 paginate_path: "/blog/page:num/"

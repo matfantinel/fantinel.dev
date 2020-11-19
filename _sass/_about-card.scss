@@ -19,8 +19,8 @@ section.about {
     z-index: 2;
 
     img.avatar {
-      max-width: 100%;
-      max-height: var(--avatar-height);
+      max-width: var(--avatar-height);
+      height: var(--avatar-height);
       border-radius: 50%;
       box-shadow: 8px 14px 38px rgba(39, 44, 49, 0.06), 1px 3px 8px rgba(39, 44, 49, 0.03);
       transition: all .3s ease-in-out;
