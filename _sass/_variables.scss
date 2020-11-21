@@ -5,8 +5,10 @@
 // Colors
 :root {
   --bg-color: #F4F8FB;
+  --bg-color-rgb: 244, 248, 251;
   --fg-color: #1c1e26;
   --lighter-fg-color: #808080;
+  --border-color: #f1f1f1;
   --accent-color: #0CA4A5;
   --accent-color-rgb: 12, 164, 165;
   --subtle-accent-color: #95CACA;
@@ -27,8 +29,10 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --bg-color: #1c1e26;
+    --bg-color-rgb: 28, 30, 38;
     --fg-color: #dffcfd;
     --lighter-fg-color: #9eb4b5;
+    --border-color: #4c4c4c;
     --accent-color: #00f9fb;
     --accent-color-rgb: 0, 249, 251;
     --subtle-accent-color: #b1feff;
@@ -41,7 +45,8 @@
 
 // Fonts
 :root {
-  --default-font: Ubuntu, sans-serif;
+  --default-font: Lato, sans-serif;
+  --title-font: Wotfard, sans-serif;
   --mono-font: Ubuntu Mono, sans-serif;
 }
 
@@ -60,21 +65,4 @@
 }
 @mixin for-big-desktop-up {
   @media (min-width: 1800px) { @content; }
-}
-
-// Code colors
-
-:root {
-  --solarized-base01: #586e75;
-  --solarized-base02: #073642;
-  --solarized-base03: #002b36;
-  --solarized-base1: #93a1a1;
-  --solarized-base2: #eee8d5;
-  --solarized-base3: #fdf6e3;
-  --solarized-blue: #268bd2;
-  --solarized-cyan: #2aa198;
-  --solarized-green: #859900;
-  --solarized-orange: #cb4b16;
-  --solarized-red: #dc322f;
-  --solarized-yellow: #b58900;
 }

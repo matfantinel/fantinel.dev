@@ -1,10 +1,15 @@
 <header>
-  <div class="header-content">
-    <ul class="links animated fadeInUp {% if include.delay %} delay-2 {% endif %}">
-      <li><a href="{{ site.baseurl }}/">Home</a></li>
-      <li><a href="{{ site.baseurl }}/blog">Blog</a></li>
-    </ul>
-    <ul class="social animated fadeInUp {% if include.delay %} delay-3 {% endif %}">
+  <div class="header-content {% if include.forceDark %} dark {% endif %}">
+    <div class="links">
+      <a href="{{ site.baseurl }}/" class="logo {% if include.animated %} animated {% endif %}">
+        {% include svg-icons/logos/Logotype.svg %}
+      </a>
+      <ul class="inner-pages {% if include.animated %} animated fadeIn delay-2 {% endif %}">
+        <li><a href="{{ site.baseurl }}/blog">Blog</a></li>
+        <li><a href="{{ site.baseurl }}/resume">Resume</a></li>
+      </ul>
+    </div>
+    <ul class="social {% if include.animated %} animated fadeIn delay-3 {% endif %}">
       <li>{% include svg-icons/telegram.html %}</li>
       <li>{% include svg-icons/twitter.html %}</li>
       <li>{% include svg-icons/linkedin.html %}</li>

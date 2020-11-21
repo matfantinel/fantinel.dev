@@ -5,15 +5,45 @@
 
     {% include base/meta.html %}
 
-    <link href="https://fonts.googleapis.com/css?family=Ubuntu|Ubuntu+Mono&display=swap" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/style.css" />
-    <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/animate.css" />
+    <link rel="preload" type="text/css" href="{{ site.baseurl }}/fonts/ubuntu-mono.css" />
+    <link rel="preload" type="text/css" href="{{ site.baseurl }}/fonts/lato.css" />
+    <link rel="preload" type="text/css" href="{{ site.baseurl }}/fonts/wotfard.css" />
     <link rel="alternate" type="application/rss+xml" title="{{ site.name }}" href="{{ site.baseurl }}/feed.xml" />
   </head>
 
   <body>
     {{ content }}
 
-    {% include base/analytics.html %}
+    <script type="text/javascript">
+      function animateWhenVisible() {
+        var targets = document.querySelectorAll('.animate-when-visible');
+
+        var intersectionObserverOptions = {
+          root: null,
+          rootMargin: '0px',
+          threshold: 0.1,
+        };
+
+        var observer = new IntersectionObserver(onIntersection, intersectionObserverOptions);
+
+        targets.forEach((q) => {
+          observer.observe(q);
+        });
+
+        function onIntersection(entries) {
+          entries.forEach((entry) => {
+            if (entry.intersectionRatio > 0) {
+              entry.target.classList.add('animated', 'fadeIn');
+            }
+
+            if (entry.intersectionRatio > 0) {
+              observer.unobserve(entry.target);
+            }
+          });
+        }
+      }
+      animateWhenVisible();
+    </script>
   </body>
 </html>

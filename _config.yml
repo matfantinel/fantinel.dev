@@ -1,25 +1,17 @@
-title: Matheus Fantinel
-description: Software Developer
+title: Matt Fantinel - Web Developer
+description: 🕸️ Front-End Web Developer | 🧙‍♂️ Open Sourcerer | 👉️ Bullet List Enthusiast
 permalink: /:title/
-
-#
-# Flags below are optional
-#
-
-disqus:
-
-# Enter your Google Analytics web tracking code (e.g. UA-2110908-2) to activate tracking
-google_analytics:
 
 # Your website URL (e.g. http://barryclark.github.io or http://www.barryclark.co)
 # Used for Sitemap.xml and your RSS feed
-url:
+url: https://fantinel.dev
 
 plugins:
   - jekyll-feed
   - jekyll-paginate
   - jekyll-redirect-from
   - jekyll-sitemap
+  - jekyll-gzip
 
 paginate: 7
 paginate_path: "/blog/page:num/"
@@ -35,4 +27,4 @@ future: false # Allows us to stage posts
 exclude: [README.md, Gemfile, Gemfile.lock, vendor]
 
 sass:
-  style: :expanded # You might prefer to minify using :compressed
+  style: :compressed # You might prefer to minify using :compressed

@@ -1,65 +1,74 @@
 <section class="about">
+  <div class="avatar-container">
+    <img
+      class="avatar animated fadeIn delay-5"
+      alt="Avatar"
+      src="https://www.gravatar.com/avatar/d3e0755978911619f8979bef9d843b44?s=384&d=mm&r=x"
+    />
+  </div>
   <div class="card large animated fadeInUpSmall delay-4">
-    <div class="avatar-container">
-      <img class="avatar" alt="Avatar" src="https://www.gravatar.com/avatar/d3e0755978911619f8979bef9d843b44?s=250&d=mm&r=x" />
-    </div>
-
     <div class="content">
-      <p>
-        I am a software engineer from Brazil specializing in building fast, beautiful and high-quality web apps. I also
-        enjoy Open Source software, writing on my blog occasionally, and a little bit of gaming.
+      <h3 class="greetings">Hello, I'm Matt.</h3>
+
+      <p class="introduction">
+        I am a software engineer from Brazil. My deal is building fast, beautiful and high-quality web apps, but I have
+        also worked on mobile and desktop apps (it was pretty fun!). Whenever possible, I work with Open Source Software
+        (OSS). You can check out my OSS projects below, as well as whatever I've been rambling about on my blog.
       </p>
 
-      <p>
-        Here are some technologies/buzzwords I've been working with recently:
-      </p>
+      <div class="info-container">
+        <div class="bullet-list">
+          <ul>
+            <li>{% include svg-icons/about/spider-web.svg %} Front-End Web Developer</li>
+            <li>{% include svg-icons/about/sorcerer.svg %} Open Sourcerer</li>
+            <li>{% include svg-icons/about/pointing-right.svg %} Bullet List Enthusiast</li>
+          </ul>
+        </div>
+        <div class="buzzwords">
+          <span class="subtitle">I am quite good at a few things:</span>
+          <ul class="tags">
+            <li>
+              <span class="tag"> Angular </span>
+            </li>
+            <li>
+              <span class="tag"> Vue(X) </span>
+            </li>
+            <li>
+              <span class="tag"> Ionic </span>
+            </li>
+            <li>
+              <span class="tag"> Electron </span>
+            </li>
+            <li>
+              <span class="tag"> (S)CSS </span>
+            </li>
+            <li>
+              <span class="tag"> JavaScript </span>
+            </li>
+            <li>
+              <span class="tag"> TypeScript </span>
+            </li>
+            <li>
+              <span class="tag"> Building UIs </span>
+            </li>
+            <li>
+              <span class="tag"> Web Components </span>
+            </li>
+            <li>
+              <span class="tag"> .NET </span>
+            </li>
+          </ul>
+        </div>
+      </div>
 
-      <ul class="tags">
-        <li>
-          <a class="tag">
-            JavaScript
-          </a>
-        </li>
-        <li>
-          <a class="tag">
-            TypeScript
-          </a>
-        </li>
-        <li>
-          <a class="tag">
-            Angular
-          </a>
-        </li>
-        <li>
-          <a class="tag">
-            Vue(X)
-          </a>
-        </li>
-        <li>
-          <a class="tag">
-            Ionic
-          </a>
-        </li>
-        <li>
-          <a class="tag">
-            Electron
-          </a>
-        </li>
-        <li>
-          <a class="tag">
-            Web Components
-          </a>
-        </li>
-        <li>
-          <a class="tag">
-            (S)CSS
-          </a>
-        </li>
-        <li>
-          <a class="tag">
-            .NET
-          </a>
-        </li>
+      <hr />
+
+      <ul class="social">
+        <li>{% include svg-icons/telegram.html %}</li>
+        <li>{% include svg-icons/twitter.html %}</li>
+        <li>{% include svg-icons/linkedin.html %}</li>
+        <li>{% include svg-icons/github.html %}</li>
+        <li>{% include svg-icons/rss.html %}</li>
       </ul>
     </div>
   </div>

@@ -5,23 +5,23 @@
 // IMPORTS
 //
 
-@import "reset";
-@import "variables";
+@import 'reset';
+@import 'variables';
 
 /**************/
 /* BASE RULES */
 /**************/
 
-html { 
+html {
   font-family: var(--default-font);
   scrollbar-color: var(--scrollbar-thumb-color) var(--scrollbar-track-color);
 
   ::-webkit-scrollbar {
     width: 8px;
   }
-  
+
   ::-webkit-scrollbar-thumb {
-      background: var(--scrollbar-thumb-color); 
+    background: var(--scrollbar-thumb-color);
   }
 }
 
@@ -46,6 +46,13 @@ a {
     text-decoration: underline;
   }
 }
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: var(--title-font);
+}
 h1 {
   font-size: 2rem;
   margin: 0 20px;
@@ -55,6 +62,10 @@ h2 {
   margin: 0 20px;
 }
 h3 {
+  font-size: 1.3rem;
+  margin: 0 20px;
+}
+h4 {
   font-size: 1rem;
   margin: 0 20px;
 }
@@ -70,7 +81,7 @@ em {
   box-sizing: border-box;
   margin: 0 auto;
 }
-.animateWhenVisible {
+.animate-when-visible {
   opacity: 0;
 }
 .accent-color {
@@ -87,13 +98,19 @@ em {
   h3 {
     font-size: 1.5rem;
   }
+  h4 {
+    font-size: 1.5rem;
+  }
 }
 
-@import "header";
-@import "hero";
-@import "home";
-@import "card";
-@import "blog";
-@import "code";
-@import "highlights";
-@import "swipable-cards";
+@import 'header';
+@import 'hero';
+@import 'home';
+@import 'card';
+@import 'blog';
+@import 'code';
+@import 'highlights';
+@import 'about-card';
+@import 'swipable-cards';
+@import 'not-found';
+@import 'animations';
