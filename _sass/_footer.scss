@@ -4,17 +4,20 @@ footer {
   font-family: var(--title-font);
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
-  box-shadow: 8px 14px 38px rgba(39, 44, 49, 0.06), 1px 3px 8px rgba(39, 44, 49, 0.03);
 
   position: relative;
   overflow: hidden;
-  min-height: 160px;
+  min-height: 200px;
   width: 100vw;
   left: 0;
 
-  background: linear-gradient(60deg, rgba(var(--accent-color-rgb), 0.6) 0%, rgba(var(--accent-color-rgb), 0.2) 100%);
+  padding-top: 100px;
+  box-sizing: content-box;
+
+  background: linear-gradient(0deg, rgba(var(--accent-color-rgb), 0.6) 50%, transparent 100%);
+  background: linear-gradient(0deg, var(--subtle-accent-color) 50%, transparent 100%);
   @media (prefers-color-scheme: dark) {
-    background: linear-gradient(60deg, rgba(var(--accent-color-rgb), 0.2) 0%, rgba(var(--accent-color-rgb), 0.6) 100%);
+    background: linear-gradient(0deg, rgba(var(--accent-color-rgb), 0.4) 50%, transparent 100%);
   }
 
   .footer-content {
@@ -67,7 +70,7 @@ footer {
 
   .logomark {
     position: absolute;
-    right: 8px;
+    right: 0;
     bottom: 0;
     height: calc(100% - 8px);
     max-height: 100px;
@@ -77,13 +80,14 @@ footer {
     svg {
       height: 100%;
       width: auto;
-      fill: var(--subtler-accent-color);
-      stroke: var(--subtler-accent-color);
+      fill: rgba(var(--fg-color-rgb), 0.4);
+      stroke: rgba(var(--fg-color-rgb), 0.4);
     }
 
     @include for-phone-only {
       height: 60px;
-      right: 0;
+      bottom: 8px;
+      right: 8px;
     }
 
     &:hover {
