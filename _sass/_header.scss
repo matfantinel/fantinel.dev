@@ -158,6 +158,7 @@ header {
         }
         .inner-pages {
           margin-top: 16px;
+          text-decoration: underline;
         }
       }
 
@@ -191,6 +192,18 @@ header {
   }
 }
 
+@keyframes animate-svg-stroke-long {
+  0% {
+    stroke-dashoffset: 400;
+    stroke-dasharray: 400;
+  }
+
+  100% {
+    stroke-dashoffset: 0;
+    stroke-dasharray: 400;
+  }
+}
+
 .logo {
   &.animated {
     #svg8 {
@@ -214,8 +227,8 @@ header {
             animate-svg-stroke 1.5s cubic-bezier(0.47, 0, 0.745, 0.715) 0.4s both;
         }
         > path:nth-child(4) {
-          animation: animate-svg-fill 0.7s cubic-bezier(0.47, 0, 0.745, 0.715) 1.1s both,
-            animate-svg-stroke 1.5s cubic-bezier(0.47, 0, 0.745, 0.715) 0.5s both;
+          animation: animate-svg-fill 0.7s cubic-bezier(0.47, 0, 0.745, 0.715) 1.5s both,
+            animate-svg-stroke-long 1.0s cubic-bezier(0.47, 0, 0.745, 0.715) 0.5s both;
         }
         > path:nth-child(5) {
           animation: animate-svg-fill 0.7s cubic-bezier(0.47, 0, 0.745, 0.715) 1.2s both,
@@ -245,14 +258,14 @@ header {
           animation: animate-svg-fill 0.7s cubic-bezier(0.47, 0, 0.745, 0.715) 1.8s both,
             animate-svg-stroke 1.5s cubic-bezier(0.47, 0, 0.745, 0.715) 1.2s both;
         }
-        > path:nth-child(12) {
-          animation: animate-svg-fill 0.7s cubic-bezier(0.47, 0, 0.745, 0.715) 1.9s both,
-            animate-svg-stroke 1.5s cubic-bezier(0.47, 0, 0.745, 0.715) 1.3s both;
-        }
-        > path:nth-child(13) {
-          animation: animate-svg-fill 0.7s cubic-bezier(0.47, 0, 0.745, 0.715) 2s both,
-            animate-svg-stroke 1.5s cubic-bezier(0.47, 0, 0.745, 0.715) 1.4s both;
-        }
+        // > path:nth-child(12) {
+        //   animation: animate-svg-fill 0.7s cubic-bezier(0.47, 0, 0.745, 0.715) 1.9s both,
+        //     animate-svg-stroke 1.5s cubic-bezier(0.47, 0, 0.745, 0.715) 1.3s both;
+        // }
+        // > path:nth-child(13) {
+        //   animation: animate-svg-fill 0.7s cubic-bezier(0.47, 0, 0.745, 0.715) 2s both,
+        //     animate-svg-stroke 1.5s cubic-bezier(0.47, 0, 0.745, 0.715) 1.4s both;
+        // }
       }
     }
   }

@@ -17,3 +17,21 @@
     {% include /svg-icons/logos/Logomark.svg %}
   </div>
 </footer>
+
+<script type="text/javascript">
+  var logomarkElement = document.querySelector('.logomark');
+  logomarkElement.addEventListener('mouseenter', (event) => {
+    webBoink();    
+  });
+  logomarkElement.addEventListener('click', (event) => {
+    webBoink();    
+  });
+
+  function webBoink() {
+    logomarkElement.classList.add('boink');
+
+    setTimeout(() => {
+      logomarkElement.classList.remove('boink');
+    }, 500);
+  }
+</script>

@@ -14,10 +14,9 @@ footer {
   padding-top: 100px;
   box-sizing: content-box;
 
-  background: linear-gradient(0deg, rgba(var(--accent-color-rgb), 0.6) 50%, transparent 100%);
-  background: linear-gradient(0deg, var(--subtle-accent-color) 50%, transparent 100%);
+  background: linear-gradient(0deg, var(--subtle-accent-color) 0%, transparent 100%);
   @media (prefers-color-scheme: dark) {
-    background: linear-gradient(0deg, rgba(var(--accent-color-rgb), 0.4) 50%, transparent 100%);
+    background: linear-gradient(0deg, rgba(var(--accent-color-rgb), 0.4) 0%, transparent 100%);
   }
 
   .footer-content {
@@ -70,10 +69,11 @@ footer {
 
   .logomark {
     position: absolute;
-    right: 0;
-    bottom: 0;
+    right: 16px;
+    bottom: 8px;
     height: calc(100% - 8px);
     max-height: 100px;
+    width: 100px;
     transition: all .3s ease-in-out;
     z-index: 1;
 
@@ -86,11 +86,12 @@ footer {
 
     @include for-phone-only {
       height: 60px;
+      width: 60px;
       bottom: 8px;
       right: 8px;
     }
 
-    &:hover {
+    &.boink {
       animation: web-boink .5s;
     }
   }
