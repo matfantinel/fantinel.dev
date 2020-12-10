@@ -13,7 +13,7 @@ It was built with a few goals in mind:
 * Responsive design: the website looks and behaves well on screens of all sizes;
 * Fast: it only loads what's needed for it to work. No external JS or CSS libraries:
 * Adaptive: it supports dark mode from most operating systems by default (desktop and mobile);
-* No tracking: I don't need to know who you are and what you do. No tracking nor analytics;
+* Privacy-friendly: I don't need to know who you are and what you do;
 * Pretty: use a simple and organized layout with simple animations to provide a pleasant experience to all visitors.
 
 I achieved this with the help of Jekyll and SASS. There is little to no JavaScript. While JS is awesome, it's important to know when it's not needed.
