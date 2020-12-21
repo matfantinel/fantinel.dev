@@ -2,13 +2,19 @@
     <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=5.0'>
-    <meta name="theme-color" content="#95CACA">
     <meta name="color-scheme" content="light dark">
-
+    <meta name="theme-color" content="#95CACA">
+    
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <link rel="alternate icon" href="/favicon.ico">
     <link rel="mask-icon" href="/favicon.svg" color="#F4F8FB">
-
+    
+    {% if page.tags %}
+    <meta name="keywords" content='{{page.tags | join: ", "}}, Matheus Fantinel, Matt Fantinel, Web Development, Software Engineer, Open Source'>
+    {% else %}
+    <meta name="keywords" content='Matheus Fantinel, Matt Fantinel, Web Development, Software Engineer, Open Source'>
+    {% endif %}
+    
     {% if page.excerpt %}
     <meta name="description" content="{{ page.excerpt| strip_html }}" />
     <meta property="og:description" content="{{ page.excerpt| strip_html }}" />
