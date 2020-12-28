@@ -75,6 +75,21 @@ strong {
 em {
   font-style: italic;
 }
+
+.text-highlight {
+  font-style: normal;
+  border-radius: 1em 0 1em 0;
+  text-shadow: 1px 1px 1px var(--bg-color);
+  padding: 8px;
+  margin-right: -8px;
+  margin-left: -8px;
+  background-image: linear-gradient(
+    -100deg,
+    rgba(var(--accent-color-rgb), 0.1),
+    rgba(var(--accent-color-rgb), 0.2) 100%,
+    rgba(var(--accent-color-rgb), 0.15)
+  );
+}
 .page-content {
   max-width: 1080px;
   width: 100%;

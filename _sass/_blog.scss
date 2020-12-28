@@ -96,7 +96,7 @@ section.hero.blog {
 
       ol,
       ul {
-        padding-left: 50px;
+        padding-left: 25px;
 
         li {
           margin-bottom: 10px;
@@ -135,6 +135,12 @@ section.hero.blog {
     .card {
       margin-left: 0;
       margin-right: 0;
+
+      .content {
+        ul {
+          padding-left: 15px;
+        }
+      }
     }
   }
 }
