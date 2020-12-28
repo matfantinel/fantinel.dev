@@ -18,6 +18,14 @@ section.hero.blog {
   &:hover {
     text-decoration: none;
   }
+
+  @include for-tablet-landscape-up {
+    &.compact {
+      .excerpt {
+        display: none;
+      }
+    }
+  }
 }
 
 .pagination {

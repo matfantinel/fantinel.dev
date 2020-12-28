@@ -41,7 +41,7 @@ redirect_from:
       {% if post == paginator.posts[6] %}
         {% include blog/blog-post-card.html post=post size="large" %}
       {% else %}
-        {% include blog/blog-post-card.html post=post hideExcerpt=true %}
+        {% include blog/blog-post-card.html post=post compact=true %}
       {% endif %}
     {% endunless %}
   {% endfor %}
