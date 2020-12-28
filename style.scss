@@ -90,6 +90,11 @@ em {
     rgba(var(--accent-color-rgb), 0.15)
   );
 }
+::selection {
+  background-color: rgba(var(--accent-color-rgb), 0.2);
+  color: var(--fg-color);
+  text-shadow: none;
+}
 .page-content {
   max-width: 1080px;
   width: 100%;
