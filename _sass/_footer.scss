@@ -14,9 +14,9 @@ footer {
   padding-top: 100px;
   box-sizing: content-box;
 
-  background: linear-gradient(0deg, var(--subtle-accent-color) 0%, transparent 100%);
+  background: linear-gradient(0deg, var(--subtle-accent-color) 0%, var(--bg-color) 100%);
   @media (prefers-color-scheme: dark) {
-    background: linear-gradient(0deg, rgba(var(--accent-color-rgb), 0.4) 0%, transparent 100%);
+    background: linear-gradient(0deg, rgba(var(--accent-color-rgb), 0.4) 0%, var(--bg-color) 100%);
   }
 
   .footer-content {
