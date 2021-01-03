@@ -41,6 +41,27 @@ layout: default
       </div>
     </div>
   </div>
+
+  <section class="blog-preview animate-when-visible">
+    <h1>
+      Read More
+    </h1>
+  
+    <div class="cards-list">
+      {% assign i = 0 %}
+      {% for post in site.posts %}
+        {% unless i >= 2 or post.hidden or post.title == page.title %}
+          {% assign i = i | plus:1 %}
+          {% include blog/blog-post-card.html post=post %}
+        {% endunless %}
+      {% endfor %}      
+  
+      <a href="{{ site.baseurl }}/blog" class="card hoverable see-more">
+        {% include svg-icons/more-svg-only.html %}
+        See more blog posts
+      </a>
+    </div>
+  </section>  
 </div>
 
 {% include base/footer.html %}

@@ -75,6 +75,9 @@ strong {
 em {
   font-style: italic;
 }
+code {
+  font-family: var(--mono-font);
+}
 
 .text-highlight {
   font-style: normal;
