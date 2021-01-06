@@ -67,22 +67,26 @@ So, there are 5 types of favicons that we need to add, if we want to support eve
 With those files, you should be good to go on every single browser, by adding this to your `<head>`:
 
 {% highlight html %}
-<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?">
-<link rel="manifest" href="/site.webmanifest?">
-<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#000000">
-<link rel="shortcut icon" href="/favicon.ico">
+<head>
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#000000">
+  <link rel="shortcut icon" href="/favicon.ico">
+</head>
 {% endhighlight %}
 
 ## Single SVG Favicon
 
 Something that's starting to become a thing is having a single SVG favicon. Theoretically, SVGs are infinitely scalable, and should look good on all sizes. Unfortunately, browser support is not there yet.
 
-[Can I Use](https://caniuse.com/link-icon-svg) reports that, currently (January 2021), only recent versions of Firefox and Chromium-based browsers support this feature. This leaves out Safari, non-Chromium Edge, IE, and some mobile browsers do not support it. Therefore, unless you want your favicon to just not appear in those browsers, you'd still have to use other file formats as well. The downside of this approach is that all favicons would look the same, and you won't be able to customize and have differently-shaped icons for mobile devices, for example.
+[Can I Use](https://caniuse.com/link-icon-svg) reports that, currently (January 2021), only recent versions of Firefox and Chromium-based browsers support this feature. This means that Safari, non-Chromium Edge, IE, and some mobile browsers do not support it. Therefore, unless you want your favicon to just not appear in those browsers, you'd still have to use other file formats as well. The downside of this approach is that all favicons would look the same, and you won't be able to customize and have differently-shaped icons for mobile devices, for example.
 
 {% highlight html %}
-<link rel="icon" href="favicon.svg">
+<head>
+  <link rel="icon" href="favicon.svg">
+</head>
 {% endhighlight %}
 
 ## Wrapping Up
