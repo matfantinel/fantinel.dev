@@ -1,7 +1,7 @@
 ---
 layout: post
 title: What are PWAs and why should I care about them?
-images-path: /images/posts/2019-03-12-what-are-pwas-and-why-should-i-care-about-them
+images-path: /posts/2019-03-12-what-are-pwas-and-why-should-i-care-about-them
 image: /images/posts/2019-03-12-what-are-pwas-and-why-should-i-care-about-them/cover.jpg
 tags: ["Series: Exploring the Front-End", PWA, JavaScript, Software Development, Concepts]
 ---
@@ -28,24 +28,26 @@ This all may sound complicated, which is why there are many "recipes" of Service
 
 You probably have already found some of them in the wild. In Chrome for Android, opening a certain website might trigger this panel at the bottom of the screen:
 
-<figure markdown="1">
-
-![PWA Install Prompt on Android]({{page.images-path}}/Android-Install-Prompt.jpg)
-
-<figcaption>"Add Notepad to the home screen"</figcaption>
-</figure>
+{% include base/responsive-image.html 
+  large="true"
+  path=page.images-path
+  filename="Android-Install-Prompt"
+  alt="PWA Install Prompt on Android"
+  figcaption="\"Add Notepad to the home screen\"" 
+%}
 
 And on Desktop, this option shows up in the URL bar:
 
-<figure markdown="1">
-
-![Chrome prompts you to install PWA]({{page.images-path}}/Clipboard_2019-10-27-18-09-45.jpg)
-
-</figure>
+{% include base/responsive-image.html 
+  large="true"
+  path=page.images-path
+  filename="Clipboard_2019-10-27-18-09-45"
+  alt="Chrome prompts you to install PWA"
+%}
 
 With this, your app is able to be displayed on your phone or PC's app list just like any other app. Cool!
 
-_Keep in mind that for now only a few Chromium-based browsers offer this functionality on Android. Firefox, sadly, is not allowed by Google to create WebAPKs (how these are called). Thanks, free market! 🙄_
+_Keep in mind that for now only a few Chromium-based browsers offer this functionality on Android. Firefox, sadly, is not allowed by Google to create WebAPKs (how these are called). Thanks, free market!_ 🙄
 
 ## That's nice and all... But how would my app benefit from it?
 

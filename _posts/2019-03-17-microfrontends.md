@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Micro Frontends: Solving the Legacy JavaScript Problem"
-images-path: /images/posts/2019-03-17-microfrontends
+images-path: /posts/2019-03-17-microfrontends
 image: /images/posts/2019-03-17-microfrontends/cover.jpg
 tags: ["Series: Exploring the Front-End", JavaScript, Software Development, Concepts]
 ---
@@ -222,13 +222,15 @@ As with all things, there are some disadvantages in this approach:
 
 ### Browser Support
 
-<figure markdown="1">
+{% include base/responsive-image.html 
+  large="true"
+  path=page.images-path
+  filename="Browser-Support"
+  alt="Browser support table"
+  figcaption="You can check this information on the <a href=\"https://caniuse.com/custom-elementsv1\" target=\"_blank\">Can I Use</a> website."
+%}
 
-![Browser support table]({{page.images-path}}/Browser-Support.jpg)
-
-</figure>
-
-Only Firefox, Chrome and Chromium-based browsers fully support custom elements, while Safari implements them only partially. However, [there's a polyfill available](https://github.com/webcomponents/custom-elements) to bring support to older browsers.
+As of March 2019, only Firefox, Chrome and Chromium-based browsers fully support custom elements, while Safari implements them only partially. However, [there's a polyfill available](https://github.com/webcomponents/custom-elements) to bring support to older browsers.
 
 ### JS Bundle size
 

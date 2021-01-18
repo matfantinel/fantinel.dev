@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Exploring the Front-End: Modern Frameworks - Part I"
-images-path: /images/posts/1991-12-21-modern-frameworks-pt1
+images-path: /posts/1991-12-21-modern-frameworks-pt1
 image: /images/posts/1991-12-21-modern-frameworks-pt1/cover.jpg
 tags: ["Series: Exploring the Front-End", Modern Frameworks, JavaScript, Software Development]
 hidden: true

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Open Source x Free Software: What's the difference?"
-images-path: /images/posts/2019-03-23-open-source-x-free-software
+images-path: /posts/2019-03-23-open-source-x-free-software
 image: /images/posts/2019-03-23-open-source-x-free-software/cover.jpg
 tags: [Free Software, Open Source, Concepts, FOSS, FLOSS, Libre Software, Freedom]
 ---

@@ -1,0 +1,53 @@
+{% assign alt = include.alt %}
+{% assign figcaption = include.figcaption %}
+{% assign path = include.path %}
+{% assign filename = include.filename %}
+{% assign large = include.large %}
+
+{% assign imageSrc = '/optimized-images/' | append: path | append: '/' | append: filename %}
+
+{% if large %}
+{% assign sizes = '100vw' %}
+{% else %}
+{% assign sizes = '(max-width: 979px) 100vw, 640px' %}
+{% endif %}
+
+<picture>
+  <source
+    srcset="
+      {{ imageSrc }}-320w.avif 320w,
+      {{ imageSrc }}-640w.avif 640w,
+      {{ imageSrc }}-960w.avif 960w
+    "
+    sizes="{{ sizes }}"
+    type="image/avif"
+  />
+  <source
+    srcset="
+      {{ imageSrc }}-320w.webp 320w,
+      {{ imageSrc }}-640w.webp 640w,
+      {{ imageSrc }}-960w.webp 960w
+    "
+    sizes="{{ sizes }}"
+    type="image/webp"
+  />
+  <source
+    srcset="
+      {{ imageSrc }}-320w.png 320w,
+      {{ imageSrc }}-640w.png 640w,
+      {{ imageSrc }}-960w.png 960w
+    "
+    sizes="{{ sizes }}"
+    type="image/png"
+  />
+  <img src="{{ imageSrc }}" alt="{{ alt }}" loading="lazy" decoding="async">
+
+  {% if figcaption %}
+  <figcaption>{{ figcaption }}</figcaption>
+  {% endif %}
+</picture>
+
+
+<!-- Command to regen
+node ./index.js --sourceFolder "/home/matfantinel/Dev/matfantinel.github.io/images/projects" --targetFolder "/home/matfantinel/Dev/matfantinel.github.io/optimized-images/projects" --inputFormats "jpg" --inputFormats "jpeg" --inputFormats "png" --outputFormats "png" --outputFormats "webp" --outputFormats "avif" --widths 960 --widths 640 --widths 320 
+-->

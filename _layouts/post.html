@@ -29,7 +29,12 @@ layout: default
         </ul>
 
         <article>
-          <img src="{{page.image}}" alt="Cover image for this article">
+          <!-- <img src="{{page.image}}" alt="Cover image for this article"> -->
+          {% include base/responsive-image.html 
+            path=page.images-path
+            filename="cover"
+            alt="Cover image for this article"
+            large="true" %}
           {{ content }}
         </article>
 

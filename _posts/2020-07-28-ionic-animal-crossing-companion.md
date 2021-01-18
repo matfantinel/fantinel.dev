@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Developing an Animal Crossing companion app with Ionic
-images-path: /images/posts/2020-07-28-ionic-animal-crossing-companion
+images-path: /posts/2020-07-28-ionic-animal-crossing-companion
 image: /images/posts/2020-07-28-ionic-animal-crossing-companion/cover.jpg
 tags: [Ionic, PWA, Software Development, Open Source, Games]
 ---
@@ -18,21 +18,41 @@ This post illustrates my experience developing it. It is not a tutorial or an in
 
 Since I'm testing Ionic (version 5 as of writing), I tried to check out as much of the experience they provide as I could. Even though you can create an app via their CLI, they also provide [an online App Wizard](https://ionicframework.com/start) to do that visually. It's a pretty cool way to display the starting templates, easily setting theme colors, default icon and the JS Framework you'll use. I chose Angular for this one.
 
-![Ionic app creation Wizard]({{page.images-path}}/wizard.jpg)
+{% include base/responsive-image.html 
+  large="true"
+  path=page.images-path
+  filename="wizard"
+  alt="Ionic app creation Wizard"
+%}
 
 After setting it up, the wizard gives you a CLI command with an ID to run on your machine. Therefore it still uses the CLI in the end, but it's a nice touch for the starting experience.
 
-![The wizard gives you a CLI command with an ID for you to run on your machine]({{page.images-path}}/all-set.jpg)
+{% include base/responsive-image.html 
+  large="true"
+  path=page.images-path
+  filename="all-set"
+  alt="The wizard gives you a CLI command with an ID for you to run on your machine"
+%}
 
 After running that command, the CLI prompted me if I wanted to integrate with [Capacitor](https://capacitorjs.com/), which is a tool that makes the app deployable to Android/iOS. I accepted, since I plan to release it on the Play Store at some point. The main goal is to release the app as a [PWA](https://fantinel.dev/what-are-pwas-and-why-should-i-care-about-them/), but an Android version wouldn't hurt, since the publishing process is almost-free and there's almost zero extra effort involved. Publishing it for iPhones is not a goal due to the cost and effort required to publish on the App Store.
 
 After installation, I could run the app with `ionic serve`, which resulted in a template app with the settings I had set on the App Wizard.
 
-![The app created from the template created earlier]({{page.images-path}}/initial-template.jpg)
+{% include base/responsive-image.html 
+  large="true"
+  path=page.images-path
+  filename="initial-template"
+  alt="The app created from the template created earlier"
+%}
 
 The default folder structure is pretty straightforward and should be familiar to anyone who has ever worked with Angular before.
 
-![Default folder structure on an Ionic Angular app]({{page.images-path}}/default-folder-structure.jpg)
+{% include base/responsive-image.html 
+  large="true"
+  path=page.images-path
+  filename="default-folder-structure"
+  alt="Default folder structure on an Ionic Angular app"
+%}
 
 ## Starting development
 
@@ -75,7 +95,12 @@ export class AppRoutingModule {}
 
 For me, this is the best part. Ionic makes it SO easy to change themes! There's a `variables.scss` file on the `theme` folder, where you can find Ionic's default color palette and change anything. But they provide [an amazing Color Generator](https://ionicframework.com/docs/theming/color-generator) that can make all the palette calculations for you. Just put your primary/secondary/success/danger/etc colors in there, and it will output the code for you to paste on your app.
 
-![Ionic's color generation]({{page.images-path}}/color-generator.jpg)
+{% include base/responsive-image.html 
+  large="true"
+  path=page.images-path
+  filename="color-generator"
+  alt="Ionic's color generation"
+%}
 
 After some time styling, I modified the layout of the two page skeletons I wanna have, the Home page (that mimics the Nookphone in the game), and I styled the header of the other pages.
 
@@ -83,7 +108,12 @@ After some time styling, I modified the layout of the two page skeletons I wanna
 
 Since I wanted to have the same header on all pages, I ended up creating a component for it. Since I had already two components and six pages, I decided to split them up in different folders (I honestly don't know why Ionic doesn't do that by default). My folder structure ended up like this:
 
-![The folder structure after my modifications]({{page.images-path}}/modified-folder-structure.jpg)
+{% include base/responsive-image.html 
+  large="true"
+  path=page.images-path
+  filename="modified-folder-structure"
+  alt="The folder structure after my modifications"
+%}
 
 Also, to be able to import the same component into multiple Pages (each page with its own module), I had to create the ComponentsModule. This required a bit of searching because I wasn't familiar with this approach yet. ComponentsModule by itself is very simple, I just import the Components there:
 

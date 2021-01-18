@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Web Workers - Bringing Multithreading to the Front-End
-images-path: /images/posts/2019-08-14-web-workers
+images-path: /posts/2019-08-14-web-workers
 image: /images/posts/2019-08-14-web-workers/cover.jpg
 tags: ["Series: Exploring the Front-End", Concepts, Software Development, JavaScript]
 ---

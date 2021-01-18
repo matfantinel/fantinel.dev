@@ -90,6 +90,7 @@ section.hero.blog {
         figcaption {
           font-size: 0.85rem;
           text-align: center;
+          margin-bottom: 30px;
         }
 
         figure {
@@ -124,10 +125,11 @@ section.hero.blog {
       }
 
       blockquote {
-        padding-left: 10px;
+        padding-left: 25px;
         border-radius: 6px;
         font-size: 1.2rem;
         border-left: 2px solid var(--accent-color);
+        background: var(--bg-color);
       }
     }
 

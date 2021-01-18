@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Spicing Up your GitHub Profile with HTML and CSS
-images-path: /images/posts/2021-01-02-github-profile-readme
+images-path: /posts/2021-01-02-github-profile-readme
 image: /images/posts/2021-01-02-github-profile-readme/cover.jpg
 tags: [GitHub, SVG, Profile, "Online Presence"]
 ---
@@ -12,12 +12,13 @@ Last year, GitHub added a new cool feature for the user profile. You can now add
 
 For adding this to your profile, there's a little secret. Instead of an option in your "Edit Profile" settings, this is achieved by <span class="text-highlight">creating a new repository with the same name as your GitHub username.</span>
 
-<figure markdown="1">
-
-![Screenshot of GitHub repository creation]({{page.images-path}}/repo-creation.jpg)
-
-<figcaption>🎉️ Creating a new repo with the same name as your username immediatelly makes GitHub praise you for finding out this secret.</figcaption>
-</figure>
+{% include base/responsive-image.html 
+  large="true"
+  path=page.images-path
+  filename="repo-creation"
+  alt="Screenshot of GitHub repository creation"
+  figcaption="🎉️ Creating a new repo with the same name as your username immediatelly makes GitHub praise you for finding out this secret."
+%}
 
 You can choose to initialize the repository with a README file already. After that, the content of this file will already start showing on your personal profile.
 

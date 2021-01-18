@@ -1,6 +1,7 @@
 ---
 layout: post
 title: The purpose of this blog
+images-path: /posts/2019-03-08-purpose-of-this-blog
 image: /images/posts/2019-03-08-purpose-of-this-blog/cover.jpg
 tags: [Meta]
 ---
