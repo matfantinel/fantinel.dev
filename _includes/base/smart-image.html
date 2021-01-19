@@ -1,0 +1,32 @@
+{% assign alt = include.alt %}
+{% assign figcaption = include.figcaption %}
+{% assign path = include.path %}
+{% assign filename = include.filename %}
+{% assign class = include.class %}
+
+{% assign imageSrc = '/optimized-images/' | append: path | append: '/' | append: filename %}
+
+<picture>
+  <source
+    srcset="{{ imageSrc }}.avif"
+    type="image/avif"
+  />
+  <source
+    srcset="{{ imageSrc }}.webp"
+    type="image/webp"
+  />
+  <source
+    srcset="{{ imageSrc }}.png"
+    type="image/png"
+  />
+  <img class="{{ class }}" src="{{ imageSrc }}" alt="{{ alt }}" loading="lazy" decoding="async">
+
+  {% if figcaption %}
+  <figcaption>{{ figcaption }}</figcaption>
+  {% endif %}
+</picture>
+
+
+<!-- Command to regen
+node ./index.js --sourceFolder "/home/matfantinel/Dev/matfantinel.github.io/images" --targetFolder "/home/matfantinel/Dev/matfantinel.github.io/optimized-images" --inputFormats "jpg" --inputFormats "jpeg" --inputFormats "png" --outputFormats "png" --outputFormats "webp" --outputFormats "avif"
+-->

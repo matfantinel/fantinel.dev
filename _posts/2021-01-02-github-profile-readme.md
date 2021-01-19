@@ -12,8 +12,7 @@ Last year, GitHub added a new cool feature for the user profile. You can now add
 
 For adding this to your profile, there's a little secret. Instead of an option in your "Edit Profile" settings, this is achieved by <span class="text-highlight">creating a new repository with the same name as your GitHub username.</span>
 
-{% include base/responsive-image.html 
-  large="true"
+{% include base/smart-image.html 
   path=page.images-path
   filename="repo-creation"
   alt="Screenshot of GitHub repository creation"
@@ -81,7 +80,7 @@ From there on, the possibilities are endless. On my profile, I added my personal
 
 <figure markdown="1">
 
-![Animation on my GitHub Profile]({{page.images-path}}/my-profile.gif)
+![Animation on my GitHub Profile](/images/{{page.images-path}}/my-profile.gif)
 
 <figcaption>Using CSS animations inside the SVG, I was able to mimic the animation on my website.</figcaption>
 </figure>

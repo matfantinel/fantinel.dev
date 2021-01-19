@@ -10,8 +10,7 @@ Recently, I've been working on an Angular app, powered with a .NET Core API. Eve
 
 After pushing code to the beta server, most of it was working fine. The front-end was being able to call GET, POST and OPTIONS requests normally. When trying to DELETE or PUT entries, however, the following error would show up on the browser's console:
 
-{% include base/responsive-image.html 
-  large="true"
+{% include base/smart-image.html 
   path=page.images-path
   filename="post1"
   alt="Dev console error"

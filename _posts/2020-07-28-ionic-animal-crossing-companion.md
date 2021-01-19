@@ -18,8 +18,7 @@ This post illustrates my experience developing it. It is not a tutorial or an in
 
 Since I'm testing Ionic (version 5 as of writing), I tried to check out as much of the experience they provide as I could. Even though you can create an app via their CLI, they also provide [an online App Wizard](https://ionicframework.com/start) to do that visually. It's a pretty cool way to display the starting templates, easily setting theme colors, default icon and the JS Framework you'll use. I chose Angular for this one.
 
-{% include base/responsive-image.html 
-  large="true"
+{% include base/smart-image.html 
   path=page.images-path
   filename="wizard"
   alt="Ionic app creation Wizard"
@@ -27,8 +26,7 @@ Since I'm testing Ionic (version 5 as of writing), I tried to check out as much 
 
 After setting it up, the wizard gives you a CLI command with an ID to run on your machine. Therefore it still uses the CLI in the end, but it's a nice touch for the starting experience.
 
-{% include base/responsive-image.html 
-  large="true"
+{% include base/smart-image.html 
   path=page.images-path
   filename="all-set"
   alt="The wizard gives you a CLI command with an ID for you to run on your machine"
@@ -38,8 +36,7 @@ After running that command, the CLI prompted me if I wanted to integrate with [C
 
 After installation, I could run the app with `ionic serve`, which resulted in a template app with the settings I had set on the App Wizard.
 
-{% include base/responsive-image.html 
-  large="true"
+{% include base/smart-image.html 
   path=page.images-path
   filename="initial-template"
   alt="The app created from the template created earlier"
@@ -47,8 +44,7 @@ After installation, I could run the app with `ionic serve`, which resulted in a 
 
 The default folder structure is pretty straightforward and should be familiar to anyone who has ever worked with Angular before.
 
-{% include base/responsive-image.html 
-  large="true"
+{% include base/smart-image.html 
   path=page.images-path
   filename="default-folder-structure"
   alt="Default folder structure on an Ionic Angular app"
@@ -95,8 +91,7 @@ export class AppRoutingModule {}
 
 For me, this is the best part. Ionic makes it SO easy to change themes! There's a `variables.scss` file on the `theme` folder, where you can find Ionic's default color palette and change anything. But they provide [an amazing Color Generator](https://ionicframework.com/docs/theming/color-generator) that can make all the palette calculations for you. Just put your primary/secondary/success/danger/etc colors in there, and it will output the code for you to paste on your app.
 
-{% include base/responsive-image.html 
-  large="true"
+{% include base/smart-image.html 
   path=page.images-path
   filename="color-generator"
   alt="Ionic's color generation"
@@ -104,12 +99,11 @@ For me, this is the best part. Ionic makes it SO easy to change themes! There's 
 
 After some time styling, I modified the layout of the two page skeletons I wanna have, the Home page (that mimics the Nookphone in the game), and I styled the header of the other pages.
 
-![Gif of my app's base skeleton]({{page.images-path}}/skeleton.gif)
+![Gif of my app's base skeleton](/images/{{page.images-path}}/skeleton.gif)
 
 Since I wanted to have the same header on all pages, I ended up creating a component for it. Since I had already two components and six pages, I decided to split them up in different folders (I honestly don't know why Ionic doesn't do that by default). My folder structure ended up like this:
 
-{% include base/responsive-image.html 
-  large="true"
+{% include base/smart-image.html 
   path=page.images-path
   filename="modified-folder-structure"
   alt="The folder structure after my modifications"
@@ -141,7 +135,7 @@ The next screen to be done was the _Island_ one. It is a simple form with some t
 
 I wanted to add another thing to this screen too, though: a section containing the island's villagers, and a search box that allows the user to select them. Just adding another "card" to the UI and making it scroll would deliver what I want, but it wouldn't look _awesome_. GitHub's recently released mobile app has this bottom drawer that I personally found awesome:
 
-![GitHub's cool bottom drawer]({{page.images-path}}/github-drawer.gif)
+![GitHub's cool bottom drawer](/images/{{page.images-path}}/github-drawer.gif)
 
 Luckily for me, someone's already worked on something like that for Ionic, which means I don't have to do it from scratch! [Click here](https://github.com/AnthonyCifuentes/ion-slide-drawer) to check it on GitHub. Unfortunately it is not (at the time of writing) available as an installable component on NPM or somewhere else. But the code is simple and I just copied it over to my own project.
 

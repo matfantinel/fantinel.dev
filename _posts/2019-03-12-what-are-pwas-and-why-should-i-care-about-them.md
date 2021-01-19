@@ -28,8 +28,7 @@ This all may sound complicated, which is why there are many "recipes" of Service
 
 You probably have already found some of them in the wild. In Chrome for Android, opening a certain website might trigger this panel at the bottom of the screen:
 
-{% include base/responsive-image.html 
-  large="true"
+{% include base/smart-image.html 
   path=page.images-path
   filename="Android-Install-Prompt"
   alt="PWA Install Prompt on Android"
@@ -38,8 +37,7 @@ You probably have already found some of them in the wild. In Chrome for Android,
 
 And on Desktop, this option shows up in the URL bar:
 
-{% include base/responsive-image.html 
-  large="true"
+{% include base/smart-image.html 
   path=page.images-path
   filename="Clipboard_2019-10-27-18-09-45"
   alt="Chrome prompts you to install PWA"

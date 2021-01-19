@@ -222,8 +222,7 @@ As with all things, there are some disadvantages in this approach:
 
 ### Browser Support
 
-{% include base/responsive-image.html 
-  large="true"
+{% include base/smart-image.html 
   path=page.images-path
   filename="Browser-Support"
   alt="Browser support table"

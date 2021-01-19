@@ -16,7 +16,7 @@ I recently met my new best friend, [Real Favicon Generator](https://realfavicong
 
 You just have to add in your existing favicon image (for best results, a SVG or high-quality PNG are recommended). From then on, the generator will display previews and allow customization of each category of favicon it will generate:
 
-{% include base/responsive-image.html 
+{% include base/smart-image.html 
   
   path=page.images-path
   filename="favicon-generator-customization"
@@ -58,8 +58,7 @@ So, there are 5 types of favicons that we need to add, if we want to support eve
   <li>`safari-pinned-tab.svg` is used when users pin a tab on Safari for macOS. Basically, you declare a monochrome SVG and a theme color. Safari does the rest.</li>
 </ul>
 
-{% include base/responsive-image.html 
-  large="true"
+{% include base/smart-image.html 
   path=page.images-path
   filename="safari-pinned-tabs-demo"
   alt="Demo of Safari pinned tabs favicon behavior"

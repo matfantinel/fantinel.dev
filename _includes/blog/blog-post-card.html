@@ -3,7 +3,7 @@
 <a href="{{ site.baseurl }}{{ post.url }}" class="blog-post card hoverable {% if include.size %} {{ include.size }}{% endif %} {% if include.compact %} compact {% endif %}">
   {% if post.image %}
   <div class="image">
-    {% include base/responsive-image.html 
+    {% include base/smart-image.html 
       path=post.images-path
       filename="cover"
       alt=post.title %}

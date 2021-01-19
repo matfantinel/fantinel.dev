@@ -54,8 +54,7 @@ Your app should be up and running on `http://localhost:8080/` (or whichever port
 
 ### Check if the service worker is being registered
 
-{% include base/responsive-image.html 
-  large="true"
+{% include base/smart-image.html 
   path=page.images-path
   filename="Service-Workers-1"
   alt="Registered Service Worker"
@@ -64,16 +63,14 @@ Your app should be up and running on `http://localhost:8080/` (or whichever port
 
 ### Use Chrome's Audits feature to validate it as a PWA
 
-{% include base/responsive-image.html 
-  large="true"
+{% include base/smart-image.html 
   path=page.images-path
   filename="Audits"
   alt="Audits"
   figcaption="On dev console > Audits, test it for Progressive Web Apps." 
 %}
 
-{% include base/responsive-image.html 
-  large="true"
+{% include base/smart-image.html 
   path=page.images-path
   filename="Passed-Audits"
   alt="Audits passed"
@@ -86,8 +83,7 @@ You may see some errors regarding the app not running over HTTPS. Don't worry, t
 
 On Chrome, you may also see the option to install the app appear in the URL bar:
 
-{% include base/responsive-image.html 
-  large="true"
+{% include base/smart-image.html 
   path=page.images-path
   filename="Clipboard_2019-10-27-18-09-45"
   alt="Chrome prompts you to install PWA"
@@ -95,8 +91,7 @@ On Chrome, you may also see the option to install the app appear in the URL bar:
 
 After this, the app should already open on a separate window, and show up on your OS's installed apps list!
 
-{% include base/responsive-image.html 
-  large="true"
+{% include base/smart-image.html 
   path=page.images-path
   filename="Clipboard_2019-10-27-18-11-28"
   alt="Installed PWA on OS' dock"
