@@ -12,7 +12,7 @@ Unfortunately, different browsers, OSs, and implementations throughout the years
 
 ## Easy Mode
 
-I recently met my new best friend, [Real Favicon Generator](https://realfavicongenerator.net/). It took all these pains I just wrote about and just made it a breeze to handle. Best of all, it's customizable!
+I recently met my new best friend, [Real Favicon Generator](https://realfavicongenerator.net/){:target="_blank"}. It took all these pains I just wrote about and just made it a breeze to handle. Best of all, it's customizable!
 
 You just have to add in your existing favicon image (for best results, a SVG or high-quality PNG are recommended). From then on, the generator will display previews and allow customization of each category of favicon it will generate:
 
@@ -82,7 +82,7 @@ With those files, you should be good to go on every single browser, by adding th
 
 Something that's starting to become a thing is having a single SVG favicon. Theoretically, SVGs are infinitely scalable, and should look good on all sizes. Unfortunately, browser support is not there yet.
 
-[Can I Use](https://caniuse.com/link-icon-svg) reports that, currently (January 2021), only recent versions of Firefox and Chromium-based browsers support this feature. This means that Safari, non-Chromium Edge, IE, and some mobile browsers do not support it. Therefore, unless you want your favicon to just not appear in those browsers, you'd still have to use other file formats as well. The downside of this approach is that all favicons would look the same, and you won't be able to customize and have differently-shaped icons for mobile devices, for example.
+[Can I Use](https://caniuse.com/link-icon-svg){:target="_blank"} reports that, currently (January 2021), only recent versions of Firefox and Chromium-based browsers support this feature. This means that Safari, non-Chromium Edge, IE, and some mobile browsers do not support it. Therefore, unless you want your favicon to just not appear in those browsers, you'd still have to use other file formats as well. The downside of this approach is that all favicons would look the same, and you won't be able to customize and have differently-shaped icons for mobile devices, for example.
 
 {% highlight html %}
 <head>

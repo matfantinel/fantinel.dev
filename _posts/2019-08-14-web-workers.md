@@ -25,11 +25,11 @@ This is where our star of the day comes in - Web Workers.
 
 Imagine you are the boss (main thread). You call one of your employees (a worker) and tell them to do a specific task (a function). Then they go back to their own room (another thread) to do what you asked. In the meantime, you can do whatever you want, and as soon as your employee finishes the task, it comes back to you with the result. Now, in real life things aren't that simple, but you get the main idea, right? 
 
-Let's make something clear: Web Workers are an universal JavaScript feature, not limited to any specific framework. [It even works on IE10+](https://caniuse.com/#search=Worker)!!! Pretty much the only requirement is that the worker logic stays in a different js file (worker.js, for example).
+Let's make something clear: Web Workers are an universal JavaScript feature, not limited to any specific framework. [It even works on IE10+](https://caniuse.com/#search=Worker){:target="_blank"}!!! Pretty much the only requirement is that the worker logic stays in a different js file (worker.js, for example).
 
 ## Let's try it out
 
-[Mozilla Developer Network (MDN)](https://github.com/mdn/simple-web-worker) has a great, simple example of how to use them. I'll explain it below:
+[Mozilla Developer Network (MDN)](https://github.com/mdn/simple-web-worker){:target="_blank"} has a great, simple example of how to use them. I'll explain it below:
 
 First of all, on our main.js file, we need to create our Worker object, passing our Worker file as a parameter:
 

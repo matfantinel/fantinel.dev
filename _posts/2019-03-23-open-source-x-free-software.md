@@ -10,7 +10,7 @@ Free software is a concept that's been around for a long time, and so is open so
 
 ## Free Software
 
-According to the [Free Software Foundation (FSF)](https://www.fsf.org/), free software is the software that respects the user's freedom and sense of community. This means that the user has the freedom to run, copy, distribute, study, change and improve it.
+According to the [Free Software Foundation (FSF)](https://www.fsf.org/){:target="_blank"}, free software is the software that respects the user's freedom and sense of community. This means that the user has the freedom to run, copy, distribute, study, change and improve it.
 
 A common phrase you may read somewhere is "Free as in freedom, not as in beer". This means that the name doesn't indicate that the software is free of charge, only that the user has the freedom to do whatever they want with it.
 
@@ -21,11 +21,11 @@ The FSF lists four essential freedoms that every free software must follow:
 * The freedom to redistribute copies so you can help others (freedom 2);
 * The freedom to distribute copies of your modified versions to others (freedom 3). By doing this you can give the whole community a chance to benefit from your changes. Access to the source code is a precondition for this.
 
-You can read more about Free Software at gnu.org, [here](https://www.gnu.org/philosophy/free-sw.en.html).
+You can read more about Free Software at gnu.org, [here](https://www.gnu.org/philosophy/free-sw.en.html){:target="_blank"}.
 
 ## Open Source
 
-The [Open Source Initiative](https://opensource.org/) defines 10 criteria for software to be considered open source. You can read them fully [here](https://opensource.org/docs/definition.php). I'll summarize them below:
+The [Open Source Initiative](https://opensource.org/){:target="_blank"} defines 10 criteria for software to be considered open source. You can read them fully [here](https://opensource.org/docs/definition.php){:target="_blank"}. I'll summarize them below:
 
 * Any person must be able to distribute or sell the software without restrictions;
 * The source code must be distributed along with the software, or at least link to it clearly;
@@ -39,7 +39,7 @@ By reading each concept's principles above, you can get the idea that Open Sourc
 
 > The terms “free software” and “open source” stand for almost the same range of programs. However, they say deeply different things about those programs, based on different values. The free software movement campaigns for freedom for the users of computing; it is a movement for freedom and justice. By contrast, the open source idea values mainly practical advantage and does not campaign for principles. - Richard Stallman
 
-You can read more about it [here](https://www.gnu.org/philosophy/open-source-misses-the-point.en.html).
+You can read more about it [here](https://www.gnu.org/philosophy/open-source-misses-the-point.en.html){:target="_blank"}.
 
 ## Summing it up
 
@@ -47,6 +47,6 @@ Open Source is a technical, practical concept. Free Software is a philosophical,
 
 ### How to know if an Open Source software is Free Software?
 
-The easiest way is to check their license. [The FSF lists all Free Software licenses here](https://www.gnu.org/licenses/license-list.html#SoftwareLicenses), but usually most of them are under the GPL or MIT licenses.
+The easiest way is to check their license. [The FSF lists all Free Software licenses here](https://www.gnu.org/licenses/license-list.html#SoftwareLicenses){:target="_blank"}, but usually most of them are under the GPL or MIT licenses.
 
 Thanks for reading!

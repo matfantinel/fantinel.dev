@@ -51,7 +51,7 @@ _Keep in mind that for now only a few Chromium-based browsers offer this functio
 
 Let's get one thing out of the way first - **PWAs are not a replacement for native apps**. They have more limitations, and overall offer worse performance than a native app written in Java/Swift. Their purpose is to offer a better user experience for web apps that are used often by users. If you have a complex web app, and do not have the time/resources or simply don't think it's worth it to create a native counterpart, PWAs are for you. I will compare PWAs to hybrid apps, like the ones built on Ionic.
 
-The first main advantage is that the entry barrier is lower. Research shows that [the majority of mobile users in the US download an average of 0 apps monthly](https://techcrunch.com/2017/08/25/majority-of-u-s-consumers-still-download-zero-apps-per-month-says-comscore/). That's zero. None. That may be because searching for an app in the app store may be a bit counterintuitive depending on the situation. Let's imagine that you have an hybrid app on the app store. Your new user probably found out about your app/service on its website, so they're already in the browser:
+The first main advantage is that the entry barrier is lower. Research shows that [the majority of mobile users in the US download an average of 0 apps monthly](https://techcrunch.com/2017/08/25/majority-of-u-s-consumers-still-download-zero-apps-per-month-says-comscore/){:target="_blank"}. That's zero. None. That may be because searching for an app in the app store may be a bit counterintuitive depending on the situation. Let's imagine that you have an hybrid app on the app store. Your new user probably found out about your app/service on its website, so they're already in the browser:
 
 1. Logs in to your app on the browser;
 2. You detect that they're using a mobile phone, so you can show them a banner to download your app on the store;
@@ -82,7 +82,7 @@ Even when opened in a browser, a PWA can still offer:
 
 ## How can I convince my boss to let me work on this?
 
-Well, every boss is different. But [Google provides some neat statistics that may help you in your endeavor](http://https//developers.google.com/web/progressive-web-apps/):
+Well, every boss is different. But [Google provides some neat statistics that may help you in your endeavor](http://https//developers.google.com/web/progressive-web-apps/){:target="_blank"}:
 
 * Push notifications increase user engagement by up to 4 times;
 * Some use cases report that the increase in conversions after transitioning to a PWA was of 104%!

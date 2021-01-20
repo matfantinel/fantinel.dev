@@ -8,15 +8,15 @@ tags: [Ionic, PWA, Software Development, Open Source, Games]
 
 This year I've played a lot of Animal Crossing New Horizons. It came out at the start of quarantine - and was extremely popular for providing an escape from that, with a virtual life that's free of the problems we're facing on the real one.
 
-In the meantime, I was re-discovering [Ionic](https://ionicframework.com/) and wanted to work on an app that would help me improve my knowledge of it, and as a bonus learn about other stuff I've been interested in. So, I decided to work on a companion app for the game I've been playing so much.
+In the meantime, I was re-discovering [Ionic](https://ionicframework.com/){:target="_blank"} and wanted to work on an app that would help me improve my knowledge of it, and as a bonus learn about other stuff I've been interested in. So, I decided to work on a companion app for the game I've been playing so much.
 
-This post illustrates my experience developing it. It is not a tutorial or an in-depth guide. It's just meant to describe my experience, what I learned and any bumps in the way. In any case, the [source code is available on GitHub](https://github.com/matfantinel/acnh-pocket-companion) for all to see and modify. If it ends up helping anyone else in the way, even better!
+This post illustrates my experience developing it. It is not a tutorial or an in-depth guide. It's just meant to describe my experience, what I learned and any bumps in the way. In any case, the [source code is available on GitHub](https://github.com/matfantinel/acnh-pocket-companion){:target="_blank"} for all to see and modify. If it ends up helping anyone else in the way, even better!
 
-[You can check out the finalized app here](https://pocketcompanion.fantinel.dev).
+[You can check out the finalized app here](https://pocketcompanion.fantinel.dev){:target="_blank"}.
 
 ## Creating the app
 
-Since I'm testing Ionic (version 5 as of writing), I tried to check out as much of the experience they provide as I could. Even though you can create an app via their CLI, they also provide [an online App Wizard](https://ionicframework.com/start) to do that visually. It's a pretty cool way to display the starting templates, easily setting theme colors, default icon and the JS Framework you'll use. I chose Angular for this one.
+Since I'm testing Ionic (version 5 as of writing), I tried to check out as much of the experience they provide as I could. Even though you can create an app via their CLI, they also provide [an online App Wizard](https://ionicframework.com/start){:target="_blank"} to do that visually. It's a pretty cool way to display the starting templates, easily setting theme colors, default icon and the JS Framework you'll use. I chose Angular for this one.
 
 {% include base/smart-image.html 
   path=page.images-path
@@ -32,7 +32,7 @@ After setting it up, the wizard gives you a CLI command with an ID to run on you
   alt="The wizard gives you a CLI command with an ID for you to run on your machine"
 %}
 
-After running that command, the CLI prompted me if I wanted to integrate with [Capacitor](https://capacitorjs.com/), which is a tool that makes the app deployable to Android/iOS. I accepted, since I plan to release it on the Play Store at some point. The main goal is to release the app as a [PWA](https://fantinel.dev/what-are-pwas-and-why-should-i-care-about-them/), but an Android version wouldn't hurt, since the publishing process is almost-free and there's almost zero extra effort involved. Publishing it for iPhones is not a goal due to the cost and effort required to publish on the App Store.
+After running that command, the CLI prompted me if I wanted to integrate with [Capacitor](https://capacitorjs.com/){:target="_blank"}, which is a tool that makes the app deployable to Android/iOS. I accepted, since I plan to release it on the Play Store at some point. The main goal is to release the app as a [PWA](https://fantinel.dev/what-are-pwas-and-why-should-i-care-about-them/){:target="_blank"}, but an Android version wouldn't hurt, since the publishing process is almost-free and there's almost zero extra effort involved. Publishing it for iPhones is not a goal due to the cost and effort required to publish on the App Store.
 
 After installation, I could run the app with `ionic serve`, which resulted in a template app with the settings I had set on the App Wizard.
 
@@ -89,7 +89,7 @@ export class AppRoutingModule {}
 
 ## Theming and Layout
 
-For me, this is the best part. Ionic makes it SO easy to change themes! There's a `variables.scss` file on the `theme` folder, where you can find Ionic's default color palette and change anything. But they provide [an amazing Color Generator](https://ionicframework.com/docs/theming/color-generator) that can make all the palette calculations for you. Just put your primary/secondary/success/danger/etc colors in there, and it will output the code for you to paste on your app.
+For me, this is the best part. Ionic makes it SO easy to change themes! There's a `variables.scss` file on the `theme` folder, where you can find Ionic's default color palette and change anything. But they provide [an amazing Color Generator](https://ionicframework.com/docs/theming/color-generator){:target="_blank"} that can make all the palette calculations for you. Just put your primary/secondary/success/danger/etc colors in there, and it will output the code for you to paste on your app.
 
 {% include base/smart-image.html 
   path=page.images-path
@@ -137,19 +137,19 @@ I wanted to add another thing to this screen too, though: a section containing t
 
 ![GitHub's cool bottom drawer](/images/{{page.images-path}}/github-drawer.gif)
 
-Luckily for me, someone's already worked on something like that for Ionic, which means I don't have to do it from scratch! [Click here](https://github.com/AnthonyCifuentes/ion-slide-drawer) to check it on GitHub. Unfortunately it is not (at the time of writing) available as an installable component on NPM or somewhere else. But the code is simple and I just copied it over to my own project.
+Luckily for me, someone's already worked on something like that for Ionic, which means I don't have to do it from scratch! [Click here](https://github.com/AnthonyCifuentes/ion-slide-drawer){:target="_blank"} to check it on GitHub. Unfortunately it is not (at the time of writing) available as an installable component on NPM or somewhere else. But the code is simple and I just copied it over to my own project.
 
 ## State Management
 
-Since the entire point of this app is learning, I decided to use [NgRx](https://ngrx.io). It is a State Management library for Angular that works in a similar way to VueX or Redux. I've worked with VueX recently and really like the concept, so I decided to make use of it here.
+Since the entire point of this app is learning, I decided to use [NgRx](https://ngrx.io){:target="_blank"}. It is a State Management library for Angular that works in a similar way to VueX or Redux. I've worked with VueX recently and really like the concept, so I decided to make use of it here.
 
-I started by adding it to my application with `npm i @ngrx/store @ngrx/effects @ngrx/store-devtools @ngrx/schematics --save`. If you wanna learn more about NgRx, I used [this amazing tutorial](https://indepth.dev/how-to-start-flying-with-angular-and-ngrx/) to learn it for this app.
+I started by adding it to my application with `npm i @ngrx/store @ngrx/effects @ngrx/store-devtools @ngrx/schematics --save`. If you wanna learn more about NgRx, I used [this amazing tutorial](https://indepth.dev/how-to-start-flying-with-angular-and-ngrx/){:target="_blank"} to learn it for this app.
 
 ## Database
 
-The best way to store data in an app like mine - supposed to work on Android, iOS and the Web, but still entirely offline - is using the browser's IndexedDB. It's basically a simpler SQL database for your web app that lives inside the browser. [You can read more on MDN if you'd like](https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API).
+The best way to store data in an app like mine - supposed to work on Android, iOS and the Web, but still entirely offline - is using the browser's IndexedDB. It's basically a simpler SQL database for your web app that lives inside the browser. [You can read more on MDN if you'd like](https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API){:target="_blank"}.
 
-While useful, IndexedDB has a very low-level API, which makes it hard to get started with. Which is why I chose to use [Dexie.js](https://dexie.org/) as a wrapper for IndexedDB. It allows me to use a simple API to query data, while already doing the needed optimizations.
+While useful, IndexedDB has a very low-level API, which makes it hard to get started with. Which is why I chose to use [Dexie.js](https://dexie.org/){:target="_blank"} as a wrapper for IndexedDB. It allows me to use a simple API to query data, while already doing the needed optimizations.
 
 Simply installing Dexie.js and a quick read on its documentation allowed me to successfully store and read persistent data for my app.
 
@@ -157,15 +157,15 @@ Simply installing Dexie.js and a quick read on its documentation allowed me to s
 
 Since the main purpose of developing this app is learning, I decided to use some cool stuff I've learned and put them in practice:
 
-* [Web Workers](https://fantinel.dev/web-workers/): on first run, the app uses a web worker to parse the game data (contained in large JSON files) in the background, so it can fill the database with the data used on Critterpedia
-* Virtual Scroll: on the Critterpedia listings, I used Virtual Scroll instead of pagination. I figured this was a better choice because while it can have a lot of items, it's a fixed number so no need to paginate. This way it maintains good performance on scrolling even on lower-end devices. Luckily, [Ionic provides a built-in component for that](https://ionicframework.com/docs/api/virtual-scroll)!
+* [Web Workers](https://fantinel.dev/web-workers/){:target="_blank"}: on first run, the app uses a web worker to parse the game data (contained in large JSON files) in the background, so it can fill the database with the data used on Critterpedia
+* Virtual Scroll: on the Critterpedia listings, I used Virtual Scroll instead of pagination. I figured this was a better choice because while it can have a lot of items, it's a fixed number so no need to paginate. This way it maintains good performance on scrolling even on lower-end devices. Luckily, [Ionic provides a built-in component for that](https://ionicframework.com/docs/api/virtual-scroll){:target="_blank"}!
 * Lazy loading images: since all items in the list have an icon that's displayed besides them, there are lots of images to download. Without lazy-loading, ALL images would be loaded right off the bat, even the ones way down the bottom of the list. With lazy loading, the browser automatically downloads only images as they would appear on screen by just setting the `loading` attribute: `<img loading="lazy">`
 
 ## Running on Android
 
 After having a few parts of my app done, I decided it was time to run in on my Android phone, to have a better look of how it will look and feel on an actual device.
 
-The first step for this is installing Android Studio. Install instructions may vary depending on your operating system. I'm on a Linux-based OS so I installed it from [Snapcraft](https://snapcraft.io/android-studio). You can follow the instructions from the [Ionic docs](https://ionicframework.com/docs/developing/android) if you'd prefer.
+The first step for this is installing Android Studio. Install instructions may vary depending on your operating system. I'm on a Linux-based OS so I installed it from [Snapcraft](https://snapcraft.io/android-studio){:target="_blank"}. You can follow the instructions from the [Ionic docs](https://ionicframework.com/docs/developing/android){:target="_blank"} if you'd prefer.
 
 After installing Android Studio, we need to add an environment variable that points to the Android SDK. In the following command (Linux, Mac), replace the directory with the one where the Sdk is installed in your PC, then add it to the end of your `.bashrc` file:
 
@@ -194,7 +194,7 @@ ionic capacitor add android
 
 _If you get an error saying that "Capacitor could not find the web assets directory", be sure to run `ionic build` to generate this directory first._
 
-After that's done, you can open the project in Android Studio (it will be on a folder called `Android` at the root of your project). If you still haven't setup a device or emulator to run your app in, do it now. The [Ionic docs](https://ionicframework.com/docs/developing/android#android-studio) show how to do both processes.
+After that's done, you can open the project in Android Studio (it will be on a folder called `Android` at the root of your project). If you still haven't setup a device or emulator to run your app in, do it now. The [Ionic docs](https://ionicframework.com/docs/developing/android#android-studio){:target="_blank"} show how to do both processes.
 
 After a loooong while, Android Studio will have loaded all it needs to run your project. Just click on Run (Shift+F10). It should open on your phone/emulator!
 
@@ -203,7 +203,7 @@ After a loooong while, Android Studio will have loaded all it needs to run your 
 
 To be able to publish the app as a PWA, we need to add a Service Worker and a Manifest. Thankfully, Angular already has the CLI and the packages that allows us to do that easily. `ng add @angular/pwa` worked like a charm. This automatically added the needed files, and wired it up with the existing Angular modules automatically.
 
-After that, I edited `ngsw-config.json` and `manifest.webmanifest` files with my app's name and colors, and I replaced all generated icons with my own. For more details on how to create PWAs with Angular, [check my specific post for that](https://fantinel.dev/angular-pwa-how-to/)
+After that, I edited `ngsw-config.json` and `manifest.webmanifest` files with my app's name and colors, and I replaced all generated icons with my own. For more details on how to create PWAs with Angular, [check my specific post for that](https://fantinel.dev/angular-pwa-how-to/){:target="_blank"}
 
 ### Routing issue
 
@@ -223,12 +223,12 @@ One issue I was having after publishing a PWA like that is that when refreshing 
 
 ### Publishing
 
-To host my PWA, I decided to use [Netlify](https://netlify.com). The publishing experience was quite easy and friction-free, and they also provide a free hosting plan which is perfect to host this demo-only-app. I will not document how the publishing proccess worked here because their UI is very intuitive and their docs would be way better than mine anyway.
+To host my PWA, I decided to use [Netlify](https://netlify.com){:target="_blank"}. The publishing experience was quite easy and friction-free, and they also provide a free hosting plan which is perfect to host this demo-only-app. I will not document how the publishing proccess worked here because their UI is very intuitive and their docs would be way better than mine anyway.
 
 # Wrapping Up
 
 Developing this definitely took me a while - but that's because time's been quite scarce for me. Most of the development time was spent learning NgRx, which was definitely the most complex part of this application. It also took me a while to find a good IndexedDB wrapper before I settled on Dexie. The rest was quite straightforward - the app logic is simple, and what took the longest was making the app pretty and the animations smooth. 
 
-I think the result is quite good - definitely not professional, but more than enough for a hobby app. I learned a lot working on it and would definitely do it again. In case you missed it, [here's another link to check out the result](https://pocketcompanion.fantinel.dev), and its [source code](https://github.com/matfantinel/acnh-pocket-companion).
+I think the result is quite good - definitely not professional, but more than enough for a hobby app. I learned a lot working on it and would definitely do it again. In case you missed it, [here's another link to check out the result](https://pocketcompanion.fantinel.dev){:target="_blank"}, and its [source code](https://github.com/matfantinel/acnh-pocket-companion){:target="_blank"}.
 
-Hope this was a good read for you!
+Thanks for reading!

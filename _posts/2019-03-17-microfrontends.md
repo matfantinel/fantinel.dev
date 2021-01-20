@@ -52,7 +52,7 @@ We then decided to use the Micro Frontends approach, rewriting our pages/compone
 
 ## How do they work in practice?
 
-For this article, I am going to create a custom element with Angular 7 and use it in a simple html file. I've created a sample app on GitHub. [You can check the full code here.](https://github.com/matfantinel/custom-elements-sample)
+For this article, I am going to create a custom element with Angular 7 and use it in a simple html file. I've created a sample app on GitHub. [You can check the full code here.](https://github.com/matfantinel/custom-elements-sample){:target="_blank"}
 
 ### Creating the Custom Element
 
@@ -229,7 +229,7 @@ As with all things, there are some disadvantages in this approach:
   figcaption="You can check this information on the <a href=\"https://caniuse.com/custom-elementsv1\" target=\"_blank\">Can I Use</a> website."
 %}
 
-As of March 2019, only Firefox, Chrome and Chromium-based browsers fully support custom elements, while Safari implements them only partially. However, [there's a polyfill available](https://github.com/webcomponents/custom-elements) to bring support to older browsers.
+As of March 2019, only Firefox, Chrome and Chromium-based browsers fully support custom elements, while Safari implements them only partially. However, [there's a polyfill available](https://github.com/webcomponents/custom-elements){:target="_blank"} to bring support to older browsers.
 
 ### JS Bundle size
 

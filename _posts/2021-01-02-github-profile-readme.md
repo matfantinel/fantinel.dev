@@ -86,8 +86,8 @@ From there on, the possibilities are endless. On my profile, I added my personal
 </figure>
 
 
-Feel free to check out [the source code](https://github.com/matfantinel/matfantinel) to find out how it works.
+Feel free to check out [the source code](https://github.com/matfantinel/matfantinel){:target="_blank"} to find out how it works.
 
 ## Inspiration
 
-Some people have compiled [a list of amazing examples and inspirations for your profile](https://github.com/abhisheknaiidu/awesome-github-profile-readme). Some are minimalistic, others more complex, and some even get data from APIs (!). My favorite is [this one from Livio Brunner](https://github.com/BrunnerLivio), which definitely brings all the best things from 2000's web.
+Some people have compiled [a list of amazing examples and inspirations for your profile](https://github.com/abhisheknaiidu/awesome-github-profile-readme){:target="_blank"}. Some are minimalistic, others more complex, and some even get data from APIs (!). My favorite is [this one from Livio Brunner](https://github.com/BrunnerLivio){:target="_blank"}, which definitely brings all the best things from 2000's web.

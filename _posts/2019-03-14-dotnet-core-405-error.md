@@ -25,7 +25,7 @@ Then, it dawned on me that the CORS error could be not because my API wasn't sen
 
 ## Solution
 
-I ended up finding [this article](https://www.ryadel.com/en/error-405-methods-not-allowed-asp-net-core-put-delete-requests/). What happens is that, when published, .NET Core enables the _WebDAVModule_, which _disables PUT and DELETE requests_ by default.
+I ended up finding [this article](https://www.ryadel.com/en/error-405-methods-not-allowed-asp-net-core-put-delete-requests/){:target="_blank"}. What happens is that, when published, .NET Core enables the _WebDAVModule_, which _disables PUT and DELETE requests_ by default.
 
 So, to solve the issue, I ended up disabling WebDAV in the whole application, by adding these lines to the auto-generated web.config:
 

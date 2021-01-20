@@ -10,13 +10,13 @@ CSS is evolving constantly and the past few years have brought us amazing stuff.
 
 It is an easy way to guarantee that users will scroll to the correct portion of your page or of a container. Picture a landing page that is easily swipable/scrollable between sections, or swipable cards. Take in mind how Android's Recent Apps screen works, for example:
 
-![Android's Recent Apps screen has scroll mapping between app cards](/images/{{page.images-path}}/android-scroll-snapping.gif)
+![Android's Recent Apps screen has scroll mapping between app cards](/images/{{page.images-path}}/android-scroll-snapping.gif){:target="_blank"}
 
 You can see that Android never allows the end of a scroll to be in a place between cards. There's a certain threshold that determines that the scroll will snap into the nearest card and put it in the center. All that while still keeping scrolling momentum, allowing you to go from one edge of the list to another in a single scroll if you want to.
 
-Until recently, you'd have to resort to JavaScript code to make a similar behavior on the web. But now, all you need is CSS, which makes things more performant, consistent and reliable! Browser support is already pretty good, with all major browser engines already supporting it fully. Check out browser support on [caniuse.com](https://caniuse.com/#feat=css-snappoints).
+Until recently, you'd have to resort to JavaScript code to make a similar behavior on the web. But now, all you need is CSS, which makes things more performant, consistent and reliable! Browser support is already pretty good, with all major browser engines already supporting it fully. Check out browser support on [caniuse.com](https://caniuse.com/#feat=css-snappoints){:target="_blank"}.
 
-I've recently added scroll snapping to my own website. You can check it out on the "Work Experience" section in the [Home page](https://fantinel.dev). It's specially great on mobile!
+I've recently added scroll snapping to my own website. You can check it out on the "Work Experience" section in the [Home page](https://fantinel.dev){:target="_blank"}. It's specially great on mobile!
 
 ## How?
 
@@ -53,7 +53,7 @@ This is a property you add to the children that specifies where the snap points 
 
 To make things even better, we can use the `scroll-padding` (for parent) and `scroll-margin` (for children) properties. They add some space before/after the elements that are only considered when scrolling. The best way to implement them is by trying it out after you build your scroll snapping goodiness.
 
-You can check the documentation over on [Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Scroll_Snap) for more info.
+You can check the documentation over on [Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Scroll_Snap){:target="_blank"} for more info.
 
 ## Wrapping Up
 

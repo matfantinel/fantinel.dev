@@ -22,13 +22,13 @@ Besides that, it will create a file named `ngsw-config.json` in your root folder
 
 ## 2 - Setting up your manifest.json
 
-The `manifest.json` file is the one that tells the browser/OS about your app. You can set the full and short names, theme color, icons, and more. [You can find more about its settings here](https://developers.google.com/web/fundamentals/web-app-manifest/).
+The `manifest.json` file is the one that tells the browser/OS about your app. You can set the full and short names, theme color, icons, and more. [You can find more about its settings here](https://developers.google.com/web/fundamentals/web-app-manifest/){:target="_blank"}.
 
 Don't forget to update the auto-generated icons on `/assets/icons` folder! These are necessary so that your app icon shows up for devices of all DPI settings.
 
 ## 3 - Setting up ngsw-config.json
 
-This file is the one that can configure how your PWA works. You can set up different installation behaviors, as well as handle cache updates. [The Angular documentation has got all options covered here](https://angular.io/guide/service-worker-config).
+This file is the one that can configure how your PWA works. You can set up different installation behaviors, as well as handle cache updates. [The Angular documentation has got all options covered here](https://angular.io/guide/service-worker-config){:target="_blank"}.
 
 ## 4 - Test it out!
 
@@ -104,7 +104,7 @@ Even though the proccess is quite straight-forward, I still faced some issues wh
 
 ### The `ng add @angular/pwa` command doesn't create relevant files
 
-This was a [reported bug](https://github.com/angular/angular-cli/issues/11914) on the CLI. I had a bugged version (6.0.8) installed on my app. I updated it by running
+This was a [reported bug](https://github.com/angular/angular-cli/issues/11914){:target="_blank"} on the CLI. I had a bugged version (6.0.8) installed on my app. I updated it by running
 
 {% highlight bash %}
 npm uninstall @angular/cli --save
