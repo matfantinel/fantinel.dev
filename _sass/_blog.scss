@@ -73,7 +73,9 @@ section.hero.blog {
           margin-top: 30px;
           margin-bottom: 30px;
           max-width: 100%;
-          box-shadow: 8px 14px 38px rgba(39,44,49,0.2), 1px 3px 8px rgba(39,44,49,0.1);
+          &:not(.no-shadow) {
+            box-shadow: 8px 14px 38px rgba(39,44,49,0.2), 1px 3px 8px rgba(39,44,49,0.1);
+          }
         }
 
         > table {
@@ -125,11 +127,19 @@ section.hero.blog {
       }
 
       blockquote {
-        padding-left: 25px;
-        border-radius: 6px;
-        font-size: 1.2rem;
-        border-left: 2px solid var(--accent-color);
+        padding: 25px 25px 15px;
+        border-radius: 20px;
+        font-size: 1.3rem;
+        border-left: 10px solid var(--accent-color);
         background: var(--bg-color);
+      }
+
+      code {
+        &.language-plaintext {
+          background: var(--inline-code-bg-color);
+          padding: 5px 10px;
+          border-radius: 5px;
+        }
       }
     }
 
