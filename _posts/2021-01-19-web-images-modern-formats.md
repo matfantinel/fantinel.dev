@@ -1,12 +1,12 @@
 ---
 layout: post
-title: "Smarter Images: A subtitle"
+title: "Smarter, Lighter, Better Images: A Guide to Optimization"
 images-path: /posts/2021-01-19-web-images-modern-formats
 image: /images/posts/2021-01-19-web-images-modern-formats/cover.jpg
-tags: ["Series: Exploring the Front-End", HTML, CSS, Software Development]
+tags: ["Series: Exploring the Front-End", Optimization, HTML, CSS, Software Development]
 ---
 
-When you open a website, the browser starts downloading a bunch of files in order to display it. Research shows that [images are the most requested asset type](https://httparchive.org/reports/state-of-images){:target="_blank"} and take up more bandwidth than any other resource. So, making sure they are as small as they can be can greatly improve the load times for your website.
+Do you know how big are the images displayed on your website? When you open a page, the browser starts downloading a bunch of files in order to display it. Research shows that [images are the most requested asset type](https://httparchive.org/reports/state-of-images){:target="_blank"} and take up more bandwidth than any other resource. So, making sure they are as small as they can be can greatly improve the load times for your website. (spoiler alert: mine's become 85% faster!)
 
 ## More efficient formats
 
@@ -155,7 +155,7 @@ For my needs, I have developed a NodeJS script that uses the [Sharp](https://git
 
 The script is at the time of writing this currently usable only via command line. I have plans to turn this into a part of the build process of my website, with a [GitHub Action](https://github.com/features/actions){:target="_blank"}, so that I don't have to run it manually. 
 
-So, to check out how to use the script, please check out its GitHub page for up-to-date instructions. TODO: linkar pro GitHub dele
+So, to check out how to use the script, please [check out its GitHub page](https://github.com/matfantinel/image-transmutation){:target="_blank"} for up-to-date instructions.
 
 ### Using the images
 
