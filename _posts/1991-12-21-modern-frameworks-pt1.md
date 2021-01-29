@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Exploring the Front-End: Modern Frameworks - Part I"
-images-path: /images/posts/1991-12-21-modern-frameworks-pt1
+images-path: /posts/1991-12-21-modern-frameworks-pt1
 image: /images/posts/1991-12-21-modern-frameworks-pt1/cover.jpg
 tags: ["Series: Exploring the Front-End", Modern Frameworks, JavaScript, Software Development]
 hidden: true
@@ -24,7 +24,7 @@ Enter reusable components. Their idea is that you just have to write them once, 
     
 Reusable components have not been just invented though, mind you. This concept has been around for a while, and was even present in ASP.NET WebForms for example. What changed is that front-end frameworks have now been built around them, and made their use easier and more straightforward.
     
-I will not give an in-depth explanation on reusable components as that is not the purpose of this series, but if this concept is new to you, I highly recommend [this article](https://medium.com/@dan.shapiro1210/understanding-component-based-architecture-3ff48ec0c238).
+I will not give an in-depth explanation on reusable components as that is not the purpose of this series, but if this concept is new to you, I highly recommend [this article](https://medium.com/@dan.shapiro1210/understanding-component-based-architecture-3ff48ec0c238){:target="_blank"}.
 
 ## Angular
 
@@ -38,7 +38,7 @@ It has an official CLI that makes it really easy to start projects, generate com
 
 ## React
 
-React is probably the biggest of the three regarding popularity. [On the latest StackOverflow's Developer Survey](https://insights.stackoverflow.com/survey/2019), React is the second most-used web framework (just behind jQuery), the most loved of them all and the one most people are interested in learning.
+React is probably the biggest of the three regarding popularity. [On the latest StackOverflow's Developer Survey](https://insights.stackoverflow.com/survey/2019){:target="_blank"}, React is the second most-used web framework (just behind jQuery), the most loved of them all and the one most people are interested in learning.
 
 It came out in 2013, and is mostly maintained by Facebook, but it's open source. Besides being used in web apps, there's also React Native, which is basically a framework that turns your React JS code and components into native Android/iOS code. This series will not get into it, but it's a nice piece of technology and worth taking a look at.
 

@@ -8,7 +8,7 @@ layout: default
   {% include base/header.html %}
 
   <div id="main" role="main" class="container">
-    <div class="card animated fadeIn delay-1">
+    <div class="card animated fadeIn">
       <div class="content">
         <a href="/blog">← Back to blog</a>
         <br>
@@ -29,7 +29,11 @@ layout: default
         </ul>
 
         <article>
-          <img src="{{page.image}}" alt="Cover image for this article">
+          <!-- <img src="{{page.image}}" alt="Cover image for this article"> -->
+          {% include base/smart-image.html 
+            path=page.images-path
+            filename="cover"
+            alt="Cover image for this article" %}
           {{ content }}
         </article>
 

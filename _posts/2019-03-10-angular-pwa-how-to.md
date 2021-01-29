@@ -1,7 +1,7 @@
 ---
 layout: post
 title: How to transform your Angular 6+ app into a PWA
-images-path: /images/posts/2019-03-10-angular-pwa-how-to
+images-path: /posts/2019-03-10-angular-pwa-how-to
 image: /images/posts/2019-03-10-angular-pwa-how-to/cover.jpg
 tags: [Angular, PWA, Software Development, Tutorials, Frontend, JavaScript]
 ---
@@ -22,13 +22,13 @@ Besides that, it will create a file named `ngsw-config.json` in your root folder
 
 ## 2 - Setting up your manifest.json
 
-The `manifest.json` file is the one that tells the browser/OS about your app. You can set the full and short names, theme color, icons, and more. [You can find more about its settings here](https://developers.google.com/web/fundamentals/web-app-manifest/).
+The `manifest.json` file is the one that tells the browser/OS about your app. You can set the full and short names, theme color, icons, and more. [You can find more about its settings here](https://developers.google.com/web/fundamentals/web-app-manifest/){:target="_blank"}.
 
 Don't forget to update the auto-generated icons on `/assets/icons` folder! These are necessary so that your app icon shows up for devices of all DPI settings.
 
 ## 3 - Setting up ngsw-config.json
 
-This file is the one that can configure how your PWA works. You can set up different installation behaviors, as well as handle cache updates. [The Angular documentation has got all options covered here](https://angular.io/guide/service-worker-config).
+This file is the one that can configure how your PWA works. You can set up different installation behaviors, as well as handle cache updates. [The Angular documentation has got all options covered here](https://angular.io/guide/service-worker-config){:target="_blank"}.
 
 ## 4 - Test it out!
 
@@ -54,28 +54,28 @@ Your app should be up and running on `http://localhost:8080/` (or whichever port
 
 ### Check if the service worker is being registered
 
-<figure markdown="1">
-
-![Registered Service Worker]({{page.images-path}}/Service-Workers-1.jpg)
-
-<figcaption>On dev console > Application > Service Workers, there should be a registered service worker for your app.</figcaption>
-</figure>
+{% include base/smart-image.html 
+  path=page.images-path
+  filename="Service-Workers-1"
+  alt="Registered Service Worker"
+  figcaption="On dev console > Application > Service Workers, there should be a registered service worker for your app." 
+%}
 
 ### Use Chrome's Audits feature to validate it as a PWA
 
-<figure markdown="1">
+{% include base/smart-image.html 
+  path=page.images-path
+  filename="Audits"
+  alt="Audits"
+  figcaption="On dev console > Audits, test it for Progressive Web Apps." 
+%}
 
-![Audits]({{page.images-path}}/Audits.jpg)
-
-<figcaption>On dev console > Audits, test it for Progressive Web Apps.</figcaption>
-</figure>
-
-<figure markdown="1">
-
-![Audits passed]({{page.images-path}}/Passed-Audits.jpg)
-
-<figcaption>If everything went alright, you should see the highlighted results on the "Passed audits" section.</figcaption>
-</figure>
+{% include base/smart-image.html 
+  path=page.images-path
+  filename="Passed-Audits"
+  alt="Audits passed"
+  figcaption="If everything went alright, you should see the highlighted results on the \"Passed audits\" section." 
+%}
 
 You may see some errors regarding the app not running over HTTPS. Don't worry, that's only because it's running locally.
 
@@ -83,20 +83,20 @@ You may see some errors regarding the app not running over HTTPS. Don't worry, t
 
 On Chrome, you may also see the option to install the app appear in the URL bar:
 
-<figure markdown="1">
-
-![Chrome prompts you to install PWA]({{page.images-path}}/Clipboard_2019-10-27-18-09-45.jpg)
-
-</figure>
+{% include base/smart-image.html 
+  path=page.images-path
+  filename="Clipboard_2019-10-27-18-09-45"
+  alt="Chrome prompts you to install PWA"
+%}
 
 After this, the app should already open on a separate window, and show up on your OS's installed apps list!
 
-<figure markdown="1">
-
-![Installed PWA on OS' dock]({{page.images-path}}/Clipboard_2019-10-27-18-11-28.jpg)
-
-<figcaption>Notice the PWA's own icon on my OS' dock! Success!</figcaption>
-</figure>
+{% include base/smart-image.html 
+  path=page.images-path
+  filename="Clipboard_2019-10-27-18-11-28"
+  alt="Installed PWA on OS' dock"
+  figcaption="Notice the PWA's own icon on my OS' dock! Success!" 
+%}
 
 ## Encountered Issues
 
@@ -104,7 +104,7 @@ Even though the proccess is quite straight-forward, I still faced some issues wh
 
 ### The `ng add @angular/pwa` command doesn't create relevant files
 
-This was a [reported bug](https://github.com/angular/angular-cli/issues/11914) on the CLI. I had a bugged version (6.0.8) installed on my app. I updated it by running
+This was a [reported bug](https://github.com/angular/angular-cli/issues/11914){:target="_blank"} on the CLI. I had a bugged version (6.0.8) installed on my app. I updated it by running
 
 {% highlight bash %}
 npm uninstall @angular/cli --save

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Spicing Up your GitHub Profile with HTML and CSS
-images-path: /images/posts/2021-01-02-github-profile-readme
+images-path: /posts/2021-01-02-github-profile-readme
 image: /images/posts/2021-01-02-github-profile-readme/cover.jpg
 tags: [GitHub, SVG, Profile, "Online Presence"]
 ---
@@ -12,12 +12,12 @@ Last year, GitHub added a new cool feature for the user profile. You can now add
 
 For adding this to your profile, there's a little secret. Instead of an option in your "Edit Profile" settings, this is achieved by <span class="text-highlight">creating a new repository with the same name as your GitHub username.</span>
 
-<figure markdown="1">
-
-![Screenshot of GitHub repository creation]({{page.images-path}}/repo-creation.jpg)
-
-<figcaption>🎉️ Creating a new repo with the same name as your username immediatelly makes GitHub praise you for finding out this secret.</figcaption>
-</figure>
+{% include base/smart-image.html 
+  path=page.images-path
+  filename="repo-creation"
+  alt="Screenshot of GitHub repository creation"
+  figcaption="🎉️ Creating a new repo with the same name as your username immediatelly makes GitHub praise you for finding out this secret."
+%}
 
 You can choose to initialize the repository with a README file already. After that, the content of this file will already start showing on your personal profile.
 
@@ -80,14 +80,14 @@ From there on, the possibilities are endless. On my profile, I added my personal
 
 <figure markdown="1">
 
-![Animation on my GitHub Profile]({{page.images-path}}/my-profile.gif)
+![Animation on my GitHub Profile](/images/{{page.images-path}}/my-profile.gif)
 
 <figcaption>Using CSS animations inside the SVG, I was able to mimic the animation on my website.</figcaption>
 </figure>
 
 
-Feel free to check out [the source code](https://github.com/matfantinel/matfantinel) to find out how it works.
+Feel free to check out [the source code](https://github.com/matfantinel/matfantinel){:target="_blank"} to find out how it works.
 
 ## Inspiration
 
-Some people have compiled [a list of amazing examples and inspirations for your profile](https://github.com/abhisheknaiidu/awesome-github-profile-readme). Some are minimalistic, others more complex, and some even get data from APIs (!). My favorite is [this one from Livio Brunner](https://github.com/BrunnerLivio), which definitely brings all the best things from 2000's web.
+Some people have compiled [a list of amazing examples and inspirations for your profile](https://github.com/abhisheknaiidu/awesome-github-profile-readme){:target="_blank"}. Some are minimalistic, others more complex, and some even get data from APIs (!). My favorite is [this one from Livio Brunner](https://github.com/BrunnerLivio){:target="_blank"}, which definitely brings all the best things from 2000's web.

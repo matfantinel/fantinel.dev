@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Angular - Exploring the Front-End: Modern Frameworks - Part II"
-images-path: /images/posts/1991-12-21-modern-frameworks-pt2
+images-path: /posts/1991-12-21-modern-frameworks-pt2
 image: /images/posts/1991-12-21-modern-frameworks-pt2/cover.jpg
 tags: ["Series: Exploring the Front-End", Modern Frameworks, JavaScript, Software Development, Angular]
 hidden: true
@@ -15,9 +15,9 @@ Google, the main maintainer behind AngularJS, then made a very controversial dec
 
 
 ## Base Concepts
-Before the code, let's see some of the concepts behind Angular. I'm doing my best to sum them up in a way that's not tiring to read, but still easy to understand. You can always delve deeper into them by reading [the official Angular docs](https://angular.io/docs).
+Before the code, let's see some of the concepts behind Angular. I'm doing my best to sum them up in a way that's not tiring to read, but still easy to understand. You can always delve deeper into them by reading [the official Angular docs](https://angular.io/docs){:target="_blank"}.
 
-* It uses [TypeScript](https://www.typescriptlang.org) instead of regular JavaScript. It is a language maintained by Microsoft that provides static typing, interfaces, and overall provides a better experience for developers, specially in more complex apps (I'm a big fan!). While opting out of TypeScript is possible, it is not very encouraged;
+* It uses [TypeScript](https://www.typescriptlang.org){:target="_blank"} instead of regular JavaScript. It is a language maintained by Microsoft that provides static typing, interfaces, and overall provides a better experience for developers, specially in more complex apps (I'm a big fan!). While opting out of TypeScript is possible, it is not very encouraged;
 * The framework itself is very modular, which means a lot of functionality is split between multiple packages and needs to be imported separately. This can be a bit of a nuisance while developing, but is actually good to reduce bundle size and improve loading performance in the end product;
 * There's a heavy use of dependency injection;
 

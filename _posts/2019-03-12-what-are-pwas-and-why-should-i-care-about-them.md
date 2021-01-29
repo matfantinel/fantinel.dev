@@ -1,7 +1,7 @@
 ---
 layout: post
 title: What are PWAs and why should I care about them?
-images-path: /images/posts/2019-03-12-what-are-pwas-and-why-should-i-care-about-them
+images-path: /posts/2019-03-12-what-are-pwas-and-why-should-i-care-about-them
 image: /images/posts/2019-03-12-what-are-pwas-and-why-should-i-care-about-them/cover.jpg
 tags: ["Series: Exploring the Front-End", PWA, JavaScript, Software Development, Concepts]
 ---
@@ -28,30 +28,30 @@ This all may sound complicated, which is why there are many "recipes" of Service
 
 You probably have already found some of them in the wild. In Chrome for Android, opening a certain website might trigger this panel at the bottom of the screen:
 
-<figure markdown="1">
-
-![PWA Install Prompt on Android]({{page.images-path}}/Android-Install-Prompt.jpg)
-
-<figcaption>"Add Notepad to the home screen"</figcaption>
-</figure>
+{% include base/smart-image.html 
+  path=page.images-path
+  filename="Android-Install-Prompt"
+  alt="PWA Install Prompt on Android"
+  figcaption="\"Add Notepad to the home screen\"" 
+%}
 
 And on Desktop, this option shows up in the URL bar:
 
-<figure markdown="1">
-
-![Chrome prompts you to install PWA]({{page.images-path}}/Clipboard_2019-10-27-18-09-45.jpg)
-
-</figure>
+{% include base/smart-image.html 
+  path=page.images-path
+  filename="Clipboard_2019-10-27-18-09-45"
+  alt="Chrome prompts you to install PWA"
+%}
 
 With this, your app is able to be displayed on your phone or PC's app list just like any other app. Cool!
 
-_Keep in mind that for now only a few Chromium-based browsers offer this functionality on Android. Firefox, sadly, is not allowed by Google to create WebAPKs (how these are called). Thanks, free market! 🙄_
+_Keep in mind that for now only a few Chromium-based browsers offer this functionality on Android. Firefox, sadly, is not allowed by Google to create WebAPKs (how these are called). Thanks, free market!_ 🙄
 
 ## That's nice and all... But how would my app benefit from it?
 
 Let's get one thing out of the way first - **PWAs are not a replacement for native apps**. They have more limitations, and overall offer worse performance than a native app written in Java/Swift. Their purpose is to offer a better user experience for web apps that are used often by users. If you have a complex web app, and do not have the time/resources or simply don't think it's worth it to create a native counterpart, PWAs are for you. I will compare PWAs to hybrid apps, like the ones built on Ionic.
 
-The first main advantage is that the entry barrier is lower. Research shows that [the majority of mobile users in the US download an average of 0 apps monthly](https://techcrunch.com/2017/08/25/majority-of-u-s-consumers-still-download-zero-apps-per-month-says-comscore/). That's zero. None. That may be because searching for an app in the app store may be a bit counterintuitive depending on the situation. Let's imagine that you have an hybrid app on the app store. Your new user probably found out about your app/service on its website, so they're already in the browser:
+The first main advantage is that the entry barrier is lower. Research shows that [the majority of mobile users in the US download an average of 0 apps monthly](https://techcrunch.com/2017/08/25/majority-of-u-s-consumers-still-download-zero-apps-per-month-says-comscore/){:target="_blank"}. That's zero. None. That may be because searching for an app in the app store may be a bit counterintuitive depending on the situation. Let's imagine that you have an hybrid app on the app store. Your new user probably found out about your app/service on its website, so they're already in the browser:
 
 1. Logs in to your app on the browser;
 2. You detect that they're using a mobile phone, so you can show them a banner to download your app on the store;
@@ -82,7 +82,7 @@ Even when opened in a browser, a PWA can still offer:
 
 ## How can I convince my boss to let me work on this?
 
-Well, every boss is different. But [Google provides some neat statistics that may help you in your endeavor](http://https//developers.google.com/web/progressive-web-apps/):
+Well, every boss is different. But [Google provides some neat statistics that may help you in your endeavor](http://https//developers.google.com/web/progressive-web-apps/){:target="_blank"}:
 
 * Push notifications increase user engagement by up to 4 times;
 * Some use cases report that the increase in conversions after transitioning to a PWA was of 104%!

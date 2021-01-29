@@ -1,7 +1,7 @@
 ---
 layout: post
 title: How to fix your Favicons
-images-path: /images/posts/2021-01-06-fixing-favicons
+images-path: /posts/2021-01-06-fixing-favicons
 image: /images/posts/2021-01-06-fixing-favicons/cover.jpg
 tags: ["Series: Exploring the Front-End", Software Development]
 ---
@@ -12,16 +12,17 @@ Unfortunately, different browsers, OSs, and implementations throughout the years
 
 ## Easy Mode
 
-I recently met my new best friend, [Real Favicon Generator](https://realfavicongenerator.net/). It took all these pains I just wrote about and just made it a breeze to handle. Best of all, it's customizable!
+I recently met my new best friend, [Real Favicon Generator](https://realfavicongenerator.net/){:target="_blank"}. It took all these pains I just wrote about and just made it a breeze to handle. Best of all, it's customizable!
 
 You just have to add in your existing favicon image (for best results, a SVG or high-quality PNG are recommended). From then on, the generator will display previews and allow customization of each category of favicon it will generate:
 
-<figure markdown="1">
-
-![Screenshot of Real Favicon Generator's customization]({{page.images-path}}/favicon-generator-customization.jpg)
-
-<figcaption>The customization options allow you to set different icons depending on device and OS, and even generate icons with background colors if needed.</figcaption>
-</figure>
+{% include base/smart-image.html 
+  
+  path=page.images-path
+  filename="favicon-generator-customization"
+  alt="Screenshot of Real Favicon Generator's customization"
+  figcaption="The customization options allow you to set different icons depending on device and OS, and even generate icons with background colors if needed."
+%}
 
 At the bottom, you can even set up ways of avoiding caching issues, compression, and scaling algorithms (!). After all that, it will generate them all as set, give you a zip with all the files, and the HTML code to paste on your `<head>`. You can check the result on this very website (fantinel.dev). The favicon should look fantastic on every device/browser combination.
 
@@ -57,12 +58,12 @@ So, there are 5 types of favicons that we need to add, if we want to support eve
   <li>`safari-pinned-tab.svg` is used when users pin a tab on Safari for macOS. Basically, you declare a monochrome SVG and a theme color. Safari does the rest.</li>
 </ul>
 
-<figure markdown="1">
-
-![Demo of Safari pinned tabs favicon behavior]({{page.images-path}}/safari-pinned-tabs-demo.jpg)
-
-<figcaption>How Safari pinned tab favicon works, screenshot of realfavicongenerator.net</figcaption>
-</figure>
+{% include base/smart-image.html 
+  path=page.images-path
+  filename="safari-pinned-tabs-demo"
+  alt="Demo of Safari pinned tabs favicon behavior"
+  figcaption="How Safari pinned tab favicon works, screenshot of realfavicongenerator.net"
+%}
 
 With those files, you should be good to go on every single browser, by adding this to your `<head>`:
 
@@ -81,7 +82,7 @@ With those files, you should be good to go on every single browser, by adding th
 
 Something that's starting to become a thing is having a single SVG favicon. Theoretically, SVGs are infinitely scalable, and should look good on all sizes. Unfortunately, browser support is not there yet.
 
-[Can I Use](https://caniuse.com/link-icon-svg) reports that, currently (January 2021), only recent versions of Firefox and Chromium-based browsers support this feature. This means that Safari, non-Chromium Edge, IE, and some mobile browsers do not support it. Therefore, unless you want your favicon to just not appear in those browsers, you'd still have to use other file formats as well. The downside of this approach is that all favicons would look the same, and you won't be able to customize and have differently-shaped icons for mobile devices, for example.
+[Can I Use](https://caniuse.com/link-icon-svg){:target="_blank"} reports that, currently (January 2021), only recent versions of Firefox and Chromium-based browsers support this feature. This means that Safari, non-Chromium Edge, IE, and some mobile browsers do not support it. Therefore, unless you want your favicon to just not appear in those browsers, you'd still have to use other file formats as well. The downside of this approach is that all favicons would look the same, and you won't be able to customize and have differently-shaped icons for mobile devices, for example.
 
 {% highlight html %}
 <head>
