@@ -16,7 +16,7 @@ WebP has been introduced in 2010, and has slowly gained adoption since then. Sin
 
 > But how do we use those shiny new formats if not all browsers support them?
 
-With the HTML `<figure>` element, we can make the browsers do the work for us. We can declare multiple sources for the same image, and the browser will try to load them in order. If they do not support a format, they will immediatelly jump to the next one.
+With the HTML `<picture>` element, we can make the browsers do the work for us. We can declare multiple sources for the same image, and the browser will try to load them in order. If they do not support a format, they will immediatelly jump to the next one.
 
 So, what we want to do is declare those different sources in the following order:
 
@@ -80,7 +80,7 @@ You can optimize even further than that. See, in my example, I am loading an ima
 
 The `srcset` property is smart. As the name implies, it is a set of sources, not just a single one. When we declare multiple file paths and add a width unit besides it, the browser looks at this data and tries to display the smallest possible image.
 
-On the code snippet above, the browser will follow this: <span class="text-highlight">If the size of the displayed image (on the page) is smaller or equal to 320px, it will load the file with 380px of width. Otherwise, it will try to load the next declared path (640px).</span>
+On the code snippet above, the browser will follow this: <span class="text-highlight">If the size of the displayed image (on the page) is smaller or equal to 380px, it will load the file with 380px of width. Otherwise, it will try to load the next declared path (640px).</span>
 
 **However,** not all parts of this process are smart. The browser cannot know what is the final size of the image on the page before it actually loads it. Which is why the `sizes` property exists. Let's see how it works:
 
