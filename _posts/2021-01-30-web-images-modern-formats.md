@@ -1,13 +1,12 @@
 ---
 layout: post
 title: "Smarter, Lighter, Better Images: A Guide to Optimization"
-images-path: /posts/2021-01-29-web-images-modern-formats
-image: /images/posts/2021-01-29-web-images-modern-formats/cover.jpg
+images-path: /posts/2021-01-30-web-images-modern-formats
+image: /images/posts/2021-01-30-web-images-modern-formats/cover.jpg
 tags: ["Series: Exploring the Front-End", Optimization, HTML, CSS, Software Development]
-hidden: true
 ---
 
-Do you know how big are the images displayed on your website? When you open a page, the browser starts downloading a bunch of files in order to display it. Research shows that [images are the most requested asset type](https://httparchive.org/reports/state-of-images){:target="_blank"} and take up more bandwidth than any other resource. So, making sure they are as small as they can be can greatly improve the load times for your website. (spoiler alert: mine's become 85% faster!)
+Do you know how big the images displayed on your website are? When you open a page, the browser starts downloading a bunch of files in order to display it. Research shows that [images are the most requested asset type](https://httparchive.org/reports/state-of-images){:target="_blank"} and take up more bandwidth than any other resource. So, making sure they are as small as they can be can greatly improve the load times for your website. (spoiler alert: mine's become 85% faster!)
 
 ## More efficient formats
 
@@ -167,7 +166,7 @@ Pre-existing conditions:
 * The images I wanted to convert were all in either PNG or JPG formats;
 
 Modifications I did:
-* I have created a folder called "optimized-images", where all the converted images are saved automatically by my script (more on that later);
+* I have created a folder called "optimized-images", where all the converted images are saved automatically by my script;
 * I have created a component to centralize all image-loading logic. With Jekyll, I just had to create an HTML file in the `_includes` folder, but how you do this might vary depending on what technology you use;
 * This component receives as parameters: the relative file path, the filename (without file extension), and the alt text;
 
