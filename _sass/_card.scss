@@ -65,6 +65,11 @@
       color: var(--lighter-fg-color);
       font-size: 16px;
     }
+    .read-time {
+      color: var(--lighter-fg-color);
+      font-size: 16px;
+      display: block;
+    }
 
     p {
       line-height: 1.55em;
@@ -129,7 +134,7 @@
 
     .content {
       padding: 40px;
-
+      
       h1.title {
         font-size: 1.6rem;
         word-wrap: anywhere;

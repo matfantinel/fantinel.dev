@@ -15,6 +15,7 @@
       <h1 class="title">
         {{ post.title }}
       </h1>
+      {% include blog/reading-time.html content = post.content %}
 
       <p class="excerpt">
         {{ post.excerpt | strip_html | truncatewords: 20 }}
@@ -39,6 +40,6 @@
       </li>
       {% endif %}
     </ul>
-    {% endif %}
+    {% endif %}    
   </div>
 </a>
