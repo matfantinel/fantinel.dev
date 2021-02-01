@@ -29,12 +29,11 @@ layout: default
         </ul>
 
         <article>
-          <!-- <img src="{{page.image}}" alt="Cover image for this article"> -->
           {% include base/smart-image.html 
             path=page.images-path
             filename="cover"
             alt="Cover image for this article" %}
-          {{ content }}
+          {% include base/anchor-headings.html html=content anchorBody="#" %}
         </article>
 
         <div class="footer">
