@@ -3,7 +3,7 @@ layout: post
 title: CSS Scroll Snapping - Improve Scrolling without JS
 images-path: /posts/2020-08-03-css-scroll-snapping
 image: /images/posts/2020-08-03-css-scroll-snapping/cover.jpg
-tags: ["Series: Exploring the Front-End", CSS, Software Development]
+tags: [Front-End, CSS, Guide]
 ---
 
 CSS is evolving constantly and the past few years have brought us amazing stuff. It is getting easier to make smooth and complete experiences without having to use JavaScript at all. Case in point: Scroll Snapping.

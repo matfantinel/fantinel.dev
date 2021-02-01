@@ -3,7 +3,7 @@ layout: post
 title: What are PWAs and why should I care about them?
 images-path: /posts/2019-03-12-what-are-pwas-and-why-should-i-care-about-them
 image: /images/posts/2019-03-12-what-are-pwas-and-why-should-i-care-about-them/cover.jpg
-tags: ["Series: Exploring the Front-End", PWA, JavaScript, Software Development, Concepts]
+tags: [Front-End, PWA, JavaScript]
 ---
 
 Progressive Web Apps are not new, but they are becoming more and more popular everyday. Big companies like Facebook, Twitter and Google have been using them for a while, and while they're often designed for mobile, recent pushes from Microsoft and Chrome are making them a good option even for desktop.

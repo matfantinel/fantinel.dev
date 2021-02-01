@@ -3,7 +3,7 @@ layout: post
 title: Web Workers - Bringing Multithreading to the Front-End
 images-path: /posts/2019-08-14-web-workers
 image: /images/posts/2019-08-14-web-workers/cover.jpg
-tags: ["Series: Exploring the Front-End", Concepts, Software Development, JavaScript]
+tags: [Front-End, Guide, JavaScript]
 ---
 
 In times of complex, feature-filled front-ends, we often get reports of freezes, frame drops, or overall slugginess in our apps. This is due to JavaScript's default behavior - a single thread is responsible for the interface, animations, and whatever CPU-intensive logic or I/O your app is doing.

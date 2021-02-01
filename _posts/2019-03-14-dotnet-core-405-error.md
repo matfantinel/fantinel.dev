@@ -3,7 +3,7 @@ layout: post
 title: .NET Core API - Method not allowed on PUT and DELETE requests
 images-path: /posts/2019-03-14-dotnet-core-405-error
 image: /images/posts/2019-03-14-dotnet-core-405-error/cover.jpg
-tags: [.NET, Backend, Software Development, Errors, C#]
+tags: [Common Errors, .NET, Backend, C#]
 ---
 
 Recently, I've been working on an Angular app, powered with a .NET Core API. Everything was working well and smoothly when running both on my local machine.

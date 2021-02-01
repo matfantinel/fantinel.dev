@@ -3,7 +3,7 @@ layout: post
 title: Developing an Animal Crossing companion app with Ionic
 images-path: /posts/2020-07-28-ionic-animal-crossing-companion
 image: /images/posts/2020-07-28-ionic-animal-crossing-companion/cover.jpg
-tags: [Ionic, PWA, Software Development, Open Source, Games]
+tags: [Ionic, PWA, Open Source, Games]
 ---
 
 This year I've played a lot of Animal Crossing New Horizons. It came out at the start of quarantine - and was extremely popular for providing an escape from that, with a virtual life that's free of the problems we're facing on the real one.

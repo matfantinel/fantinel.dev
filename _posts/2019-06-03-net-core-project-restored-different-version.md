@@ -3,7 +3,7 @@ layout: post
 title: .NET Core - Project version mismatch
 images-path: /posts/2019-06-03-net-core-project-restored-different-version
 image: /images/posts/2019-06-03-net-core-project-restored-different-version/cover.jpg
-tags: [.NET, Backend, Software Development, Errors, C#]
+tags: [.NET, Backend, Common Errors, C#]
 ---
 
 This problem usually happens when you're working on a solution with multiple projects that were created using different versions of the .NET SDK.

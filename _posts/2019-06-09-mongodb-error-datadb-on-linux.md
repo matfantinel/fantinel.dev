@@ -3,7 +3,7 @@ layout: post
 title: MongoDB on Linux - Data directory /data/db not found
 images-path: /posts/2019-06-09-mongodb-error-datadb-on-linux
 image: /images/posts/2019-06-09-mongodb-error-datadb-on-linux/cover.jpg
-tags: [Errors, Backend, Software Development, Linux]
+tags: [Common Errors, Backend, Linux]
 ---
 
 So, as a distro-hopper I end up installing MongoDB more often than I'd like to admit. On all times, I've stumbled upon an error right when trying to start the `mongod` service, after following [the official instructions](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/){:target="_blank"}. The important line here is:

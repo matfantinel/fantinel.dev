@@ -3,7 +3,7 @@ layout: post
 title: "Angular - Exploring the Front-End: Modern Frameworks - Part II"
 images-path: /posts/1991-12-21-modern-frameworks-pt2
 image: /images/posts/1991-12-21-modern-frameworks-pt2/cover.jpg
-tags: ["Series: Exploring the Front-End", Modern Frameworks, JavaScript, Software Development, Angular]
+tags: [Front-End, Modern Frameworks, JavaScript, Angular]
 hidden: true
 ---
 

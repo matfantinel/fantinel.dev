@@ -3,7 +3,7 @@ layout: post
 title: "Smarter, Lighter, Better Images: A Guide to Optimization"
 images-path: /posts/2021-01-30-web-images-modern-formats
 image: /images/posts/2021-01-30-web-images-modern-formats/cover.jpg
-tags: ["Series: Exploring the Front-End", Optimization, HTML, CSS, Software Development]
+tags: [Front-End, Guide, HTML, CSS, Optimization]
 ---
 
 Do you know how big the images displayed on your website are? When you open a page, the browser starts downloading a bunch of files in order to display it. Research shows that [images are the most requested asset type](https://httparchive.org/reports/state-of-images){:target="_blank"} and take up more bandwidth than any other resource. So, making sure they are as small as they can be can greatly improve the load times for your website. (spoiler alert: mine's become 85% faster!)

@@ -3,7 +3,7 @@ layout: post
 title: Spicing Up your GitHub Profile with HTML and CSS
 images-path: /posts/2021-01-02-github-profile-readme
 image: /images/posts/2021-01-02-github-profile-readme/cover.jpg
-tags: [GitHub, SVG, Profile, "Online Presence"]
+tags: [GitHub, Guide, SVG, "Online Presence"]
 ---
 
 Last year, GitHub added a new cool feature for the user profile. You can now add a README file to it, and it will show up besides your profile pic. This is great for talking a bit about yourself and what you do, putting some contact info, or simply making a cool first impression.
