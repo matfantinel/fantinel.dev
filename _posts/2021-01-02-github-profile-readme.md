@@ -10,7 +10,7 @@ Last year, GitHub added a new cool feature for the user profile. You can now add
 
 ## Creating the Repository
 
-For adding this to your profile, there's a little secret. Instead of an option in your "Edit Profile" settings, this is achieved by <span class="text-highlight">creating a new repository with the same name as your GitHub username.</span>
+For adding this to your profile, there's a little secret. Instead of an option in your "Edit Profile" settings, this is achieved by <span class="highlighted marker">creating a new repository with the same name as your GitHub username.</span>
 
 {% include base/smart-image.html 
   path=page.images-path

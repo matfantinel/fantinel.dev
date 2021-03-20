@@ -14,17 +14,22 @@
   --accent-color-rgb: 12, 164, 165;
   --subtle-accent-color: #95CACA;
   --subtler-accent-color: #E3FFFF;
+  --secondary-color: #7d68d0;
+  --secondary-color-rgb: 125, 104, 208;
   --card-bg-color: #ffffff;
   --card-fg-color: #1c1e26;
   --inline-code-bg-color: #e3e3e3;
   --scrollbar-thumb-color: #9E9E9E;
   --scrollbar-track-color: #CDCDCD;
 
-
+  // Used in code blocks, which are always dark
   --dark-bg-color: #1c1e26;
   --dark-fg-color: #dffcfd;
   --dark-accent-color: #00f9fb;
-  --dark-subtle-accent-color: #b1feff;  
+  --dark-subtle-accent-color: #b1feff;
+
+  // Used for text highlights on blog
+  --highlight-marker-url: #{"url('https://s2.svgbox.net/pen-brushes.svg?ic=brush-9&color=B5E5E5')"};
 }
 
 @media (prefers-color-scheme: dark) {
@@ -39,9 +44,13 @@
     --accent-color-rgb: 0, 249, 251;
     --subtle-accent-color: #b1feff;
     --subtler-accent-color: #005B5B;
+    --secondary-color: #c181ff;
+    --secondary-color-rgb: 193, 129, 255;
     --card-bg-color: #32343e;
     --card-fg-color: #dffcfd;
     --inline-code-bg-color: #5d6868;
+
+    --highlight-marker-url: #{"url('https://s2.svgbox.net/pen-brushes.svg?ic=brush-9&color=0D6970')"};
   }
 }
 

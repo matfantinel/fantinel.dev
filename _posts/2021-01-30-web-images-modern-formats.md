@@ -80,9 +80,9 @@ You can optimize even further than that. See, in my example, I am loading an ima
 
 The `srcset` property is smart. As the name implies, it is a set of sources, not just a single one. When we declare multiple file paths and add a width unit besides it, the browser looks at this data and tries to display the smallest possible image.
 
-On the code snippet above, the browser will follow this: <span class="text-highlight">If the size of the displayed image (on the page) is smaller or equal to 380px, it will load the file with 380px of width. Otherwise, it will try to load the next declared path (640px).</span>
+On the code snippet above, the browser will follow this: <span class="highlighted marker">If the size of the displayed image (on the page) is smaller or equal to 380px, it will load the file with 380px of width. Otherwise, it will try to load the next declared path (640px).</span>
 
-**However,** not all parts of this process are smart. The browser cannot know what is the final size of the image on the page before it actually loads it. Which is why the `sizes` property exists. Let's see how it works:
+**However,** not all parts of this process are smarty. The browser cannot know what is the final size of the image on the page before it actually loads it. Which is why the `sizes` property exists. Let's see how it works:
 
 The `sizes` property defines what rule the browser will use to get the width it uses to choose the correct file in `srcset`. The default value is `100vw`. That means that, to check what width the image will have, the browser just gets the width of the browser window. If we know the exact size the image will have on load, we can declare it here, or if we don't know the exact size, we can estimate. We can use media queries to help us specify the sizes better as well.
 
@@ -100,7 +100,7 @@ It is easier to understand if we visualize it like this:
 
 Of course, different websites have different needs and situations. Make sure to adapt the code to your specific need. 
 
-It's also worth noting that most phones use a HiDPI mode. This means that <span class="text-highlight">even though the reported width for the phone above is 375px, the browser will likely use a higher resolution to load the images</span> (usually 2x), in order to serve a higher quality image.
+It's also worth noting that most phones use a HiDPI mode. This means that <span class="highlighted marker">even though the reported width for the phone above is 375px, the browser will likely use a higher resolution to load the images</span> (usually 2x), in order to serve a higher quality image.
 
 
 ## Lazy Loading and Async Decoding
@@ -109,7 +109,7 @@ You might have noticed the `loading="lazy"` and `decoding="async"` attributes in
 
 `decoding="async"` tells your browser it can try to parallelize loading your image. When your page is loading, it tries to decode both text and images at the same time. On lower-end devices though, decoding heavy images can take a while, and this might block the rendering of the rest of the content. With this option, the browser will try to proceed rendering the rest of the content and render the image later. This can be a great improvement to perceived performance.
 
-`loading="lazy"` is probably the most important of the two. It is an easy way of telling the browser to <span class="text-highlight">only load the images when they get close to appearing in the viewport</span>. There is a threshold that is defined by the browser that controls how close it needs to be before it gets loaded, so you don't have to worry about them not showing up if the user scrolls fast. <span class="text-highlight">This ensures that the initial load of the website is as lean as it can get, improving perceived performance and also saving you some money on server requests.</span>
+`loading="lazy"` is probably the most important of the two. It is an easy way of telling the browser to <span class="highlighted marker">only load the images when they get close to appearing in the viewport</span>. There is a threshold that is defined by the browser that controls how close it needs to be before it gets loaded, so you don't have to worry about them not showing up if the user scrolls fast. <span class="highlighted marker">This ensures that the initial load of the website is as lean as it can get, improving perceived performance and also saving you some money on server requests.</span>
 
 {% include base/smart-image.html 
   path=page.images-path
@@ -139,7 +139,7 @@ The following data is taken from the home page of the website, since it has a lo
   alt="Screenshot showing the difference in download size before and after the optimizations"
 %}
 
-<span class="text-highlight">The total download size decreased by a whopping 85%!!</span> That's an incredible difference, with no noticeable difference in quality. Your results may vary, as they depend on how much of your website's size is images.
+<span class="highlighted marker">The total download size decreased by a whopping 85%!!</span> That's an incredible difference, with no noticeable difference in quality. Your results may vary, as they depend on how much of your website's size is images.
 
 Before the changes, out of 1.6MB total, 92% of it were images, 5% were fonts, 1% was HTML, and the remaining 2% were of JS and other things like the web manifest.
 

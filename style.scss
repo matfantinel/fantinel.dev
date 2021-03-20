@@ -79,20 +79,20 @@ code {
   font-family: var(--mono-font);
 }
 
-.text-highlight {
-  font-style: normal;
-  border-radius: 1em 0 1em 0;
-  text-shadow: 1px 1px 1px var(--bg-color);
-  padding: 8px;
-  margin-right: -8px;
-  margin-left: -8px;
-  background-image: linear-gradient(
-    -100deg,
-    rgba(var(--accent-color-rgb), 0.1),
-    rgba(var(--accent-color-rgb), 0.2) 100%,
-    rgba(var(--accent-color-rgb), 0.15)
-  );
+.highlighted {
+  &.marker {
+    background: var(--highlight-marker-url);
+  }
+  &.purply {
+    color: var(--secondary-color);
+    font-weight: 600;
+    font-family: var(--title-font);
+    font-style: italic;
+    margin-right: 2px;
+    text-shadow: 0 1px rgba(var(--fg-color-rgb),0.1);
+  }
 }
+
 ::selection {
   background-color: rgba(var(--accent-color-rgb), 0.2);
   color: var(--fg-color);
