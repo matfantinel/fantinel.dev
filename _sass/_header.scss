@@ -187,6 +187,10 @@ header {
     stroke-dasharray: 200;
   }
 
+  99.999% {
+    stroke-dasharray: 200;
+  }
+
   100% {
     stroke-dashoffset: 0;
   }
@@ -195,6 +199,10 @@ header {
 @keyframes animate-svg-stroke-long {
   0% {
     stroke-dashoffset: 400;
+    stroke-dasharray: 400;
+  }
+
+  99.999% {
     stroke-dasharray: 400;
   }
 
