@@ -63,12 +63,37 @@
       .content {
         justify-content: flex-start;
 
-        span.timeframe {
+        .title {
+          margin: 0;
+        }
+
+        span.job-title {
           color: var(--accent-color);
           font-size: 1rem;
 
           @include for-tablet-landscape-up {
             font-size: 1.25rem;
+          }
+        }
+
+        span.timeframe {
+          color: var(--lighter-fg-color);
+          font-size: .85rem;
+
+          @include for-tablet-landscape-up {
+            font-size: 1rem;
+          }
+        }
+
+        .links {
+          a {
+            svg {
+              height: 1.25rem;
+
+              @include for-tablet-landscape-up {
+                height: 1.7rem;
+              }
+            }
           }
         }
 
