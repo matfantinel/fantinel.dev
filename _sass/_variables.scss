@@ -31,6 +31,15 @@
 
   // Used for text highlights on blog
   --highlight-marker-url: #{"url('https://s2.svgbox.net/pen-brushes.svg?ic=brush-9&color=B5E5E5')"};
+
+  // Used for highlights in Work Experience
+  --freelancer-color: #BCEBEB;
+  --logitix-color: #FFE2CE;
+  --sige-color: #CCE4FF;
+  --promob-color: #D7E6EB;
+
+  --card-box-shadow: 8px 14px 38px rgba(39, 44, 49, 0.06), 1px 3px 8px rgba(39, 44, 49, 0.03);
+  --card-box-shadow-hoverable: 8px 28px 50px rgba(39,44,49,.5),1px 6px 12px rgba(39,44,49,.3);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -53,6 +62,11 @@
     --inline-code-bg-color: #5d6868;
 
     --highlight-marker-url: #{"url('https://s2.svgbox.net/pen-brushes.svg?ic=brush-9&color=0D6970')"};
+
+    --freelancer-color: #1d6262;
+    --logitix-color: #924817;
+    --sige-color: #003e85;
+    --promob-color: #2b4a55;
   }
 }
 
@@ -64,9 +78,7 @@
 }
 
 // Breakpoints
-@mixin for-phone-only {
-  @media (max-width: 599px) { @content; }
-}
+
 @mixin for-tablet-portrait-up {
   @media (min-width: 600px) { @content; }
 }
@@ -78,4 +90,17 @@
 }
 @mixin for-big-desktop-up {
   @media (min-width: 1800px) { @content; }
+}
+
+@mixin for-phone-only {
+  @media (max-width: 599px) { @content; }
+}
+@mixin for-tablet-portrait-down {
+  @media (max-width: 899px) { @content; }
+}
+@mixin for-tablet-landscape-down {
+  @media (max-width: 1199px) { @content; }
+}
+@mixin for-desktop-down {
+  @media (max-width: 1799px) { @content; }
 }

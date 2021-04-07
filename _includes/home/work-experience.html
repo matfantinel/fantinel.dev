@@ -1,16 +1,21 @@
 <section class="work-experience animate-when-visible">
   <h1>Work Experience</h1>
 
-  <div id="swipe-view" onscroll="handleScroll()">
-    <div class="card swipe-item">
+  <div class="experience-cards-container">
+    <div class="card hoverable freelancer">
       <div class="content animated fadeIn">
-        <h1 class="title">Independent Contractor</h1>
+        <h1 class="title">
+          <span class="highlighted bottom-accent">Freelancer</span>
+        </h1>
         <span class="job-title">Front-End Web Developer</span>
         <span class="timeframe">2021 ~ Current</span>
         <ul>
-          <li>Working as an independent contractor for a variety of clients;</li>
-          <li>I create quality software, with a focus on front-end web development, but not limited to it;</li>
-          <li>Some design knowledge comes as a bonus :)</li>
+          <li>Working as an independent contractor for clients all over the world;</li>
+          <li>Building quality software, with a focus on front-end web development, but not limited to it;</li>
+          <li>
+            Using my design knowledge and experience to prioritize UX when developing, for a user-friendly final
+            product;
+          </li>
         </ul>
         <ul class="tags">
           <li><span class="tag">Vue</span></li>
@@ -20,10 +25,11 @@
         </ul>
       </div>
     </div>
-    <div class="card swipe-item">
+
+    <div class="card hoverable logitix">
       <div class="content animated fadeIn">
         <h1 class="title">
-          Logitix
+          <span class="highlighted bottom-accent">Logitix</span>
           <div class="links">
             <a href="https://logitix.com" target="_blank" rel="noopener" title="Open company website"
               >{% include svg-icons/external-link-svg-only.html %}</a
@@ -35,9 +41,10 @@
         <ul>
           <li>
             Working on a Vue front-end project, aiming to solve current pains and create new and better processes to
-            manage ticket sales and brokerage;
+            manage ticket sales and brokerage in the US;
           </li>
-          <li>Automating of previously manual processes with Selenium, improving speed and capacity;</li>
+          <li>Building new ways of viewing and interacting with huge amounts of data;</li>
+          <li>Automating previously manual processes with Selenium, improving speed and capacity;</li>
         </ul>
         <ul class="tags">
           <li><span class="tag">Vue</span></li>
@@ -48,10 +55,11 @@
         </ul>
       </div>
     </div>
-    <div class="card swipe-item">
+
+    <div class="card hoverable sige">
       <div class="content animated fadeIn">
         <h1 class="title">
-          SIGE Cloud
+          <span class="highlighted bottom-accent">SIGE Cloud</span>
           <div class="links">
             <a href="https://sigecloud.com.br" target="_blank" rel="noopener" title="Open company website"
               >{% include svg-icons/external-link-svg-only.html %}</a
@@ -63,10 +71,10 @@
         <ul>
           <li>Applying the Microfrontends approach to modernize a legacy product;</li>
           <li>Developing a desktop app from scratch for a simplified ERP focused on small companies;</li>
-          <li>Development of a mobile app that acts as an extension to the company’s main product;</li>
+          <li>Developing a mobile app that acts as an extension to the company’s main product;</li>
           <li>
-            Development of an internal HelpDesk software, including Artificial Intelligence to reduce number of opened
-            tickets;
+            Developing an internal HelpDesk software using Artificial Intelligence to help users before they even opened
+            the ticket;
           </li>
         </ul>
         <ul class="tags">
@@ -78,10 +86,11 @@
         </ul>
       </div>
     </div>
-    <div class="card swipe-item">
+
+    <div class="card hoverable promob">
       <div class="content animated fadeIn">
         <h1 class="title">
-          Promob Software Solutions
+          <span class="highlighted bottom-accent">Promob</span>
           <div class="links">
             <a href="https://promob.com" target="_blank" rel="noopener" title="Open company website"
               >{% include svg-icons/external-link-svg-only.html %}</a
@@ -97,54 +106,13 @@
           <li>Integration with third-party CRM, HelpDesk and ERP softwares;</li>
         </ul>
         <ul class="tags">
-          <li><span class="tag">jQuery</span></li>
-          <li><span class="tag">KnockoutJS</span></li>
+          <li><span class="tag">Vue</span></li>
+          <li><span class="tag">AngularJS</span></li>
+          <li><span class="tag">Selenium</span></li>
           <li><span class="tag secondary">.NET</span></li>
           <li><span class="tag secondary">SQL Server</span></li>
         </ul>
       </div>
     </div>
-    <div class="arrow prev" onclick="scrollCards('p')">{% include svg-icons/chevron-svg-only.html %}</div>
-    <div class="arrow next" onclick="scrollCards('n')">{% include svg-icons/chevron-svg-only.html %}</div>
   </div>
 </section>
-
-<script type="text/javascript">
-  var scrollEndedTimer = null;
-  checkIfArrowsShouldHide();
-
-  function handleScroll() {
-    if (scrollEndedTimer !== null) {
-      clearTimeout(scrollEndedTimer);
-    }
-    scrollEndedTimer = setTimeout(function () {
-      checkIfArrowsShouldHide();
-    }, 150);
-  }
-  function scrollCards(direction) {
-    const width = document.querySelector('.swipe-item').offsetWidth;
-
-    document.querySelector('#swipe-view').scrollBy({
-      top: 0,
-      left: direction == 'p' ? width * -1 : width,
-      behavior: 'smooth',
-    });
-  }
-
-  function checkIfArrowsShouldHide() {
-    const numberOfCards = document.getElementsByClassName('swipe-item').length;
-    let swipeView = document.querySelector('#swipe-view');
-    const offsetForLastCard = (swipeView.scrollWidth / numberOfCards) * (numberOfCards - 1) - 50;
-
-    if (swipeView.scrollLeft === 0) {
-      document.querySelector('.arrow.prev').style.display = 'none';
-    } else {
-      document.querySelector('.arrow.prev').style.display = 'flex';
-    }
-    if (swipeView.scrollLeft >= offsetForLastCard) {
-      document.querySelector('.arrow.next').style.display = 'none';
-    } else {
-      document.querySelector('.arrow.next').style.display = 'flex';
-    }
-  }
-</script>

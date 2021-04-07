@@ -91,6 +91,19 @@ code {
     margin-right: 2px;
     text-shadow: 0 1px rgba(var(--fg-color-rgb),0.1);
   }
+  &.bottom-accent {
+    position: relative;
+    &::before {
+      content: '';
+      width: calc(100% + 4px);
+      background: var(--subtle-accent-color);
+      height: 10px;
+      position: absolute;
+      bottom: 4px;
+      left: -2px;
+      z-index: -1;
+    }
+  }
 }
 
 ::selection {
@@ -135,6 +148,6 @@ code {
 @import 'code';
 @import 'highlights';
 @import 'about-card';
-@import 'swipable-cards';
+@import 'work-experience';
 @import 'not-found';
 @import 'animations';

@@ -22,12 +22,12 @@ section.about {
       max-width: var(--avatar-height);
       height: var(--avatar-height);
       border-radius: 50%;
-      box-shadow: 8px 14px 38px rgba(39, 44, 49, 0.06), 1px 3px 8px rgba(39, 44, 49, 0.03);
+      box-shadow: 8px 14px 38px rgba(39,44,49,0.3), 1px 3px 8px rgba(39,44,49,0.03);
       transition: all .2s ease-in-out;
 
       &:hover {
         transform: scale(1.05) rotate(10deg);
-        box-shadow: 8px 14px 38px rgba(39,44,49,0.3), 1px 3px 8px rgba(39,44,49,0.03);
+        box-shadow: 8px 14px 38px rgba(39,44,49,0.6), 1px 3px 8px rgba(39,44,49,0.03);
       }      
     }
 
