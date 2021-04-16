@@ -13,6 +13,9 @@
     <link rel="shortcut icon" href="/favicon.ico?v=dLXyx2PjAj">
     <meta name="msapplication-TileColor" content="#dffcfd">
     <meta name="theme-color" content="#dffcfd">
+
+    <!-- Disable Google FLOC -->
+    <meta http-equiv="Permissions-Policy" content="interest-cohort=()"/>
     
     {% if page.tags %}
     <meta name="keywords" content='{{page.tags | join: ", "}}, Matheus Fantinel, Matt Fantinel, Web Development, Software Engineer, Open Source'>
