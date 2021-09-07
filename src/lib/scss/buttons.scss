@@ -1,0 +1,49 @@
+.button {
+	border-radius: 999px;
+	-webkit-appearance: none;
+	appearance: none;
+	border: none;
+	background: transparent;
+	font-weight: 600;
+	box-shadow: var(--button-shadow);
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 5px;
+	padding: 10px 20px;
+	transition: all 0.4s ease;
+	width: 100%;
+
+	&:hover {
+		box-shadow: var(--button-shadow-hover);
+		text-decoration: none;
+    filter: brightness(1.2);
+	}
+
+	&.primary {
+		background: var(--button-primary-background-color);
+		color: var(--button-primary-text-color);
+	}
+	&.primary-light {
+		background: var(--button-primary-light-background-color);
+		color: var(--button-primary-light-text-color);
+	}
+	&.secondary {
+		background: var(--button-secondary-background-color);
+		color: var(--button-secondary-text-color);
+	}
+	&.secondary-light {
+		background: var(--button-secondary-light-background-color);
+		color: var(--button-secondary-light-text-color);
+	}
+  &.transparent {
+    background: transparent;
+    box-shadow: none;
+  }
+
+  svg {
+    max-height: 24px;
+    max-width: 24px;
+  }
+}

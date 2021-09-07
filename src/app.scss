@@ -1,0 +1,41 @@
+@import './lib/scss/reset.scss';
+@import './lib/scss/themes.scss';
+@import './lib/scss/breakpoints.scss';
+@import './lib/scss/variables.scss';
+@import './lib/scss/mixins.scss';
+@import './lib/scss/base.scss';
+@import './lib/scss/buttons.scss';
+@import './lib/scss/cards.scss';
+@import './lib/scss/code-highlights.scss';
+
+body {
+  --body-background-color: var(--page-background-color);
+  --body-background-color-rgb: var(--page-background-color-rgb);
+	background-color: var(--body-background-color);
+  color: var(--text-color);
+  fill: var(--text-color);
+  transition: all .4s ease;
+  font-family: var(--default-font);
+  line-height: 1.3;
+  scroll-behavior: smooth;
+
+  height: 100%;
+  min-height: 100vh;
+  /* safari viewport bug fix */
+  min-height: -webkit-fill-available;
+
+  width: 100%;
+  overflow-x: hidden;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 18px;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+#svelte {
+  height: 100%;
+  position: relative;
+}

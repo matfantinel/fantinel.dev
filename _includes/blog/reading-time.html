@@ -1,8 +1,0 @@
-{% capture output %}
-  {% assign words = include.content | strip_html | number_of_words %}
-  <small class="read-time">
-    {{ words | divided_by: 200 | plus: 1 }} min read
-  </small>
-{% endcapture %}
-
-{{ output | strip_newlines | strip }}
