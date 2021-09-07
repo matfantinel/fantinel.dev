@@ -3,7 +3,8 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "svelte-kit dev --host",
-    "build": "svelte-kit build",
+    "build": "rm -rf build && svelte-kit build && touch build/.nojekyll",
+    "deploy": "npm run build && npx gh-pages -d build -t true",
     "preview": "svelte-kit preview",
     "lint": "prettier --ignore-path .gitignore  --check --plugin-search-dir=. . && eslint --ignore-path .gitignore .",
     "format": "prettier --ignore-path .gitignore --write --plugin-search-dir=. .",
@@ -15,6 +16,7 @@
     "eslint": "^7.22.0",
     "eslint-config-prettier": "^8.1.0",
     "eslint-plugin-svelte3": "^3.2.0",
+    "gh-pages": "^3.2.3",
     "install": "^0.13.0",
     "mdsvex": "^0.9.8",
     "npm": "^7.21.1",
