@@ -1,0 +1,93 @@
+.card {
+	background: var(--card-background-color);
+	box-shadow: var(--card-shadow);
+	color: var(--text-color);
+	border-radius: 10px;
+	transition: all 0.4s ease;
+	position: relative;
+	overflow: hidden;
+	width: 100%;
+
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+
+	&:hover {
+		text-decoration: none;
+	}
+
+	&.clickable {
+		cursor: pointer;
+		&:hover {
+			box-shadow: var(--card-shadow-hover);
+      transform: scale(1.01);
+		}
+	}
+
+	[slot='image'] {
+		background-size: cover;
+		background-position: center;
+		position: relative;
+		flex: 1 0 max(50%, 330px);
+    height: min(50%, 350px);
+		min-height: 240px;
+		max-height: 350px;
+
+		picture,
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			position: absolute !important;
+		}
+
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			position: absolute;
+		}
+
+		&:empty {
+			display: none;
+		}
+	}
+
+	.body {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		gap: 10px;
+		padding: 20px 20px;
+		flex: 1 0 50%;
+
+		.content {
+			display: flex;
+			flex-direction: column;
+			flex: 1;
+		}
+
+		.title {
+			font-weight: 700;
+			font-size: 1.1rem;
+		}
+		.note {
+			font-size: 0.8rem;
+			color: rgba(var(--text-color-rgb), 0.8);
+		}
+		.text {
+			margin-top: 5px;
+			font-size: 0.9rem;
+		}
+
+		.footer {
+		}
+
+		.tags {
+			display: flex;
+			align-items: center;
+			gap: 5px;
+			flex-wrap: wrap;
+		}
+	}
+}

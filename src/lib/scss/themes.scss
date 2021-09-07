@@ -1,0 +1,172 @@
+@mixin light-theme {
+	// #region Palette
+	--primary-color: #0ca4a5;
+	--primary-color-rgb: 12, 164, 165;
+	--primary-color-contrast: #ffffff;
+
+	--primary-light-color: #95caca;
+	--primary-light-color-rgb: 149, 202, 202;
+
+	--primary-lightest-color: #e3ffff;
+	--primary-lightest-color-rgb: 227, 255, 255;
+
+	--secondary-color: #7058f5;
+	--secondary-color-rgb: 112, 88, 245;
+	--secondary-color-contrast: #ffffff;
+
+	--secondary-light-color: #b3aae6;
+	--secondary-light-color-rgb: 179, 170, 230;
+
+	--secondary-lightest-color: #f0f1fe;
+	--secondary-lightest-color-rgb: 242, 240, 254;
+	// #endregion
+
+	--page-background-color: #f4f8fb;
+	--page-background-color-rgb: 244, 248, 251;
+	--page-background-color-hsl-hue: 206;
+	--page-background-color-hsl-saturation: 47%;
+	--page-background-color-hsl-lightness: 97%;
+
+	--text-color: #1c1e26;
+	--text-color-rgb: 28, 30, 38;
+	--text-light-color: #5d5f65;
+
+  --post-page-background-color: #ffffff;
+
+	--link-highlight-color: var(--primary-color);
+
+	--waves-color-start: rgba(var(--primary-color-rgb), 0.3);
+	--waves-color-end: rgba(var(--primary-color-rgb), 0.1);
+
+	--button-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.1);
+	--button-shadow-hover: 0px 4px 10px 8px rgb(0 0 0 / 10%);
+
+	--card-background-color: #ffffff;
+	--card-background-color-rgb: 255, 255, 255;
+	--card-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.1);
+	--card-shadow-hover: 0px 4px 10px 8px rgb(0 0 0 / 10%);
+
+  --button-primary-background-color: var(--primary-color);
+  --button-primary-text-color: var(--primary-color-contrast);
+
+  --button-primary-light-background-color: var(--primary-lightest-color);
+  --button-primary-light-text-color: var(--primary-color);
+
+  --button-secondary-background-color: var(--secondary-color);
+  --button-secondary-text-color: var(--secondary-color-contrast);
+
+  --button-secondary-light-background-color: var(--secondary-lightest-color);
+  --button-secondary-light-text-color: var(--secondary-color);
+
+	--image-shadow: 8px 14px 38px rgba(39, 44, 49, 0.06), 1px 3px 8px rgba(39, 44, 49, 0.03);
+
+	--footer-background: linear-gradient(
+		60deg,
+		var(--waves-color-start) 0%,
+		var(--waves-color-end) 100%
+	);
+
+	--inline-code-background-color: #e3e3e3;
+
+	--code-background-color: #1c1e26;
+	--code-text-color: #fff;
+
+	--scrollbar-thumb-color: #9e9e9e;
+	--scrollbar-track-color: #cdcdcd;
+
+	--callout-background-color: var(--page-background-color);
+	--callout-info-background-color: #dfeffd; //blue 100
+	--callout-info-accent-color: #2883f4; //blue 500
+	--callout-warning-background-color: #fff6b6;
+	--callout-warning-accent-color: #c87820;
+	--callout-error-background-color: #ffe8e8;
+	--callout-error-accent-color: #f95256;
+	--callout-success-background-color: #dcf7ec;
+	--callout-success-accent-color: #009f70;
+
+	// Used for text highlights on blog
+	--highlight-marker-url: #{"url('https://s2.svgbox.net/pen-brushes.svg?ic=brush-9&color=B5E5E5')"};
+
+	// Used for highlights in Work Experience
+	--freelancer-color: #bcebeb;
+	--logitix-color: #ffe2ce;
+	--sige-color: #cce4ff;
+	--promob-color: #d7e6eb;
+}
+
+@mixin dark-theme {
+	// #region Palette
+	--primary-color: #00c2c2;
+	--primary-color-rgb: 0, 194, 194;
+	--primary-color-contrast: #1c1e26;
+
+	--primary-light-color: #076464;
+	--primary-light-color-rgb: 7, 100, 100;
+
+	--primary-lightest-color: #191F1F;
+	--primary-lightest-color-rgb: 25,31,31;
+
+	--secondary-color: #EC7DFF;
+	--secondary-color-rgb: 236,125,255;
+	--secondary-color-contrast: #1c1e26;
+
+	--secondary-light-color: #B15EBF;
+	--secondary-light-color-rgb: 177,94,191;
+
+	--secondary-lightest-color: #191A29;
+	--secondary-lightest-color-rgb: 45, 47, 72;
+	// #endregion
+
+	--page-background-color: #1c1e26;
+	--page-background-color-rgb: 28, 30, 38;
+	--page-background-color-hsl-hue: 228;
+	--page-background-color-hsl-saturation: 15%;
+	--page-background-color-hsl-lightness: 13%;
+
+	--text-color: #fff;
+	--text-color-rgb: 255, 255, 255;
+	--text-light-color: #9eb4b5;
+
+  --post-page-background-color: #141519;
+
+	--card-background-color: #32343e;
+	--card-background-color-rgb: 50, 52, 62;
+
+  --button-primary-background-color: var(--primary-color);
+  --button-primary-text-color: var(--primary-color-contrast);
+
+  --button-primary-light-background-color: var(--page-background-color);
+  --button-primary-light-text-color: var(--primary-color);
+
+  --button-secondary-background-color: var(--secondary-color);
+  --button-secondary-text-color: var(--secondary-color-contrast);
+
+  --button-secondary-light-background-color: var(--page-background-color);
+  --button-secondary-light-text-color: var(--secondary-color);
+
+	--inline-code-background-color: #5d6868;
+
+  --highlight-marker-url: #{"url('https://s2.svgbox.net/pen-brushes.svg?ic=brush-9&color=0D6970')"};
+
+  --callout-background-color: var(--page-background-color);
+	--callout-info-background-color: #1D3874; //blue 900
+	--callout-info-accent-color: #6CA9F7; //blue 400
+	--callout-warning-background-color: #C87820;
+	--callout-warning-accent-color: #FFCA39;
+	--callout-error-background-color: #7C1D20;
+	--callout-error-accent-color: #FF8082;
+	--callout-success-background-color: #004737;
+	--callout-success-accent-color: #00C48F;
+
+	--freelancer-color: #1d6262;
+	--logitix-color: #924817;
+	--sige-color: #003e85;
+	--promob-color: #2b4a55;
+}
+
+:root {
+	@include light-theme;
+	@media (prefers-color-scheme: dark) {
+		@include dark-theme;
+	}
+}

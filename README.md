@@ -1,56 +1,44 @@
 # matfantinel.github.io / fantinel.dev
 
-This is my own personal website, built with Jekyll. It also holds my own personal blog.
+This is my own personal website, built with SvelteKit. It also holds my own personal blog.
 
 
 <p align="center">
-    <img src="images/projects/personal-website-transparent.png" alt="Screenshot" />
+    <img src="static/images/projects/personal-website-transparent.png" alt="Screenshot" />
 </p>
 
 
 It was built with a few goals in mind:
 
 * Responsive design: the website looks and behaves well on screens of all sizes;
-* Fast: it only loads what's needed for it to work. No external JS or CSS libraries:
+* Fast: it only loads what's needed for it to work;
 * Adaptive: it supports dark mode from most operating systems by default (desktop and mobile);
-* Privacy-friendly: I don't need to know who you are and what you do;
-* Pretty: use a simple and organized layout with simple animations to provide a pleasant experience to all visitors.
+* Privacy-friendly: I don't need to know who you are and what you do. It uses [Plausible](https://plausible.io/) instead of Google Analytics;
+* Pretty: have a pleasant design that is both accessible and pleasing to the eye.
 
-I achieved this with the help of Jekyll and SASS. There is little to no JavaScript. While JS is awesome, it's important to know when it's not needed.
-
-# Inspirations
-
-* Thanks to the elementary OS team for publishing [their own blog's code](https://github.com/elementary/blog-template) for me to use as inspiration for the code;
-* This website's looks are inspired by [Ghost.org](https://ghost.org)'s [Casper theme](https://github.com/TryGhost/Casper).
+I achieved this with the help of SvelteKit. There is almost no JavaScript running, and it actually works with JS disabled! While JS is awesome, it's important to know when it's not needed.
 
 # Building & Running Locally
 
-The blog is a simple Jekyll-powered site hosted by GitHub Pages. To run it locally, see [the Jekyll docs](https://jekyllrb.com/docs/installation/).
+This website is powered by SvelteKit. As of this time, SvelteKit is currently in beta, but its API is stable enough to use it.
 
-In case you're on an Linux-based environment, you can follow these instructions (replace apt with your distro's package manager if needed):
-
-```shell
-# First, install Jekyll's dependencies:
-sudo apt install ruby-full build-essential zlib1g-dev
-
-# Second, let's set an environment variable just so that we don't install Jekyll as root user:
-echo '# Install Ruby Gems to ~/gems' >> ~/.bashrc
-echo 'export GEM_HOME="$HOME/gems"' >> ~/.bashrc
-echo 'export PATH="$HOME/gems/bin:$PATH"' >> ~/.bashrc
-source ~/.bashrc
-
-# Third, install Jekyll:
-gem install jekyll bundler
-
-# Finally, we need to install the rest of the gems for the project.
-# In the project folder, run:
-bundle install
-```
-
-### Serve
+To run it locally, you simply have to run:
 
 ```shell
-bundle exec jekyll serve --host 0.0.0.0
+# First, install dependencies
+npm install
+# Then, run it on dev mode
+npm run dev
 ```
 
-The site should now be available at http://0.0.0.0:4000/ on your local machine, and your local machine's IP address on your network—great for testing on mobile OSes.
+The site should now be available at http://0.0.0.0:3000/ on your local machine, and your local machine's IP address on your network—great for testing on mobile OSes.
+
+# Optimizing images
+
+I've built an image-optimizer script called [image-transmutation](https://github.com/matfantinel/image-transmutation) that is used on this website. For now, you have to run it manually, while I don't push it to npm.
+
+On the image-transmutation project folder, run:
+
+```shell
+node ./index.js --run --sourceFolder "{YOUR_PROJECT_FOLDER}/matfantinel.github.io/static/images" --targetFolder "{YOUR_PROJECT_FOLDER}/matfantinel.github.io/static/optimized-images" --inputFormats "jpg" --inputFormats "jpeg" --inputFormats "png" --outputFormats "webp" --outputFormats "avif" --outputFormats "png"
+```
