@@ -26,7 +26,7 @@
 						<div class="links">
 							<a
 								class="text-secondary"
-								href="https://github.com/matfantinel/personal-website"
+								href="https://github.com/matfantinel/matfantinel.github.io"
 								target="_blank"
 								rel="noopener"
 								title="Open project on GitHub"

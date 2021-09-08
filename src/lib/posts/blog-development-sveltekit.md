@@ -12,9 +12,14 @@ tags: [Front-End, Svelte, SvelteKit]
   import MarkerHighlight from "$lib/components/style/marker-highlight.svelte";
   import SparklingHighlight from "$lib/components/style/sparkling-highlight.svelte";
   import Callout from "$lib/components/base/callout.svelte";
+  import Github from "$lib/svg/socials/github.svelte";
 </script>
 
 I've recently re-launched my personal website and blog, that's now reached its 3rd version. There was nothing wrong with the previous one, but I wanted to both give it a small visual refresh and learn something new. So, after a month or so of working on it on my free time, <SparklingHighlight>voilà</SparklingHighlight>, you're seeing it right now!
+
+<div style="display: grid;place-items: center;max-width: 300px;margin: 20px auto 0;">
+  <a href="https://github.com/matfantinel/matfantinel.github.io" target="_blank" class="button secondary"><Github />See source code on GitHub</a>
+</div>
 
 ## About Svelte and SvelteKit
 
@@ -288,4 +293,10 @@ Though I definitely did not use all of Svelte's strengths on this project, since
 
 The small issues I've had while building this will definitely be gone soon, as they were caused by SvelteKit not being on a stable version yet. I'm excited to see how much the ecosystem grows the next year; I'll definitely be keeping an eye on it!
 
+Don't forget all the code for this website and blog are open source, feel free to use it and to propose changes if you'd like!
+
 Thanks for reading!
+
+<div style="display: grid;place-items: center;max-width: 300px;margin: 20px auto 0;">
+  <a href="https://github.com/matfantinel/matfantinel.github.io" target="_blank" class="button secondary"><Github />See source code on GitHub</a>
+</div>
