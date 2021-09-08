@@ -62,7 +62,7 @@ const filteredPosts = posts
       if (rel) {
         rel.count++;
       } else {
-        relatedPosts.push({post: relPost, count: 1});
+        relatedPosts.push({post: { ...relPost, readingTime: readingTime(relPost.html).text }, count: 1});
       }
     }
 
