@@ -67,6 +67,10 @@ h5 {
 .justify {
 	text-align: justify;
 }
+.text-info {
+	color: var(--callout-info-accent-color);
+	fill: var(--callout-info-accent-color);
+}
 ul, ol {
 	margin: 10px 0 10px 40px;	
 

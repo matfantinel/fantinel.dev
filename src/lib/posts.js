@@ -1,11 +1,11 @@
 import 'prism-svelte';
 import readingTime from 'reading-time';
 
-const importsEager = import.meta.globEager('../lib/posts/*.md');
+const imports = import.meta.globEager('./posts/*.md');
 
 const posts = [];
-for (const path in importsEager) {
-	const post = importsEager[path];
+for (const path in imports) {
+	const post = imports[path];
 	if (post) {
 		posts.push({
 			...post.metadata,
