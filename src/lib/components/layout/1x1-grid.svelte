@@ -8,11 +8,7 @@
   .grid-container {
     width: 100%;
     display: grid;
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: 1fr;
     grid-gap: 20px;
-
-    @include for-tablet-portrait-down {
-      grid-template-columns: 1fr;
-    }
   }
 </style>

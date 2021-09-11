@@ -40,5 +40,5 @@ I've built an image-optimizer script called [image-transmutation](https://github
 On the image-transmutation project folder, run:
 
 ```shell
-node ./index.js --run --sourceFolder "{YOUR_PROJECT_FOLDER}/matfantinel.github.io/static/images" --targetFolder "{YOUR_PROJECT_FOLDER}/matfantinel.github.io/static/optimized-images" --inputFormats "jpg" --inputFormats "jpeg" --inputFormats "png" --outputFormats "webp" --outputFormats "avif" --outputFormats "png"
+node ./index.js --run --sourceFolder "{YOUR_PROJECT_FOLDER}/static/images" --targetFolder "{YOUR_PROJECT_FOLDER}/static/optimized-images" --inputFormats "jpg" --inputFormats "jpeg" --inputFormats "png" --outputFormats "webp" --outputFormats "avif" --outputFormats "png"
 ```

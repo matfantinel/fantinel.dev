@@ -24,13 +24,13 @@
 					color: 'primary',
 					text: 'Vue'
 				},
-				{
+        {
 					color: 'primary',
-					text: 'Svelte'
+					text: 'React'
 				},
 				{
 					color: 'primary',
-					text: 'Jekyll'
+					text: 'Svelte'
 				}
 			]
 		},
