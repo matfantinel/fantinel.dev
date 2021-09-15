@@ -1,3 +1,4 @@
+import Prism from 'prismjs';
 import 'prism-svelte';
 import readingTime from 'reading-time';
 
