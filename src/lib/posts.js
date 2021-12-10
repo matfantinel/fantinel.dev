@@ -63,14 +63,18 @@ const filteredPosts = posts
       if (rel) {
         rel.count++;
       } else {
-        relatedPosts.push({post: { ...relPost, readingTime: readingTime(relPost.html).text }, count: 1});
+        relatedPosts.push({post: { ...relPost, readingTime: readingTime(relPost.html).text }, count: 1, date: relPost.date});
       }
     }
 
 		return {
 			...post,
 			readingTime: readingTimeDuration,
-      relatedPosts: relatedPosts.sort((a, b) => b.count - a.count).slice(0, 3).map(x => x.post)
+      relatedPosts: relatedPosts
+										.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+										.sort((a, b) => b.count - a.count)
+										.slice(0, 3)
+										.map(x => x.post)
 		};
 	});
 
