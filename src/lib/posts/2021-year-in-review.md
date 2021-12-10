@@ -16,7 +16,7 @@ Another year, another yearly review post. 2021 felt like pretty much 2020 part I
 
 ## Mental Health
 
-[Last year]([https://fantinel.dev/2020-year-in-review](https://fantinel.dev/2020-year-in-review)), I wrote a bit about doomscrolling, and how it started affecting me until I decided to avoid this behavior. I tried to keep avoiding it this year, and I think I succeeded. I'm not blind to what's going on - I still know <SparklingHighlight>the world is a dumpster fire</SparklingHighlight> at the moment and in many ways it was even worse than 2020 - but I think I was successful in not dwelling on the bad news and the daily absurdities going on.
+[Last year](/2020-year-in-review), I wrote a bit about doomscrolling, and how it started affecting me until I decided to avoid this behavior. I tried to keep avoiding it this year, and I think I succeeded. I'm not blind to what's going on - I still know <SparklingHighlight>the world is a dumpster fire</SparklingHighlight> at the moment and in many ways it was even worse than 2020 - but I think I was successful in not dwelling on the bad news and the daily absurdities going on.
 
 That doesn't mean my mental health didn't take a hit though. The year started with the loss of a person I held dear - a victim of the inexcusable vaccination delays and genocidal actions of our leaders - and I felt like I lost a bit of control over my work-life-balance for a portion of the year.
 
