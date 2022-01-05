@@ -37,7 +37,8 @@ const config = {
 	kit: {
 		// hydrate the <div id="svelte-root"> element in src/app.html
 		target: '#svelte-root',
-		adapter: adapter()
+		adapter: adapter(),
+		trailingSlash: 'never'
 	}
 };
 
