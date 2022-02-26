@@ -279,7 +279,7 @@ and fetch this data before page actually loads -->
 
 Something that SvelteKit currently does not provide a solution for is a RSS feed. Previously, mine was built automatically by Jekyll and I never had to do anything to get it working. While this wasn't the case right now, I'm sure once SvelteKit is stable and mature, solutions for this will be available so no manual work has to be done.
 
-I made mine by taking advantage of [SvelteKit's endpoints](https://kit.svelte.dev/docs#routing-endpoints), and serving a XML file that is generated at build time. I import the filtered posts from the `posts.js` file I created earlier, and use the metadata to build the content of the RSS file. You can check out [the source code](https://github.com/matfantinel/matfantinel.github.io/blob/main/src/routes/rss.xml.js) for implementation details.
+I made mine by taking advantage of [SvelteKit's endpoints](https://kit.svelte.dev/docs/routing#endpoints), and serving a XML file that is generated at build time. I import the filtered posts from the `posts.js` file I created earlier, and use the metadata to build the content of the RSS file. You can check out [the source code](https://github.com/matfantinel/matfantinel.github.io/blob/main/src/routes/rss.xml.js) for implementation details.
 
 ### Sitemap
 
