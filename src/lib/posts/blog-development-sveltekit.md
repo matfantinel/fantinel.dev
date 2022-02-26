@@ -195,8 +195,8 @@ On the `routes/[slug]/index.svelte` file, I can now import the posts and look fo
 		posts.push(p);
 	}
 
-	export function load({ page }) {
-		const { slug } = page.params;
+	export function load({ params }) {
+		const { slug } = params;
 
     // Find the post with the slug
 		const filteredPost = posts.find((p) => {
