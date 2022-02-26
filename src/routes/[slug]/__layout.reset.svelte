@@ -1,8 +1,7 @@
 <script context="module">
-	export async function load({ page, fetch }) {
-		const slug = page.path.split('/').slice(-1)[0]; // last part of url path
-		const url = `/${slug}.json`;
-		const res = await fetch(url);
+	export async function load({ fetch, url }) {
+		const jsonUrl = url.pathname + '.json';
+		const res = await fetch(jsonUrl);
 
 		if (res.ok) {
 			return {
@@ -14,7 +13,7 @@
 
 		return {
 			status: res.status,
-			error: new Error(`Could not load ${url}`)
+			error: new Error(`Could not load ${jsonUrl}`)
 		};
 	}
 </script>
