@@ -212,7 +212,7 @@ And to use this component inside another page:
 
 <CodeBlock lang="liquid">
 
-```liquid
+```
 {% include base/smart-image.html 
   path="posts/my-post-url"
   filename="my-image"
