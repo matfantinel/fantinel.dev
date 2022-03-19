@@ -35,7 +35,11 @@ const config = {
 	extensions: extensions,
 
 	kit: {
-		adapter: adapter()
+		adapter: adapter(),
+		prerender: {
+			default: true
+		},
+		trailingSlash: 'always'
 	}
 };
 

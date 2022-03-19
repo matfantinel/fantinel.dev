@@ -1,6 +1,6 @@
 <script context="module">
 	export async function load({ fetch, url }) {
-		const jsonUrl = url.pathname + '.json';
+		const jsonUrl = url.pathname.replace(/\/\s*$/, "") + '.json';
 		const res = await fetch(jsonUrl);
 
 		if (res.ok) {

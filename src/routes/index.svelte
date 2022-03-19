@@ -1,12 +1,14 @@
 <script context="module">
 	export async function load({ fetch }) {
-		const url = '/posts.json?limit=4';
+		const url = '/posts.json';
 		const res = await fetch(url);
+
+		const test = await res.json()
 
 		if (res.ok) {
 			return {
 				props: {
-					posts: await res.json()
+					posts: test
 				}
 			};
 		}
