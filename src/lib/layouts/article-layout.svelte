@@ -16,8 +16,8 @@
 	{/if}
 
 	{#if image}
-		<meta property="og:image" content="{siteBaseUrl}/images/{image.path}/{image.filename}.jpg" />
-		<meta name="twitter:image" content="{siteBaseUrl}/images/{image.path}/{image.filename}.jpg" />
+		<meta property="og:image" content="{siteBaseUrl}/images/{image.path}/{image.filename}.png" />
+		<meta name="twitter:image" content="{siteBaseUrl}/images/{image.path}/{image.filename}.png" />
 	{/if}
 </svelte:head>
 
