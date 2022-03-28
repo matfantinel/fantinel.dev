@@ -6,13 +6,20 @@
 
 	export let title;
 	export let image;
+	export let excerpt;	
 </script>
 
 <svelte:head>
 	{#if title}
 		<title>{title}</title>
-		<meta property="og:title" content="{title}" />
-		<meta name="twitter:title" content="{title}" />
+		<meta property="og:title" content={title} />
+		<meta name="twitter:title" content={title} />
+	{/if}
+
+	{#if excerpt}
+		<meta name="description" content={excerpt} />
+		<meta property="og:description" content={excerpt} />
+		<meta name="twitter:description" content={excerpt} />
 	{/if}
 
 	{#if image}
