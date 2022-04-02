@@ -6,6 +6,8 @@ image:
   filename: personal-website
 ---
 
+# This page is still a work in progress. I oughta finish it sometime =)
+
 Here are the digital tools I use to get work or fun done. I try to keep this list updated, but nothing here is set in stone, as I'm prone to trying out new things if I feel they might make my life easier.
 
 
