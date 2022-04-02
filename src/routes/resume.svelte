@@ -1,5 +1,6 @@
 <script>
-	import { title } from '$lib/meta';
+	import WavesLayout from '$lib/layouts/waves-layout.svelte';
+import { title } from '$lib/meta';
 </script>
 
 <svelte:head>
@@ -11,9 +12,11 @@
 	<meta name="twitter:title" content="Resume - {title}" />
 </svelte:head>
 
-<div class="resume-wrapper">
-	<mf-resume show-download-link="true" />
-</div>
+<WavesLayout>
+	<div class="resume-wrapper">
+		<mf-resume show-download-link="true" />
+	</div>
+</WavesLayout>
 
 <style lang="scss">
 	.resume-wrapper {

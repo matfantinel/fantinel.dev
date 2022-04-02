@@ -16,6 +16,9 @@ const config = {
       preserve: ['module']
     }),
 		mdsvex({
+			layout: {
+				article: './src/lib/layouts/article-layout.svelte'
+			},
 			extensions: extensions,
       rehypePlugins: [
 				rehypeExternalLinks, // Adds 'target' and 'rel' to external links

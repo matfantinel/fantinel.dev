@@ -3,12 +3,10 @@
 		const url = '/posts.json';
 		const res = await fetch(url);
 
-		const test = await res.json()
-
 		if (res.ok) {
 			return {
 				props: {
-					posts: test
+					posts: await res.json()
 				}
 			};
 		}
@@ -26,14 +24,17 @@
 	import RecentPosts from '$lib/components/home/recent-posts.svelte';
 	import Experience from '$lib/components/home/experience.svelte';
 	import Projects from '$lib/components/home/projects.svelte';
+	import WavesLayout from '$lib/layouts/waves-layout.svelte';
 
 	export let posts;
 </script>
 
-<div class="container">
-	<Hero />
-	<About />
-	<RecentPosts {posts} />
-	<Projects />
-	<Experience />
-</div>
+<WavesLayout>
+	<div class="container">
+		<Hero />
+		<About />
+		<RecentPosts {posts} />
+		<Projects />
+		<Experience />
+	</div>
+</WavesLayout>
