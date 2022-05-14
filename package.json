@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "svelte-kit dev --host",
-    "build": "rm -rf build && svelte-kit build && touch build/.nojekyll",
+    "build": "rm -rf build && svelte-kit build && touch build/.nojekyll && mv build/404/index.html build/404.html",
     "deploy": "npm run build && npx gh-pages -d build -t true",
     "preview": "svelte-kit preview",
     "lint": "prettier --ignore-path .gitignore  --check --plugin-search-dir=. . && eslint --ignore-path .gitignore .",
