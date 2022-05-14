@@ -15,6 +15,7 @@
 	<img src="{imageSrc}.png" {alt} loading="lazy" decoding="async" />
 
   {#if figcaption}
+    <!-- svelte-ignore a11y-structure -->
     <figcaption>{@html figcaption}</figcaption>
   {/if}
 </picture>

@@ -24,17 +24,14 @@
 	import RecentPosts from '$lib/components/home/recent-posts.svelte';
 	import Experience from '$lib/components/home/experience.svelte';
 	import Projects from '$lib/components/home/projects.svelte';
-	import WavesLayout from '$lib/layouts/waves-layout.svelte';
 
 	export let posts;
 </script>
 
-<WavesLayout>
-	<div class="container">
-		<Hero />
-		<About />
-		<RecentPosts {posts} />
-		<Projects />
-		<Experience />
-	</div>
-</WavesLayout>
+<div class="container">
+	<Hero />
+	<About />
+	<RecentPosts {posts} />
+	<Projects />
+	<Experience />
+</div>

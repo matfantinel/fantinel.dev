@@ -17,7 +17,7 @@ const config = {
     }),
 		mdsvex({
 			layout: {
-				article: './src/lib/layouts/article-layout.svelte'
+				article: './src/routes/__layout-article@default.svelte'
 			},
 			extensions: extensions,
       rehypePlugins: [
