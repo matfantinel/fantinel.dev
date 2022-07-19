@@ -27,7 +27,7 @@
     "rehype-external-links": "^1.0.0",
     "rehype-slug": "^5.0.0",
     "sass": "^1.38.0",
-    "svelte": "^3.34.0",
+    "svelte": "^3.49.0",
     "svelte-preprocess": "^4.7.4",
     "svelte-sitemap": "^2.0.1"
   },
