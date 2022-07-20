@@ -11,7 +11,7 @@
 </svelte:head>
 
 <div class="resume-wrapper">
-	<a class="download-link button secondary-light" href="https://github.com/matfantinel/matfantinel.github.io/raw/master/static/Matheus%20Fantinel%20-%20Resume.pdf">
+	<a class="download-link button secondary-light" href="https://github.com/matfantinel/matfantinel.github.io/raw/main/static/Matheus%20Fantinel%20-%20Resume.pdf">
     <DownloadIcon />
     Download as PDF
   </a>
