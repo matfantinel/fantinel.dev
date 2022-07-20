@@ -80,6 +80,21 @@ h5 {
   color: var(--text-color);
   text-shadow: none;
 }
+#agora {
+	--bg-color: var(--agora-color);
+}
+#freelancer {
+	--bg-color: var(--freelancer-color);
+}
+#logitix {
+	--bg-color: var(--logitix-color);
+}
+#sige {
+	--bg-color: var(--sige-color);
+}
+#promob {
+	--bg-color: var(--promob-color);
+}
 
 ul, ol {
 	margin: 10px 0 10px 40px;	
