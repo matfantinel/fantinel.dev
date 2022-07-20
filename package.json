@@ -19,7 +19,7 @@
     "gh-pages": "^3.2.3",
     "install": "^0.13.0",
     "mdsvex": "^0.10.5",
-    "npm": "^7.21.1",
+    "npm": "^8.11.0",
     "prettier": "~2.2.1",
     "prettier-plugin-svelte": "^2.2.0",
     "reading-time": "^1.4.0",
