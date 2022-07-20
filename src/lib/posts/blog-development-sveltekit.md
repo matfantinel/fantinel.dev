@@ -17,6 +17,12 @@ tags: [Front-End, Svelte, SvelteKit]
 
 I've recently re-launched my personal website and blog, that's now reached its 3rd version. There was nothing wrong with the previous one, but I wanted to both give it a small visual refresh and learn something new. So, after a month or so of working on it on my free time, <SparklingHighlight>voilà</SparklingHighlight>, you're seeing it right now!
 
+<Callout type="warning">
+  SvelteKit is still a work in progress, and as such its API has changed considerably since I wrote this article. Most of the concepts explained here are still in vigor, since the goal of the project hasn't changed, however some specifics might not work as written here.
+
+  I'll try to keep this article updated, but won't make any promises. Usually the site itself is kept up-to-date though, so you can always check the source code and latest commits in case something in this article does not work anymore.
+</Callout>
+
 <div style="display: grid;place-items: center;max-width: 300px;margin: 20px auto 0;">
   <a href="https://github.com/matfantinel/matfantinel.github.io" target="_blank" class="button secondary"><Github />See source code on GitHub</a>
 </div>
@@ -40,7 +46,7 @@ One of the concepts that really caught my eye with Svelte is the idea of Progres
 If there's no JavaScript, the website uses the browser's native navigation API. Which means you can navigate between pages normally without any client-side code. _However_, if JavaScript is available, a client-side router will be used to make the transition between pages smoother and faster. This means that even if the user's device doesn't support JS for any reason<span class="text-info">*</span>, the site will still be completely functional.
 
 <Callout type="info">
-  <span class="text-info">*</span> We tend to think of JavaScript being disabled as a user choice, but that is not always the case. Think of someone using their phone on a weak 3G connection that fails to load the .js files, or someone in a metro that lost signal while loading the page. It happens often and being able to show your content even in these conditions is a great way of not losing a visitor.
+  We tend to think of JavaScript being disabled as a user choice, but that is not always the case. Think of someone using their phone on a weak 3G connection that fails to load the .js files, or someone in a metro that lost signal while loading the page. It happens often and being able to show your content even in these conditions is a great way of not losing a visitor.
 </Callout>
 
 And you know what I had to do to support this? _Nothing_. Just using `<a>` elements is enough, as SvelteKit will intercept those if needed (JS enabled), or simply leave it to the browser otherwise.

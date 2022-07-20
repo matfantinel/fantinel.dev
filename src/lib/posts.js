@@ -2,7 +2,7 @@ import Prism from 'prismjs';
 import 'prism-svelte';
 import readingTime from 'reading-time';
 
-const imports = import.meta.globEager('./posts/*.md');
+const imports = import.meta.glob('./posts/*.md',  { eager: true });
 
 const posts = [];
 for (const path in imports) {

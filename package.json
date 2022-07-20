@@ -2,10 +2,10 @@
   "name": "matt-fantinel-website",
   "version": "0.0.1",
   "scripts": {
-    "dev": "svelte-kit dev --host",
-    "build": "rm -rf build && svelte-kit build && touch build/.nojekyll && mv build/404/index.html build/404.html",
+    "dev": "vite dev --host",
+    "build": "rm -rf build && vite build && touch build/.nojekyll && mv build/404/index.html build/404.html",
     "deploy": "npm run build && npx gh-pages -d build -t true",
-    "preview": "svelte-kit preview",
+    "preview": "vite preview",
     "lint": "prettier --ignore-path .gitignore  --check --plugin-search-dir=. . && eslint --ignore-path .gitignore .",
     "format": "prettier --ignore-path .gitignore --write --plugin-search-dir=. .",
     "postbuild": "svelte-sitemap --domain https://fantinel.dev --trailing-slashes true"
@@ -29,7 +29,8 @@
     "sass": "^1.38.0",
     "svelte": "^3.49.0",
     "svelte-preprocess": "^4.7.4",
-    "svelte-sitemap": "^2.0.1"
+    "svelte-sitemap": "^2.0.1",
+    "vite": "^3.0.0"
   },
   "type": "module",
   "dependencies": {

@@ -1,6 +1,6 @@
 <script context="module">
   // Get posts info
-	const allPosts = import.meta.globEager(`../../lib/posts/*.md`);
+	const allPosts = import.meta.glob('../../lib/posts/*.md',  { eager: true });
 
 	let posts = [];
   // Get the posts' slugs
