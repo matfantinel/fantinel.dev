@@ -1,6 +1,7 @@
 ---
 layout: article
 title: Elden Ring Review
+excerpt: My thoughts on what probably is the biggest game release of 2022.
 image:
   path: reviews/elden-ring
   filename: cover
