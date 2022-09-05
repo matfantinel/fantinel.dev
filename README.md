@@ -31,7 +31,7 @@ npm install
 npm run dev
 ```
 
-The site should now be available at http://0.0.0.0:3000/ on your local machine, and your local machine's IP address on your network—great for testing on mobile OSes.
+The site should now be available at http://0.0.0.0:5173/ on your local machine, and your local machine's IP address on your network—great for testing on mobile OSes.
 
 # Optimizing images
 
