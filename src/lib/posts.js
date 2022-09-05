@@ -56,6 +56,13 @@ function getRelatedPosts(post) {
 		}
 	}
 
+	// If there are no related posts, just grab all
+	if (relatedPosts.length === 0) {
+		relatedPosts = posts
+			.filter(x => x.slug !== post.slug)
+			.map(x => ({post: { ...x, readingTime: readingTime(x.html).text }, count: 0, date: x.date}));
+	}
+
 	return relatedPosts;
 }
 

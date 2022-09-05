@@ -76,7 +76,7 @@
 			<div class="related-posts container">
 				<Section
 					title="Related posts"
-					description="Have some time? Feel free to read other posts about the same subject."
+					description="Have some time? Feel free to read some other posts by me."
 					align="top"
 				>
 					<ThreeByThreeGrid>
