@@ -25,9 +25,9 @@ First off, let's see what Copilot has to say about itself:
   figcaption="It got the idea right, however the pricing info is outdated: it's now $10/month."
 />
 
-So, yeah, it's a code completion tool. You can think of it as Intellisense on steroids, but really it's much more than that. It is much smarter and is capable of detecting your code style, the context of what you're writing, and even the intent of what you're trying to do. So, if you've just created a form input for a phone number and start writing a function on a related file, you'll see it automatically suggest some phone number validation logic.
+So, yeah, it's a code completion tool. You can think of it as [Intellisense](https://code.visualstudio.com/docs/editor/intellisense) on steroids, but really it's much more than that. It is much smarter and is capable of detecting your code style, the context of what you're writing, and even the intent of what you're trying to do. So, if you've just created a form input for a phone number and start writing a function on a related file, you'll see it automatically suggest some phone number validation logic.
 
-I think what surprises me the most on a daily basis is how it interacts with code comments. You see, I often write comments detailed the next steps my code should take. In the example below, I've only written the comment, Copilot did the rest:
+I think what surprises me the most on a daily basis is how it interacts with code comments. You see, I often write comments detailing the next steps my code should take. In the example below, I've only written the comment, Copilot did the rest:
 
 <CodeBlock lang="typescript">
 
