@@ -2,7 +2,6 @@
 	import '../app.scss';
 	import { keywords } from '$lib/meta';
 	export const prerender = true;
-	export let data;
 
 </script>
 
