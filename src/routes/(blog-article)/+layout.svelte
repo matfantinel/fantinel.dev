@@ -1,8 +1,6 @@
 
 
 <script>
-	throw new Error("@migration task: Add data prop (https://github.com/sveltejs/kit/discussions/5774#discussioncomment-3292707)");
-
 	import '../../app.scss';
 	import Header from '$lib/components/layout/header.svelte';
 	import Footer from '$lib/components/layout/footer.svelte';
@@ -15,7 +13,9 @@
 	import Section from '$lib/components/layout/section.svelte';
   import { keywords, siteBaseUrl, title } from '$lib/meta';
 
-	export let post;
+	export let data;
+	let {post} = data;
+
 </script>
 
 <svelte:head>

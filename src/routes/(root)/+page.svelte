@@ -1,7 +1,5 @@
 <script>
-	throw new Error(
-		'@migration task: Add data prop (https://github.com/sveltejs/kit/discussions/5774#discussioncomment-3292707)'
-	);
+
 	import Wavelayout from '$lib/layout/wave.svelte';
 	import Hero from '$lib/components/home/hero.svelte';
 	import About from '$lib/components/home/about.svelte';
@@ -9,7 +7,9 @@
 	import Experience from '$lib/components/home/experience.svelte';
 	import Projects from '$lib/components/home/projects.svelte';
 
-	export let posts;
+
+	export let data;
+	let { posts } = data;
 </script>
 
 <Wavelayout>
