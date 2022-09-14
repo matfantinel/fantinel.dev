@@ -1,6 +1,7 @@
 <script>
 	import '../app.scss';
 	import { keywords } from '$lib/meta';
+	export const prerender = true;
 </script>
 
 <svelte:head>
