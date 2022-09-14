@@ -1,4 +1,6 @@
 <script>
+	throw new Error("@migration task: Add data prop (https://github.com/sveltejs/kit/discussions/5774#discussioncomment-3292707)");
+
 	import Header from '$lib/components/layout/header.svelte';
 	import Footer from '$lib/components/layout/footer.svelte';
 	import Image from '$lib/components/base/image.svelte';

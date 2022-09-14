@@ -1,24 +1,8 @@
-<script context="module">
-	export async function load({ fetch }) {
-		const url = '/blog.json';
-		const res = await fetch(url);
 
-		if (res.ok) {
-			return {
-				props: {
-					posts: await res.json()
-				}
-			};
-		}
-
-		return {
-			status: res.status,
-			error: new Error(`Could not load ${url}`)
-		};
-	}
-</script>
 
 <script>
+	throw new Error("@migration task: Add data prop (https://github.com/sveltejs/kit/discussions/5774#discussioncomment-3292707)");
+
 	import BlogGrid from '$lib/components/layout/3-2-1-grid.svelte';
 	import Section from '$lib/components/layout/section.svelte';
 	import BlogPostCard from '$lib/components/base/blog-post-card.svelte';

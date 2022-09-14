@@ -1,24 +1,8 @@
-<script context="module">
-	export async function load({ fetch }) {
-		const url = '/posts.json';
-		const res = await fetch(url);
 
-		if (res.ok) {
-			return {
-				props: {
-					posts: await res.json()
-				}
-			};
-		}
-
-		return {
-			status: res.status,
-			error: new Error(`Could not load ${url}`)
-		};
-	}
-</script>
 
 <script>
+	throw new Error("@migration task: Add data prop (https://github.com/sveltejs/kit/discussions/5774#discussioncomment-3292707)");
+
 	import Hero from '$lib/components/home/hero.svelte';
 	import About from '$lib/components/home/about.svelte';
 	import RecentPosts from '$lib/components/home/recent-posts.svelte';

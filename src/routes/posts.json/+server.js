@@ -13,8 +13,5 @@ export async function GET() {
     }
   });
 
-	return {
-    status: 200,
-		body: JSON.stringify(body)
-	};
+	return new Response(JSON.stringify(body));
 }

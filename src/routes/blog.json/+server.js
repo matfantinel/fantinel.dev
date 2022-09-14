@@ -1,3 +1,5 @@
+
+// @migration task: Check imports
 import posts from '$lib/posts';
 
 export async function GET() {
@@ -13,8 +15,5 @@ export async function GET() {
     }
   });
 
-	return {
-    status: 200,
-		body: JSON.stringify(body)
-	};
+	return new Response(JSON.stringify(body));
 }

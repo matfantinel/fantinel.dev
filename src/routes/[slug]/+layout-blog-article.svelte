@@ -1,24 +1,8 @@
-<script context="module">
-	export async function load({ fetch, url }) {
-		const jsonUrl = url.pathname.replace(/\/\s*$/, "") + '.json';
-		const res = await fetch(jsonUrl);
 
-		if (res.ok) {
-			return {
-				props: {
-					post: await res.json()
-				}
-			};
-		}
-
-		return {
-			status: res.status,
-			error: new Error(`Could not load ${jsonUrl}`)
-		};
-	}
-</script>
 
 <script>
+	throw new Error("@migration task: Add data prop (https://github.com/sveltejs/kit/discussions/5774#discussioncomment-3292707)");
+
 	import '../../app.scss';
 	import Header from '$lib/components/layout/header.svelte';
 	import Footer from '$lib/components/layout/footer.svelte';
