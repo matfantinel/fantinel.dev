@@ -1,4 +1,3 @@
-import { json } from '@sveltejs/kit';
 import { description, siteBaseUrl, title } from "$lib/meta";
 import posts from '$lib/posts';
 
@@ -8,10 +7,9 @@ export async function GET() {
 		'Cache-Control': 'max-age=0, s-maxage=3600',
 		'Content-Type': 'application/xml'
 	};
-	return json(body, {
-	  headers: headers
-	});
+  return new Response( body , { headers });
 }
+
 
 const xml = posts => `
 <rss xmlns:dc="https://purl.org/dc/elements/1.1/" xmlns:content="https://purl.org/rss/1.0/modules/content/" xmlns:atom="https://www.w3.org/2005/Atom" version="2.0">
