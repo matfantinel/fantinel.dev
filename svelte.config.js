@@ -17,7 +17,7 @@ const config = {
     }),
 		mdsvex({
 			layout: {
-				article: './src/routes/__layout-article@default.svelte'
+				article: './src/lib/layout/article.svelte'
 			},
 			extensions: extensions,
       rehypePlugins: [
@@ -39,9 +39,6 @@ const config = {
 
 	kit: {
 		adapter: adapter(),
-		prerender: {
-			default: true
-		},
 		trailingSlash: 'always'
 	}
 };

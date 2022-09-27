@@ -1,7 +1,9 @@
+
+// @migration task: Check imports
 import posts from '$lib/posts';
 
 export async function GET() {
-	const body = Object.keys(posts).slice(0, 4).map((index) => {
+	const body = Object.keys(posts).map((index) => {
     const { slug, title, date, excerpt, tags, readingTime } = posts[index]
     return {
       slug,
@@ -13,8 +15,5 @@ export async function GET() {
     }
   });
 
-	return {
-    status: 200,
-		body: JSON.stringify(body)
-	};
+	return new Response(JSON.stringify(body));
 }

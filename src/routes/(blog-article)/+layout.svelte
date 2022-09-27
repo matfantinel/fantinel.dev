@@ -1,22 +1,4 @@
-<script context="module">
-	export async function load({ fetch, url }) {
-		const jsonUrl = url.pathname.replace(/\/\s*$/, "") + '.json';
-		const res = await fetch(jsonUrl);
 
-		if (res.ok) {
-			return {
-				props: {
-					post: await res.json()
-				}
-			};
-		}
-
-		return {
-			status: res.status,
-			error: new Error(`Could not load ${jsonUrl}`)
-		};
-	}
-</script>
 
 <script>
 	import '../../app.scss';
@@ -31,7 +13,9 @@
 	import Section from '$lib/components/layout/section.svelte';
   import { keywords, siteBaseUrl, title } from '$lib/meta';
 
-	export let post;
+	export let data;
+	let {post} = data;
+
 </script>
 
 <svelte:head>
