@@ -1,3 +1,6 @@
+// Disabling eslint because importing Prism is needed
+// even if not directly used in this file
+// eslint-disable-next-line no-unused-vars
 import Prism from 'prismjs';
 import 'prism-svelte';
 import readingTime from 'reading-time';
