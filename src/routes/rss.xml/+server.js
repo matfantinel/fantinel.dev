@@ -1,6 +1,8 @@
 import { description, siteBaseUrl, title } from "$lib/meta";
 import posts from '$lib/posts';
 
+export const prerender = true;
+
 export async function GET() {
   const body = xml(posts);
 	const headers = {
