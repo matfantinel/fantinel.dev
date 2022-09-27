@@ -5,7 +5,7 @@
 {#if url}
 	<a class="card clickable" href={url} sveltekit:prefetch>
 		{#if $$slots.image}
-      <slot name="image" />
+			<slot name="image" />
 		{/if}
 		<div class="body">
 			<div class="content">
@@ -21,7 +21,7 @@
 {:else}
 	<div class="card">
 		{#if $$slots.image}
-      <slot name="image" />
+			<slot name="image" />
 		{/if}
 		<div class="body">
 			<div class="content">

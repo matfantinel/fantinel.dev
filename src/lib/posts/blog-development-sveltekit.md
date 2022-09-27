@@ -1,6 +1,6 @@
 ---
 slug: blog-development-sveltekit
-title: "How I built a blog with Svelte and SvelteKit"
+title: 'How I built a blog with Svelte and SvelteKit'
 date: 2021-09-08
 excerpt: "An overview of the experience I've had using these amazing projects."
 tags: [Front-End, Svelte, SvelteKit]
@@ -20,7 +20,7 @@ I've recently re-launched my personal website and blog, that's now reached its 3
 <Callout type="warning">
   SvelteKit is still a work in progress, and as such its API has changed considerably since I wrote this article. Most of the concepts explained here are still in vigor, since the goal of the project hasn't changed, however some specifics might not work as written here.
 
-  I'll try to keep this article updated, but won't make any promises. Usually the site itself is kept up-to-date though, so you can always check the source code and latest commits in case something in this article does not work anymore.
+I'll try to keep this article updated, but won't make any promises. Usually the site itself is kept up-to-date though, so you can always check the source code and latest commits in case something in this article does not work anymore.
 </Callout>
 
 <div style="display: grid;place-items: center;max-width: 300px;margin: 20px auto 0;">
@@ -36,14 +36,15 @@ This means that it does its job at build time, not at runtime. While other frame
 [SvelteKit](https://kit.svelte.dev/) is a framework built on top of that. It is an opinionated set of rules that helps you get a Svelte app built pretty quickly. You can compare it to NextJS (for React) or Nuxt (for Vue). It has great defaults and encourages good practices, like server-side rendering, for example. At the time of building this website, SvelteKit was still in Beta. However, progress is steady and its API seems to be already stable, so it's unlikely there will be any breaking changes before 1.0 arrives.
 
 Using both of the above allowed my website to have two important characteristics:
-* Every single page is rendered at build time (server-side rendering). This means that as long as the HTML and CSS files are downloaded, it will look as it was meant to be;
-* JavaScript is not needed. Try disabling JavaScript on your browser. You'll still be able to read this blog post and everything will look the same.
+
+- Every single page is rendered at build time (server-side rendering). This means that as long as the HTML and CSS files are downloaded, it will look as it was meant to be;
+- JavaScript is not needed. Try disabling JavaScript on your browser. You'll still be able to read this blog post and everything will look the same.
 
 ## Progressive Enhancement
 
 One of the concepts that really caught my eye with Svelte is the idea of Progressive Enhancement: <MarkerHighlight>making sure your app runs for everyone, and making it progressively more featureful if the user's device supports it</MarkerHighlight>. My website is a pretty simple project, but still there are instances of this:
 
-If there's no JavaScript, the website uses the browser's native navigation API. Which means you can navigate between pages normally without any client-side code. _However_, if JavaScript is available, a client-side router will be used to make the transition between pages smoother and faster. This means that even if the user's device doesn't support JS for any reason<span class="text-info">*</span>, the site will still be completely functional.
+If there's no JavaScript, the website uses the browser's native navigation API. Which means you can navigate between pages normally without any client-side code. _However_, if JavaScript is available, a client-side router will be used to make the transition between pages smoother and faster. This means that even if the user's device doesn't support JS for any reason<span class="text-info">\*</span>, the site will still be completely functional.
 
 <Callout type="info">
   We tend to think of JavaScript being disabled as a user choice, but that is not always the case. Think of someone using their phone on a weak 3G connection that fails to load the .js files, or someone in a metro that lost signal while loading the page. It happens often and being able to show your content even in these conditions is a great way of not losing a visitor.
@@ -81,9 +82,10 @@ My website has 4 different pages in total: home, blog, blog post and resume. Thi
     ├── resume.svelte # /resume
     ├── [slug].svelte # Dynamic route (blog posts)
 ```
+
 </CodeBlock>
 
-The `__layout.svelte` file is a base layout for all the pages inside the route. Which means that I can have shared code for all pages in there. See the example below, where I added the header and footer components to the __layout, and load the content of the route itself in the `<slot>` element:
+The `__layout.svelte` file is a base layout for all the pages inside the route. Which means that I can have shared code for all pages in there. See the example below, where I added the header and footer components to the \_\_layout, and load the content of the route itself in the `<slot>` element:
 
 <CodeBlock lang="svelte" filename="__layout.svelte">
 
@@ -96,6 +98,7 @@ The `__layout.svelte` file is a base layout for all the pages inside the route. 
 
 <Footer />
 ```
+
 </CodeBlock>
 
 ### Blog Post Page / Dynamic Routing
@@ -104,7 +107,7 @@ But what about the blog post page? Well, that one is a special case. If you look
 
 You see, every blog post page is the same one, however its content is loaded based on the URL it receives. To achieve this, I used SvelteKit's dynamic routing with a file called `[slug].svelte`. The brackets indicate that the route might be dynamic, and whatever URL comes in, it will be caught by this file (unless it's caught by explicit routes like /blog shown above). Not only that, but that part of the URL will be accessible in the page as a parameter (called, in this case, _slug_). This parameter allows the page to know which blog post to display.
 
-However, there's still an extra step I wanted to take. Blog posts only have their own content, but I wanted to add a few extra things on the page that weren't present in the main __layout.svelte file, like the post title and related posts at the bottom. For that, I used a **layout reset**, defining that the post page shouldn't use the main one, but instead have its own.
+However, there's still an extra step I wanted to take. Blog posts only have their own content, but I wanted to add a few extra things on the page that weren't present in the main \_\_layout.svelte file, like the post title and related posts at the bottom. For that, I used a **layout reset**, defining that the post page shouldn't use the main one, but instead have its own.
 
 To avoid repeating [slug] many times, I wrapped both files in a new folder. My routes directory stayed like this:
 
@@ -120,6 +123,7 @@ To avoid repeating [slug] many times, I wrapped both files in a new folder. My r
         ├── __layout.reset.svelte
         ├── index.svelte
 ```
+
 </CodeBlock>
 
 ## The blog
@@ -127,15 +131,16 @@ To avoid repeating [slug] many times, I wrapped both files in a new folder. My r
 The main challenge for me was in processing Markdown(.md) files of the blog posts into actual Svelte code. Unlike Jekyll, which I was using previously for this blog, SvelteKit doesn't have anything built-in for this (yet) and online resources are a bit scarce (which is normal, since it's still in beta).
 
 I had three requisites for this:
-* I wanted to write blog posts in Markdown, because of its ease, and also so I wouldn't have to rewrite all the existing posts;
-* I wanted to be able to use Svelte components inside the blog posts as well, for more interactive elements;
-* It has to be rendered on build time so the blog can be deployed to GitHub Pages;
+
+- I wanted to write blog posts in Markdown, because of its ease, and also so I wouldn't have to rewrite all the existing posts;
+- I wanted to be able to use Svelte components inside the blog posts as well, for more interactive elements;
+- It has to be rendered on build time so the blog can be deployed to GitHub Pages;
 
 I had heard about something similar to what I wanted, called MDX. It allows everything I wanted, however, it was React-based and I couldn't use it. Luckily, I found out about [MDsveX](https://mdsvex.com/), a project with the same goal as MDX, but for Svelte!
 
 After setting it up, I had to figure out how to actually use it. I found some examples on the internet, which seemed very straightforward. Most of them created a `/posts` folder inside the routes, and then put the .md files in there. MDsveX would do the work of transforming them into HTML pages on build, and that was it. However, that meant the post URL would have to become `https://fantinel.dev/posts/blog-post-name`. That isn't a huge problem by itself, but it was for me because it wouldn't be backwards-compatible with my previous blog URLs, that have been linked to a few times in other sites. I wanted to remove the need for "/posts" in the URL to keep that compatibility.
 
-That means my page on `routes/[slug]/index.svelte` should need some kind of logic that finds the correct blog post to show and dynamically loads the Svelte component generated by MDsveX. Not only that, but I needed to be able to extract the metadata of the post - its title, image, and date - to be able to display it on the __layout.reset.svelte file, and also displaying the "Recent posts" cards on the home page.
+That means my page on `routes/[slug]/index.svelte` should need some kind of logic that finds the correct blog post to show and dynamically loads the Svelte component generated by MDsveX. Not only that, but I needed to be able to extract the metadata of the post - its title, image, and date - to be able to display it on the \_\_layout.reset.svelte file, and also displaying the "Recent posts" cards on the home page.
 
 ### Extracting post data
 
@@ -151,10 +156,10 @@ const posts = [];
 for (const path in imports) {
 	const post = imports[path];
 	if (post) {
-    // For each of them, MDsveX will do the heavy lifting. The "metadata"
-    // is automatically recovered from the Frontmatter, and we're also
-    // asking it to render the blog post so we're able to use it 
-    // as a component later on.
+		// For each of them, MDsveX will do the heavy lifting. The "metadata"
+		// is automatically recovered from the Frontmatter, and we're also
+		// asking it to render the blog post so we're able to use it
+		// as a component later on.
 		posts.push({
 			...post.metadata,
 			...post.default.render()
@@ -171,11 +176,12 @@ const filteredPosts = posts
 			: new Date(a.date).getTime() < new Date(b.date).getTime()
 			? 1
 			: 0
-	)
+	);
 
 // Expose this info to other files
 export default filteredPosts;
 ```
+
 </CodeBlock>
 
 With that data being exported from that file, I can reuse it in the places I need:
@@ -189,11 +195,11 @@ On the `routes/[slug]/index.svelte` file, I can now import the posts and look fo
 ```svelte
 <!-- By using context="module", I declare that this code will run on the server -->
 <script context="module">
-  // Get posts info
+	// Get posts info
 	const allPosts = import.meta.globEager(`../../lib/posts/*.md`);
 
 	let posts = [];
-  // Get the posts' slugs
+	// Get the posts' slugs
 	for (let path in allPosts) {
 		const post = allPosts[path];
 		const slug = post.metadata.slug;
@@ -204,28 +210,29 @@ On the `routes/[slug]/index.svelte` file, I can now import the posts and look fo
 	export function load({ params }) {
 		const { slug } = params;
 
-    // Find the post with the slug
+		// Find the post with the slug
 		const filteredPost = posts.find((p) => {
 			return p.slug.toLowerCase() === slug.toLowerCase();
 		});
 
 		return {
 			props: {
-        // Tell page to load that post's module
+				// Tell page to load that post's module
 				page: filteredPost.post.default
 			}
 		};
-	};
+	}
 </script>
 
 <script>
-  // Declare the page variable to use on the client
+	// Declare the page variable to use on the client
 	export let page;
 </script>
 
 <!-- Here we'll load the component of the blog post page itself -->
-<svelte:component this={page}/>
+<svelte:component this={page} />
 ```
+
 </CodeBlock>
 
 #### Listing all posts
@@ -241,16 +248,17 @@ import posts from '$lib/posts';
 
 export async function get() {
 	const body = Object.keys(posts).map((slug) => ({
-    slug,
-    ...posts[slug],
-  }));
+		slug,
+		...posts[slug]
+	}));
 
 	return {
-    status: 200,
+		status: 200,
 		body: JSON.stringify(body)
 	};
 }
 ```
+
 </CodeBlock>
 
 And, on the page itself:
@@ -258,7 +266,7 @@ And, on the page itself:
 <CodeBlock lang="svelte" filename="blog.svelte">
 
 ```svelte
-<!-- By using context="module", I declare that this code will run on the server 
+<!-- By using context="module", I declare that this code will run on the server
 and fetch this data before page actually loads -->
 <script context="module">
 	export async function load({ fetch }) {
@@ -279,6 +287,7 @@ and fetch this data before page actually loads -->
   <BlogPostCard {post} />
 {/each}
 ```
+
 </CodeBlock>
 
 ### RSS

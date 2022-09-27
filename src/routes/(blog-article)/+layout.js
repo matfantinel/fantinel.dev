@@ -1,8 +1,7 @@
 import { error } from '@sveltejs/kit';
 
-
 export async function load({ fetch, url }) {
-	const jsonUrl = url.pathname.replace(/\/\s*$/, "") + '.json';
+	const jsonUrl = url.pathname.replace(/\/\s*$/, '') + '.json';
 	const res = await fetch(jsonUrl);
 
 	if (res.ok) {

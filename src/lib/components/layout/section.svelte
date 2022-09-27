@@ -87,7 +87,7 @@
 					order: 2;
 				}
 			}
-      &.right {
+			&.right {
 				.title-area {
 					order: 2;
 				}
@@ -95,17 +95,17 @@
 					order: 1;
 				}
 			}
-      &.top {
-        flex-direction: column;
-        .title-area {
+			&.top {
+				flex-direction: column;
+				.title-area {
 					order: 1;
-          max-width: 600px;
+					max-width: 600px;
 				}
 				.content-area {
 					order: 2;
-          width: 100%;
+					width: 100%;
 				}
-      }
+			}
 		}
 		@include for-phone-only {
 			flex-direction: column;

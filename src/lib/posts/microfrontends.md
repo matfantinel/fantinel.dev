@@ -1,8 +1,8 @@
 ---
 slug: microfrontends
-title: "Micro Frontends: Solving the Legacy JavaScript Problem"
+title: 'Micro Frontends: Solving the Legacy JavaScript Problem'
 date: 2019-03-17
-excerpt: "Finally a way to modernize that legacy project you keep complaining about!"
+excerpt: 'Finally a way to modernize that legacy project you keep complaining about!'
 tags: [Front-End, JavaScript, Guide]
 ---
 
@@ -12,7 +12,6 @@ tags: [Front-End, JavaScript, Guide]
   import Callout from "$lib/components/base/callout.svelte";
   import MarkerHighlight from "$lib/components/style/marker-highlight.svelte";
 </script>
-
 
 It's a running joke in the development community that if a JS programmer goes into a coma for 6 months, he will need to learn everything again by the time he wakes up. This is a consequence of JavaScript's open, decentralized nature. It's both a blessing and a curse.
 
@@ -38,19 +37,19 @@ You've probably already worked on a big app that was made years ago, and used "a
 
 One alternative is to create a second app with a new technology and make the change in multiple steps, with routes handling which app is to be shown. This however, has many issues:
 
-* You have to duplicate many things, like fixed menus, authentication handling, and all the base architecture. Even worse than duplicating is **maintaining** both of them afterwards;
-* The user experience will be severely harmed when your app redirects to a different one frequently;
-* When the new technology you use becomes obsolete, you'll have to deal with the problem all over again.
+- You have to duplicate many things, like fixed menus, authentication handling, and all the base architecture. Even worse than duplicating is **maintaining** both of them afterwards;
+- The user experience will be severely harmed when your app redirects to a different one frequently;
+- When the new technology you use becomes obsolete, you'll have to deal with the problem all over again.
 
 Other alternative is to use iframes, which brings a lot of problems since communication between both pages is not very straightforward and the experience feels clunky. Not very good.
 
 However, when using Micro Frontends, you are able to:
 
-* Migrate technologies in small steps:
-* Communication between both technologies is easy;
-* The user does not notice the use of two different stacks - they all merge seamlessly in the same experience;
-* There is no need to maintain more than one version of a component;
-* Encourages good use of components and code reuse.
+- Migrate technologies in small steps:
+- Communication between both technologies is easy;
+- The user does not notice the use of two different stacks - they all merge seamlessly in the same experience;
+- There is no need to maintain more than one version of a component;
+- Encourages good use of components and code reuse.
 
 At my job, we had our main application written in AngularJS, and since it was a pretty huge application, migrating to a newer stack was just not feasible. We then had a project that included a complete overhaul of the design of the application, we felt it was a good time to use newer technologies.
 
@@ -71,6 +70,7 @@ First, we create a new Angular 7 app:
 ```shell
 ng new angular-elements-sample --prefix custom
 ```
+
 </CodeBlock>
 
 The CLI will ask you for some settings, you can choose whatever you like. Since we're just using Custom Components in this example, I chose not to apply Angular routing.
@@ -82,6 +82,7 @@ Then, we need to add the Angular package that brings Custom Elements support:
 ```shell
 ng add @angular/elements
 ```
+
 </CodeBlock>
 
 Now, on tsconfig.json file, change target to "es2015".
@@ -98,6 +99,7 @@ Now, on tsconfig.json file, change target to "es2015".
   }
 }
 ```
+
 </CodeBlock>
 
 Then, create a new component in your app:
@@ -107,6 +109,7 @@ Then, create a new component in your app:
 ```shell
 ng g component button
 ```
+
 </CodeBlock>
 
 On this component, we should set its encapsulation to ShadowDom. This means that its styles will be limited to itself, and styles from the parent application won't apply to the child component, or vice-versa. Also, we'll be declaring an Input() property, that the element will receive from the parent, and a CustomEvent, a way to communicate events with other applications/components in the same page.
@@ -119,37 +122,35 @@ Below is the full component Typescript code:
 import { Component, OnInit, ViewEncapsulation, Input, ElementRef } from '@angular/core';
 
 @Component({
-  selector: 'custom-button',
-  templateUrl: './button.component.html',
-  styleUrls: ['./button.component.scss'],
-  encapsulation: ViewEncapsulation.ShadowDom
+	selector: 'custom-button',
+	templateUrl: './button.component.html',
+	styleUrls: ['./button.component.scss'],
+	encapsulation: ViewEncapsulation.ShadowDom
 })
 export class ButtonComponent implements OnInit {
+	@Input() label = 'Default Label';
+	private clicksCount: number = 0;
 
-  @Input() label = 'Default Label';
-  private clicksCount: number = 0;
+	htmlElement: HTMLElement;
 
-  htmlElement: HTMLElement;
+	constructor(public hostElement: ElementRef) {
+		this.htmlElement = this.hostElement.nativeElement as HTMLElement;
+	}
 
-  constructor(public hostElement: ElementRef) {
-    this.htmlElement = (this.hostElement.nativeElement as HTMLElement);
-  }
+	ngOnInit() {}
 
-  ngOnInit() {
-  } 
-
-  handleClick = () => {
-    this.clicksCount++;
-    let action = new CustomEvent('action', {
-      detail: {
-        clicksCount: this.clicksCount
-      }
-    });
-    this.htmlElement.dispatchEvent(action);
-  }
-
+	handleClick = () => {
+		this.clicksCount++;
+		let action = new CustomEvent('action', {
+			detail: {
+				clicksCount: this.clicksCount
+			}
+		});
+		this.htmlElement.dispatchEvent(action);
+	};
 }
 ```
+
 </CodeBlock>
 
 The HTML template is very simple:
@@ -159,6 +160,7 @@ The HTML template is very simple:
 ```html
 <button (click)="handleClick()">{{ label }}</button>
 ```
+
 </CodeBlock>
 
 Then, we must declare our Custom Element in our app.module.ts file:
@@ -167,27 +169,23 @@ Then, we must declare our Custom Element in our app.module.ts file:
 
 ```typescript
 @NgModule({
-  declarations: [
-    ...
-    ButtonComponent,
-  ],
-  entryComponents: [
-    ButtonComponent
-  ],
-  providers: [],
-  bootstrap: []
+	declarations: [...ButtonComponent],
+	entryComponents: [ButtonComponent],
+	providers: [],
+	bootstrap: []
 })
 export class AppModule {
-  constructor(private injector: Injector) {}
+	constructor(private injector: Injector) {}
 
-  ngDoBootstrap() {
-    //Declares our component's Custom Element
-    //Then defines it in the DOM so it can be used in other projects
-    const buttonElement = createCustomElement(ButtonComponent, { injector: this.injector });
-    customElements.define('custom-button', buttonElement);
-  }
+	ngDoBootstrap() {
+		//Declares our component's Custom Element
+		//Then defines it in the DOM so it can be used in other projects
+		const buttonElement = createCustomElement(ButtonComponent, { injector: this.injector });
+		customElements.define('custom-button', buttonElement);
+	}
 }
 ```
+
 </CodeBlock>
 
 To make it easier to use our component in another app, we can use some script magic to concat all the .js files produced by `ng build --prod` into a single properly-named file. To do that, I created the following script in package.json's script session:
@@ -197,6 +195,7 @@ To make it easier to use our component in another app, we can use some script ma
 ```json
 "package": "ng build --prod && cat ./dist/runtime.js ./dist/polyfills.js ./dist/scripts.js ./dist/main.js > CustomElementsSample.js"
 ```
+
 </CodeBlock>
 
 If you're on a Windows system, you won't have access to cat. In that case install `jscat` from npm and change the cat command to jscat.
@@ -213,31 +212,32 @@ Check this sample html file:
 
 ```html
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>This is a legacy app that uses Angular 7 custom elements</title>
-        <script src="../angular-elements-sample/CustomElementsSample.js"></script>
+	<head>
+		<meta charset="UTF-8" />
+		<title>This is a legacy app that uses Angular 7 custom elements</title>
+		<script src="../angular-elements-sample/CustomElementsSample.js"></script>
 
-        <style>
-            button {
-                background-color: red;
-                color: white;
-            }
-        </style>
-    </head>
-    <body>
-        <custom-button label="Legacy app label"></custom-button>
-        <span id="counter"></span><span> clicks!</span>
+		<style>
+			button {
+				background-color: red;
+				color: white;
+			}
+		</style>
+	</head>
+	<body>
+		<custom-button label="Legacy app label"></custom-button>
+		<span id="counter"></span><span> clicks!</span>
 
-        <script>
-            const button = document.querySelector('custom-button');
-            button.addEventListener('action', event => {
-                document.getElementById('counter').innerHTML = event.detail.clicksCount;
-            });
-        </script>
-    </body>
+		<script>
+			const button = document.querySelector('custom-button');
+			button.addEventListener('action', (event) => {
+				document.getElementById('counter').innerHTML = event.detail.clicksCount;
+			});
+		</script>
+	</body>
 </html>
 ```
+
 </CodeBlock>
 
 You can see that we are successfully being able to listen for events, pass the label parameter, and that the button style from the html does not apply to the component. Success!

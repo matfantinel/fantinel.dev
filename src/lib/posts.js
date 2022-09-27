@@ -2,7 +2,7 @@ import Prism from 'prismjs';
 import 'prism-svelte';
 import readingTime from 'reading-time';
 
-const imports = import.meta.glob('./posts/*.md',  { eager: true });
+const imports = import.meta.glob('./posts/*.md', { eager: true });
 
 const posts = [];
 for (const path in imports) {
@@ -48,19 +48,27 @@ function getRelatedPosts(post) {
 		if (relPost.slug === post.slug) {
 			continue;
 		}
-		const rel = relatedPosts.find(x => x.post.slug === relPost.slug);
+		const rel = relatedPosts.find((x) => x.post.slug === relPost.slug);
 		if (rel) {
 			rel.count++;
 		} else {
-			relatedPosts.push({post: { ...relPost, readingTime: readingTime(relPost.html).text }, count: 1, date: relPost.date});
+			relatedPosts.push({
+				post: { ...relPost, readingTime: readingTime(relPost.html).text },
+				count: 1,
+				date: relPost.date
+			});
 		}
 	}
 
 	// If there are no related posts, just grab all
 	if (relatedPosts.length === 0) {
 		relatedPosts = posts
-			.filter(x => x.slug !== post.slug)
-			.map(x => ({post: { ...x, readingTime: readingTime(x.html).text }, count: 0, date: x.date}));
+			.filter((x) => x.slug !== post.slug)
+			.map((x) => ({
+				post: { ...x, readingTime: readingTime(x.html).text },
+				count: 0,
+				date: x.date
+			}));
 	}
 
 	return relatedPosts;
@@ -78,16 +86,16 @@ const filteredPosts = posts
 	.map((post) => {
 		const readingTimeDuration = readingTime(post.html).text;
 
-		const relatedPosts = getRelatedPosts(post);		
+		const relatedPosts = getRelatedPosts(post);
 
 		return {
 			...post,
 			readingTime: readingTimeDuration,
-      relatedPosts: relatedPosts
-										.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
-										.sort((a, b) => b.count - a.count)
-										.slice(0, 3)
-										.map(x => x.post)
+			relatedPosts: relatedPosts
+				.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+				.sort((a, b) => b.count - a.count)
+				.slice(0, 3)
+				.map((x) => x.post)
 		};
 	});
 

@@ -1,6 +1,5 @@
 import { error } from '@sveltejs/kit';
 
-
 export async function load({ fetch }) {
 	const url = '/posts.json';
 	const res = await fetch(url);

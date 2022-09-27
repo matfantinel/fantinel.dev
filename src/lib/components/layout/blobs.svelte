@@ -9,11 +9,11 @@
 
 	const random = (min, max) => Math.floor(Math.random() * (max - min)) + min;
 
-  export let quantity = 1;
-  export let minLeft = 0;
-  export let maxLeft = 80;
-  export let minTop = 0;
-  export let maxTop = 80;
+	export let quantity = 1;
+	export let minLeft = 0;
+	export let maxLeft = 80;
+	export let minTop = 0;
+	export let maxTop = 80;
 
 	const generateBlob = () => {
 		return {
@@ -21,14 +21,14 @@
 			left: random(minLeft, maxLeft) + '%',
 			top: random(minTop, maxTop) + '%',
 			model: random(1, 7),
-      animationDuration: random(4,8)
+			animationDuration: random(4, 8)
 		};
-	};  
+	};
 
 	let blobs = [];
 	for (let i = 0; i < quantity; i++) {
 		blobs.push(generateBlob());
-	}  
+	}
 </script>
 
 <div class="blobs-container">
@@ -57,16 +57,16 @@
 </div>
 
 <style lang="scss">
-  @import '../../scss/breakpoints.scss';
+	@import '../../scss/breakpoints.scss';
 
 	.blobs-container {
 		position: absolute;
 		left: 0;
-    top: 0;
+		top: 0;
 		width: 100%;
 		height: 100%;
 		z-index: -1;
-    
+
 		display: flex;
 		flex-direction: column;
 		align-items: flex-start;

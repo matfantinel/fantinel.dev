@@ -2,7 +2,7 @@
 slug: ionic-animal-crossing-companion
 title: Developing an Animal Crossing companion app with Ionic
 date: 2020-07-28
-excerpt: "No bells were spent while building this app."
+excerpt: 'No bells were spent while building this app.'
 tags: [Ionic, PWA, Open Source, Games]
 ---
 
@@ -73,24 +73,23 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  {
-    path: '',
-    redirectTo: 'home',
-    pathMatch: 'full'
-  },
-  {
-    path: 'home',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
-  }
+	{
+		path: '',
+		redirectTo: 'home',
+		pathMatch: 'full'
+	},
+	{
+		path: 'home',
+		loadChildren: () => import('./home/home.module').then((m) => m.HomePageModule)
+	}
 ];
 @NgModule({
-  imports: [
-    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })
-  ],
-  exports: [RouterModule]
+	imports: [RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })],
+	exports: [RouterModule]
 })
 export class AppRoutingModule {}
 ```
+
 </CodeBlock>
 
 ## Theming and Layout
@@ -125,12 +124,13 @@ import { CoolHeaderComponent } from './cool-header/cool-header.component';
 import { IonicModule } from '@ionic/angular';
 
 @NgModule({
-    declarations: [CoolHeaderComponent],
-    imports: [IonicModule.forRoot()],
-    exports: [CoolHeaderComponent]
+	declarations: [CoolHeaderComponent],
+	imports: [IonicModule.forRoot()],
+	exports: [CoolHeaderComponent]
 })
 export class ComponentsModule {}
 ```
+
 </CodeBlock>
 
 The annoying part was having to add ComponentsModule to each of the pages. There probably is an easier way of handling this, but right now I decided to not dig too deep into it.
@@ -163,9 +163,9 @@ Simply installing Dexie.js and a quick read on its documentation allowed me to s
 
 Since the main purpose of developing this app is learning, I decided to use some cool stuff I've learned and put them in practice:
 
-* [Web Workers](/web-workers/): on first run, the app uses a web worker to parse the game data (contained in large JSON files) in the background, so it can fill the database with the data used on Critterpedia
-* Virtual Scroll: on the Critterpedia listings, I used Virtual Scroll instead of pagination. I figured this was a better choice because while it can have a lot of items, it's a fixed number so no need to paginate. This way it maintains good performance on scrolling even on lower-end devices. Luckily, [Ionic provides a built-in component for that](https://ionicframework.com/docs/api/virtual-scroll)!
-* Lazy loading images: since all items in the list have an icon that's displayed besides them, there are lots of images to download. Without lazy-loading, ALL images would be loaded right off the bat, even the ones way down the bottom of the list. With lazy loading, the browser automatically downloads only images as they would appear on screen by just setting the `loading` attribute: `<img loading="lazy">`
+- [Web Workers](/web-workers/): on first run, the app uses a web worker to parse the game data (contained in large JSON files) in the background, so it can fill the database with the data used on Critterpedia
+- Virtual Scroll: on the Critterpedia listings, I used Virtual Scroll instead of pagination. I figured this was a better choice because while it can have a lot of items, it's a fixed number so no need to paginate. This way it maintains good performance on scrolling even on lower-end devices. Luckily, [Ionic provides a built-in component for that](https://ionicframework.com/docs/api/virtual-scroll)!
+- Lazy loading images: since all items in the list have an icon that's displayed besides them, there are lots of images to download. Without lazy-loading, ALL images would be loaded right off the bat, even the ones way down the bottom of the list. With lazy loading, the browser automatically downloads only images as they would appear on screen by just setting the `loading` attribute: `<img loading="lazy">`
 
 ## Running on Android
 
@@ -180,6 +180,7 @@ After installing Android Studio, we need to add an environment variable that poi
 ```shell
 export ANDROID_SDK_ROOT=$HOME/Library/Android/sdk
 ```
+
 </CodeBlock>
 
 Adding these next lines to the `.bashrc` file will also give you a quick way to access these Android tools if needed:
@@ -196,6 +197,7 @@ export PATH=$PATH:$ANDROID_SDK_ROOT/platform-tools
 # emulator
 export PATH=$PATH:$ANDROID_SDK_ROOT/emulator
 ```
+
 </CodeBlock>
 
 Now, we have to register Android as a platform for our app. Since we're using Capacitor to make this bridge, we need only a single command:
@@ -205,6 +207,7 @@ Now, we have to register Android as a platform for our app. Since we're using Ca
 ```shell
 ionic capacitor add android
 ```
+
 </CodeBlock>
 
 _If you get an error saying that "Capacitor could not find the web assets directory", be sure to run `ionic build` to generate this directory first._
@@ -212,7 +215,6 @@ _If you get an error saying that "Capacitor could not find the web assets direct
 After that's done, you can open the project in Android Studio (it will be on a folder called `Android` at the root of your project). If you still haven't setup a device or emulator to run your app in, do it now. The [Ionic docs](https://ionicframework.com/docs/developing/android#android-studio) show how to do both processes.
 
 After a loooong while, Android Studio will have loaded all it needs to run your project. Just click on Run (Shift+F10). It should open on your phone/emulator!
-
 
 ## PWA preparation
 
@@ -234,6 +236,7 @@ One issue I was having after publishing a PWA like that is that when refreshing 
   exports: [RouterModule]
 })
 ```
+
 </CodeBlock>
 
 ### Publishing
@@ -242,7 +245,7 @@ To host my PWA, I decided to use [Netlify](https://netlify.com). The publishing 
 
 ## Wrapping Up
 
-Developing this definitely took me a while - but that's because time's been quite scarce for me. Most of the development time was spent learning NgRx, which was definitely the most complex part of this application. It also took me a while to find a good IndexedDB wrapper before I settled on Dexie. The rest was quite straightforward - the app logic is simple, and what took the longest was making the app pretty and the animations smooth. 
+Developing this definitely took me a while - but that's because time's been quite scarce for me. Most of the development time was spent learning NgRx, which was definitely the most complex part of this application. It also took me a while to find a good IndexedDB wrapper before I settled on Dexie. The rest was quite straightforward - the app logic is simple, and what took the longest was making the app pretty and the animations smooth.
 
 I think the result is quite good - definitely not professional, but more than enough for a hobby app. I learned a lot working on it and would definitely do it again. In case you missed it, [here's another link to check out the result](https://pocketcompanion.fantinel.dev), and its [source code](https://github.com/matfantinel/acnh-pocket-companion).
 

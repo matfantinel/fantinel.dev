@@ -1,7 +1,6 @@
 <script>
 	export let data;
-	let {page} = data;
-
+	let { page } = data;
 </script>
 
-<svelte:component this={page}/>
+<svelte:component this={page} />

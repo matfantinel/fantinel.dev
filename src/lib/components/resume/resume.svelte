@@ -39,7 +39,7 @@
 			Graduated as a{' '}
 			<b>Technologist in System Analysis and Development</b> at{' '}
 			<i>Centro Universitário da Serra Gaúcha</i>, 2018.
-    </p>
+		</p>
 	</section>
 	<section class="skills">
 		<SectionTitle>Skills</SectionTitle>
@@ -56,7 +56,7 @@
 		font-size: 16px;
 		background-color: var(--card-background-color);
 		position: relative;
-    overflow: hidden;
+		overflow: hidden;
 
 		display: grid;
 		gap: 20px 30px;
@@ -107,9 +107,9 @@
 			&.about {
 				grid-area: about;
 
-        p {
-          text-align: justify;
-        }
+				p {
+					text-align: justify;
+				}
 			}
 			&.work {
 				grid-area: work;
@@ -117,39 +117,39 @@
 			&.education {
 				grid-area: education;
 
-        p {
-          text-align: justify;
-        }
+				p {
+					text-align: justify;
+				}
 			}
 			&.skills {
 				grid-area: skills;
 			}
 		}
 
-    .blobs {
-      position: absolute;
-      top: 0;
-      right: 0;
-      width: 100%;
-      height: 100%;
+		.blobs {
+			position: absolute;
+			top: 0;
+			right: 0;
+			width: 100%;
+			height: 100%;
 
-      .blob {
+			.blob {
 				position: absolute;
 
 				&.one {
-          height: 120%;
-          width: 120%;
-          top: -54%;
-          right: -45%;
+					height: 120%;
+					width: 120%;
+					top: -54%;
+					right: -45%;
 				}
 				&.two {
-          height: 100%;
-          width: 100%;
-          left: 23%;
-          top: 38%;
+					height: 100%;
+					width: 100%;
+					left: 23%;
+					top: 38%;
 				}
 			}
-    }    
+		}
 	}
 
 	// Print-specific styles

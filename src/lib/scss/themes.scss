@@ -31,7 +31,7 @@
 	--text-color-rgb: 28, 30, 38;
 	--text-light-color: #5d5f65;
 
-  --post-page-background-color: #ffffff;
+	--post-page-background-color: #ffffff;
 
 	--link-highlight-color: var(--primary-color);
 
@@ -46,17 +46,17 @@
 	--card-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.1);
 	--card-shadow-hover: 0px 4px 10px 8px rgb(0 0 0 / 10%);
 
-  --button-primary-background-color: var(--primary-color);
-  --button-primary-text-color: var(--primary-color-contrast);
+	--button-primary-background-color: var(--primary-color);
+	--button-primary-text-color: var(--primary-color-contrast);
 
-  --button-primary-light-background-color: var(--primary-lightest-color);
-  --button-primary-light-text-color: var(--primary-color);
+	--button-primary-light-background-color: var(--primary-lightest-color);
+	--button-primary-light-text-color: var(--primary-color);
 
-  --button-secondary-background-color: var(--secondary-color);
-  --button-secondary-text-color: var(--secondary-color-contrast);
+	--button-secondary-background-color: var(--secondary-color);
+	--button-secondary-text-color: var(--secondary-color-contrast);
 
-  --button-secondary-light-background-color: var(--secondary-lightest-color);
-  --button-secondary-light-text-color: var(--secondary-color);
+	--button-secondary-light-background-color: var(--secondary-lightest-color);
+	--button-secondary-light-text-color: var(--secondary-color);
 
 	--image-shadow: 8px 14px 38px rgba(39, 44, 49, 0.06), 1px 3px 8px rgba(39, 44, 49, 0.03);
 
@@ -104,17 +104,17 @@
 	--primary-light-color: #076464;
 	--primary-light-color-rgb: 7, 100, 100;
 
-	--primary-lightest-color: #191F1F;
-	--primary-lightest-color-rgb: 25,31,31;
+	--primary-lightest-color: #191f1f;
+	--primary-lightest-color-rgb: 25, 31, 31;
 
-	--secondary-color: #EC7DFF;
-	--secondary-color-rgb: 236,125,255;
+	--secondary-color: #ec7dff;
+	--secondary-color-rgb: 236, 125, 255;
 	--secondary-color-contrast: #1c1e26;
 
-	--secondary-light-color: #B15EBF;
-	--secondary-light-color-rgb: 177,94,191;
+	--secondary-light-color: #b15ebf;
+	--secondary-light-color-rgb: 177, 94, 191;
 
-	--secondary-lightest-color: #191A29;
+	--secondary-lightest-color: #191a29;
 	--secondary-lightest-color-rgb: 45, 47, 72;
 	// #endregion
 
@@ -128,36 +128,36 @@
 	--text-color-rgb: 255, 255, 255;
 	--text-light-color: #9eb4b5;
 
-  --post-page-background-color: #141519;
+	--post-page-background-color: #141519;
 
 	--card-background-color: #32343e;
 	--card-background-color-rgb: 50, 52, 62;
 
-  --button-primary-background-color: var(--primary-color);
-  --button-primary-text-color: var(--primary-color-contrast);
+	--button-primary-background-color: var(--primary-color);
+	--button-primary-text-color: var(--primary-color-contrast);
 
-  --button-primary-light-background-color: var(--page-background-color);
-  --button-primary-light-text-color: var(--primary-color);
+	--button-primary-light-background-color: var(--page-background-color);
+	--button-primary-light-text-color: var(--primary-color);
 
-  --button-secondary-background-color: var(--secondary-color);
-  --button-secondary-text-color: var(--secondary-color-contrast);
+	--button-secondary-background-color: var(--secondary-color);
+	--button-secondary-text-color: var(--secondary-color-contrast);
 
-  --button-secondary-light-background-color: var(--page-background-color);
-  --button-secondary-light-text-color: var(--secondary-color);
+	--button-secondary-light-background-color: var(--page-background-color);
+	--button-secondary-light-text-color: var(--secondary-color);
 
 	--inline-code-background-color: #5d6868;
 
-  --highlight-marker-url: #{"url('https://s2.svgbox.net/pen-brushes.svg?ic=brush-9&color=0D6970')"};
+	--highlight-marker-url: #{"url('https://s2.svgbox.net/pen-brushes.svg?ic=brush-9&color=0D6970')"};
 
-  --callout-background-color: var(--page-background-color);
-	--callout-info-background-color: #1D3874; //blue 900
-	--callout-info-accent-color: #6CA9F7; //blue 400
-	--callout-warning-background-color: #C87820;
-	--callout-warning-accent-color: #FFCA39;
-	--callout-error-background-color: #7C1D20;
-	--callout-error-accent-color: #FF8082;
+	--callout-background-color: var(--page-background-color);
+	--callout-info-background-color: #1d3874; //blue 900
+	--callout-info-accent-color: #6ca9f7; //blue 400
+	--callout-warning-background-color: #c87820;
+	--callout-warning-accent-color: #ffca39;
+	--callout-error-background-color: #7c1d20;
+	--callout-error-accent-color: #ff8082;
 	--callout-success-background-color: #004737;
-	--callout-success-accent-color: #00C48F;
+	--callout-success-accent-color: #00c48f;
 
 	--agora-color: #3d009e;
 	--freelancer-color: #1d6262;

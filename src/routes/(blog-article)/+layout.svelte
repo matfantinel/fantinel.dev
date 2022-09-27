@@ -1,5 +1,3 @@
-
-
 <script>
 	import '../../app.scss';
 	import Header from '$lib/components/layout/header.svelte';
@@ -11,22 +9,21 @@
 	import BlogPostCard from '$lib/components/base/blog-post-card.svelte';
 	import ThreeByThreeGrid from '$lib/components/layout/3x3-grid.svelte';
 	import Section from '$lib/components/layout/section.svelte';
-  import { keywords, siteBaseUrl, title } from '$lib/meta';
+	import { keywords, siteBaseUrl, title } from '$lib/meta';
 
 	export let data;
-	let {post} = data;
-
+	let { post } = data;
 </script>
 
 <svelte:head>
-	<meta name="keywords" content="{post.tags.concat(keywords).join(', ')}" />
+	<meta name="keywords" content={post.tags.concat(keywords).join(', ')} />
 
 	<meta name="description" content={post.excerpt} />
 	<meta property="og:description" content={post.excerpt} />
 	<meta name="twitter:description" content={post.excerpt} />
 
 	<title>{post.title} - {title}</title>
-  <meta property="og:title" content="{post.title} - {title}" />
+	<meta property="og:title" content="{post.title} - {title}" />
 	<meta name="twitter:title" content="{post.title} - {title}" />
 
 	<meta property="og:image" content="{siteBaseUrl}/images/posts/{post.slug}/cover.jpg" />

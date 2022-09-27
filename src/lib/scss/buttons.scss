@@ -18,7 +18,7 @@
 	&:hover {
 		box-shadow: var(--button-shadow-hover);
 		text-decoration: none;
-    filter: brightness(1.2);
+		filter: brightness(1.2);
 	}
 
 	&.primary {
@@ -37,13 +37,13 @@
 		background: var(--button-secondary-light-background-color);
 		color: var(--button-secondary-light-text-color);
 	}
-  &.transparent {
-    background: transparent;
-    box-shadow: none;
-  }
+	&.transparent {
+		background: transparent;
+		box-shadow: none;
+	}
 
-  svg {
-    max-height: 24px;
-    max-width: 24px;
-  }
+	svg {
+		max-height: 24px;
+		max-width: 24px;
+	}
 }

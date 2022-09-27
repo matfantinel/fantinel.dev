@@ -156,12 +156,12 @@
 				'birthday email'
 				'experience website';
 
-      .linkedin,
-      .github {
-        display: none;
-      }
+			.linkedin,
+			.github {
+				display: none;
+			}
 
-      a {
+			a {
 				border: none !important;
 			}
 		}
