@@ -11,10 +11,10 @@
 			<a class="logo" href="/" alt="Site logo">
 				<Logo {animated} />
 			</a>
-      <div class="links">
-        <a href="/blog">Blog</a>
-        <a href="/resume">Resume</a>
-      </div>
+			<div class="links">
+				<a href="/blog">Blog</a>
+				<a href="/resume">Resume</a>
+			</div>
 		</div>
 		<div class="right">
 			<Socials />
@@ -39,26 +39,26 @@
 			}
 		}
 
-    .left {
-      display: flex;
-      align-items: center;
-      gap: 30px;
+		.left {
+			display: flex;
+			align-items: center;
+			gap: 30px;
 
-      @include for-phone-only {
-        flex-direction: column;
-        justify-content: center;
-        gap: 15px;
-      }
-      a {
-        color: var(--text-color);
-      }
+			@include for-phone-only {
+				flex-direction: column;
+				justify-content: center;
+				gap: 15px;
+			}
+			a {
+				color: var(--text-color);
+			}
 
-      .links {
-        display: flex;
-        align-items: center;
-        gap: 30px;
-      }
-    }
+			.links {
+				display: flex;
+				align-items: center;
+				gap: 30px;
+			}
+		}
 		.logo {
 			height: 44px;
 		}

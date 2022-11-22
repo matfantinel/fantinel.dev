@@ -2,14 +2,13 @@
 slug: 2019-year-in-review
 title: Cool things I did and learned in 2019
 date: 2019-12-29
-excerpt: "A quick look back at 2019 and what I learned during this year."
+excerpt: 'A quick look back at 2019 and what I learned during this year.'
 tags: [Meta, Open Source]
 ---
 
 <script>
   import MarkerHighlight from "$lib/components/style/marker-highlight.svelte";
 </script>
-
 
 Another year went by - Year 6 of my software development journey! I wanted to write this blog post to sum up stuff that I've done or learned this year. Keep in mind this is being written off the top of my head - I did not keep a journal throughout the year, but hopefully that's something I'll do in 2020.
 
@@ -32,10 +31,10 @@ This last step might make the initial release take a little longer, but oh boy d
 
 Wait, I'm not saying you shouldn't use any framework. If it helps you do your work better, go ahead! But "Vanilla" JS has come such a long way and there are so many amazing APIs coming out that using it solely is a valid option again. But more than that, those APIs are built in a way that popular frameworks can use them and communicate with each other with little effort. I've covered a bit of this on [my Microfrontends post](/microfrontends/), but there are more APIs that I've discovered this year that are pretty awesome:
 
-* [Web Components/Shadow DOM/Custom Elements](/microfrontends/);
-* [Web Workers](/web-workers/);
-* [IntersectionObserver](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API);
-* Not exactly new, but [PWAs](/what-are-pwas-and-why-should-i-care-about-them/) are increasingly awesome;
+- [Web Components/Shadow DOM/Custom Elements](/microfrontends/);
+- [Web Workers](/web-workers/);
+- [IntersectionObserver](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API);
+- Not exactly new, but [PWAs](/what-are-pwas-and-why-should-i-care-about-them/) are increasingly awesome;
 
 ## Jekyll
 
@@ -51,7 +50,7 @@ I have released two open-source apps this year for elementaryOS ([Reminduck](htt
 
 These are not complex, commercial apps or anything like that. They're small utilities that I use on a daily basis and that were made open and released in hopes of helping anyone out there too. And I gotta say, having users like your software is great, but having them actively contribute to it is even better. As soon as they were released/made public, I started receiving pull requests, bug reports, feature requests, and translations from everywhere. **It's so amazing that people from all over the world took interest in my little idea and helped improve them any way they could.**
 
-But open source is not just other people contributing to your projects, it's also the opposite! I can improve other people's apps that I use, I can report bugs openly and help out, or just download the source code, change a few things just to fit my workflow better and run it. And not only apps, I can do that with the entire OS I run on my PC! Not to mention having access to other people's code allows you to learn from their work and saves you tons of time. Having a problem on your app and you know one that has solved that? Just check out what they did. Copy it, modify it, learn it, ship it. It's all good.  <MarkerHighlight>We wouldn't have to spend so much time reinventing wheels if more of our code was open.</MarkerHighlight>
+But open source is not just other people contributing to your projects, it's also the opposite! I can improve other people's apps that I use, I can report bugs openly and help out, or just download the source code, change a few things just to fit my workflow better and run it. And not only apps, I can do that with the entire OS I run on my PC! Not to mention having access to other people's code allows you to learn from their work and saves you tons of time. Having a problem on your app and you know one that has solved that? Just check out what they did. Copy it, modify it, learn it, ship it. It's all good. <MarkerHighlight>We wouldn't have to spend so much time reinventing wheels if more of our code was open.</MarkerHighlight>
 
 Ah, this website is also open source. I used others as inspiration and took some code snippets too! So can you, feel free to fork it and modify anyway you want.
 

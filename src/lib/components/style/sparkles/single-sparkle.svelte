@@ -9,7 +9,7 @@
 		width={size}
 		height={size}
 		viewBox="0 0 160 160"
-		fill="none"		
+		fill="none"
 		xmlns="http://www.w3.org/2000/svg"
 	>
 		<path
@@ -23,13 +23,13 @@
 	.wrapper {
 		position: absolute;
 		pointer-events: none;
-    display: flex;
+		display: flex;
 		z-index: 2;
 		animation: grow-and-shrink 900ms ease-in-out forwards;
 
-    svg {
-      animation: spin 900ms linear forwards;
-    }
+		svg {
+			animation: spin 900ms linear forwards;
+		}
 	}
 
 	@keyframes grow-and-shrink {

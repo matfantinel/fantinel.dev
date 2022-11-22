@@ -14,29 +14,40 @@
 			/>
 		</defs>
 		<g class="parallax">
-			<use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(var(--page-background-color-rgb),0.7)" />
-			<use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(var(--page-background-color-rgb),0.5)" />
-			<use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(var(--page-background-color-rgb),0.3)" />
+			<use
+				xlink:href="#gentle-wave"
+				x="48"
+				y="0"
+				fill="rgba(var(--page-background-color-rgb),0.7)"
+			/>
+			<use
+				xlink:href="#gentle-wave"
+				x="48"
+				y="3"
+				fill="rgba(var(--page-background-color-rgb),0.5)"
+			/>
+			<use
+				xlink:href="#gentle-wave"
+				x="48"
+				y="5"
+				fill="rgba(var(--page-background-color-rgb),0.3)"
+			/>
 			<use xlink:href="#gentle-wave" x="48" y="7" fill="var(--page-background-color)" />
 		</g>
 	</svg>
 </div>
 
 <style lang="scss">
-  @import '../../scss/breakpoints.scss';
+	@import '../../scss/breakpoints.scss';
 	.waves-container {
-		background: linear-gradient(
-			60deg,
-			var(--waves-color-start) 0%,
-			var(--waves-color-end) 100%
-		);
+		background: linear-gradient(60deg, var(--waves-color-start) 0%, var(--waves-color-end) 100%);
 		position: absolute;
 		width: 100%;
 		height: min(65vh, 500px);
 
-    @include for-phone-only {
-      height: min(75vh, 400px);
-    }
+		@include for-phone-only {
+			height: min(75vh, 400px);
+		}
 	}
 
 	.waves {

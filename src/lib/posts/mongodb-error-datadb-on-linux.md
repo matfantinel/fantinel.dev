@@ -2,7 +2,7 @@
 slug: mongodb-error-datadb-on-linux
 title: MongoDB on Linux - Data directory /data/db not found
 date: 2019-06-09
-excerpt: "Fix the error that occurs when trying to run freshly-installed MongoDB on a Linux machine."
+excerpt: 'Fix the error that occurs when trying to run freshly-installed MongoDB on a Linux machine.'
 tags: [Common Errors, Backend, Linux]
 ---
 
@@ -26,6 +26,7 @@ Thankfully, the solution is quite simple. First, we'll make sure that the folder
 ```shell
 sudo mkdir -p /data/db/
 ```
+
 </CodeBlock>
 
 And then, we'll set the ownership of the folder to the user that's going to start the mongod service. Since I only use if for local development in my computer, I set myself as the owner:
@@ -35,6 +36,7 @@ And then, we'll set the ownership of the folder to the user that's going to star
 ```shell
 sudo chown `id -u` /data/db
 ```
+
 </CodeBlock>
 
 Now, just running `mongod` should do the job.

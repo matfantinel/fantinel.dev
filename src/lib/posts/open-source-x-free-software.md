@@ -2,7 +2,7 @@
 slug: open-source-x-free-software
 title: "Open Source x Free Software: What's the difference?"
 date: 2019-03-23
-excerpt: "Learn the difference between these two terms that often get mixed up."
+excerpt: 'Learn the difference between these two terms that often get mixed up.'
 tags: [Free Software, Open Source, Concepts, FOSS, FLOSS, Libre Software, Freedom]
 ---
 
@@ -22,10 +22,10 @@ A common phrase you may read somewhere is "Free as in freedom, not as in beer". 
 
 The FSF lists four essential freedoms that every free software must follow:
 
-* The freedom to run the program as you wish, for any purpose (freedom 0);
-* The freedom to study how the program works, and change it so it does your computing as you wish (freedom 1). Access to the source code is a precondition for this;
-* The freedom to redistribute copies so you can help others (freedom 2);
-* The freedom to distribute copies of your modified versions to others (freedom 3). By doing this you can give the whole community a chance to benefit from your changes. Access to the source code is a precondition for this.
+- The freedom to run the program as you wish, for any purpose (freedom 0);
+- The freedom to study how the program works, and change it so it does your computing as you wish (freedom 1). Access to the source code is a precondition for this;
+- The freedom to redistribute copies so you can help others (freedom 2);
+- The freedom to distribute copies of your modified versions to others (freedom 3). By doing this you can give the whole community a chance to benefit from your changes. Access to the source code is a precondition for this.
 
 You can read more about Free Software at gnu.org, [here](https://www.gnu.org/philosophy/free-sw.en.html).
 
@@ -33,11 +33,11 @@ You can read more about Free Software at gnu.org, [here](https://www.gnu.org/phi
 
 The [Open Source Initiative](https://opensource.org/) defines 10 criteria for software to be considered open source. You can read them fully [here](https://opensource.org/docs/definition.php). I'll summarize them below:
 
-* Any person must be able to distribute or sell the software without restrictions;
-* The source code must be distributed along with the software, or at least link to it clearly;
-* A copy of the license must be distributed with the software;
-* People must be able to modify your software and redistribute it with the same license;
-* Modifications must only be redistributed with a different name or version than the original code;
+- Any person must be able to distribute or sell the software without restrictions;
+- The source code must be distributed along with the software, or at least link to it clearly;
+- A copy of the license must be distributed with the software;
+- People must be able to modify your software and redistribute it with the same license;
+- Modifications must only be redistributed with a different name or version than the original code;
 
 ## The Difference
 

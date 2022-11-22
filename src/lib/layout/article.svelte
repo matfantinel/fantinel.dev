@@ -4,9 +4,8 @@
 	import Image from '$lib/components/base/image.svelte';
 	import { siteBaseUrl } from '$lib/meta';
 
-	export let title;
-	export let image;
-	export let excerpt;	
+	export let data;
+	let { title, image, excerpt } = data;
 </script>
 
 <svelte:head>

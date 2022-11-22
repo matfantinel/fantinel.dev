@@ -2,7 +2,7 @@
 slug: net-core-project-restored-different-version
 title: .NET Core - Project version mismatch
 date: 2019-06-03
-excerpt: "Solving this cryptic error might take you many hours. Hopefully this will help you out."
+excerpt: 'Solving this cryptic error might take you many hours. Hopefully this will help you out.'
 tags: [Common Errors, .NET, Backend, C#]
 ---
 
@@ -11,7 +11,6 @@ tags: [Common Errors, .NET, Backend, C#]
   import Callout from "$lib/components/base/callout.svelte";
   import SparklingHighlight from "$lib/components/style/sparkling-highlight.svelte";
 </script>
-
 
 This problem usually happens when you're working on a solution with multiple projects that were created using different versions of the .NET SDK.
 
@@ -35,6 +34,7 @@ You may encounter this error when running `dotnet build` or maybe only on `dotne
   </PropertyGroup>
 </Project>
 ```
+
 </CodeBlock>
 
 What these properties do is make your projects always restore and compile using the latest version available.

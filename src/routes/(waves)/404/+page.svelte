@@ -16,13 +16,13 @@
 <style lang="scss">
 	.error-page {
 		background: var(--page-background-color);
-    position: relative;
+		position: relative;
 	}
 	.container {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		justify-content: center;		
+		justify-content: center;
 		min-height: 60vh;
 		text-align: center;
 

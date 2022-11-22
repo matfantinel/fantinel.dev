@@ -3,7 +3,7 @@
 </script>
 
 <div class="tag {color}">
-  <slot />
+	<slot />
 </div>
 
 <style lang="scss">

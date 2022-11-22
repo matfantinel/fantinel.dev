@@ -33,7 +33,7 @@
 		margin: 0;
 	}
 
-  .tags-container {
+	.tags-container {
 		display: grid;
 		grid-template-columns: 1fr 1fr 1fr;
 		margin: 2px 0 5px;

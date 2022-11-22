@@ -2,7 +2,7 @@
 slug: css-scroll-snapping
 title: CSS Scroll Snapping - Improve Scrolling without JS
 date: 2020-08-03
-excerpt: "Learn how to snap scrolling positions with CSS only."
+excerpt: 'Learn how to snap scrolling positions with CSS only.'
 tags: [Front-End, CSS, Guide]
 ---
 
@@ -11,7 +11,6 @@ tags: [Front-End, CSS, Guide]
   import Image from "$lib/components/base/image.svelte";
   import Callout from "$lib/components/base/callout.svelte";
 </script>
-
 
 CSS is evolving constantly and the past few years have brought us amazing stuff. It is getting easier to make smooth and complete experiences without having to use JavaScript at all. Case in point: Scroll Snapping.
 
@@ -33,17 +32,18 @@ There are two main CSS properties that make the magic happen, one for the parent
 
 ```css
 .parent {
-  scroll-snap-type: y mandatory;
+	scroll-snap-type: y mandatory;
 }
 .child {
-  scroll-snap-align: start;
+	scroll-snap-align: start;
 }
 ```
+
 </CodeBlock>
 
 ### scroll-snap-type
 
-This property tells the browser that the parent element uses scroll snapping. We are given some options on how snapping must work. `y` indicates that the scroll happens vertically, while `x` means horizontally. We can also pass the `mandatory` and `proximity` options. 
+This property tells the browser that the parent element uses scroll snapping. We are given some options on how snapping must work. `y` indicates that the scroll happens vertically, while `x` means horizontally. We can also pass the `mandatory` and `proximity` options.
 
 We use `mandatory` to tell that the browser _must_ snap to a snap point when the user stops scrolling. This means that if the next snap point becomes visible on the screen and scrolling stops, the browser will automatically snap to the next one. In the other end, with `proximity`, things are less strict. The browser will only snap to the next snap point if scrolling gets past a certain threshold. Both values are useful, their use will depend on the situation you're applying it to.
 
@@ -56,7 +56,6 @@ We use `mandatory` to tell that the browser _must_ snap to a snap point when the
 ### scroll-snap-align
 
 This is a property you add to the children that specifies where the snap points will be in the element. Which means that, whenever the browser automatically snaps the scroll to the element, it will either go to the left/top edge (`start`), center (`center`), or right/bottom edge (`end`) of the element. This property pretty much only makes a difference if the children are bigger than the parent's display size.
-
 
 ### scroll-padding and scroll-margin
 

@@ -5,16 +5,19 @@
 </script>
 
 <svelte:head>
-  <title>Resume - {title}</title>
+	<title>Resume - {title}</title>
 	<meta property="og:title" content="Resume - {title}" />
 	<meta name="twitter:title" content="Resume - {title}" />
 </svelte:head>
 
 <div class="resume-wrapper">
-	<a class="download-link button secondary-light" href="https://github.com/matfantinel/matfantinel.github.io/raw/main/static/Matheus%20Fantinel%20-%20Resume.pdf">
-    <DownloadIcon />
-    Download as PDF
-  </a>
+	<a
+		class="download-link button secondary-light"
+		href="https://github.com/matfantinel/matfantinel.github.io/raw/main/static/Matheus%20Fantinel%20-%20Resume.pdf"
+	>
+		<DownloadIcon />
+		Download as PDF
+	</a>
 
 	<Resume />
 </div>
@@ -30,24 +33,24 @@
 			top: -5px;
 			left: 50%;
 			transform: translateX(-50%);
-      display: flex;
-      align-items: center;
+			display: flex;
+			align-items: center;
 			justify-content: center;
-      gap: 5px;
+			gap: 5px;
 			margin: 0 auto;
 			width: fit-content;
 			z-index: 1;
 
-      :global(svg) {
-        width: 20px;
-        height: 20px;
-        color: inherit;
-      }
-    }
+			:global(svg) {
+				width: 20px;
+				height: 20px;
+				color: inherit;
+			}
+		}
 	}
 	@media print {
 		.resume-wrapper {
-			padding: 0;			
+			padding: 0;
 
 			.download-link {
 				display: none !important;

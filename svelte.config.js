@@ -13,25 +13,29 @@ const config = {
 	// for more information about preprocessors
 	preprocess: [
 		preprocess({
-      preserve: ['module']
-    }),
+			preserve: ['module']
+		}),
 		mdsvex({
 			layout: {
-				article: './src/routes/__layout-article@default.svelte'
+				article: './src/lib/layout/article.svelte'
 			},
 			extensions: extensions,
-      rehypePlugins: [
+			rehypePlugins: [
 				rehypeExternalLinks, // Adds 'target' and 'rel' to external links
 				rehypeSlug, // Adds 'id' attributes to Headings (h1,h2,etc)
-				[rehypeAutolinkHeadings, { // Adds hyperlinks to the headings, requires rehypeSlug
-					behavior: 'append',
-					content: {
-						type: 'element',
-						tagName: 'span',
-						properties: {className:['heading-link']},
-						children: [{type: 'text', value: '#'}]
+				[
+					rehypeAutolinkHeadings,
+					{
+						// Adds hyperlinks to the headings, requires rehypeSlug
+						behavior: 'append',
+						content: {
+							type: 'element',
+							tagName: 'span',
+							properties: { className: ['heading-link'] },
+							children: [{ type: 'text', value: '#' }]
+						}
 					}
-				}]
+				]
 			]
 		})
 	],
@@ -39,9 +43,6 @@ const config = {
 
 	kit: {
 		adapter: adapter(),
-		prerender: {
-			default: true
-		},
 		trailingSlash: 'always'
 	}
 };

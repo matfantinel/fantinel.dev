@@ -7,7 +7,6 @@ image:
   filename: cover
 ---
 
-
 <script>
   import MarkerHighlight from "$lib/components/style/marker-highlight.svelte";
   import SparklingHighlight from "$lib/components/style/sparkling-highlight.svelte";
@@ -18,7 +17,6 @@ image:
 <Callout>
   TL;DR: It's incredible and worth all the praise it's got. Not perfect, but really close to it.
 </Callout>
-
 
 Elden Ring was probably the most hyped up game of the past couple of years, and its release in February (2022) was met with a lot of media coverage and players raving about how incredible it was.
 
@@ -82,6 +80,6 @@ The sidequests, really. They're kinda bullshit. Not their content per se, but th
 
 ## Verdict
 
-I think the best thing I can say about this game is that after I've beat it (which took me 92 hours), I immediately started the game over again, to play with a different character. Even after so many hours, I was still wanting more. Though not my favorite game ever, it was still one of the best. 
+I think the best thing I can say about this game is that after I've beat it (which took me 92 hours), I immediately started the game over again, to play with a different character. Even after so many hours, I was still wanting more. Though not my favorite game ever, it was still one of the best.
 
 I hereby give this game a sparkling <SparklingHighlight>10/10</SparklingHighlight> score!

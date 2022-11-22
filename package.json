@@ -1,39 +1,39 @@
 {
-  "name": "matt-fantinel-website",
-  "version": "0.0.1",
-  "scripts": {
-    "dev": "vite dev --host",
-    "build": "rm -rf build && vite build && touch build/.nojekyll && mv build/404/index.html build/404.html",
-    "deploy": "npm run build && npx gh-pages -d build -t true",
-    "preview": "vite preview",
-    "lint": "prettier --ignore-path .gitignore  --check --plugin-search-dir=. . && eslint --ignore-path .gitignore .",
-    "format": "prettier --ignore-path .gitignore --write --plugin-search-dir=. .",
-    "postbuild": "svelte-sitemap --domain https://fantinel.dev --trailing-slashes true"
-  },
-  "devDependencies": {
-    "@sveltejs/adapter-static": "^1.0.0-next.29",
-    "@sveltejs/kit": "next",
-    "eslint": "^7.22.0",
-    "eslint-config-prettier": "^8.1.0",
-    "eslint-plugin-svelte3": "^3.2.0",
-    "gh-pages": "^3.2.3",
-    "install": "^0.13.0",
-    "mdsvex": "^0.10.5",
-    "npm": "^8.11.0",
-    "prettier": "~2.2.1",
-    "prettier-plugin-svelte": "^2.2.0",
-    "reading-time": "^1.4.0",
-    "rehype-autolink-headings": "^6.1.0",
-    "rehype-external-links": "^1.0.0",
-    "rehype-slug": "^5.0.0",
-    "sass": "^1.38.0",
-    "svelte": "^3.49.0",
-    "svelte-preprocess": "^4.7.4",
-    "svelte-sitemap": "^2.0.1",
-    "vite": "^3.0.0"
-  },
-  "type": "module",
-  "dependencies": {
-    "dateformat": "^4.5.1"
-  }
+	"name": "matt-fantinel-website",
+	"version": "0.0.1",
+	"scripts": {
+		"dev": "vite dev --host",
+		"build": "rm -rf build && vite build && touch build/.nojekyll && mv build/404/index.html build/404.html",
+		"deploy": "npm run build && npx gh-pages -d build -t true",
+		"preview": "vite preview",
+		"lint": "prettier --ignore-path .gitignore  --check --plugin-search-dir=. . && eslint --ignore-path .gitignore .",
+		"format": "prettier --ignore-path .gitignore --write --plugin-search-dir=. .",
+		"postbuild": "svelte-sitemap --domain https://fantinel.dev --trailing-slashes true"
+	},
+	"devDependencies": {
+		"@sveltejs/adapter-static": "next",
+		"@sveltejs/kit": "next",
+		"eslint": "^7.22.0",
+		"eslint-config-prettier": "^8.1.0",
+		"eslint-plugin-svelte3": "^3.2.0",
+		"gh-pages": "^3.2.3",
+		"install": "^0.13.0",
+		"mdsvex": "^0.10.5",
+		"npm": "^8.11.0",
+		"prettier": "~2.2.1",
+		"prettier-plugin-svelte": "^2.2.0",
+		"reading-time": "^1.4.0",
+		"rehype-autolink-headings": "^6.1.0",
+		"rehype-external-links": "^1.0.0",
+		"rehype-slug": "^5.0.0",
+		"sass": "^1.38.0",
+		"svelte": "^3.49.0",
+		"svelte-preprocess": "^4.7.4",
+		"svelte-sitemap": "^2.0.1",
+		"vite": "^3.0.0"
+	},
+	"type": "module",
+	"dependencies": {
+		"dateformat": "^4.5.1"
+	}
 }

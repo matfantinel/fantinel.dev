@@ -2,7 +2,7 @@
 slug: what-are-pwas-and-why-should-i-care-about-them
 title: What are PWAs and why should I care about them?
 date: 2019-03-12
-excerpt: "We see a lot of talk about PWAs, but the concept is not that easy to understand."
+excerpt: 'We see a lot of talk about PWAs, but the concept is not that easy to understand.'
 tags: [Front-End, PWA, JavaScript]
 ---
 
@@ -80,17 +80,16 @@ So far I've covered how your app would benefit from users being able to install 
 
 Even when opened in a browser, a PWA can still offer:
 
-* Better speed after first load, due to the more aggressive cacheing of the static content;
-* Less jankiness and more responsiveness overall, since the content will be loaded from the user's device instead of downloaded dynamically;
-* Won't be affected by variations in the user's connection.
+- Better speed after first load, due to the more aggressive cacheing of the static content;
+- Less jankiness and more responsiveness overall, since the content will be loaded from the user's device instead of downloaded dynamically;
+- Won't be affected by variations in the user's connection.
 
 ## How can I convince my boss to let me work on this?
 
-
 Well, every boss is different. But [Google provides some neat statistics that may help you in your endeavor](http://https//developers.google.com/web/progressive-web-apps/):
 
-* Push notifications increase user engagement by up to 4 times;
-* Some use cases report that the increase in conversions after transitioning to a PWA was of 104%!
+- Push notifications increase user engagement by up to 4 times;
+- Some use cases report that the increase in conversions after transitioning to a PWA was of 104%!
 
 ## As with all things, don't overdo it
 

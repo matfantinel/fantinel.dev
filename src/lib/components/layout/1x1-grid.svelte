@@ -1,14 +1,14 @@
 <div class="grid-container">
-  <slot />
+	<slot />
 </div>
 
 <style lang="scss">
-  @import '../../scss/breakpoints.scss';
+	@import '../../scss/breakpoints.scss';
 
-  .grid-container {
-    width: 100%;
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-gap: 20px;
-  }
+	.grid-container {
+		width: 100%;
+		display: grid;
+		grid-template-columns: 1fr;
+		grid-gap: 20px;
+	}
 </style>

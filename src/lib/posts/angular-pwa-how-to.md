@@ -2,7 +2,7 @@
 slug: angular-pwa-how-to
 title: How to transform your Angular 6+ app into a PWA
 date: 2019-03-10
-excerpt: "Make your Angular app work like a native app on phones and desktop."
+excerpt: 'Make your Angular app work like a native app on phones and desktop.'
 tags: [Angular, PWA, Guide, Front-End, JavaScript]
 ---
 
@@ -65,6 +65,7 @@ And finally, start the web server:
 ```shell
 http-server -p 8080 -c-1 dist/<project-name>
 ```
+
 </CodeBlock>
 
 Your app should be up and running on `http://localhost:8080/` (or whichever port you chose). How do you know it's a PWA? There are a few ways:
@@ -128,6 +129,7 @@ This was a [reported bug](https://github.com/angular/angular-cli/issues/11914) o
 npm uninstall @angular/cli --save
 npm install @angular/cli@latest --save
 ```
+
 </CodeBlock>
 
 It updated itself to version 7.1.4 and worked flawlessly.

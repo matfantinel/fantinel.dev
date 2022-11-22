@@ -2,7 +2,7 @@
 slug: dotnet-core-405-error
 title: .NET Core API - Method not allowed on PUT and DELETE requests
 date: 2019-03-14
-excerpt: "See how to solve this annoying error after deploying your .NET Core API."
+excerpt: 'See how to solve this annoying error after deploying your .NET Core API.'
 tags: [Common Errors, .NET, Backend, C#]
 ---
 
@@ -44,6 +44,7 @@ So, to solve the issue, I ended up disabling WebDAV in the whole application, by
   </modules>
 </system.webServer>
 ```
+
 </CodeBlock>
 
 After restarting the API in IIS, <SparklingHighlight>TA-DA!</SparklingHighlight> Everything (or at least your PUT and DELETE requests) should be working normally.

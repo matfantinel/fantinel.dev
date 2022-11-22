@@ -20,7 +20,7 @@
 		cursor: pointer;
 		&:hover {
 			box-shadow: var(--card-shadow-hover);
-      transform: scale(1.01);
+			transform: scale(1.01);
 		}
 	}
 
@@ -29,7 +29,7 @@
 		background-position: center;
 		position: relative;
 		flex: 1 0 max(50%, 330px);
-    height: min(50%, 350px);
+		height: min(50%, 350px);
 		min-height: 240px;
 		max-height: 350px;
 

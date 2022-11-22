@@ -9,8 +9,8 @@ export const entries = [
 	// 	title: 'Freelancer',
 	// 	jobTitle: 'Front-End Web Developer',
 	// 	timeframe: '2022 → Now',
-  //   current: true,
-  //   location: 'Remote',
+	//   current: true,
+	//   location: 'Remote',
 	// 	description:
 	// 		"As an independent contractor, I've been able to build new innovative projects from scratch putting my development, planning, design and teamwork skills to the test.",
 	// 	tags: [
@@ -28,21 +28,21 @@ export const entries = [
 	// 		}
 	// 	]
 	// },
-  {
+	{
 		id: 'agora',
 		title: 'Agora',
 		jobTitle: 'Lead Front-End Developer',
 		timeframe: '2021 → Now',
-    current: true,
-    location: 'USA, Remote',
+		current: true,
+		location: 'USA, Remote',
 		description:
-			"Building interfaces to make homeschool curriculum planning painless and easy, with a focus on accessibility.",
+			'Building interfaces to make homeschool curriculum planning painless and easy, with a focus on accessibility.',
 		tags: [
 			{
 				color: 'primary',
 				text: 'React'
 			},
-      {
+			{
 				color: 'primary',
 				text: 'NextJS'
 			}
@@ -53,7 +53,7 @@ export const entries = [
 		title: 'Logitix',
 		jobTitle: 'Software Engineer',
 		timeframe: '2019 → 2021',
-    location: 'USA, Remote',
+		location: 'USA, Remote',
 		description:
 			"Working on one of the biggest ticket brokerage management systems in the world, I've built new features, improved existing ones, and made huge boosts to performance.",
 		tags: [
@@ -80,7 +80,7 @@ export const entries = [
 		title: 'SIGE Cloud',
 		jobTitle: 'Software Developer',
 		timeframe: '2017 → 2019',
-    location: 'Brazil',
+		location: 'Brazil',
 		description:
 			'Built new mobile apps from scratch with Ionic, a simplified desktop ERP with Electron, and modernized the existing Web version by applying the Microfrontends approach.',
 		tags: [
@@ -111,7 +111,7 @@ export const entries = [
 		title: 'Promob',
 		jobTitle: 'Software Developer',
 		timeframe: '2014 → 2017',
-    location: 'Brazil',
+		location: 'Brazil',
 		description:
 			'Developed and maintained an internal web app, adding and adapting features to the business needs. Built several APIs used by other dev teams, and integrated them with 3rd-party services.',
 		tags: [

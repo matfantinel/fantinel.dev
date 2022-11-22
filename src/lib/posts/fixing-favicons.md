@@ -2,7 +2,7 @@
 slug: fixing-favicons
 title: How to fix your Favicons
 date: 2021-01-06
-excerpt: "Favicons suck. Luckily, there are ways to make them suck less."
+excerpt: 'Favicons suck. Luckily, there are ways to make them suck less.'
 tags: [Front-End, Guide, Favicon]
 ---
 
@@ -36,6 +36,7 @@ At the bottom, you can even set up ways of avoiding caching issues, compression,
 So, there are 5 types of favicons that we need to add, if we want to support every current browser:
 
 ### 1. Desktop browsers
+
 <ul>
   <li>`favicon.ico`, for IE and any other legacy browsers. Optional if you don't want to support it;</li>
   <li>`favicon-16x16.png`, the classic one that displays on the tabs;</li>
@@ -43,22 +44,26 @@ So, there are 5 types of favicons that we need to add, if we want to support eve
 </ul>
 
 ### 2. Android browsers
+
 <ul>
   <li>`android-chrome-192x192.png`, shown on the tab card and when added to home screen;</li>
   <li>`android-chrome-512x512.png`, shown on the splash screen for when the website is installed to the phone. Optional if it's not a PWA;</li>
 </ul>
 
 ### 3. iOS Safari, and some Android browsers like Samsung Internet
+
 <ul>
   <li>`apple-touch-icon.png`, a 180x180 file displayed when the website is added to home screen;</li>
 </ul>
 
 ### 4. Windows 8/10 start menu (optional)
+
 <ul>
   <li>`mstile-150x150.png`, only used when your website is added to the start menu as a tile on Windows 8/10, and when not declared, defaults to `apple-touch-icon.png` instead.</li>
 </ul>
 
 ### 5. macOS Safari Pinned Tabs (optional)
+
 <ul>
   <li>`safari-pinned-tab.svg` is used when users pin a tab on Safari for macOS. Basically, you declare a monochrome SVG and a theme color. Safari does the rest.</li>
 </ul>
@@ -76,14 +81,15 @@ With those files, you should be good to go on every single browser, by adding th
 
 ```html
 <head>
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?">
-  <link rel="manifest" href="/site.webmanifest">
-  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#000000">
-  <link rel="shortcut icon" href="/favicon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?" />
+	<link rel="manifest" href="/site.webmanifest" />
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#000000" />
+	<link rel="shortcut icon" href="/favicon.ico" />
 </head>
 ```
+
 </CodeBlock>
 
 ## Single SVG Favicon
@@ -96,9 +102,10 @@ Something that's starting to become a thing is having a single SVG favicon. Theo
 
 ```html
 <head>
-  <link rel="icon" href="favicon.svg">
+	<link rel="icon" href="favicon.svg" />
 </head>
 ```
+
 </CodeBlock>
 
 ## Wrapping Up

@@ -2,7 +2,7 @@
 slug: plausible-ethical-analytics
 title: Ethical Analytics are Plausible, at Last
 date: 2022-02-01
-excerpt: "Web Analytics is such a morally ambiguous area that I’ve avoided it for years, but now I can finally do it with peace of mind."
+excerpt: 'Web Analytics is such a morally ambiguous area that I’ve avoided it for years, but now I can finally do it with peace of mind.'
 tags: [Analytics, Privacy, SEO]
 ---
 
@@ -30,12 +30,12 @@ It's important to point out, though, that none of those are free. Since they don
 
 Plausible is a small company from Europe that makes Plausible Analytics, a privacy-friendly alternative to Google Analytics. The reasons I've picked Plausible instead of others are that:
 
-* It's open source;
-* It can be self-hosted in case you already have your own server;
-* It's intuitive: a quick glance through the dashboard and you're already able to understand everything that's in there. [Check out mine](https://plausible.io/fantinel.dev);
-* It's sustainable: their business model allows them to grow organically and [the project is already profitable](https://plausible.io/blog/bootstrapping-saas) without any kind of external funding (and [they have no plans of accepting it](https://twitter.com/PlausibleHQ/status/1282678251148763137));
-* They offer [ways of bypassing adblockers](https://plausible.io/docs/proxy/introduction);
-* It's simply a great product.
+- It's open source;
+- It can be self-hosted in case you already have your own server;
+- It's intuitive: a quick glance through the dashboard and you're already able to understand everything that's in there. [Check out mine](https://plausible.io/fantinel.dev);
+- It's sustainable: their business model allows them to grow organically and [the project is already profitable](https://plausible.io/blog/bootstrapping-saas) without any kind of external funding (and [they have no plans of accepting it](https://twitter.com/PlausibleHQ/status/1282678251148763137));
+- They offer [ways of bypassing adblockers](https://plausible.io/docs/proxy/introduction);
+- It's simply a great product.
 
 <Image
   path="posts/{slug}"
@@ -55,17 +55,18 @@ In my case, I wanted to know the percentage of users that use light/dark mode in
 <CodeBlock lang="javascript">
 
 ```javascript
-  // Use Plausible to track the % of people that have a dark/light mode preference
-  if (plausible) {
-    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      plausible('Dark Mode Enabled');
-    } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
-      plausible('Light Mode Enabled');
-    } else {
-      plausible('No Dark/Light Preference');
-    }
-  }
+// Use Plausible to track the % of people that have a dark/light mode preference
+if (plausible) {
+	if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+		plausible('Dark Mode Enabled');
+	} else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+		plausible('Light Mode Enabled');
+	} else {
+		plausible('No Dark/Light Preference');
+	}
+}
 ```
+
 </CodeBlock>
 
 _**Note:** tracking Custom Events without user interaction like this breaks the "Bounce Rate" metric. By firing an event, Plausible interprets that the user has interacted with your site, and therefore the Bounce Rate goes to zero. If the Bounce Rate metric is important to you, this might not be a good idea._

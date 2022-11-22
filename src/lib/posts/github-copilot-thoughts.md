@@ -35,12 +35,11 @@ I think what surprises me the most on a daily basis is how it interacts with cod
 // Check if a task with same title already exists
 // Throw error if yes
 const checkDuplicate = (task: Task) => {
-  const duplicate = tasks.find((t) => t.title === task.title);
-  if (duplicate) {
-    throw new Error(`Task with title ${task.title} already exists`);
-  }
+	const duplicate = tasks.find((t) => t.title === task.title);
+	if (duplicate) {
+		throw new Error(`Task with title ${task.title} already exists`);
+	}
 };
-
 ```
 
 </CodeBlock>
@@ -59,7 +58,7 @@ I also found it kinda useless when writing HTML or CSS. It wouldn't suggest more
 
 ## Licensing issues
 
-The main controversy around GitHub Copilot is related to the licensing of the code used to train it. You see, Copilot is trained on open source code uploaded to GitHub, and a lot of that code is under the GPL license. This means that if any code under that license is used on your project, you're obligated to release your code under the GPL license as well. This is kind of a big deal, but GitHub's CEO has claimed that [training machine learning systems on public data falls under "fair use"](https://twitter.com/natfriedman/status/1409914420579344385). 
+The main controversy around GitHub Copilot is related to the licensing of the code used to train it. You see, Copilot is trained on open source code uploaded to GitHub, and a lot of that code is under the GPL license. This means that if any code under that license is used on your project, you're obligated to release your code under the GPL license as well. This is kind of a big deal, but GitHub's CEO has claimed that [training machine learning systems on public data falls under "fair use"](https://twitter.com/natfriedman/status/1409914420579344385).
 
 I'm not knowledgeable enough on the subject to have a well-formed opinion on this, but I'm inclined to disagree with him. If a developer using Copilot is still responsible for the generated code, the GPL license should still apply. Plus, I'm really fond of [Free Software](/open-source-x-free-software) and the more shared knowledge we have, the merrier.
 

@@ -1,8 +1,8 @@
 ---
 slug: web-images-modern-formats
-title: "Smarter, Lighter, Better Images: A Guide to Optimization"
+title: 'Smarter, Lighter, Better Images: A Guide to Optimization'
 date: 2021-01-30
-excerpt: "Learn how to reduce page loading times and bounce rate."
+excerpt: 'Learn how to reduce page loading times and bounce rate.'
 tags: [Front-End, Guide, HTML, CSS, Optimization]
 ---
 
@@ -32,29 +32,18 @@ AVIF -> WebP -> JPG (or PNG)
 
 ```html
 <picture>
-  <!-- If this type(avif) is supported, use this src -->
-  <source
-    type="image/avif" 
-    srcset="my-image.avif" 
-  />
-  <!-- Else, if this type(webp) is supported, use this src instead -->
-  <source
-    type="image/webp"
-    srcset="my-image.webp"
-  />
-  <!-- Else, fall back to jpg -->
-  <img 
-    src="my-image.jpg" 
-    alt="A test image" 
-    loading="lazy" 
-    decoding="async"
-  />
+	<!-- If this type(avif) is supported, use this src -->
+	<source type="image/avif" srcset="my-image.avif" />
+	<!-- Else, if this type(webp) is supported, use this src instead -->
+	<source type="image/webp" srcset="my-image.webp" />
+	<!-- Else, fall back to jpg -->
+	<img src="my-image.jpg" alt="A test image" loading="lazy" decoding="async" />
 </picture>
 ```
+
 </CodeBlock>
 
 If you look at the resulting HTML in your website, you can see that the `<img>` element has a `src` defined, but when you hover over it, it shows what is the actual file that's being loaded. If you're on a supported browser, it will have loaded the AVIF file. If you're on Safari, it will have loaded the WebP one. Otherwise, if you're using IE or something (I'm sorry), the original JPG or PNG file will be loaded.
-
 
 <Image
   path="posts/{slug}"
@@ -71,24 +60,16 @@ You can optimize even further than that. See, in my example, I am loading an ima
 
 ```html
 <picture>
-  <!-- Here, we declare the widths our different files have: 380px, 640px and 960px -->
-  <source
-    type="image/avif" 
-    srcset="
-      my-image-380w.avif 380w,
-      my-image-640w.avif 640w,
-      my-image-960w.avif 960w
-    "
-    sizes="(max-width: 979px) 100vw, 640px"
-  />
-  <img 
-    src="my-image.jpg" 
-    alt="A test image" 
-    loading="lazy" 
-    decoding="async"
-  />
+	<!-- Here, we declare the widths our different files have: 380px, 640px and 960px -->
+	<source
+		type="image/avif"
+		srcset="my-image-380w.avif 380w, my-image-640w.avif 640w, my-image-960w.avif 960w"
+		sizes="(max-width: 979px) 100vw, 640px"
+	/>
+	<img src="my-image.jpg" alt="A test image" loading="lazy" decoding="async" />
 </picture>
 ```
+
 </CodeBlock>
 
 The `srcset` property is smart. As the name implies, it is a set of sources, not just a single one. When we declare multiple file paths and add a width unit besides it, the browser looks at this data and tries to display the smallest possible image.
@@ -110,10 +91,9 @@ It is easier to understand if we visualize it like this:
   alt="Screenshots picturing how the sizes property affects the image loading on both mobile and desktop"
 />
 
-Of course, different websites have different needs and situations. Make sure to adapt the code to your specific need. 
+Of course, different websites have different needs and situations. Make sure to adapt the code to your specific need.
 
 It's also worth noting that most phones use a HiDPI mode. This means that <MarkerHighlight>even though the reported width for the phone above is 375px, the browser will likely use a higher resolution to load the images</MarkerHighlight> (usually 2x), in order to serve a higher quality image.
-
 
 ## Lazy Loading and Async Decoding
 
@@ -137,7 +117,7 @@ You might have noticed the `loading="lazy"` and `decoding="async"` attributes in
   alt="Screenshot of the image requests made after scrolling a bit"
 />
 
-## Results In Practice 
+## Results In Practice
 
 Since I like using my own website and blog as a testbed for new stuff that I learn, I have applied these optimizations to it. The results were incredible!
 
@@ -159,13 +139,13 @@ Now, out of 249kB, just 24% of it are images. Fonts now make up 27% of page size
 
 ## The Hard Part
 
-The hardest part of this process is converting the images to all necessary formats and sizes. It is a lot of effort to do manually even for a single image, and even worse if you're trying to optimize existing images like I was. 
+The hardest part of this process is converting the images to all necessary formats and sizes. It is a lot of effort to do manually even for a single image, and even worse if you're trying to optimize existing images like I was.
 
 ### Generating the Images
 
 For my needs, I have developed a NodeJS script that uses the [Sharp](https://github.com/lovell/sharp) library to do the magic for me. It accepts as parameters a source and a target folder, input file types (what files it will look for in the source folder), output file types (what types it will convert to), as well as the desired widths.
 
-The script is at the time of writing this currently usable only via command line. I have plans to turn this into a part of the build process of my website, with a [GitHub Action](https://github.com/features/actions), so that I don't have to run it manually. 
+The script is at the time of writing this currently usable only via command line. I have plans to turn this into a part of the build process of my website, with a [GitHub Action](https://github.com/features/actions), so that I don't have to run it manually.
 
 So, to check out how to use the script, please [check out its GitHub page](https://github.com/matfantinel/image-transmutation) for up-to-date instructions.
 
@@ -174,38 +154,34 @@ So, to check out how to use the script, please [check out its GitHub page](https
 To make this setup work, I had to do some changes on how images were used on my website.
 
 Pre-existing conditions:
-* All the images on my website were initially in a folder called "images", with various subfolders;
-* The images I wanted to convert were all in either PNG or JPG formats;
+
+- All the images on my website were initially in a folder called "images", with various subfolders;
+- The images I wanted to convert were all in either PNG or JPG formats;
 
 Modifications I did:
-* I have created a folder called "optimized-images", where all the converted images are saved automatically by my script;
-* I have created a component to centralize all image-loading logic. With Jekyll, I just had to create an HTML file in the `_includes` folder, but how you do this might vary depending on what technology you use;
-* This component receives as parameters: the relative file path, the filename (without file extension), and the alt text;
+
+- I have created a folder called "optimized-images", where all the converted images are saved automatically by my script;
+- I have created a component to centralize all image-loading logic. With Jekyll, I just had to create an HTML file in the `_includes` folder, but how you do this might vary depending on what technology you use;
+- This component receives as parameters: the relative file path, the filename (without file extension), and the alt text;
 
 <CodeBlock lang="html">
 
 ```html
-{% assign alt = include.alt %}
-{% assign path = include.path %}
-{% assign filename = include.filename %}
+{% assign alt = include.alt %} {% assign path = include.path %} {% assign filename =
+include.filename %}
 <!-- Here I build the full path to the image, minus the extension -->
 <!-- In case the process of generating the images is automated, you can check here if it's -->
 <!-- running locally or not, and swap between /images and /optimized-images accordingly -->
 {% assign imageSrc = '/optimized-images/' | append: path | append: '/' | append: filename %}
 
 <picture>
-<!-- And here I use that path and add the extensions inside the srcsets only -->
-  <source
-    srcset="{{ imageSrc }}.avif"
-    type="image/avif"
-  />
-  <source
-    srcset="{{ imageSrc }}.webp"
-    type="image/webp"
-  />
-  <img src="{{ imageSrc }}.png" alt="{{ alt }}" loading="lazy" decoding="async">
+	<!-- And here I use that path and add the extensions inside the srcsets only -->
+	<source srcset="{{ imageSrc }}.avif" type="image/avif" />
+	<source srcset="{{ imageSrc }}.webp" type="image/webp" />
+	<img src="{{ imageSrc }}.png" alt="{{ alt }}" loading="lazy" decoding="async" />
 </picture>
 ```
+
 </CodeBlock>
 
 And to use this component inside another page:
@@ -213,15 +189,16 @@ And to use this component inside another page:
 <CodeBlock lang="liquid">
 
 ```
-{% include base/smart-image.html 
+{% include base/smart-image.html
   path="posts/my-post-url"
   filename="my-image"
   alt="A sample image"
 %}
 ```
+
 </CodeBlock>
 
-My folder structure looks like this: 
+My folder structure looks like this:
 
 <Image
   path="posts/{slug}"
