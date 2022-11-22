@@ -12,7 +12,7 @@
 	import { keywords, siteBaseUrl, title } from '$lib/meta';
 
 	export let data;
-	let { post } = data;
+	$: ({ post } = data);
 </script>
 
 <svelte:head>
