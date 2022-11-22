@@ -5,6 +5,7 @@
 	import LinkedInIcon from '$lib/svg/socials/linkedin.svelte';
 	import EmailIcon from '$lib/svg/socials/email.svelte';
 	import Rss from '$lib/svg/rss.svelte';
+	import MastodonIcon from '../../svg/socials/mastodon.svelte';
 </script>
 
 <div class="socials">
@@ -18,6 +19,14 @@
 		title="Say Hi on Twitter"
 	>
 		<TwitterIcon />
+	</a>
+	<a
+		href="https://bolha.us/@fantinel"
+		target="_blank"
+		rel="me"
+		title="Say Hi on Mastodon"
+	>
+		<MastodonIcon />
 	</a>
 	<a
 		href="https://github.com/MatFantinel"
