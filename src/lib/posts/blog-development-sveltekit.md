@@ -2,6 +2,7 @@
 slug: blog-development-sveltekit
 title: 'How I built a blog with Svelte and SvelteKit'
 date: 2021-09-08
+updated: 2022-11-22
 excerpt: "An overview of the experience I've had using these amazing projects."
 tags: [Front-End, Svelte, SvelteKit]
 ---
@@ -18,9 +19,9 @@ tags: [Front-End, Svelte, SvelteKit]
 I've recently re-launched my personal website and blog, that's now reached its 3rd version. There was nothing wrong with the previous one, but I wanted to both give it a small visual refresh and learn something new. So, after a month or so of working on it on my free time, <SparklingHighlight>voilà</SparklingHighlight>, you're seeing it right now!
 
 <Callout type="warning">
-  SvelteKit is still a work in progress, and as such its API has changed considerably since I wrote this article. Most of the concepts explained here are still in vigor, since the goal of the project hasn't changed, however some specifics might not work as written here.
+	SvelteKit is a work in progress, and as such its API might have changed since this article was last updated. Most of the concepts explained here are still in vigor, since the goal of the project hasn't changed, however some specifics might not work as written here.
 
-I'll try to keep this article updated, but won't make any promises. Usually the site itself is kept up-to-date though, so you can always check the source code and latest commits in case something in this article does not work anymore.
+	I'll do my best to keep this article updated as these changes are made. If you find anything in here that's not working anymore, feel free to [let me know!](https://github.com/matfantinel/matfantinel.github.io/issues)
 </Callout>
 
 <div style="display: grid;place-items: center;max-width: 300px;margin: 20px auto 0;">
@@ -54,7 +55,7 @@ And you know what I had to do to support this? _Nothing_. Just using `<a>` eleme
 
 ## Design
 
-I'm not a designer, but I like the subject. So, instead of designing-as-I-go when developing the website, I decided to fully design it on [Figma](https://www.figma.com/) before starting development. I figured that using it to design stuff is the best way to learn the platform, and I really finished this design much better at Figma than I was before. Auto-layout is fantastic since it works so much like CSS Flexbox, so I was able to approach it with a similar thought-process as I have when developing stuff.
+I'm not a designer, but I like to pretend I am. So, instead of designing-as-I-go when developing the website, I decided to fully design it on [Figma](https://www.figma.com/) before starting development. I figured that using it to design stuff is the best way to learn the platform, and I really finished this design much better at Figma than I was before. Auto-layout is fantastic since it works so much like CSS Flexbox, so I was able to approach it with a similar thought-process as I have when developing stuff.
 
 The design itself was something I came up with, and it's an amalgamation of ideas and inspirations that were stored in my head. When building it, I wasn't entirely sure where the inspiration came from, but now it is apparent to me that most of it comes from some websites I love: [Josh Comeau's](https://www.joshwcomeau.com/) and [George Francis'](https://georgefrancis.dev/).
 
@@ -69,25 +70,45 @@ After the design was complete, I finally began developing it. Since there are so
 
 ## Routing
 
-SvelteKit uses filesystem-based routing, which means that anything inside a `routes` folder will be accessible via its own path, without the need of manually declaring routes.
+<Callout type="info">
 
-My website has 4 different pages in total: home, blog, blog post and resume. This means that I can create these pages like this, and their path will already work:
+	Initially, SvelteKit used a _file_-based routing, as opposed to the current _folder_-based routing. This article has been updated to reflect those changes. If you were familiar with the previous system, [this comment by the SvelteKit team](https://github.com/sveltejs/kit/discussions/5774#discussioncomment-3294867) might help you understand the changes.
+	
+</Callout>
+
+SvelteKit uses a folder-based routing system. This means that your routes are dictated by the folder structure inside `routes` in your project. Every route **must** have a folder, except for the root ('/').
+
+Inside each folder, you can add files that build up your page. Typically, in other frameworks, you would have a `index.{html/js/jsx}` file where everything the page needed would be loaded from. In SvelteKit, you can have multiple files, each representing a different part of the page.
+
+The only required file is `+page.svelte`. This is where you can add your markup, components, styles and logic. However, it's likely that your page might need to load some data to be displayed. This can be done on another file, `+page.js`, in the same folder. There, you can add a `load` function where you'll have access to query params and other things and be able to load all the data your page needs. 
+
+The cool thing about that is that SvelteKit will use the content of the `+page.js` file __both server-side and client-side__, depending on the situation. However, if the data you need can only be loaded on the server (like for example querying a database or using a secret key), you can name it `+page.server.js` instead. Both would do the same thing, however <MarkerHighlight> the naming difference makes it much easier on a quick glance to identify what runs where.</MarkerHighlight>>
+
+So, an example of what the basic file structure for my website would look like:
+
 <CodeBlock>
 
 ```bash
 └── routes
-    ├── __layout.svelte
-    ├── blog.svelte # /blog
-    ├── index.svelte # /
-    ├── resume.svelte # /resume
-    ├── [slug].svelte # Dynamic route (blog posts)
+	├── +layout.svelte
+	├── +page.svelte # / (root page)
+	├── resume
+		└── +page.svelte # /resume
+	├── blog
+		├── +page.svelte # /blog
+		└── +page.js # Loads data to show on /blog
+	├── [slug]
+		├── +page.svelte # Dynamic route (blog posts)
+		└── +page.js # Loads data for blog post
 ```
 
 </CodeBlock>
 
-The `__layout.svelte` file is a base layout for all the pages inside the route. Which means that I can have shared code for all pages in there. See the example below, where I added the header and footer components to the \_\_layout, and load the content of the route itself in the `<slot>` element:
+Having multiple files in a folder might look a bit cumbersome at first, but it makes their purpose __much__ clearer. The great reasoning behind this pattern is that it gives you a single way of doing routing instead of multiple, which makes things more standardized and easier to understand later on. Remember, SvelteKit is opinionated on purpose, and I think folder-based routing is more readable and I'd say more flexible than other file-based routing solutions, although it is a bit more verbose.
 
-<CodeBlock lang="svelte" filename="__layout.svelte">
+The `+layout.svelte` file is a base layout for all the pages inside the route. Which means that I can have shared code for all pages in there. See the example below, where I added the header and footer components to the layout, and load the content of the route itself in the `<slot>` element:
+
+<CodeBlock lang="svelte" filename="+layout.svelte">
 
 ```svelte
 <Header />
@@ -103,28 +124,35 @@ The `__layout.svelte` file is a base layout for all the pages inside the route. 
 
 ### Blog Post Page / Dynamic Routing
 
-But what about the blog post page? Well, that one is a special case. If you look at the URL loaded right now, you'll see that it is specific to this blog post. However, that doesn't mean there is one Svelte page for each blog post on the routes directory.
+But what about the blog post page? Well, that one is a special case. If you look at the URL loaded right now, you'll see that it is specific to this blog post. However, that doesn't mean there is one folder for each blog post on the routes directory.
 
-You see, every blog post page is the same one, however its content is loaded based on the URL it receives. To achieve this, I used SvelteKit's dynamic routing with a file called `[slug].svelte`. The brackets indicate that the route might be dynamic, and whatever URL comes in, it will be caught by this file (unless it's caught by explicit routes like /blog shown above). Not only that, but that part of the URL will be accessible in the page as a parameter (called, in this case, _slug_). This parameter allows the page to know which blog post to display.
+You see, every blog post page is the same one, however its content is loaded based on the URL it receives. To achieve this, I used SvelteKit's dynamic routing with a folder called `[slug]`. The brackets indicate that the route might be dynamic, and whatever URL comes in, it will be caught by this folder (unless it's caught by explicit routes like /blog shown above). Not only that, but that part of the URL will be accessible in the page as a parameter (called, in this case, _slug_). This parameter allows the page to know which blog post to display.
 
-However, there's still an extra step I wanted to take. Blog posts only have their own content, but I wanted to add a few extra things on the page that weren't present in the main \_\_layout.svelte file, like the post title and related posts at the bottom. For that, I used a **layout reset**, defining that the post page shouldn't use the main one, but instead have its own.
+However, there's still an extra step I wanted to take. Blog posts only have their own content, but I wanted to add a few extra things on the page that weren't present in the main `+layout.svelte` file, like the post title and related posts at the bottom. For that, I used a **[layout group](https://kit.svelte.dev/docs/advanced-routing#advanced-layouts-group)**, defining that the post page shouldn't use the main layout, but instead have its own.
 
-To avoid repeating [slug] many times, I wrapped both files in a new folder. My routes directory stayed like this:
+To create a layout group, I've created a folder inside of `routes` with the name of the new layout `blog-article`, wrapped in parentheses to indicate it uses its own layout. The routes directory ended up like this:
 
 <CodeBlock>
 
 ```bash
 └── routes
-    ├── __layout.svelte
-    ├── blog.svelte # /blog
-    ├── index.svelte # /
-    ├── resume.svelte # /resume
-    └── [slug] # Dynamic route (blog posts)
-        ├── __layout.reset.svelte
-        ├── index.svelte
+	├── +layout.svelte
+	├── +page.svelte # / (root page)
+	├── resume
+		└── +page.svelte # /resume
+	├── blog
+		├── +page.svelte # /blog
+		└── +page.js # Loads data to show on /blog
+	├── (blog-article)
+		├── +layout.svelte # This layout applies only to this folder
+		├── [slug]
+			├── +page.svelte # Dynamic route (blog posts)
+			└── +page.js # Loads data for blog post
 ```
 
 </CodeBlock>
+
+Keep in mind that, just like pages, layout files can also have their data-loading counterparts: `+layout.js` and `+layout.server.js`.
 
 ## The blog
 
@@ -140,7 +168,7 @@ I had heard about something similar to what I wanted, called MDX. It allows ever
 
 After setting it up, I had to figure out how to actually use it. I found some examples on the internet, which seemed very straightforward. Most of them created a `/posts` folder inside the routes, and then put the .md files in there. MDsveX would do the work of transforming them into HTML pages on build, and that was it. However, that meant the post URL would have to become `https://fantinel.dev/posts/blog-post-name`. That isn't a huge problem by itself, but it was for me because it wouldn't be backwards-compatible with my previous blog URLs, that have been linked to a few times in other sites. I wanted to remove the need for "/posts" in the URL to keep that compatibility.
 
-That means my page on `routes/[slug]/index.svelte` should need some kind of logic that finds the correct blog post to show and dynamically loads the Svelte component generated by MDsveX. Not only that, but I needed to be able to extract the metadata of the post - its title, image, and date - to be able to display it on the \_\_layout.reset.svelte file, and also displaying the "Recent posts" cards on the home page.
+That means my page on `routes/[slug]/+page.svelte` should need some kind of logic that finds the correct blog post to show and dynamically loads the Svelte component generated by MDsveX. Not only that, but I needed to be able to extract the metadata of the post - its title, image, and date - to be able to display it on the `+layout.svelte` file, and also displaying the "Recent posts" cards on the home page.
 
 ### Extracting post data
 
@@ -188,42 +216,45 @@ With that data being exported from that file, I can reuse it in the places I nee
 
 #### Blog post page
 
-On the `routes/[slug]/index.svelte` file, I can now import the posts and look for the one I should display (by comparing slugs). After that, I'll get its module and use the special `<svelte:component>` ([see docs](https://svelte.dev/docs#svelte_component)) tag to use it inside the page.
+On the `routes/[slug]/+page.svelte` file, I can now import the posts and look for the one I should display (by comparing slugs). After that, I'll get its module and use the special `<svelte:component>` ([see docs](https://svelte.dev/docs#svelte_component)) tag to use it inside the page.
 
-<CodeBlock lang="svelte" filename="index.svelte">
+<CodeBlock lang="javascript" filename="[slug]/+page.js">
+
+```javascript
+// Since it's on +page.js, this code will run before page load (likely on server)
+
+// Get posts info
+const allPosts = import.meta.glob('../../../lib/posts/*.md', { eager: true });
+
+let posts = [];
+// Get the posts' slugs
+for (let path in allPosts) {
+	const post = allPosts[path];
+	const slug = post.metadata.slug;
+	const p = { post, slug };
+	posts.push(p);
+}
+
+export function load({ params }) {
+	const { slug } = params;
+
+	// Find the post with the slug
+	const filteredPost = posts.find((p) => {
+		return p.slug.toLowerCase() === slug.toLowerCase();
+	});
+
+	return {
+		// Tell page to load that post's module
+		page: filteredPost.post.default			
+	};
+}
+```
+
+</CodeBlock>
+
+<CodeBlock lang="svelte" filename="[slug]/+page.svelte">
 
 ```svelte
-<!-- By using context="module", I declare that this code will run on the server -->
-<script context="module">
-	// Get posts info
-	const allPosts = import.meta.globEager(`../../lib/posts/*.md`);
-
-	let posts = [];
-	// Get the posts' slugs
-	for (let path in allPosts) {
-		const post = allPosts[path];
-		const slug = post.metadata.slug;
-		const p = { post, slug };
-		posts.push(p);
-	}
-
-	export function load({ params }) {
-		const { slug } = params;
-
-		// Find the post with the slug
-		const filteredPost = posts.find((p) => {
-			return p.slug.toLowerCase() === slug.toLowerCase();
-		});
-
-		return {
-			props: {
-				// Tell page to load that post's module
-				page: filteredPost.post.default
-			}
-		};
-	}
-</script>
-
 <script>
 	// Declare the page variable to use on the client
 	export let page;
@@ -237,51 +268,51 @@ On the `routes/[slug]/index.svelte` file, I can now import the posts and look fo
 
 #### Listing all posts
 
-Now the post page is done, we need a way to display all the posts on the main blog page. We already have them sorted and filtered on the `posts.js` file, so all I have to do is fetch that data and iterate on it to display them all.
+Now the post page is done, we need a way to display all the posts on the main blog page. We already have them sorted and filtered in the `posts.js` file, so all I have to do is fetch that data and iterate on it to display them all.
 
-Since the posts data comes from the server, it needs to run there. I'll use [SvelteKit's endpoints](https://kit.svelte.dev/docs#routing-endpoints) to create a JSON file on build that will contain the posts data.
+Since the posts data comes from the server, it needs to run there. I'll use a `blog/+page.server.js` file to fetch that data and send it to the client-side page.
 
-<CodeBlock lang="javascript" filename="blog.json.js">
+<CodeBlock lang="javascript" filename="blog/+page.server.js">
 
 ```javascript
+import { error } from '@sveltejs/kit';
 import posts from '$lib/posts';
 
-export async function get() {
-	const body = Object.keys(posts).map((slug) => ({
-		slug,
-		...posts[slug]
-	}));
+export async function load() {
+	const result = Object.keys(posts).map((index) => {
+		const { slug, title, date, excerpt, tags, readingTime } = posts[index];
+		return {
+			slug,
+			title,
+			date,
+			excerpt,
+			tags,
+			readingTime
+		};
+	});
 
-	return {
-		status: 200,
-		body: JSON.stringify(body)
-	};
+	if (result) {
+		return {
+			posts: result
+		}
+	}
+
+	throw error(500, `Could not load blog posts`);
 }
+
 ```
 
 </CodeBlock>
 
 And, on the page itself:
 
-<CodeBlock lang="svelte" filename="blog.svelte">
+<CodeBlock lang="svelte" filename="blog/+page.svelte">
 
 ```svelte
-<!-- By using context="module", I declare that this code will run on the server
-and fetch this data before page actually loads -->
-<script context="module">
-	export async function load({ fetch }) {
-		const url = '/blog.json';
-		const res = await fetch(url);
-
-    return {
-      props: {
-        posts: await res.json()
-      }
-    };
-	}
+<script>
+	export let data;
+	let { posts } = data;
 </script>
-
-{...}
 
 {#each posts as post}
   <BlogPostCard {post} />
@@ -294,7 +325,7 @@ and fetch this data before page actually loads -->
 
 Something that SvelteKit currently does not provide a solution for is a RSS feed. Previously, mine was built automatically by Jekyll and I never had to do anything to get it working. While this wasn't the case right now, I'm sure once SvelteKit is stable and mature, solutions for this will be available so no manual work has to be done.
 
-I made mine by taking advantage of [SvelteKit's endpoints](https://kit.svelte.dev/docs/routing#endpoints), and serving a XML file that is generated at build time. I import the filtered posts from the `posts.js` file I created earlier, and use the metadata to build the content of the RSS file. You can check out [the source code](https://github.com/matfantinel/matfantinel.github.io/blob/main/src/routes/rss.xml.js) for implementation details.
+I made mine by taking advantage of [SvelteKit's endpoints](https://kit.svelte.dev/docs/routing#server) by creating a `+server.js` file, and serving a XML file that is generated at build time. I import the filtered posts from the `posts.js` file I created earlier, and use the metadata to build the content of the RSS file. You can check out [the source code](https://github.com/matfantinel/matfantinel.github.io/blob/main/src/routes/rss.xml/+server.js) for implementation details.
 
 ### Sitemap
 
@@ -304,7 +335,7 @@ Another thing that's still not built-in to SvelteKit is the sitemap. It's great 
 
 My first experience with Svelte and SvelteKit was, overall, fantastic. It simplifies many parts of development and having server-side-rendering as a default option really drives forward their purpose of simplifying web both for users and developers.
 
-Though I definitely did not use all of Svelte's strengths on this project, since it doesn't need dynamic data and an application state, I'll be working with that soon enough. Its ecosystem is not as big as its competitors', since Svelte is still small compared to them, but they're doing something right with their new approach, as Svelte is the most loved web framework according to [the latest StackOverflow survey](https://insights.stackoverflow.com/survey/2021#section-most-loved-dreaded-and-wanted-web-frameworks). Not to mention that Svelte itself doesn't try to reinvent the wheel, and therefore is compatible with almost everything JavaScript.
+Though I definitely did not use all of Svelte's strengths on this project, since it doesn't need dynamic data and an application state, I'll be working with that soon enough. Its ecosystem is not as big as its competitors', since Svelte is still small compared to them, but they're doing something right with their new approach, as Svelte is the most loved web framework according to [2021's StackOverflow survey](https://insights.stackoverflow.com/survey/2021#section-most-loved-dreaded-and-wanted-web-frameworks). Not to mention that Svelte itself doesn't try to reinvent the wheel, and therefore is compatible with almost everything JavaScript.
 
 The small issues I've had while building this will definitely be gone soon, as they were caused by SvelteKit not being on a stable version yet. I'm excited to see how much the ecosystem grows the next year; I'll definitely be keeping an eye on it!
 
