@@ -1,7 +1,8 @@
+import { error } from '@sveltejs/kit';
 import posts from '$lib/posts';
 
-export async function GET() {
-	const body = Object.keys(posts)
+export async function load({ params }) {
+	const result = Object.keys(posts)
 		.slice(0, 4)
 		.map((index) => {
 			const { slug, title, date, excerpt, tags, readingTime } = posts[index];
@@ -15,5 +16,11 @@ export async function GET() {
 			};
 		});
 
-	return new Response(JSON.stringify(body));
+	if (result) {
+		return {
+			posts: result
+		};
+	}
+
+	throw error(500, `Could not load ${params.slug}`);
 }

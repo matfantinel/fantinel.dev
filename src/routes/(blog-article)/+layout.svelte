@@ -38,6 +38,9 @@
 			<div class="header">
 				<h1>{post.title}</h1>
 				<div class="note">Published on {dateformat(post.date, 'UTC:dd mmmm yyyy')}</div>
+				{#if post.updated}
+					<div class="note">Updated on {dateformat(post.updated, 'UTC:dd mmmm yyyy')}</div>
+				{/if}
 				<div class="note">{post.readingTime}</div>
 				<div class="tags">
 					{#each post.tags as tag}
