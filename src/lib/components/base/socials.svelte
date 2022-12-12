@@ -5,7 +5,7 @@
 	import LinkedInIcon from '$lib/svg/socials/linkedin.svelte';
 	import EmailIcon from '$lib/svg/socials/email.svelte';
 	import Rss from '$lib/svg/rss.svelte';
-	import MastodonIcon from '../../svg/socials/mastodon.svelte';
+	import MastodonIcon from '$lib/svg/socials/mastodon.svelte';
 </script>
 
 <div class="socials">
