@@ -42,8 +42,7 @@ const config = {
 	extensions: extensions,
 
 	kit: {
-		adapter: adapter(),
-		trailingSlash: 'always'
+		adapter: adapter()
 	}
 };
 

@@ -19,9 +19,9 @@ tags: [Front-End, Svelte, SvelteKit]
 I've recently re-launched my personal website and blog, that's now reached its 3rd version. There was nothing wrong with the previous one, but I wanted to both give it a small visual refresh and learn something new. So, after a month or so of working on it on my free time, <SparklingHighlight>voilà</SparklingHighlight>, you're seeing it right now!
 
 <Callout type="warning">
-	SvelteKit is a work in progress, and as such its API might have changed since this article was last updated. Most of the concepts explained here are still in vigor, since the goal of the project hasn't changed, however some specifics might not work as written here.
+	SvelteKit has recently launched its first stable version (1.0), but this article was written while it was still in Beta. I'm pretty sure all that's covered in this article still works, but keep in mind a few details might work differently if you're using SvelteKit 1.0.
 
-	I'll do my best to keep this article updated as these changes are made. If you find anything in here that's not working anymore, feel free to [let me know!](https://github.com/matfantinel/matfantinel.github.io/issues)
+	I'll do my best to update this article as soon as possible. If you find anything in here that's not working anymore, feel free to [let me know!](https://github.com/matfantinel/matfantinel.github.io/issues)
 </Callout>
 
 <div style="display: grid;place-items: center;max-width: 300px;margin: 20px auto 0;">

@@ -3,7 +3,7 @@
 </script>
 
 {#if url}
-	<a class="card clickable" href={url} data-sveltekit-prefetch>
+	<a class="card clickable" href={url} data-sveltekit-preload-data>
 		{#if $$slots.image}
 			<slot name="image" />
 		{/if}
