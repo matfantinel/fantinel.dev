@@ -2,7 +2,7 @@
 slug: blog-development-sveltekit
 title: 'How I built a blog with Svelte and SvelteKit'
 date: 2021-09-08
-updated: 2022-11-22
+updated: 2022-12-15
 excerpt: "An overview of the experience I've had using these amazing projects."
 tags: [Front-End, Svelte, SvelteKit]
 ---
