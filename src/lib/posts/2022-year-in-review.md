@@ -58,7 +58,7 @@ My favorite part of these "Year In Review" posts - the entertainment content I e
 
 ### TV and Movies
 
-Not much new on this section, as I've mostly rewatched stuff I liked this year (including [Mr. Robot](2020-year-in-review#tv-and-movies) for the third time - still my favorite series!)
+Not much new on this section, as I've mostly rewatched stuff I liked this year (including [Mr. Robot](/2020-year-in-review#tv-and-movies) for the third time - still my favorite series!)
 
 - **Superstore** was the best sitcom I've watched this year. I think it nails the comedy while also touching on important subjects, like fighting for workers rights and unionizing. Plus, I think it's the only series I've watched that acknowledged the pandemic and added it to its plot really well.
 
@@ -75,7 +75,7 @@ Not much new on this section, as I've mostly rewatched stuff I liked this year (
   figcaption="Official artwork of Bloodborne"
 />
 
-- **Elden Ring** was the game I was the most excited to play after playing Bloodborne, as it's made by the same company. I was not disappointed. It delivered great combat, exploration, soundtrack and lore, which combined into another one of the best games I've ever played. I wrote [a more in-depth review of the game](reviews/elden-ring/) where I talk about what I enjoyed the most.
+- **Elden Ring** was the game I was the most excited to play after playing Bloodborne, as it's made by the same company. I was not disappointed. It delivered great combat, exploration, soundtrack and lore, which combined into another one of the best games I've ever played. I wrote [a more in-depth review of the game](/reviews/elden-ring/) where I talk about what I enjoyed the most.
 
 - **Red Dead Redemption 2** is SO GOOD. You can play it many ways: as an old-west life simulator, a cowboy shootout action game, a hunting and fishing game, or even just explore and photograph the scenery. It has so much content, even after 50+ hours I still kept finding events and secrets totally unlike what I'd seen before. You can get completely lost in this game without even progressing the story. But you really should progress the story, as it's one of the best written ones I've ever experienced. The characters are the real focus here, as they're all masterfully written and you get really attached to them and care for what happens to them. I cried like a baby in the ending.
 
