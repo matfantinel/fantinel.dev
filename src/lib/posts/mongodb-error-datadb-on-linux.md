@@ -7,8 +7,8 @@ tags: [Common Errors, Backend, Linux]
 ---
 
 <script>
-  import CodeBlock from "$lib/components/blog/code-block.svelte";
-  import Callout from "$lib/components/base/callout.svelte";
+  import CodeBlock from "$lib/components/molecules/CodeBlock.svelte";
+  import Callout from "$lib/components/molecules/Callout.svelte";
 </script>
 
 When setting up a Linux server or development machine, you might need to install MongoDB. However, every single time I've stumbled upon an error right when trying to start the `mongod` service, after following [the official instructions](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/). The important line here is:

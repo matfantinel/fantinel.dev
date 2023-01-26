@@ -1,0 +1,65 @@
+@import '$lib/scss/_mixins.scss';
+
+@mixin light-theme {
+	@include define-color('primary', #0ca4a5);
+	@include define-color('primary-shade', #95caca);
+	@include define-color('primary-tint', #e3ffff);
+
+	@include define-color('secondary', #7058f5);
+	@include define-color('secondary-shade', #b3aae6);
+	@include define-color('secondary-tint', #f0f1fe);
+
+	@include define-color('yellow', #ffd400);
+	@include define-color('yellow-shade', #f8db75);
+
+	@include define-color('text', #1c1e26);
+	@include define-color('text-shade', #5d5f65);
+	@include define-color('text-inverse', #ffffff);
+	@include define-color('text-inverse-shade', #9eb4b5);
+
+	@include define-color('page-background', #f4f8fb);
+	@include define-color('post-page-background', #ffffff);
+	@include define-color('card-background', #ffffff);
+
+	// Used for highlights in Work Experience
+	@include define-color('agora-tint', #eadbff);
+	@include define-color('freelancer-tint', #bcebeb);
+	@include define-color('logitix-tint', #ffe2ce);
+	@include define-color('sige-tint', #cce4ff);
+	@include define-color('promob-tint', #d7e6eb);
+
+	// Used for Callout component
+	@include define-color('callout-background', #f4f8fb);
+	@include define-color('callout-background--info', #dfeffd);
+	@include define-color('callout-accent--info', #2883f4);
+	@include define-color('callout-background--warning', #fff6b6);
+	@include define-color('callout-accent--warning', #c87820);
+	@include define-color('callout-background--error', #ffe8e8);
+	@include define-color('callout-accent--error', #f95256);
+	@include define-color('callout-background--success', #dcf7ec);
+	@include define-color('callout-accent--success', #009f70);
+
+	// Used for Code Block component
+	@include define-color('code-background', #1c1e26);
+	@include define-color('code-text', #ffffff);
+	@include define-color('code-inline-background', #e3e3e3);
+
+	--border-radius: 12px;
+
+	--color--waves-start: rgba(var(--color--primary-rgb), 0.3);
+	--color--waves-end: rgba(var(--color--primary-rgb), 0.1);
+
+	--card-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.1);
+	--card-shadow-hover: 0px 4px 10px 8px rgb(0 0 0 / 10%);
+	--image-shadow: 8px 14px 38px rgba(39, 44, 49, 0.06), 1px 3px 8px rgba(39, 44, 49, 0.03);
+}
+
+@mixin dark-theme {
+}
+
+:root {
+	@include light-theme;
+	@media (prefers-color-scheme: dark) {
+		@include dark-theme;
+	}
+}

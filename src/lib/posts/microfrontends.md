@@ -7,10 +7,10 @@ tags: [Front-End, JavaScript, Guide]
 ---
 
 <script>
-  import CodeBlock from "$lib/components/blog/code-block.svelte";
-  import Image from "$lib/components/base/image.svelte";
-  import Callout from "$lib/components/base/callout.svelte";
-  import MarkerHighlight from "$lib/components/style/marker-highlight.svelte";
+  import CodeBlock from "$lib/components/molecules/CodeBlock.svelte";
+  import Image from "$lib/components/atoms/Image.svelte";
+  import Callout from "$lib/components/molecules/Callout.svelte";
+  import MarkerHighlight from "$lib/components/molecules/MarkerHighlight.svelte";
 </script>
 
 It's a running joke in the development community that if a JS programmer goes into a coma for 6 months, he will need to learn everything again by the time he wakes up. This is a consequence of JavaScript's open, decentralized nature. It's both a blessing and a curse.

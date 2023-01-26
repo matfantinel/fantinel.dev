@@ -7,9 +7,9 @@ tags: [Front-End, Guide, JavaScript]
 ---
 
 <script>
-  import CodeBlock from "$lib/components/blog/code-block.svelte";
-  import Image from "$lib/components/base/image.svelte";
-  import Callout from "$lib/components/base/callout.svelte";
+  import CodeBlock from "$lib/components/molecules/CodeBlock.svelte";
+  import Image from "$lib/components/atoms/Image.svelte";
+  import Callout from "$lib/components/molecules/Callout.svelte";
 </script>
 
 In times of complex, feature-filled front-ends, we often get reports of freezes, frame drops, or overall slugginess in our apps. This is due to JavaScript's default behavior - a single thread is responsible for the interface, animations, and whatever CPU-intensive logic or I/O your app is doing.

@@ -7,9 +7,9 @@ tags: [Front-End, CSS, Guide]
 ---
 
 <script>
-  import CodeBlock from "$lib/components/blog/code-block.svelte";
-  import Image from "$lib/components/base/image.svelte";
-  import Callout from "$lib/components/base/callout.svelte";
+  import CodeBlock from "$lib/components/molecules/CodeBlock.svelte";
+  import Image from "$lib/components/atoms/Image.svelte";
+  import Callout from "$lib/components/molecules/Callout.svelte";
 </script>
 
 CSS is evolving constantly and the past few years have brought us amazing stuff. It is getting easier to make smooth and complete experiences without having to use JavaScript at all. Case in point: Scroll Snapping.

@@ -7,9 +7,9 @@ tags: [Front-End, Guide, HTML, CSS, Optimization]
 ---
 
 <script>
-  import CodeBlock from "$lib/components/blog/code-block.svelte";
-  import Image from "$lib/components/base/image.svelte";
-  import MarkerHighlight from "$lib/components/style/marker-highlight.svelte";
+  import CodeBlock from "$lib/components/molecules/CodeBlock.svelte";
+  import Image from "$lib/components/atoms/Image.svelte";
+  import MarkerHighlight from "$lib/components/molecules/MarkerHighlight.svelte";
 </script>
 
 Do you know how big the images displayed on your website are? When you open a page, the browser starts downloading a bunch of files in order to display it. Research shows that [images are the most requested asset type](https://httparchive.org/reports/state-of-images) and take up more bandwidth than any other resource. So, making sure they are as small as they can be can greatly improve the load times for your website. (spoiler alert: mine's become 85% faster!)

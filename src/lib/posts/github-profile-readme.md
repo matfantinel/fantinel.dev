@@ -7,9 +7,9 @@ tags: [GitHub, Guide, SVG, 'Online Presence']
 ---
 
 <script>
-  import CodeBlock from "$lib/components/blog/code-block.svelte";
-  import Image from "$lib/components/base/image.svelte";
-  import MarkerHighlight from "$lib/components/style/marker-highlight.svelte";
+  import CodeBlock from "$lib/components/molecules/CodeBlock.svelte";
+	import Image from "$lib/components/atoms/Image.svelte";
+	import MarkerHighlight from "$lib/components/molecules/MarkerHighlight.svelte";
 </script>
 
 Last year, GitHub added a new cool feature for the user profile. You can now add a README file to it, and it will show up besides your profile pic. This is great for talking a bit about yourself and what you do, putting some contact info, or simply making a cool first impression.

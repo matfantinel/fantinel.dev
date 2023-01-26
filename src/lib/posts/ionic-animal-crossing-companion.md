@@ -7,9 +7,9 @@ tags: [Ionic, PWA, Open Source, Games]
 ---
 
 <script>
-  import CodeBlock from "$lib/components/blog/code-block.svelte";
-  import Image from "$lib/components/base/image.svelte";
-  import SparklingHighlight from "$lib/components/style/sparkling-highlight.svelte";
+  import CodeBlock from "$lib/components/molecules/CodeBlock.svelte";
+  import Image from "$lib/components/atoms/Image.svelte";
+  import SparklingHighlight from "$lib/components/molecules/SparklingHighlight.svelte";
 </script>
 
 This year I've played a lot of Animal Crossing New Horizons. It came out at the start of quarantine - and was extremely popular for providing an escape from that, with a virtual life that's free of the problems we're facing on the real one.

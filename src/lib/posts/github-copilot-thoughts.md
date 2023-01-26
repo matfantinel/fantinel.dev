@@ -7,9 +7,9 @@ tags: [Tools, Programming]
 ---
 
 <script>
-  import CodeBlock from "$lib/components/blog/code-block.svelte";
-  import Image from "$lib/components/base/image.svelte";
-  import MarkerHighlight from "$lib/components/style/marker-highlight.svelte";
+  import CodeBlock from "$lib/components/molecules/CodeBlock.svelte";
+  import Image from "$lib/components/atoms/Image.svelte";
+  import MarkerHighlight from "$lib/components/molecules/MarkerHighlight.svelte";
 </script>
 
 I started using GitHub Copilot around May this year as part of its free beta, and my opinion on it has changed a bit during this time. I was initially skeptical about it, but I've come to appreciate it more and more as I use it.

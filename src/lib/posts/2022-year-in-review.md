@@ -7,8 +7,8 @@ tags: [Meta]
 ---
 
 <script>
-  import Image from "$lib/components/base/image.svelte";
-  import SparklingHighlight from "$lib/components/style/sparkling-highlight.svelte";
+  import Image from "$lib/components/atoms/Image.svelte";
+  import SparklingHighlight from "$lib/components/molecules/SparklingHighlight.svelte";
 </script>
 
 2022 is ending and it brought a lot of changes to the lives of many - me included. I'm not able to say all of them were good, but they also bring opportunities of personal and societal growth, and for me at least, a little glimpse of hope.
@@ -46,7 +46,7 @@ Something else that's been coming for years, but seem to have reached a new mile
 
 ## Professional Life
 
-With such a busy and tiresome year, I haven't got to learning many _new_ things, and instead focused on becoming better at what I already work with. I've worked a lot with React and NextJS this year. I've covered my opinions on both of them [last year](/2021-year-in-review), and they haven't really changed. 
+With such a busy and tiresome year, I haven't got to learning many _new_ things, and instead focused on becoming better at what I already work with. I've worked a lot with React and NextJS this year. I've covered my opinions on both of them [last year](/2021-year-in-review), and they haven't really changed.
 
 WordPress is something I'd worked a little bit with in the past, but now I've started working more with it as well. It's definitely a different way of working compared to modern JS stacks, but it's kind of refreshing in a way. Plus, I believe seeing firsthand how this kind of stack works brings a new perspective and maybe even ways of improving how we build with the newer ones.
 
@@ -106,7 +106,7 @@ I am hoping for 2023 to be a **less exciting** year, honestly. With so many chan
 
 I'm planning on refactoring the code structure on this website, adopting Atomic Design, and publishing that alongside a nice article explaining all about it. Plus, releasing at least one of the side projects that I've built the proof-of-concept for this year.
 
-Above all, I want 2023 to be <SparklingHighlight>C O Z Y</SparklingHighlight>. That's a good word.
+Above all, I want 2023 to be <SparklingHighlight color="secondary">C O Z Y</SparklingHighlight>. That's a good word.
 
 ## Wrapping up
 

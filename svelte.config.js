@@ -1,5 +1,5 @@
-import preprocess from 'svelte-preprocess';
 import adapter from '@sveltejs/adapter-static';
+import { vitePreprocess } from '@sveltejs/kit/vite';
 import { mdsvex } from 'mdsvex';
 import rehypeExternalLinks from 'rehype-external-links';
 import rehypeSlug from 'rehype-slug';
@@ -9,16 +9,15 @@ const extensions = ['.svelte', '.md'];
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
-	// Consult https://github.com/sveltejs/svelte-preprocess
-	// for more information about preprocessors
+	kit: {
+		adapter: adapter()
+	},
 	preprocess: [
-		preprocess({
-			preserve: ['module']
-		}),
+		vitePreprocess(),
 		mdsvex({
-			layout: {
-				article: './src/lib/layout/article.svelte'
-			},
+			// layout: {
+			// 	article: './src/lib/layout/article.svelte'
+			// },
 			extensions: extensions,
 			rehypePlugins: [
 				rehypeExternalLinks, // Adds 'target' and 'rel' to external links
@@ -39,11 +38,7 @@ const config = {
 			]
 		})
 	],
-	extensions: extensions,
-
-	kit: {
-		adapter: adapter()
-	}
+	extensions: extensions
 };
 
 export default config;

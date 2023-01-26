@@ -1,0 +1,63 @@
+a {
+	color: var(--color--text);
+	text-decoration-color: var(--color--primary);
+	text-underline-offset: 0.1em;
+	text-decoration-thickness: 2px;
+	transition: all 0.2s ease-in-out;
+
+	&:hover {
+		text-underline-offset: 0.3em;
+	}
+}
+
+::selection {
+	background-color: rgba(var(--color--primary-rgb), 0.3);
+	color: var(--color--text);
+	text-shadow: none;
+}
+
+strong,
+b {
+	font-weight: 600;
+}
+em,
+i {
+	font-style: italic;
+}
+
+// #region Titles
+h1 {
+	font-size: 2.5rem;
+	font-weight: 700;
+
+	@include for-phone-only {
+		font-size: 2rem;
+	}
+}
+
+h2 {
+	font-size: 1.8rem;
+	font-weight: 600;
+}
+
+h3 {
+	font-size: 1.5rem;
+	font-weight: 600;
+}
+
+h4 {
+	font-size: 1.2rem;
+}
+
+h5 {
+	font-size: 1rem;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+	font-family: var(--font--title);
+}
+// #endregion

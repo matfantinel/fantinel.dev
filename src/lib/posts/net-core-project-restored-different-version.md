@@ -7,9 +7,9 @@ tags: [Common Errors, .NET, Backend, C#]
 ---
 
 <script>
-  import CodeBlock from "$lib/components/blog/code-block.svelte";
-  import Callout from "$lib/components/base/callout.svelte";
-  import SparklingHighlight from "$lib/components/style/sparkling-highlight.svelte";
+  import CodeBlock from "$lib/components/molecules/CodeBlock.svelte";
+  import Callout from "$lib/components/molecules/Callout.svelte";
+  import SparklingHighlight from "$lib/components/molecules/SparklingHighlight.svelte";
 </script>
 
 This problem usually happens when you're working on a solution with multiple projects that were created using different versions of the .NET SDK.

@@ -7,16 +7,16 @@ tags: [Meta]
 ---
 
 <script>
-  import Image from "$lib/components/base/image.svelte";
-  import MarkerHighlight from "$lib/components/style/marker-highlight.svelte";
-  import SparklingHighlight from "$lib/components/style/sparkling-highlight.svelte";
+  import Image from "$lib/components/atoms/Image.svelte";
+  import MarkerHighlight from "$lib/components/molecules/MarkerHighlight.svelte";
+  import SparklingHighlight from "$lib/components/molecules/SparklingHighlight.svelte";
 </script>
 
 Another year, another yearly review post. 2021 felt like pretty much 2020 part II for a lot of people, me included. The ongoing pandemic still affected our lives, and even though most people in my country are now vaccinated (including me), the danger still exists and preventive measures are still necessary. But it's nice to be able to start doing things and going places we haven't been able to for a while. I personally think this situation is still going to drag on for a while, but we'll adapt to it with time.
 
 ## Mental Health
 
-[Last year](/2020-year-in-review), I wrote a bit about doomscrolling, and how it started affecting me until I decided to avoid this behavior. I tried to keep avoiding it this year, and I think I succeeded. I'm not blind to what's going on - I still know <SparklingHighlight>the world is a dumpster fire</SparklingHighlight> at the moment and in many ways it was even worse than 2020 - but I think I was successful in not dwelling on the bad news and the daily absurdities going on.
+[Last year](/2020-year-in-review), I wrote a bit about doomscrolling, and how it started affecting me until I decided to avoid this behavior. I tried to keep avoiding it this year, and I think I succeeded. I'm not blind to what's going on - I still know <SparklingHighlight color="secondary">the world is a dumpster fire</SparklingHighlight> at the moment and in many ways it was even worse than 2020 - but I think I was successful in not dwelling on the bad news and the daily absurdities going on.
 
 That doesn't mean my mental health didn't take a hit though. The year started with the loss of a person I held dear - a victim of the inexcusable vaccination delays and genocidal actions of our leaders - and I felt like I lost a bit of control over my work-life-balance for a portion of the year.
 
@@ -70,7 +70,7 @@ I didn't work on many personal projects this year, as I was already learning a l
 
 I really liked the previous one, but I wanted to change some things about it and use something more flexible than Jekyll. So I completely redesigned it using Figma - while retaining some design elements from before - and rewrote it with SvelteKit. [I wrote a blog post talking more about the experience](https://fantinel.dev/blog-development-sveltekit/), which also became my most-read post of all time. Nice!
 
-Speaking of blog posts, <SparklingHighlight>I doubled the amount of posts published compared to last year!</SparklingHighlight> Which means I wrote.... **4** (excluding this one). I wanted to write more, but compared to the 2 posts from last year, it's still an improvement, _right_?
+Speaking of blog posts, <SparklingHighlight color="secondary">I doubled the amount of posts published compared to last year!</SparklingHighlight> Which means I wrote.... **4** (excluding this one). I wanted to write more, but compared to the 2 posts from last year, it's still an improvement, _right_?
 
 ## Fun
 
@@ -107,7 +107,7 @@ Not everything is code and gloom - I also do some fun things every once in a whi
 
 ## What to Expect in 2022
 
-First of all, <SparklingHighlight>I'm getting married! 💍</SparklingHighlight> The love of my life and I are finally making it official.
+First of all, <SparklingHighlight color="secondary">I'm getting married! 💍</SparklingHighlight> The love of my life and I are finally making it official.
 
 Later in the year I'm also temporarily moving to Italy for a few months with my (soon-to-be) wife. It's going to be some sort of test drive - we'll return to Brazil before the year ends and then decide if living abroad is something we want or not.
 

@@ -8,20 +8,21 @@ tags: [Front-End, Svelte, SvelteKit]
 ---
 
 <script>
-  import CodeBlock from "$lib/components/blog/code-block.svelte";
-  import Image from "$lib/components/base/image.svelte";
-  import MarkerHighlight from "$lib/components/style/marker-highlight.svelte";
-  import SparklingHighlight from "$lib/components/style/sparkling-highlight.svelte";
-  import Callout from "$lib/components/base/callout.svelte";
-  import Github from "$lib/svg/socials/github.svelte";
+  import CodeBlock from "$lib/components/molecules/CodeBlock.svelte";
+  import Image from "$lib/components/atoms/Image.svelte";
+  import MarkerHighlight from "$lib/components/molecules/MarkerHighlight.svelte";
+  import SparklingHighlight from "$lib/components/molecules/SparklingHighlight.svelte";
+  import Callout from "$lib/components/molecules/Callout.svelte";
+  import Github from '$lib/icons/socials/github.svelte';
 </script>
 
-I've recently re-launched my personal website and blog, that's now reached its 3rd version. There was nothing wrong with the previous one, but I wanted to both give it a small visual refresh and learn something new. So, after a month or so of working on it on my free time, <SparklingHighlight>voilà</SparklingHighlight>, you're seeing it right now!
+I've recently re-launched my personal website and blog, that's now reached its 3rd version. There was nothing wrong with the previous one, but I wanted to both give it a small visual refresh and learn something new. So, after a month or so of working on it on my free time, <SparklingHighlight color="secondary">voilà</SparklingHighlight>, you're seeing it right now!
 
 <Callout type="warning">
 	SvelteKit has recently launched its first stable version (1.0), but this article was written while it was still in Beta. I'm pretty sure all that's covered in this article still works, but keep in mind a few details might work differently if you're using SvelteKit 1.0.
 
-	I'll do my best to update this article as soon as possible. If you find anything in here that's not working anymore, feel free to [let me know!](https://github.com/matfantinel/matfantinel.github.io/issues)
+    I'll do my best to update this article as soon as possible. If you find anything in here that's not working anymore, feel free to [let me know!](https://github.com/matfantinel/matfantinel.github.io/issues)
+
 </Callout>
 
 <div style="display: grid;place-items: center;max-width: 300px;margin: 20px auto 0;">
@@ -72,17 +73,17 @@ After the design was complete, I finally began developing it. Since there are so
 
 <Callout type="info">
 
-	Initially, SvelteKit used a _file_-based routing, as opposed to the current _folder_-based routing. This article has been updated to reflect those changes. If you were familiar with the previous system, [this comment by the SvelteKit team](https://github.com/sveltejs/kit/discussions/5774#discussioncomment-3294867) might help you understand the changes.
-	
+    Initially, SvelteKit used a _file_-based routing, as opposed to the current _folder_-based routing. This article has been updated to reflect those changes. If you were familiar with the previous system, [this comment by the SvelteKit team](https://github.com/sveltejs/kit/discussions/5774#discussioncomment-3294867) might help you understand the changes.
+
 </Callout>
 
 SvelteKit uses a folder-based routing system. This means that your routes are dictated by the folder structure inside `routes` in your project. Every route **must** have a folder, except for the root ('/').
 
 Inside each folder, you can add files that build up your page. Typically, in other frameworks, you would have a `index.{html/js/jsx}` file where everything the page needed would be loaded from. In SvelteKit, you can have multiple files, each representing a different part of the page.
 
-The only required file is `+page.svelte`. This is where you can add your markup, components, styles and logic. However, it's likely that your page might need to load some data to be displayed. This can be done on another file, `+page.js`, in the same folder. There, you can add a `load` function where you'll have access to query params and other things and be able to load all the data your page needs. 
+The only required file is `+page.svelte`. This is where you can add your markup, components, styles and logic. However, it's likely that your page might need to load some data to be displayed. This can be done on another file, `+page.js`, in the same folder. There, you can add a `load` function where you'll have access to query params and other things and be able to load all the data your page needs.
 
-The cool thing about that is that SvelteKit will use the content of the `+page.js` file __both server-side and client-side__, depending on the situation. However, if the data you need can only be loaded on the server (like for example querying a database or using a secret key), you can name it `+page.server.js` instead. Both would do the same thing, however <MarkerHighlight> the naming difference makes it much easier on a quick glance to identify what runs where.</MarkerHighlight>>
+The cool thing about that is that SvelteKit will use the content of the `+page.js` file **both server-side and client-side**, depending on the situation. However, if the data you need can only be loaded on the server (like for example querying a database or using a secret key), you can name it `+page.server.js` instead. Both would do the same thing, however <MarkerHighlight> the naming difference makes it much easier on a quick glance to identify what runs where.</MarkerHighlight>>
 
 So, an example of what the basic file structure for my website would look like:
 
@@ -104,7 +105,7 @@ So, an example of what the basic file structure for my website would look like:
 
 </CodeBlock>
 
-Having multiple files in a folder might look a bit cumbersome at first, but it makes their purpose __much__ clearer. The great reasoning behind this pattern is that it gives you a single way of doing routing instead of multiple, which makes things more standardized and easier to understand later on. Remember, SvelteKit is opinionated on purpose, and I think folder-based routing is more readable and I'd say more flexible than other file-based routing solutions, although it is a bit more verbose.
+Having multiple files in a folder might look a bit cumbersome at first, but it makes their purpose **much** clearer. The great reasoning behind this pattern is that it gives you a single way of doing routing instead of multiple, which makes things more standardized and easier to understand later on. Remember, SvelteKit is opinionated on purpose, and I think folder-based routing is more readable and I'd say more flexible than other file-based routing solutions, although it is a bit more verbose.
 
 The `+layout.svelte` file is a base layout for all the pages inside the route. Which means that I can have shared code for all pages in there. See the example below, where I added the header and footer components to the layout, and load the content of the route itself in the `<slot>` element:
 
@@ -245,7 +246,7 @@ export function load({ params }) {
 
 	return {
 		// Tell page to load that post's module
-		page: filteredPost.post.default			
+		page: filteredPost.post.default
 	};
 }
 ```
@@ -294,12 +295,11 @@ export async function load() {
 	if (result) {
 		return {
 			posts: result
-		}
+		};
 	}
 
 	throw error(500, `Could not load blog posts`);
 }
-
 ```
 
 </CodeBlock>
@@ -315,7 +315,7 @@ And, on the page itself:
 </script>
 
 {#each posts as post}
-  <BlogPostCard {post} />
+	<BlogPostCard {post} />
 {/each}
 ```
 

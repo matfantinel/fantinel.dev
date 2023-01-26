@@ -7,9 +7,9 @@ tags: [Angular, PWA, Guide, Front-End, JavaScript]
 ---
 
 <script>
-  import CodeBlock from "$lib/components/blog/code-block.svelte";
-  import Image from "$lib/components/base/image.svelte";
-  import Callout from "$lib/components/base/callout.svelte";
+  import CodeBlock from "$lib/components/molecules/CodeBlock.svelte";
+  import Image from "$lib/components/atoms/Image.svelte";
+  import Callout from "$lib/components/molecules/Callout.svelte";
 </script>
 
 Recently, I've converted my Angular 6 app into a PWA, allowing it to work offline and work like a native app on phones and desktop.

@@ -7,8 +7,8 @@ tags: [Meta]
 ---
 
 <script>
-  import Image from "$lib/components/base/image.svelte";
-  import MarkerHighlight from "$lib/components/style/marker-highlight.svelte";
+  import Image from "$lib/components/atoms/Image.svelte";
+  import MarkerHighlight from "$lib/components/molecules/MarkerHighlight.svelte";
 </script>
 
 We all know this year hasn't been easy. That doesn't mean it had to be wasted. Regardless of how bad or good it has been for oneself individually, there are always lots of lessons we can learn from what we've been through.
@@ -29,11 +29,11 @@ Initially, I was guilty of that too. Checking many times a day for news, how the
 
 This year I worked on a few personal projects, and tried different approaches with them so I could learn new things. I didn't necessarily get really in-depth into most of the things I learned, but the knowledge I got definitely made me a better developer.
 
-<Image
+<!-- <Image
   path="posts/{slug}"
   filename="pocket-companion"
   alt="Screenshot of my Pocket Companion app"
-/>
+/> -->
 
 - [I built an Animal Crossing companion app](/ionic-animal-crossing-companion/), with great utilities for when playing the game. I focused a lot on CSS animations for this one, while trying to mimic the official Nintendo app in looks. Learned a lot of things while building it:
   - State management in Angular projects, with [NgRx](https://ngrx.io/);

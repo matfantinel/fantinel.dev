@@ -1,0 +1,11 @@
+{
+	"cssVariables.lookupFiles": [
+		"**/*.css",
+		"**/*.scss",
+		"**/*.sass",
+		"**/*.less",
+		"node_modules/open-props/open-props.min.css"
+	],
+	"editor.formatOnSave": false,
+	"prettier.singleQuote": true
+}

@@ -1,17 +1,15 @@
-<script>
-	import '../../app.scss';
-	import Header from '$lib/components/layout/header.svelte';
-	import Footer from '$lib/components/layout/footer.svelte';
-
-	import Image from '$lib/components/base/image.svelte';
-	import Tag from '$lib/components/base/tag.svelte';
+<script lang="ts">
+	import Header from '$lib/components/organisms/Header.svelte';
+	import Footer from '$lib/components/organisms/Footer.svelte';
+	import Tag from '$lib/components/atoms/Tag.svelte';
+	import Image from '$lib/components/atoms/Image.svelte';
 	import dateformat from 'dateformat';
-	import BlogPostCard from '$lib/components/base/blog-post-card.svelte';
-	import ThreeByThreeGrid from '$lib/components/layout/3x3-grid.svelte';
-	import Section from '$lib/components/layout/section.svelte';
-	import { keywords, siteBaseUrl, title } from '$lib/meta';
 
-	export let data;
+	import { keywords, siteBaseUrl, title } from '$lib/data/meta';
+	import type { BlogPost } from '$lib/utils/types';
+	import RelatedPosts from '$lib/components/organisms/RelatedPosts.svelte';
+
+	export let data: { post: BlogPost };
 	$: ({ post } = data);
 </script>
 
@@ -30,11 +28,11 @@
 	<meta name="twitter:image" content="{siteBaseUrl}/images/posts/{post.slug}/cover.jpg" />
 </svelte:head>
 
-<div class="markdown-layout">
-	<Header animated={false} />
+<div class="article-layout">
+	<Header animated={false} showBackground />
 
 	<main>
-		<article id="markdown-content">
+		<article id="article-content">
 			<div class="header">
 				<h1>{post.title}</h1>
 				<div class="note">Published on {dateformat(post.date, 'UTC:dd mmmm yyyy')}</div>
@@ -57,21 +55,87 @@
 		</article>
 
 		{#if post.relatedPosts && post.relatedPosts.length > 0}
-			<div class="related-posts container">
-				<Section
-					title="Related posts"
-					description="Have some time? Feel free to read some other posts by me."
-					align="top"
-				>
-					<ThreeByThreeGrid>
-						{#each post.relatedPosts as rel}
-							<BlogPostCard post={rel} />
-						{/each}
-					</ThreeByThreeGrid>
-				</Section>
+			<div class="container">
+				<RelatedPosts posts={post.relatedPosts} />
 			</div>
 		{/if}
 	</main>
 
 	<Footer />
 </div>
+
+<style lang="scss">
+	@import '$lib/scss/_mixins.scss';
+
+	.article-layout {
+		--body-background-color: var(--color--post-page-background);
+		background-color: var(--color--post-page-background);
+	}
+
+	#article-content {
+		position: relative;
+		padding-top: 40px;
+		padding-bottom: 80px;
+		padding-right: 15px;
+		padding-left: 15px;
+
+		@include for-iphone-se {
+			padding-left: 0;
+			padding-right: 0;
+		}
+
+		@include for-tablet-portrait-up {
+			padding-right: 20px;
+			padding-left: 20px;
+		}
+
+		@include for-tablet-landscape-up {
+			padding-right: 30px;
+			padding-left: 30px;
+		}
+
+		display: grid;
+		grid-template-columns:
+			1fr
+			min(65ch, 100%)
+			1fr;
+		grid-row-gap: 30px;
+
+		> * {
+			grid-column: 2;
+		}
+
+		.full-bleed {
+			width: 100%;
+			grid-column: 1 / 4;
+		}
+
+		.header {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			text-align: center;
+			gap: 10px;
+
+			.note {
+				font-size: 90%;
+				color: rgba(var(--color--text-rgb), 0.8);
+			}
+		}
+
+		.cover-image {
+			width: 100%;
+			max-height: 400px;
+			box-shadow: var(--image-shadow);
+		}
+
+		.tags {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			gap: 5px;
+			flex-wrap: wrap;
+		}
+	}
+</style>

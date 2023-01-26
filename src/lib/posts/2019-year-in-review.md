@@ -7,7 +7,7 @@ tags: [Meta, Open Source]
 ---
 
 <script>
-  import MarkerHighlight from "$lib/components/style/marker-highlight.svelte";
+  import MarkerHighlight from "$lib/components/molecules/MarkerHighlight.svelte";
 </script>
 
 Another year went by - Year 6 of my software development journey! I wanted to write this blog post to sum up stuff that I've done or learned this year. Keep in mind this is being written off the top of my head - I did not keep a journal throughout the year, but hopefully that's something I'll do in 2020.

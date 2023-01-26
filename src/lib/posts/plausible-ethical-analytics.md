@@ -7,9 +7,9 @@ tags: [Analytics, Privacy, SEO]
 ---
 
 <script>
-  import Image from "$lib/components/base/image.svelte";
-  import MarkerHighlight from "$lib/components/style/marker-highlight.svelte";
-  import CodeBlock from "$lib/components/blog/code-block.svelte";
+  import Image from "$lib/components/atoms/Image.svelte";
+  import MarkerHighlight from "$lib/components/molecules/MarkerHighlight.svelte";
+  import CodeBlock from "$lib/components/molecules/CodeBlock.svelte";
 </script>
 
 Analytics have become intrinsic to software development in the past decade. On the marketing side, analytics allow us to measure the success of marketing campaigns, optimize the wording, measure ad results, or simply keep track of the growth of the audience. On the development side, it allows to more easily detect points of failure, bad patterns or UX hiccups.

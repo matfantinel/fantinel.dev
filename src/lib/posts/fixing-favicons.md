@@ -7,9 +7,9 @@ tags: [Front-End, Guide, Favicon]
 ---
 
 <script>
-  import CodeBlock from "$lib/components/blog/code-block.svelte";
-  import Image from "$lib/components/base/image.svelte";
-  import Callout from "$lib/components/base/callout.svelte";
+  import CodeBlock from "$lib/components/molecules/CodeBlock.svelte";
+  import Image from "$lib/components/atoms/Image.svelte";
+  import Callout from "$lib/components/molecules/Callout.svelte";
 </script>
 
 Favicons kinda suck. They should be a simple icon that identifies your webpage on a bunch of scenarios, i.e. the icon displayed on the tab besides your website's title, or the icon on the mobile browser's bookmarks screen, or the icon on the phone's home screen.
