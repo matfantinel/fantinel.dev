@@ -2,8 +2,14 @@
 slug: github-profile-readme
 title: Spicing Up your GitHub Profile with HTML and CSS
 date: 2021-01-02
-excerpt: 'Make your GitHub profile more appealing with what you do best: code!'
-tags: [GitHub, Guide, SVG, 'Online Presence']
+excerpt: "Make your GitHub profile more appealing with what you do best: code!"
+tags:
+  - GitHub
+  - Guide
+  - SVG
+  - Online Presence
+categories:
+  - Tech
 ---
 
 <script>

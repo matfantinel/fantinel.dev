@@ -2,8 +2,14 @@
 slug: what-are-pwas-and-why-should-i-care-about-them
 title: What are PWAs and why should I care about them?
 date: 2019-03-12
-excerpt: 'We see a lot of talk about PWAs, but the concept is not that easy to understand.'
-tags: [Front-End, PWA, JavaScript]
+excerpt: We see a lot of talk about PWAs, but the concept is not that easy to
+  understand.
+tags:
+  - Front-End
+  - PWA
+  - JavaScript
+categories:
+  - Tech
 ---
 
 <script>

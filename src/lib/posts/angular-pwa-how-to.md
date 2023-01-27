@@ -2,8 +2,15 @@
 slug: angular-pwa-how-to
 title: How to transform your Angular 6+ app into a PWA
 date: 2019-03-10
-excerpt: 'Make your Angular app work like a native app on phones and desktop.'
-tags: [Angular, PWA, Guide, Front-End, JavaScript]
+excerpt: Make your Angular app work like a native app on phones and desktop.
+tags:
+  - Angular
+  - PWA
+  - Guide
+  - Front-End
+  - JavaScript
+categories:
+  - Tech
 ---
 
 <script>

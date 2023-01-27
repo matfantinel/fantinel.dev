@@ -2,8 +2,15 @@
 slug: net-core-project-restored-different-version
 title: .NET Core - Project version mismatch
 date: 2019-06-03
-excerpt: 'Solving this cryptic error might take you many hours. Hopefully this will help you out.'
-tags: [Common Errors, .NET, Backend, C#]
+excerpt: Solving this cryptic error might take you many hours. Hopefully this will help
+  you out.
+tags:
+  - Common Errors
+  - .NET
+  - Backend
+  - C#
+categories:
+  - Tech
 ---
 
 <script>

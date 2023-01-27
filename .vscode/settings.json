@@ -6,6 +6,10 @@
 		"**/*.less",
 		"node_modules/open-props/open-props.min.css"
 	],
-	"editor.formatOnSave": false,
-	"prettier.singleQuote": true
+	"editor.formatOnSave": true,
+	"prettier.singleQuote": true,
+	"frontMatter.preview.host": "http://localhost:5173/",
+	"frontMatter.framework.startCommand": "npm run dev",
+	"frontMatter.content.autoUpdateDate": false,
+	"frontMatter.content.fmHighlight": true
 }

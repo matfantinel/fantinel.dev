@@ -2,8 +2,11 @@
 slug: purpose-of-this-blog
 title: The purpose of this blog
 date: 2019-03-08
-excerpt: 'Why does it exist?'
-tags: [Meta]
+excerpt: Why does it exist?
+tags:
+  - Meta
+categories:
+  - Tech
 ---
 
 There are many developer blogs out there, probably because developers like to ramble about the tech they enjoy. I'm guilty of that too! This blog was created mainly for that - sharing about development stuff that I like or that I'm learning.

@@ -2,8 +2,14 @@
 slug: ionic-animal-crossing-companion
 title: Developing an Animal Crossing companion app with Ionic
 date: 2020-07-28
-excerpt: 'No bells were spent while building this app.'
-tags: [Ionic, PWA, Open Source, Games]
+excerpt: No bells were spent while building this app.
+tags:
+  - Ionic
+  - PWA
+  - Open Source
+  - Games
+categories:
+  - Tech
 ---
 
 <script>

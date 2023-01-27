@@ -2,8 +2,14 @@
 slug: plausible-ethical-analytics
 title: Ethical Analytics are Plausible, at Last
 date: 2022-02-01
-excerpt: 'Web Analytics is such a morally ambiguous area that I’ve avoided it for years, but now I can finally do it with peace of mind.'
-tags: [Analytics, Privacy, SEO]
+excerpt: Web Analytics is such a morally ambiguous area that I’ve avoided it for years,
+  but now I can finally do it with peace of mind.
+tags:
+  - Analytics
+  - Privacy
+  - SEO
+categories:
+  - Tech
 ---
 
 <script>

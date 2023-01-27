@@ -2,8 +2,13 @@
 slug: fixing-favicons
 title: How to fix your Favicons
 date: 2021-01-06
-excerpt: 'Favicons suck. Luckily, there are ways to make them suck less.'
-tags: [Front-End, Guide, Favicon]
+excerpt: Favicons suck. Luckily, there are ways to make them suck less.
+tags:
+  - Front-End
+  - Guide
+  - Favicon
+categories:
+  - Tech
 ---
 
 <script>

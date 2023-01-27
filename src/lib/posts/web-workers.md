@@ -2,8 +2,14 @@
 slug: web-workers
 title: Web Workers - Bringing Multithreading to the Front-End
 date: 2019-08-14
-excerpt: 'Improve your client-side performance by breaking heavy operations into multiple threads - backend style.'
-tags: [Front-End, Guide, JavaScript]
+excerpt: Improve your client-side performance by breaking heavy operations into
+  multiple threads - backend style.
+tags:
+  - Front-End
+  - Guide
+  - JavaScript
+categories:
+  - Tech
 ---
 
 <script>

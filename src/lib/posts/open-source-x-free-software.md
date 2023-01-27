@@ -2,8 +2,17 @@
 slug: open-source-x-free-software
 title: "Open Source x Free Software: What's the difference?"
 date: 2019-03-23
-excerpt: 'Learn the difference between these two terms that often get mixed up.'
-tags: [Free Software, Open Source, Concepts, FOSS, FLOSS, Libre Software, Freedom]
+excerpt: Learn the difference between these two terms that often get mixed up.
+tags:
+  - Free Software
+  - Open Source
+  - Concepts
+  - FOSS
+  - FLOSS
+  - Libre Software
+  - Freedom
+categories:
+  - Tech
 ---
 
 <script>

@@ -2,8 +2,12 @@
 slug: 2020-year-in-review
 title: Looking Back at 2020
 date: 2020-12-28
-excerpt: "2020 definitely wasn't our best year... but let's remember what was good about it."
-tags: [Meta]
+excerpt: 2020 definitely wasn't our best year... but let's remember what was good about
+  it.
+tags:
+  - Meta
+categories:
+  - Tech
 ---
 
 <script>

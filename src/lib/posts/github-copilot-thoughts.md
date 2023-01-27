@@ -2,8 +2,13 @@
 slug: github-copilot-thoughts
 title: Thoughts on GitHub Copilot
 date: 2022-09-05
-excerpt: "I was initially skeptical about it, but I've come to appreciate it more and more as I use it."
-tags: [Tools, Programming]
+excerpt: I was initially skeptical about it, but I've come to appreciate it more and
+  more as I use it.
+tags:
+  - Tools
+  - Programming
+categories:
+  - Tech
 ---
 
 <script>

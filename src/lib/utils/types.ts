@@ -36,6 +36,7 @@ export type ExperienceEntry = {
 
 export type BlogPost = {
   tags: string[],
+  categories: string[],
   hidden: boolean,
   slug: string,
   title: string,
