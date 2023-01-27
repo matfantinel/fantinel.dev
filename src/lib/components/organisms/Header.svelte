@@ -8,16 +8,14 @@
 
 <header class:has-background={showBackground}>
 	<nav class="container">
-		<div class="left">
-			<a class="logo" href="/" aria-label="Site logo">
-				<Logo {animated} />
-			</a>
-			<div class="links">
-				<a href="/blog">Blog</a>
-				<a href="/resume">Resume</a>
-			</div>
+		<a class="logo" href="/" aria-label="Site logo">
+			<Logo {animated} />
+		</a>
+		<div class="links">
+			<a href="/blog">Blog</a>
+			<a href="/resume">Resume</a>
 		</div>
-		<div class="right">
+		<div class="socials">
 			<Socials />
 		</div>
 	</nav>
@@ -30,6 +28,10 @@
 		position: relative;
 		padding: 30px 0;
 
+		@include for-phone-only {
+			padding: 20px 0;
+		}
+
 		&.has-background {
 			background: linear-gradient(
 				60deg,
@@ -41,49 +43,51 @@
 		.container {
 			display: flex;
 			align-items: center;
-			justify-content: space-between;
-
-			@include for-phone-only {
-				justify-content: center;
-			}
-		}
-
-		.left {
-			display: flex;
-			align-items: center;
 			gap: 30px;
 
 			@include for-phone-only {
 				flex-direction: column;
 				justify-content: center;
-				gap: 15px;
-			}
-			a {
-				color: var(--color--text);
-			}
+				gap: 20px;
 
-			.links {
-				display: flex;
-				align-items: center;
-				gap: 30px;
-
-				a {
-					text-decoration: none;
-
-					&:hover {
-						color: var(--color--primary);
-						filter: drop-shadow(0px 0px 3px rgba(var(--color--primary-rgb), 0.5));
-					}
+				.links {
+					order: 4;
 				}
 			}
 		}
+
 		.logo {
 			height: 44px;
+			order: 1;
 		}
 
-		.right {
-			@include for-phone-only {
-				display: none;
+		.links {
+			order: 2;
+		}
+
+		.socials {
+			flex: 1;
+			display: flex;
+			justify-content: flex-end;
+			order: 3;
+		}
+
+		a {
+			color: var(--color--text);
+		}
+
+		.links {
+			display: flex;
+			align-items: center;
+			gap: 30px;
+
+			a {
+				text-decoration: none;
+
+				&:hover {
+					color: var(--color--primary);
+					filter: drop-shadow(0px 0px 3px rgba(var(--color--primary-rgb), 0.5));
+				}
 			}
 		}
 	}
