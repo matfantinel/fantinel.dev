@@ -69,4 +69,10 @@
 			font-family: var(--font--mono);
 		}
 	}
+
+	.heading-link {
+		color: var(--color--primary);
+		text-decoration: none;
+		margin-right: 10px;
+	}
 }

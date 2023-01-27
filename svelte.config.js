@@ -26,11 +26,12 @@ const config = {
 					rehypeAutolinkHeadings,
 					{
 						// Adds hyperlinks to the headings, requires rehypeSlug
-						behavior: 'append',
+						behavior: 'prepend',
+						properties: { className: ['heading-link'], title: 'Permalink', ariaHidden: 'true' },
 						content: {
 							type: 'element',
 							tagName: 'span',
-							properties: { className: ['heading-link'] },
+							properties: {},
 							children: [{ type: 'text', value: '#' }]
 						}
 					}

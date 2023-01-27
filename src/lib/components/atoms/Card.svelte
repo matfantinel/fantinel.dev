@@ -4,7 +4,7 @@
 	export let additionalClass: string | undefined = undefined;
 
 	export let href: string | undefined = undefined;
-	const isExternalLink = !!href && !HttpRegex.test(href);
+	const isExternalLink = !!href && HttpRegex.test(href);
 	export let target: '_self' | '_blank' = isExternalLink ? '_blank' : '_self';
 	export let rel = isExternalLink ? 'noopener noreferrer' : undefined;
 
