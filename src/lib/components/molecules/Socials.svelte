@@ -69,7 +69,7 @@
 			&:hover {
 				color: var(--color--primary);
 				fill: var(--color--primary);
-				filter: drop-shadow(0px 0px 3px rgba(var(--color--primary-rgb), 0.5));
+				filter: drop-shadow(0px 0px 3px var(--color--primary));
 			}
 		}
 	}

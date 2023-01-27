@@ -10,7 +10,6 @@
 	@include define-color('secondary-tint', #f0f1fe);
 
 	@include define-color('yellow', #ffd400);
-	@include define-color('yellow-shade', #f8db75);
 
 	@include define-color('text', #1c1e26);
 	@include define-color('text-shade', #5d5f65);
@@ -55,6 +54,42 @@
 }
 
 @mixin dark-theme {
+	@include define-color('primary', #00c2c2);
+	@include define-color('primary-shade', #076464);
+	@include define-color('primary-tint', #191f1f);
+
+	@include define-color('secondary', #ec7dff);
+	@include define-color('secondary-shade', #b15ebf);
+	@include define-color('secondary-tint', #191a29);
+
+	@include define-color('yellow', #ffd400);
+
+	@include define-color('text', #ffffff);
+	@include define-color('text-shade', #9eb4b5);
+	@include define-color('text-inverse', #1c1e26);
+	@include define-color('text-inverse-shade', #5d5f65);
+
+	@include define-color('page-background', #1c1e26);
+	@include define-color('post-page-background', #141519);
+	@include define-color('card-background', #32343e);
+
+	// Used for highlights in Work Experience
+	@include define-color('agora-tint', #3d009e);
+	@include define-color('freelancer-tint', #1d6262);
+	@include define-color('logitix-tint', #924817);
+	@include define-color('sige-tint', #003e85);
+	@include define-color('promob-tint', #2b4a55);
+
+	// Used for Callout component
+	@include define-color('callout-background', #1c1e26);
+	@include define-color('callout-background--info', #1d3874);
+	@include define-color('callout-accent--info', #6ca9f7);
+	@include define-color('callout-background--warning', #724413);
+	@include define-color('callout-accent--warning', #ffca39);
+	@include define-color('callout-background--error', #7c1d20);
+	@include define-color('callout-accent--error', #ff8082);
+	@include define-color('callout-background--success', #004737);
+	@include define-color('callout-accent--success', #00c48f);
 }
 
 :root {

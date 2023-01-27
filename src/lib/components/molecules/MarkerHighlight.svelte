@@ -8,7 +8,7 @@
 
 <style lang="scss">
 	mark {
-		--mark-color: var(--color--yellow-shade);
+		--mark-color: transparent;
 
 		margin-inline: calc(0.3em * -1);
 		padding-inline: 0.3em;
