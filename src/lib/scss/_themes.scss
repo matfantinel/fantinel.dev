@@ -1,6 +1,6 @@
 @import '$lib/scss/_mixins.scss';
 
-@mixin light-theme {
+@mixin base-theme {
 	@include define-color('primary', #0ca4a5);
 	@include define-color('primary-shade', #95caca);
 	@include define-color('primary-tint', #e3ffff);
@@ -93,8 +93,15 @@
 }
 
 :root {
-	@include light-theme;
-	@media (prefers-color-scheme: dark) {
+	@include base-theme;
+
+	&[data-theme='dark'] {
 		@include dark-theme;
+	}
+
+	&[data-theme='auto'] {
+		@media (prefers-color-scheme: dark) {
+			@include dark-theme;
+		}
 	}
 }
