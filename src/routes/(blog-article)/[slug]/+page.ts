@@ -5,8 +5,8 @@ export async function load({ params }: { params: { slug: string } }) {
   // I was able to access the post as a component module, that can then
   // be rendered in the page component with svelte:element
 
-  const allPosts = import.meta.glob(`../../../lib/posts/*/*.md`, { eager: true });
-  const post = allPosts[`../../../lib/posts/${params.slug}/${params.slug}.md`] as any;
+  const allPosts = import.meta.glob(`../../../lib/posts/*.md`, { eager: true });
+  const post = allPosts[`../../../lib/posts/${params.slug}.md`] as any;
 
   if (post) {
     return {
