@@ -10,7 +10,7 @@
 	$: imageSrc = `/optimized-images/${path ? path + '/' : ''}${filename}`;
 </script>
 
-<picture>
+<picture {...$$restProps}>
 	{#each formats as format}
 		{#if widths}
 			{#each widths as width}
@@ -38,7 +38,7 @@
 		position: relative;
 		width: 100%;
 		height: 100%;
-		
+
 		img {
 			width: 100%;
 			height: 100%;

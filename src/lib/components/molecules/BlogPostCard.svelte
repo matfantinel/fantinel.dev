@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Card from '$lib/components/atoms/Card.svelte';
 	import Tag from '$lib/components/atoms/Tag.svelte';
+	import Image from '$lib/components/atoms/Image.svelte';
 
 	export let title: string;
 	export let excerpt: string;
@@ -12,11 +13,11 @@
 </script>
 
 <Card href="/{slug}" target="_self" additionalClass="blog-post-card {!showImage && 'no-image'}">
-	<img
-		hidden={!showImage}
-		src={showImage ? `posts/${slug}` : undefined}
+	<Image
+		hidden={showImage}
+		path="posts/{slug}"
+		filename="cover"
 		slot="image"
-		aria-hidden="true"
 		alt="Cover image of this blog post"
 	/>
 	<div class="content" slot="content">

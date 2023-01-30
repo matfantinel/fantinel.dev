@@ -2,6 +2,9 @@
 // even if not directly used in this file
 // eslint-disable-next-line no-unused-vars
 import Prism from 'prismjs';
+// Here we assign it to a variable to the import above 
+// is not removed automatically on build
+const ifYouRemoveMeTheBuildFails = Prism;
 import 'prism-svelte';
 import type { BlogPost } from "$lib/utils/types";
 import readingTime from 'reading-time';

@@ -27,8 +27,6 @@
 		"mdsvex": "^0.10.6",
 		"prettier": "^2.8.0",
 		"prettier-plugin-svelte": "^2.8.1",
-		"react": "^18.2.0",
-		"react-dom": "^18.2.0",
 		"reading-time": "^1.5.0",
 		"rehype-autolink-headings": "^6.1.1",
 		"rehype-external-links": "^2.0.1",
@@ -37,8 +35,7 @@
 		"svelte": "^3.54.0",
 		"svelte-check": "^2.9.2",
 		"typescript": "^4.9.3",
-		"vite": "^4.0.0",
-		"web-image-gen": "^1.1.4"
+		"vite": "^4.0.0"
 	},
 	"type": "module",
 	"dependencies": {
