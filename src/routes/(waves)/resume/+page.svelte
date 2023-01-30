@@ -39,6 +39,7 @@
 		padding: 40px 0 40px;
 		min-height: 80vh;
 		display: flex;
+		gap: 10px;
 		flex-direction: column;
 		align-items: center;
 	}

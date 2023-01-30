@@ -8,6 +8,6 @@
 
 <Hst.Story title="Atoms/Image" layout={{ type: 'grid', width: 400 }}>
 	<Hst.Variant title="Default">
-		<Image src="favicon.png" alt="Site Favicon" />
+		<Image path="projects" filename="personal-website" alt="Image" />
 	</Hst.Variant>
 </Hst.Story>
