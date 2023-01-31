@@ -2,16 +2,21 @@
 layout: article
 title: Elden Ring Review
 excerpt: My thoughts on what probably is the biggest game release of 2022.
-image:
-  path: reviews/elden-ring
-  filename: cover
 ---
 
-<script>
-  import Image from "$lib/components/atoms/Image.svelte";
+<script context="module">
+  import SrcsetImage from "$lib/components/atoms/SrcsetImage.svelte";
   import MarkerHighlight from "$lib/components/molecules/MarkerHighlight.svelte";
   import SparklingHighlight from "$lib/components/molecules/SparklingHighlight.svelte";
   import Callout from "$lib/components/molecules/Callout.svelte";
+
+  import { getSrcsetFromImport } from "$lib/utils/functions";
+  import CoverImage from './cover.png?width=1600&format=avif;webp;png&meta&imagetools';
+  import LiurniaImage from './liurnia.jpg?width=1600&format=avif;webp;png&meta&imagetools';
+  import MaleniaImage from './malenia-and-radahn.jpg?width=1600&format=avif;webp;png&meta&imagetools';
+  import SentinelImage from './malenia-and-radahn.jpg?width=1600&format=avif;webp;png&meta&imagetools';
+
+  metadata.coverImage = getSrcsetFromImport(CoverImage);
 </script>
 
 <Callout>
@@ -30,9 +35,8 @@ A few minutes into the game and you're presented with its selling point: you ope
 
 That's the main hook of all games in the "Soulsborne" series, and it works really well. It uses frustration to build up an extremely satisfying reward when you win. Elden Ring did not change that, instead it mixed that feeling with an open world that gives you more ways to cool down between tough fights, or multiple ways to get stronger to prepare. It took me over 30 hours to have my character strong enough to tackle that boss right after the first door of the game. That was like 1/3 of my play time, and it was probably the best part of it. Every discovery was something brand new, and many encounters provided a fair challenge.
 
-<Image
-  path="reviews/elden-ring"
-  filename="tree-sentinel"
+<SrcsetImage
+  srcset={getSrcsetFromImport(SentinelImage)}
   alt="Screenshot of the game, showing the first boss you see right after opening the door into the game's big open world."
   figcaption="The Tree Sentinel is likely the first boss you'll encounter, but not the first one you'll defeat."
 />
@@ -49,9 +53,8 @@ I like this.
 
 It has a bit of a more realistic approach to storytelling - your character is part of that world, and as such you'd probably be acquainted to some of the more common stories and myths in there, and definitely not be aware at all of the secrets and twists of the royal family of demigods. Having to go out of your way to figure things out makes you more attached to the game in a way, and makes you care more. Old games used to do this for technical reasons, but there's definitely an appeal here. I do understand it's not very accessible though.
 
-<Image
-  path="reviews/elden-ring"
-  filename="malenia-and-radahn"
+<SrcsetImage
+  srcset={getSrcsetFromImport(MaleniaImage)}
   alt="Screenshot of a game cutscene, showing two demigods fighting each other."
   figcaption="The demigods have an interesting backstory and while you interact little with them, knowing that backstory makes their appearances much more meaningful."
 />
@@ -64,9 +67,8 @@ Had I not played this immediately after playing Bloodborne, I think I'd have enj
 
 The Lands Between (the name of the in-game world) is a beautiful place, and all of its areas tell a bit of the story surrounding everything. You have vast green areas, a huge lake surrounded by mist, a mountain around a volcano, icy peaks, a golden city, and an area that's almost literal hell and that will kill you so many times you'll kinda start to like it. Almost everything is fully explorable from the start of the game, though you might face some "natural barriers" in the form of enemies you're still not ready to face.
 
-<Image
-  path="reviews/elden-ring"
-  filename="liurnia"
+<SrcsetImage
+  srcset={getSrcsetFromImport(LiurniaImage)}
   alt="Screenshot of the game, showing a beautiful landscape with hills, a lake, and golden trees surrounded by fog."
 />
 

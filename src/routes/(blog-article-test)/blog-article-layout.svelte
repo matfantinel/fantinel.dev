@@ -41,7 +41,9 @@
 				{#if post.updated}
 					<div class="note">Updated on {dateformat(post.updated, 'UTC:dd mmmm yyyy')}</div>
 				{/if}
-				<div class="note">{post.readingTime}</div>
+				{#if post.readingTime}
+					<div class="note">{post.readingTime}</div>
+				{/if}
 				{#if post.tags && post.tags.length > 0}
 					<div class="tags">
 						{#each post.tags as tag}

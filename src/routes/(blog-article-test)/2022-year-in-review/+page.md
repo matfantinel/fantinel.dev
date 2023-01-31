@@ -11,10 +11,10 @@ categories:
 ---
 
 <script context="module">
-  import { getSrcsetFromImport } from "$lib/utils/functions";
   import SrcsetImage from "$lib/components/atoms/SrcsetImage.svelte";
   import SparklingHighlight from "$lib/components/molecules/SparklingHighlight.svelte";
   
+  import { getSrcsetFromImport } from "$lib/utils/functions";
   import CoverImage from './cover.jpg?width=1600&format=avif;webp;png&meta&imagetools';
   import BloodborneImage from './bloodborne.jpeg?width=1600&format=avif;webp;png&meta&imagetools';
   import InfiniteGraniteImage from './infinite-granite.jpeg?width=1600&format=avif;webp;png&meta&imagetools';

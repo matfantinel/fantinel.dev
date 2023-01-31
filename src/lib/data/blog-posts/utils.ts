@@ -8,8 +8,9 @@ const ifYouRemoveMeTheBuildFails = Prism;
 import 'prism-svelte';
 import type { BlogPost } from "$lib/utils/types";
 import readingTime from 'reading-time';
+import striptags from 'striptags';
 
-export const importPosts = () => {
+export const importPosts = (render = true) => {
   const imports = import.meta.glob('$routes/*/*/*.md', { eager: true });
 
   const posts: BlogPost[] = [];
@@ -18,7 +19,7 @@ export const importPosts = () => {
     if (post) {
       posts.push({
         ...post.metadata,
-        ...post.default.render()
+        html: render ? post.default.render()?.html : undefined
       });
     }
   }
@@ -49,7 +50,7 @@ export const filterPosts = (posts: BlogPost[], categories: { [key: string]: Blog
           : 0
     )
     .map((post) => {
-      const readingTimeDuration = readingTime(post.html).text;
+      const readingTimeDuration = readingTime(striptags(post.html)).text;
 
       const relatedPosts = getRelatedPosts(post, categories, posts);
 
@@ -98,7 +99,7 @@ const getRelatedPosts = (post: BlogPost, categories: { [key: string]: BlogPost[]
       rel.count++;
     } else {
       relatedPosts.push({
-        post: { ...relPost, readingTime: readingTime(relPost.html).text },
+        post: { ...relPost, readingTime: readingTime(striptags(relPost.html)).text },
         count: 1,
         date: relPost.date
       });
@@ -110,7 +111,7 @@ const getRelatedPosts = (post: BlogPost, categories: { [key: string]: BlogPost[]
     relatedPosts = allPosts
       .filter((x) => x.slug !== post.slug)
       .map((x) => ({
-        post: { ...x, readingTime: readingTime(x.html).text },
+        post: { ...x, readingTime: readingTime(striptags(x.html)).text },
         count: 0,
         date: x.date
       }));
