@@ -12,6 +12,15 @@
 	}
 </script>
 
+<noscript>
+	<!-- Hide the theme toggle if JavaScript is disabled -->
+	<style>
+		.theme-toggle {
+			display: none !important;
+		}
+	</style>
+</noscript>
+
 <button
 	class="theme-toggle"
 	title="Toggle between light and dark theme"
