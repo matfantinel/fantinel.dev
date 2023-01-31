@@ -43,8 +43,6 @@
 	@include define-color('code-text', #ffffff);
 	@include define-color('code-inline-background', #e3e3e3);
 
-	--border-radius: 12px;
-
 	--color--waves-start: rgba(var(--color--primary-rgb), 0.3);
 	--color--waves-end: rgba(var(--color--primary-rgb), 0.1);
 

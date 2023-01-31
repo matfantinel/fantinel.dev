@@ -39,8 +39,5 @@
 		"vite": "^4.0.0",
 		"vite-imagetools": "^4.0.17"
 	},
-	"type": "module",
-	"dependencies": {
-		"open-props": "^1.5.3"
-	}
+	"type": "module"
 }

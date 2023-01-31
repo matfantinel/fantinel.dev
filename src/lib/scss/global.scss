@@ -1,13 +1,4 @@
 @import '$lib/scss/_reset.scss';
-
-// ✨ Open Props bring a bunch of styling utilities and standards
-// ✨ So there is no need to reinvent the wheel.
-// ✨ Way lighter and more flexible than a framework.
-// ✨ https://open-props.style
-@import 'open-props/style';
-// @import 'open-props/normalize';
-// @import 'open-props/colors-hsl';
-
 @import '$lib/scss/_variables.scss';
 @import '$lib/scss/_themes.scss';
 @import '$lib/scss/_breakpoints.scss';

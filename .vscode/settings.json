@@ -1,11 +1,5 @@
 {
-	"cssVariables.lookupFiles": [
-		"**/*.css",
-		"**/*.scss",
-		"**/*.sass",
-		"**/*.less",
-		"node_modules/open-props/open-props.min.css"
-	],
+	"cssVariables.lookupFiles": ["**/*.css", "**/*.scss", "**/*.sass", "**/*.less"],
 	"editor.formatOnSave": true,
 	"prettier.singleQuote": true,
 	"frontMatter.preview.host": "http://localhost:5173/",
