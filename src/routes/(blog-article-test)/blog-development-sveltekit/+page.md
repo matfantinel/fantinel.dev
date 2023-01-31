@@ -20,6 +20,7 @@ categories:
   import SparklingHighlight from "$lib/components/molecules/SparklingHighlight.svelte";
   import Callout from "$lib/components/molecules/Callout.svelte";
   import Github from '$lib/icons/socials/github.svelte';
+	import Button from '$lib/components/atoms/Button.svelte';
 
 	import { getSrcsetFromImport } from "$lib/utils/functions";
   import CoverImage from './cover.jpg?width=1600&format=avif;webp;png&meta&imagetools';
@@ -38,7 +39,10 @@ I've recently re-launched my personal website and blog, that's now reached its 3
 </Callout>
 
 <div style="display: grid;place-items: center;max-width: 300px;margin: 20px auto 0;">
-  <a href="https://github.com/matfantinel/matfantinel.github.io" target="_blank" class="button secondary"><Github />See source code on GitHub</a>
+	<Button href="https://github.com/matfantinel/matfantinel.github.io" color="primary">
+		<Github slot="icon" />
+		See source code on GitHub
+	</Button>
 </div>
 
 ## About Svelte and SvelteKit
@@ -94,7 +98,7 @@ Inside each folder, you can add files that build up your page. Typically, in oth
 
 The only required file is `+page.svelte`. This is where you can add your markup, components, styles and logic. However, it's likely that your page might need to load some data to be displayed. This can be done on another file, `+page.js`, in the same folder. There, you can add a `load` function where you'll have access to query params and other things and be able to load all the data your page needs.
 
-The cool thing about that is that SvelteKit will use the content of the `+page.js` file **both server-side and client-side**, depending on the situation. However, if the data you need can only be loaded on the server (like for example querying a database or using a secret key), you can name it `+page.server.js` instead. Both would do the same thing, however <MarkerHighlight> the naming difference makes it much easier on a quick glance to identify what runs where.</MarkerHighlight>>
+The cool thing about that is that SvelteKit will use the content of the `+page.js` file **both server-side and client-side**, depending on the situation. However, if the data you need can only be loaded on the server (like for example querying a database or using a secret key), you can name it `+page.server.js` instead. Both would do the same thing, however <MarkerHighlight> the naming difference makes it much easier on a quick glance to identify what runs where.</MarkerHighlight>
 
 So, an example of what the basic file structure for my website would look like:
 
@@ -355,5 +359,8 @@ Don't forget all the code for this website and blog are open source, feel free t
 Thanks for reading!
 
 <div style="display: grid;place-items: center;max-width: 300px;margin: 20px auto 0;">
-  <a href="https://github.com/matfantinel/matfantinel.github.io" target="_blank" class="button secondary"><Github />See source code on GitHub</a>
+  <Button href="https://github.com/matfantinel/matfantinel.github.io" color="primary">
+		<Github slot="icon" />
+		See source code on GitHub
+	</Button>
 </div>

@@ -90,6 +90,8 @@
 	@include define-color('callout-accent--error', #ff8082);
 	@include define-color('callout-background--success', #004737);
 	@include define-color('callout-accent--success', #00c48f);
+
+	@include define-color('code-inline-background', #2b3131);
 }
 
 :root {

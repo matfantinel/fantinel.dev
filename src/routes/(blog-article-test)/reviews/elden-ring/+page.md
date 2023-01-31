@@ -14,7 +14,7 @@ excerpt: My thoughts on what probably is the biggest game release of 2022.
   import CoverImage from './cover.png?width=1600&format=avif;webp;png&meta&imagetools';
   import LiurniaImage from './liurnia.jpg?width=1600&format=avif;webp;png&meta&imagetools';
   import MaleniaImage from './malenia-and-radahn.jpg?width=1600&format=avif;webp;png&meta&imagetools';
-  import SentinelImage from './malenia-and-radahn.jpg?width=1600&format=avif;webp;png&meta&imagetools';
+  import SentinelImage from './tree-sentinel.jpg?width=1600&format=avif;webp;png&meta&imagetools';
 
   metadata.coverImage = getSrcsetFromImport(CoverImage);
 </script>
