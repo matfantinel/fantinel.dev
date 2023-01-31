@@ -1,4 +1,5 @@
 ---
+layout: article
 slug: angular-pwa-how-to
 title: How to transform your Angular 6+ app into a PWA
 date: 2019-03-10
@@ -13,10 +14,20 @@ categories:
   - Tech
 ---
 
-<script>
+<script context="module">
   import CodeBlock from "$lib/components/molecules/CodeBlock.svelte";
-  import Image from "$lib/components/atoms/Image.svelte";
+  import SrcsetImage from "$lib/components/atoms/SrcsetImage.svelte";
   import Callout from "$lib/components/molecules/Callout.svelte";
+
+  import { getSrcsetFromImport } from "$lib/utils/functions";
+  import CoverImage from './cover.jpg?width=1600&format=avif;webp;png&meta&imagetools';
+  import AuditsImage from './Audits.jpg?width=1600&format=avif;webp;png&meta&imagetools';
+  import DockIconImage from './dock-icon.jpg?width=1600&format=avif;webp;png&meta&imagetools';
+  import PromptImage from './install-prompt.jpg?width=1600&format=avif;webp;png&meta&imagetools';
+  import PassedAuditsImage from './Passed-Audits.jpg?width=1600&format=avif;webp;png&meta&imagetools';
+  import ServiceWorkerImage from './Service-Workers.jpg?width=1600&format=avif;webp;png&meta&imagetools';
+
+  metadata.coverImage = getSrcsetFromImport(CoverImage);
 </script>
 
 Recently, I've converted my Angular 6 app into a PWA, allowing it to work offline and work like a native app on phones and desktop.
@@ -79,25 +90,22 @@ Your app should be up and running on `http://localhost:8080/` (or whichever port
 
 ### Check if the service worker is being registered
 
-<Image
-  path="posts/{slug}"
-  filename="Service-Workers-1"
+<SrcsetImage
+  srcset={getSrcsetFromImport(ServiceWorkerImage)}
   figcaption="On dev console > Application > Service Workers, there should be a registered service worker for your app."
   alt="Registered Service Worker"
 />
 
 ### Use Chrome's Audits feature to validate it as a PWA
 
-<Image
-  path="posts/{slug}"
-  filename="Audits"
+<SrcsetImage
+  srcset={getSrcsetFromImport(AuditsImage)}
   figcaption="On dev console > Audits, test it for Progressive Web Apps."
   alt="Audits"
 />
 
-<Image
-  path="posts/{slug}"
-  filename="Passed-Audits"
+<SrcsetImage
+  srcset={getSrcsetFromImport(PassedAuditsImage)}
   figcaption="If everything went alright, you should see the highlighted results on the 'Passed audits' section."
   alt="Audits passed"
 />
@@ -108,17 +116,15 @@ You may see some errors regarding the app not running over HTTPS. Don't worry, t
 
 On Chrome, you may also see the option to install the app appear in the URL bar:
 
-<Image
-  path="posts/{slug}"
-  filename="Clipboard_2019-10-27-18-09-45"
+<SrcsetImage
+  srcset={getSrcsetFromImport(PromptImage)}
   alt="Chrome prompts you to install PWA"
 />
 
 After this, the app should already open on a separate window, and show up on your OS's installed apps list!
 
-<Image
-  path="posts/{slug}"
-  filename="Clipboard_2019-10-27-18-11-28"
+<SrcsetImage
+  srcset={getSrcsetFromImport(DockIconImage)}
   figcaption="Notice the PWA's own icon on my OS' dock! Success!"
   alt="Installed PWA on OS' dock"
 />

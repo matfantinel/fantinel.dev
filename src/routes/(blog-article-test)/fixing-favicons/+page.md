@@ -1,4 +1,5 @@
 ---
+layout: article
 slug: fixing-favicons
 title: How to fix your Favicons
 date: 2021-01-06
@@ -11,10 +12,17 @@ categories:
   - Tech
 ---
 
-<script>
+<script context="module">
   import CodeBlock from "$lib/components/molecules/CodeBlock.svelte";
-  import Image from "$lib/components/atoms/Image.svelte";
+  import SrcsetImage from "$lib/components/atoms/SrcsetImage.svelte";
   import Callout from "$lib/components/molecules/Callout.svelte";
+
+  import { getSrcsetFromImport } from "$lib/utils/functions";
+  import CoverImage from './cover.jpg?width=1600&format=avif;webp;png&meta&imagetools';
+  import GeneratorImage from './favicon-generator-customization.jpg?width=1600&format=avif;webp;png&meta&imagetools';
+  import PinnedImage from './safari-pinned-tabs-demo.jpg?width=1600&format=avif;webp;png&meta&imagetools';
+
+  metadata.coverImage = getSrcsetFromImport(CoverImage);
 </script>
 
 Favicons kinda suck. They should be a simple icon that identifies your webpage on a bunch of scenarios, i.e. the icon displayed on the tab besides your website's title, or the icon on the mobile browser's bookmarks screen, or the icon on the phone's home screen.
@@ -27,9 +35,8 @@ I recently met my new best friend, [Real Favicon Generator](https://realfavicong
 
 You just have to add in your existing favicon image (for best results, a SVG or high-quality PNG are recommended). From then on, the generator will display previews and allow customization of each category of favicon it will generate:
 
-<Image
-  path="posts/{slug}"
-  filename="favicon-generator-customization"
+<SrcsetImage
+  srcset={getSrcsetFromImport(GeneratorImage)}
   alt="Screenshot of Real Favicon Generator's customization"
   figcaption="The customization options allow you to set different icons depending on device and OS, and even generate icons with background colors if needed."
 />
@@ -44,7 +51,7 @@ So, there are 5 types of favicons that we need to add, if we want to support eve
 
 <ul>
   <li>`favicon.ico`, for IE and any other legacy browsers. Optional if you don't want to support it;</li>
-  <li>`favicon-16x16.png`, the classic one that displays on the tabs;</li>
+  <li>`favicon-16x16.png`, the classic one that's displayed on the tabs;</li>
   <li>`favicon-32x32.png`, used on Safari for macOS.</li>
 </ul>
 
@@ -73,9 +80,8 @@ So, there are 5 types of favicons that we need to add, if we want to support eve
   <li>`safari-pinned-tab.svg` is used when users pin a tab on Safari for macOS. Basically, you declare a monochrome SVG and a theme color. Safari does the rest.</li>
 </ul>
 
-<Image
-  path="posts/{slug}"
-  filename="safari-pinned-tabs-demo"
+<SrcsetImage
+  srcset={getSrcsetFromImport(PinnedImage)}
   alt="Demo of Safari pinned tabs favicon behavior"
   figcaption="How Safari pinned tab favicon works, screenshot of realfavicongenerator.net"
 />

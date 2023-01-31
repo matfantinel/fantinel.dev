@@ -1,4 +1,5 @@
 ---
+layout: article
 slug: plausible-ethical-analytics
 title: Ethical Analytics are Plausible, at Last
 date: 2022-02-01
@@ -12,10 +13,16 @@ categories:
   - Tech
 ---
 
-<script>
-  import Image from "$lib/components/atoms/Image.svelte";
+<script context="module">
+  import SrcsetImage from "$lib/components/atoms/SrcsetImage.svelte";
   import MarkerHighlight from "$lib/components/molecules/MarkerHighlight.svelte";
   import CodeBlock from "$lib/components/molecules/CodeBlock.svelte";
+
+  import { getSrcsetFromImport } from "$lib/utils/functions";
+  import CoverImage from './cover.jpg?width=1600&format=avif;webp;png&meta&imagetools';
+	import DashboardImage from './dashboard.png?width=1600&format=avif;webp;png&meta&imagetools';
+
+  metadata.coverImage = getSrcsetFromImport(CoverImage);
 </script>
 
 Analytics have become intrinsic to software development in the past decade. On the marketing side, analytics allow us to measure the success of marketing campaigns, optimize the wording, measure ad results, or simply keep track of the growth of the audience. On the development side, it allows to more easily detect points of failure, bad patterns or UX hiccups.
@@ -43,9 +50,8 @@ Plausible is a small company from Europe that makes Plausible Analytics, a priva
 - They offer [ways of bypassing adblockers](https://plausible.io/docs/proxy/introduction);
 - It's simply a great product.
 
-<Image
-  path="posts/{slug}"
-  filename="dashboard"
+<SrcsetImage
+  srcset={getSrcsetFromImport(DashboardImage)}
   alt="Screenshot of the dashboard of my personal website on Plausible Analytics."
   figcaption="Clicking on some data blocks allow you to filter data - so you can still understand how your users behave differently depending on a number of factors."
 />

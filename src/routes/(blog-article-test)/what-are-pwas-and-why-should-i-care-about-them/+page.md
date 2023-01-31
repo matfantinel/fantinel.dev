@@ -1,4 +1,5 @@
 ---
+layout: article
 slug: what-are-pwas-and-why-should-i-care-about-them
 title: What are PWAs and why should I care about them?
 date: 2019-03-12
@@ -12,8 +13,15 @@ categories:
   - Tech
 ---
 
-<script>
-  import Image from "$lib/components/atoms/Image.svelte";
+<script context="module">
+  import SrcsetImage from "$lib/components/atoms/SrcsetImage.svelte";
+
+  import { getSrcsetFromImport } from "$lib/utils/functions";
+  import CoverImage from './cover.jpg?width=1600&format=avif;webp;png&meta&imagetools';
+	import InstallPromptImage from './install-prompt.jpg?width=1600&format=avif;webp;png&meta&imagetools';
+  import AndroidInstallPromptImage from './install-prompt-android.jpg?width=1600&format=avif;webp;png&meta&imagetools';
+
+  metadata.coverImage = getSrcsetFromImport(CoverImage);
 </script>
 
 Progressive Web Apps are not new, but they are becoming more and more popular everyday. Big companies like Facebook, Twitter and Google have been using them for a while, and while they're often designed for mobile, recent pushes from Microsoft and Chrome are making them a good option even for desktop.
@@ -38,17 +46,16 @@ This all may sound complicated, which is why there are many "recipes" of Service
 
 You probably have already found some of them in the wild. In Chrome for Android, opening a certain website might trigger this panel at the bottom of the screen:
 
-<Image
-  path="posts/{slug}"
-  filename="Android-Install-Prompt"
+<SrcsetImage
+  srcset={getSrcsetFromImport(InstallPromptImage)}
   figcaption="'Add Notepad to the home screen'"
   alt="PWA Install Prompt on Android"
 />
 
 And on Desktop, this option shows up in the URL bar:
 
-<Image
-  path="posts/{slug}"
+<SrcsetImage
+  srcset={getSrcsetFromImport(AndroidInstallPromptImage)}
   filename="Clipboard_2019-10-27-18-09-45"
   alt="Chrome prompts you to install PWA"
 />

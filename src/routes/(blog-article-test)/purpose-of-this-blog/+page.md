@@ -1,4 +1,5 @@
 ---
+layout: article
 slug: purpose-of-this-blog
 title: The purpose of this blog
 date: 2019-03-08
@@ -8,6 +9,13 @@ tags:
 categories:
   - Tech
 ---
+
+<script context="module">
+  import { getSrcsetFromImport } from "$lib/utils/functions";
+  import CoverImage from './cover.jpg?width=1600&format=avif;webp;png&meta&imagetools';
+
+  metadata.coverImage = getSrcsetFromImport(CoverImage);
+</script>
 
 There are many developer blogs out there, probably because developers like to ramble about the tech they enjoy. I'm guilty of that too! This blog was created mainly for that - sharing about development stuff that I like or that I'm learning.
 

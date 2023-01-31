@@ -1,4 +1,5 @@
 ---
+layout: article
 slug: net-core-project-restored-different-version
 title: .NET Core - Project version mismatch
 date: 2019-06-03
@@ -13,10 +14,15 @@ categories:
   - Tech
 ---
 
-<script>
+<script context="module">
   import CodeBlock from "$lib/components/molecules/CodeBlock.svelte";
   import Callout from "$lib/components/molecules/Callout.svelte";
   import SparklingHighlight from "$lib/components/molecules/SparklingHighlight.svelte";
+
+  import { getSrcsetFromImport } from "$lib/utils/functions";
+  import CoverImage from './cover.jpg?width=1600&format=avif;webp;png&meta&imagetools';
+
+  metadata.coverImage = getSrcsetFromImport(CoverImage);
 </script>
 
 This problem usually happens when you're working on a solution with multiple projects that were created using different versions of the .NET SDK.

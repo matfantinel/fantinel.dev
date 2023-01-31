@@ -11,7 +11,6 @@ categories:
 ---
 
 <script context="module">
-  
   import SrcsetImage from "$lib/components/atoms/SrcsetImage.svelte";
   import MarkerHighlight from "$lib/components/molecules/MarkerHighlight.svelte";
 

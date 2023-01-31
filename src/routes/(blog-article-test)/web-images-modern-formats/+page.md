@@ -1,6 +1,7 @@
 ---
+layout: article
 slug: web-images-modern-formats
-title: "Smarter, Lighter, Better Images: A Guide to Optimization"
+title: 'Smarter, Lighter, Better Images: A Guide to Optimization'
 date: 2021-01-30
 excerpt: Learn how to reduce page loading times and bounce rate.
 tags:
@@ -13,10 +14,21 @@ categories:
   - Tech
 ---
 
-<script>
+<script context="module">
   import CodeBlock from "$lib/components/molecules/CodeBlock.svelte";
-  import Image from "$lib/components/atoms/Image.svelte";
+  import SrcsetImage from "$lib/components/atoms/SrcsetImage.svelte";
   import MarkerHighlight from "$lib/components/molecules/MarkerHighlight.svelte";
+
+  import { getSrcsetFromImport } from "$lib/utils/functions";
+  import CoverImage from './cover.jpg?width=1600&format=avif;webp;png&meta&imagetools';
+	import AfterRequestsImage from './after-scrolling-requests.png?width=1600&format=avif;webp;png&meta&imagetools';
+  import FirstLoadRequestsImage from './first-load-requests.png?width=1600&format=avif;webp;png&meta&imagetools';
+  import FolderImage from './folder-images.png?width=1600&format=avif;webp;png&meta&imagetools';
+  import GeneratedHtmlImage from './generated-html.png?width=1600&format=avif;webp;png&meta&imagetools';
+  import ResultsImage from './results.png?width=1600&format=avif;webp;png&meta&imagetools';
+  import SizesImage from './sizes.png?width=1600&format=avif;webp;png&meta&imagetools';
+
+  metadata.coverImage = getSrcsetFromImport(CoverImage);
 </script>
 
 Do you know how big the images displayed on your website are? When you open a page, the browser starts downloading a bunch of files in order to display it. Research shows that [images are the most requested asset type](https://httparchive.org/reports/state-of-images) and take up more bandwidth than any other resource. So, making sure they are as small as they can be can greatly improve the load times for your website. (spoiler alert: mine's become 85% faster!)
@@ -52,9 +64,8 @@ AVIF -> WebP -> JPG (or PNG)
 
 If you look at the resulting HTML in your website, you can see that the `<img>` element has a `src` defined, but when you hover over it, it shows what is the actual file that's being loaded. If you're on a supported browser, it will have loaded the AVIF file. If you're on Safari, it will have loaded the WebP one. Otherwise, if you're using IE or something (I'm sorry), the original JPG or PNG file will be loaded.
 
-<Image
-  path="posts/{slug}"
-  filename="generated-html"
+<SrcsetImage
+  srcset={getSrcsetFromImport(GeneratedHtmlImage)}
   figcaption="The img tag shows the PNG file as source, but hovering the mouse over it reveals that the AVIF file is the one that actually loaded."
   alt="Screenshot of the generated HTML code"
 />
@@ -91,9 +102,8 @@ Check out the value on the example: `(max-width: 979px) 100vw, 640px`. What that
 
 It is easier to understand if we visualize it like this:
 
-<Image
-  path="posts/{slug}"
-  filename="sizes"
+<SrcsetImage
+  srcset={getSrcsetFromImport(SizesImage)}
   figcaption="On mobile, the image width is almost the same as the viewport, so it's okay to use 100vw. On desktop, we usually limit the image width, so 640px was the sweet spot in this particular case."
   alt="Screenshots picturing how the sizes property affects the image loading on both mobile and desktop"
 />
@@ -110,16 +120,14 @@ You might have noticed the `loading="lazy"` and `decoding="async"` attributes in
 
 `loading="lazy"` is probably the most important of the two. It is an easy way of telling the browser to <MarkerHighlight>only load the images when they get close to appearing in the viewport</MarkerHighlight>. There is a threshold that is defined by the browser that controls how close it needs to be before it gets loaded, so you don't have to worry about them not showing up if the user scrolls fast. <MarkerHighlight>This ensures that the initial load of the website is as lean as it can get, improving perceived performance and also saving you some money on server requests.</MarkerHighlight>
 
-<Image
-  path="posts/{slug}"
-  filename="first-load-requests"
+<SrcsetImage
+  srcset={getSrcsetFromImport(FirstLoadRequestsImage)}
   figcaption="When the website is initially loaded, it only downloads what's needed: my avatar image and the preview of the first blog post, that will show up after scrolling a bit."
   alt="Screenshot of the image requests made on first load of my website"
 />
 
-<Image
-  path="posts/{slug}"
-  filename="after-scrolling-requests"
+<SrcsetImage
+  srcset={getSrcsetFromImport(AfterRequestsImage)}
   figcaption="When I scroll down the page, the images are downloaded as they're close to appearing."
   alt="Screenshot of the image requests made after scrolling a bit"
 />
@@ -132,9 +140,8 @@ Note: after doing some tests, I have decided that the benefits of serving differ
 
 The following data is taken from the home page of the website, since it has a lot of images:
 
-<Image
-  path="posts/{slug}"
-  filename="results"
+<SrcsetImage
+  srcset={getSrcsetFromImport(ResultsImage)}
   alt="Screenshot showing the difference in download size before and after the optimizations"
 />
 
@@ -207,9 +214,8 @@ And to use this component inside another page:
 
 My folder structure looks like this:
 
-<Image
-  path="posts/{slug}"
-  filename="folder-images"
+<SrcsetImage
+  srcset={getSrcsetFromImport(FolderImage)}
   alt="Screenshot showing the optimized files in their folder and comparing to the original one"
   figcaption="Llamas are great"
 />

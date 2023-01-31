@@ -1,6 +1,7 @@
 ---
+layout: article
 slug: microfrontends
-title: "Micro Frontends: Solving the Legacy JavaScript Problem"
+title: 'Micro Frontends: Solving the Legacy JavaScript Problem'
 date: 2019-03-17
 excerpt: Finally a way to modernize that legacy project you keep complaining about!
 tags:
@@ -11,11 +12,17 @@ categories:
   - Tech
 ---
 
-<script>
+<script context="module">
   import CodeBlock from "$lib/components/molecules/CodeBlock.svelte";
-  import Image from "$lib/components/atoms/Image.svelte";
+  import SrcsetImage from "$lib/components/atoms/SrcsetImage.svelte";
   import Callout from "$lib/components/molecules/Callout.svelte";
   import MarkerHighlight from "$lib/components/molecules/MarkerHighlight.svelte";
+
+	import { getSrcsetFromImport } from "$lib/utils/functions";
+  import CoverImage from './cover.jpg?width=1600&format=avif;webp;png&meta&imagetools';
+	import BrowserSupportImage from './Browser-Support.jpg?width=1600&format=avif;webp;png&meta&imagetools';
+
+  metadata.coverImage = getSrcsetFromImport(CoverImage);
 </script>
 
 It's a running joke in the development community that if a JS programmer goes into a coma for 6 months, he will need to learn everything again by the time he wakes up. This is a consequence of JavaScript's open, decentralized nature. It's both a blessing and a curse.
@@ -253,9 +260,8 @@ As with all things, there are some disadvantages in this approach:
 
 ### Browser Support
 
-<Image
-  path="posts/{slug}"
-  filename="Browser-Support"
+<SrcsetImage
+  srcset={getSrcsetFromImport(BrowserSupportImage)}
   alt="Browser support table"
   figcaption="You can check this information on the <a href='https://caniuse.com/custom-elementsv1' target='_blank'>Can I Use</a> website."
 />

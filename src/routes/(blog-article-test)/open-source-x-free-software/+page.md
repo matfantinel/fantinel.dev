@@ -1,4 +1,5 @@
 ---
+layout: article
 slug: open-source-x-free-software
 title: "Open Source x Free Software: What's the difference?"
 date: 2019-03-23
@@ -15,10 +16,14 @@ categories:
   - Tech
 ---
 
-<script>
+<script context="module">
   import CodeBlock from "$lib/components/molecules/CodeBlock.svelte";
-  import Image from "$lib/components/atoms/Image.svelte";
   import Callout from "$lib/components/molecules/Callout.svelte";
+
+  import { getSrcsetFromImport } from "$lib/utils/functions";
+  import CoverImage from './cover.jpg?width=1600&format=avif;webp;png&meta&imagetools';
+
+  metadata.coverImage = getSrcsetFromImport(CoverImage);
 </script>
 
 Free software is a concept that's been around for a long time, and so is open source. At first glance, they may seem like the same thing with different names. However, they are very different in their philosophy. In this article, I'll explain what each one is and how they are different.

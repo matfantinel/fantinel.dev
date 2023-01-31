@@ -1,4 +1,5 @@
 ---
+layout: article
 slug: blog-development-sveltekit
 title: How I built a blog with Svelte and SvelteKit
 date: 2021-09-08
@@ -12,13 +13,19 @@ categories:
   - Tech
 ---
 
-<script>
+<script context="module">
   import CodeBlock from "$lib/components/molecules/CodeBlock.svelte";
-  import Image from "$lib/components/atoms/Image.svelte";
+  import SrcsetImage from "$lib/components/atoms/SrcsetImage.svelte";
   import MarkerHighlight from "$lib/components/molecules/MarkerHighlight.svelte";
   import SparklingHighlight from "$lib/components/molecules/SparklingHighlight.svelte";
   import Callout from "$lib/components/molecules/Callout.svelte";
   import Github from '$lib/icons/socials/github.svelte';
+
+	import { getSrcsetFromImport } from "$lib/utils/functions";
+  import CoverImage from './cover.jpg?width=1600&format=avif;webp;png&meta&imagetools';
+	import DesignImage from './design-vs-result.png?width=1600&format=avif;webp;png&meta&imagetools';
+
+  metadata.coverImage = getSrcsetFromImport(CoverImage);
 </script>
 
 I've recently re-launched my personal website and blog, that's now reached its 3rd version. There was nothing wrong with the previous one, but I wanted to both give it a small visual refresh and learn something new. So, after a month or so of working on it on my free time, <SparklingHighlight color="secondary">voilà</SparklingHighlight>, you're seeing it right now!
@@ -67,10 +74,9 @@ The design itself was something I came up with, and it's an amalgamation of idea
 
 After the design was complete, I finally began developing it. Since there are some things that you can only find out while developing it and giving it more attention, I made some small tweaks to the design while implementing it. Still, the final result was _really_ similar to the initial design. I count that as a success!
 
-<Image
-  path="posts/{slug}"
-  filename="design-vs-result"
-  alt="Screenshot showing the intial design versus the final result, with minimal differences"
+<SrcsetImage
+  srcset={getSrcsetFromImport(DesignImage)}
+  alt="Screenshot showing the initial design versus the final result, with minimal differences"
   figcaption="The design (left) and the result (right)"
 />
 
