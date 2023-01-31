@@ -2,19 +2,21 @@
 	import Header from '$lib/components/organisms/Header.svelte';
 	import Footer from '$lib/components/organisms/Footer.svelte';
 	import Tag from '$lib/components/atoms/Tag.svelte';
-	import Image from '$lib/components/atoms/Image.svelte';
 	import dateformat from 'dateformat';
 
 	import { keywords, siteBaseUrl, title } from '$lib/data/meta';
 	import type { BlogPost } from '$lib/utils/types';
 	import RelatedPosts from '$lib/components/organisms/RelatedPosts.svelte';
+	import SrcsetImage from '$lib/components/atoms/SrcsetImage.svelte';
 
 	export let data: { post: BlogPost };
 	$: ({ post } = data);
 </script>
 
 <svelte:head>
-	<meta name="keywords" content={post.tags.concat(keywords).join(', ')} />
+	{#if post.tags && post.tags.length > 0}
+		<meta name="keywords" content={post.tags.concat(keywords).join(', ')} />
+	{/if}
 
 	<meta name="description" content={post.excerpt} />
 	<meta property="og:description" content={post.excerpt} />
@@ -39,16 +41,22 @@
 				{#if post.updated}
 					<div class="note">Updated on {dateformat(post.updated, 'UTC:dd mmmm yyyy')}</div>
 				{/if}
-				<div class="note">{post.readingTime}</div>
-				<div class="tags">
-					{#each post.tags as tag}
-						<Tag>{tag}</Tag>
-					{/each}
+				<!-- {#if post.readingTime}
+					<div class="note">{post.readingTime}</div>
+				{/if} -->
+				{#if post.tags && post.tags.length > 0}
+					<div class="tags">
+						{#each post.tags as tag}
+							<Tag>{tag}</Tag>
+						{/each}
+					</div>
+				{/if}
+			</div>
+			{#if post.coverImage}
+				<div class="cover-image">
+					<SrcsetImage srcset={post.coverImage} alt="Cover Image" />
 				</div>
-			</div>
-			<div class="cover-image">
-				<Image path="posts/{post.slug}" filename="cover" alt="Cover Image" />
-			</div>
+			{/if}
 			<div class="content">
 				<slot />
 			</div>

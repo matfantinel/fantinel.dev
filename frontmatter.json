@@ -62,7 +62,7 @@
 	"frontMatter.content.pageFolders": [
 		{
 			"title": "posts",
-			"path": "[[workspace]]/src/routes/(blog-article-test)"
+			"path": "[[workspace]]/src/routes/(blog-article)"
 		}
 	],
 	"frontMatter.taxonomy.tags": [

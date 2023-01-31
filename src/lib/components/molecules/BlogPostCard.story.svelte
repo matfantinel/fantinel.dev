@@ -14,7 +14,6 @@
 				title="Blog Post"
 				coverImage={{ png: 'https://placedog.net/500' }}
 				excerpt="This is a blog post"
-				readingTime="5 min read"
 				tags={['Tag 1', 'Tag 2']}
 			/>
 		</Hst.Variant>
@@ -24,7 +23,6 @@
 				slug="blog-post"
 				title="Blog Post"
 				excerpt="This is a blog post"
-				readingTime="5 min read"
 				tags={['Tag 1', 'Tag 2']}
 				showImage={false}
 			/>

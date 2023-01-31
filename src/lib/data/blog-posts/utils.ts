@@ -7,10 +7,10 @@ import Prism from 'prismjs';
 const ifYouRemoveMeTheBuildFails = Prism;
 import 'prism-svelte';
 import type { BlogPost } from "$lib/utils/types";
-import readingTime from 'reading-time';
+// import readingTime from 'reading-time';
 import striptags from 'striptags';
 
-export const importPosts = (render = true) => {
+export const importPosts = () => {
   const imports = import.meta.glob('$routes/*/*/*.md', { eager: true });
 
   const posts: BlogPost[] = [];
@@ -18,8 +18,7 @@ export const importPosts = (render = true) => {
     const post = imports[path] as any;
     if (post) {
       posts.push({
-        ...post.metadata,
-        html: render ? post.default.render()?.html : undefined
+        ...post.metadata
       });
     }
   }
@@ -50,13 +49,13 @@ export const filterPosts = (posts: BlogPost[], categories: { [key: string]: Blog
           : 0
     )
     .map((post) => {
-      const readingTimeDuration = readingTime(striptags(post.html)).text;
+      // const readingTimeDuration = readingTime(striptags(post.html)).text;
 
       const relatedPosts = getRelatedPosts(post, categories, posts);
 
       return {
         ...post,
-        readingTime: readingTimeDuration,
+        // readingTime: readingTimeDuration,
         relatedPosts: relatedPosts
           .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
           .sort((a, b) => b.count - a.count)
@@ -99,7 +98,10 @@ const getRelatedPosts = (post: BlogPost, categories: { [key: string]: BlogPost[]
       rel.count++;
     } else {
       relatedPosts.push({
-        post: { ...relPost, readingTime: readingTime(striptags(relPost.html)).text },
+        post: {
+          ...relPost,
+          // readingTime: readingTime(striptags(relPost.html)).text 
+        },
         count: 1,
         date: relPost.date
       });
@@ -111,7 +113,10 @@ const getRelatedPosts = (post: BlogPost, categories: { [key: string]: BlogPost[]
     relatedPosts = allPosts
       .filter((x) => x.slug !== post.slug)
       .map((x) => ({
-        post: { ...x, readingTime: readingTime(striptags(x.html)).text },
+        post: {
+          ...x,
+          // readingTime: readingTime(striptags(x.html)).text
+        },
         count: 0,
         date: x.date
       }));
