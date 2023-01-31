@@ -1,9 +1,11 @@
 <script lang="ts">
 	import Card from '$lib/components/atoms/Card.svelte';
 	import Tag from '$lib/components/atoms/Tag.svelte';
-	import Image from '$lib/components/atoms/Image.svelte';
+	import SrcsetImage from '$lib/components/atoms/SrcsetImage.svelte';
+	import type { Srcset } from '$lib/utils/types';
 
 	export let title: string;
+	export let coverImage: Srcset | undefined = undefined;
 	export let excerpt: string;
 	export let readingTime: string;
 	export let slug: string;
@@ -12,11 +14,14 @@
 	export let showImage = true;
 </script>
 
-<Card href="/{slug}" target="_self" additionalClass="blog-post-card {!showImage && 'no-image'}">
-	<Image
-		hidden={showImage}
-		path="posts/{slug}"
-		filename="cover"
+<Card
+	href="/{slug}"
+	target="_self"
+	additionalClass="blog-post-card {(!showImage || !coverImage) && 'no-image'}"
+>
+	<SrcsetImage
+		hidden={showImage && coverImage}
+		srcset={coverImage || { png: '', webp: '', avif: '' }}
 		slot="image"
 		alt="Cover image of this blog post"
 	/>

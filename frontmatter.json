@@ -1,104 +1,105 @@
 {
-  "$schema": "https://frontmatter.codes/frontmatter.schema.json",
-  "frontMatter.taxonomy.contentTypes": [
-    {
-      "name": "default",
-      "pageBundle": false,
-      "previewPath": null,
-      "fields": [
-        {
-          "title": "Title",
-          "name": "title",
-          "type": "string"
-        },
-        {
-          "title": "Excerpt",
-          "name": "excerpt",
-          "type": "string"
-        },
-        {
-          "title": "Publishing date",
-          "name": "date",
-          "type": "datetime",
-          "default": "{{now}}",
-          "isPublishDate": true
-        },
-        {
-          "title": "Last modified date",
-          "name": "updated",
-          "type": "datetime",
-          "isModifiedDate": true
-        },
-        {
-          "title": "Cover Image",
-          "name": "image",
-          "type": "image"
-        },
-        {
-          "title": "Is hidden",
-          "name": "hidden",
-          "type": "draft"
-        },
-        {
-          "title": "Tags",
-          "name": "tags",
-          "type": "tags"
-        },
-        {
-          "title": "Categories",
-          "name": "categories",
-          "type": "categories"
-        }
-      ]
-    }
-  ],
-  "frontMatter.framework.id": "other",
-  "frontMatter.content.publicFolder": "",
-  "frontMatter.content.pageFolders": [
-    {
-      "title": "posts",
-      "path": "[[workspace]]/src/lib/posts"
-    }
-  ],
-  "frontMatter.taxonomy.tags": [
-    ".NET",
-    "Analytics",
-    "Angular",
-    "Backend",
-    "C#",
-    "CSS",
-    "Common Errors",
-    "Concepts",
-    "FLOSS",
-    "FOSS",
-    "Favicon",
-    "Free Software",
-    "Freedom",
-    "Front-End",
-    "Games",
-    "GitHub",
-    "Guide",
-    "HTML",
-    "Ionic",
-    "JavaScript",
-    "Libre Software",
-    "Linux",
-    "Meta",
-    "Online Presence",
-    "Open Source",
-    "Optimization",
-    "PWA",
-    "Privacy",
-    "Programming",
-    "SEO",
-    "SVG",
-    "Svelte",
-    "SvelteKit",
-    "Tools"
-  ],
-  "frontMatter.taxonomy.categories": [
-    "Misc",
-    "Reviews",
-    "Tech"
-  ]
+	"$schema": "https://frontmatter.codes/frontmatter.schema.json",
+	"frontMatter.taxonomy.contentTypes": [
+		{
+			"name": "default",
+			"pageBundle": false,
+			"previewPath": null,
+			"fields": [
+				{
+					"title": "Title",
+					"name": "title",
+					"type": "string"
+				},
+				{
+					"title": "Excerpt",
+					"name": "excerpt",
+					"type": "string"
+				},
+				{
+					"title": "Publishing date",
+					"name": "date",
+					"type": "datetime",
+					"default": "{{now}}",
+					"isPublishDate": true
+				},
+				{
+					"title": "Last modified date",
+					"name": "updated",
+					"type": "datetime",
+					"isModifiedDate": true
+				},
+				{
+					"title": "Cover Image",
+					"name": "cover",
+					"type": "image"
+				},
+				{
+					"title": "Is hidden",
+					"name": "hidden",
+					"type": "draft"
+				},
+				{
+					"title": "Tags",
+					"name": "tags",
+					"type": "tags"
+				},
+				{
+					"title": "Categories",
+					"name": "categories",
+					"type": "categories"
+				},
+				{
+					"title": "layout",
+					"name": "layout",
+					"type": "string"
+				}
+			]
+		}
+	],
+	"frontMatter.framework.id": "other",
+	"frontMatter.content.publicFolder": "",
+	"frontMatter.content.pageFolders": [
+		{
+			"title": "posts",
+			"path": "[[workspace]]/src/routes/(blog-article-test)"
+		}
+	],
+	"frontMatter.taxonomy.tags": [
+		".NET",
+		"Analytics",
+		"Angular",
+		"Backend",
+		"C#",
+		"CSS",
+		"Common Errors",
+		"Concepts",
+		"FLOSS",
+		"FOSS",
+		"Favicon",
+		"Free Software",
+		"Freedom",
+		"Front-End",
+		"Games",
+		"GitHub",
+		"Guide",
+		"HTML",
+		"Ionic",
+		"JavaScript",
+		"Libre Software",
+		"Linux",
+		"Meta",
+		"Online Presence",
+		"Open Source",
+		"Optimization",
+		"PWA",
+		"Privacy",
+		"Programming",
+		"SEO",
+		"SVG",
+		"Svelte",
+		"SvelteKit",
+		"Tools"
+	],
+	"frontMatter.taxonomy.categories": ["Misc", "Reviews", "Tech"]
 }

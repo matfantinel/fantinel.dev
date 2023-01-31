@@ -4,12 +4,12 @@
 	import Button from '$lib/components/atoms/Button.svelte';
 	import Card from '$lib/components/atoms/Card.svelte';
 	import Tag from '$lib/components/atoms/Tag.svelte';
-	import type { TagType } from '$lib/utils/types';
-	import Image from '$lib/components/atoms/Image.svelte';
+	import type { Srcset, TagType } from '$lib/utils/types';
+	import SrcsetImage from '$lib/components/atoms/SrcsetImage.svelte';
 
 	export let name: string;
 	export let description: string;
-	export let image: string;
+	export let image: Srcset;
 	export let link: string | undefined;
 	export let sourceCode: string | undefined;
 	export let blogPostLink: string | undefined;
@@ -17,7 +17,7 @@
 </script>
 
 <Card>
-	<Image path="projects" filename={image} slot="image" alt="Screenshot of {name}" />
+	<SrcsetImage srcset={image} slot="image" alt="Screenshot of {name}" />
 	<div class="content" slot="content">
 		<div class="title">
 			<h4>{name}</h4>

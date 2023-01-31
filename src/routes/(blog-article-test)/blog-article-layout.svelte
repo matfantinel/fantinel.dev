@@ -2,12 +2,12 @@
 	import Header from '$lib/components/organisms/Header.svelte';
 	import Footer from '$lib/components/organisms/Footer.svelte';
 	import Tag from '$lib/components/atoms/Tag.svelte';
-	import Image from '$lib/components/atoms/Image.svelte';
 	import dateformat from 'dateformat';
 
 	import { keywords, siteBaseUrl, title } from '$lib/data/meta';
 	import type { BlogPost } from '$lib/utils/types';
 	import RelatedPosts from '$lib/components/organisms/RelatedPosts.svelte';
+	import SrcsetImage from '$lib/components/atoms/SrcsetImage.svelte';
 
 	export let data: { post: BlogPost };
 	$: ({ post } = data);
@@ -50,9 +50,9 @@
 					</div>
 				{/if}
 			</div>
-			{#if post.slug}
+			{#if post.coverImage}
 				<div class="cover-image">
-					<Image path="posts/{post.slug}" filename="cover" alt="Cover Image" />
+					<SrcsetImage srcset={post.coverImage} alt="Cover Image" />
 				</div>
 			{/if}
 			<div class="content">
