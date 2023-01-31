@@ -12,7 +12,8 @@
 		"format": "prettier --plugin-search-dir . --write .",
 		"story:dev": "histoire dev",
 		"story:build": "histoire build",
-		"story:preview": "histoire preview"
+		"story:preview": "histoire preview",
+		"postbuild": "svelte-sitemap --domain https://fantinel.dev --trailing-slashes true"
 	},
 	"devDependencies": {
 		"@histoire/plugin-svelte": "^0.12.4",
@@ -35,6 +36,7 @@
 		"striptags": "^3.2.0",
 		"svelte": "^3.54.0",
 		"svelte-check": "^2.9.2",
+		"svelte-sitemap": "^2.5.4",
 		"typescript": "^4.9.3",
 		"vite": "^4.0.0",
 		"vite-imagetools": "^4.0.17"
