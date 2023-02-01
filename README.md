@@ -3,7 +3,7 @@
 This is my own personal website, built with SvelteKit. It also holds my own personal blog.
 
 <p align="center">
-    <img src="static/images/projects/personal-website-transparent.png" alt="Screenshot" />
+    <img src="src/lib/images/projects/personal-website-transparent.png" alt="Screenshot" />
 </p>
 
 It was built with a few goals in mind:
@@ -29,14 +29,16 @@ npm install
 npm run dev
 ```
 
-The site should now be available at http://0.0.0.0:5173/ on your local machine, and your local machine's IP address on your network—great for testing on mobile OSes.
+The site should now be available at http://localhost:5173/ on your local machine, and your local machine's IP address on your network—great for testing on mobile OSes.
 
-# Optimizing images
+# Histoire / Storybook
 
-I've built an image-optimizer script called [image-transmutation](https://github.com/matfantinel/image-transmutation) that is used on this website. For now, you have to run it manually, while I don't push it to npm.
+I've used [Histoire](https://histoire.dev), a Vite-based Storybook alternative to be able to see and develop components in isolation. To open it, run `npm run story:dev`.
 
-On the image-transmutation project folder, run:
+# Images
 
-```shell
-node ./index.js --run --sourceFolder "../matfantinel.github.io/static/images" --targetFolder "../matfantinel.github.io/static/optimized-images" --inputFormats "jpg" --inputFormats "jpeg" --inputFormats "png" --outputFormats "webp" --outputFormats "avif" --outputFormats "png"
-```
+I use [vite-imagetools](https://github.com/JonasKruckenberg/imagetools) to automatically process images, generating webp, avif and png files for each one of them. Just by importing the images on a Svelte/Markdown file, Vite will automatically process those on build. I've created the `getSrcsetFromImport` function and the `SrcsetImage` component to make it easier to use.
+
+# Managing Posts
+
+All posts are Markdown files that are processed with [MDsveX](https://mdsvex.pngwn.io/) to allow using Svelte components inside them. In order to make it easier to manage posts, I highly recommend the [Front Matter VS Code extension](https://frontmatter.codes/), which gives you a nice CMS-like UI.
