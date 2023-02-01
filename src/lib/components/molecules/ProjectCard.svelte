@@ -23,12 +23,12 @@
 			<h4>{name}</h4>
 			<div class="links">
 				{#if sourceCode}
-					<a href={sourceCode} target="_blank" rel="noopener noreferrer">
+					<a href={sourceCode} target="_blank" rel="noopener noreferrer" title="Open Source Code">
 						<Github />
 					</a>
 				{/if}
 				{#if link}
-					<a href={link} target="_blank" rel="noopener noreferrer">
+					<a href={link} target="_blank" rel="noopener noreferrer" title="Open Project">
 						<ExternalLink />
 					</a>
 				{/if}

@@ -22,10 +22,10 @@
 				slug={post.slug}
 				title={post.title}
 				excerpt={post.excerpt}
-				readingTime={post.readingTime}
 				tags={post.tags}
 				showImage={false}
 			/>
+			<!-- readingTime={post.readingTime} -->
 		{/each}
 	</div>
 </ContentSection>
@@ -38,5 +38,9 @@
 		display: grid;
 		grid-template-columns: 1fr 1fr;
 		grid-gap: 20px;
+
+		@include for-phone-only {
+			grid-template-columns: 1fr;
+		}
 	}
 </style>

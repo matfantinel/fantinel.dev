@@ -39,5 +39,9 @@
 		display: grid;
 		grid-template-columns: 1fr 1fr;
 		grid-gap: 20px;
+
+		@include for-phone-only {
+			grid-template-columns: 1fr;
+		}
 	}
 </style>

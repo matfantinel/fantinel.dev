@@ -9,6 +9,11 @@ const config = {
 		alias: {
 			$routes: path.resolve('./src/routes')
 		}
+	},
+	build: {
+		modulePreload: {
+			resolveDependencies: () => []
+		}
 	}
 };
 
