@@ -45,7 +45,7 @@ export type BlogPost = {
   excerpt: string,
   html: string,
   // readingTime: string,
-  relatedPosts: BlogPost[],
+  // relatedPosts: BlogPost[],
   coverImage: Srcset,
 }
 

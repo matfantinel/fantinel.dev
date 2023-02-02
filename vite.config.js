@@ -9,12 +9,6 @@ const config = {
 		alias: {
 			$routes: path.resolve('./src/routes')
 		}
-	},
-	// https://github.com/vitejs/vite/issues/5532
-	build: {
-		modulePreload: {
-			resolveDependencies: () => []
-		}
 	}
 };
 
