@@ -47,11 +47,17 @@ const xml = (posts: BlogPost[]) => `
           <link>${siteBaseUrl}/${post.slug}/</link>
           <pubDate>${dateformat(post.date, 'ddd, dd mmm yyyy HH:MM:ss o')}</pubDate>
           ${post.tags ? post.tags.map((tag) => `<category>${tag}</category>`).join('') : ''}
-          <content:encoded><![CDATA[${post.html}]]></content:encoded>
-          <media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="${siteBaseUrl}/images/posts/${post.slug
-        }/cover.jpg"/>
-          <media:content xmlns:media="http://search.yahoo.com/mrss/" medium="image" url="${siteBaseUrl}/images/posts/${post.slug
-        }/cover.jpg"/>
+          <content:encoded><![CDATA[
+            <div style="margin-top: 50px; font-style: italic;">
+              <strong>
+                <a href="${siteBaseUrl}/${post.slug}/">
+                  Read on site
+                </a>
+              </strong>
+            </div>
+          ]]></content:encoded>
+          ${post.coverImage ? `<media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="${siteBaseUrl}/${post.coverImage.png}"/>` : ''}
+          ${post.coverImage ? `<media:content xmlns:media="http://search.yahoo.com/mrss/" medium="image" url="${siteBaseUrl}/${post.coverImage.png}"/>` : ''}          
         </item>
       `
     )

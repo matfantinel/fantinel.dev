@@ -12,7 +12,7 @@ categories:
   - Tech
 ---
 
-<script>
+<script context="module">
   import CodeBlock from "$lib/components/molecules/CodeBlock.svelte";
   import SrcsetImage from "$lib/components/atoms/SrcsetImage.svelte";
   import MarkerHighlight from "$lib/components/molecules/MarkerHighlight.svelte";

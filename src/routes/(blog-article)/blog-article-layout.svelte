@@ -6,7 +6,7 @@
 
 	import { keywords, siteBaseUrl, title } from '$lib/data/meta';
 	import type { BlogPost } from '$lib/utils/types';
-	import RelatedPosts from '$lib/components/organisms/RelatedPosts.svelte';
+	// import RelatedPosts from '$lib/components/organisms/RelatedPosts.svelte';
 	import SrcsetImage from '$lib/components/atoms/SrcsetImage.svelte';
 
 	export let data: { post: BlogPost };
@@ -26,8 +26,10 @@
 	<meta property="og:title" content="{post.title} - {title}" />
 	<meta name="twitter:title" content="{post.title} - {title}" />
 
-	<meta property="og:image" content="{siteBaseUrl}/images/posts/{post.slug}/cover.jpg" />
-	<meta name="twitter:image" content="{siteBaseUrl}/images/posts/{post.slug}/cover.jpg" />
+	{#if post.coverImage}
+		<meta property="og:image" content="{siteBaseUrl}/{post.coverImage.png}" />
+		<meta name="twitter:image" content="{siteBaseUrl}/{post.coverImage.png}" />
+	{/if}
 </svelte:head>
 
 <div class="article-layout">

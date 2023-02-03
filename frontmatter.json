@@ -12,6 +12,11 @@
 					"type": "string"
 				},
 				{
+					"title": "Slug",
+					"name": "slug",
+					"type": "string"
+				},
+				{
 					"title": "Excerpt",
 					"name": "excerpt",
 					"type": "string"
@@ -28,11 +33,6 @@
 					"name": "updated",
 					"type": "datetime",
 					"isModifiedDate": true
-				},
-				{
-					"title": "Cover Image",
-					"name": "cover",
-					"type": "image"
 				},
 				{
 					"title": "Is hidden",

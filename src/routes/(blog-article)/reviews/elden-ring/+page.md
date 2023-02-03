@@ -1,7 +1,13 @@
 ---
 layout: article
-title: Elden Ring Review
+title: 'Review: Elden Ring'
 excerpt: My thoughts on what probably is the biggest game release of 2022.
+date: 2022-08-01T19:59:42.000Z
+tags:
+  - Games
+categories:
+  - Reviews
+slug: reviews/elden-ring
 ---
 
 <script context="module">
