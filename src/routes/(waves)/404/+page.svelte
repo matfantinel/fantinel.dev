@@ -1,11 +1,27 @@
 <script>
 	import Button from '$lib/components/atoms/Button.svelte';
 	import Error from '$lib/icons/error.svelte';
+
+	import { page } from '$app/stores';
+	import { goto } from '$app/navigation';
+	import { browser } from '$app/environment';
+
+	if (browser && $page.status === 404) {
+		console.log($page);
+		// SvelteKit is not redirecting pages with trailing slashes like "/page/" to "/page"
+		// When they're prerendered. Doing this manually here until it's fixed.
+		// https://github.com/sveltejs/kit/issues/8839
+
+		if (window.location.pathname.endsWith('/') && window.location.pathname !== $page.url.pathname) {
+			console.log(`404 - Redirecting from ${window.location.pathname} to ${$page.url.pathname}`);
+			goto($page.url.pathname);
+		}
+	}
 </script>
 
 <div class="error-page">
 	<div class="container">
-		<h1>Oh no!</h1>
+		<h1>Oh no! 404!</h1>
 		<div class="svg-wrapper">
 			<Error />
 		</div>
