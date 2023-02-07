@@ -43,7 +43,7 @@ export type BlogPost = {
   date: string,
   updated: string,
   excerpt: string,
-  html: string,
+  html: string | undefined,
   // readingTime: string,
   // relatedPosts: BlogPost[],
   coverImage: Srcset,

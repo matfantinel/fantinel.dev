@@ -1,11 +1,14 @@
 import { description, siteBaseUrl, title } from '$lib/data/meta';
-import { filteredPosts } from '$lib/data/blog-posts';
 import type { BlogPost } from '$lib/utils/types';
 import dateformat from 'dateformat';
+import { filterPosts, importPosts } from '$lib/data/blog-posts/utils';
 
 export const prerender = true;
 
 export async function GET() {
+  const allPosts = importPosts(true);
+  const filteredPosts = filterPosts(allPosts);
+
   const body = xml(filteredPosts);
   const headers = {
     'Cache-Control': 'max-age=0, s-maxage=3600',
@@ -41,20 +44,23 @@ const xml = (posts: BlogPost[]) => `
     .map(
       (post) => `
         <item>
-          <guid>${siteBaseUrl}/${post.slug}/</guid>
+          <guid>${siteBaseUrl}/${post.slug}</guid>
           <title>${post.title}</title>
           <description>${post.excerpt}</description>
-          <link>${siteBaseUrl}/${post.slug}/</link>
+          <link>${siteBaseUrl}/${post.slug}</link>
           <pubDate>${dateformat(post.date, 'ddd, dd mmm yyyy HH:MM:ss o')}</pubDate>
           ${post.tags ? post.tags.map((tag) => `<category>${tag}</category>`).join('') : ''}
           <content:encoded><![CDATA[
-            <div style="margin-top: 50px; font-style: italic;">
+            <div style="margin: 50px 0; font-style: italic;">
+              If anything looks wrong, 
               <strong>
-                <a href="${siteBaseUrl}/${post.slug}/">
-                  Read on site
+                <a href="${siteBaseUrl}/${post.slug}">
+                  read on the site!
                 </a>
               </strong>
             </div>
+
+            ${post.html}
           ]]></content:encoded>
           ${post.coverImage ? `<media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="${siteBaseUrl}/${post.coverImage.png}"/>` : ''}
           ${post.coverImage ? `<media:content xmlns:media="http://search.yahoo.com/mrss/" medium="image" url="${siteBaseUrl}/${post.coverImage.png}"/>` : ''}          

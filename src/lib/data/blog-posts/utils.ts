@@ -7,10 +7,8 @@ import Prism from 'prismjs';
 const ifYouRemoveMeTheBuildFails = Prism;
 import 'prism-svelte';
 import type { BlogPost } from "$lib/utils/types";
-// import readingTime from 'reading-time';
-// import striptags from 'striptags';
 
-export const importPosts = () => {
+export const importPosts = (render = false) => {
   const blogImports = import.meta.glob('$routes/*/*/*.md', { eager: true });
   const innerImports = import.meta.glob('$routes/*/*/*/*.md', { eager: true });
 
@@ -21,7 +19,8 @@ export const importPosts = () => {
     const post = imports[path] as any;
     if (post) {
       posts.push({
-        ...post.metadata
+        ...post.metadata,
+        html: render ? post.default.render()?.html : undefined,
       });
     }
   }
@@ -29,20 +28,7 @@ export const importPosts = () => {
   return posts;
 }
 
-export const getPostCategories = (posts: BlogPost[]) => {
-  const allTagsAndPosts = posts
-    .filter((x) => !x.hidden)
-    .map((post) =>
-      post.tags.map((tag: string) => {
-        return { tag: tag, post: post };
-      })
-    )
-    .flat();
-
-  return groupPostsByTag(allTagsAndPosts);
-};
-
-export const filterPosts = (posts: BlogPost[], categories: { [key: string]: BlogPost[] }) => {
+export const filterPosts = (posts: BlogPost[]) => {
   return posts.filter((post) => !post.hidden)
     .sort((a, b) =>
       new Date(a.date).getTime() > new Date(b.date).getTime()
@@ -52,18 +38,8 @@ export const filterPosts = (posts: BlogPost[], categories: { [key: string]: Blog
           : 0
     )
     .map((post) => {
-      // const readingTimeDuration = readingTime(striptags(post.html)).text;
-
-      // const relatedPosts = getRelatedPosts(post, categories, posts);
-
       return {
         ...post,
-        // readingTime: readingTimeDuration,
-        // relatedPosts: relatedPosts
-        //   .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
-        //   .sort((a, b) => b.count - a.count)
-        //   .slice(0, 3)
-        //   .map((x) => x.post)
       } as BlogPost;
     });
 }
@@ -78,54 +54,5 @@ const groupPostsByTag = (array: { tag: string; post: BlogPost }[]): { [key: stri
     return acc;
   }, {});
 }
-
-// const getRelatedPosts = (post: BlogPost, categories: { [key: string]: BlogPost[] }, allPosts: BlogPost[]) => {
-//   let allRelatedPosts: BlogPost[] = [];
-//   // Get posts with same tags
-//   for (const tag of post.tags) {
-//     allRelatedPosts = allRelatedPosts.concat(categories[tag]);
-//   }
-
-//   let relatedPosts: {
-//     post: BlogPost;
-//     count: number;
-//     date: string;
-//   }[] = [];
-//   // Sort by number of similar tags
-//   for (const relPost of allRelatedPosts) {
-//     if (relPost.slug === post.slug) {
-//       continue;
-//     }
-//     const rel = relatedPosts.find((x) => x.post.slug === relPost.slug);
-//     if (rel) {
-//       rel.count++;
-//     } else {
-//       relatedPosts.push({
-//         post: {
-//           ...relPost,
-//           // readingTime: readingTime(striptags(relPost.html)).text 
-//         },
-//         count: 1,
-//         date: relPost.date
-//       });
-//     }
-//   }
-
-//   // If there are no related posts, just grab all
-//   if (relatedPosts.length === 0) {
-//     relatedPosts = allPosts
-//       .filter((x) => x.slug !== post.slug)
-//       .map((x) => ({
-//         post: {
-//           ...x,
-//           // readingTime: readingTime(striptags(x.html)).text
-//         },
-//         count: 0,
-//         date: x.date
-//       }));
-//   }
-
-//   return relatedPosts;
-// }
 
 // #endregion
