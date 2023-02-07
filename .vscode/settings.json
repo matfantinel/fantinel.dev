@@ -1,6 +1,6 @@
 {
 	"cssVariables.lookupFiles": ["**/*.css", "**/*.scss", "**/*.sass", "**/*.less"],
-	"editor.formatOnSave": false,
+	"editor.formatOnSave": true,
 	"prettier.singleQuote": true,
 	"frontMatter.preview.host": "http://localhost:5173/",
 	"frontMatter.framework.startCommand": "npm run dev",
