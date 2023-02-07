@@ -4,10 +4,6 @@
 	import ContentSection from '$lib/components/organisms/ContentSection.svelte';
 
 	export let projects: Project[];
-
-	// Projects are grouped in groups of 3
-	// If the number of projects is not divisible by 3, the last group will be a simple grid
-	const leftoverCount = projects.length % 3;
 </script>
 
 <ContentSection
@@ -17,7 +13,7 @@
 >
 	<div class="projects-container">
 		<div class="three-group-grid">
-			{#each projects.slice(0, projects.length - leftoverCount) as project}
+			{#each projects as project}
 				<ProjectCard
 					name={project.name}
 					description={project.description}
@@ -29,22 +25,6 @@
 				/>
 			{/each}
 		</div>
-
-		{#if leftoverCount > 0}
-			<div class="simple-grid">
-				{#each projects.slice(projects.length - leftoverCount) as project}
-					<ProjectCard
-						name={project.name}
-						description={project.description}
-						image={project.image}
-						link={project.link}
-						sourceCode={project.sourceCode}
-						blogPostLink={project.blogPostLink}
-						tags={project.tags}
-					/>
-				{/each}
-			</div>
-		{/if}
 	</div>
 </ContentSection>
 
@@ -64,7 +44,7 @@
 		grid-template-columns: 2fr 1fr;
 		grid-gap: 20px;
 
-		@media (max-width: 1070px) {
+		@media (max-width: 1085px) {
 			grid-template-columns: 1fr 1fr;
 		}
 
@@ -74,7 +54,7 @@
 
 		// Select every 3 elements, starting from position 2
 		// And make it take up 2 rows
-		@media (min-width: 1071px) {
+		@media (min-width: 1086px) {
 			> :global(:nth-child(3n + 2)) {
 				grid-row: span 2;
 			}
@@ -83,7 +63,7 @@
 		// Select every 3 elements, starting from position 1
 		// And make it take up 2 columns
 		> :global(:nth-child(3n + 1)) {
-			@media (max-width: 1070px) {
+			@media (max-width: 1085px) {
 				grid-column: span 2;
 			}
 
@@ -91,21 +71,6 @@
 				grid-template-columns: 1fr;
 				grid-column: unset;
 			}
-		}
-	}
-
-	.simple-grid {
-		width: 100%;
-		display: grid;
-		grid-template-columns: 1fr 1fr 1fr;
-		grid-gap: 20px;
-
-		@media (max-width: 1070px) {
-			grid-template-columns: 1fr 1fr;
-		}
-
-		@include for-tablet-portrait-down {
-			grid-template-columns: 1fr;
 		}
 	}
 </style>
