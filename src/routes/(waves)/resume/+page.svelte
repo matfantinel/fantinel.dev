@@ -1,7 +1,16 @@
-<script>
-	import { title } from '$lib/meta';
-	import Resume from '$lib/components/resume/resume.svelte';
-	import DownloadIcon from '$lib/svg/download.svelte';
+<script lang="ts">
+	import Button from '$lib/components/atoms/Button.svelte';
+	import Resume from '$lib/components/organisms/Resume.svelte';
+	import { title } from '$lib/data/meta';
+	import DownloadIcon from '$lib/icons/download.svelte';
+	import type { ExperienceEntry } from '$lib/utils/types';
+
+	export let data: {
+		yearsOfExperience: number;
+		experienceEntries: ExperienceEntry[];
+	};
+
+	let { yearsOfExperience, experienceEntries } = data;
 </script>
 
 <svelte:head>
@@ -11,15 +20,17 @@
 </svelte:head>
 
 <div class="resume-wrapper">
-	<a
-		class="download-link button secondary-light"
+	<Button
+		additionalClass="download-link"
 		href="https://github.com/matfantinel/matfantinel.github.io/raw/main/static/Matheus%20Fantinel%20-%20Resume.pdf"
+		style="understated"
+		color="secondary"
 	>
-		<DownloadIcon />
+		<DownloadIcon slot="icon" />
 		Download as PDF
-	</a>
+	</Button>
 
-	<Resume />
+	<Resume {yearsOfExperience} {experienceEntries} />
 </div>
 
 <style lang="scss">
@@ -27,38 +38,23 @@
 		position: relative;
 		padding: 40px 0 40px;
 		min-height: 80vh;
-
-		.download-link {
-			position: absolute;
-			top: -5px;
-			left: 50%;
-			transform: translateX(-50%);
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			gap: 5px;
-			margin: 0 auto;
-			width: fit-content;
-			z-index: 1;
-
-			:global(svg) {
-				width: 20px;
-				height: 20px;
-				color: inherit;
-			}
-		}
+		display: flex;
+		gap: 10px;
+		flex-direction: column;
+		align-items: center;
 	}
+
 	@media print {
 		.resume-wrapper {
 			padding: 0;
+		}
 
-			.download-link {
-				display: none !important;
-			}
+		:global(.download-link) {
+			display: none !important;
 		}
 
 		:global(body) {
-			background: var(--card-background-color);
+			background: var(--color--card-background);
 		}
 	}
 </style>

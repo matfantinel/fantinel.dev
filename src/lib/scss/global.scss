@@ -1,0 +1,40 @@
+@import '$lib/scss/_reset.scss';
+@import '$lib/scss/_variables.scss';
+@import '$lib/scss/_themes.scss';
+@import '$lib/scss/_breakpoints.scss';
+@import '$lib/scss/_functions.scss';
+@import '$lib/scss/_mixins.scss';
+@import '$lib/scss/_base.scss';
+@import '$lib/scss/_typography.scss';
+@import '$lib/scss/_markdown.scss';
+@import '$lib/scss/_code-highlights.scss';
+
+body {
+	--body-background-color: var(--color--page-background);
+	background-color: var(--body-background-color);
+	color: var(--color--text);
+	fill: var(--color--text);
+	transition: all 0.4s ease;
+	font-family: var(--font--default);
+	line-height: 1.3;
+	scroll-behavior: smooth;
+
+	height: 100%;
+	min-height: 100vh;
+	/* safari viewport bug fix */
+	min-height: -webkit-fill-available;
+
+	width: 100%;
+	overflow-x: hidden;
+}
+
+html {
+	scroll-behavior: smooth;
+	font-size: 18px;
+	width: 100%;
+}
+
+#svelte-root {
+	height: 100%;
+	position: relative;
+}

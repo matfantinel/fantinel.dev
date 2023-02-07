@@ -1,21 +1,32 @@
 <script>
-	import Error from '$lib/svg/error.svelte';
+	import Button from '$lib/components/atoms/Button.svelte';
+	import Error from '$lib/icons/error.svelte';
 </script>
 
 <div class="error-page">
+	<script>
+		console.log('ends with /', window.location.pathname.endsWith('/'));
+		if (window.location.pathname.endsWith('/')) {
+			console.log(
+				`Redirecting from ${window.location.pathname} to ${window.location.pathname.slice(0, -1)}`
+			);
+			window.location.pathname = window.location.pathname.slice(0, -1);
+		}
+	</script>
 	<div class="container">
-		<h1>Oh no!</h1>
+		<h1>Oh no! 404!</h1>
 		<div class="svg-wrapper">
 			<Error />
 		</div>
 		<p>It seems like coffee was spilled all over this page, and now it can't be displayed.</p>
-		<a class="button secondary" href="/">Start over</a>
+		<br />
+		<Button href="/">Start over</Button>
 	</div>
 </div>
 
 <style lang="scss">
 	.error-page {
-		background: var(--page-background-color);
+		background: var(--color--page-background);
 		position: relative;
 	}
 	.container {
@@ -34,11 +45,6 @@
 			:global(svg) {
 				filter: drop-shadow(2px 6px 0px rgba(0, 0, 0, 0.1));
 			}
-		}
-
-		.button {
-			margin-top: 30px;
-			width: fit-content;
 		}
 	}
 </style>

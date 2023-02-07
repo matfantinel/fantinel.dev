@@ -1,0 +1,6 @@
+// Calculate brightness of a given color.
+@function brightness($color) {
+	// @return ((red($color) * 0.299) + (green($color) * 0.587) + (blue($color) * 0.114)) / 255 * 100%;
+	// @return math.div((red($color) * 0.299) + (green($color) * 0.587) + (blue($color) * 0.114), 255);
+	@return calc(((red($color) * 0.299) + (green($color) * 0.587) + (blue($color) * 0.114)) / 255);
+}

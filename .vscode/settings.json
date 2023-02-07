@@ -1,0 +1,10 @@
+{
+	"cssVariables.lookupFiles": ["**/*.css", "**/*.scss", "**/*.sass", "**/*.less"],
+	"editor.formatOnSave": true,
+	"prettier.singleQuote": true,
+	"frontMatter.preview.host": "http://localhost:5173/",
+	"frontMatter.framework.startCommand": "npm run dev",
+	"frontMatter.content.autoUpdateDate": false,
+	"frontMatter.content.fmHighlight": true,
+	"frontMatter.content.publicFolder": "static/images"
+}
