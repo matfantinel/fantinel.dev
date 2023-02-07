@@ -53,9 +53,9 @@
 	{#each sparkles as sparkle (sparkle.id)}
 		<Sparkle color={sparkle.color} size={sparkle.size} style={sparkle.style} />
 	{/each}
-	<div class="slot-wrapper">
+	<span class="slot-wrapper">
 		<slot />
-	</div>
+	</span>
 </div>
 
 <style lang="scss">
