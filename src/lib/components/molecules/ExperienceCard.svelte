@@ -47,6 +47,10 @@
 		align-items: center;
 		justify-content: space-between;
 		width: 100%;
+
+		h4 {
+			width: 100%;
+		}
 	}
 
 	.tags {

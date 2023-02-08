@@ -64,10 +64,8 @@
 		.content-area {
 			flex: 5;
 
-			display: flex;
-			flex-direction: column;
-			justify-content: center;
-			align-items: center;
+			display: grid;
+			place-items: center;
 		}
 
 		@include for-tablet-portrait-up {
