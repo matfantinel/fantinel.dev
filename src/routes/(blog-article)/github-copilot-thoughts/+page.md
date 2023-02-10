@@ -1,5 +1,4 @@
 ---
-layout: article
 slug: github-copilot-thoughts
 title: Thoughts on GitHub Copilot
 date: 2022-09-05

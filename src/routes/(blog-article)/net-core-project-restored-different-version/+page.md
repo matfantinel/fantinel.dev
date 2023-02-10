@@ -1,5 +1,4 @@
 ---
-layout: article
 slug: net-core-project-restored-different-version
 title: .NET Core - Project version mismatch
 date: 2019-06-03

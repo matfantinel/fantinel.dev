@@ -48,11 +48,6 @@
 					"title": "Categories",
 					"name": "categories",
 					"type": "categories"
-				},
-				{
-					"title": "layout",
-					"name": "layout",
-					"type": "string"
 				}
 			]
 		}

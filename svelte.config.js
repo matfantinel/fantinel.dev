@@ -15,9 +15,6 @@ const config = {
 	preprocess: [
 		vitePreprocess(),
 		mdsvex({
-			layout: {
-				article: './src/routes/(blog-article)/mdsvex-layout.svelte'
-			},
 			extensions: extensions,
 			rehypePlugins: [
 				rehypeExternalLinks, // Adds 'target' and 'rel' to external links

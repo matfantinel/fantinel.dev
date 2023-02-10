@@ -1,5 +1,4 @@
 ---
-layout: article
 slug: css-scroll-snapping
 title: CSS Scroll Snapping - Improve Scrolling without JS
 date: 2020-08-03

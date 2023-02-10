@@ -1,5 +1,4 @@
 ---
-layout: article
 slug: microfrontends
 title: 'Micro Frontends: Solving the Legacy JavaScript Problem'
 date: 2019-03-17

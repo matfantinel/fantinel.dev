@@ -7,7 +7,6 @@ tags:
   - Social Media
 categories:
   - Misc
-layout: article
 ---
 
 <script context="module">

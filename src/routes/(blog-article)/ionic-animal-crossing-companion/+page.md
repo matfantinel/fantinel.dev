@@ -1,5 +1,4 @@
 ---
-layout: article
 slug: ionic-animal-crossing-companion
 title: Developing an Animal Crossing companion app with Ionic
 date: 2020-07-28

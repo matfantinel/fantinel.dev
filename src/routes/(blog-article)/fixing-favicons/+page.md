@@ -1,5 +1,4 @@
 ---
-layout: article
 slug: fixing-favicons
 title: How to fix your Favicons
 date: 2021-01-06

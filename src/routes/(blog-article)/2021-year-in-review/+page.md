@@ -1,5 +1,4 @@
 ---
-layout: article
 slug: 2021-year-in-review
 title: 2021 In Review
 date: 2021-12-09

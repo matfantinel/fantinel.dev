@@ -1,5 +1,4 @@
 ---
-layout: article
 slug: angular-pwa-how-to
 title: How to transform your Angular 6+ app into a PWA
 date: 2019-03-10

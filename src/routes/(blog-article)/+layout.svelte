@@ -9,29 +9,27 @@
 	// import RelatedPosts from '$lib/components/organisms/RelatedPosts.svelte';
 	import SrcsetImage from '$lib/components/atoms/SrcsetImage.svelte';
 
-	// export let data: { post: BlogPost };
-	// $: ({ post } = data);
-
-	import { post } from '$lib/stores/post';
+	export let data: { post: BlogPost };
+	$: ({ post } = data);
 </script>
 
 <svelte:head>
-	{#if $post}
-		{#if $post.tags && $post.tags.length > 0}
-			<meta name="keywords" content={$post.tags.concat(keywords).join(', ')} />
+	{#if post}
+		{#if post.tags && post.tags.length > 0}
+			<meta name="keywords" content={post.tags.concat(keywords).join(', ')} />
 		{/if}
 
-		<meta name="description" content={$post.excerpt} />
-		<meta property="og:description" content={$post.excerpt} />
-		<meta name="twitter:description" content={$post.excerpt} />
+		<meta name="description" content={post.excerpt} />
+		<meta property="og:description" content={post.excerpt} />
+		<meta name="twitter:description" content={post.excerpt} />
 
-		<title>{$post.title} - {title}</title>
-		<meta property="og:title" content="{$post.title} - {title}" />
-		<meta name="twitter:title" content="{$post.title} - {title}" />
+		<title>{post.title} - {title}</title>
+		<meta property="og:title" content="{post.title} - {title}" />
+		<meta name="twitter:title" content="{post.title} - {title}" />
 
-		{#if $post.coverImage}
-			<meta property="og:image" content="{siteBaseUrl}/{$post.coverImage.png}" />
-			<meta name="twitter:image" content="{siteBaseUrl}/{$post.coverImage.png}" />
+		{#if post.coverImage}
+			<meta property="og:image" content="{siteBaseUrl}/{post.coverImage.png}" />
+			<meta name="twitter:image" content="{siteBaseUrl}/{post.coverImage.png}" />
 		{/if}
 	{/if}
 </svelte:head>
@@ -42,27 +40,27 @@
 	<main>
 		<article id="article-content">
 			<div class="header">
-				{#if $post}
-					<h1>{$post.title}</h1>
-					<div class="note">Published on {dateformat($post.date, 'UTC:dd mmmm yyyy')}</div>
-					{#if $post.updated}
-						<div class="note">Updated on {dateformat($post.updated, 'UTC:dd mmmm yyyy')}</div>
+				{#if post}
+					<h1>{post.title}</h1>
+					<div class="note">Published on {dateformat(post.date, 'UTC:dd mmmm yyyy')}</div>
+					{#if post.updated}
+						<div class="note">Updated on {dateformat(post.updated, 'UTC:dd mmmm yyyy')}</div>
 					{/if}
-					<!-- {#if $post.readingTime}
-						<div class="note">{$post.readingTime}</div>
+					<!-- {#if post.readingTime}
+						<div class="note">{post.readingTime}</div>
 					{/if} -->
-					{#if $post.tags && $post.tags.length > 0}
+					{#if post.tags && post.tags.length > 0}
 						<div class="tags">
-							{#each $post.tags as tag}
+							{#each post.tags as tag}
 								<Tag>{tag}</Tag>
 							{/each}
 						</div>
 					{/if}
 				{/if}
 			</div>
-			{#if $post && $post.coverImage}
+			{#if post && post.coverImage}
 				<div class="cover-image">
-					<SrcsetImage srcset={$post.coverImage} alt="Cover Image" />
+					<SrcsetImage srcset={post.coverImage} alt="Cover Image" />
 				</div>
 			{/if}
 			<div class="content">
@@ -70,9 +68,9 @@
 			</div>
 		</article>
 
-		<!-- {#if $post.relatedPosts && $post.relatedPosts.length > 0}
+		<!-- {#if post.relatedPosts && post.relatedPosts.length > 0}
 			<div class="container">
-				<RelatedPosts posts={$post.relatedPosts} />
+				<RelatedPosts posts={post.relatedPosts} />
 			</div>
 		{/if} -->
 	</main>

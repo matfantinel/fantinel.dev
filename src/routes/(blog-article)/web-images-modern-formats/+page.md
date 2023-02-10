@@ -1,5 +1,4 @@
 ---
-layout: article
 slug: web-images-modern-formats
 title: 'Smarter, Lighter, Better Images: A Guide to Optimization'
 date: 2021-01-30

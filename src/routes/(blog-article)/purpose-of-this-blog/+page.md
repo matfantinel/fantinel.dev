@@ -1,5 +1,4 @@
 ---
-layout: article
 slug: purpose-of-this-blog
 title: The purpose of this blog
 date: 2019-03-08

@@ -1,5 +1,4 @@
 ---
-layout: article
 slug: dotnet-core-405-error
 title: .NET Core API - Method not allowed on PUT and DELETE requests
 date: 2019-03-14

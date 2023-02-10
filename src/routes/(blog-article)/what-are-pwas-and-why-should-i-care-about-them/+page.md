@@ -1,5 +1,4 @@
 ---
-layout: article
 slug: what-are-pwas-and-why-should-i-care-about-them
 title: What are PWAs and why should I care about them?
 date: 2019-03-12

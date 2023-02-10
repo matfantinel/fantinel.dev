@@ -1,5 +1,4 @@
 ---
-layout: article
 slug: web-workers
 title: Web Workers - Bringing Multithreading to the Front-End
 date: 2019-08-14

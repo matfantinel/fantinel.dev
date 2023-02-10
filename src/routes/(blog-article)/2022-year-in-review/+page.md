@@ -1,5 +1,4 @@
 ---
-layout: article
 slug: 2022-year-in-review
 title: 2022 In Hindsight
 date: 2022-12-19

@@ -1,5 +1,4 @@
 ---
-layout: article
 slug: plausible-ethical-analytics
 title: Ethical Analytics are Plausible, at Last
 date: 2022-02-01

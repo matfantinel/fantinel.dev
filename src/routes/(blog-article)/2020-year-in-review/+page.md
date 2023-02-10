@@ -1,5 +1,4 @@
 ---
-layout: article
 slug: 2020-year-in-review
 title: Looking Back at 2020
 date: 2020-12-28

@@ -1,5 +1,4 @@
 ---
-layout: article
 slug: 2019-year-in-review
 title: Cool things I did and learned in 2019
 date: 2019-12-29

@@ -1,5 +1,4 @@
 ---
-layout: article
 slug: mongodb-error-datadb-on-linux
 title: MongoDB on Linux - Data directory /data/db not found
 date: 2019-06-09

@@ -1,5 +1,4 @@
 ---
-layout: article
 slug: blog-development-sveltekit
 title: How I built a blog with Svelte and SvelteKit
 date: 2021-09-08

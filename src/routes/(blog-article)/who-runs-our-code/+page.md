@@ -9,7 +9,6 @@ tags:
   - Front-End
 categories:
   - Tech
-layout: article
 ---
 
 <script context="module">

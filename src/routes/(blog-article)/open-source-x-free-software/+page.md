@@ -1,5 +1,4 @@
 ---
-layout: article
 slug: open-source-x-free-software
 title: "Open Source x Free Software: What's the difference?"
 date: 2019-03-23
