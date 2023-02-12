@@ -16,12 +16,11 @@
 			{#each posts as post}
 				<BlogPostCard
 					title={post.title}
-					coverImage={post.coverImage}
+					coverImage={post.hideCoverImage ? undefined : post.coverImage}
 					excerpt={post.excerpt}
 					slug={post.slug}
 					tags={post.tags}
 				/>
-				<!-- readingTime={post.readingTime} -->
 			{/each}
 		</div>
 	</ContentSection>

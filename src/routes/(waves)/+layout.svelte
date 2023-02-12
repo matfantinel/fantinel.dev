@@ -3,10 +3,11 @@
 	import Header from '$lib/components/organisms/Header.svelte';
 	import Footer from '$lib/components/organisms/Footer.svelte';
 
-	import { description, image, keywords, title } from '$lib/data/meta';
+	import { description, image, keywords, title, siteBaseUrl } from '$lib/data/meta';
 </script>
 
 <svelte:head>
+	<link rel="“canonical”" href={siteBaseUrl} />
 	<meta name="keywords" content={keywords.join(', ')} />
 
 	<meta name="description" content={description} />

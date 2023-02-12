@@ -22,14 +22,15 @@
 		<meta name="description" content={post.excerpt} />
 		<meta property="og:description" content={post.excerpt} />
 		<meta name="twitter:description" content={post.excerpt} />
+		<link rel="canonical" href="{siteBaseUrl}/{post.slug}" />
 
 		<title>{post.title} - {title}</title>
 		<meta property="og:title" content="{post.title} - {title}" />
 		<meta name="twitter:title" content="{post.title} - {title}" />
 
 		{#if post.coverImage}
-			<meta property="og:image" content="{siteBaseUrl}/{post.coverImage.png}" />
-			<meta name="twitter:image" content="{siteBaseUrl}/{post.coverImage.png}" />
+			<meta property="og:image" content="{siteBaseUrl}{post.coverImage.png}" />
+			<meta name="twitter:image" content="{siteBaseUrl}{post.coverImage.png}" />
 		{/if}
 	{/if}
 </svelte:head>
@@ -58,7 +59,7 @@
 					{/if}
 				{/if}
 			</div>
-			{#if post && post.coverImage}
+			{#if post && !post.hideCoverImage && post.coverImage}
 				<div class="cover-image">
 					<SrcsetImage srcset={post.coverImage} alt="Cover Image" />
 				</div>

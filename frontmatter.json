@@ -40,6 +40,11 @@
 					"type": "draft"
 				},
 				{
+					"title": "Hide Cover Image",
+					"name": "hideCoverImage",
+					"type": "boolean"
+				},
+				{
 					"title": "Tags",
 					"name": "tags",
 					"type": "tags"
