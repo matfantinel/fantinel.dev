@@ -170,6 +170,17 @@
 			section {
 				margin: 0;
 			}
+
+			.blob.two {
+				display: none;
+			}
+		}
+
+		:global(header) {
+			display: none;
+		}
+		:global(footer) {
+			display: none !important;
 		}
 	}
 

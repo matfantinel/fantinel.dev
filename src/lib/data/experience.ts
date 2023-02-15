@@ -7,9 +7,29 @@ export const yearsOfExperience = Math.abs(
 
 export const entries = [
 	{
+		companySlug: 'usefulgroup',
+		company: 'Useful Group',
+		jobTitle: 'Front-End Developer',
+		timeframe: '2023 → Now',
+		current: true,
+		location: 'USA, Remote',
+		description:
+			'Building pleasant and useful websites to take our clients’ missions forward, using WordPress and the know-how to do things the best way.',
+		tags: [
+			{
+				color: 'primary',
+				label: 'WordPress'
+			},
+			{
+				color: 'primary',
+				label: 'Atomic Design'
+			}
+		]
+	},
+	{
 		companySlug: 'agora',
 		company: 'Agora',
-		jobTitle: 'Lead Front-End Developer',
+		jobTitle: 'Front-End Developer',
 		timeframe: '2021 → Now',
 		current: true,
 		location: 'USA, Remote',
@@ -29,7 +49,7 @@ export const entries = [
 	{
 		companySlug: 'logitix',
 		company: 'Logitix',
-		jobTitle: 'Software Engineer',
+		jobTitle: 'Software Developer',
 		timeframe: '2019 → 2021',
 		location: 'USA, Remote',
 		description:
