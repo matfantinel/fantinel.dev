@@ -20,6 +20,7 @@
 					excerpt={post.excerpt}
 					slug={post.slug}
 					tags={post.tags}
+					categories={post.categories}
 				/>
 			{/each}
 		</div>

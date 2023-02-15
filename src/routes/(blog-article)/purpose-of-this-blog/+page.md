@@ -4,9 +4,10 @@ title: The purpose of this blog
 date: 2019-03-08
 excerpt: Why does it exist?
 tags:
-  - Meta
+  - Personal
+  - Ramble
 categories:
-  - Tech
+  - Misc
 ---
 
 <script context="module">

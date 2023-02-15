@@ -5,10 +5,9 @@ date: 2019-06-03
 excerpt: Solving this cryptic error might take you many hours. Hopefully this will help
   you out.
 tags:
+  - Back-End
   - Common Errors
-  - .NET
-  - Backend
-  - C#
+  - Guide
 categories:
   - Tech
 ---

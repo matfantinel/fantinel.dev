@@ -7,7 +7,6 @@ excerpt: Improve your client-side performance by breaking heavy operations into
 tags:
   - Front-End
   - Guide
-  - JavaScript
 categories:
   - Tech
 ---

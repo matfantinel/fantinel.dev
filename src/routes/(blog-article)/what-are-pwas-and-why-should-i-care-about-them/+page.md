@@ -6,8 +6,7 @@ excerpt: We see a lot of talk about PWAs, but the concept is not that easy to
   understand.
 tags:
   - Front-End
-  - PWA
-  - JavaScript
+  - Guide
 categories:
   - Tech
 ---

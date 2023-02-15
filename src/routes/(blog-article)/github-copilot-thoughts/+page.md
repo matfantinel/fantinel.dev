@@ -5,8 +5,8 @@ date: 2022-09-05
 excerpt: I was initially skeptical about it, but I've come to appreciate it more and
   more as I use it.
 tags:
-  - Tools
-  - Programming
+  - Ramble
+  - Review
 categories:
   - Tech
 ---

@@ -4,9 +4,9 @@ title: CSS Scroll Snapping - Improve Scrolling without JS
 date: 2020-08-03
 excerpt: Learn how to snap scrolling positions with CSS only.
 tags:
-  - Front-End
   - CSS
   - Guide
+  - Front-End
 categories:
   - Tech
 ---

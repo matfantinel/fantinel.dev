@@ -3,9 +3,10 @@ title: 'Review: Elden Ring'
 excerpt: My thoughts on what probably is the biggest game release of 2022.
 date: 2022-08-01T19:59:42.000Z
 tags:
+  - Review
   - Games
 categories:
-  - Reviews
+  - Misc
 slug: reviews/elden-ring
 ---
 

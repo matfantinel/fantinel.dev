@@ -4,7 +4,7 @@ slug: from-twitter-to-mastodon
 excerpt: Turns out the elephant network feels much lighter than the bird one.
 date: 2023-02-07T01:45:19.371Z
 tags:
-  - Social Media
+  - Ramble
 categories:
   - Misc
 ---

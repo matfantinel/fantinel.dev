@@ -5,7 +5,6 @@ date: 2019-03-17
 excerpt: Finally a way to modernize that legacy project you keep complaining about!
 tags:
   - Front-End
-  - JavaScript
   - Guide
 categories:
   - Tech

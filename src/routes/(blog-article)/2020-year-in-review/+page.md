@@ -2,11 +2,14 @@
 slug: 2020-year-in-review
 title: Looking Back at 2020
 date: 2020-12-28
-excerpt: 2020 definitely wasn't our best year... but let's remember what was good about it.
+excerpt: 2020 definitely wasn't our best year... but let's remember what was good about
+  it.
 tags:
-  - Meta
+  - Personal
+  - Recap
+  - Review
 categories:
-  - Tech
+  - Misc
 ---
 
 <script context="module">
@@ -38,12 +41,6 @@ Initially, I was guilty of that too. Checking many times a day for news, how the
 ## Learning with Personal Projects
 
 This year I worked on a few personal projects, and tried different approaches with them so I could learn new things. I didn't necessarily get really in-depth into most of the things I learned, but the knowledge I got definitely made me a better developer.
-
-<!-- <Image
-  path="posts/{slug}"
-  filename="pocket-companion"
-  alt="Screenshot of my Pocket Companion app"
-/> -->
 
 <SrcsetImage
   srcset={getSrcsetFromImport(PocketCompanionImage)}

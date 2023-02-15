@@ -6,6 +6,7 @@ excerpt: 'In a world with tons of business requirements, conversion metrics, and
   oblivious of one thing: where our code runs.'
 date: 2023-02-10T00:32:31.054Z
 tags:
+  - Ramble
   - Front-End
 categories:
   - Tech

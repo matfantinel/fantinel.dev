@@ -6,7 +6,6 @@ excerpt: Favicons suck. Luckily, there are ways to make them suck less.
 tags:
   - Front-End
   - Guide
-  - Favicon
 categories:
   - Tech
 ---

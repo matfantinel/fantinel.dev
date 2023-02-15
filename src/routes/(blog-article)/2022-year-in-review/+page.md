@@ -4,9 +4,11 @@ title: 2022 In Hindsight
 date: 2022-12-19
 excerpt: A year of big changes, both to me and to the world.
 tags:
-  - Meta
+  - Personal
+  - Recap
+  - Review
 categories:
-  - Tech
+  - Misc
 ---
 
 <script context="module">

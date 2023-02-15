@@ -6,8 +6,8 @@ excerpt: Web Analytics is such a morally ambiguous area that I’ve avoided it f
   but now I can finally do it with peace of mind.
 tags:
   - Analytics
-  - Privacy
-  - SEO
+  - Ramble
+  - Ethics
 categories:
   - Tech
 ---

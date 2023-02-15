@@ -4,10 +4,10 @@
 	import SrcsetImage from '$lib/components/atoms/SrcsetImage.svelte';
 	import type { Srcset } from '$lib/utils/types';
 
+	export let categories: string[] | undefined = undefined;
 	export let title: string;
 	export let coverImage: Srcset | undefined = undefined;
 	export let excerpt: string;
-	// export let readingTime: string;
 	export let slug: string;
 	export let tags: string[] | undefined;
 
@@ -29,17 +29,21 @@
 		<div class="title">
 			<h4>{title}</h4>
 		</div>
-		<!-- <p class="note">{readingTime}</p> -->
 		<p class="text">
 			{excerpt}
 		</p>
 	</div>
 	<div class="footer" slot="footer">
-		{#if tags && tags.length > 0}
+		{#if categories?.length || tags?.length}
 			<div class="tags">
-				{#each tags.slice(0, 2) as tag}
-					<Tag>{tag}</Tag>
-				{/each}
+				{#if categories?.length}
+					<Tag color="secondary">{categories[0]}</Tag>
+				{/if}
+				{#if tags?.length}
+					{#each tags.slice(0, 2) as tag}
+						<Tag>{tag}</Tag>
+					{/each}
+				{/if}
 			</div>
 		{/if}
 	</div>

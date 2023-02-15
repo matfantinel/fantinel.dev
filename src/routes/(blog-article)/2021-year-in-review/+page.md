@@ -2,11 +2,14 @@
 slug: 2021-year-in-review
 title: 2021 In Review
 date: 2021-12-09
-excerpt: Another year, another yearly review post. 2021 felt like pretty much 2020 part II for a lot of people, me included.
+excerpt: Another year, another yearly review post. 2021 felt like pretty much 2020 part
+  II for a lot of people, me included.
 tags:
-  - Meta
+  - Personal
+  - Recap
+  - Review
 categories:
-  - Tech
+  - Misc
 ---
 
 <script context="module">

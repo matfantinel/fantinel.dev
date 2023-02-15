@@ -23,6 +23,7 @@
 				title={post.title}
 				excerpt={post.excerpt}
 				tags={post.tags}
+				categories={post.categories}
 				showImage={false}
 			/>
 			<!-- readingTime={post.readingTime} -->

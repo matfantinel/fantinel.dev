@@ -6,8 +6,8 @@ excerpt: Fix the error that occurs when trying to run freshly-installed MongoDB 
   Linux machine.
 tags:
   - Common Errors
-  - Backend
-  - Linux
+  - Guide
+  - Back-End
 categories:
   - Tech
 ---

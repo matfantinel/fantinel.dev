@@ -4,10 +4,9 @@ title: .NET Core API - Method not allowed on PUT and DELETE requests
 date: 2019-03-14
 excerpt: See how to solve this annoying error after deploying your .NET Core API.
 tags:
+  - Back-End
   - Common Errors
-  - .NET
-  - Backend
-  - C#
+  - Guide
 categories:
   - Tech
 ---

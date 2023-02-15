@@ -47,14 +47,16 @@
 					{#if post.updated}
 						<div class="note">Updated on {dateformat(post.updated, 'UTC:dd mmmm yyyy')}</div>
 					{/if}
-					<!-- {#if post.readingTime}
-						<div class="note">{post.readingTime}</div>
-					{/if} -->
-					{#if post.tags && post.tags.length > 0}
+					{#if post.categories?.length || post.tags?.length}
 						<div class="tags">
-							{#each post.tags as tag}
-								<Tag>{tag}</Tag>
-							{/each}
+							{#if post.categories?.length}
+								<Tag color="secondary">{post.categories[0]}</Tag>
+							{/if}
+							{#if post.tags?.length}
+								{#each post.tags as tag}
+									<Tag>{tag}</Tag>
+								{/each}
+							{/if}
 						</div>
 					{/if}
 				{/if}
