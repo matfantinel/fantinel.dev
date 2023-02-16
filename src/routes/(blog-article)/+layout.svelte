@@ -11,13 +11,25 @@
 
 	export let data: { post: BlogPost };
 	$: ({ post } = data);
+
+	let metaKeywords = keywords;
+
+	$: {
+		if (post?.categories?.length) {
+			metaKeywords = post.categories.concat(metaKeywords);
+		}
+		if (post?.tags?.length) {
+			metaKeywords = post.tags.concat(metaKeywords);
+		}
+		if (post?.keywords?.length) {
+			metaKeywords = post.keywords.concat(metaKeywords);
+		}
+	}
 </script>
 
 <svelte:head>
 	{#if post}
-		{#if post.tags && post.tags.length > 0}
-			<meta name="keywords" content={post.tags.concat(keywords).join(', ')} />
-		{/if}
+		<meta name="keywords" content={metaKeywords.join(', ')} />
 
 		<meta name="description" content={post.excerpt} />
 		<meta property="og:description" content={post.excerpt} />

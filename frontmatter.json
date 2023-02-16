@@ -57,7 +57,7 @@
         {
           "title": "Keywords",
           "name": "keywords",
-          "type": "tags"
+          "type": "list"
         }
       ]
     }
