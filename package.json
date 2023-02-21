@@ -14,7 +14,7 @@
 		"story:dev": "histoire dev",
 		"story:build": "histoire build",
 		"story:preview": "histoire preview",
-		"postbuild": "svelte-sitemap --domain https://fantinel.dev"
+		"postbuild": "svelte-sitemap --out-dir .vercel/output/static --domain https://fantinel.dev"
 	},
 	"devDependencies": {
 		"@histoire/plugin-svelte": "^0.12.4",
