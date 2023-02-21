@@ -1,0 +1,24 @@
+@keyframes animate-svg-fill {
+  0% {
+    fill: transparent;
+  }
+
+  100% {
+    fill: inherit;
+  }
+}
+
+@keyframes animate-svg-stroke {
+  0% {
+    stroke-dashoffset: 550;
+    stroke-dasharray: 550;
+  }
+
+  99.999% {
+    stroke-dasharray: 550;
+  }
+
+  100% {
+    stroke-dashoffset: 0;
+  }
+}

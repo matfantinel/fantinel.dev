@@ -24,7 +24,7 @@
 
 <Waves />
 
-<Header />
+<Header showFullLogo={true} />
 
 <main>
 	<slot />

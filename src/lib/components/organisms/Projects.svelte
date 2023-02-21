@@ -48,7 +48,7 @@
 			grid-template-columns: 1fr 1fr;
 		}
 
-		@include for-tablet-portrait-down {
+		@include for-phone-only {
 			grid-template-columns: 1fr;
 		}
 

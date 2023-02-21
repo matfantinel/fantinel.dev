@@ -5,7 +5,6 @@
 	import EmailIcon from '$lib/icons/socials/email.svelte';
 	import RssIcon from '$lib/icons/rss.svelte';
 	import MastodonIcon from '$lib/icons/socials/mastodon.svelte';
-	import ThemeToggle from './ThemeToggle.svelte';
 </script>
 
 <div class="socials">
@@ -49,11 +48,6 @@
 	>
 		<EmailIcon />
 	</a>
-	<a href="/rss.xml" target="_blank" rel="noopener noreferrer" title="Subscribe to my RSS Feed">
-		<RssIcon />
-	</a>
-
-	<ThemeToggle />
 </div>
 
 <style lang="scss">
