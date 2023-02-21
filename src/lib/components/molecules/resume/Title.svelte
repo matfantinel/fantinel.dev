@@ -5,7 +5,7 @@
 
 <style lang="scss">
 	h1 {
-		font-size: 56px;
+		font-size: 54px;
 		margin: 0;
 		font-weight: 700;
 		color: var(--color--text);

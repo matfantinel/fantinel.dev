@@ -14,9 +14,9 @@
 
 <Card>
 	<div class="content" slot="content">
-		<div class="title">
-			<h4><TintHighlight color={companySlug}>{company}</TintHighlight></h4>
-		</div>
+		<p class="title">
+			<TintHighlight color={companySlug}>{company}</TintHighlight>
+		</p>
 		<p>{jobTitle}</p>
 		<p class="note">{timeframe}</p>
 		<p class="text">
@@ -48,9 +48,9 @@
 		justify-content: space-between;
 		width: 100%;
 
-		h4 {
-			width: 100%;
-		}
+		font-size: 1.2rem;
+		font-family: var(--font--title);
+		font-weight: 700;
 	}
 
 	.tags {

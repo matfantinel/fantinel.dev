@@ -40,5 +40,10 @@
 		"vite": "^4.1.1",
 		"vite-imagetools": "^4.0.17"
 	},
-	"type": "module"
+	"type": "module",
+	"dependencies": {
+		"@fontsource/barlow": "^4.5.9",
+		"@fontsource/ubuntu-mono": "^4.5.11",
+		"@fontsource/youngserif": "^4.5.2"
+	}
 }

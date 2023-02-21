@@ -9,6 +9,10 @@
 @import '$lib/scss/_markdown.scss';
 @import '$lib/scss/_code-highlights.scss';
 
+@import '@fontsource/youngserif';
+@import '@fontsource/barlow';
+@import '@fontsource/ubuntu-mono';
+
 body {
 	--body-background-color: var(--color--page-background);
 	background-color: var(--body-background-color);
