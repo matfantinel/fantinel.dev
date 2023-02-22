@@ -68,7 +68,7 @@
 			place-items: center;
 		}
 
-		@include for-tablet-portrait-up {
+		@include for-tablet-landscape-up {
 			&.left {
 				.title-area {
 					order: 1;
@@ -97,7 +97,7 @@
 				}
 			}
 		}
-		@include for-phone-only {
+		@include for-tablet-portrait-down {
 			flex-direction: column;
 		}
 	}

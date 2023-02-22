@@ -1,6 +1,7 @@
 <script>
 	import Avatar from '$lib/components/atoms/Avatar.svelte';
 	import SparklingHighlight from '$lib/components/molecules/SparklingHighlight.svelte';
+	import Socials from '$lib/components/molecules/Socials.svelte';
 </script>
 
 <section id="about">
@@ -13,6 +14,10 @@
 			I believe software should be great for everyone — those who write it and those who use it —
 			and that bringing joy to problem-solving is the key to that.
 		</p>
+		<div class="socials">
+			<span>My socials:</span>
+			<Socials />
+		</div>
 	</div>
 	<div class="avatar">
 		<div class="blob one" />
@@ -52,6 +57,20 @@
 			p {
 				@include for-phone-only {
 					text-align: justify;
+				}
+			}
+		}
+
+		.socials {
+			display: flex;
+			align-items: center;
+			gap: 15px;
+
+			@include for-phone-only {
+				justify-content: center;
+				margin-bottom: 10px;
+				span {
+					display: none;
 				}
 			}
 		}

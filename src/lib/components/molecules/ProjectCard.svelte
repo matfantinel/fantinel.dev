@@ -20,7 +20,7 @@
 	<SrcsetImage srcset={image} slot="image" alt="Screenshot of {name}" />
 	<div class="content" slot="content">
 		<div class="title">
-			<h4>{name}</h4>
+			<span>{name}</span>
 			<div class="links">
 				{#if sourceCode}
 					<a href={sourceCode} target="_blank" rel="noopener noreferrer" title="Open Source Code">
@@ -65,6 +65,10 @@
 		align-items: center;
 		justify-content: space-between;
 		width: 100%;
+
+		font-size: 1.2rem;
+		font-family: var(--font--title);
+		font-weight: 700;
 	}
 
 	.links {

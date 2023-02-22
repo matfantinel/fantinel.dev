@@ -1,0 +1,25 @@
+@keyframes svg-text-stroke {
+	0% {
+		fill: transparent;
+		stroke: var(--text-color);
+		stroke-dashoffset: 25%;
+		stroke-dasharray: 0 50%;
+		stroke-width: 2;
+	}
+	70% {
+		fill: transparent;
+		stroke: var(--text-color);
+	}
+	80% {
+		fill: transparent;
+		stroke: var(--text-color);
+		stroke-width: 3;
+	}
+	100% {
+		fill: var(--text-color);
+		stroke: transparent;
+		stroke-dashoffset: -25%;
+		stroke-dasharray: 50% 0;
+		stroke-width: 0;
+	}
+}

@@ -1,22 +1,23 @@
 <script>
-	import Logo from '$lib/components/atoms/Logo.svelte';
-	import Socials from '$lib/components/molecules/Socials.svelte';
+	import Logo from '$lib/components/molecules/Logo.svelte';
+	import ThemeToggle from '$lib/components/molecules/ThemeToggle.svelte';
+	import RssLink from '$lib/components/atoms/RssLink.svelte';
 
 	export let animated = true;
 	export let showBackground = false;
+	export let showFullLogo = true;
 </script>
 
 <header class:has-background={showBackground}>
 	<nav class="container">
 		<a class="logo" href="/" aria-label="Site logo">
-			<Logo {animated} />
+			<Logo {animated} {showFullLogo} />
 		</a>
 		<div class="links">
 			<a href="/blog">Blog</a>
 			<a href="/resume">Resume</a>
-		</div>
-		<div class="socials">
-			<Socials />
+			<RssLink />
+			<ThemeToggle />
 		</div>
 	</nav>
 </header>
@@ -46,30 +47,17 @@
 			gap: 30px;
 
 			@include for-phone-only {
-				flex-direction: column;
-				justify-content: center;
-				gap: 20px;
-
 				.links {
-					order: 4;
+					a {
+						display: none;
+					}
 				}
 			}
 		}
 
 		.logo {
 			height: 44px;
-			order: 1;
-		}
-
-		.links {
-			order: 2;
-		}
-
-		.socials {
 			flex: 1;
-			display: flex;
-			justify-content: flex-end;
-			order: 3;
 		}
 
 		a {
@@ -79,6 +67,7 @@
 		.links {
 			display: flex;
 			align-items: center;
+			justify-content: flex-end;
 			gap: 30px;
 
 			a {

@@ -10,18 +10,6 @@
 
 <main>
 	<div class="error-page">
-		<script>
-			console.log('ends with /', window.location.pathname.endsWith('/'));
-			if (window.location.pathname.endsWith('/')) {
-				console.log(
-					`404 - Redirecting from ${window.location.pathname} to ${window.location.pathname.slice(
-						0,
-						-1
-					)}`
-				);
-				window.location.pathname = window.location.pathname.slice(0, -1);
-			}
-		</script>
 		<div class="container">
 			<h1>Oh no!</h1>
 			<div class="svg-wrapper">

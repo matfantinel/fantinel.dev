@@ -26,9 +26,9 @@
 		alt="Cover image of this blog post"
 	/>
 	<div class="content" slot="content">
-		<div class="title">
-			<h4>{title}</h4>
-		</div>
+		<p class="title">
+			{title}
+		</p>
 		<p class="text">
 			{excerpt}
 		</p>
@@ -62,6 +62,9 @@
 		align-items: center;
 		justify-content: space-between;
 		width: 100%;
+		font-size: 1.2rem;
+		font-family: var(--font--title);
+		font-weight: 700;
 	}
 
 	.tags {
