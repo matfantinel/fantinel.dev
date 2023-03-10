@@ -74,8 +74,8 @@
 			gap: 10px;
 			width: 100%;
 
-			@include for-iphone-se {
-				grid-template-columns: 1fr;
+			@include for-phone-only {
+				display: none;
 			}
 		}
 	}
@@ -83,27 +83,13 @@
 	:global([ref='projects-btn']) {
 		order: 1;
 		flex: 0 0 180px;
-
-		@include for-phone-only {
-			flex: 0 0 160px;
-		}
 	}
 	:global([ref='blog-btn']) {
 		order: 2;
 		flex: 0 0 180px;
-
-		@include for-phone-only {
-			order: 3;
-			flex: 0 0 160px;
-		}
 	}
 	:global([ref='experience-btn']) {
 		order: 3;
 		flex: 0 0 180px;
-
-		@include for-phone-only {
-			order: 2;
-			flex: 0 0 160px;
-		}
 	}
 </style>

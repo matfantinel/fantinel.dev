@@ -7,6 +7,7 @@
 <section id="about">
 	<div class="info">
 		<h2>
+			<span style="display: none;">My name is Matheus Fantinel</span>
 			I'm a developer aiming to build things that
 			<SparklingHighlight color="secondary">spark joy</SparklingHighlight>
 		</h2>
@@ -42,6 +43,7 @@
 		@include for-phone-only {
 			grid-template-columns: 1fr;
 			justify-items: center;
+			gap: 20px;
 		}
 
 		.info {
@@ -58,6 +60,10 @@
 				@include for-phone-only {
 					text-align: justify;
 				}
+			}
+
+			@include for-phone-only {
+				gap: 20px;
 			}
 		}
 
