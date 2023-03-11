@@ -6,7 +6,7 @@
 
 	import { keywords, siteBaseUrl, title } from '$lib/data/meta';
 	import type { BlogPost } from '$lib/utils/types';
-	// import RelatedPosts from '$lib/components/organisms/RelatedPosts.svelte';
+	import RelatedPosts from '$lib/components/organisms/RelatedPosts.svelte';
 	import SrcsetImage from '$lib/components/atoms/SrcsetImage.svelte';
 
 	export let data: { post: BlogPost };
@@ -59,6 +59,9 @@
 					{#if post.updated}
 						<div class="note">Updated on {dateformat(post.updated, 'UTC:dd mmmm yyyy')}</div>
 					{/if}
+					{#if post.readingTime}
+						<div class="note">{post.readingTime}</div>
+					{/if}
 					{#if post.categories?.length || post.tags?.length}
 						<div class="tags">
 							{#if post.categories?.length}
@@ -83,11 +86,11 @@
 			</div>
 		</article>
 
-		<!-- {#if post.relatedPosts && post.relatedPosts.length > 0}
+		{#if post.relatedPosts && post.relatedPosts.length > 0}
 			<div class="container">
 				<RelatedPosts posts={post.relatedPosts} />
 			</div>
-		{/if} -->
+		{/if}
 	</main>
 
 	<Footer />
