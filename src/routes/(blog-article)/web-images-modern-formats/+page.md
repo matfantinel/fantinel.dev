@@ -35,7 +35,7 @@ Do you know how big the images displayed on your website are? When you open a pa
 
 For a long time, JPGs and PNGs have been our standard image formats. However, they are not optimized for the web - their quality is often unnecessarily high and the download size is too big. Over time, many new formats have appeared, but two of them have become quite notable: [WebP](https://en.wikipedia.org/wiki/WebP) and [AVIF](https://www.lambdatest.com/blog/avif-image-format/).
 
-WebP has been introduced in 2010, and has slowly gained adoption since then. Since 2020, [WebP is now supported in all modern browsers](https://caniuse.com/webp). AVIF [was launched in 2020](https://jakearchibald.com/2020/avif-has-landed/), and its adoption has been faster. As of January 2021 it is supported by all Chromium-based browsers, and Firefox will start supporting it on version 86, scheduled to release before March.
+WebP has been introduced in 2010, and has slowly gained adoption since then. Since 2020, [WebP is now supported in all modern browsers](https://caniuse.com/webp). AVIF [was launched in 2020](https://jakearchibald.com/2020/avif-has-landed/), and its adoption has been faster. As of May 2023 it is supported by all major browsers except Edge. You can always check out the up-to-date support status on [caniuse.com](https://caniuse.com/avif).
 
 ### _But how do we use those shiny new formats if not all browsers support them?_
 
