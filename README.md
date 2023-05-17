@@ -18,8 +18,6 @@ I achieved this with the help of SvelteKit. There is almost no JavaScript runnin
 
 # Building & Running Locally
 
-This website is powered by SvelteKit. As of this time, SvelteKit is currently in beta, but its API is stable enough to use it.
-
 To run it locally, you simply have to run:
 
 ```shell

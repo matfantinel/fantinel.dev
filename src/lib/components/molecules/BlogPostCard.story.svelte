@@ -16,6 +16,7 @@
 				excerpt="This is a blog post"
 				categories={['Category 1']}
 				tags={['Tag 1', 'Tag 2']}
+				readingTime="5 min read"
 			/>
 		</Hst.Variant>
 
@@ -26,7 +27,7 @@
 				excerpt="This is a blog post"
 				categories={['Category 1']}
 				tags={['Tag 1', 'Tag 2']}
-				showImage={false}
+				readingTime="5 min read"
 			/>
 		</Hst.Variant>
 	</div>

@@ -1,5 +1,5 @@
 <script>
-	import Logo from '$lib/components/molecules/Logo.svelte';
+	import Logo from '$lib/components/atoms/Logo.svelte';
 	import ThemeToggle from '$lib/components/molecules/ThemeToggle.svelte';
 	import RssLink from '$lib/components/atoms/RssLink.svelte';
 

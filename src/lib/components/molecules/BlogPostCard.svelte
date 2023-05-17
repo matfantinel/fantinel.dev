@@ -10,7 +10,7 @@
 	export let excerpt: string;
 	export let slug: string;
 	export let tags: string[] | undefined;
-	export let readingTime: string;
+	export let readingTime: string | undefined = undefined;
 
 	export let showImage = true;
 </script>
@@ -30,7 +30,9 @@
 		<p class="title">
 			{title}
 		</p>
-		<div class="note">{readingTime}</div>
+		{#if readingTime}
+			<div class="note">{readingTime}</div>
+		{/if}
 		<p class="text">
 			{excerpt}
 		</p>

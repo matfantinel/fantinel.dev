@@ -99,7 +99,7 @@
 
 			.blob {
 				position: absolute;
-				animation: var(--animation-spin) forwards;
+				animation: spin 2s cubic-bezier(0.55, 0.5, 0.45, 0.5) infinite;
 				animation-fill-mode: forwards;
 				animation-play-state: paused;
 				background: rgba(var(--color--primary-shade-rgb), 0.2);

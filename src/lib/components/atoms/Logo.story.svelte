@@ -6,7 +6,7 @@
 	export let Hst: Hst;
 </script>
 
-<Hst.Story title="Molecules/Logo" layout={{ type: 'grid', width: 400 }}>
+<Hst.Story title="Atoms/Logo" layout={{ type: 'grid', width: 400 }}>
 	<Hst.Variant title="Animated">
 		<Logo animated={true} />
 	</Hst.Variant>
