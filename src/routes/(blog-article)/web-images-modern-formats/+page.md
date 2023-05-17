@@ -1,6 +1,6 @@
 ---
 slug: web-images-modern-formats
-title: 'Smarter, Lighter, Better Images: A Guide to Optimization'
+title: "Smarter, Lighter, Better Images: A Guide to Optimization"
 date: 2021-01-30
 excerpt: Learn how to reduce page loading times and bounce rate.
 tags:
@@ -8,18 +8,20 @@ tags:
   - Guide
 categories:
   - Tech
+updated: 2023-05-17
 ---
 
 <script context="module">
   import CodeBlock from "$lib/components/molecules/CodeBlock.svelte";
   import SrcsetImage from "$lib/components/atoms/SrcsetImage.svelte";
+  import Button from "$lib/components/atoms/Button.svelte";
+  import Sparkles from "$lib/components/atoms/Sparkles.svelte";
   import MarkerHighlight from "$lib/components/molecules/MarkerHighlight.svelte";
 
   import { getSrcsetFromImport } from "$lib/utils/functions";
   import CoverImage from './cover.jpg?width=1600&format=avif;webp;png&meta&imagetools';
 	import AfterRequestsImage from './after-scrolling-requests.png?width=1600&format=avif;webp;png&meta&imagetools';
   import FirstLoadRequestsImage from './first-load-requests.png?width=1600&format=avif;webp;png&meta&imagetools';
-  import FolderImage from './folder-images.png?width=1600&format=avif;webp;png&meta&imagetools';
   import GeneratedHtmlImage from './generated-html.png?width=1600&format=avif;webp;png&meta&imagetools';
   import ResultsImage from './results.png?width=1600&format=avif;webp;png&meta&imagetools';
   import SizesImage from './sizes.png?width=1600&format=avif;webp;png&meta&imagetools';
@@ -35,9 +37,9 @@ For a long time, JPGs and PNGs have been our standard image formats. However, th
 
 WebP has been introduced in 2010, and has slowly gained adoption since then. Since 2020, [WebP is now supported in all modern browsers](https://caniuse.com/webp). AVIF [was launched in 2020](https://jakearchibald.com/2020/avif-has-landed/), and its adoption has been faster. As of January 2021 it is supported by all Chromium-based browsers, and Firefox will start supporting it on version 86, scheduled to release before March.
 
-_But how do we use those shiny new formats if not all browsers support them?_
+### _But how do we use those shiny new formats if not all browsers support them?_
 
-With the HTML `<picture>` element, we can make the browsers do the work for us. We can declare multiple sources for the same image, and the browser will try to load them in order. If they do not support a format, they will immediatelly jump to the next one.
+With the `<img>` element, we can make the browsers do the work for us. We can declare multiple sources for the same image, and the browser will try to load them in order. If they do not support a format, they will immediatelly jump to the next one. To do that, we use the `srcset` property to declare the optimal versions (avif and webp), and then use the `src` as usual to point to the fallback image (jpg or png).
 
 So, what we want to do is declare those different sources in the following order:
 
@@ -46,14 +48,12 @@ AVIF -> WebP -> JPG (or PNG)
 <CodeBlock lang="html">
 
 ```html
-<picture>
-	<!-- If this type(avif) is supported, use this src -->
-	<source type="image/avif" srcset="my-image.avif" />
-	<!-- Else, if this type(webp) is supported, use this src instead -->
-	<source type="image/webp" srcset="my-image.webp" />
-	<!-- Else, fall back to jpg -->
-	<img src="my-image.jpg" alt="A test image" loading="lazy" decoding="async" />
-</picture>
+<img 
+  srcset="my-image.avif, my-image.webp"
+  src="my-image.jpg"
+  loading="lazy" 
+  decoding="async"
+/>
 ```
 
 </CodeBlock>
@@ -73,15 +73,13 @@ You can optimize even further than that. See, in my example, I am loading an ima
 <CodeBlock lang="html">
 
 ```html
-<picture>
-	<!-- Here, we declare the widths our different files have: 380px, 640px and 960px -->
-	<source
-		type="image/avif"
-		srcset="my-image-380w.avif 380w, my-image-640w.avif 640w, my-image-960w.avif 960w"
-		sizes="(max-width: 979px) 100vw, 640px"
-	/>
-	<img src="my-image.jpg" alt="A test image" loading="lazy" decoding="async" />
-</picture>
+<img 
+  srcset="my-image-380w.avif 380w, my-image-640w.avif 640w, my-image-960w.avif 960w"
+  sizes="(max-width: 979px) 100vw, 640px"
+  src="my-image.jpg"
+  loading="lazy" 
+  decoding="async"
+/>
 ```
 
 </CodeBlock>
@@ -155,9 +153,18 @@ The hardest part of this process is converting the images to all necessary forma
 
 For my needs, I have developed a NodeJS script that uses the [Sharp](https://github.com/lovell/sharp) library to do the magic for me. It accepts as parameters a source and a target folder, input file types (what files it will look for in the source folder), output file types (what types it will convert to), as well as the desired widths.
 
-The script is at the time of writing this currently usable only via command line. I have plans to turn this into a part of the build process of my website, with a [GitHub Action](https://github.com/features/actions), so that I don't have to run it manually.
+You can install the script as a NPM package, and then run it on a build command on your website!
 
-So, to check out how to use the script, please [check out its GitHub page](https://github.com/matfantinel/image-transmutation) for up-to-date instructions.
+<div style="display: grid;place-items: center;max-width: 300px;margin: 20px auto 0; gap: 10px;">
+  <Sparkles>
+    <Button color="secondary" href="https://github.com/matfantinel/image-transmutation">
+      Check out image-transmutation!
+    </Button>
+  </Sparkles>
+  <Button color="secondary" style="clear" href="https://github.com/matfantinel/sveltekit-static-blog-template/blob/main/package.json">
+    See an usage example
+  </Button>
+</div>
 
 ### Using the images
 
@@ -166,55 +173,71 @@ To make this setup work, I had to do some changes on how images were used on my 
 Pre-existing conditions:
 
 - All the images on my website were initially in a folder called "images", with various subfolders;
-- The images I wanted to convert were all in either PNG or JPG formats;
+- I didn't want all the versions of an image (webp, avif, etc) to take up space on my repository, so I only have them generated on build time.
 
 Modifications I did:
 
-- I have created a folder called "optimized-images", where all the converted images are saved automatically by my script;
-- I have created a component to centralize all image-loading logic. With Jekyll, I just had to create an HTML file in the `_includes` folder, but how you do this might vary depending on what technology you use;
-- This component receives as parameters: the relative file path, the filename (without file extension), and the alt text;
+- I have created a component to centralize all image-loading logic;
+- This component receives two parameters: the file path and the alt text;
+- If my project is running in dev mode, it won't add the srcset at all, as the optimized images won't exist;
 
-<CodeBlock lang="html">
+<CodeBlock lang="svelte">
 
 ```html
-{% assign alt = include.alt %} {% assign path = include.path %} {% assign filename =
-include.filename %}
-<!-- Here I build the full path to the image, minus the extension -->
-<!-- In case the process of generating the images is automated, you can check here if it's -->
-<!-- running locally or not, and swap between /images and /optimized-images accordingly -->
-{% assign imageSrc = '/optimized-images/' | append: path | append: '/' | append: filename %}
+<script lang="ts">
+  // This is a SvelteKit environment variable. If it's true, it means the project is running in dev mode.
+  import { dev } from '$app/environment';
 
-<picture>
-	<!-- And here I use that path and add the extensions inside the srcsets only -->
-	<source srcset="{{ imageSrc }}.avif" type="image/avif" />
-	<source srcset="{{ imageSrc }}.webp" type="image/webp" />
-	<img src="{{ imageSrc }}.png" alt="{{ alt }}" loading="lazy" decoding="async" />
-</picture>
+  // Declare the accepted parameters
+  export let src: string;
+	export let alt: string;
+
+  // Declare the formats used for images
+	export let formats: string[] = ['avif', 'webp', 'png'];
+
+  // Get just the file name without extension (so "image.png" becomes "image")
+	$: fileName = src.split('.')[0];
+
+  // Function to build the srcset string
+	function buildSrcset() {
+    // If project is in dev mode, I don't want a srcset since images aren't optimized yet
+		if (dev) return;
+
+		let srcset = '';
+
+    // Cycle through formats and add them to the srcset
+    for (let i = 0; i < formats.length; i++) {
+      srcset += `${fileName}.${formats[i]}`;
+
+      if (i < formats.length - 1) {
+        srcset += ', ';
+      }
+    }
+
+		return srcset;
+	}
+</script>
+
+<!-- Now we just use the default img element! -->
+<img srcset={buildSrcset()} {src} {alt} loading="lazy" decoding="async" />
 ```
 
 </CodeBlock>
 
 And to use this component inside another page:
 
-<CodeBlock lang="liquid">
+<CodeBlock lang="html">
 
-```
-{% include base/smart-image.html
-  path="posts/my-post-url"
-  filename="my-image"
-  alt="A sample image"
-%}
+```html
+<Image
+  src="my-image.png"
+  alt="Example image"
+/>
 ```
 
 </CodeBlock>
 
-My folder structure looks like this:
-
-<SrcsetImage
-  srcset={getSrcsetFromImport(FolderImage)}
-  alt="Screenshot showing the optimized files in their folder and comparing to the original one"
-  figcaption="Llamas are great"
-/>
+The full component code and usage example can be seen at [my SvelteKit blog template repository](https://github.com/matfantinel/sveltekit-static-blog-template/blob/main/src/lib/components/atoms/Image.svelte). That might be more up to date than here, even!
 
 ## Wrapping Up
 
