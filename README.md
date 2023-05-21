@@ -1,4 +1,8 @@
-# matfantinel.github.io / fantinel.dev
+# Forking/Public Template
+
+If you wanna use this site as a base for building your own, I highly recommend basing it off [my public SvelteKit blog template](https://github.com/matfantinel/sveltekit-static-blog-template) instead! It is better documented and there is way less stuff to remove.
+
+# fantinel.dev
 
 This is my own personal website, built with SvelteKit. It also holds my own personal blog.
 
@@ -15,6 +19,10 @@ It was built with a few goals in mind:
 - Pretty: have a pleasant design that is both accessible and pleasing to the eye.
 
 I achieved this with the help of SvelteKit. There is almost no JavaScript running, and it actually works with JS disabled! While JS is awesome, it's important to know when it's not needed.
+
+# Forking/Public Template
+
+If you wanna use this site as a base for building your own, I highly recommend basing it off [my public SvelteKit blog template](https://github.com/matfantinel/sveltekit-static-blog-template) instead! It is better documented and there is way less stuff to remove.
 
 # Building & Running Locally
 
