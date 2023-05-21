@@ -20,10 +20,6 @@ It was built with a few goals in mind:
 
 I achieved this with the help of SvelteKit. There is almost no JavaScript running, and it actually works with JS disabled! While JS is awesome, it's important to know when it's not needed.
 
-# Forking/Public Template
-
-If you wanna use this site as a base for building your own, I highly recommend basing it off [my public SvelteKit blog template](https://github.com/matfantinel/sveltekit-static-blog-template) instead! It is better documented and there is way less stuff to remove.
-
 # Building & Running Locally
 
 To run it locally, you simply have to run:
