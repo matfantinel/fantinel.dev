@@ -47,35 +47,10 @@
 
 		<!-- Plausible - ethical analytics -->
 		<script
-			async
-			defer
+			src="/stats/js/script.js"
+			data-api="/stats/api/event"
 			data-domain="fantinel.dev"
-			src="https://stats.fantinel.dev/js/index.js"
 		></script>
-		<script>
-			window.plausible =
-				window.plausible ||
-				function () {
-					(window.plausible.q = window.plausible.q || []).push(arguments);
-				};
-		</script>
-
-		<script>
-			// The script below uses Plausible to track the % of people that have a dark/light mode preference
-			// But it breaks the Bounce Rate metrics
-			if (plausible) {
-				if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-					plausible('Dark Mode Enabled');
-				} else if (
-					window.matchMedia &&
-					window.matchMedia('(prefers-color-scheme: light)').matches
-				) {
-					plausible('Light Mode Enabled');
-				} else {
-					plausible('No Dark/Light Preference');
-				}
-			}
-		</script>
 
 		<script>
 			// Calling this here so that it loads as quickly as possible
