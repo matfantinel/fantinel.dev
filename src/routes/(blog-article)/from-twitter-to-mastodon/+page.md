@@ -24,4 +24,4 @@ Nowadays my Mastodon community is almost the same as my previous Twitter one, wi
 
 There’s one category of Twitter account that hasn’t really moved to Mastodon yet: brands. I used to follow some brands on Twitter just to keep up to date on stuff, and brands like Notion and Arc do a great job with their accounts! But I’m not sure I wanna see that on Mastodon, at least not on that level. The best part of it is how it’s built and used by _real people_, and not brands or influencers simply seeking engagement. You know, kinda like Twitter in its early days.
 
-If you wanna follow me in there, feel free to do so! I’m on [bolha.us/fantinel](http://bolha.us/fantinel) , or you can search me in there by [@fantinel@bolha.us](http://bolha.us/fantinel). Happy tooting!
+If you wanna follow me in there, feel free to do so! I’m on [hachyderm.io/fantinel](https://hachyderm.io/@fantinel) , or you can search me in there by [@fantinel@hachyderm.io](https://hachyderm.io/@fantinel). Happy tooting!

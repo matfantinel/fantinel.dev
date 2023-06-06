@@ -17,7 +17,7 @@
 		<TelegramIcon />
 	</a>
 	<a
-		href="https://bolha.us/@fantinel"
+		href="https://hachyderm.io/@fantinel"
 		target="_blank"
 		rel="me noreferrer"
 		title="Say Hi on Mastodon"
