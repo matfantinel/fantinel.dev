@@ -7,5 +7,5 @@
 	"frontMatter.content.autoUpdateDate": false,
 	"frontMatter.content.fmHighlight": true,
 	"frontMatter.content.publicFolder": "static/images",
-	"files.autoSave": "afterDelay"
+	"files.autoSave": "off"
 }
