@@ -54,5 +54,6 @@ export type BlogPost = {
 export type Srcset = {
   avif?: string,
   webp?: string,
-  png?: string
+  png?: string,
+  jpg?: string
 }

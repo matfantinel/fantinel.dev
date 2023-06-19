@@ -17,7 +17,7 @@ categories:
   import MarkerHighlight from "$lib/components/molecules/MarkerHighlight.svelte";
 
 	import { getSrcsetFromImport } from "$lib/utils/functions";
-  import CoverImage from './cover.jpg?width=1600&format=avif;webp;png&meta&imagetools';
+  import CoverImage from './cover.jpg?width=1600&format=avif;webp;png;jpg&meta&imagetools';
 	import BrowserSupportImage from './Browser-Support.jpg?width=1600&format=avif;webp;png&meta&imagetools';
 
   metadata.coverImage = getSrcsetFromImport(CoverImage);

@@ -20,7 +20,7 @@ keywords:
   import SrcsetImage from "$lib/components/atoms/SrcsetImage.svelte";
 
   import { getSrcsetFromImport } from "$lib/utils/functions";
-  import CoverImage from './cover.jpg?width=1600&format=avif;webp;png&meta&imagetools';
+  import CoverImage from './cover.jpg?width=1600&format=avif;webp;png;jpg&meta&imagetools';
   import preCQDesktopImage from './Pre-CQ-Desktop.png?width=1600&format=avif;webp;png&meta&imagetools';
   import preCQMobileImage from './Pre-CQ-Mobile.png?width=1600&format=avif;webp;png&meta&imagetools';
   import sidebarExampleImage from './Sidebar-Example.png?width=1600&format=avif;webp;png&meta&imagetools';

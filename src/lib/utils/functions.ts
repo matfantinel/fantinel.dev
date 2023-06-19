@@ -10,6 +10,7 @@ export const getSrcsetFromImport = (imageImport: any[]): Srcset => {
   return {
     avif: imageImport.find((set: any) => set.format === 'avif').src,
     webp: imageImport.find((set: any) => set.format === 'webp').src,
-    png: imageImport.find((set: any) => set.format === 'png').src
+    png: imageImport.find((set: any) => set.format === 'png')?.src,
+    jpg: imageImport.find((set: any) => set.format === 'jpg')?.src,
   };
 }

@@ -1,6 +1,6 @@
 ---
 slug: web-images-modern-formats
-title: "Smarter, Lighter, Better Images: A Guide to Optimization"
+title: 'Smarter, Lighter, Better Images: A Guide to Optimization'
 date: 2021-01-30
 excerpt: Learn how to reduce page loading times and bounce rate.
 tags:
@@ -19,7 +19,7 @@ updated: 2023-05-17
   import MarkerHighlight from "$lib/components/molecules/MarkerHighlight.svelte";
 
   import { getSrcsetFromImport } from "$lib/utils/functions";
-  import CoverImage from './cover.jpg?width=1600&format=avif;webp;png&meta&imagetools';
+  import CoverImage from './cover.jpg?width=1600&format=avif;webp;png;jpg&meta&imagetools';
 	import AfterRequestsImage from './after-scrolling-requests.png?width=1600&format=avif;webp;png&meta&imagetools';
   import FirstLoadRequestsImage from './first-load-requests.png?width=1600&format=avif;webp;png&meta&imagetools';
   import GeneratedHtmlImage from './generated-html.png?width=1600&format=avif;webp;png&meta&imagetools';
@@ -48,12 +48,7 @@ AVIF -> WebP -> JPG (or PNG)
 <CodeBlock lang="html">
 
 ```html
-<img 
-  srcset="my-image.avif, my-image.webp"
-  src="my-image.jpg"
-  loading="lazy" 
-  decoding="async"
-/>
+<img srcset="my-image.avif, my-image.webp" src="my-image.jpg" loading="lazy" decoding="async" />
 ```
 
 </CodeBlock>
@@ -73,12 +68,12 @@ You can optimize even further than that. See, in my example, I am loading an ima
 <CodeBlock lang="html">
 
 ```html
-<img 
-  srcset="my-image-380w.avif 380w, my-image-640w.avif 640w, my-image-960w.avif 960w"
-  sizes="(max-width: 979px) 100vw, 640px"
-  src="my-image.jpg"
-  loading="lazy" 
-  decoding="async"
+<img
+	srcset="my-image-380w.avif 380w, my-image-640w.avif 640w, my-image-960w.avif 960w"
+	sizes="(max-width: 979px) 100vw, 640px"
+	src="my-image.jpg"
+	loading="lazy"
+	decoding="async"
 />
 ```
 
@@ -185,41 +180,41 @@ Modifications I did:
 
 ```html
 <script lang="ts">
-  // This is a SvelteKit environment variable. If it's true, it means the project is running in dev mode.
-  import { dev } from '$app/environment';
+	// This is a SvelteKit environment variable. If it's true, it means the project is running in dev mode.
+	import { dev } from '$app/environment';
 
-  // Declare the accepted parameters
-  export let src: string;
+	// Declare the accepted parameters
+	export let src: string;
 	export let alt: string;
 
-  // Declare the formats used for images
+	// Declare the formats used for images
 	export let formats: string[] = ['avif', 'webp', 'png'];
 
-  // Get just the file name without extension (so "image.png" becomes "image")
+	// Get just the file name without extension (so "image.png" becomes "image")
 	$: fileName = src.split('.')[0];
 
-  // Function to build the srcset string
+	// Function to build the srcset string
 	function buildSrcset() {
-    // If project is in dev mode, I don't want a srcset since images aren't optimized yet
+		// If project is in dev mode, I don't want a srcset since images aren't optimized yet
 		if (dev) return;
 
 		let srcset = '';
 
-    // Cycle through formats and add them to the srcset
-    for (let i = 0; i < formats.length; i++) {
-      srcset += `${fileName}.${formats[i]}`;
+		// Cycle through formats and add them to the srcset
+		for (let i = 0; i < formats.length; i++) {
+			srcset += `${fileName}.${formats[i]}`;
 
-      if (i < formats.length - 1) {
-        srcset += ', ';
-      }
-    }
+			if (i < formats.length - 1) {
+				srcset += ', ';
+			}
+		}
 
 		return srcset;
 	}
 </script>
 
 <!-- Now we just use the default img element! -->
-<img srcset={buildSrcset()} {src} {alt} loading="lazy" decoding="async" />
+<img srcset="{buildSrcset()}" {src} {alt} loading="lazy" decoding="async" />
 ```
 
 </CodeBlock>
@@ -229,10 +224,7 @@ And to use this component inside another page:
 <CodeBlock lang="html">
 
 ```html
-<Image
-  src="my-image.png"
-  alt="Example image"
-/>
+<image src="my-image.png" alt="Example image" />
 ```
 
 </CodeBlock>

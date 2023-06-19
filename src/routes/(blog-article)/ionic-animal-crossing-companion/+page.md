@@ -18,7 +18,7 @@ categories:
   import SparklingHighlight from "$lib/components/molecules/SparklingHighlight.svelte";
 
   import { getSrcsetFromImport } from "$lib/utils/functions";
-  import CoverImage from './cover.jpg?width=1600&format=avif;webp;png&meta&imagetools';
+  import CoverImage from './cover.jpg?width=1600&format=avif;webp;png;jpg&meta&imagetools';
   import AllSetImage from './all-set.jpg?width=1600&format=avif;webp;png&meta&imagetools';
   import ColorGeneratorImage from './color-generator.jpg?width=1600&format=avif;webp;png&meta&imagetools';
   import DefaultFoldersImage from './default-folder-structure.jpg?width=1600&format=avif;webp;png&meta&imagetools';

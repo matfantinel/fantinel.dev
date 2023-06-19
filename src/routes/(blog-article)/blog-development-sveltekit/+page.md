@@ -23,7 +23,7 @@ categories:
 	import Button from '$lib/components/atoms/Button.svelte';
 
 	import { getSrcsetFromImport } from "$lib/utils/functions";
-  import CoverImage from './cover.jpg?width=1600&format=avif;webp;png&meta&imagetools';
+  import CoverImage from './cover.jpg?width=1600&format=avif;webp;png;jpg&meta&imagetools';
 	import DesignImage from './design-vs-result.png?width=1600&format=avif;webp;png&meta&imagetools';
 
   metadata.coverImage = getSrcsetFromImport(CoverImage);
@@ -34,12 +34,13 @@ I've recently re-launched my personal website and blog, that's now reached its 3
 <Callout type="info">
 	While the code for this website is open-source, it has a lot of content that's very specific to myself. So, if you want to use it as a template to get your own website started, I've created a <strong>public template that you can use as a starting point</strong>!
 
-	<div style="display: grid;place-items: center;max-width: 300px;margin: 20px auto 0;">
-		<Button href="https://github.com/matfantinel/sveltekit-static-blog-template" color="secondary">
-			<Github slot="icon" />
-			See source code on GitHub
-		</Button>
-	</div>
+    <div style="display: grid;place-items: center;max-width: 300px;margin: 20px auto 0;">
+    	<Button href="https://github.com/matfantinel/sveltekit-static-blog-template" color="secondary">
+    		<Github slot="icon" />
+    		See source code on GitHub
+    	</Button>
+    </div>
+
 </Callout>
 
 ## About Svelte and SvelteKit
@@ -231,13 +232,13 @@ On the `routes/[slug]/+page.svelte` file, I can now import the posts and look fo
 import { filteredPosts } from '$lib/data/posts';
 
 export async function load({ url }: { url: { pathname: string } }) {
-  const { pathname } = url;
-  const slug = pathname.replace('/', '');
-  const post = filteredPosts.find((post) => post.slug === slug);
+	const { pathname } = url;
+	const slug = pathname.replace('/', '');
+	const post = filteredPosts.find((post) => post.slug === slug);
 
-  return {
-    post
-  };
+	return {
+		post
+	};
 }
 ```
 
@@ -253,8 +254,7 @@ export async function load({ url }: { url: { pathname: string } }) {
 	$: ({ post } = data);
 </script>
 
-<!-- Here we can use the post data we need -->
-<h1>{post.title}</h1>
+<!-- Here we can use the post data we need --><h1>{post.title}</h1>
 ```
 
 </CodeBlock>

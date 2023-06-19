@@ -18,7 +18,7 @@ categories:
   import CodeBlock from "$lib/components/molecules/CodeBlock.svelte";
 
   import { getSrcsetFromImport } from "$lib/utils/functions";
-  import CoverImage from './cover.jpg?width=1600&format=avif;webp;png&meta&imagetools';
+  import CoverImage from './cover.jpg?width=1600&format=avif;webp;png;jpg&meta&imagetools';
 	import DashboardImage from './dashboard.png?width=1600&format=avif;webp;png&meta&imagetools';
 
   metadata.coverImage = getSrcsetFromImport(CoverImage);

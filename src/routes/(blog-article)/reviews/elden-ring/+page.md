@@ -17,7 +17,7 @@ slug: reviews/elden-ring
   import Callout from "$lib/components/molecules/Callout.svelte";
 
   import { getSrcsetFromImport } from "$lib/utils/functions";
-  import CoverImage from './cover.png?width=1600&format=avif;webp;png&meta&imagetools';
+  import CoverImage from './cover.png?width=1600&format=avif;webp;png;jpg&meta&imagetools';
   import LiurniaImage from './liurnia.jpg?width=1600&format=avif;webp;png&meta&imagetools';
   import MaleniaImage from './malenia-and-radahn.jpg?width=1600&format=avif;webp;png&meta&imagetools';
   import SentinelImage from './tree-sentinel.jpg?width=1600&format=avif;webp;png&meta&imagetools';

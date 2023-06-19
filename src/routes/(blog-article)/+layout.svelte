@@ -41,8 +41,8 @@
 		<meta name="twitter:title" content="{post.title} - {title}" />
 
 		{#if post.coverImage}
-			<meta property="og:image" content="{siteBaseUrl}{post.coverImage.png}" />
-			<meta name="twitter:image" content="{siteBaseUrl}{post.coverImage.png}" />
+			<meta property="og:image" content="{siteBaseUrl}{post.coverImage.jpg}" />
+			<meta name="twitter:image" content="{siteBaseUrl}{post.coverImage.jpg}" />
 		{/if}
 	{/if}
 </svelte:head>

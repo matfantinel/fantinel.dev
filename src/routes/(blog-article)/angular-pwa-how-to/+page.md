@@ -16,7 +16,7 @@ categories:
   import Callout from "$lib/components/molecules/Callout.svelte";
 
   import { getSrcsetFromImport } from "$lib/utils/functions";
-  import CoverImage from './cover.jpg?width=1600&format=avif;webp;png&meta&imagetools';
+  import CoverImage from './cover.jpg?width=1600&format=avif;webp;png;jpg&meta&imagetools';
   import AuditsImage from './Audits.jpg?width=1600&format=avif;webp;png&meta&imagetools';
   import DockIconImage from './dock-icon.jpg?width=1600&format=avif;webp;png&meta&imagetools';
   import PromptImage from './install-prompt.jpg?width=1600&format=avif;webp;png&meta&imagetools';
