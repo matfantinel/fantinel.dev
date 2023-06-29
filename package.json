@@ -42,8 +42,6 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"@fontsource/barlow": "^4.5.9",
-		"@fontsource/ubuntu-mono": "^4.5.11",
-		"@fontsource/youngserif": "^4.5.2"
+		"@fontsource/ubuntu-mono": "^4.5.11"
 	}
 }

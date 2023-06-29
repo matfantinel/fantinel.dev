@@ -18,7 +18,7 @@ a {
 
 strong,
 b {
-	font-weight: 600;
+	font-weight: 900;
 }
 em,
 i {
@@ -28,7 +28,7 @@ i {
 // #region Titles
 h1 {
 	font-size: 2.5rem;
-	font-weight: 700;
+	font-weight: 900;
 
 	@include for-phone-only {
 		font-size: 2rem;
@@ -37,12 +37,12 @@ h1 {
 
 h2 {
 	font-size: 1.8rem;
-	font-weight: 600;
+	font-weight: 800;
 }
 
 h3 {
 	font-size: 1.5rem;
-	font-weight: 600;
+	font-weight: 700;
 }
 
 h4 {
@@ -59,5 +59,6 @@ h3,
 h4,
 h5 {
 	font-family: var(--font--title);
+	letter-spacing: -1px;
 }
 // #endregion

@@ -189,14 +189,10 @@
 			fill="none"
 			xmlns="http://www.w3.org/2000/svg"
 		>
-			<text
-				xml:space="preserve"
-				id="name"
-				transform="translate(-278.77228,-206.83728)"
+			<text xml:space="preserve" id="name" transform="translate(-278.77228,-206.83728)"
 				><tspan x="275.57227" y="292.17088" id="tspan1319"
-					><tspan
-						style="font-size:106.667px;font-family:YoungSerif;"
-						id="tspan1317">Matt Fantinel</tspan
+					><tspan style="font-size:106.667px;font-family:Fixel;font-weight:900;" id="tspan1317"
+						>Matt Fantinel</tspan
 					></tspan
 				></text
 			>
@@ -261,7 +257,6 @@
 
 		&:hover {
 			#logo-icon {
-				filter: drop-shadow(0px 0px 3px var(--color--primary));
 				#icon {
 					opacity: 0;
 				}
