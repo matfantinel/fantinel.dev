@@ -3,7 +3,7 @@
 	import ThemeToggle from '$lib/components/molecules/ThemeToggle.svelte';
 	import RssLink from '$lib/components/atoms/RssLink.svelte';
 
-	export let animated = true;
+	export let animated = false;
 	export let showBackground = false;
 	export let showFullLogo = true;
 </script>

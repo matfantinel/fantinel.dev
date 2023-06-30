@@ -15,11 +15,7 @@
 	export let showImage = true;
 </script>
 
-<Card
-	href="/{slug}"
-	target="_self"
-	additionalClass="blog-post-card {(!showImage || !coverImage) && 'no-image'}"
->
+<Card href="/{slug}" additionalClass="blog-post-card {(!showImage || !coverImage) && 'no-image'}">
 	<SrcsetImage
 		hidden={showImage && coverImage}
 		srcset={coverImage || { png: '', webp: '', avif: '' }}

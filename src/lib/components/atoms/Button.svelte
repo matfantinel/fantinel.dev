@@ -9,7 +9,7 @@
 	export let additionalClass: string | undefined = undefined;
 
 	const isExternalLink = !!href && HttpRegex.test(href);
-	export let target: '_self' | '_blank' = isExternalLink ? '_blank' : '_self';
+	export let target: '' | '_blank' = isExternalLink ? '_blank' : '';
 	export let rel = isExternalLink ? 'noopener noreferrer' : undefined;
 
 	$: tag = href ? 'a' : 'button';

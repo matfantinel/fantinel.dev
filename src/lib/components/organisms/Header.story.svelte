@@ -7,12 +7,12 @@
 </script>
 
 <Hst.Story title="Organisms/Header" layout={{ type: 'single', iframe: true }}>
-	<Hst.Variant title="Animated Logo">
+	<Hst.Variant title="Default">
 		<Header />
 	</Hst.Variant>
 
-	<Hst.Variant title="Static Logo">
-		<Header animated={false} />
+	<Hst.Variant title="Animated Logo">
+		<Header animated={true} />
 	</Hst.Variant>
 
 	<Hst.Variant title="With Background">

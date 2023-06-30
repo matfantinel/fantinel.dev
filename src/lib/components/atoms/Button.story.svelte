@@ -31,7 +31,7 @@
 		/>
 		<Hst.Select bind:value={props.size} title="Size" options={['small', 'medium', 'large']} />
 		<Hst.Text bind:value={props.href} title="Href" />
-		<Hst.Select bind:value={props.target} title="Target" options={['_self', '_blank']} />
+		<Hst.Select bind:value={props.target} title="Target" options={['', '_blank']} />
 		<Hst.Text bind:value={props.rel} title="Rel" />
 	</svelte:fragment>
 
