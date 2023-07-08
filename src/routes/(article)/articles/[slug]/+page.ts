@@ -6,3 +6,11 @@ export async function load({ parent }) {
     story
   };
 }
+
+/** @type {import('./$types').EntryGenerator} */
+export function entries() {
+  // TODO: query Storyblok API for all article slugs
+  return [
+    { slug: '2019-year-in-review' }
+  ];
+}

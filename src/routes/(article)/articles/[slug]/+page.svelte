@@ -2,14 +2,14 @@
 	import Card from '$lib/components/atoms/Card.svelte';
 	import Tag from '$lib/components/atoms/Tag.svelte';
 	import { storyToArticle } from '$lib/data/articles/model';
-	import { renderRichText, useStoryblokBridge } from '@storyblok/svelte';
+	import RichText from '$lib/storyblok/bloks/RichText.svelte';
+	import { useStoryblokBridge } from '@storyblok/svelte';
 	import dateformat from 'dateformat';
 	import { onMount } from 'svelte';
 
 	export let data: { story: any };
 	$: ({ story } = data);
 	$: article = storyToArticle(story);
-	$: articleHtml = renderRichText(article?.content);
 
 	onMount(() => {
 		useStoryblokBridge(story.id, (newStory) => {
@@ -49,7 +49,7 @@
 				{/if}
 			</div>
 			<div class="content">
-				{@html articleHtml}
+				<RichText blok={story.content} />
 			</div>
 		</div>
 	</Card>
@@ -57,6 +57,8 @@
 
 <style lang="scss">
 	.wrapper {
+		padding-block: 60px;
+
 		display: grid;
 		grid-template-columns:
 			1fr
