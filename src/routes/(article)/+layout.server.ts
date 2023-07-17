@@ -3,10 +3,6 @@ import { browser, dev } from "$app/environment";
 
 /** @type {import('./$types').LayoutLoadEvent} */
 export async function load({ params, url }) {
-  // TODO: figure a way of not having to repeat this request
-  // When page loads (hydration). Disabling CSR is not a good option as it disables JS
-  // So maybe use the "browser" variable to check if it's a browser request
-  // And if it is, don't make the request
   const { slug } = params;
 
   if (!slug) {

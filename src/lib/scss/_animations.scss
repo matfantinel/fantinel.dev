@@ -32,3 +32,26 @@
 		transform: rotate(1turn);
 	}
 }
+
+// Sparkles
+
+@keyframes sparkle-grow-and-shrink {
+	0% {
+		transform: scale(0);
+	}
+	50% {
+		transform: scale(1);
+	}
+	100% {
+		transform: scale(0);
+	}
+}
+
+@keyframes sparkle-spin {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(180deg);
+	}
+}

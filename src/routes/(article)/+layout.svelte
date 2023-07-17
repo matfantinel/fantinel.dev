@@ -5,8 +5,9 @@
 	import Waves from '$lib/components/organisms/Waves.svelte';
 	import { storyToArticle } from '$lib/data/articles/model';
 	import { keywords, siteBaseUrl, title } from '$lib/data/meta';
+	import { clearSparkles, handleSparklesWrapper } from '$lib/utils/sparkles';
 	import { useStoryblokBridge } from '@storyblok/svelte';
-	import { onMount } from 'svelte';
+	import { onMount, onDestroy } from 'svelte';
 
 	export let data: { story: any };
 	$: ({ story } = data);
@@ -17,6 +18,14 @@
 			story = newStory;
 			article = storyToArticle(story);
 		});
+
+		setTimeout(() => {
+			handleSparklesWrapper();
+		}, 100);
+	});
+
+	onDestroy(() => {
+		clearSparkles();
 	});
 
 	let metaKeywords = keywords;

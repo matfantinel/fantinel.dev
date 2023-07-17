@@ -86,21 +86,30 @@
 	// Workaround for Storyblok not having a proper "mark" element
 	// Instead only creating a span with a background-color
 	// Looks for any span with a background-color and applies a mark effect
-	p > span[style*='background-color'] {
-		--mark-color: var(--color--primary-shade);
+	mark {
+		@include marker-highlight;
+	}
 
-		margin-inline: calc(0.3em * -1);
-		padding-inline: 0.3em;
+	.sparkles-wrapper {
+		position: relative;
+		display: inline-block;
 
-		background-color: transparent !important;
-		background-image: linear-gradient(to bottom right, transparent 50%, var(--mark-color) 50%),
-			linear-gradient(var(--mark-color), var(--mark-color)),
-			linear-gradient(to top left, transparent 50%, var(--mark-color) 50%);
-		background-size: 0.25em 1em, calc(100% - 0.25em * 2 + 1px) 1em, 0.25em 1em;
-		background-position: left center, center, right center;
-		background-repeat: no-repeat;
-		color: inherit;
-		-webkit-box-decoration-break: clone;
-		box-decoration-break: clone;
+		.sparkles-content {
+			color: var(--color--secondary);
+			position: relative;
+			z-index: 1;
+		}
+	}
+
+	.sparkle {
+		position: absolute;
+		pointer-events: none;
+		display: flex;
+		z-index: 2;
+		animation: sparkle-grow-and-shrink 900ms ease-in-out forwards;
+
+		svg {
+			animation: sparkle-spin 900ms linear forwards;
+		}
 	}
 }
