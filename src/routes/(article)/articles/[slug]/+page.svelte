@@ -31,9 +31,9 @@
 					{#if article.updated}
 						<div class="note">Updated on {dateformat(article.updated, 'UTC:dd mmmm yyyy')}</div>
 					{/if}
-					<!-- {#if post.readingTime}
-      <div class="note">{post.readingTime}</div>
-    {/if} -->
+					{#if article.readingTime}
+						<div class="note">{article.readingTime}</div>
+					{/if}
 					{#if article.categories?.length || article.tags?.length}
 						<div class="tags">
 							{#if article.categories?.length}
@@ -49,7 +49,9 @@
 				{/if}
 			</div>
 			<div class="content">
-				<RichText blok={story.content} />
+				{#if article}
+					<RichText content={article.content} />
+				{/if}
 			</div>
 		</div>
 	</Card>

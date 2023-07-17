@@ -1,16 +1,10 @@
 <script lang="ts">
 	// From https://github.com/storyblok/storyblok-svelte/issues/439
-	import { renderRichText } from '@storyblok/svelte';
+	// Rendering happens at model.ts
 
 	import StoryblokComponent from '$lib/storyblok/bloks/StoryblokComponent.svelte';
 
-	$: render = renderRichText(blok.content, {
-		resolver: (_, blok) => {
-			return `__BLOK__!!!${JSON.stringify(blok)}__BLOK__`;
-		}
-	});
-
-	$: segments = render.split('__BLOK__').map((html: string) => {
+	$: segments = content.split('__BLOK__').map((html: string) => {
 		if (html.startsWith('!!!')) {
 			const parseComponent = JSON.parse(html.replace('!!!', ''));
 			return { blok: parseComponent };
@@ -21,7 +15,7 @@
 		return { html };
 	});
 
-	export let blok: any;
+	export let content: any;
 
 	function handleMarkHighlights(html: string): string {
 		// Storyblok does not support <mark> tags, using instead <span> with background-color
