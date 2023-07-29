@@ -67,7 +67,11 @@
 	<div class="article-layout">
 		{#if article.coverImage?.filename}
 			<div class="cover-image-wrapper">
-				<img class="cover-image" src={article.coverImage.filename} alt={article.coverImage.alt} />
+				<img
+					class="cover-image"
+					src={`${article.coverImage.filename}/m/`}
+					alt={article.coverImage.alt}
+				/>
 				<div class="cover-image-overlay" />
 			</div>
 		{:else}
@@ -76,7 +80,7 @@
 
 		<Header />
 
-		<main id="article-content" class:has-cover={article.coverImage?.filename}>
+		<main id="article-content" class:has-cover={Boolean(article.coverImage?.filename)}>
 			<slot />
 
 			<!-- {#if post.relatedPosts && post.relatedPosts.length > 0}

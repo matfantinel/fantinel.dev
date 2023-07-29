@@ -1,6 +1,7 @@
 <script lang="ts">
 	export let filename: string;
 	export let lang: string;
+	export let renderCode: boolean = false;
 </script>
 
 <div class="code-block">
@@ -10,7 +11,13 @@
 	{#if lang}
 		<div class="lang">{lang}</div>
 	{/if}
-	<slot />
+	{#if renderCode}
+		<code class={`language-${lang}`}>
+			<slot />
+		</code>
+	{:else}
+		<slot />
+	{/if}
 </div>
 
 <style lang="scss">

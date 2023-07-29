@@ -44,6 +44,7 @@
 	"type": "module",
 	"dependencies": {
 		"@fontsource/ubuntu-mono": "^4.5.11",
-		"@storyblok/svelte": "^3.0.10"
+		"@storyblok/svelte": "^3.0.10",
+		"unicode-emoji-json": "^0.4.0"
 	}
 }

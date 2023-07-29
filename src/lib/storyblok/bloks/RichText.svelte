@@ -10,27 +10,10 @@
 			return { blok: parseComponent };
 		}
 
-		html = handleMarkHighlights(html);
-		html = handleSparklesHighlights(html);
 		return { html };
 	});
 
 	export let content: any;
-
-	function handleMarkHighlights(html: string): string {
-		// Storyblok does not support <mark> tags, using instead <span> with background-color
-		// Here we replace those with the <mark> tag for better accessibility and ease of styling
-		const spanRegex = /<span style="background-color:[^"]*">(.*?)<\/span>/g;
-		return html.replace(spanRegex, '<mark>$1</mark>');
-	}
-
-	function handleSparklesHighlights(html: string): string {
-		const highlightedTextRegex = /\/\/\/(.*?)\/\/\//g;
-		return html.replace(
-			highlightedTextRegex,
-			'<span class="sparkles-wrapper highlight"><strong class="sparkles-content">$1</strong></span>'
-		);
-	}
 </script>
 
 {#each segments as segment}
