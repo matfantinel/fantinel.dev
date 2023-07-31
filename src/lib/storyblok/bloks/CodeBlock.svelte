@@ -6,5 +6,5 @@
 </script>
 
 <span use:storyblokEditable={blok}>
-	<CodeBlock filename={blok.filename} lang={blok.language} renderCode>{blok.text}</CodeBlock>
+	<CodeBlock filename={blok.filename} lang={blok.language} code={blok.text} />
 </span>

@@ -1,4 +1,4 @@
-import type { ISbNode, NodeSchema, MarkSchema, ISbComponentType } from 'storyblok-js-client/src/interfaces'
+import type { ISbComponentType, ISbNode, MarkSchema, NodeSchema } from 'storyblok-js-client/src/interfaces'
 
 // =====================================================
 // Modifications of the original storyblok-js-client/src/schema.ts

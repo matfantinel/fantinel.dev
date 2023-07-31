@@ -1,7 +1,11 @@
 <script lang="ts">
+	import Prism from 'prismjs';
+	Prism.manual = true;
+	const prism = Prism as any;
+
 	export let filename: string;
 	export let lang: string;
-	export let renderCode: boolean = false;
+	export let code: string | undefined;
 </script>
 
 <div class="code-block">
@@ -11,9 +15,9 @@
 	{#if lang}
 		<div class="lang">{lang}</div>
 	{/if}
-	{#if renderCode}
+	{#if code}
 		<code class={`language-${lang}`}>
-			<slot />
+			{@html Prism.highlight(code, prism.languages[lang], lang)}
 		</code>
 	{:else}
 		<slot />
