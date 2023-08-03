@@ -66,6 +66,7 @@
 
 			display: grid;
 			place-items: center;
+			width: 100%;
 		}
 
 		@include for-tablet-landscape-up {
