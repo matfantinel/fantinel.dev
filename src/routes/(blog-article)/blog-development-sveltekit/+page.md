@@ -72,7 +72,8 @@ The design itself was something I came up with, and it's an amalgamation of idea
 After the design was complete, I finally began developing it. Since there are some things that you can only find out while developing it and giving it more attention, I made some small tweaks to the design while implementing it. Still, the final result was _really_ similar to the initial design. I count that as a success!
 
 <Image
-	src="/images/posts/container-queries/design-vs-result.png"
+	fullBleed
+	src="/images/posts/blog-development-sveltekit/design-vs-result.png"
   alt="Screenshot showing the initial design versus the final result, with minimal differences"
   figcaption="The design (left) and the result (right)"
 />

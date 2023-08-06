@@ -39,7 +39,12 @@ AVIF -> WebP -> JPG (or PNG)
 <CodeBlock lang="html">
 
 ```html
-<img srcset="my-image.avif, my-image.webp" src="my-image.jpg" loading="lazy" decoding="async" />
+<img 
+  srcset="my-image.avif, my-image.webp" 
+  src="my-image.jpg" 
+  loading="lazy" 
+  decoding="async" 
+/>
 ```
 
 </CodeBlock>
@@ -83,7 +88,7 @@ Check out the value on the example: `(max-width: 979px) 100vw, 640px`. What that
 It is easier to understand if we visualize it like this:
 
 <Image
-  src="/images/posts/web-images-modern-formats/size.png"
+  src="/images/posts/web-images-modern-formats/sizes.png"
   figcaption="On mobile, the image width is almost the same as the viewport, so it's okay to use 100vw. On desktop, we usually limit the image width, so 640px was the sweet spot in this particular case."
   alt="Screenshots picturing how the sizes property affects the image loading on both mobile and desktop"
 />
@@ -125,7 +130,7 @@ The following data is taken from the home page of the website, since it has a lo
   alt="Screenshot showing the difference in download size before and after the optimizations"
 />
 
-<MarkerHighlight>The total download size decreased by a whopping 85%!!</MarkerHighlight> That's an incredible difference, with no noticeable difference in quality. Your results may vary, as they depend on how much of your website's size is images.
+-> <MarkerHighlight>The total download size decreased by a whopping 85%!!</MarkerHighlight> That's an incredible difference, with no noticeable difference in quality. Your results may vary, as they depend on how much of your website's size is images.
 
 Before the changes, out of 1.6MB total, 92% of it were images, 5% were fonts, 1% was HTML, and the remaining 2% were of JS and other things like the web manifest.
 
