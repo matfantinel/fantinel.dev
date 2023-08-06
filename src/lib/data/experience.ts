@@ -10,11 +10,11 @@ export const entries = [
 		companySlug: 'usefulgroup',
 		company: 'Useful Group',
 		jobTitle: 'Front-End Developer',
-		timeframe: '2023 → Now',
+		timeframe: '2021 → Now',
 		current: true,
 		location: 'USA, Remote',
 		description:
-			'Building pleasant and useful websites to take our clients’ missions forward, using WordPress and the know-how to do things the best way.',
+			'Working on a variety of projects by listening to our clients’ ideas and turning them into reality, from simple websites to complex apps.',
 		tags: [
 			{
 				color: 'primary',
@@ -22,30 +22,34 @@ export const entries = [
 			},
 			{
 				color: 'primary',
-				label: 'Atomic Design'
-			}
-		]
-	},
-	{
-		companySlug: 'agora',
-		company: 'Agora',
-		jobTitle: 'Front-End Developer',
-		timeframe: '2021 → Now',
-		current: true,
-		location: 'USA, Remote',
-		description:
-			'Building interfaces to make homeschool curriculum planning painless and easy, with a focus on accessibility.',
-		tags: [
-			{
-				color: 'primary',
 				label: 'React'
 			},
 			{
 				color: 'primary',
-				label: 'NextJS'
-			}
+				label: 'Ionic'
+			},
 		]
 	},
+	// {
+	// 	companySlug: 'agora',
+	// 	company: 'Agora',
+	// 	jobTitle: 'Front-End Developer',
+	// 	timeframe: '2021 → Now',
+	// 	current: true,
+	// 	location: 'USA, Remote',
+	// 	description:
+	// 		'Building interfaces to make homeschool curriculum planning painless and easy, with a focus on accessibility.',
+	// 	tags: [
+	// 		{
+	// 			color: 'primary',
+	// 			label: 'React'
+	// 		},
+	// 		{
+	// 			color: 'primary',
+	// 			label: 'NextJS'
+	// 		}
+	// 	]
+	// },
 	{
 		companySlug: 'logitix',
 		company: 'Logitix',
