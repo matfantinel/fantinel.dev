@@ -47,7 +47,7 @@ export type BlogPost = {
   html: string | undefined,
   readingTime: string,
   relatedPosts: BlogPost[],
-  coverImage: Srcset | undefined,
+  coverImage: string | undefined,
   hideCoverImage: boolean
 }
 

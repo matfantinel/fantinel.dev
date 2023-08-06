@@ -2,27 +2,20 @@
 slug: 2021-year-in-review
 title: 2021 In Review
 date: 2021-12-09
-excerpt: Another year, another yearly review post. 2021 felt like pretty much 2020 part
-  II for a lot of people, me included.
+excerpt: Another year, another yearly review post. 2021 felt like pretty much 2020 part II for a lot of people, me included.
 tags:
   - Personal
   - Recap
   - Review
 categories:
   - Misc
+coverImage: /images/posts/2021-year-in-review/cover.jpg
 ---
 
 <script context="module">
-  import SrcsetImage from "$lib/components/atoms/SrcsetImage.svelte";
+  import Image from "$lib/components/atoms/Image.svelte";
   import MarkerHighlight from "$lib/components/molecules/MarkerHighlight.svelte";
   import SparklingHighlight from "$lib/components/molecules/SparklingHighlight.svelte";
-
-  import { getSrcsetFromImport } from "$lib/utils/functions";
-  import CoverImage from './cover.jpg?width=1600&format=avif;webp;png;jpg&meta&imagetools';
-  import DndImage from './dnd.png?width=1600&format=avif;webp;png&meta&imagetools';
-  import NmsImage from './no-mans-sky.jpg?width=1600&format=avif;webp;png&meta&imagetools';
-
-  metadata.coverImage = getSrcsetFromImport(CoverImage);
 </script>
 
 Another year, another yearly review post. 2021 felt like pretty much 2020 part II for a lot of people, me included. The ongoing pandemic still affected our lives, and even though most people in my country are now vaccinated (including me), the danger still exists and preventive measures are still necessary. But it's nice to be able to start doing things and going places we haven't been able to for a while. I personally think this situation is still going to drag on for a while, but we'll adapt to it with time.
@@ -101,8 +94,8 @@ Not everything is code and gloom - I also do some fun things every once in a whi
 
 - **No Man’s Sky** is a mix of exploration and existential crisis. There are a lot of things to do (though not all of them have much depth), but the main gameplay loop of exploring planets and seamlessly traversing between them is addictive. Plus, the main story was surprisingly good, with a lot of amazing quotes from the Travellers in that universe. A bit of existential crisis was the icing on the cake.
 
-<SrcsetImage
-  srcset={getSrcsetFromImport(NmsImage)}
+<Image
+  src="/images/posts/2021-year-in-review/no-mans-sky.jpg"
   alt="Screenshot of a character in No Man's Sky saying: 'Existence is beautiful, if you let it be. Life is not a question. There does not need to be an answer.'"
 />
 
@@ -110,8 +103,8 @@ Not everything is code and gloom - I also do some fun things every once in a whi
 
 - **Dungeons & Dragons** has continued to be one of the highlights of my weeks. My party still played online this year, but it was a lot of fun. We finally finished the Curse of Strahd campaign after 502 days. The finale was so epic we decided to have it illustrated by the amazing [Guilherme Holz](https://www.gholz.art/).
 
-<SrcsetImage
-  srcset={getSrcsetFromImport(DndImage)}
+<Image
+  src="/images/posts/2021-year-in-review/dnd.png"
   alt="Illustration of a Dungeons and Dragons party dealing the killing blow to the vampire Strahd"
   figcaption="It was kind of poetic to have a bolt of holy light (in the form of a spear) be the end of one who brought so much darkness to the land. From left to right: Ylanis, Alesteir (me), Aliana and Garreth. The guy getting stabbed is Strahd, the big bad evil guy."
 />

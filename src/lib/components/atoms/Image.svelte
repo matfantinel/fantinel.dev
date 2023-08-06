@@ -3,6 +3,7 @@
 
 	export let src: string;
 	export let alt: string;
+	export let figcaption: string | undefined = undefined;
 	export let fullBleed: boolean | undefined = undefined;
 
 	export let formats: string[] = ['avif', 'webp', 'png'];
@@ -37,17 +38,25 @@
 	}
 </script>
 
-<img
-	srcset={buildSrcset()}
-	{src}
-	{alt}
-	loading="lazy"
-	decoding="async"
-	class:full-bleed={fullBleed}
-/>
+{#if figcaption}
+	<figure class:full-bleed={fullBleed}>
+		<img srcset={buildSrcset()} {src} {alt} loading="lazy" decoding="async" />
+		<figcaption>{figcaption}</figcaption>
+	</figure>
+{:else}
+	<img
+		srcset={buildSrcset()}
+		{src}
+		{alt}
+		loading="lazy"
+		decoding="async"
+		class:full-bleed={fullBleed}
+	/>
+{/if}
 
 <style lang="scss">
-	img {
+	img,
+	figure {
 		width: 100%;
 		height: 100%;
 		object-fit: contain;

@@ -8,13 +8,12 @@ tags:
   - Ramble
 categories:
   - Misc
+coverImage: /images/posts/purpose-of-this-blog/cover.jpg
 ---
 
 <script context="module">
   import { getSrcsetFromImport } from "$lib/utils/functions";
   import CoverImage from './cover.jpg?width=1600&format=avif;webp;png;jpg&meta&imagetools';
-
-  metadata.coverImage = getSrcsetFromImport(CoverImage);
 </script>
 
 There are many developer blogs out there, probably because developers like to ramble about the tech they enjoy. I'm guilty of that too! This blog was created mainly for that - sharing about development stuff that I like or that I'm learning.

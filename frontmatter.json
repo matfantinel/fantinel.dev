@@ -1,93 +1,96 @@
 {
-  "$schema": "https://frontmatter.codes/frontmatter.schema.json",
-  "frontMatter.taxonomy.contentTypes": [
-    {
-      "name": "default",
-      "pageBundle": false,
-      "previewPath": null,
-      "fields": [
-        {
-          "title": "Title",
-          "name": "title",
-          "type": "string"
-        },
-        {
-          "title": "Slug",
-          "name": "slug",
-          "type": "string"
-        },
-        {
-          "title": "Excerpt",
-          "name": "excerpt",
-          "type": "string"
-        },
-        {
-          "title": "Publishing date",
-          "name": "date",
-          "type": "datetime",
-          "default": "{{now}}",
-          "isPublishDate": true
-        },
-        {
-          "title": "Last modified date",
-          "name": "updated",
-          "type": "datetime",
-          "isModifiedDate": true
-        },
-        {
-          "title": "Is hidden",
-          "name": "hidden",
-          "type": "draft"
-        },
-        {
-          "title": "Hide Cover Image",
-          "name": "hideCoverImage",
-          "type": "boolean"
-        },
-        {
-          "title": "Tags",
-          "name": "tags",
-          "type": "tags"
-        },
-        {
-          "title": "Categories",
-          "name": "categories",
-          "type": "categories"
-        },
-        {
-          "title": "Keywords",
-          "name": "keywords",
-          "type": "list"
-        }
-      ]
-    }
-  ],
-  "frontMatter.framework.id": "other",
-  "frontMatter.content.publicFolder": "",
-  "frontMatter.content.pageFolders": [
-    {
-      "title": "posts",
-      "path": "[[workspace]]/src/routes/(blog-article)"
-    }
-  ],
-  "frontMatter.taxonomy.tags": [
-    "Analytics",
-    "Back-End",
-    "CSS",
-    "Common Errors",
-    "Ethics",
-    "Front-End",
-    "Games",
-    "Guide",
-    "Open Source",
-    "Personal",
-    "Ramble",
-    "Recap",
-    "Review",
-    "Svelte"
-  ],
-  "frontMatter.taxonomy.categories": [
-    "Misc",
-    "Tech"
-  ]
+	"$schema": "https://frontmatter.codes/frontmatter.schema.json",
+	"frontMatter.taxonomy.contentTypes": [
+		{
+			"name": "default",
+			"pageBundle": false,
+			"previewPath": null,
+			"fields": [
+				{
+					"title": "Title",
+					"name": "title",
+					"type": "string"
+				},
+				{
+					"title": "Slug",
+					"name": "slug",
+					"type": "string"
+				},
+				{
+					"title": "Cover Image",
+					"name": "coverImage",
+					"type": "image",
+					"isPreviewImage": true
+				},
+				{
+					"title": "Excerpt",
+					"name": "excerpt",
+					"type": "string"
+				},
+				{
+					"title": "Publishing date",
+					"name": "date",
+					"type": "datetime",
+					"default": "{{now}}",
+					"isPublishDate": true
+				},
+				{
+					"title": "Last modified date",
+					"name": "updated",
+					"type": "datetime",
+					"isModifiedDate": true
+				},
+				{
+					"title": "Is hidden",
+					"name": "hidden",
+					"type": "draft"
+				},
+				{
+					"title": "Hide Cover Image",
+					"name": "hideCoverImage",
+					"type": "boolean"
+				},
+				{
+					"title": "Tags",
+					"name": "tags",
+					"type": "tags"
+				},
+				{
+					"title": "Categories",
+					"name": "categories",
+					"type": "categories"
+				},
+				{
+					"title": "Keywords",
+					"name": "keywords",
+					"type": "list"
+				}
+			]
+		}
+	],
+	"frontMatter.framework.id": "other",
+	"frontMatter.content.publicFolder": "",
+	"frontMatter.content.pageFolders": [
+		{
+			"title": "posts",
+			"path": "[[workspace]]/src/routes/(blog-article)"
+		}
+	],
+	"frontMatter.taxonomy.tags": [
+		"Analytics",
+		"Back-End",
+		"CSS",
+		"Common Errors",
+		"Ethics",
+		"Front-End",
+		"Games",
+		"Guide",
+		"Open Source",
+		"Personal",
+		"Ramble",
+		"Recap",
+		"Review",
+		"Svelte"
+	],
+	"frontMatter.taxonomy.categories": ["Misc", "Tech"]
 }

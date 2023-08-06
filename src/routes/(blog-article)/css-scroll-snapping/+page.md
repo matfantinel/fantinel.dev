@@ -9,6 +9,7 @@ tags:
   - Front-End
 categories:
   - Tech
+coverImage: /images/posts/css-scroll-snapping/cover.jpg
 ---
 
 <script context="module">
@@ -18,8 +19,6 @@ categories:
   import { getSrcsetFromImport } from "$lib/utils/functions";
   import CoverImage from './cover.jpg?width=1600&format=avif;webp;png;jpg&meta&imagetools';
   import AndroidGif from './android-scroll-snapping.gif';
-
-  metadata.coverImage = getSrcsetFromImport(CoverImage);
 </script>
 
 CSS is evolving constantly and the past few years have brought us amazing stuff. It is getting easier to make smooth and complete experiences without having to use JavaScript at all. Case in point: Scroll Snapping.
