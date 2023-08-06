@@ -1,32 +1,48 @@
 <script lang="ts">
-	import { getSrcsetFromImport } from '$lib/utils/functions';
-	import AvatarImport from '$lib/images/resume-avatar.png?width=400&format=avif;webp;png&meta&imagetools';
-	import AvatarDarkImport from '$lib/images/resume-avatar-dark.png?width=400&format=avif;webp;png&meta&imagetools';
-
-	const avatar = getSrcsetFromImport(AvatarImport);
-	const avatarDark = getSrcsetFromImport(AvatarDarkImport);
+	import Image from '$lib/components/atoms/Image.svelte';
 </script>
 
-<picture class="resume-photo">
-	<source srcset={avatarDark.avif} type="image/avif" media="(prefers-color-scheme: dark)" />
-	<source srcset={avatarDark.webp} type="image/webp" media="(prefers-color-scheme: dark)" />
-	<source srcset={avatarDark.png} type="image/png" media="(prefers-color-scheme: dark)" />
-
-	<source srcset={avatar.avif} type="image/avif" />
-	<source srcset={avatar.webp} type="image/webp" />
-	<img height="200px" src={avatar.png} alt="Matheus Fantinel's Avatar" />
-</picture>
+<Image
+	additionalClass="resume-photo light"
+	src="/images/resume-avatar.png"
+	alt="Matheus Fantinel's Avatar"
+/>
+<Image
+	additionalClass="resume-photo dark"
+	src="/images/resume-avatar-dark.png"
+	alt="Matheus Fantinel's Avatar"
+/>
 
 <style lang="scss">
-	.resume-photo {
-		img {
-			border-radius: 50%;
-			max-width: 100%;
-			max-height: 200px;
-			box-sizing: border-box;
-			@media (prefers-color-scheme: dark) {
-				border: 3px solid var(--color--primary-shade);
-			}
+	:global(img.resume-photo) {
+		border-radius: 50%;
+		width: 200px;
+		height: 200px;
+		box-sizing: border-box;
+	}
+
+	:global(.resume-photo.dark) {
+		border: 3px solid var(--color--primary-shade);
+	}
+
+	:global([data-theme='dark']) :global(.resume-photo.light) {
+		display: none;
+	}
+
+	:global([data-theme='light']) :global(.resume-photo.dark) {
+		display: none;
+	}
+
+	// If data-theme is 'auto', use prefers-color-scheme
+	:global([data-theme='auto']) :global(.resume-photo.light) {
+		@media (prefers-color-scheme: dark) {
+			display: none;
+		}
+	}
+
+	:global([data-theme='auto']) :global(.resume-photo.dark) {
+		@media (prefers-color-scheme: light), (prefers-color-scheme: no-preference) {
+			display: none;
 		}
 	}
 </style>

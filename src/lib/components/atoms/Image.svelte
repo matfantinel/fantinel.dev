@@ -1,6 +1,8 @@
 <script lang="ts">
 	import { dev } from '$app/environment';
 
+	export let additionalClass: string | undefined = undefined;
+
 	export let src: string;
 	export let alt: string;
 	export let figcaption: string | undefined = undefined;
@@ -39,7 +41,7 @@
 </script>
 
 {#if figcaption}
-	<figure class:full-bleed={fullBleed}>
+	<figure class={additionalClass} class:full-bleed={fullBleed}>
 		<img srcset={buildSrcset()} {src} {alt} loading="lazy" decoding="async" />
 		<figcaption>{figcaption}</figcaption>
 	</figure>
@@ -50,6 +52,7 @@
 		{alt}
 		loading="lazy"
 		decoding="async"
+		class={additionalClass}
 		class:full-bleed={fullBleed}
 	/>
 {/if}
