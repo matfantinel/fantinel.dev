@@ -7,17 +7,13 @@ tags:
   - Ramble
 categories:
   - Misc
+coverImage: /images/posts/iron-maiden-killers-concept-album/cover.png
 ---
 
 <script context="module">
-  import { getSrcsetFromImport } from "$lib/utils/functions";
-  import CoverImage from './cover.png?width=1600&format=avif;webp;png;jpg&meta&imagetools';
-
   import SparklingHighlight from "$lib/components/molecules/SparklingHighlight.svelte";
   import MarkerHighlight from "$lib/components/molecules/MarkerHighlight.svelte";
   import Callout from "$lib/components/molecules/Callout.svelte";
-
-  metadata.coverImage = getSrcsetFromImport(CoverImage);
 </script>
 
 So, today I was doing the dishes and decided to listen to some music on my headphones. I was in the mood for some Iron Maiden, so I shuffled my playlist of my favorites from them (which includes almost every one of their songs 😆). The first track to play was _Drifter_, the last song from their second album, _Killers_. It's a really good song so I decided to play the entire album instead.

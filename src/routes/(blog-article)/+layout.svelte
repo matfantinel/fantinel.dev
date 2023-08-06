@@ -7,7 +7,7 @@
 	import { keywords, siteBaseUrl, title } from '$lib/data/meta';
 	import type { BlogPost } from '$lib/utils/types';
 	import RelatedPosts from '$lib/components/organisms/RelatedPosts.svelte';
-	import SrcsetImage from '$lib/components/atoms/SrcsetImage.svelte';
+	import Image from '$lib/components/atoms/Image.svelte';
 
 	export let data: { post: BlogPost };
 	$: ({ post } = data);
@@ -41,8 +41,8 @@
 		<meta name="twitter:title" content="{post.title} - {title}" />
 
 		{#if post.coverImage}
-			<meta property="og:image" content="{siteBaseUrl}{post.coverImage.jpg}" />
-			<meta name="twitter:image" content="{siteBaseUrl}{post.coverImage.jpg}" />
+			<meta property="og:image" content="{siteBaseUrl}{post.coverImage}" />
+			<meta name="twitter:image" content="{siteBaseUrl}{post.coverImage}" />
 		{/if}
 	{/if}
 </svelte:head>
@@ -78,7 +78,7 @@
 			</div>
 			{#if post && !post.hideCoverImage && post.coverImage}
 				<div class="cover-image">
-					<SrcsetImage srcset={post.coverImage} alt="Cover Image" />
+					<Image src={post.coverImage} alt={post.title} />
 				</div>
 			{/if}
 			<div class="content">

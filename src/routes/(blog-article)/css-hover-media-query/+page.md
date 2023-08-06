@@ -1,9 +1,7 @@
 ---
 title: Conditional Hover Styles in CSS
 slug: css-hover-media-query
-excerpt: Have you ever crafted a nice hover effect for an element in your website, then
-  opened it on mobile and saw that effect erroneously appear when that element
-  is tapped on?
+excerpt: Have you ever crafted a nice hover effect for an element in your website, then opened it on mobile and saw that effect erroneously appear when that element is tapped on?
 date: 2023-02-12T14:24:01.779Z
 hidden: false
 tags:
@@ -13,15 +11,11 @@ tags:
 categories:
   - Tech
 hideCoverImage: true
+coverImage: /images/posts/css-hover-media-query/cover.png
 ---
 
 <script context="module">
   import CodeBlock from "$lib/components/molecules/CodeBlock.svelte";
-
-  import { getSrcsetFromImport } from "$lib/utils/functions";
-  import CoverImage from './cover.png?width=1600&format=avif;webp;png;jpg&meta&imagetools';
-
-  metadata.coverImage = getSrcsetFromImport(CoverImage);
 </script>
 
 Have you ever crafted a nice hover effect for an element in your website, then opened it on mobile and saw that effect erroneously appear when that element is tapped on? That’d be nice perhaps, if it weren’t for the fact that the effect just… stays there.

@@ -9,26 +9,21 @@ tags:
   - Guide
 categories:
   - Tech
+coverImage: /images/posts/dotnet-core-405-error/cover.jpg
 ---
 
 <script context="module">
   import CodeBlock from "$lib/components/molecules/CodeBlock.svelte";
-  import SrcsetImage from "$lib/components/atoms/SrcsetImage.svelte";
+  import Image from "$lib/components/atoms/Image.svelte";
   import SparklingHighlight from "$lib/components/molecules/SparklingHighlight.svelte";
-
-  import { getSrcsetFromImport } from "$lib/utils/functions";
-  import CoverImage from './cover.jpg?width=1600&format=avif;webp;png;jpg&meta&imagetools';
-  import ErrorImage from './post1.jpg?width=1600&format=avif;webp;png&meta&imagetools';
-
-  metadata.coverImage = getSrcsetFromImport(CoverImage);
 </script>
 
 Recently, I've been working on an Angular app, powered with a .NET Core API. Everything was working well and smoothly when running both on my local machine.
 
 After pushing code to the beta server, most of it was working fine. The front-end was being able to call GET, POST and OPTIONS requests normally. When trying to DELETE or PUT entries, however, the following error would show up on the browser's console:
 
-<SrcsetImage
-  srcset={getSrcsetFromImport(ErrorImage)}
+<Image
+  src="/images/posts/dotnet-core-405-error/post1.jpg"
   alt="Dev console error"
   figcaption="405 (Method Not Allowed) | Access to XMLHttpRequest at '...' from origin '...' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource."
 />

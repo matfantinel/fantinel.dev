@@ -16,7 +16,7 @@ export type TagType = {
 export type Project = {
   name: string,
   description: string,
-  image: Srcset,
+  image: string,
   link?: string,
   sourceCode?: string,
   blogPostLink?: string,
@@ -47,13 +47,6 @@ export type BlogPost = {
   html: string | undefined,
   readingTime: string,
   relatedPosts: BlogPost[],
-  coverImage: Srcset | undefined,
+  coverImage: string | undefined,
   hideCoverImage: boolean
-}
-
-export type Srcset = {
-  avif?: string,
-  webp?: string,
-  png?: string,
-  jpg?: string
 }

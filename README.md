@@ -37,9 +37,9 @@ The site should now be available at http://localhost:5173/ on your local machine
 
 I've used [Histoire](https://histoire.dev), a Vite-based Storybook alternative to be able to see and develop components in isolation. To open it, run `npm run story:dev`.
 
-# Images
+# Image Optimization
 
-I use [vite-imagetools](https://github.com/JonasKruckenberg/imagetools) to automatically process images, generating webp, avif and png files for each one of them. Just by importing the images on a Svelte/Markdown file, Vite will automatically process those on build. I've created the `getSrcsetFromImport` function and the `SrcsetImage` component to make it easier to use.
+This website uses [image-transmutation](https://github.com/matfantinel/image-transmutation) to automatically optimize images used in the site. This means that even if you use non-optimal image formats (like lossless PNGs), it will go over the images and convert images to WebP and AVIF for you, as long as you use the `<Image />` component instead of `<img />`. This is done on build, so it doesn't change anything when running the website locally.
 
 # Managing Posts
 

@@ -13,7 +13,8 @@
 		"story:dev": "histoire dev",
 		"story:build": "histoire build",
 		"story:preview": "histoire preview",
-		"postbuild": "svelte-sitemap --out-dir .vercel/output/static --domain https://fantinel.dev"
+		"optimize-images": "image-transmutation --run --sourceFolder '.vercel/output/static/images' --targetFolder '.vercel/output/static/images' --inputFormats 'jpg' --inputFormats 'jpeg' --inputFormats 'png' --outputFormats 'png' --outputFormats 'webp' --outputFormats 'avif'",
+		"postbuild": "npm run optimize-images && svelte-sitemap --out-dir .vercel/output/static --domain https://fantinel.dev"
 	},
 	"devDependencies": {
 		"@histoire/plugin-svelte": "^0.12.4",
@@ -33,15 +34,15 @@
 		"rehype-slug": "^5.1.0",
 		"sass": "^1.57.1",
 		"striptags": "^3.2.0",
-		"svelte": "^3.54.0",
+		"svelte": "^3.58.0",
 		"svelte-check": "^2.9.2",
 		"svelte-sitemap": "^2.5.4",
 		"typescript": "^4.9.3",
-		"vite": "^4.1.5",
-		"vite-imagetools": "^4.0.17"
+		"vite": "^4.1.5"
 	},
 	"type": "module",
 	"dependencies": {
-		"@fontsource/ubuntu-mono": "^4.5.11"
+		"@fontsource/ubuntu-mono": "^4.5.11",
+		"image-transmutation": "^0.1.2"
 	}
 }

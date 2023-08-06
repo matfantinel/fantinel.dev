@@ -107,7 +107,7 @@
 			container-type: inline-size;
 		}
 
-		@container (max-width: 675px) {
+		@container (max-width: 650px) {
 			.wrapper {
 				flex-direction: column;
 				flex-wrap: nowrap;

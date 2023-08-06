@@ -2,26 +2,19 @@
 slug: 2020-year-in-review
 title: Looking Back at 2020
 date: 2020-12-28
-excerpt: 2020 definitely wasn't our best year... but let's remember what was good about
-  it.
+excerpt: 2020 definitely wasn't our best year... but let's remember what was good about it.
 tags:
   - Personal
   - Recap
   - Review
 categories:
   - Misc
+coverImage: /images/posts/2020-year-in-review/cover.jpg
 ---
 
 <script context="module">
-  import SrcsetImage from "$lib/components/atoms/SrcsetImage.svelte";
+  import Image from "$lib/components/atoms/Image.svelte";
   import MarkerHighlight from "$lib/components/molecules/MarkerHighlight.svelte";
-
-  import { getSrcsetFromImport } from "$lib/utils/functions";
-  import CoverImage from './cover.jpg?width=1600&format=avif;webp;png;jpg&meta&imagetools';
-  import HollowKnightImage from './hollow-knight.jpg?width=1600&format=avif;webp;png&meta&imagetools';
-  import PocketCompanionImage from './pocket-companion.jpg?width=1600&format=avif;webp;png&meta&imagetools';
-
-  metadata.coverImage = getSrcsetFromImport(CoverImage);
 </script>
 
 We all know this year hasn't been easy. That doesn't mean it had to be wasted. Regardless of how bad or good it has been for oneself individually, there are always lots of lessons we can learn from what we've been through.
@@ -42,8 +35,8 @@ Initially, I was guilty of that too. Checking many times a day for news, how the
 
 This year I worked on a few personal projects, and tried different approaches with them so I could learn new things. I didn't necessarily get really in-depth into most of the things I learned, but the knowledge I got definitely made me a better developer.
 
-<SrcsetImage
-  srcset={getSrcsetFromImport(PocketCompanionImage)}
+<Image
+  src="/images/posts/2020-year-in-review/pocket-companion.jpg"
   alt="Screenshot of my Pocket Companion app"
 />
 
@@ -79,8 +72,8 @@ Since I committed myself to stop seeing bad things and focus on good ones, I res
 
 - **Hollow Knight**... I'm so glad I played it. Being a Metroidvania, a genre I'm not really a fan of, it completely hooked me with its worldbuilding, art style, atmosphere and frustratingly satisfying difficulty. A 10/10 for me, for sure;
 
-<SrcsetImage
-  srcset={getSrcsetFromImport(HollowKnightImage)}
+<Image
+  src="/images/posts/2020-year-in-review/hollow-knight.jpg"
   alt="Hollow Knight official artwork"
   figcaption="Hollow Knight official artwork, by Team Cherry"
 />

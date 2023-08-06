@@ -9,19 +9,12 @@ tags:
   - Review
 categories:
   - Misc
+coverImage: /images/posts/2022-year-in-review/cover.jpg
 ---
 
 <script context="module">
-  import SrcsetImage from "$lib/components/atoms/SrcsetImage.svelte";
+  import Image from "$lib/components/atoms/Image.svelte";
   import SparklingHighlight from "$lib/components/molecules/SparklingHighlight.svelte";
-  
-  import { getSrcsetFromImport } from "$lib/utils/functions";
-  import CoverImage from './cover.jpg?width=1600&format=avif;webp;png;jpg&meta&imagetools';
-  import BloodborneImage from './bloodborne.jpeg?width=1600&format=avif;webp;png&meta&imagetools';
-  import InfiniteGraniteImage from './infinite-granite.jpeg?width=1600&format=avif;webp;png&meta&imagetools';
-  import ItalyImage from './italy.png?width=1600&format=avif;webp;png&meta&imagetools';
-
-  metadata.coverImage = getSrcsetFromImport(CoverImage);
 </script>
 
 2022 is ending and it brought a lot of changes to the lives of many - me included. I'm not able to say all of them were good, but they also bring opportunities of personal and societal growth, and for me at least, a little glimpse of hope.
@@ -42,8 +35,8 @@ categories:
 
 This was a really busy year personally. The first few months I was busy planning my wedding, then later planning my trip to Italy, while working multiple projects at the same time to be able to finance all that. And while handling the anxiety of those things, I was also struggling a bit to get used to seeing people again after quarantine, and re-learning to socialize was being mentally draining as well. This difficulty socializing made me pursue another big thing: my ASD diagnosis. It was confirmed and I think that helped me understand myself much better. Things are improving 😊.
 
-<SrcsetImage
-  srcset={getSrcsetFromImport(ItalyImage)}
+<Image
+  src="/images/posts/2022-year-in-review/italy.png"
   alt="Picture of the Altar of the Fatherland in Rome, Italy."
   figcaption="Altar of the Fatherland in Rome, Italy. Photo by me."
 />
@@ -80,8 +73,8 @@ Not much new on this section, as I've mostly rewatched stuff I liked this year (
 
 - **Bloodborne**... wow. I had never played a From Software game before, and it was such a journey. Hard, yes, but fair. I always knew what I did wrong when I died. I always wanted to try again and do a bit better every time. But the star in this game is the setting and atmosphere. It starts in a somber Victorian-era city, where you face some beastly humans and werewolves. Soon you're facing creatures that are a bit different but still fit in the same world. Eventually, though, the game descends into full-on Eldritch/Cosmic Horror and it's awesome. I've never seen a game capture that vibe so well. Every new enemy or boss you encounter is accompanied by a _"what the heck is this?!?"_ and fighting them is always a box of surprises. Best game I've played in 2022 and one of the best I've ever played.
 
-<SrcsetImage
-  srcset={getSrcsetFromImport(BloodborneImage)}
+<Image
+  src="/images/posts/2022-year-in-review/bloodborne.jpeg"
   alt="Official art for Bloodborne. A human on a trenchcoat holding a cleaver-like weapon stares at a city with buildings of black bricks and black iron fences"
   figcaption="Official artwork of Bloodborne"
 />
@@ -104,8 +97,8 @@ New category! I wanted to write a bit about music since it's really important in
 
 - **Infinite Granite** by **Deafheaven** was a lucky find. I knew a couple songs by Deafheaven and while I enjoyed them, the gutural vocals never really pleased me. In Infinite Granite, they were replaced by soft vocals, while keeping the hypnotic, multi-layered instrumentals that I fell in love with immediatelly. I still listen to it on repeat because it's just so pleasant to listen to.
 
-<SrcsetImage
-  srcset={getSrcsetFromImport(InfiniteGraniteImage)}
+<Image
+  src="/images/posts/2022-year-in-review/infinite-granite.jpeg"
   alt="Cover of the Infinite Granite album. A mass of blue particles forming some kind of circle."
   figcaption="Cover of Infinite Granite, by Deafheaven."
 />

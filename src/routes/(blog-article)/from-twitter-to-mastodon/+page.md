@@ -7,14 +7,8 @@ tags:
   - Ramble
 categories:
   - Misc
+coverImage: /images/posts/from-twitter-to-mastodon/cover.png
 ---
-
-<script context="module">
-  import { getSrcsetFromImport } from "$lib/utils/functions";
-  import CoverImage from './cover.png?width=1600&format=avif;webp;png;jpg&meta&imagetools';
-
-  metadata.coverImage = getSrcsetFromImport(CoverImage);
-</script>
 
 I’m one of the many people that stopped using Twitter after the latest… 💩 _developments_ since it was purchased by Elon Musk. My account still exists, but I’ve deleted all of my tweets and uninstalled the mobile app, and haven’t opened the website in a good while.
 
