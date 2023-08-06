@@ -50,10 +50,3 @@ export type BlogPost = {
   coverImage: string | undefined,
   hideCoverImage: boolean
 }
-
-export type Srcset = {
-  avif?: string,
-  webp?: string,
-  png?: string,
-  jpg?: string
-}
