@@ -16,7 +16,7 @@ export type TagType = {
 export type Project = {
   name: string,
   description: string,
-  image: Srcset,
+  image: string,
   link?: string,
   sourceCode?: string,
   blogPostLink?: string,

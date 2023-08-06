@@ -16,9 +16,6 @@ coverImage: /images/posts/net-core-project-restored-different-version/cover.jpg
   import CodeBlock from "$lib/components/molecules/CodeBlock.svelte";
   import Callout from "$lib/components/molecules/Callout.svelte";
   import SparklingHighlight from "$lib/components/molecules/SparklingHighlight.svelte";
-
-  import { getSrcsetFromImport } from "$lib/utils/functions";
-  import CoverImage from './cover.jpg?width=1600&format=avif;webp;png;jpg&meta&imagetools';
 </script>
 
 This problem usually happens when you're working on a solution with multiple projects that were created using different versions of the .NET SDK.

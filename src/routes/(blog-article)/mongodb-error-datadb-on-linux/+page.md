@@ -15,9 +15,6 @@ coverImage: /images/posts/mongodb-error-datadb-on-linux/cover.jpg
 <script context="module">
   import CodeBlock from "$lib/components/molecules/CodeBlock.svelte";
   import Callout from "$lib/components/molecules/Callout.svelte";
-
-  import { getSrcsetFromImport } from "$lib/utils/functions";
-  import CoverImage from './cover.jpg?width=1600&format=avif;webp;png;jpg&meta&imagetools';
 </script>
 
 When setting up a Linux server or development machine, you might need to install MongoDB. However, every single time I've stumbled upon an error right when trying to start the `mongod` service, after following [the official instructions](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/). The important line here is:

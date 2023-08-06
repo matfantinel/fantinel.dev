@@ -4,20 +4,24 @@
 	import Button from '$lib/components/atoms/Button.svelte';
 	import Card from '$lib/components/atoms/Card.svelte';
 	import Tag from '$lib/components/atoms/Tag.svelte';
-	import type { Srcset, TagType } from '$lib/utils/types';
-	import SrcsetImage from '$lib/components/atoms/SrcsetImage.svelte';
+	import type { TagType } from '$lib/utils/types';
+	import Image from '$lib/components/atoms/Image.svelte';
 
 	export let name: string;
 	export let description: string;
-	export let image: Srcset;
+	export let image: string;
 	export let link: string | undefined;
 	export let sourceCode: string | undefined;
 	export let blogPostLink: string | undefined;
 	export let tags: TagType[] | undefined;
 </script>
 
-<Card>
-	<SrcsetImage srcset={image} slot="image" alt="Screenshot of {name}" />
+<Card additionalClass="project-card">
+	<div class="project-image" slot="image">
+		{#if image}
+			<Image src={image} alt="Screenshot of {name}" />
+		{/if}
+	</div>
 	<div class="content" slot="content">
 		<div class="title">
 			<span>{name}</span>
@@ -98,6 +102,10 @@
 
 	.footer {
 		margin-top: 20px;
+	}
+
+	:global(.project-card .image img) {
+		object-fit: cover;
 	}
 
 	:global([ref='blog-post-btn']) {

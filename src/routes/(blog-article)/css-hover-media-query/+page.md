@@ -16,9 +16,6 @@ coverImage: /images/posts/css-hover-media-query/cover.png
 
 <script context="module">
   import CodeBlock from "$lib/components/molecules/CodeBlock.svelte";
-
-  import { getSrcsetFromImport } from "$lib/utils/functions";
-  import CoverImage from './cover.png?width=1600&format=avif;webp;png;jpg&meta&imagetools';
 </script>
 
 Have you ever crafted a nice hover effect for an element in your website, then opened it on mobile and saw that effect erroneously appear when that element is tapped on? That’d be nice perhaps, if it weren’t for the fact that the effect just… stays there.

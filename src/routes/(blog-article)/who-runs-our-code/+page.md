@@ -14,9 +14,6 @@ coverImage: /images/posts/who-runs-our-code/cover.jpg
 <script context="module">
   import Callout from "$lib/components/molecules/Callout.svelte";
   import MarkerHighlight from "$lib/components/molecules/MarkerHighlight.svelte";
-
-  import { getSrcsetFromImport } from "$lib/utils/functions";
-  import CoverImage from './cover.jpg?width=1600&format=avif;webp;png;jpg&meta&imagetools';
 </script>
 
 In a world with tons of business requirements, conversion metrics, and a stampede of new technologies, front-end development can easily become oblivious of one thing: where our code runs.

@@ -11,11 +11,6 @@ categories:
 coverImage: /images/posts/purpose-of-this-blog/cover.jpg
 ---
 
-<script context="module">
-  import { getSrcsetFromImport } from "$lib/utils/functions";
-  import CoverImage from './cover.jpg?width=1600&format=avif;webp;png;jpg&meta&imagetools';
-</script>
-
 There are many developer blogs out there, probably because developers like to ramble about the tech they enjoy. I'm guilty of that too! This blog was created mainly for that - sharing about development stuff that I like or that I'm learning.
 
 The purpose is to help myself learn about the subjects better, since there's no better way to learn than trying to reach someone. Of course, it won't be made of tutorials only - I intend to write about some theoretical concepts, and maybe tech stuff not related to development.
