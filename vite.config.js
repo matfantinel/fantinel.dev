@@ -1,5 +1,4 @@
 import { sveltekit } from '@sveltejs/kit/vite';
-import { imagetools } from 'vite-imagetools';
 import path from 'path';
 import mkcert from 'vite-plugin-mkcert';
 // import prismjs from 'vite-plugin-prismjs';
@@ -7,7 +6,6 @@ import mkcert from 'vite-plugin-mkcert';
 /** @type {import('vite').UserConfig} */
 const config = {
 	plugins: [
-		imagetools(),
 		sveltekit(),
 		mkcert(),
 		[

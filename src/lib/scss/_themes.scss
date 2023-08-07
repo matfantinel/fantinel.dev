@@ -41,7 +41,7 @@
 
 	// Used for Code Block component
 	@include define-color('code-background', #1c1e26);
-	@include define-color('code-text', #ffffff);
+	@include define-color('code-text', #dbf4f3);
 	@include define-color('code-inline-background', #e3e3e3);
 
 	--color--waves-start: rgba(var(--color--primary-rgb), 0.3);
@@ -63,7 +63,7 @@
 
 	@include define-color('yellow', #ffd400);
 
-	@include define-color('text', #ffffff);
+	@include define-color('text', #dbf4f3);
 	@include define-color('text-shade', #9eb4b5);
 	@include define-color('text-inverse', #1c1e26);
 	@include define-color('text-inverse-shade', #5d5f65);

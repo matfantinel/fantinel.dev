@@ -49,6 +49,7 @@
 		cursor: pointer;
 		text-decoration: none;
 		transition: all 0.2s ease-in-out;
+		text-align: center;
 
 		display: flex;
 		align-items: center;

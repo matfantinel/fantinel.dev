@@ -9,24 +9,19 @@ tags:
   - Front-End
 categories:
   - Tech
+coverImage: /images/posts/css-scroll-snapping/cover.jpg
 ---
 
 <script context="module">
   import CodeBlock from "$lib/components/molecules/CodeBlock.svelte";
   import Callout from "$lib/components/molecules/Callout.svelte";
-
-  import { getSrcsetFromImport } from "$lib/utils/functions";
-  import CoverImage from './cover.jpg?width=1600&format=avif;webp;png;jpg&meta&imagetools';
-  import AndroidGif from './android-scroll-snapping.gif';
-
-  metadata.coverImage = getSrcsetFromImport(CoverImage);
 </script>
 
 CSS is evolving constantly and the past few years have brought us amazing stuff. It is getting easier to make smooth and complete experiences without having to use JavaScript at all. Case in point: Scroll Snapping.
 
 It is an easy way to guarantee that users will scroll to the correct portion of your page or of a container. Picture a landing page that is easily swipable/scrollable between sections, or swipable cards. Take in mind how Android's Recent Apps screen works, for example:
 
-![Android's Recent Apps screen has scroll mapping between app cards]({AndroidGif})
+![Android's Recent Apps screen has scroll mapping between app cards](/images/posts/css-scroll-snapping/android-scroll-snapping.gif)
 
 You can see that Android never allows the end of a scroll to be in a place between cards. There's a certain threshold that determines that the scroll will snap into the nearest card and put it in the center. All that while still keeping scrolling momentum, allowing you to go from one edge of the list to another in a single scroll if you want to.
 

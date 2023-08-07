@@ -8,19 +8,13 @@ tags:
   - CSS
 categories:
   - Tech
+coverImage: /images/posts/github-profile-readme/cover.jpg
 ---
 
 <script context="module">
   import CodeBlock from "$lib/components/molecules/CodeBlock.svelte";
-	import SrcsetImage from "$lib/components/atoms/SrcsetImage.svelte";
+	import Image from "$lib/components/atoms/Image.svelte";
 	import MarkerHighlight from "$lib/components/molecules/MarkerHighlight.svelte";
-
-	import { getSrcsetFromImport } from "$lib/utils/functions";
-  import CoverImage from './cover.jpg?width=1600&format=avif;webp;png;jpg&meta&imagetools';
-	import RepoCreationImage from './repo-creation.jpg?width=1600&format=avif;webp;png&meta&imagetools';
-	import ProfileGif from './my-profile.gif';
-
-  metadata.coverImage = getSrcsetFromImport(CoverImage);
 </script>
 
 Last year, GitHub added a new cool feature for the user profile. You can now add a README file to it, and it will show up besides your profile pic. This is great for talking a bit about yourself and what you do, putting some contact info, or simply making a cool first impression.
@@ -29,8 +23,8 @@ Last year, GitHub added a new cool feature for the user profile. You can now add
 
 For adding this to your profile, there's a little secret. Instead of an option in your "Edit Profile" settings, this is achieved by <MarkerHighlight>creating a new repository with the same name as your GitHub username.</MarkerHighlight>
 
-<SrcsetImage
-  srcset={getSrcsetFromImport(RepoCreationImage)}
+<Image
+	src="/images/posts/github-profile-readme/repo-creation.jpg"
   figcaption="🎉️ Creating a new repo with the same name as your username immediatelly makes GitHub praise you for finding out this secret."
   alt="Screenshot of GitHub repository creation"
 />
@@ -98,7 +92,7 @@ From there on, the possibilities are endless. On my profile, I added my personal
 
 <figure markdown="1">
 
-![Animation on my GitHub Profile]({ProfileGif})
+![Animation on my GitHub Profile](/images/posts/github-profile-readme/my-profile.gif)
 
 <figcaption>Using CSS animations inside the SVG, I was able to mimic the animation on my website.</figcaption>
 </figure>

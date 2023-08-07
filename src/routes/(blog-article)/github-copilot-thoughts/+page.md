@@ -9,19 +9,13 @@ tags:
   - Review
 categories:
   - Tech
+coverImage: /images/posts/github-copilot-thoughts/cover.jpg
 ---
 
 <script context="module">
   import CodeBlock from "$lib/components/molecules/CodeBlock.svelte";
-  import SrcsetImage from "$lib/components/atoms/SrcsetImage.svelte";
+  import Image from "$lib/components/atoms/Image.svelte";
   import MarkerHighlight from "$lib/components/molecules/MarkerHighlight.svelte";
-
-  import { getSrcsetFromImport } from "$lib/utils/functions";
-  import CoverImage from './cover.jpg?width=1600&format=avif;webp;png;jpg&meta&imagetools';
-  import DescriptionImage from './copilot-describing-itself.png?width=1600&format=avif;webp;png&meta&imagetools';
-  import SettingsImage from './copilot-settings.png?width=1600&format=avif;webp;png&meta&imagetools';
-
-  metadata.coverImage = getSrcsetFromImport(CoverImage);
 </script>
 
 I started using GitHub Copilot around May this year as part of its free beta, and my opinion on it has changed a bit during this time. I was initially skeptical about it, but I've come to appreciate it more and more as I use it.
@@ -30,8 +24,8 @@ I started using GitHub Copilot around May this year as part of its free beta, an
 
 First off, let's see what Copilot has to say about itself:
 
-<SrcsetImage
-  srcset={getSrcsetFromImport(DescriptionImage)}
+<Image
+  src="/images/posts/github-copilot-thoughts/copilot-describing-itself.png"
   alt="Screenshot of GitHub Copilot describing itself: 'GitHub Copilot is a code completion tool that uses machine learning to suggest code snippets based on the context of your code. It's available as a VS Code extension, and it's free to use for now.'"
   figcaption="It got the idea right, however the pricing info is outdated: it's now $10/month."
 />
@@ -59,7 +53,7 @@ The opposite can also happen. Sometimes I write some complex functions and Copil
 
 ## What it isn't
 
-<MarkerHighlight>Copilot is not something that's going to take away your job</MarkerHighlight>. At least not soon. The reason is in its name itself: it is a Copilot, meant to be by your side while you're coding and help you out with busy work, not completely replace you. It's really not capable of doing that.
+-> <MarkerHighlight>Copilot is not something that's going to take away your job</MarkerHighlight>. At least not soon. The reason is in its name itself: it is a Copilot, meant to be by your side while you're coding and help you out with busy work, not completely replace you. It's really not capable of doing that.
 
 You're still responsible for the code it writes, and for the code you ship. Whatever code it suggests you'll still have to review, as it may contain flaws that are either obvious or really hidden.
 
@@ -75,8 +69,8 @@ I'm not knowledgeable enough on the subject to have a well-formed opinion on thi
 
 Until a consensus is reached, GitHub has added the option to disable public code suggestions on [Copilot Settings](https://github.com/settings/copilot), so you can disable them if you're worried about licensing issues.
 
-<SrcsetImage
-  srcset={getSrcsetFromImport(SettingsImage)}
+<Image
+  src="/images/posts/github-copilot-thoughts/copilot-settings.png"
   alt="Screenshot of a GitHub Copilot settings displayed the option to block suggestions from public code."
 />
 

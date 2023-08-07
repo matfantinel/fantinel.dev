@@ -1,12 +1,11 @@
 <script lang="ts">
 	import Card from '$lib/components/atoms/Card.svelte';
 	import Tag from '$lib/components/atoms/Tag.svelte';
-	import SrcsetImage from '$lib/components/atoms/SrcsetImage.svelte';
-	import type { Srcset } from '$lib/utils/types';
+	import Image from '$lib/components/atoms/Image.svelte';
 
 	export let categories: string[] | undefined = undefined;
 	export let title: string;
-	export let coverImage: Srcset | undefined = undefined;
+	export let coverImage: string | undefined = undefined;
 	export let excerpt: string;
 	export let slug: string;
 	export let tags: string[] | undefined;
@@ -15,13 +14,17 @@
 	export let showImage = true;
 </script>
 
-<Card href="/{slug}" additionalClass="blog-post-card {(!showImage || !coverImage) && 'no-image'}">
-	<SrcsetImage
-		hidden={showImage && coverImage}
-		srcset={coverImage || { png: '', webp: '', avif: '' }}
-		slot="image"
-		alt="Cover image of this blog post"
-	/>
+<Card
+	href="/{slug}"
+	additionalClass="blog-post-card {!showImage && 'hide-image'} {showImage &&
+		!coverImage &&
+		'missing-image'}"
+>
+	<div class="cover-image" slot="image">
+		{#if coverImage && showImage}
+			<Image src={coverImage} alt="Cover image of this blog post" />
+		{/if}
+	</div>
 	<div class="content" slot="content">
 		<p class="title">
 			{title}
@@ -50,6 +53,7 @@
 </Card>
 
 <style lang="scss">
+	@import '../../scss/breakpoints.scss';
 	.content {
 		display: flex;
 		flex-direction: column;
@@ -89,7 +93,17 @@
 		margin-top: 20px;
 	}
 
-	:global(.blog-post-card.no-image > .image) {
+	:global(.blog-post-card .image img) {
+		object-fit: cover;
+	}
+
+	:global(.blog-post-card.hide-image .image) {
 		display: none;
+	}
+
+	@include for-tablet-portrait-down {
+		:global(.blog-post-card.missing-image .image) {
+			display: none;
+		}
 	}
 </style>

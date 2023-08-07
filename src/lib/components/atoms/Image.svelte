@@ -1,48 +1,67 @@
 <script lang="ts">
-	export let path: string;
-	export let filename: string;
+	import { dev } from '$app/environment';
+
+	export let additionalClass: string | undefined = undefined;
+
+	export let src: string;
 	export let alt: string;
 	export let figcaption: string | undefined = undefined;
+	export let fullBleed: boolean | undefined = undefined;
 
-	export let formats: string[] = ['webp', 'avif', 'png'];
+	export let formats: string[] = ['avif', 'webp', 'png'];
 	export let widths: string[] | undefined = undefined;
 
-	$: imageSrc = `/optimized-images/${path ? path + '/' : ''}${filename}`;
+	$: fileName = src.split('.')[0];
+
+	function buildSrcset() {
+		if (dev) return;
+
+		let srcset = '';
+
+		if (widths) {
+			for (let i = 0; i < widths.length; i++) {
+				srcset += `${fileName}-${widths[i]}.${formats[0]} ${widths[i]}w`;
+
+				if (i < widths.length - 1) {
+					srcset += ', ';
+				}
+			}
+		} else {
+			for (let i = 0; i < formats.length; i++) {
+				srcset += `${fileName}.${formats[i]}`;
+
+				if (i < formats.length - 1) {
+					srcset += ', ';
+				}
+			}
+		}
+
+		return srcset;
+	}
 </script>
 
-<picture {...$$restProps}>
-	{#each formats as format}
-		{#if widths}
-			{#each widths as width}
-				<source
-					srcset="{imageSrc}-{width}.{format}"
-					type="image/{format}"
-					media="(min-width: {width}px)"
-				/>
-			{/each}
-		{:else}
-			<source srcset="{imageSrc}.{format}" type="image/{format}" />
-		{/if}
-	{/each}
-
-	<img src="{imageSrc}.png" {alt} loading="lazy" decoding="async" />
-
-	{#if figcaption}
-		<!-- svelte-ignore a11y-structure -->
-		<figcaption>{@html figcaption}</figcaption>
-	{/if}
-</picture>
+{#if figcaption}
+	<figure class={additionalClass} class:full-bleed={fullBleed}>
+		<img srcset={buildSrcset()} {src} {alt} loading="lazy" decoding="async" />
+		<figcaption>{figcaption}</figcaption>
+	</figure>
+{:else}
+	<img
+		srcset={buildSrcset()}
+		{src}
+		{alt}
+		loading="lazy"
+		decoding="async"
+		class={additionalClass}
+		class:full-bleed={fullBleed}
+	/>
+{/if}
 
 <style lang="scss">
-	picture {
-		position: relative;
+	img,
+	figure {
 		width: 100%;
 		height: 100%;
-
-		img {
-			width: 100%;
-			height: 100%;
-			object-fit: cover;
-		}
+		object-fit: contain;
 	}
 </style>

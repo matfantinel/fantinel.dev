@@ -23,20 +23,22 @@
 	data-sveltekit-preload-data
 	{...$$restProps}
 >
-	{#if $$slots.image}
-		<div class="image">
-			<slot name="image" />
-		</div>
-	{/if}
-	<div class="body">
-		<div class="content">
-			<slot name="content" />
-		</div>
-		{#if $$slots.footer}
-			<div class="footer">
-				<slot name="footer" />
+	<div class="wrapper">
+		{#if $$slots.image}
+			<div class="image">
+				<slot name="image" />
 			</div>
 		{/if}
+		<div class="body">
+			<div class="content">
+				<slot name="content" />
+			</div>
+			{#if $$slots.footer}
+				<div class="footer">
+					<slot name="footer" />
+				</div>
+			{/if}
+		</div>
 	</div>
 </svelte:element>
 
@@ -51,10 +53,6 @@
 		overflow: hidden;
 		width: 100%;
 
-		display: flex;
-		flex-direction: row;
-		flex-wrap: wrap;
-
 		text-decoration: none;
 
 		&[href],
@@ -65,6 +63,12 @@
 				transform: scale(1.01);
 			}
 		}
+	}
+
+	.wrapper {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
 	}
 
 	.body {
@@ -83,6 +87,7 @@
 	}
 
 	.image {
+		background-color: var(--color--post-page-background);
 		position: relative;
 		flex: 1 0 max(50%, 330px);
 		// height: min(100%, 300px);
@@ -95,5 +100,22 @@
 		height: 100%;
 		object-fit: cover;
 		position: absolute;
+	}
+
+	@supports (container-type: inline-size) {
+		.card {
+			container-type: inline-size;
+		}
+
+		@container (max-width: 650px) {
+			.wrapper {
+				flex-direction: column;
+				flex-wrap: nowrap;
+			}
+			.image {
+				flex: 0 0 50%;
+				max-width: unset;
+			}
+		}
 	}
 </style>

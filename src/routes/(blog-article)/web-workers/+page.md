@@ -2,23 +2,18 @@
 slug: web-workers
 title: Web Workers - Bringing Multithreading to the Front-End
 date: 2019-08-14
-excerpt: Improve your client-side performance by breaking heavy operations into
-  multiple threads - backend style.
+excerpt: Improve your client-side performance by breaking heavy operations into multiple threads - backend style.
 tags:
   - Front-End
   - Guide
 categories:
   - Tech
+coverImage: /images/posts/web-workers/cover.jpg
 ---
 
 <script context="module">
   import CodeBlock from "$lib/components/molecules/CodeBlock.svelte";
   import Callout from "$lib/components/molecules/Callout.svelte";
-
-  import { getSrcsetFromImport } from "$lib/utils/functions";
-  import CoverImage from './cover.jpg?width=1600&format=avif;webp;png;jpg&meta&imagetools';
-
-  metadata.coverImage = getSrcsetFromImport(CoverImage);
 </script>
 
 In times of complex, feature-filled front-ends, we often get reports of freezes, frame drops, or overall slugginess in our apps. This is due to JavaScript's default behavior - a single thread is responsible for the interface, animations, and whatever CPU-intensive logic or I/O your app is doing.

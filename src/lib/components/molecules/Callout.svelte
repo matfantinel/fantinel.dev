@@ -3,10 +3,10 @@
 	import Check from '$lib/icons/check.svelte';
 	import Info from '$lib/icons/info.svelte';
 
-	export let type: string | undefined = undefined;
+	export let type: string = 'info';
 </script>
 
-<div class="callout-block {type ?? ''}">
+<div class="callout-block {type}">
 	{#if type}
 		<div class="icon-wrapper">
 			{#if type == 'info'}

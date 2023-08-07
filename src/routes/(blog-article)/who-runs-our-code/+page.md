@@ -1,25 +1,19 @@
 ---
 title: Who Runs Our Code
 slug: who-runs-our-code
-excerpt: 'In a world with tons of business requirements, conversion metrics, and a
-  stampede of new technologies, front-end development can easily become
-  oblivious of one thing: where our code runs.'
+excerpt: 'In a world with tons of business requirements, conversion metrics, and a stampede of new technologies, front-end development can easily become oblivious of one thing: where our code runs.'
 date: 2023-02-10T00:32:31.054Z
 tags:
   - Ramble
   - Front-End
 categories:
   - Tech
+coverImage: /images/posts/who-runs-our-code/cover.jpg
 ---
 
 <script context="module">
   import Callout from "$lib/components/molecules/Callout.svelte";
   import MarkerHighlight from "$lib/components/molecules/MarkerHighlight.svelte";
-
-  import { getSrcsetFromImport } from "$lib/utils/functions";
-  import CoverImage from './cover.jpg?width=1600&format=avif;webp;png;jpg&meta&imagetools';
-
-  metadata.coverImage = getSrcsetFromImport(CoverImage);
 </script>
 
 In a world with tons of business requirements, conversion metrics, and a stampede of new technologies, front-end development can easily become oblivious of one thing: where our code runs.

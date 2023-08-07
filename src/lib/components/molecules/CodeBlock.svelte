@@ -6,9 +6,10 @@
 	export let filename: string;
 	export let lang: string;
 	export let code: string | undefined;
+	export let fullBleed: boolean | undefined = undefined;
 </script>
 
-<div class="code-block">
+<div class="code-block" class:full-bleed={fullBleed}>
 	{#if filename}
 		<div class="filename">{filename}</div>
 	{/if}

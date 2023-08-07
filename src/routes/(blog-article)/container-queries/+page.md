@@ -13,19 +13,12 @@ keywords:
   - container queries
   - responsive development
   - web dev
+coverImage: /images/posts/container-queries/cover.jpg
 ---
 
 <script context="module">
   import CodeBlock from "$lib/components/molecules/CodeBlock.svelte";
-  import SrcsetImage from "$lib/components/atoms/SrcsetImage.svelte";
-
-  import { getSrcsetFromImport } from "$lib/utils/functions";
-  import CoverImage from './cover.jpg?width=1600&format=avif;webp;png;jpg&meta&imagetools';
-  import preCQDesktopImage from './Pre-CQ-Desktop.png?width=1600&format=avif;webp;png&meta&imagetools';
-  import preCQMobileImage from './Pre-CQ-Mobile.png?width=1600&format=avif;webp;png&meta&imagetools';
-  import sidebarExampleImage from './Sidebar-Example.png?width=1600&format=avif;webp;png&meta&imagetools';
-
-  metadata.coverImage = getSrcsetFromImport(CoverImage);
+  import Image from "$lib/components/atoms/Image.svelte";
 </script>
 
 With the release of [Firefox 110](https://www.mozilla.org/en-US/firefox/110.0/releasenotes/), [CSS container queries](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Container_Queries) are now supported in all major browsers! It has joined Chromium (since v105) and Safari (since v16) in adding support to what I consider a revolution on responsive web development, especially to people who build UIs in a component-driven way.
@@ -34,15 +27,15 @@ With the release of [Firefox 110](https://www.mozilla.org/en-US/firefox/110.0/re
 
 Usually when we do responsive development, we use media queries to change the layout of our components based on the viewport/screen/window size. So, for example, we can have a card component that's displayed like this on a laptop:
 
-<SrcsetImage
-  srcset={getSrcsetFromImport(preCQDesktopImage)}
+<Image
+	src="/images/posts/container-queries/Pre-CQ-Desktop.png"
   alt="A large window frame with a card taking up 100% of its width. Since it's a large window, the card will display its contents horizontally."
 />
 
 And, if the window size is smaller (for example on mobile), we can use a media query to change how the card is displayed:
 
-<SrcsetImage
-  srcset={getSrcsetFromImport(preCQMobileImage)}
+<Image
+	src="/images/posts/container-queries/Pre-CQ-Mobile.png"
   alt="A small window frame with a card taking up 100% of its width. Since it's a small window, the card will display its contents vertically."
 />
 
@@ -73,8 +66,8 @@ This can be done with code like this:
 
 So far, so good. But what if the card doesn't take up the entire width of the screen? We might want to display it in a sidebar with much less horizontal space, and have another card in the main content area, taking up the rest of the screen width. Here's how we want it to look:
 
-<SrcsetImage
-  srcset={getSrcsetFromImport(sidebarExampleImage)}
+<Image
+	src="/images/posts/container-queries/Sidebar-Example.png"
   alt="A large window frame with a sidebar taking up a third of its space. A card is displayed in the sidebar, taking up 100% of its width. The card will display its contents vertically. The main content area takes up the rest of the screen width. A card is displayed in the main content area, taking up 100% of its width. The card displays its contents horizontally."
 />
 
