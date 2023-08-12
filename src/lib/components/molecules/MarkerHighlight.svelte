@@ -1,9 +1,14 @@
 <script lang="ts">
 	export let color: 'primary' | 'secondary' = 'primary';
+	export let text: string | undefined = undefined;
 </script>
 
 <mark class={color}>
-	<slot />
+	{#if text}
+		{text}
+	{:else}
+		<slot />
+	{/if}
 </mark>
 
 <style lang="scss">

@@ -40,21 +40,23 @@
 	}
 </script>
 
-{#if figcaption}
-	<figure class={additionalClass} class:full-bleed={fullBleed}>
-		<img srcset={buildSrcset()} {src} {alt} loading="lazy" decoding="async" />
-		<figcaption>{figcaption}</figcaption>
-	</figure>
-{:else}
-	<img
-		srcset={buildSrcset()}
-		{src}
-		{alt}
-		loading="lazy"
-		decoding="async"
-		class={additionalClass}
-		class:full-bleed={fullBleed}
-	/>
+{#if src}
+	{#if figcaption}
+		<figure class={additionalClass} class:full-bleed={fullBleed}>
+			<img srcset={buildSrcset()} {src} {alt} loading="lazy" decoding="async" />
+			<figcaption>{figcaption}</figcaption>
+		</figure>
+	{:else}
+		<img
+			srcset={buildSrcset()}
+			{src}
+			{alt}
+			loading="lazy"
+			decoding="async"
+			class={additionalClass}
+			class:full-bleed={fullBleed}
+		/>
+	{/if}
 {/if}
 
 <style lang="scss">

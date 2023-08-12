@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Card from '$lib/components/atoms/Card.svelte';
 	import Tag from '$lib/components/atoms/Tag.svelte';
+	import Markdown from '$lib/components/molecules/Markdown.svelte';
 	import { storyToArticle } from '$lib/data/articles/model';
 	import RichText from '$lib/storyblok/bloks/RichText.svelte';
 	import { useStoryblokBridge } from '@storyblok/svelte';
@@ -50,6 +51,9 @@
 			</div>
 			<div class="content">
 				{#if article}
+					{#if article?.markdown}
+						<Markdown content={article.markdown} />
+					{/if}
 					<RichText content={article.content} />
 				{/if}
 			</div>

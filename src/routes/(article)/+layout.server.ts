@@ -2,7 +2,7 @@ import { useStoryblokApi } from "@storyblok/svelte";
 import { browser, dev } from "$app/environment";
 
 /** @type {import('./$types').LayoutLoadEvent} */
-export async function load({ params, url }) {
+export async function load({ params, url }: any) {
   const { slug } = params;
 
   if (!slug) {

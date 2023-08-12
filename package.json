@@ -34,19 +34,20 @@
 		"rehype-slug": "^5.1.0",
 		"sass": "^1.57.1",
 		"striptags": "^3.2.0",
-		"svelte": "^3.58.0",
+		"svelte": "^3.59.2",
 		"svelte-check": "^2.9.2",
 		"svelte-sitemap": "^2.5.4",
 		"typescript": "^4.9.3",
-		"vite": "^4.1.5",
+		"vite": "^4.4.9",
 		"vite-plugin-mkcert": "^1.16.0",
 		"vite-plugin-prismjs": "^0.0.8"
 	},
 	"type": "module",
 	"dependencies": {
 		"@fontsource/ubuntu-mono": "^4.5.11",
-		"@storyblok/svelte": "^3.0.10",
-		"unicode-emoji-json": "^0.4.0",
-		"image-transmutation": "^0.1.2"
+		"@storyblok/svelte": "^3.1.3",
+		"image-transmutation": "^0.1.2",
+		"svelte-markdown": "^0.2.3",
+		"unicode-emoji-json": "^0.4.0"
 	}
 }

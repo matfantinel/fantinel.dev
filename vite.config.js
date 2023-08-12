@@ -1,20 +1,10 @@
 import { sveltekit } from '@sveltejs/kit/vite';
 import path from 'path';
 import mkcert from 'vite-plugin-mkcert';
-// import prismjs from 'vite-plugin-prismjs';
 
 /** @type {import('vite').UserConfig} */
 const config = {
-	plugins: [
-		sveltekit(),
-		mkcert(),
-		[
-			'prismjs',
-			{
-				languages: ['javascript', 'typescript']
-			}
-		]
-	],
+	plugins: [sveltekit(), mkcert()],
 	resolve: {
 		alias: {
 			$routes: path.resolve('./src/routes')

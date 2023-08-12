@@ -1,11 +1,21 @@
 <script lang="ts">
 	import Prism from 'prismjs';
+	import 'prismjs/components/prism-json';
+	import 'prismjs/components/prism-bash';
+	import 'prismjs/components/prism-css';
+	import 'prismjs/components/prism-typescript';
+	import 'prismjs/components/prism-git';
+	import 'prismjs/components/prism-javascript';
+	import 'prismjs/components/prism-jsx';
+	import 'prismjs/components/prism-markdown';
+	import 'prismjs/components/prism-powershell';
+	import 'prismjs/components/prism-scss';
 	Prism.manual = true;
 	const prism = Prism as any;
 
-	export let filename: string;
+	export let filename: string | undefined = undefined;
 	export let lang: string;
-	export let code: string | undefined;
+	export let code: string | undefined = undefined;
 	export let fullBleed: boolean | undefined = undefined;
 </script>
 
