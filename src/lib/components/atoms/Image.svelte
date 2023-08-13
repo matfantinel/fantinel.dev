@@ -14,7 +14,7 @@
 	$: fileName = src.split('.')[0];
 
 	function buildSrcset() {
-		if (dev) return;
+		if (dev || src.startsWith('http')) return;
 
 		let srcset = '';
 

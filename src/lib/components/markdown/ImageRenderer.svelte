@@ -19,6 +19,10 @@
 			}
 		}
 	}
+
+	if (href.startsWith('http')) {
+		href = `${href}/m/`;
+	}
 </script>
 
 <Image src={href} alt={text} figcaption={title} {fullBleed} {additionalClass} />
