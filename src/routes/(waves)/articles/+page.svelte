@@ -1,12 +1,13 @@
 <script lang="ts">
 	import BlogPostCard from '$lib/components/molecules/BlogPostCard.svelte';
+	import Pagination from '$lib/components/molecules/Pagination.svelte';
 	import ContentSection from '$lib/components/organisms/ContentSection.svelte';
 	import type Article from '$lib/data/articles/model';
 	import type { PaginatedResponse } from '$lib/data/types';
 
 	export let data: PaginatedResponse<Article>;
 
-	let { items: posts, totalItems, totalPages, currentPage } = data;
+	let { items: posts, totalPages, currentPage } = data;
 </script>
 
 <div class="container">
@@ -25,6 +26,8 @@
 			{/each}
 		</div>
 	</ContentSection>
+
+	<Pagination {currentPage} {totalPages} />
 </div>
 
 <style lang="scss">
