@@ -48,7 +48,7 @@
 		box-shadow: var(--card-shadow);
 		color: var(--color--text);
 		border-radius: 10px;
-		transition: all 0.4s ease;
+		transition: all 0.4s ease, box-shadow 0.2s ease-in-out;
 		position: relative;
 		overflow: hidden;
 		width: 100%;
@@ -59,8 +59,7 @@
 		&[onclick] {
 			cursor: pointer;
 			&:hover {
-				box-shadow: var(--card-shadow-hover);
-				transform: scale(1.01);
+				box-shadow: 0px 0px 1px 7px rgba(var(--color--primary-rgb), 0.2);
 			}
 		}
 	}
