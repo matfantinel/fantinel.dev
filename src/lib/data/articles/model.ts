@@ -1,5 +1,6 @@
 import customRichTextResolver from "$lib/storyblok/richText/resolver";
 import type { StoryblokAsset } from "$lib/storyblok/types";
+import type { Image } from "$lib/utils/types";
 import type { ISbStoryData } from "@storyblok/svelte";
 import { renderRichText } from '@storyblok/svelte';
 import readingTime from 'reading-time/lib/reading-time';
@@ -13,17 +14,15 @@ type Article = {
   markdown: string,
   date?: string,
   updated?: string,
-  coverImage: StoryblokAsset | undefined,
-  previewImage: StoryblokAsset | undefined,
+  coverImage?: Image,
+  previewImage?: Image,
   tags: string[],
   categories: string[],
   keywords: string[],
   readingTime?: string
 }
 
-export const storyToArticle = (story: ISbStoryData): Article | null => {
-  if (!story) return null;
-
+export const storyToArticle = (story: ISbStoryData): Article => {
   const renderedContent = renderRichText(story.content.content, undefined, customRichTextResolver);
 
   return {
@@ -34,8 +33,14 @@ export const storyToArticle = (story: ISbStoryData): Article | null => {
     markdown: story.content.markdown,
     date: story.first_published_at || undefined,
     updated: (story.published_at === story.first_published_at ? undefined : story.published_at) || undefined,
-    coverImage: story.content.coverImage,
-    previewImage: story.content.previewImage,
+    coverImage: story.content.coverImage ? {
+      src: story.content.coverImage.filename,
+      alt: story.content.coverImage.alt
+    } : undefined,
+    previewImage: story.content.previewImage ? {
+      src: story.content.previewImage.filename,
+      alt: story.content.previewImage.alt
+    } : undefined,
     tags: story.content.tags,
     categories: story.content.categories,
     keywords: story.content.keywords?.split(",").map((x: string) => x.trim()) || [],

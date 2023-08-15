@@ -1,8 +1,8 @@
-import { useStoryblokApi } from "@storyblok/svelte";
 import { browser, dev } from "$app/environment";
+import { getPostBySlug } from "$lib/data/articles/api";
 
 /** @type {import('./$types').LayoutLoadEvent} */
-export async function load({ params, url }: any) {
+export async function load({ params, url }) {
   const { slug } = params;
 
   if (!slug) {
@@ -16,10 +16,7 @@ export async function load({ params, url }: any) {
     loadDraft = Boolean(url.searchParams.get("_storyblok"));
   }
 
-  const storyblokApi = useStoryblokApi();
-  const dataStory = await storyblokApi.get(`cdn/stories/articles/${slug}`, { version: loadDraft ? 'draft' : 'published' });
+  const response = getPostBySlug(slug, loadDraft);
 
-  return {
-    story: dataStory.data.story
-  };
+  return response;
 }

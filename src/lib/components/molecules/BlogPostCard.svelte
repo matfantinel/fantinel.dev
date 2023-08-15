@@ -2,10 +2,11 @@
 	import Card from '$lib/components/atoms/Card.svelte';
 	import Tag from '$lib/components/atoms/Tag.svelte';
 	import Image from '$lib/components/atoms/Image.svelte';
+	import type { Image as ImageType } from '$lib/utils/types';
 
 	export let categories: string[] | undefined = undefined;
 	export let title: string;
-	export let coverImage: string | undefined = undefined;
+	export let coverImage: string | ImageType | undefined = undefined;
 	export let excerpt: string;
 	export let slug: string;
 	export let tags: string[] | undefined;
@@ -22,7 +23,10 @@
 >
 	<div class="cover-image" slot="image">
 		{#if coverImage && showImage}
-			<Image src={coverImage} alt="Cover image of this blog post" />
+			<Image
+				src={typeof coverImage === 'string' ? coverImage : coverImage.src}
+				alt={typeof coverImage === 'string' ? 'Cover image of this blog post' : coverImage.alt}
+			/>
 		{/if}
 	</div>
 	<div class="content" slot="content">

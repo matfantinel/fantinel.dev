@@ -3,29 +3,21 @@
 	import Header from '$lib/components/organisms/Header.svelte';
 
 	import Waves from '$lib/components/organisms/Waves.svelte';
+	import type Article from '$lib/data/articles/model';
 	import { storyToArticle } from '$lib/data/articles/model';
 	import { keywords, siteBaseUrl, title } from '$lib/data/meta';
-	import { clearSparkles, handleSparklesWrapper } from '$lib/utils/sparkles';
+	import type { ItemWithStoryResponse } from '$lib/data/types';
 	import { useStoryblokBridge } from '@storyblok/svelte';
-	import { onMount, onDestroy } from 'svelte';
+	import { onDestroy, onMount } from 'svelte';
 
-	export let data: { story: any };
-	$: ({ story } = data);
-	$: article = storyToArticle(story);
+	export let data: ItemWithStoryResponse<Article>;
+	let { item: article, story } = data;
 
 	onMount(() => {
 		useStoryblokBridge(story.id, (newStory) => {
 			story = newStory;
 			article = storyToArticle(story);
 		});
-
-		setTimeout(() => {
-			handleSparklesWrapper();
-		}, 100);
-	});
-
-	onDestroy(() => {
-		clearSparkles();
 	});
 
 	let metaKeywords = keywords;
@@ -56,22 +48,18 @@
 		<meta property="og:title" content="{article.title} - {title}" />
 		<meta name="twitter:title" content="{article.title} - {title}" />
 
-		{#if article.previewImage?.filename}
-			<meta property="og:image" content="{siteBaseUrl}{article.previewImage.filename}" />
-			<meta name="twitter:image" content="{siteBaseUrl}{article.previewImage.filename}" />
+		{#if article.previewImage?.src}
+			<meta property="og:image" content="{siteBaseUrl}{article.previewImage.src}" />
+			<meta name="twitter:image" content="{siteBaseUrl}{article.previewImage.src}" />
 		{/if}
 	{/if}
 </svelte:head>
 
 {#if article}
 	<div class="article-layout">
-		{#if article.coverImage?.filename}
+		{#if article.coverImage?.src}
 			<div class="cover-image-wrapper">
-				<img
-					class="cover-image"
-					src={`${article.coverImage.filename}/m/`}
-					alt={article.coverImage.alt}
-				/>
+				<img class="cover-image" src={`${article.coverImage.src}`} alt={article.coverImage.alt} />
 				<div class="cover-image-overlay" />
 			</div>
 		{:else}
@@ -80,7 +68,7 @@
 
 		<Header />
 
-		<main id="article-content" class:has-cover={Boolean(article.coverImage?.filename)}>
+		<main id="article-content" class:has-cover={Boolean(article.coverImage?.src)}>
 			<slot />
 
 			<!-- {#if post.relatedPosts && post.relatedPosts.length > 0}

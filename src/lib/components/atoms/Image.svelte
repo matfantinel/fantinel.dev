@@ -11,7 +11,7 @@
 	export let formats: string[] = ['avif', 'webp', 'png'];
 	export let widths: string[] | undefined = undefined;
 
-	$: fileName = src.split('.')[0];
+	$: fileName = src ? src.split('.')[0] : '';
 
 	function buildSrcset() {
 		if (dev || src.startsWith('http')) return;

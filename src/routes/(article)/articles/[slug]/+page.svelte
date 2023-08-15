@@ -2,15 +2,15 @@
 	import Card from '$lib/components/atoms/Card.svelte';
 	import Tag from '$lib/components/atoms/Tag.svelte';
 	import Markdown from '$lib/components/molecules/Markdown.svelte';
+	import type Article from '$lib/data/articles/model';
 	import { storyToArticle } from '$lib/data/articles/model';
-	import RichText from '$lib/storyblok/bloks/RichText.svelte';
+	import type { ItemWithStoryResponse } from '$lib/data/types';
 	import { useStoryblokBridge } from '@storyblok/svelte';
 	import dateformat from 'dateformat';
 	import { onMount } from 'svelte';
 
-	export let data: { story: any };
-	$: ({ story } = data);
-	$: article = storyToArticle(story);
+	export let data: ItemWithStoryResponse<Article>;
+	let { item: article, story } = data;
 
 	onMount(() => {
 		useStoryblokBridge(story.id, (newStory) => {
@@ -54,7 +54,7 @@
 					{#if article?.markdown}
 						<Markdown content={article.markdown} />
 					{/if}
-					<RichText content={article.content} />
+					<!-- <RichText content={article.content} /> -->
 				{/if}
 			</div>
 		</div>

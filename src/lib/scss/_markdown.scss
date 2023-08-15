@@ -82,34 +82,4 @@
 	img {
 		border-radius: 6px;
 	}
-
-	// Workaround for Storyblok not having a proper "mark" element
-	// Instead only creating a span with a background-color
-	// Looks for any span with a background-color and applies a mark effect
-	mark {
-		@include marker-highlight;
-	}
-
-	.sparkles-wrapper {
-		position: relative;
-		display: inline-block;
-
-		.sparkles-content {
-			color: var(--color--secondary);
-			position: relative;
-			z-index: 1;
-		}
-	}
-
-	.sparkle {
-		position: absolute;
-		pointer-events: none;
-		display: flex;
-		z-index: 2;
-		animation: sparkle-grow-and-shrink 900ms ease-in-out forwards;
-
-		svg {
-			animation: sparkle-spin 900ms linear forwards;
-		}
-	}
 }

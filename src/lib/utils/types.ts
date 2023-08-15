@@ -48,5 +48,11 @@ export type BlogPost = {
   readingTime: string,
   relatedPosts: BlogPost[],
   coverImage: string | undefined,
+  previewImage: string | undefined,
   hideCoverImage: boolean
+}
+
+export type Image = {
+  src: string,
+  alt: string
 }
