@@ -4,13 +4,13 @@
 	import RecentPosts from '$lib/components/organisms/RecentPosts.svelte';
 	import Experience from '$lib/components/organisms/Experience.svelte';
 	import Projects from '$lib/components/organisms/Projects.svelte';
-	import type { ExperienceEntry, Project, BlogPost } from '$lib/utils/types';
+	import type { ExperienceEntry, Project, BlogPostOld } from '$lib/utils/types';
 
 	export let data: {
 		yearsOfExperience: number;
 		experienceEntries: ExperienceEntry[];
 		projects: Project[];
-		posts: BlogPost[];
+		posts: BlogPostOld[];
 	};
 
 	let { yearsOfExperience, experienceEntries, projects, posts } = data;

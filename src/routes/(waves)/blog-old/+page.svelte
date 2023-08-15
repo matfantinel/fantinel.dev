@@ -1,22 +1,22 @@
 <script lang="ts">
 	import BlogPostCard from '$lib/components/molecules/BlogPostCard.svelte';
-	import Pagination from '$lib/components/molecules/Pagination.svelte';
 	import ContentSection from '$lib/components/organisms/ContentSection.svelte';
-	import type Article from '$lib/data/articles/model';
-	import type { PaginatedResponse } from '$lib/data/types';
+	import type { BlogPostOld } from '$lib/utils/types';
 
-	export let data: PaginatedResponse<Article>;
+	export let data: {
+		posts: BlogPostOld[];
+	};
 
-	let { items: posts, totalPages, currentPage } = data;
+	let { posts } = data;
 </script>
 
 <div class="container">
-	<ContentSection title="Storyblok Articles">
+	<ContentSection title="All Blog Posts">
 		<div class="grid">
 			{#each posts as post}
 				<BlogPostCard
 					title={post.title}
-					coverImage={post.coverImage}
+					coverImage={post.hideCoverImage ? undefined : post.coverImage}
 					excerpt={post.excerpt}
 					readingTime={post.readingTime}
 					slug={post.slug}
@@ -26,8 +26,6 @@
 			{/each}
 		</div>
 	</ContentSection>
-
-	<Pagination {currentPage} {totalPages} />
 </div>
 
 <style lang="scss">

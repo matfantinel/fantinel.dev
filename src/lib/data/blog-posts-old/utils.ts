@@ -8,7 +8,7 @@ const ifYouRemoveMeTheBuildFails = Prism;
 import 'prism-svelte';
 import readingTime from 'reading-time';
 import striptags from 'striptags';
-import type { BlogPost } from "$lib/utils/types";
+import type { BlogPostOld } from "$lib/utils/types";
 
 export const importPosts = (render = false) => {
   const blogImports = import.meta.glob('$routes/*/*/*.md', { eager: true });
@@ -16,7 +16,7 @@ export const importPosts = (render = false) => {
 
   const imports = { ...blogImports, ...innerImports };
 
-  const posts: BlogPost[] = [];
+  const posts: BlogPostOld[] = [];
   for (const path in imports) {
     const post = imports[path] as any;
     if (post) {
@@ -30,7 +30,7 @@ export const importPosts = (render = false) => {
   return posts;
 }
 
-export const filterPosts = (posts: BlogPost[]) => {
+export const filterPosts = (posts: BlogPostOld[]) => {
   return posts.filter((post) => !post.hidden)
     .sort((a, b) =>
       new Date(a.date).getTime() > new Date(b.date).getTime()
@@ -47,13 +47,13 @@ export const filterPosts = (posts: BlogPost[]) => {
         ...post,
         readingTime: readingTimeResult ? readingTimeResult.text : '',
         relatedPosts: relatedPosts,
-      } as BlogPost;
+      } as BlogPostOld;
     });
 }
 
 // #region Unexported Functions
 
-const getRelatedPosts = (posts: BlogPost[], post: BlogPost) => {
+const getRelatedPosts = (posts: BlogPostOld[], post: BlogPostOld) => {
   // Get the first 3 posts that share the same category and the highest number of tags in common
   const relatedPosts = posts
     .filter((p) => p.slug !== post.slug)
@@ -63,7 +63,7 @@ const getRelatedPosts = (posts: BlogPost[], post: BlogPost) => {
       const bTags = b.tags.filter((t) => post.tags.includes(t));
       return aTags.length > bTags.length ? -1 : aTags.length < bTags.length ? 1 : 0;
     })
-  
+
   return relatedPosts.slice(0, 3).map((p) => ({
     ...p,
     readingTime: p.html ? readingTime(striptags(p.html) || '').text : '',

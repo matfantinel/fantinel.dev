@@ -34,7 +34,7 @@ export type ExperienceEntry = {
   tags: TagType[]
 }
 
-export type BlogPost = {
+export type BlogPostOld = {
   tags: string[],
   categories: string[],
   keywords: string[],
@@ -46,7 +46,7 @@ export type BlogPost = {
   excerpt: string,
   html: string | undefined,
   readingTime: string,
-  relatedPosts: BlogPost[],
+  relatedPosts: BlogPostOld[],
   coverImage: string | undefined,
   previewImage: string | undefined,
   hideCoverImage: boolean

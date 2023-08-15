@@ -1,5 +1,5 @@
 import { browser, dev } from "$app/environment";
-import { getPostBySlug } from "$lib/data/articles/api";
+import { getPostBySlug } from "$lib/data/blog-posts/api";
 
 /** @type {import('./$types').LayoutLoadEvent} */
 export async function load({ params, url }) {

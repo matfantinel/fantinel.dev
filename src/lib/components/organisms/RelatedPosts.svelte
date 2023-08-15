@@ -1,9 +1,9 @@
 <script lang="ts">
-	import type { BlogPost } from '$lib/utils/types';
+	import type { BlogPostOld } from '$lib/utils/types';
 	import BlogPostCard from '$lib/components/molecules/BlogPostCard.svelte';
 	import ContentSection from '$lib/components/organisms/ContentSection.svelte';
 
-	export let posts: BlogPost[];
+	export let posts: BlogPostOld[];
 </script>
 
 <ContentSection

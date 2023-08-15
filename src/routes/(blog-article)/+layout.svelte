@@ -5,11 +5,11 @@
 	import dateformat from 'dateformat';
 
 	import { keywords, siteBaseUrl, title } from '$lib/data/meta';
-	import type { BlogPost } from '$lib/utils/types';
+	import type { BlogPostOld } from '$lib/utils/types';
 	import RelatedPosts from '$lib/components/organisms/RelatedPosts.svelte';
 	import Image from '$lib/components/atoms/Image.svelte';
 
-	export let data: { post: BlogPost };
+	export let data: { post: BlogPostOld };
 	$: ({ post } = data);
 
 	let metaKeywords = keywords;

@@ -3,63 +3,63 @@
 	import Header from '$lib/components/organisms/Header.svelte';
 
 	import Waves from '$lib/components/organisms/Waves.svelte';
-	import type Article from '$lib/data/articles/model';
-	import { storyToArticle } from '$lib/data/articles/model';
+	import type BlogPost from '$lib/data/blog-posts/model';
+	import { storyToBlogPost } from '$lib/data/blog-posts/model';
 	import { keywords, siteBaseUrl, title } from '$lib/data/meta';
 	import type { ItemWithStoryResponse } from '$lib/data/types';
 	import { useStoryblokBridge } from '@storyblok/svelte';
-	import { onDestroy, onMount } from 'svelte';
+	import { onMount } from 'svelte';
 
-	export let data: ItemWithStoryResponse<Article>;
-	let { item: article, story } = data;
+	export let data: ItemWithStoryResponse<BlogPost>;
+	let { item: post, story } = data;
 
 	onMount(() => {
 		useStoryblokBridge(story.id, (newStory) => {
 			story = newStory;
-			article = storyToArticle(story);
+			post = storyToBlogPost(story);
 		});
 	});
 
 	let metaKeywords = keywords;
 
 	$: {
-		if (article?.categories?.length) {
-			metaKeywords = article.categories.concat(metaKeywords);
+		if (post?.categories?.length) {
+			metaKeywords = post.categories.concat(metaKeywords);
 		}
-		if (article?.tags?.length) {
-			metaKeywords = article.tags.concat(metaKeywords);
+		if (post?.tags?.length) {
+			metaKeywords = post.tags.concat(metaKeywords);
 		}
-		if (article?.keywords?.length) {
-			metaKeywords = article.keywords.concat(metaKeywords);
+		if (post?.keywords?.length) {
+			metaKeywords = post.keywords.concat(metaKeywords);
 		}
 	}
 </script>
 
 <svelte:head>
-	{#if article}
+	{#if post}
 		<meta name="keywords" content={metaKeywords.join(', ')} />
 
-		<meta name="description" content={article.excerpt} />
-		<meta property="og:description" content={article.excerpt} />
-		<meta name="twitter:description" content={article.excerpt} />
-		<link rel="canonical" href="{siteBaseUrl}/{article.slug}" />
+		<meta name="description" content={post.excerpt} />
+		<meta property="og:description" content={post.excerpt} />
+		<meta name="twitter:description" content={post.excerpt} />
+		<link rel="canonical" href="{siteBaseUrl}/{post.slug}" />
 
-		<title>{article.title} - {title}</title>
-		<meta property="og:title" content="{article.title} - {title}" />
-		<meta name="twitter:title" content="{article.title} - {title}" />
+		<title>{post.title} - {title}</title>
+		<meta property="og:title" content="{post.title} - {title}" />
+		<meta name="twitter:title" content="{post.title} - {title}" />
 
-		{#if article.previewImage?.src}
-			<meta property="og:image" content="{siteBaseUrl}{article.previewImage.src}" />
-			<meta name="twitter:image" content="{siteBaseUrl}{article.previewImage.src}" />
+		{#if post.previewImage?.src}
+			<meta property="og:image" content="{siteBaseUrl}{post.previewImage.src}" />
+			<meta name="twitter:image" content="{siteBaseUrl}{post.previewImage.src}" />
 		{/if}
 	{/if}
 </svelte:head>
 
-{#if article}
-	<div class="article-layout">
-		{#if article.coverImage?.src}
+{#if post}
+	<div class="post-layout">
+		{#if post.coverImage?.src}
 			<div class="cover-image-wrapper">
-				<img class="cover-image" src={`${article.coverImage.src}`} alt={article.coverImage.alt} />
+				<img class="cover-image" src={`${post.coverImage.src}`} alt={post.coverImage.alt} />
 				<div class="cover-image-overlay" />
 			</div>
 		{:else}
@@ -68,7 +68,7 @@
 
 		<Header />
 
-		<main id="article-content" class:has-cover={Boolean(article.coverImage?.src)}>
+		<main id="post-content" class:has-cover={Boolean(post.coverImage?.src)}>
 			<slot />
 
 			<!-- {#if post.relatedPosts && post.relatedPosts.length > 0}
@@ -85,7 +85,7 @@
 <style lang="scss">
 	@import '$lib/scss/_mixins.scss';
 
-	.article-layout {
+	.post-layout {
 		--body-background-color: var(--color--post-page-background);
 		--body-background-color-rgb: var(--color--post-page-background-rgb);
 		background-color: var(--color--post-page-background);

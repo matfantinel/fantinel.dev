@@ -1,4 +1,4 @@
-import { filteredPosts } from '$lib/data/blog-posts';
+import { filteredPosts } from '$lib/data/blog-posts-old';
 
 export async function load({ url }: { url: { pathname: string } }) {
   const { pathname } = url;

@@ -1,12 +1,11 @@
 import customRichTextResolver from "$lib/storyblok/richText/resolver";
-import type { StoryblokAsset } from "$lib/storyblok/types";
 import type { Image } from "$lib/utils/types";
 import type { ISbStoryData } from "@storyblok/svelte";
 import { renderRichText } from '@storyblok/svelte';
 import readingTime from 'reading-time/lib/reading-time';
 import striptags from 'striptags';
 
-type Article = {
+type BlogPost = {
   slug: string,
   title: string,
   excerpt: string,
@@ -22,7 +21,7 @@ type Article = {
   readingTime?: string
 }
 
-export const storyToArticle = (story: ISbStoryData): Article => {
+export const storyToBlogPost = (story: ISbStoryData): BlogPost => {
   const renderedContent = renderRichText(story.content.content, undefined, customRichTextResolver);
 
   return {
@@ -48,4 +47,4 @@ export const storyToArticle = (story: ISbStoryData): Article => {
   }
 }
 
-export default Article;
+export default BlogPost;

@@ -2,46 +2,46 @@
 	import Card from '$lib/components/atoms/Card.svelte';
 	import Tag from '$lib/components/atoms/Tag.svelte';
 	import Markdown from '$lib/components/molecules/Markdown.svelte';
-	import type Article from '$lib/data/articles/model';
-	import { storyToArticle } from '$lib/data/articles/model';
+	import type BlogPost from '$lib/data/blog-posts/model';
+	import { storyToBlogPost } from '$lib/data/blog-posts/model';
 	import type { ItemWithStoryResponse } from '$lib/data/types';
 	import { useStoryblokBridge } from '@storyblok/svelte';
 	import dateformat from 'dateformat';
 	import { onMount } from 'svelte';
 
-	export let data: ItemWithStoryResponse<Article>;
-	let { item: article, story } = data;
+	export let data: ItemWithStoryResponse<BlogPost>;
+	let { item: post, story } = data;
 
 	onMount(() => {
 		useStoryblokBridge(story.id, (newStory) => {
 			story = newStory;
-			article = storyToArticle(story);
+			post = storyToBlogPost(story);
 		});
 	});
 </script>
 
-{#key article}
+{#key post}
 	<Card>
 		<div class="wrapper" slot="content">
 			<div class="header">
-				{#if article}
-					<h1>{article.title}</h1>
+				{#if post}
+					<h1>{post.title}</h1>
 					<div class="note">
-						Published {dateformat(article.date, 'UTC:dd mmmm yyyy')}
+						Published {dateformat(post.date, 'UTC:dd mmmm yyyy')}
 					</div>
-					{#if article.updated}
-						<div class="note">Updated on {dateformat(article.updated, 'UTC:dd mmmm yyyy')}</div>
+					{#if post.updated}
+						<div class="note">Updated on {dateformat(post.updated, 'UTC:dd mmmm yyyy')}</div>
 					{/if}
-					{#if article.readingTime}
-						<div class="note">{article.readingTime}</div>
+					{#if post.readingTime}
+						<div class="note">{post.readingTime}</div>
 					{/if}
-					{#if article.categories?.length || article.tags?.length}
+					{#if post.categories?.length || post.tags?.length}
 						<div class="tags">
-							{#if article.categories?.length}
-								<Tag color="secondary">{article.categories[0]}</Tag>
+							{#if post.categories?.length}
+								<Tag color="secondary">{post.categories[0]}</Tag>
 							{/if}
-							{#if article.tags?.length}
-								{#each article.tags as tag}
+							{#if post.tags?.length}
+								{#each post.tags as tag}
 									<Tag>{tag}</Tag>
 								{/each}
 							{/if}
@@ -50,11 +50,11 @@
 				{/if}
 			</div>
 			<div class="content">
-				{#if article}
-					{#if article?.markdown}
-						<Markdown content={article.markdown} />
+				{#if post}
+					{#if post?.markdown}
+						<Markdown content={post.markdown} />
 					{/if}
-					<!-- <RichText content={article.content} /> -->
+					<!-- <RichText content={post.content} /> -->
 				{/if}
 			</div>
 		</div>
