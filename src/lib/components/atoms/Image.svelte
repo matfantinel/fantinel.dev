@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { dev } from '$app/environment';
+	import { HttpRegex } from '$lib/utils/regex';
 
 	export let additionalClass: string | undefined = undefined;
 
@@ -14,7 +15,7 @@
 	$: fileName = src ? src.split('.')[0] : '';
 
 	function buildSrcset() {
-		if (dev || src.startsWith('http')) return;
+		if (dev || HttpRegex.test(src)) return;
 
 		let srcset = '';
 

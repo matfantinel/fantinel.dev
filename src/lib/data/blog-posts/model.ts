@@ -1,7 +1,5 @@
-import customRichTextResolver from "$lib/storyblok/richText/resolver";
 import type { Image } from "$lib/utils/types";
 import type { ISbStoryData } from "@storyblok/svelte";
-import { renderRichText } from '@storyblok/svelte';
 import readingTime from 'reading-time/lib/reading-time';
 import striptags from 'striptags';
 
@@ -10,7 +8,6 @@ type BlogPost = {
   title: string,
   excerpt: string,
   content: string,
-  markdown: string,
   date?: string,
   updated?: string,
   coverImage?: Image,
@@ -22,14 +19,11 @@ type BlogPost = {
 }
 
 export const storyToBlogPost = (story: ISbStoryData): BlogPost => {
-  const renderedContent = renderRichText(story.content.content, undefined, customRichTextResolver);
-
   return {
     slug: story.slug,
     title: story.name,
     excerpt: story.content.excerpt,
-    content: renderedContent,
-    markdown: story.content.markdown,
+    content: story.content.content,
     date: story.first_published_at || undefined,
     updated: (story.published_at === story.first_published_at ? undefined : story.published_at) || undefined,
     coverImage: story.content.coverImage ? {
@@ -43,7 +37,7 @@ export const storyToBlogPost = (story: ISbStoryData): BlogPost => {
     tags: story.content.tags,
     categories: story.content.categories,
     keywords: story.content.keywords?.split(",").map((x: string) => x.trim()) || [],
-    readingTime: readingTime(striptags(renderedContent) || '').text
+    readingTime: readingTime(striptags(story.content.content) || '').text
   }
 }
 

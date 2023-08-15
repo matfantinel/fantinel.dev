@@ -68,7 +68,7 @@
 
 		<Header />
 
-		<main id="post-content" class:has-cover={Boolean(post.coverImage?.src)}>
+		<main id="article-content" class:has-cover={Boolean(post.coverImage?.src)}>
 			<slot />
 
 			<!-- {#if post.relatedPosts && post.relatedPosts.length > 0}

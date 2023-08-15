@@ -51,10 +51,9 @@
 			</div>
 			<div class="content">
 				{#if post}
-					{#if post?.markdown}
-						<Markdown content={post.markdown} />
+					{#if post?.content}
+						<Markdown content={post.content} />
 					{/if}
-					<!-- <RichText content={post.content} /> -->
 				{/if}
 			</div>
 		</div>
