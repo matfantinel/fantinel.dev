@@ -13,7 +13,7 @@ export const getPosts = async (page: number = 1): Promise<PaginatedResponse<Blog
     is_startpage: false, // exclude the /blog root page from the result,
     per_page: PAGE_SIZE,
     page: page,
-    sort_by: 'first_published_at:desc'
+    sort_by: 'content.publishedDate:desc'
   });
 
   let posts: BlogPost[] = [];

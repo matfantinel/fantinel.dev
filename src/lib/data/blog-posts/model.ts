@@ -24,8 +24,8 @@ export const storyToBlogPost = (story: ISbStoryData): BlogPost => {
     title: story.name,
     excerpt: story.content.excerpt,
     content: story.content.content,
-    date: story.first_published_at || undefined,
-    updated: (story.published_at === story.first_published_at ? undefined : story.published_at) || undefined,
+    date: story.content.publishedDate || story.first_published_at || undefined,
+    updated: story.content.updatedDate || undefined,
     coverImage: story.content.coverImage ? {
       src: story.content.coverImage.filename,
       alt: story.content.coverImage.alt
