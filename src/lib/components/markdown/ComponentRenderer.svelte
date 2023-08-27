@@ -7,7 +7,8 @@
 
 	const imports: any = {
 		// Add any possible component here
-		Button: () => import('$lib/components/atoms/Button.svelte')
+		Button: () => import('$lib/components/atoms/Button.svelte'),
+		Callout: () => import('$lib/components/molecules/Callout.svelte')
 	};
 
 	export let lang: string;

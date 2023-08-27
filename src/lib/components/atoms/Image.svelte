@@ -45,7 +45,7 @@
 	{#if figcaption}
 		<figure class={additionalClass} class:full-bleed={fullBleed}>
 			<img srcset={buildSrcset()} {src} {alt} loading="lazy" decoding="async" />
-			<figcaption>{figcaption}</figcaption>
+			<figcaption>{@html figcaption}</figcaption>
 		</figure>
 	{:else}
 		<img

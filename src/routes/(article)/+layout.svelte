@@ -1,8 +1,8 @@
 <script lang="ts">
+	import Card from '$lib/components/atoms/Card.svelte';
 	import Footer from '$lib/components/organisms/Footer.svelte';
 	import Header from '$lib/components/organisms/Header.svelte';
 
-	import Waves from '$lib/components/organisms/Waves.svelte';
 	import type BlogPost from '$lib/data/blog-posts/model';
 	import { storyToBlogPost } from '$lib/data/blog-posts/model';
 	import { keywords, siteBaseUrl, title } from '$lib/data/meta';
@@ -12,6 +12,8 @@
 
 	export let data: ItemWithStoryResponse<BlogPost>;
 	let { item: post, story } = data;
+
+	$: showCardLayout = Boolean(post.coverImage?.src);
 
 	onMount(() => {
 		useStoryblokBridge(story.id, (newStory) => {
@@ -56,20 +58,24 @@
 </svelte:head>
 
 {#if post}
-	<div class="post-layout">
-		{#if post.coverImage?.src}
+	<div class="article-layout" class:has-cover={showCardLayout}>
+		{#if showCardLayout && post.coverImage}
 			<div class="cover-image-wrapper">
 				<img class="cover-image" src={`${post.coverImage.src}`} alt={post.coverImage.alt} />
 				<div class="cover-image-overlay" />
 			</div>
-		{:else}
-			<Waves />
 		{/if}
 
 		<Header />
 
-		<main id="article-content" class:has-cover={Boolean(post.coverImage?.src)}>
-			<slot />
+		<main class="article-main" class:has-cover={showCardLayout}>
+			{#if showCardLayout}
+				<Card additionalClass="article-card">
+					<slot slot="content" />
+				</Card>
+			{:else}
+				<slot />
+			{/if}
 
 			<!-- {#if post.relatedPosts && post.relatedPosts.length > 0}
 			<div class="container">
@@ -85,10 +91,19 @@
 <style lang="scss">
 	@import '$lib/scss/_mixins.scss';
 
-	.post-layout {
+	.article-layout {
 		--body-background-color: var(--color--post-page-background);
 		--body-background-color-rgb: var(--color--post-page-background-rgb);
-		background-color: var(--color--post-page-background);
+		background-color: var(--body-background-color);
+
+		&.has-cover {
+			--body-background-color: var(--color--page-background);
+			--body-background-color-rgb: var(--color--page-background-rgb);
+
+			:global(.article-card) {
+				background-color: var(--color--post-card-background);
+			}
+		}
 	}
 
 	.cover-image-wrapper {
@@ -118,48 +133,38 @@
 		);
 	}
 
-	main {
+	.article-main {
 		min-height: 55dvh;
 
 		position: relative;
 		padding-top: 40px;
 		padding-bottom: 80px;
-		padding-right: 15px;
-		padding-left: 15px;
+		--inline-padding: 15px;
+		padding-inline: var(--inline-padding);
 
 		@include for-iphone-se {
-			padding-left: 0;
-			padding-right: 0;
+			--inline-padding: 0;
 		}
 
 		@include for-tablet-portrait-up {
-			padding-right: 20px;
-			padding-left: 20px;
+			--inline-padding: 20px;
 		}
 
 		@include for-tablet-landscape-up {
-			padding-right: 30px;
-			padding-left: 30px;
+			--inline-padding: 30px;
 		}
 
 		&.has-cover {
 			padding-top: 200px;
 		}
+	}
 
-		display: grid;
-		grid-template-columns:
-			1fr
-			min(85ch, 100%)
-			1fr;
-		grid-row-gap: 30px;
+	:global(.article-card) {
+		max-width: 85ch;
+		margin-inline: auto;
+	}
 
-		:global(> *) {
-			grid-column: 2;
-		}
-
-		:global(> .full-bleed) {
-			width: 100%;
-			grid-column: 1 / 4;
-		}
+	:global(.article-card .wrapper .body) {
+		padding: 0;
 	}
 </style>

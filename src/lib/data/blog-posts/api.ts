@@ -3,7 +3,7 @@ import type { ItemWithStoryResponse, PaginatedResponse } from "../types";
 import type BlogPost from "./model";
 import { storyToBlogPost } from "./model";
 
-const PAGE_SIZE = 3;
+const PAGE_SIZE = 10;
 
 export const getPosts = async (page: number = 1): Promise<PaginatedResponse<BlogPost>> => {
   const storyblokApi = useStoryblokApi();
@@ -13,6 +13,7 @@ export const getPosts = async (page: number = 1): Promise<PaginatedResponse<Blog
     is_startpage: false, // exclude the /blog root page from the result,
     per_page: PAGE_SIZE,
     page: page,
+    sort_by: 'first_published_at:desc'
   });
 
   let posts: BlogPost[] = [];
