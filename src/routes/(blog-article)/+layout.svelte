@@ -105,7 +105,7 @@
 	}
 
 	#article-content {
-		--main-column-width: 65ch;
+		--main-column-width: 60ch;
 		position: relative;
 		padding-top: 40px;
 		padding-bottom: 80px;

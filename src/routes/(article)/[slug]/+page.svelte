@@ -21,7 +21,7 @@
 </script>
 
 {#key post}
-	<Card>
+	<Card additionalClass="article-card">
 		<div class="wrapper" slot="content">
 			<div class="header">
 				{#if post}
@@ -67,7 +67,7 @@
 		display: grid;
 		grid-template-columns:
 			1fr
-			min(65ch, 100%)
+			min(60ch, 100%)
 			1fr;
 		grid-row-gap: 30px;
 
