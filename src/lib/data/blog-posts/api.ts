@@ -43,3 +43,23 @@ export const getPostBySlug = async (slug: string, loadDraft: boolean = false): P
 
   return null;
 }
+
+export const getAllSlugs = async (): Promise<string[]> => {
+  const storyblokApi = useStoryblokApi();
+
+  const response = await storyblokApi.get(`cdn/stories`, {
+    starts_with: 'blog/',
+    is_startpage: false, // exclude the /blog root page from the result,
+    per_page: 100,
+    sort_by: 'content.publishedDate:desc',
+    excluding_fields: 'content,tags,categories,keywords,coverImage,previewImage,excerpt,component,updatedDate'
+  });
+
+
+  let slugs: string[] = [];
+  if (response.data?.stories?.length) {
+    slugs = response.data.stories.map((story: ISbStoryData) => story.slug);
+  }
+
+  return slugs;
+}

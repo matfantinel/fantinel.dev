@@ -1,3 +1,5 @@
+import { getAllSlugs } from '$lib/data/blog-posts/api.js';
+
 /** @type {import('./$types').PageLoad} */
 export async function load({ parent }) {
   const { story } = await parent();
@@ -8,9 +10,7 @@ export async function load({ parent }) {
 }
 
 /** @type {import('./$types').EntryGenerator} */
-export function entries() {
-  // TODO: query Storyblok API for all article slugs
-  return [
-    { slug: '2019-year-in-review' }
-  ];
+export async function entries() {
+  const slugs = await getAllSlugs();
+  return slugs.map((slug) => ({ slug }));
 }
