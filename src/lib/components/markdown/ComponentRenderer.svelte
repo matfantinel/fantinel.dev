@@ -28,13 +28,13 @@
 		delete componentProps.children;
 	} else {
 		// Get filename from code block
-		// Pattern: ~~~ filename
+		// Pattern: ~filename example.js
 		// Then remove it from the code block
-		const match = text.match(/^~~~\s*(.*)/);
+		const match = text.match(/^~filename\s*(.*)/);
 		if (match && match[1]) {
 			codeFilename = match[1];
 			// The regex below also removes the newline character
-			text = text.replace(/^~~~.*(?:\n|$)/, '');
+			text = text.replace(/^~filename.*(?:\n|$)/, '');
 		}
 	}
 </script>

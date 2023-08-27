@@ -156,6 +156,11 @@
 
 		&.has-cover {
 			padding-top: 200px;
+			padding-inline: 0;
+
+			:global(.article-card) {
+				padding-inline: var(--inline-padding);
+			}
 		}
 	}
 

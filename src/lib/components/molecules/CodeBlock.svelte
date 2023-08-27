@@ -10,6 +10,7 @@
 	import 'prismjs/components/prism-markdown';
 	import 'prismjs/components/prism-powershell';
 	import 'prismjs/components/prism-scss';
+	import 'prism-svelte';
 	Prism.manual = true;
 	const prism = Prism as any;
 
@@ -27,9 +28,15 @@
 		<div class="lang">{lang}</div>
 	{/if}
 	{#if code}
-		<code class={`language-${lang}`}>
+		{#if lang}
+			<pre class={`language-${lang}`}>
 			{@html Prism.highlight(code, prism.languages[lang], lang)}
-		</code>
+		</pre>
+		{:else}
+			<pre>
+				{code}
+			</pre>
+		{/if}
 	{:else}
 		<slot />
 	{/if}
@@ -51,10 +58,13 @@
 		margin: 30px 0;
 
 		:global(pre) {
+			font-family: var(--font--mono);
 			overflow-x: auto;
 			scrollbar-color: var(--color--primary) var(--color--primary-tint);
 			scrollbar-width: thin;
 			padding-bottom: 5px;
+
+			tab-size: 0;
 
 			&::-webkit-scrollbar {
 				height: 8px;
