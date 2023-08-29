@@ -150,10 +150,10 @@
 					0% {
 						object-position: top;
 					}
-					50% {
+					25% {
 						object-position: center;
 					}
-					100% {
+					50% {
 						object-position: bottom;
 					}
 				}

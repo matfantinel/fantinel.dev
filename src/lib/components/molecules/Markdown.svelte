@@ -5,6 +5,8 @@
 	import ImageRenderer from '../markdown/ImageRenderer.svelte';
 	import MarkerHighlight from './MarkerHighlight.svelte';
 	import SparklingHighlight from './SparklingHighlight.svelte';
+	import ButtonRenderer from '../markdown/ButtonRenderer.svelte';
+	import QuoteCalloutRenderer from '../markdown/QuoteCalloutRenderer.svelte';
 
 	export let content: string;
 
@@ -51,8 +53,32 @@
 		}
 	};
 
+	const buttonTokenizerExtension: marked.TokenizerAndRendererExtension = {
+		name: 'button',
+		level: 'block',
+		start(src: string) {
+			return src.indexOf('[[[');
+		},
+		tokenizer(src: string) {
+			// Will match anything between [[[ and ]]]. e.g. [[[button text]]]
+			const rule = /^\[\[\[(.*?)\]\]\]/;
+			const match = rule.exec(src);
+			if (match) {
+				return {
+					type: 'button',
+					raw: match[0],
+					text: match[1]
+				};
+			}
+		}
+	};
+
 	marked.use({
-		extensions: [sparklesHighlightTokenizerExtension, markerHighlightTokenizerExtension]
+		extensions: [
+			sparklesHighlightTokenizerExtension,
+			markerHighlightTokenizerExtension,
+			buttonTokenizerExtension
+		]
 	});
 	const options = marked.defaults;
 
@@ -60,7 +86,9 @@
 		code: ComponentRenderer,
 		sparklesHighlight: SparklingHighlight,
 		markerHighlight: MarkerHighlight,
-		image: ImageRenderer
+		image: ImageRenderer,
+		button: ButtonRenderer,
+		blockquote: QuoteCalloutRenderer
 	} as any;
 </script>
 
