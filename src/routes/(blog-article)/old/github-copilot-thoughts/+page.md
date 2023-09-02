@@ -71,7 +71,7 @@ Until a consensus is reached, GitHub has added the option to disable public code
 
 <Image
   src="/images/posts/github-copilot-thoughts/copilot-settings.png"
-  alt="Screenshot of a GitHub Copilot settings displayed the option to block suggestions from public code."
+  alt="Screenshot of a GitHub Copilot settings displaying the option to block suggestions from public code."
 />
 
 ## Is it worth the price?
