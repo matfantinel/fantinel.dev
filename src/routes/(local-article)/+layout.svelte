@@ -39,9 +39,9 @@
 		<meta property="og:title" content="{post.title} - {title}" />
 		<meta name="twitter:title" content="{post.title} - {title}" />
 
-		{#if post.previewImage?.src}
-			<meta property="og:image" content="{siteBaseUrl}{post.previewImage.src}" />
-			<meta name="twitter:image" content="{siteBaseUrl}{post.previewImage.src}" />
+		{#if post.coverImage?.src}
+			<meta property="og:image" content="{siteBaseUrl}{post.coverImage.src}" />
+			<meta name="twitter:image" content="{siteBaseUrl}{post.coverImage.src}" />
 		{/if}
 	{/if}
 </svelte:head>

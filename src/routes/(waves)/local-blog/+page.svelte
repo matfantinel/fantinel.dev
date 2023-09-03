@@ -16,7 +16,7 @@
 			{#each posts as post}
 				<BlogPostCard
 					title={post.title}
-					coverImage={post.coverImage}
+					coverImage={post.showImage ? post.coverImage : undefined}
 					excerpt={post.excerpt}
 					readingTime={post.readingTime}
 					slug={post.slug}

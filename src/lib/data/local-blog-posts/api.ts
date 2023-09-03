@@ -12,6 +12,8 @@ export const getPosts = async (page: number = 1): Promise<PaginatedResponse<Blog
   // Read all files in the specified directory and get the .md files
   const fileNames = await fs.readdir(POSTS_PATH);
   const mdFiles = fileNames.filter((fileName) => fileName.endsWith('.md'));
+  // Reverse the array so that the newest posts are first
+  mdFiles.reverse();
 
   // Paginate
   const startIndex = (page - 1) * PAGE_SIZE;

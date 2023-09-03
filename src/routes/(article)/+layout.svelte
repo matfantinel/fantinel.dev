@@ -53,6 +53,9 @@
 		{#if post.previewImage?.src}
 			<meta property="og:image" content="{siteBaseUrl}{post.previewImage.src}" />
 			<meta name="twitter:image" content="{siteBaseUrl}{post.previewImage.src}" />
+		{:else if post.coverImage?.src}
+			<meta property="og:image" content="{siteBaseUrl}{post.coverImage.src}" />
+			<meta name="twitter:image" content="{siteBaseUrl}{post.coverImage.src}" />
 		{/if}
 	{/if}
 </svelte:head>

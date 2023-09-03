@@ -11,6 +11,7 @@ type BlogPost = {
   date?: string,
   updated?: string,
   coverImage?: Image,
+  showImage?: boolean,
   previewImage?: Image,
   tags: string[],
   categories: string[],

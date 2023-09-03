@@ -25,13 +25,19 @@
 				{
 					"title": "Cover Image",
 					"name": "coverImage",
-					"type": "image"
-				},
-				{
-					"title": "Preview Image",
-					"name": "previewImage",
 					"type": "image",
 					"isPreviewImage": true
+				},
+				{
+					"title": "Cover Image Alt Text",
+					"name": "coverImageAlt",
+					"type": "string"
+				},
+				{
+					"title": "Show Cover Image",
+					"name": "showImage",
+					"type": "boolean",
+					"description": "Whether to actually show the cover image on the page or just use it as a preview for social media links"
 				},
 				{
 					"title": "Publish Date",
@@ -49,7 +55,8 @@
 				{
 					"title": "Is hidden",
 					"name": "hidden",
-					"type": "draft"
+					"type": "draft",
+					"default": false
 				},
 				{
 					"title": "Tags",
@@ -62,18 +69,6 @@
 					"type": "categories"
 				}
 			]
-		},
-		{
-			"name": "Work Experience",
-			"pageBundle": false,
-			"previewPath": null,
-			"fields": [
-				{
-					"title": "Title",
-					"name": "title",
-					"type": "string"
-				}
-			]
 		}
 	],
 	"frontMatter.framework.id": "other",
@@ -84,12 +79,6 @@
 			"path": "[[workspace]]/cms/articles",
 			"contentTypes": ["Article"],
 			"filePrefix": "yyyy-MM-dd"
-		},
-		{
-			"title": "work-experience",
-			"path": "[[workspace]]/cms/work-experience",
-			"contentTypes": ["Work Experience"],
-			"filePrefix": ""
 		}
 	]
 }

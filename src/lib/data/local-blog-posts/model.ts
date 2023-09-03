@@ -11,13 +11,10 @@ export const frontmatterToBlogPost = (frontmatter: any, content: string): BlogPo
     date: frontmatter.date,
     updated: frontmatter.updated,
     coverImage: frontmatter.coverImage ? {
-      src: frontmatter.coverImage,
-      alt: '//TODO: Add alt text to cover image'
+      src: '/images' + frontmatter.coverImage,
+      alt: frontmatter.coverImageAlt
     } : undefined,
-    previewImage: frontmatter.previewImage ? {
-      src: frontmatter.previewImage,
-      alt: '//TODO: Add alt text to preview image'
-    } : undefined,
+    showImage: frontmatter.showImage,
     tags: frontmatter.tags,
     categories: frontmatter.categories,
     readingTime: readingTime(striptags(content) || '').text

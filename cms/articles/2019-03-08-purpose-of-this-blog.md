@@ -1,14 +1,15 @@
 ---
-slug: test
-title: Test
-excerpt: This is a test post!
-coverImage: ""
-previewImage: /posts/who-runs-our-code/cover.jpg
-date: 2023-09-02T03:25:02.329Z
+slug: purpose-of-this-blog
+title: The purpose of this blog
+excerpt: Why does it exist?
+coverImage: /posts/purpose-of-this-blog/cover.jpg
+showImage: true
+date: 2019-03-08
 updated: null
-hidden: true
+hidden: false
 tags: []
-categories: []
+categories:
+  - Meta
 type: Article
 ---
 
@@ -16,6 +17,6 @@ There are many developer blogs out there, probably because developers like to ra
 
 The purpose is to help myself learn about the subjects better, since there's no better way to learn than trying to reach someone. Of course, it won't be made of tutorials only - I intend to write about some theoretical concepts, and maybe tech stuff not related to development.
 
-I consider myself a tech enthusiast. Which means I like to talk about [[[software || color=secondary href=# ]]] and gadgets in a way that most other people would find me annoying. This can be a great place to be able to share this with people that may care, hopefully you!
+I consider myself a tech enthusiast. Which means I like to talk about software and gadgets in a way that most other people would find me annoying. This can be a great place to be able to share this with people that may care, hopefully you!
 
 I hope to see you here in future posts, and I hope you enjoy reading what I have to say!
