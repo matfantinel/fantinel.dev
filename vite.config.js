@@ -7,7 +7,8 @@ const config = {
 	plugins: [sveltekit(), mkcert()],
 	resolve: {
 		alias: {
-			$routes: path.resolve('./src/routes')
+			$routes: path.resolve('./src/routes'),
+			$cms: path.resolve('./cms')
 		}
 	},
 	optimizeDeps: {

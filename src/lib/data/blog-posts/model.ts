@@ -14,7 +14,7 @@ type BlogPost = {
   previewImage?: Image,
   tags: string[],
   categories: string[],
-  keywords: string[],
+  keywords?: string[],
   readingTime?: string
 }
 
