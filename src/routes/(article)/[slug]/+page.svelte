@@ -2,21 +2,10 @@
 	import Tag from '$lib/components/atoms/Tag.svelte';
 	import Markdown from '$lib/components/molecules/Markdown.svelte';
 	import type BlogPost from '$lib/data/blog-posts/model';
-	import { storyToBlogPost } from '$lib/data/blog-posts/model';
-	import type { ItemWithStoryResponse } from '$lib/data/types';
-	import { useStoryblokBridge } from '@storyblok/svelte';
 	import dateformat from 'dateformat';
-	import { onMount } from 'svelte';
 
-	export let data: ItemWithStoryResponse<BlogPost>;
-	let { item: post, story } = data;
-
-	onMount(() => {
-		useStoryblokBridge(story.id, (newStory) => {
-			story = newStory;
-			post = storyToBlogPost(story);
-		});
-	});
+	export let data: { post: BlogPost };
+	$: ({ post } = data);
 </script>
 
 {#key post}

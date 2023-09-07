@@ -1,8 +1,7 @@
-import { browser, dev } from "$app/environment";
 import { getPostBySlug } from "$lib/data/blog-posts/api";
 
 /** @type {import('./$types').LayoutLoadEvent} */
-export async function load({ params, url }) {
+export async function load({ params }) {
   const { slug } = params;
 
   if (!slug) {
@@ -11,12 +10,9 @@ export async function load({ params, url }) {
     };
   }
 
-  let loadDraft = false;
-  if (browser || dev) {
-    loadDraft = Boolean(url.searchParams.get("_storyblok"));
-  }
-
-  const response = getPostBySlug(slug, loadDraft);
+  const response = {
+    post: await getPostBySlug(slug)
+  };
 
   return response;
 }

@@ -14,8 +14,7 @@
 			<Logo {animated} {showFullLogo} />
 		</a>
 		<div class="links">
-			<a href="/blog">Blog (Storyblok)</a>
-			<a href="/local-blog">Blog (Local)</a>
+			<a href="/blog">Blog</a>
 			<a href="/resume">Resume</a>
 			<RssLink />
 			<ThemeToggle />

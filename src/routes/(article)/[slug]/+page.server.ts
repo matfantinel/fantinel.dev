@@ -1,12 +1,9 @@
-import { getAllSlugs } from '$lib/data/blog-posts/api.js';
+import { getAllSlugs } from '$lib/data/blog-posts/api';
 
 /** @type {import('./$types').PageLoad} */
 export async function load({ parent }) {
-  const { story } = await parent();
-
-  return {
-    story
-  };
+  const data = await parent();
+  return data;
 }
 
 /** @type {import('./$types').EntryGenerator} */

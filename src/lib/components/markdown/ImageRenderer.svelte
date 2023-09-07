@@ -21,8 +21,14 @@
 		}
 	}
 
-	if (HttpRegex.test(href)) {
-		href = `${href}/m/`;
+	if (!href.startsWith('/images')) {
+		href = `/images/${href}`;
+	}
+
+	if (text) {
+		// Alt text sometimes has some HTML encoded char codes
+		// e.g. &#39; for apostrophe
+		text = text.replace(/(&#(\d+);)/g, (match, capture, charCode) => String.fromCharCode(charCode));
 	}
 </script>
 

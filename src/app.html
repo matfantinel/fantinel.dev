@@ -63,12 +63,6 @@
 			// Avoiding a flash of light mode in case dark mode is used
 			const theme = localStorage.getItem('theme-preference') || 'auto';
 			document.firstElementChild?.setAttribute('data-theme', theme);
-
-			// Fix - Storyblok SDK tries accessing window.process on client side hydration
-			// So I'm declaring it here just to make it work
-			if (!window.process) {
-				window.process = { env: {} };
-			}
 		</script>
 
 		%sveltekit.head%

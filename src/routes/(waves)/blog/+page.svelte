@@ -11,12 +11,12 @@
 </script>
 
 <div class="container">
-	<ContentSection title="Storyblok Articles">
+	<ContentSection title="Local Articles">
 		<div class="grid">
 			{#each posts as post}
 				<BlogPostCard
 					title={post.title}
-					coverImage={post.coverImage}
+					coverImage={post.showImage ? post.coverImage : undefined}
 					excerpt={post.excerpt}
 					readingTime={post.readingTime}
 					slug={post.slug}

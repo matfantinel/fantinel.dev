@@ -1,65 +1,61 @@
-import { useStoryblokApi, type ISbStoryData } from "@storyblok/svelte";
-import type { ItemWithStoryResponse, PaginatedResponse } from "../types";
-import type BlogPost from "./model";
-import { storyToBlogPost } from "./model";
+import fs from 'fs-extra';
+import grayMatter from 'gray-matter';
+import path from 'path';
+import type { PaginatedResponse } from "../types";
+import { frontmatterToBlogPost } from "./model";
+import type BlogPost from './model';
 
 const PAGE_SIZE = 10;
+const POSTS_PATH = path.join(process.cwd(), 'cms/articles');
 
 export const getPosts = async (page: number = 1): Promise<PaginatedResponse<BlogPost>> => {
-  const storyblokApi = useStoryblokApi();
+  // Read all files in the specified directory and get the .md files
+  const fileNames = await fs.readdir(POSTS_PATH);
+  const mdFiles = fileNames.filter((fileName) => fileName.endsWith('.md'));
+  // Reverse the array so that the newest posts are first
+  mdFiles.reverse();
 
-  const response = await storyblokApi.get(`cdn/stories`, {
-    starts_with: 'blog/',
-    is_startpage: false, // exclude the /blog root page from the result,
-    per_page: PAGE_SIZE,
-    page: page,
-    sort_by: 'content.publishedDate:desc'
-  });
+  // Paginate
+  const startIndex = (page - 1) * PAGE_SIZE;
+  const endIndex = page * PAGE_SIZE;
+  const paginatedMdFiles = mdFiles.slice(startIndex, endIndex);
 
-  let posts: BlogPost[] = [];
-  if (response.data?.stories?.length) {
-    posts = response.data.stories.map((story: ISbStoryData) => storyToBlogPost(story));
+  const blogPosts: BlogPost[] = [];
+
+  for (const mdFile of paginatedMdFiles) {
+    const fileContent = await fs.readFile(`${POSTS_PATH}/${mdFile}`, 'utf-8');
+    const parsedData = grayMatter(fileContent);
+    blogPosts.push(frontmatterToBlogPost(parsedData.data, parsedData.content));
   }
 
   return {
-    items: posts,
-    totalItems: (response.headers as any).total,
-    totalPages: Math.ceil((response.headers as any).total / PAGE_SIZE),
+    items: blogPosts,
+    totalItems: mdFiles.length,
+    totalPages: Math.ceil(mdFiles.length / PAGE_SIZE),
     currentPage: page
-  };
-};
+  }
+}
 
-export const getPostBySlug = async (slug: string, loadDraft: boolean = false): Promise<ItemWithStoryResponse<BlogPost> | null> => {
-  const storyblokApi = useStoryblokApi();
+export const getPostBySlug = async (slug: string): Promise<BlogPost | null> => {
+  const fileNames = await fs.readdir(POSTS_PATH);
+  const mdFiles = fileNames.filter((fileName) => fileName.endsWith('.md'));
 
-  const response = await storyblokApi.get(`cdn/stories/blog/${slug}`, { version: loadDraft ? 'draft' : 'published' });
-
-  if (response.data?.story) {
-    return {
-      story: response.data.story,
-      item: storyToBlogPost(response.data.story)
-    }
+  const mdFile = mdFiles.find((fileName) => fileName.endsWith(`${slug}.md`));
+  if (!mdFile) {
+    return null;
   }
 
-  return null;
+  const fileContent = await fs.readFile(`${POSTS_PATH}/${mdFile}`, 'utf-8');
+  const parsedData = grayMatter(fileContent);
+  return frontmatterToBlogPost(parsedData.data, parsedData.content)
 }
 
 export const getAllSlugs = async (): Promise<string[]> => {
-  const storyblokApi = useStoryblokApi();
+  const fileNames = await fs.readdir(POSTS_PATH);
 
-  const response = await storyblokApi.get(`cdn/stories`, {
-    starts_with: 'blog/',
-    is_startpage: false, // exclude the /blog root page from the result,
-    per_page: 100,
-    sort_by: 'content.publishedDate:desc',
-    excluding_fields: 'content,tags,categories,keywords,coverImage,previewImage,excerpt,component,updatedDate'
-  });
-
-
-  let slugs: string[] = [];
-  if (response.data?.stories?.length) {
-    slugs = response.data.stories.map((story: ISbStoryData) => story.slug);
-  }
+  // Filenames are in the format yyyy-MM-dd-slug.md
+  // Grab only the slug
+  const slugs = fileNames.map((fileName) => fileName.split('-').slice(3).join('-').replace('.md', ''));
 
   return slugs;
 }

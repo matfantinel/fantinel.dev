@@ -15,4 +15,11 @@
 	const buttonProps = Object.assign({}, ...propsArray);
 </script>
 
-<Button {...buttonProps}>{buttonText}</Button>
+<Button additionalClass="md-button" {...buttonProps}>{buttonText}</Button>
+
+<style lang="scss">
+	:global(.md-button) {
+		width: fit-content;
+		margin: 5px auto;
+	}
+</style>

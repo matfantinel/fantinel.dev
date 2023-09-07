@@ -4,23 +4,12 @@
 	import Header from '$lib/components/organisms/Header.svelte';
 
 	import type BlogPost from '$lib/data/blog-posts/model';
-	import { storyToBlogPost } from '$lib/data/blog-posts/model';
 	import { keywords, siteBaseUrl, title } from '$lib/data/meta';
-	import type { ItemWithStoryResponse } from '$lib/data/types';
-	import { useStoryblokBridge } from '@storyblok/svelte';
-	import { onMount } from 'svelte';
 
-	export let data: ItemWithStoryResponse<BlogPost>;
-	let { item: post, story } = data;
+	export let data: { post: BlogPost };
+	$: ({ post } = data);
 
-	$: showCardLayout = Boolean(post.coverImage?.src);
-
-	onMount(() => {
-		useStoryblokBridge(story.id, (newStory) => {
-			story = newStory;
-			post = storyToBlogPost(story);
-		});
-	});
+	$: showCardLayout = Boolean(post.showImage && post.coverImage?.src);
 
 	let metaKeywords = keywords;
 
@@ -50,10 +39,7 @@
 		<meta property="og:title" content="{post.title} - {title}" />
 		<meta name="twitter:title" content="{post.title} - {title}" />
 
-		{#if post.previewImage?.src}
-			<meta property="og:image" content="{siteBaseUrl}{post.previewImage.src}" />
-			<meta name="twitter:image" content="{siteBaseUrl}{post.previewImage.src}" />
-		{:else if post.coverImage?.src}
+		{#if post.coverImage?.src}
 			<meta property="og:image" content="{siteBaseUrl}{post.coverImage.src}" />
 			<meta name="twitter:image" content="{siteBaseUrl}{post.coverImage.src}" />
 		{/if}
@@ -174,5 +160,6 @@
 
 	:global(.article-card .wrapper .body) {
 		padding: 0;
+		width: 100%;
 	}
 </style>

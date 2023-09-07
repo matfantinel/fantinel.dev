@@ -1,5 +1,4 @@
 import type { Image } from "$lib/utils/types";
-import type { ISbStoryData } from "@storyblok/svelte";
 import readingTime from 'reading-time/lib/reading-time';
 import striptags from 'striptags';
 
@@ -19,26 +18,22 @@ type BlogPost = {
   readingTime?: string
 }
 
-export const storyToBlogPost = (story: ISbStoryData): BlogPost => {
+export const frontmatterToBlogPost = (frontmatter: any, content: string): BlogPost => {
   return {
-    slug: story.slug,
-    title: story.name,
-    excerpt: story.content.excerpt,
-    content: story.content.content,
-    date: story.content.publishedDate || story.first_published_at || undefined,
-    updated: story.content.updatedDate || undefined,
-    coverImage: story.content.coverImage ? {
-      src: story.content.coverImage.filename,
-      alt: story.content.coverImage.alt
+    slug: frontmatter.slug,
+    title: frontmatter.title,
+    excerpt: frontmatter.excerpt,
+    content: content,
+    date: frontmatter.date,
+    updated: frontmatter.updated,
+    coverImage: frontmatter.coverImage ? {
+      src: '/images' + frontmatter.coverImage,
+      alt: frontmatter.coverImageAlt
     } : undefined,
-    previewImage: story.content.previewImage ? {
-      src: story.content.previewImage.filename,
-      alt: story.content.previewImage.alt
-    } : undefined,
-    tags: story.content.tags,
-    categories: story.content.categories,
-    keywords: story.content.keywords?.split(",").map((x: string) => x.trim()) || [],
-    readingTime: readingTime(striptags(story.content.content) || '').text
+    showImage: frontmatter.showImage,
+    tags: frontmatter.tags,
+    categories: frontmatter.categories,
+    readingTime: readingTime(striptags(content) || '').text
   }
 }
 
