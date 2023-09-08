@@ -1,6 +1,22 @@
 <script lang="ts">
-	export let filename: string;
+	import Prism from 'prismjs';
+	import 'prismjs/components/prism-json';
+	import 'prismjs/components/prism-bash';
+	import 'prismjs/components/prism-css';
+	import 'prismjs/components/prism-typescript';
+	import 'prismjs/components/prism-git';
+	import 'prismjs/components/prism-javascript';
+	import 'prismjs/components/prism-jsx';
+	import 'prismjs/components/prism-markdown';
+	import 'prismjs/components/prism-powershell';
+	import 'prismjs/components/prism-scss';
+	import 'prism-svelte';
+	Prism.manual = true;
+	const prism = Prism as any;
+
+	export let filename: string | undefined = undefined;
 	export let lang: string;
+	export let code: string | undefined = undefined;
 	export let fullBleed: boolean | undefined = undefined;
 </script>
 
@@ -11,7 +27,19 @@
 	{#if lang}
 		<div class="lang">{lang}</div>
 	{/if}
-	<slot />
+	{#if code}
+		{#if lang}
+			<pre class={`language-${lang}`}>
+			{@html Prism.highlight(code, prism.languages[lang], lang)}
+		</pre>
+		{:else}
+			<pre>
+				{code}
+			</pre>
+		{/if}
+	{:else}
+		<slot />
+	{/if}
 </div>
 
 <style lang="scss">
@@ -30,10 +58,13 @@
 		margin: 30px 0;
 
 		:global(pre) {
+			font-family: var(--font--mono);
 			overflow-x: auto;
 			scrollbar-color: var(--color--primary) var(--color--primary-tint);
 			scrollbar-width: thin;
 			padding-bottom: 5px;
+
+			tab-size: 0;
 
 			&::-webkit-scrollbar {
 				height: 8px;

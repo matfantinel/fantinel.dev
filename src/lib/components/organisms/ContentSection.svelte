@@ -42,6 +42,8 @@
 		justify-content: space-between;
 		gap: 40px;
 		padding: 50px 0;
+		position: relative;
+		z-index: 1;
 
 		.title-area {
 			flex: 2;

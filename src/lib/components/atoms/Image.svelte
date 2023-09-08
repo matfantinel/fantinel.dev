@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { dev } from '$app/environment';
+	import { HttpRegex } from '$lib/utils/regex';
 
 	export let additionalClass: string | undefined = undefined;
 
@@ -11,10 +12,10 @@
 	export let formats: string[] = ['avif', 'webp', 'png'];
 	export let widths: string[] | undefined = undefined;
 
-	$: fileName = src.split('.')[0];
+	$: fileName = src ? src.split('.')[0] : '';
 
 	function buildSrcset() {
-		if (dev) return;
+		if (dev || HttpRegex.test(src)) return;
 
 		let srcset = '';
 
@@ -40,21 +41,23 @@
 	}
 </script>
 
-{#if figcaption}
-	<figure class={additionalClass} class:full-bleed={fullBleed}>
-		<img srcset={buildSrcset()} {src} {alt} loading="lazy" decoding="async" />
-		<figcaption>{figcaption}</figcaption>
-	</figure>
-{:else}
-	<img
-		srcset={buildSrcset()}
-		{src}
-		{alt}
-		loading="lazy"
-		decoding="async"
-		class={additionalClass}
-		class:full-bleed={fullBleed}
-	/>
+{#if src}
+	{#if figcaption}
+		<figure class={additionalClass} class:full-bleed={fullBleed}>
+			<img srcset={buildSrcset()} {src} {alt} loading="lazy" decoding="async" />
+			<figcaption>{@html figcaption}</figcaption>
+		</figure>
+	{:else}
+		<img
+			srcset={buildSrcset()}
+			{src}
+			{alt}
+			loading="lazy"
+			decoding="async"
+			class={additionalClass}
+			class:full-bleed={fullBleed}
+		/>
+	{/if}
 {/if}
 
 <style lang="scss">

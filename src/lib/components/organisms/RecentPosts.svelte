@@ -1,8 +1,8 @@
 <script lang="ts">
 	import BlogPostCard from '$lib/components/molecules/BlogPostCard.svelte';
 	import ContentSection from '$lib/components/organisms/ContentSection.svelte';
-	import type { BlogPost } from '$lib/utils/types';
 	import Button from '$lib/components/atoms/Button.svelte';
+	import type BlogPost from '$lib/data/blog-posts/model';
 
 	export let posts: BlogPost[];
 </script>

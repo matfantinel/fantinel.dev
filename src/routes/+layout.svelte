@@ -8,6 +8,26 @@
 	onMount(async () => {
 		root = document.getElementsByTagName('html')[0];
 		root.classList.add('smooth-scroll');
+
+		// Send page view event to Plausible
+		// The pageview is registed automatically, but this allows
+		// us to send additional data, such as the theme preference
+		if (window) {
+			// @ts-ignore
+			const { plausible } = window;
+			if (plausible) {
+				if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+					plausible('pageview', { props: { theme_preference: 'Dark' } });
+				} else if (
+					window.matchMedia &&
+					window.matchMedia('(prefers-color-scheme: light)').matches
+				) {
+					plausible('pageview', { props: { theme_preference: 'Light' } });
+				} else {
+					plausible('pageview', { props: { theme_preference: 'None' } });
+				}
+			}
+		}
 	});
 
 	// Disable smooth scrolling when navigating

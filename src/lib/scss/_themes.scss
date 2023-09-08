@@ -19,6 +19,7 @@
 	@include define-color('page-background', #f4f8fb);
 	@include define-color('post-page-background', #f3fbfc);
 	@include define-color('card-background', #ffffff);
+	@include define-color('post-card-background', #ffffff);
 
 	// Used for highlights in Work Experience
 	@include define-color('usefulgroup-tint', #f8e6a0);
@@ -71,6 +72,7 @@
 	@include define-color('page-background', #1c1e26);
 	@include define-color('post-page-background', #141519);
 	@include define-color('card-background', #32343e);
+	@include define-color('post-card-background', #141519);
 
 	// Used for highlights in Work Experience
 	@include define-color('usefulgroup-tint', #8e740b);

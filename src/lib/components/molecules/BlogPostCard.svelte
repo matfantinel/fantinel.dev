@@ -2,27 +2,33 @@
 	import Card from '$lib/components/atoms/Card.svelte';
 	import Tag from '$lib/components/atoms/Tag.svelte';
 	import Image from '$lib/components/atoms/Image.svelte';
+	import type { Image as ImageType } from '$lib/utils/types';
 
 	export let categories: string[] | undefined = undefined;
 	export let title: string;
-	export let coverImage: string | undefined = undefined;
+	export let coverImage: string | ImageType | undefined = undefined;
 	export let excerpt: string;
 	export let slug: string;
 	export let tags: string[] | undefined;
 	export let readingTime: string | undefined = undefined;
+	export let additionalClass: string | undefined = undefined;
 
 	export let showImage = true;
 </script>
 
 <Card
 	href="/{slug}"
+	on:click
 	additionalClass="blog-post-card {!showImage && 'hide-image'} {showImage &&
 		!coverImage &&
-		'missing-image'}"
+		'missing-image'} {additionalClass}"
 >
 	<div class="cover-image" slot="image">
 		{#if coverImage && showImage}
-			<Image src={coverImage} alt="Cover image of this blog post" />
+			<Image
+				src={typeof coverImage === 'string' ? coverImage : coverImage.src}
+				alt={typeof coverImage === 'string' ? 'Cover image of this blog post' : coverImage.alt}
+			/>
 		{/if}
 	</div>
 	<div class="content" slot="content">
@@ -40,7 +46,9 @@
 		{#if categories?.length || tags?.length}
 			<div class="tags">
 				{#if categories?.length}
-					<Tag color="secondary">{categories[0]}</Tag>
+					{#each categories as category}
+						<Tag>{category}</Tag>
+					{/each}
 				{/if}
 				{#if tags?.length}
 					{#each tags.slice(0, 2) as tag}

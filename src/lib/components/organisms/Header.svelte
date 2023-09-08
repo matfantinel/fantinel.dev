@@ -44,6 +44,7 @@
 		.container {
 			display: flex;
 			align-items: center;
+			justify-content: space-between;
 			gap: 30px;
 
 			@include for-phone-only {
@@ -57,7 +58,6 @@
 
 		.logo {
 			height: 44px;
-			flex: 1;
 		}
 
 		a {

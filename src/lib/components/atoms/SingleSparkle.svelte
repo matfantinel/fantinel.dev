@@ -1,10 +1,10 @@
 <script lang="ts">
 	export let color: string;
-	export let size: string;
+	export let size: number;
 	export let style: any;
 </script>
 
-<div class="wrapper" style="top: {style.top}; left: {style.left};">
+<div class="sparkle" style="top: {style.top}; left: {style.left};">
 	<svg
 		width={size}
 		height={size}
@@ -20,7 +20,7 @@
 </div>
 
 <style lang="scss">
-	.wrapper {
+	.sparkle {
 		position: absolute;
 		pointer-events: none;
 		display: flex;

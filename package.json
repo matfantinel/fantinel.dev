@@ -18,31 +18,34 @@
 	},
 	"devDependencies": {
 		"@histoire/plugin-svelte": "^0.12.4",
+		"@svelte-put/copy": "^3.0.0",
 		"@sveltejs/adapter-auto": "^1.0.0",
 		"@sveltejs/kit": "^1.21.0",
 		"dateformat": "^5.0.3",
 		"eslint": "^8.28.0",
 		"eslint-config-prettier": "^8.5.0",
 		"eslint-plugin-svelte3": "^4.0.0",
+		"fs-extra": "^11.1.1",
+		"gray-matter": "^4.0.3",
 		"histoire": "^0.12.4",
-		"mdsvex": "^0.10.6",
+		"image-transmutation": "^0.1.2",
 		"prettier": "^2.8.0",
 		"prettier-plugin-svelte": "^2.8.1",
+		"prism-svelte": "^0.5.0",
+		"prismjs": "^1.29.0",
 		"reading-time": "^1.5.0",
-		"rehype-autolink-headings": "^6.1.1",
-		"rehype-external-links": "^2.0.1",
-		"rehype-slug": "^5.1.0",
 		"sass": "^1.57.1",
 		"striptags": "^3.2.0",
-		"svelte": "^3.58.0",
+		"svelte": "^3.59.2",
 		"svelte-check": "^2.9.2",
+		"svelte-markdown": "^0.2.3",
 		"svelte-sitemap": "^2.5.4",
 		"typescript": "^4.9.3",
-		"vite": "^4.1.5"
+		"vite": "^4.4.9",
+		"vite-plugin-prismjs": "^0.0.8"
 	},
 	"type": "module",
 	"dependencies": {
-		"@fontsource/ubuntu-mono": "^4.5.11",
-		"image-transmutation": "^0.1.2"
+		"@fontsource/ubuntu-mono": "^4.5.11"
 	}
 }

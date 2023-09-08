@@ -1,19 +1,25 @@
 {
 	"$schema": "https://frontmatter.codes/frontmatter.schema.json",
+	"frontMatter.preview.host": "https://localhost:5173",
 	"frontMatter.taxonomy.contentTypes": [
 		{
-			"name": "default",
+			"name": "Article",
 			"pageBundle": false,
 			"previewPath": null,
 			"fields": [
+				{
+					"title": "Slug",
+					"name": "slug",
+					"type": "slug"
+				},
 				{
 					"title": "Title",
 					"name": "title",
 					"type": "string"
 				},
 				{
-					"title": "Slug",
-					"name": "slug",
+					"title": "Excerpt",
+					"name": "excerpt",
 					"type": "string"
 				},
 				{
@@ -23,12 +29,24 @@
 					"isPreviewImage": true
 				},
 				{
-					"title": "Excerpt",
-					"name": "excerpt",
+					"title": "Cover Image Alt Text",
+					"name": "coverImageAlt",
 					"type": "string"
 				},
 				{
-					"title": "Publishing date",
+					"title": "Show Cover Image",
+					"name": "showImage",
+					"type": "boolean",
+					"description": "Whether to actually show the cover image on the page or just use it as a preview for social media links"
+				},
+				{
+					"title": "Social Image",
+					"name": "socialImage",
+					"type": "image",
+					"description": "Image to use when sharing on social media. If not provided, the cover image will be used instead."
+				},
+				{
+					"title": "Publish Date",
 					"name": "date",
 					"type": "datetime",
 					"default": "{{now}}",
@@ -43,12 +61,8 @@
 				{
 					"title": "Is hidden",
 					"name": "hidden",
-					"type": "draft"
-				},
-				{
-					"title": "Hide Cover Image",
-					"name": "hideCoverImage",
-					"type": "boolean"
+					"type": "draft",
+					"default": false
 				},
 				{
 					"title": "Tags",
@@ -59,38 +73,18 @@
 					"title": "Categories",
 					"name": "categories",
 					"type": "categories"
-				},
-				{
-					"title": "Keywords",
-					"name": "keywords",
-					"type": "list"
 				}
 			]
 		}
 	],
 	"frontMatter.framework.id": "other",
-	"frontMatter.content.publicFolder": "",
+	"frontMatter.content.publicFolder": "[[workspace]]/static",
 	"frontMatter.content.pageFolders": [
 		{
-			"title": "posts",
-			"path": "[[workspace]]/src/routes/(blog-article)"
+			"title": "articles",
+			"path": "[[workspace]]/cms/articles",
+			"contentTypes": ["Article"],
+			"filePrefix": "yyyy-MM-dd"
 		}
-	],
-	"frontMatter.taxonomy.tags": [
-		"Analytics",
-		"Back-End",
-		"CSS",
-		"Common Errors",
-		"Ethics",
-		"Front-End",
-		"Games",
-		"Guide",
-		"Open Source",
-		"Personal",
-		"Ramble",
-		"Recap",
-		"Review",
-		"Svelte"
-	],
-	"frontMatter.taxonomy.categories": ["Misc", "Tech"]
+	]
 }

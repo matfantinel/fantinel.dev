@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { HttpRegex } from '$lib/utils/regex';
+	import { createEventDispatcher } from 'svelte';
 
 	export let additionalClass: string | undefined = undefined;
 
@@ -7,6 +8,14 @@
 	const isExternalLink = !!href && HttpRegex.test(href);
 	export let target: '' | '_blank' = isExternalLink ? '_blank' : '';
 	export let rel = isExternalLink ? 'noopener noreferrer' : undefined;
+
+	const dispatch = createEventDispatcher();
+
+	function handleCardClick() {
+		dispatch('click', {
+			href
+		});
+	}
 
 	$: tag = href ? 'a' : 'article';
 	$: linkProps = {
@@ -21,6 +30,7 @@
 	class="card {additionalClass}"
 	{...linkProps}
 	data-sveltekit-preload-data
+	on:click={handleCardClick}
 	{...$$restProps}
 >
 	<div class="wrapper">
@@ -48,7 +58,7 @@
 		box-shadow: var(--card-shadow);
 		color: var(--color--text);
 		border-radius: 10px;
-		transition: all 0.4s ease;
+		transition: all 0.4s ease, box-shadow 0.2s ease-in-out;
 		position: relative;
 		overflow: hidden;
 		width: 100%;
@@ -59,8 +69,7 @@
 		&[onclick] {
 			cursor: pointer;
 			&:hover {
-				box-shadow: var(--card-shadow-hover);
-				transform: scale(1.01);
+				box-shadow: 0px 0px 1px 7px rgba(var(--color--primary-rgb), 0.2);
 			}
 		}
 	}

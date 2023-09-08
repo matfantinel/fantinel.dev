@@ -4,7 +4,8 @@
 	import RecentPosts from '$lib/components/organisms/RecentPosts.svelte';
 	import Experience from '$lib/components/organisms/Experience.svelte';
 	import Projects from '$lib/components/organisms/Projects.svelte';
-	import type { ExperienceEntry, Project, BlogPost } from '$lib/utils/types';
+	import type { ExperienceEntry, Project } from '$lib/utils/types';
+	import type BlogPost from '$lib/data/blog-posts/model';
 
 	export let data: {
 		yearsOfExperience: number;

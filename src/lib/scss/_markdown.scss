@@ -1,4 +1,4 @@
-#article-content {
+.article-main {
 	.content {
 		a:not(.button) {
 			&:hover {
@@ -8,7 +8,11 @@
 
 		p {
 			margin: 0.75rem 0;
-			line-height: 1.55em;
+			line-height: 1.6em;
+		}
+
+		li {
+			line-height: 1.6em;
 		}
 
 		h2 {
@@ -74,9 +78,11 @@
 	}
 
 	.heading-link {
+		display: inline-block;
 		color: var(--color--primary);
 		text-decoration: none;
-		margin-right: 10px;
+		margin-left: 10px;
+		height: 20px;
 	}
 
 	img {
