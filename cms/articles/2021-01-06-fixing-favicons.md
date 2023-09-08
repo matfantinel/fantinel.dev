@@ -4,7 +4,7 @@ title: How to fix your Favicons
 excerpt: Favicons suck. Luckily, there are ways to make them suck less.
 coverImage: /posts/fixing-favicons/cover.jpg
 coverImageAlt: ""
-showImage: false
+showImage: true
 date: 2021-01-06
 updated: null
 hidden: false

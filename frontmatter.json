@@ -40,6 +40,12 @@
 					"description": "Whether to actually show the cover image on the page or just use it as a preview for social media links"
 				},
 				{
+					"title": "Social Image",
+					"name": "socialImage",
+					"type": "image",
+					"description": "Image to use when sharing on social media. If not provided, the cover image will be used instead."
+				},
+				{
 					"title": "Publish Date",
 					"name": "date",
 					"type": "datetime",

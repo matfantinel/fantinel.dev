@@ -13,7 +13,7 @@
 </script>
 
 <div class="container">
-	<ContentSection title="Local Articles">
+	<ContentSection title="Blog Posts">
 		<div class="grid">
 			{#each posts as post}
 				<BlogPostCard

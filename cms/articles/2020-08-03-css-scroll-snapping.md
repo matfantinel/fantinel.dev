@@ -4,7 +4,7 @@ title: CSS Scroll Snapping - Improve Scrolling without JS
 excerpt: Learn how to snap scroll positions with CSS only.
 coverImage: /posts/css-scroll-snapping/cover.jpg
 coverImageAlt: ""
-showImage: false
+showImage: true
 date: 2020-08-03
 updated: null
 hidden: false

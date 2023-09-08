@@ -4,7 +4,7 @@ title: Spicing Up your GitHub Profile with HTML and CSS
 excerpt: 'Make your GitHub profile more appealing with what you do best: code!'
 coverImage: /posts/github-profile-readme/cover.jpg
 coverImageAlt: ""
-showImage: false
+showImage: true
 date: 2021-01-02
 updated: null
 hidden: false

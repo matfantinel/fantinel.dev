@@ -40,7 +40,10 @@
 		<meta property="og:title" content="{post.title} - {title}" />
 		<meta name="twitter:title" content="{post.title} - {title}" />
 
-		{#if post.coverImage?.src}
+		{#if post.socialImage?.src}
+			<meta property="og:image" content="{siteBaseUrl}{post.socialImage.src}" />
+			<meta name="twitter:image" content="{siteBaseUrl}{post.socialImage.src}" />
+		{:else if post.coverImage?.src}
 			<meta property="og:image" content="{siteBaseUrl}{post.coverImage.src}" />
 			<meta name="twitter:image" content="{siteBaseUrl}{post.coverImage.src}" />
 		{/if}

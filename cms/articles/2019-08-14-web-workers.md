@@ -4,7 +4,7 @@ title: Web Workers - Bringing Multithreading to the Front-End
 excerpt: Improve your client-side performance by breaking heavy operations into multiple threads - backend style.
 coverImage: /posts/web-workers/cover.jpg
 coverImageAlt: ""
-showImage: false
+showImage: true
 date: 2019-08-14
 updated: null
 hidden: false

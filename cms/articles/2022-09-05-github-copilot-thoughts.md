@@ -4,7 +4,7 @@ title: Thoughts on GitHub Copilot
 excerpt: I was initially skeptical about it, but I've come to appreciate it more and more as I use it.
 coverImage: /posts/github-copilot-thoughts/cover.jpg
 coverImageAlt: ""
-showImage: false
+showImage: true
 date: 2022-09-05
 updated: null
 hidden: false

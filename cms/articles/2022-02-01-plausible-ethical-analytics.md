@@ -4,7 +4,7 @@ title: Ethical Analytics are Plausible, at Last
 excerpt: Web Analytics is such a morally ambiguous area that I’ve avoided it for years, but now I can finally do it with peace of mind.
 coverImage: /posts/plausible-ethical-analytics/cover.jpg
 coverImageAlt: ""
-showImage: false
+showImage: true
 date: 2022-02-01
 updated: null
 hidden: false

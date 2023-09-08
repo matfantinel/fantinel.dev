@@ -7,6 +7,7 @@
 	import SparklingHighlight from './SparklingHighlight.svelte';
 	import ButtonRenderer from '../markdown/ButtonRenderer.svelte';
 	import QuoteCalloutRenderer from '../markdown/QuoteCalloutRenderer.svelte';
+	import LinkRenderer from '../markdown/LinkRenderer.svelte';
 
 	export let content: string;
 
@@ -88,7 +89,8 @@
 		markerHighlight: MarkerHighlight,
 		image: ImageRenderer,
 		button: ButtonRenderer,
-		blockquote: QuoteCalloutRenderer
+		blockquote: QuoteCalloutRenderer,
+		link: LinkRenderer
 	} as any;
 </script>
 

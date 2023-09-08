@@ -11,7 +11,7 @@ type BlogPost = {
   updated?: string,
   coverImage?: Image,
   showImage?: boolean,
-  previewImage?: Image,
+  socialImage?: Image,
   tags: string[],
   categories: string[],
   keywords?: string[],
@@ -32,6 +32,9 @@ export const frontmatterToBlogPost = (frontmatter: any, content: string): BlogPo
       alt: frontmatter.coverImageAlt
     } : undefined,
     showImage: frontmatter.showImage,
+    socialImage: frontmatter.socialImage ? {
+      src: '/images' + frontmatter.socialImage
+    } : undefined,
     tags: frontmatter.tags,
     categories: frontmatter.categories,
     readingTime: readingTime(striptags(content) || '').text

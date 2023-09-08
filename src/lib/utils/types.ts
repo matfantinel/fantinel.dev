@@ -54,5 +54,5 @@ export type BlogPostOld = {
 
 export type Image = {
   src: string,
-  alt: string
+  alt?: string
 }

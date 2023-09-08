@@ -4,7 +4,7 @@ title: From Twitter to Mastodon
 excerpt: Turns out the elephant network feels much lighter than the bird one.
 coverImage: /posts/from-twitter-to-mastodon/cover.png
 coverImageAlt: ""
-showImage: false
+showImage: true
 date: 2023-02-07
 updated: null
 hidden: false

@@ -4,7 +4,7 @@ title: MongoDB on Linux - Data directory /data/db not found
 excerpt: Fix the error that occurs when trying to run freshly-installed MongoDB on a Linux machine.
 coverImage: /posts/mongodb-error-datadb-on-linux/cover.jpg
 coverImageAlt: ""
-showImage: false
+showImage: true
 date: 2019-06-09
 updated: null
 hidden: false

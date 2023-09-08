@@ -1,15 +1,14 @@
+import { getPosts } from '$lib/data/blog-posts/api';
+import type BlogPost from '$lib/data/blog-posts/model';
 import { description, siteBaseUrl, title } from '$lib/data/meta';
-import type { BlogPostOld } from '$lib/utils/types';
 import dateformat from 'dateformat';
-import { filterPosts, importPosts } from '$lib/data/blog-posts-old/utils';
 
 export const prerender = true;
 
 export async function GET() {
-  const allPosts = importPosts(true);
-  const filteredPosts = filterPosts(allPosts);
+  const posts = await getPosts();
 
-  const body = xml(filteredPosts);
+  const body = xml(posts.items);
   const headers = {
     'Cache-Control': 'max-age=0, s-maxage=3600',
     'Content-Type': 'application/xml'
@@ -17,7 +16,7 @@ export async function GET() {
   return new Response(body, { headers });
 }
 
-const xml = (posts: BlogPostOld[]) => `
+const xml = (posts: BlogPost[]) => `
 <rss version="2.0"
 	xmlns:content="http://purl.org/rss/1.0/modules/content/"
 	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
@@ -60,10 +59,10 @@ const xml = (posts: BlogPostOld[]) => `
               </strong>
             </div>
 
-            ${post.html}
+            ${post.content}
           ]]></content:encoded>
-          ${post.coverImage ? `<media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="${siteBaseUrl}/${post.coverImage}"/>` : ''}
-          ${post.coverImage ? `<media:content xmlns:media="http://search.yahoo.com/mrss/" medium="image" url="${siteBaseUrl}/${post.coverImage}"/>` : ''}          
+          ${post.coverImage ? `<media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="${siteBaseUrl}${post.coverImage.src}"/>` : ''}
+          ${post.coverImage ? `<media:content xmlns:media="http://search.yahoo.com/mrss/" medium="image" url="${siteBaseUrl}${post.coverImage.src}"/>` : ''}          
         </item>
       `
     )

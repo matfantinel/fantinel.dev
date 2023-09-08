@@ -5,7 +5,7 @@ import type { PaginatedResponse } from "../types";
 import { frontmatterToBlogPost } from "./model";
 import type BlogPost from './model';
 
-const PAGE_SIZE = 10;
+const PAGE_SIZE = 12;
 const POSTS_PATH = path.join(process.cwd(), 'cms/articles');
 
 export const getPosts = async (page?: number, count?: number): Promise<PaginatedResponse<BlogPost>> => {

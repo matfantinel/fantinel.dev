@@ -4,7 +4,7 @@ title: .NET Core - Method not allowed on PUT and DELETE requests
 excerpt: See how to solve this annoying error after deploying your .NET Core API.
 coverImage: /posts/dotnet-core-405-error/cover.jpg
 coverImageAlt: ""
-showImage: false
+showImage: true
 date: 2019-03-14
 updated: null
 hidden: false
