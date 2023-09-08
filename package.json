@@ -25,18 +25,20 @@
 		"eslint": "^8.28.0",
 		"eslint-config-prettier": "^8.5.0",
 		"eslint-plugin-svelte3": "^4.0.0",
+		"fs-extra": "^11.1.1",
+		"gray-matter": "^4.0.3",
 		"histoire": "^0.12.4",
-		"mdsvex": "^0.10.6",
+		"image-transmutation": "^0.1.2",
 		"prettier": "^2.8.0",
 		"prettier-plugin-svelte": "^2.8.1",
+		"prism-svelte": "^0.5.0",
+		"prismjs": "^1.29.0",
 		"reading-time": "^1.5.0",
-		"rehype-autolink-headings": "^6.1.1",
-		"rehype-external-links": "^2.0.1",
-		"rehype-slug": "^5.1.0",
 		"sass": "^1.57.1",
 		"striptags": "^3.2.0",
 		"svelte": "^3.59.2",
 		"svelte-check": "^2.9.2",
+		"svelte-markdown": "^0.4.0",
 		"svelte-sitemap": "^2.5.4",
 		"typescript": "^4.9.3",
 		"vite": "^4.4.9",
@@ -44,12 +46,6 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"@fontsource/ubuntu-mono": "^4.5.11",
-		"fs-extra": "^11.1.1",
-		"gray-matter": "^4.0.3",
-		"image-transmutation": "^0.1.2",
-		"prism-svelte": "^0.5.0",
-		"svelte-markdown": "^0.2.3",
-		"unicode-emoji-json": "^0.4.0"
+		"@fontsource/ubuntu-mono": "^4.5.11"
 	}
 }
