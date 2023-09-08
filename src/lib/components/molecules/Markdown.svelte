@@ -8,6 +8,7 @@
 	import ButtonRenderer from '../markdown/ButtonRenderer.svelte';
 	import QuoteCalloutRenderer from '../markdown/QuoteCalloutRenderer.svelte';
 	import LinkRenderer from '../markdown/LinkRenderer.svelte';
+	import HeadingRenderer from '../markdown/HeadingRenderer.svelte';
 
 	export let content: string;
 
@@ -90,7 +91,8 @@
 		image: ImageRenderer,
 		button: ButtonRenderer,
 		blockquote: QuoteCalloutRenderer,
-		link: LinkRenderer
+		link: LinkRenderer,
+		heading: HeadingRenderer
 	} as any;
 </script>
 

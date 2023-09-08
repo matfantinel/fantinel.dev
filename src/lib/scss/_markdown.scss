@@ -78,9 +78,11 @@
 	}
 
 	.heading-link {
+		display: inline-block;
 		color: var(--color--primary);
 		text-decoration: none;
-		margin-right: 10px;
+		margin-left: 10px;
+		height: 20px;
 	}
 
 	img {
