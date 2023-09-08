@@ -16,7 +16,7 @@ type: Article
 
 So, today I was doing the dishes and decided to listen to some music on my headphones. I was in the mood for some Iron Maiden, so I shuffled my playlist of my favorites from them (which includes almost every one of their songs 😆). The first track to play was _Drifter_, the last song from their second album, _Killers_. It's a really good song so I decided to play the entire album instead.
 
-I've listened to this album countless times, but I'd never really paid attention to the lyrics. So, as the album played, I was surprised by the small _plot twist_ at the end of _Murders In The Rue Morgue_, which was one of the songs I never really paid much attention to the lyrics. I was like _"wait, what?!"_ and decided to pay more attention to the lyrics of the rest of the album. And then it hit me: @@@Killers is a concept album!@@@
+I've listened to this album countless times, but I'd never really paid attention to the lyrics. So, as the album played, I was surprised by the small _plot twist_ at the end of _Murders In The Rue Morgue_, which was one of the songs I never really paid much attention to the lyrics. I was like _"wait, what?!"_ and decided to pay more attention to the lyrics of the rest of the album. And then it hit me: @@@Killers is a concept album@@@, with all songs being sung by the same character!
 
 > !!! warning
 > The album touches on the subjects of murder, suicide and drugs, so be wary of proceeding if this is a sensitive topic for you.

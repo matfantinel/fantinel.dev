@@ -33,10 +33,11 @@ export const frontmatterToBlogPost = (frontmatter: any, content: string): BlogPo
     } : undefined,
     showImage: frontmatter.showImage,
     socialImage: frontmatter.socialImage ? {
-      src: '/images' + frontmatter.socialImage
+      src: '/images' + frontmatter.socialImage,
+      alt: ''
     } : undefined,
-    tags: frontmatter.tags,
-    categories: frontmatter.categories,
+    tags: frontmatter.tags.sort((a: string, b: string) => a.localeCompare(b)),
+    categories: frontmatter.categories.sort((a: string, b: string) => a.localeCompare(b)),
     readingTime: readingTime(striptags(content) || '').text
   }
 }

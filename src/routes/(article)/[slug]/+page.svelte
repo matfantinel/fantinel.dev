@@ -31,7 +31,7 @@
 					<div class="tags">
 						{#if post.categories?.length}
 							{#each post.categories as category}
-								<Tag color="secondary">{category}</Tag>
+								<Tag>{category}</Tag>
 							{/each}
 						{/if}
 						{#if post.tags?.length}

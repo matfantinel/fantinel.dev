@@ -46,7 +46,9 @@
 		{#if categories?.length || tags?.length}
 			<div class="tags">
 				{#if categories?.length}
-					<Tag color="secondary">{categories[0]}</Tag>
+					{#each categories as category}
+						<Tag>{category}</Tag>
+					{/each}
 				{/if}
 				{#if tags?.length}
 					{#each tags.slice(0, 2) as tag}
