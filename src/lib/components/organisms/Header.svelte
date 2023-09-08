@@ -48,16 +48,17 @@
 			gap: 30px;
 
 			@include for-phone-only {
-				.links {
-					a {
-						display: none;
-					}
-				}
+				gap: 20px;
 			}
 		}
 
 		.logo {
 			height: 44px;
+
+			@include for-phone-only {
+				height: unset;
+				width: 60px;
+			}
 		}
 
 		a {
@@ -76,6 +77,14 @@
 				&:hover {
 					color: var(--color--primary);
 					filter: drop-shadow(0px 0px 3px var(--color--primary));
+				}
+			}
+
+			@include for-phone-only {
+				gap: 15px;
+
+				a {
+					font-size: 0.9rem;
 				}
 			}
 		}

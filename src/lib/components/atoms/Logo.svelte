@@ -253,6 +253,10 @@
 				transition: all 0.2s ease-in-out;
 				fill: var(--color--text);
 			}
+
+			@include for-phone-only {
+				display: none;
+			}
 		}
 
 		&:hover {
