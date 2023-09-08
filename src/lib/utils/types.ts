@@ -34,24 +34,6 @@ export type ExperienceEntry = {
   tags: TagType[]
 }
 
-export type BlogPostOld = {
-  tags: string[],
-  categories: string[],
-  keywords: string[],
-  hidden: boolean,
-  slug: string,
-  title: string,
-  date: string,
-  updated: string,
-  excerpt: string,
-  html: string | undefined,
-  readingTime: string,
-  relatedPosts: BlogPostOld[],
-  coverImage: string | undefined,
-  previewImage: string | undefined,
-  hideCoverImage: boolean
-}
-
 export type Image = {
   src: string,
   alt?: string
