@@ -11,15 +11,17 @@
 	export let slug: string;
 	export let tags: string[] | undefined;
 	export let readingTime: string | undefined = undefined;
+	export let additionalClass: string | undefined = undefined;
 
 	export let showImage = true;
 </script>
 
 <Card
 	href="/{slug}"
+	on:click
 	additionalClass="blog-post-card {!showImage && 'hide-image'} {showImage &&
 		!coverImage &&
-		'missing-image'}"
+		'missing-image'} {additionalClass}"
 >
 	<div class="cover-image" slot="image">
 		{#if coverImage && showImage}

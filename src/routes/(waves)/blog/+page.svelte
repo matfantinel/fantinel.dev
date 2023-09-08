@@ -7,7 +7,9 @@
 
 	export let data: PaginatedResponse<BlogPost>;
 
-	let { items: posts, totalPages, currentPage } = data;
+	let { items: posts, totalPages, currentPage, currentCategory } = data;
+
+	const paginationBaseUrl = currentCategory ? `?category=${currentCategory}` : undefined;
 </script>
 
 <div class="container">
@@ -27,7 +29,7 @@
 		</div>
 	</ContentSection>
 
-	<Pagination {currentPage} {totalPages} />
+	<Pagination baseUrl={paginationBaseUrl} {currentPage} {totalPages} />
 </div>
 
 <style lang="scss">

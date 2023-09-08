@@ -3,4 +3,5 @@ export type PaginatedResponse<T> = {
   totalItems: number;
   totalPages: number;
   currentPage: number;
+  currentCategory?: string;
 };

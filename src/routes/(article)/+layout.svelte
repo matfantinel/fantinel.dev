@@ -2,6 +2,7 @@
 	import Card from '$lib/components/atoms/Card.svelte';
 	import Footer from '$lib/components/organisms/Footer.svelte';
 	import Header from '$lib/components/organisms/Header.svelte';
+	import RelatedPosts from '$lib/components/organisms/RelatedPosts.svelte';
 
 	import type BlogPost from '$lib/data/blog-posts/model';
 	import { keywords, siteBaseUrl, title } from '$lib/data/meta';
@@ -66,11 +67,11 @@
 				<slot />
 			{/if}
 
-			<!-- {#if post.relatedPosts && post.relatedPosts.length > 0}
-			<div class="container">
-				<RelatedPosts posts={post.relatedPosts} />
-			</div>
-		{/if} -->
+			{#if post.relatedPosts && post.relatedPosts.length > 0}
+				<div class="container">
+					<RelatedPosts posts={post.relatedPosts} />
+				</div>
+			{/if}
 		</main>
 
 		<Footer />

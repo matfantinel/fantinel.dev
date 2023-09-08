@@ -15,7 +15,8 @@ type BlogPost = {
   tags: string[],
   categories: string[],
   keywords?: string[],
-  readingTime?: string
+  readingTime?: string,
+  relatedPosts?: BlogPost[]
 }
 
 export const frontmatterToBlogPost = (frontmatter: any, content: string): BlogPost => {

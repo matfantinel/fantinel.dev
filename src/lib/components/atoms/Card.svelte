@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { HttpRegex } from '$lib/utils/regex';
+	import { createEventDispatcher } from 'svelte';
 
 	export let additionalClass: string | undefined = undefined;
 
@@ -7,6 +8,14 @@
 	const isExternalLink = !!href && HttpRegex.test(href);
 	export let target: '' | '_blank' = isExternalLink ? '_blank' : '';
 	export let rel = isExternalLink ? 'noopener noreferrer' : undefined;
+
+	const dispatch = createEventDispatcher();
+
+	function handleCardClick() {
+		dispatch('click', {
+			href
+		});
+	}
 
 	$: tag = href ? 'a' : 'article';
 	$: linkProps = {
@@ -21,6 +30,7 @@
 	class="card {additionalClass}"
 	{...linkProps}
 	data-sveltekit-preload-data
+	on:click={handleCardClick}
 	{...$$restProps}
 >
 	<div class="wrapper">

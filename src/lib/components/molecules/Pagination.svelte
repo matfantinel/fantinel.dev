@@ -1,6 +1,7 @@
 <script lang="ts">
 	export let totalPages: number;
 	export let currentPage: number;
+	export let baseUrl: string | undefined;
 
 	function range(start: number, end: number) {
 		const length = end - start + 1;
@@ -48,7 +49,11 @@
 			<li>...</li>
 		{:else}
 			<li>
-				<a href="?page={item}" target="_self" class:active={item === currentPage}>
+				<a
+					href={baseUrl ? `${baseUrl}&page=${item}` : `?page=${item}`}
+					target="_self"
+					class:active={item === currentPage}
+				>
 					{item}
 				</a>
 			</li>
