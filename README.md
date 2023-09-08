@@ -7,7 +7,7 @@ If you wanna use this site as a base for building your own, I highly recommend b
 This is my own personal website, built with SvelteKit. It also holds my own personal blog.
 
 <p align="center">
-    <img src="src/lib/images/projects/personal-website-transparent.png" alt="Screenshot" />
+    <img src="static/images/projects/personal-website-transparent.png" alt="Screenshot" />
 </p>
 
 It was built with a few goals in mind:
@@ -43,7 +43,7 @@ This website uses [image-transmutation](https://github.com/matfantinel/image-tra
 
 # Managing Posts
 
-All posts are Markdown files that are processed with [MDsveX](https://mdsvex.pngwn.io/) to allow using Svelte components inside them. In order to make it easier to manage posts, I highly recommend the [Front Matter VS Code extension](https://frontmatter.codes/), which gives you a nice CMS-like UI.
+All posts are Markdown files that are processed with [svelte-markdown](https://github.com/pablo-abc/svelte-markdown) so that the renderers can be customized. In order to make it easier to manage posts, I highly recommend the [Front Matter VS Code extension](https://frontmatter.codes/), which gives you a nice CMS-like UI.
 
 # Hosting
 
