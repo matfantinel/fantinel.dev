@@ -128,7 +128,7 @@
 		}
 	}
 
-	#menu-item {
+	.menu-item {
 		text-decoration: none;
 		width: fit-content;
 
