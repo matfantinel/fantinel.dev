@@ -16,6 +16,12 @@
 			}, 500);
 		}
 	}
+
+	function handleMenuItemClick() {
+		// Close the menu
+		const control = document.getElementById('control') as HTMLInputElement;
+		control.checked = false;
+	}
 </script>
 
 <nav class="hamburger-menu">
@@ -34,7 +40,8 @@
 
 		<ul id="menu" class:closing={menuIsClosing}>
 			{#each links as link}
-				<a class="menu-item" href={link.href}><li>{link.text}</li></a>
+				<a class="menu-item" href={link.href} on:click={handleMenuItemClick}><li>{link.text}</li></a
+				>
 			{/each}
 		</ul>
 	</div>

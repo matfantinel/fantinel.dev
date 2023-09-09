@@ -55,7 +55,7 @@ html {
 }
 
 * {
-	&:focus {
+	&:focus-visible {
 		outline: 2px dashed var(--color--secondary);
 		outline-offset: 4px;
 	}
