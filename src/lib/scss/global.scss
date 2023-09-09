@@ -29,6 +29,11 @@ body {
 
 	width: 100%;
 	overflow-x: hidden;
+
+	// Prevents scroll from happening when hamburger menu is open
+	:has(.hamburger-menu .control:checked) {
+		overflow: hidden;
+	}
 }
 
 html {

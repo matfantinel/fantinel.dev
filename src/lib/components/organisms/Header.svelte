@@ -2,6 +2,7 @@
 	import Logo from '$lib/components/atoms/Logo.svelte';
 	import ThemeToggle from '$lib/components/molecules/ThemeToggle.svelte';
 	import RssLink from '$lib/components/atoms/RssLink.svelte';
+	import HamburgerMenu from '$lib/components/molecules/HamburgerMenu.svelte';
 
 	export let animated = false;
 	export let showBackground = false;
@@ -14,8 +15,14 @@
 			<Logo {animated} {showFullLogo} />
 		</a>
 		<div class="links">
-			<a href="/blog">Blog</a>
-			<a href="/resume">Resume</a>
+			<div class="menu-wrapper">
+				<HamburgerMenu
+					links={[
+						{ href: '/blog', text: 'Blog' },
+						{ href: '/resume', text: 'Resume' }
+					]}
+				/>
+			</div>
 			<RssLink />
 			<ThemeToggle />
 		</div>
@@ -81,10 +88,8 @@
 			}
 
 			@include for-phone-only {
-				gap: 15px;
-
-				a {
-					font-size: 0.9rem;
+				.menu-wrapper {
+					order: 2;
 				}
 			}
 		}
