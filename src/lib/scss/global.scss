@@ -52,3 +52,10 @@ html {
 	height: 100%;
 	position: relative;
 }
+
+* {
+	&:focus {
+		outline: 2px dashed var(--color--secondary);
+		outline-offset: 4px;
+	}
+}

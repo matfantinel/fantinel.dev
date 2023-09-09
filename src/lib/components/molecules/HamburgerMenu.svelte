@@ -74,10 +74,6 @@
 				filter: drop-shadow(0px 0px 3px var(--color--primary));
 			}
 		}
-
-		&:focus {
-			outline: 2px dashed var(--color--primary);
-		}
 	}
 
 	.line {
