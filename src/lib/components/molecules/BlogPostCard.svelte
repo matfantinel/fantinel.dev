@@ -19,6 +19,7 @@
 <Card
 	href="/{slug}"
 	on:click
+	style={`view-transition-name: card-${slug}`}
 	additionalClass="blog-post-card {!showImage && 'hide-image'} {showImage &&
 		!coverImage &&
 		'missing-image'} {additionalClass}"
@@ -32,7 +33,7 @@
 		{/if}
 	</div>
 	<div class="content" slot="content">
-		<p class="title">
+		<p class="title" style={`view-transition-name: title-${slug}`}>
 			{title}
 		</p>
 		{#if readingTime}

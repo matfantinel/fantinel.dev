@@ -1,6 +1,6 @@
 <script lang="ts">
 	import '$lib/scss/global.scss';
-	import { beforeNavigate, afterNavigate } from '$app/navigation';
+	import { beforeNavigate, afterNavigate, onNavigate } from '$app/navigation';
 	import { onMount } from 'svelte';
 
 	// Add smooth-scrolling to the entire website
@@ -39,6 +39,20 @@
 	});
 	afterNavigate(() => {
 		root.classList.add('smooth-scroll');
+	});
+
+	// Use view transitions if available
+	onNavigate((navigation) => {
+		// @ts-ignore
+		if (!document.startViewTransition) return;
+
+		return new Promise((resolve) => {
+			// @ts-ignore
+			document.startViewTransition(async () => {
+				resolve();
+				await navigation.complete;
+			});
+		});
 	});
 </script>
 

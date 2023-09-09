@@ -9,10 +9,10 @@
 </script>
 
 {#key post}
-	<div id="article-page">
+	<div id="article-page" style={`view-transition-name: card-${post.slug}`}>
 		<div class="header">
 			{#if post}
-				<h1>{post.title}</h1>
+				<h1 style={`view-transition-name: title-${post.slug}`}>{post.title}</h1>
 				<div class="meta">
 					<img
 						class="author-photo"
