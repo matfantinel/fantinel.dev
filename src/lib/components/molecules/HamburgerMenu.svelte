@@ -5,7 +5,6 @@
 	// When closing, add closing class to the menu
 	// so it can animate out
 	// If no JS is present, everything still works, just not as smoothly
-
 	let menuIsClosing = false;
 	function handleToggle(e: Event) {
 		const target = e.target as HTMLInputElement;
@@ -21,13 +20,19 @@
 
 <nav class="hamburger-menu">
 	<div class="wrapper">
-		<input type="checkbox" class="control" on:change={handleToggle} />
+		<input
+			type="checkbox"
+			aria-label="Toggle the menu"
+			aria-controls="menu"
+			id="control"
+			on:change={handleToggle}
+		/>
 
 		<span class="line one" />
 		<span class="line two" />
 		<span class="line three" />
 
-		<ul class="menu" class:closing={menuIsClosing}>
+		<ul id="menu" class:closing={menuIsClosing}>
 			{#each links as link}
 				<a class="menu-item" href={link.href}><li>{link.text}</li></a>
 			{/each}
@@ -49,13 +54,15 @@
 		user-select: none;
 	}
 
-	.control {
+	#control {
 		display: block;
 		width: 40px;
 		height: 32px;
 		position: absolute;
 		cursor: pointer;
-		opacity: 0; // Hide the checkbox
+		// opacity: 0; // Hide the checkbox
+		-webkit-appearance: none;
+		appearance: none;
 		z-index: 99; // and place it over the hamburger
 
 		// https://developer.mozilla.org/en-US/docs/Web/CSS/-webkit-touch-callout
@@ -66,6 +73,10 @@
 				color: var(--color--primary);
 				filter: drop-shadow(0px 0px 3px var(--color--primary));
 			}
+		}
+
+		&:focus {
+			outline: 2px dashed var(--color--primary);
 		}
 	}
 
@@ -86,7 +97,7 @@
 		}
 	}
 
-	.menu {
+	#menu {
 		z-index: 97;
 		position: fixed;
 		top: 0;
@@ -95,6 +106,10 @@
 		padding: 70px 20px;
 		width: 100dvw;
 		height: 100dvh;
+
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
 
 		background: rgba(var(--color--page-background-rgb), 0.85);
 		-webkit-backdrop-filter: blur(20px);
@@ -113,16 +128,21 @@
 		}
 	}
 
-	.menu-item {
+	#menu-item {
 		text-decoration: none;
+		width: fit-content;
 
 		&:hover {
 			color: var(--color--primary);
 			filter: drop-shadow(0px 0px 3px var(--color--primary));
 		}
+
+		@include for-phone-only {
+			font-size: 1.5rem;
+		}
 	}
 
-	.control:checked {
+	#control:checked {
 		~ .line {
 			&.one {
 				transform: rotate(45deg) translate(6px, -3px);
@@ -140,7 +160,7 @@
 			}
 		}
 
-		~ .menu {
+		~ #menu {
 			transform: none;
 			opacity: 1;
 		}
@@ -148,7 +168,7 @@
 
 	@include for-tablet-portrait-up {
 		// Just show the menu as regular links
-		.control {
+		#control {
 			display: none;
 		}
 		.line {
@@ -159,8 +179,8 @@
 			width: unset;
 			height: unset;
 		}
-		.menu {
-			display: flex;
+		#menu {
+			flex-direction: row;
 			gap: 30px;
 
 			z-index: unset;
