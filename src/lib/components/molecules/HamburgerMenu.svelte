@@ -1,4 +1,7 @@
 <script lang="ts">
+	import RssLink from '../atoms/RssLink.svelte';
+	import Socials from './Socials.svelte';
+
 	export let links: { href: string; text: string }[];
 
 	// ✨ Progressive enhancement ✨
@@ -43,6 +46,7 @@
 				<a class="menu-item" href={link.href} on:click={handleMenuItemClick}><li>{link.text}</li></a
 				>
 			{/each}
+			<li class="socials mobile-only"><Socials /> <RssLink /></li>
 		</ul>
 	</div>
 </nav>
@@ -169,7 +173,24 @@
 		}
 	}
 
+	.socials {
+		margin-inline: auto;
+		display: flex;
+		align-items: center;
+		gap: 20px;
+		margin-top: 20px;
+
+		:global(a) {
+			width: 32px !important;
+			display: inline-block;
+		}
+	}
+
 	@include for-tablet-portrait-up {
+		.mobile-only {
+			display: none;
+		}
+
 		// Just show the menu as regular links
 		#control {
 			display: none;
