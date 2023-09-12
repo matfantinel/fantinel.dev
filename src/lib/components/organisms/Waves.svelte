@@ -1,4 +1,4 @@
-<div class="waves-container">
+<div class="waves-container" style="view-transition-name: waves">
 	<svg
 		class="waves"
 		xmlns="http://www.w3.org/2000/svg"

@@ -9,7 +9,7 @@
 	export let showFullLogo = true;
 </script>
 
-<header class:has-background={showBackground}>
+<header class:has-background={showBackground} style="view-transition-name: header">
 	<nav class="container">
 		<a class="logo" href="/" aria-label="Site logo">
 			<Logo {animated} {showFullLogo} />
@@ -19,6 +19,7 @@
 				<HamburgerMenu
 					links={[
 						{ href: '/blog', text: 'Blog' },
+						{ href: '/about', text: 'About' },
 						{ href: '/resume', text: 'Resume' }
 					]}
 				/>
