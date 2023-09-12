@@ -1,16 +1,28 @@
 import { getPosts } from '$lib/data/blog-posts/api';
 import type BlogPost from '$lib/data/blog-posts/model';
 import { description, siteBaseUrl, title } from '$lib/data/meta';
+import { ButtonTokenizerExtension, MarkerHighlightTokenizerExtension, SparklesHighlightTokenizerExtension } from '$lib/utils/markdown';
 import dateformat from 'dateformat';
-import { compile } from 'mdsvex';
+import { marked } from 'marked';
+
 
 export const prerender = true;
 
 export async function GET() {
   const posts = await getPosts();
 
+  marked.use({
+    extensions: [
+      SparklesHighlightTokenizerExtension,
+      MarkerHighlightTokenizerExtension,
+      ButtonTokenizerExtension
+    ]
+  });
+
   const promises = posts.items.map(async (post) => {
-    post.content = (await compile(post.content))?.code ?? '';
+    post.content = marked.parse(
+      post.content.replace(/^[\u200B\u200C\u200D\u200E\u200F\uFEFF]/, "")
+    );
   });
 
   await Promise.all(promises);

@@ -1,85 +1,27 @@
 <script lang="ts">
+	import {
+		ButtonTokenizerExtension,
+		MarkerHighlightTokenizerExtension,
+		SparklesHighlightTokenizerExtension
+	} from '$lib/utils/markdown';
 	import { marked } from 'marked';
 	import SvelteMarkdown from 'svelte-markdown';
+	import ButtonRenderer from '../markdown/ButtonRenderer.svelte';
 	import ComponentRenderer from '../markdown/ComponentRenderer.svelte';
+	import HeadingRenderer from '../markdown/HeadingRenderer.svelte';
 	import ImageRenderer from '../markdown/ImageRenderer.svelte';
+	import LinkRenderer from '../markdown/LinkRenderer.svelte';
+	import QuoteCalloutRenderer from '../markdown/QuoteCalloutRenderer.svelte';
 	import MarkerHighlight from './MarkerHighlight.svelte';
 	import SparklingHighlight from './SparklingHighlight.svelte';
-	import ButtonRenderer from '../markdown/ButtonRenderer.svelte';
-	import QuoteCalloutRenderer from '../markdown/QuoteCalloutRenderer.svelte';
-	import LinkRenderer from '../markdown/LinkRenderer.svelte';
-	import HeadingRenderer from '../markdown/HeadingRenderer.svelte';
 
 	export let content: string;
 
-	const sparklesHighlightTokenizerExtension: marked.TokenizerAndRendererExtension = {
-		name: 'sparklesHighlight',
-		// 'inline' looks for matches within a paragraph or other blocks
-		level: 'inline',
-		start(src: string) {
-			// Marks the start of a match
-			return src.indexOf('@@@');
-		},
-		tokenizer(src: string) {
-			// Will match anything between @@@ and @@@. e.g. @@@sparkle@@@
-			const rule = /^\@\@\@(.*?)\@\@\@/;
-			const match = rule.exec(src);
-			if (match) {
-				return {
-					type: 'sparklesHighlight',
-					raw: match[0],
-					text: match[1],
-					color: 'secondary'
-				};
-			}
-		}
-	};
-
-	const markerHighlightTokenizerExtension: marked.TokenizerAndRendererExtension = {
-		name: 'markerHighlight',
-		level: 'inline',
-		start(src: string) {
-			return src.indexOf('///');
-		},
-		tokenizer(src: string) {
-			// Will match anything between /// and ///. e.g. ///highlight///
-			const rule = /^\/\/\/(.*?)\/\/\//;
-			const match = rule.exec(src);
-			if (match) {
-				return {
-					type: 'markerHighlight',
-					raw: match[0],
-					text: match[1]
-				};
-			}
-		}
-	};
-
-	const buttonTokenizerExtension: marked.TokenizerAndRendererExtension = {
-		name: 'button',
-		level: 'block',
-		start(src: string) {
-			return src.indexOf('[[[');
-		},
-		tokenizer(src: string) {
-			// Will match anything between [[[ and ]]]. e.g. [[[button text]]]
-			const rule = /^\[\[\[(.*?)\]\]\]/;
-			const match = rule.exec(src);
-			if (match) {
-				return {
-					type: 'button',
-					raw: match[0],
-					text: match[1]
-				};
-			}
-		}
-	};
-
 	marked.use({
 		extensions: [
-			sparklesHighlightTokenizerExtension,
-			markerHighlightTokenizerExtension,
-			buttonTokenizerExtension
+			SparklesHighlightTokenizerExtension,
+			MarkerHighlightTokenizerExtension,
+			ButtonTokenizerExtension
 		]
 	});
 	const options = marked.defaults;
