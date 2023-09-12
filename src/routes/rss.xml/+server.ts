@@ -2,11 +2,18 @@ import { getPosts } from '$lib/data/blog-posts/api';
 import type BlogPost from '$lib/data/blog-posts/model';
 import { description, siteBaseUrl, title } from '$lib/data/meta';
 import dateformat from 'dateformat';
+import { compile } from 'mdsvex';
 
 export const prerender = true;
 
 export async function GET() {
   const posts = await getPosts();
+
+  const promises = posts.items.map(async (post) => {
+    post.content = (await compile(post.content))?.code ?? '';
+  });
+
+  await Promise.all(promises);
 
   const body = xml(posts.items);
   const headers = {

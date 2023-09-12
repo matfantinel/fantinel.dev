@@ -29,6 +29,7 @@
 		"gray-matter": "^4.0.3",
 		"histoire": "^0.12.4",
 		"image-transmutation": "^0.1.2",
+		"mdsvex": "^0.11.0",
 		"prettier": "^2.8.0",
 		"prettier-plugin-svelte": "^2.8.1",
 		"prism-svelte": "^0.5.0",
