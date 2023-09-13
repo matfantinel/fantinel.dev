@@ -1,7 +1,6 @@
 @font-face {
 	font-family: 'Fixel';
-	src: url('Fixel/FixelVariable.woff2') format('woff2') tech('variations'),
-		url('Fixel/FixelVariable.woff2') format('woff2-variations');
+	src: url('Fixel/FixelVariable.woff2') format('woff2-variations');
 	font-weight: 100 1000;
 	font-stretch: 25% 151%;
 	font-display: swap;

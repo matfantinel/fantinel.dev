@@ -118,11 +118,24 @@
 		flex-direction: column;
 		gap: 10px;
 
-		background: rgba(var(--color--page-background-rgb), 0.85);
+		background: rgba(var(--color--page-background-rgb), 1);
+		// TODO: why is blur no longer working in Chromium?
+		// Possibly related: https://stackoverflow.com/a/76207141
 		-webkit-backdrop-filter: blur(20px);
 		backdrop-filter: blur(20px);
 		list-style-type: none;
 		-webkit-font-smoothing: antialiased;
+
+		&:before {
+			content: '';
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			top: 0;
+			left: 0;
+			backdrop-filter: blur(20px);
+			z-index: -1;
+		}
 
 		transform-origin: top right;
 		transform: translate(100%, 0);
@@ -136,7 +149,7 @@
 	}
 
 	.menu-item {
-		text-decoration: none;
+		// text-decoration: none;
 		width: fit-content;
 
 		&:hover {
