@@ -13,6 +13,7 @@ categories:
   - Front-End
   - Dev
 type: Article
+showToc: true
 ---
 
 Do you know how big the images displayed on your website are? When you open a page, the browser starts downloading a bunch of files in order to display it. Research shows that [images are the most requested asset type](https://httparchive.org/reports/state-of-images) and take up more bandwidth than any other resource. So, making sure they are as small as they can be can greatly improve the load times for your website. (spoiler alert: mine's become 85% faster!)
@@ -23,7 +24,9 @@ For a long time, JPGs and PNGs have been our standard image formats. However, th
 
 WebP has been introduced in 2010, and has slowly gained adoption since then. Since 2020, [WebP is now supported in all modern browsers](https://caniuse.com/webp). AVIF [was launched in 2020](https://jakearchibald.com/2020/avif-has-landed/), and its adoption has been faster. As of May 2023 it is supported by all major browsers except Edge. You can always check out the up-to-date support status on [caniuse.com](https://caniuse.com/avif).
 
-### _But how do we use those shiny new formats if not all browsers support them?_
+### Browser Support
+
+_But how do we use those shiny new formats if not all browsers support them?_
 
 With the `<img>` element, we can make the browsers do the work for us. We can declare multiple sources for the same image, and the browser will try to load them in order. If they do not support a format, they will immediatelly jump to the next one. To do that, we use the `srcset` property to declare the optimal versions (avif and webp), and then use the `src` as usual to point to the fallback image (jpg or png).
 

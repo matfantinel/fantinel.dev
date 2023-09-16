@@ -1,8 +1,10 @@
 <script lang="ts">
 	import Card from '$lib/components/atoms/Card.svelte';
+	import Image from '$lib/components/atoms/Image.svelte';
 	import Footer from '$lib/components/organisms/Footer.svelte';
 	import Header from '$lib/components/organisms/Header.svelte';
 	import RelatedPosts from '$lib/components/organisms/RelatedPosts.svelte';
+	import TableOfContents from '$lib/components/organisms/TableOfContents.svelte';
 
 	import type BlogPost from '$lib/data/blog-posts/model';
 	import { keywords, siteBaseUrl, title } from '$lib/data/meta';
@@ -54,7 +56,11 @@
 	<div class="article-layout" class:has-cover={showCardLayout}>
 		{#if showCardLayout && post.coverImage}
 			<div class="cover-image-wrapper">
-				<img class="cover-image" src={`${post.coverImage.src}`} alt={post.coverImage.alt} />
+				<Image
+					additionalClass="cover-image"
+					src={`${post.coverImage.src}`}
+					alt={post.coverImage.alt}
+				/>
 				<div class="cover-image-overlay" />
 			</div>
 		{/if}
@@ -63,11 +69,21 @@
 
 		<main class="article-main" class:has-cover={showCardLayout}>
 			{#if showCardLayout}
-				<Card additionalClass="article-card">
-					<slot slot="content" />
-				</Card>
+				<div class="article-content-wrapper card-layout">
+					<Card additionalClass="article-card">
+						<slot slot="content" />
+					</Card>
+					{#if post.showToc}
+						<TableOfContents />
+					{/if}
+				</div>
 			{:else}
-				<slot />
+				<div class="article-content-wrapper">
+					<div style="overflow: hidden;"><slot /></div>
+					{#if post.showToc}
+						<TableOfContents />
+					{/if}
+				</div>
 			{/if}
 
 			{#if post.relatedPosts && post.relatedPosts.length > 0}
@@ -107,7 +123,7 @@
 		height: 60dvh;
 	}
 
-	.cover-image {
+	:global(img.cover-image) {
 		width: 100%;
 		height: 100%;
 		object-fit: cover;
@@ -154,6 +170,19 @@
 			:global(.article-card) {
 				padding-inline: var(--inline-padding);
 			}
+		}
+	}
+
+	.article-content-wrapper {
+		display: flex;
+		gap: var(--inline-padding);
+
+		&.card-layout {
+			padding-inline: var(--inline-padding);
+		}
+
+		:global(.table-of-contents) {
+			flex: 1 0 240px;
 		}
 	}
 

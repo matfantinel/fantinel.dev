@@ -16,7 +16,8 @@ type BlogPost = {
   categories: string[],
   keywords?: string[],
   readingTime?: string,
-  relatedPosts?: BlogPost[]
+  relatedPosts?: BlogPost[],
+  showToc?: boolean,
 }
 
 export const frontmatterToBlogPost = (frontmatter: any, content: string): BlogPost => {
@@ -38,6 +39,7 @@ export const frontmatterToBlogPost = (frontmatter: any, content: string): BlogPo
     } : undefined,
     tags: frontmatter.tags.sort((a: string, b: string) => a.localeCompare(b)),
     categories: frontmatter.categories.sort((a: string, b: string) => a.localeCompare(b)),
+    showToc: frontmatter.showToc,
     readingTime: readingTime(striptags(content) || '').text
   }
 }
