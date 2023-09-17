@@ -7,7 +7,7 @@
 	let currentYear = new Date().getFullYear();
 </script>
 
-<footer style="view-transition-name: footer">
+<footer>
 	<div class="wave">
 		<FooterWave />
 	</div>

@@ -14,6 +14,7 @@ categories:
   - Svelte
   - Dev
 type: Article
+showToc: true
 ---
 
 I've recently re-launched my personal website and blog, that's now reached its 3rd version. There was nothing wrong with the previous one, but I wanted to both give it a small visual refresh and learn something new. So, after a month or so of working on it on my free time, @@@voilà@@@, you're seeing it right now!

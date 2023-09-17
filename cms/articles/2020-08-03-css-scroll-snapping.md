@@ -13,6 +13,7 @@ categories:
   - Front-End
   - Dev
 type: Article
+showToc: true
 ---
 
 CSS is evolving constantly and the past few years have brought us amazing stuff. It is getting easier to make smooth and complete experiences without having to use JavaScript at all. Case in point: Scroll Snapping.

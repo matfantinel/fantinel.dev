@@ -13,6 +13,7 @@ tags: []
 categories:
   - Games
 type: Article
+showToc: true
 ---
 
 The Legend of Zelda is my favorite game series of all time. Understandably, I was pretty excited for Tears of the Kingdom to come out. And it took its time! Announced in 2019, two years after the release of its predecessor (Breath of the Wild), a lot of people thought it would have a shorter development cycle, considering it seemed to feature the same world as Breath of the Wild's, the graphics were the same, and the engine was already done. How wrong we were!

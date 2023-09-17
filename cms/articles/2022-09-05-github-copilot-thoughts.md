@@ -12,6 +12,7 @@ tags: []
 categories:
   - Dev
 type: Article
+showToc: true
 ---
 
 I started using GitHub Copilot around May this year as part of its free beta, and my opinion on it has changed a bit during this time. I was initially skeptical about it, but I've come to appreciate it more and more as I use it.
