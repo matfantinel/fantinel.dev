@@ -68,23 +68,20 @@
 		<Header />
 
 		<main class="article-main" class:has-cover={showCardLayout}>
-			{#if showCardLayout}
-				<div class="article-content-wrapper card-layout">
+			<div class="article-content-wrapper" class:card-layout={showCardLayout}>
+				{#if showCardLayout}
 					<Card additionalClass="article-card">
 						<slot slot="content" />
 					</Card>
-					{#if post.showToc}
-						<TableOfContents />
-					{/if}
-				</div>
-			{:else}
-				<div class="article-content-wrapper">
+				{:else}
 					<div style="overflow: hidden;"><slot /></div>
-					{#if post.showToc}
-						<TableOfContents />
-					{/if}
-				</div>
-			{/if}
+				{/if}
+
+				{#if post.showToc}
+					{post.showToc}
+					<TableOfContents />
+				{/if}
+			</div>
 
 			{#if post.relatedPosts && post.relatedPosts.length > 0}
 				<div class="container">
