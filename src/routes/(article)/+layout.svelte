@@ -179,6 +179,10 @@
 
 		&.card-layout {
 			padding-inline: var(--inline-padding);
+
+			@include for-phone-only {
+				padding-inline: 0;
+			}
 		}
 
 		:global(.table-of-contents) {
