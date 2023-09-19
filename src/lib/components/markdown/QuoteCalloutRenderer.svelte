@@ -5,7 +5,7 @@
 	export let text: string;
 
 	const isCallout = text.trim().startsWith('!!!');
-	const calloutType = isCallout ? text.match(/^\w+/)?.[0] || 'info' : undefined;
+	const calloutType = isCallout ? text.match(/!!!\s*(.*?)\n/)?.[1] || 'info' : undefined;
 
 	let cleanText = text;
 	$: {

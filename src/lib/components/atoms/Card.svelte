@@ -58,7 +58,7 @@
 		box-shadow: var(--card-shadow);
 		color: var(--color--text);
 		border-radius: 10px;
-		transition: all 0.4s ease, box-shadow 0.2s ease-in-out;
+		transition: box-shadow 0.2s ease-in-out;
 		position: relative;
 		overflow: hidden;
 		width: 100%;
