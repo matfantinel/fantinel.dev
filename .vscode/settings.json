@@ -22,5 +22,5 @@
 		"titleBar.inactiveForeground": "#15202b99"
 	},
 	"peacock.color": "#95caca",
-	"frontMatter.dashboard.openOnStart": true
+	"frontMatter.dashboard.openOnStart": false
 }
