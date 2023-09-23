@@ -17,7 +17,7 @@
 		"postbuild": "npm run optimize-images && svelte-sitemap --out-dir .vercel/output/static --domain https://fantinel.dev"
 	},
 	"devDependencies": {
-		"@histoire/plugin-svelte": "^0.12.4",
+		"@histoire/plugin-svelte": "^0.17.0",
 		"@svelte-put/copy": "^3.0.0",
 		"@sveltejs/adapter-auto": "^1.0.0",
 		"@sveltejs/kit": "^1.24.0",
