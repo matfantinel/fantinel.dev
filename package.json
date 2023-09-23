@@ -24,7 +24,7 @@
 		"dateformat": "^5.0.3",
 		"eslint": "^8.28.0",
 		"eslint-config-prettier": "^8.5.0",
-		"eslint-plugin-svelte3": "^4.0.0",
+		"eslint-plugin-svelte": "^2.33.2",
 		"fs-extra": "^11.1.1",
 		"gray-matter": "^4.0.3",
 		"histoire": "^0.17.0",
