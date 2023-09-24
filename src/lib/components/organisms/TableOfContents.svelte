@@ -24,7 +24,7 @@
 		padding: 20px;
 		z-index: 1;
 		backdrop-filter: blur(10px);
-		background-color: rgba(var(--body-background-color-rgb), 0.5);
+		background-color: rgba(var(--body-background-color-rgb), 0.8);
 		border-radius: 10px;
 
 		@include for-phone-only {

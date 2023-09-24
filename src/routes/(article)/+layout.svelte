@@ -78,7 +78,6 @@
 				{/if}
 
 				{#if post.showToc}
-					{post.showToc}
 					<TableOfContents />
 				{/if}
 			</div>
