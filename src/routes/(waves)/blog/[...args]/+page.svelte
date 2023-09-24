@@ -4,33 +4,45 @@
 	import ContentSection from '$lib/components/organisms/ContentSection.svelte';
 	import type BlogPost from '$lib/data/blog-posts/model';
 	import type { PaginatedResponse } from '$lib/data/types';
+	import { page } from '$app/stores';
 
 	export let data: PaginatedResponse<BlogPost>;
 
-	let { items: posts, totalPages, currentPage, currentCategory } = data;
+	$: posts = data.items;
+	$: totalPages = data.totalPages;
+	$: currentPage = data.currentPage;
+	$: currentCategory = data.currentCategory;
 
-	const paginationBaseUrl = currentCategory ? `?category=${currentCategory}` : undefined;
+	let paginationBaseUrl: string;
+	$: {
+		paginationBaseUrl = $page.url.pathname.split('/').slice(0, 2).join('/');
+		if (currentCategory) {
+			paginationBaseUrl += `/${currentCategory}`;
+		}
+	}
 </script>
 
-<div class="container">
-	<ContentSection title="Blog Posts">
-		<div class="grid">
-			{#each posts as post}
-				<BlogPostCard
-					title={post.title}
-					coverImage={post.showImage ? post.coverImage : undefined}
-					excerpt={post.excerpt}
-					readingTime={post.readingTime}
-					slug={post.slug}
-					tags={post.tags}
-					categories={post.categories}
-				/>
-			{/each}
-		</div>
-	</ContentSection>
+{#key currentPage}
+	<div class="container">
+		<ContentSection title="Blog Posts">
+			<div class="grid">
+				{#each posts as post}
+					<BlogPostCard
+						title={post.title}
+						coverImage={post.showImage ? post.coverImage : undefined}
+						excerpt={post.excerpt}
+						readingTime={post.readingTime}
+						slug={post.slug}
+						tags={post.tags}
+						categories={post.categories}
+					/>
+				{/each}
+			</div>
+		</ContentSection>
 
-	<Pagination baseUrl={paginationBaseUrl} {currentPage} {totalPages} />
-</div>
+		<Pagination baseUrl={paginationBaseUrl} {currentPage} {totalPages} />
+	</div>
+{/key}
 
 <style lang="scss">
 	@import '$lib/scss/_mixins.scss';

@@ -16,6 +16,9 @@ type: Article
 showToc: true
 ---
 
+> !!! success
+> This review is **spoiler-free**, so you can safely read it even if you haven't played or finished the game yet.
+
 The Legend of Zelda is my favorite game series of all time. Understandably, I was pretty excited for Tears of the Kingdom to come out. And it took its time! Announced in 2019, two years after the release of its predecessor (Breath of the Wild), a lot of people thought it would have a shorter development cycle, considering it seemed to feature the same world as Breath of the Wild's, the graphics were the same, and the engine was already done. How wrong we were!
 
 Instead, Tears of the Kingdom (which I'm gonna call "TOTK" from here on for brevity) had at least a 5-year development cycle, almost as long as BOTW's. We had a global pandemic in the meantime, which definitely slowed things down. Still, it was a lot of time for "just a sequel". And, to be honest, while the first trailers were exciting because they pointed to a return to BOTW's world, they also were a bit lackluster, as they didn't show much new.
