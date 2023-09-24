@@ -78,6 +78,9 @@
 			--toc-mobile-bottom: 10px;
 			--toc-mobile-right: 10px;
 			--toc-mobile-width: min(calc(100dvw - 40px), 324px);
+			--toc-ol-padding: 0 40px 0 0;
+			--toc-mobile-btn-color: var(--color--text-inverse);
+
 			position: absolute;
 			:global(button) {
 				position: relative;
