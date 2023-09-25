@@ -116,7 +116,7 @@
 		top: 0;
 		left: 0;
 		width: 100%;
-		height: 60dvh;
+		height: 60vh;
 
 		:global(img.cover-image) {
 			width: 100%;
@@ -130,7 +130,7 @@
 		top: 0;
 		left: 0;
 		width: 100%;
-		height: 60dvh;
+		height: 60vh;
 		background-image: linear-gradient(
 			to bottom,
 			var(--body-background-color) 0%,
@@ -139,7 +139,7 @@
 	}
 
 	.article-main {
-		min-height: 55dvh;
+		min-height: 55vh;
 
 		position: relative;
 		padding-top: 40px;
