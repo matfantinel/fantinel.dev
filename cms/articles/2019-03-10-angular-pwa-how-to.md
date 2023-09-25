@@ -14,6 +14,7 @@ categories:
   - Front-End
   - Dev
 type: Article
+showToc: true
 ---
 
 Recently, I've converted my Angular 6 app into a PWA, allowing it to work offline and work like a native app on phones and desktop.

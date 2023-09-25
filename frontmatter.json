@@ -59,6 +59,12 @@
 					"isModifiedDate": true
 				},
 				{
+					"title": "Show Table of Contents",
+					"name": "showToc",
+					"type": "boolean",
+					"default": false
+				},
+				{
 					"title": "Is hidden",
 					"name": "hidden",
 					"type": "draft",

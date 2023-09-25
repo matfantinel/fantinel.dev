@@ -13,6 +13,7 @@ categories:
   - Front-End
   - Dev
 type: Article
+showToc: true
 ---
 
 With the release of [Firefox 110](https://www.mozilla.org/en-US/firefox/110.0/releasenotes/), [CSS container queries](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Container_Queries) are now supported in all major browsers! It has joined Chromium (since v105) and Safari (since v16) in adding support to what I consider a revolution on responsive web development, especially to people who build UIs in a component-driven way.

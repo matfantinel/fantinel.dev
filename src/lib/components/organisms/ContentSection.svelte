@@ -11,7 +11,7 @@
 		{#if title || description}
 			<div class="text">
 				{#if title}
-					<h2>
+					<h2 class="toc-exclude">
 						{title}
 					</h2>
 				{/if}

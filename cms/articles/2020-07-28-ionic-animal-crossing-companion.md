@@ -14,6 +14,7 @@ categories:
   - Front-End
   - Angular
 type: Article
+showToc: true
 ---
 
 This year I've played a lot of Animal Crossing New Horizons. It came out at the start of quarantine - and was extremely popular for providing an escape from that, with a virtual life that's free of the problems we're facing on the real one.

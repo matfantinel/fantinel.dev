@@ -14,6 +14,7 @@ categories:
   - Front-End
   - Angular
 type: Article
+showToc: true
 ---
 
 It's a running joke in the development community that if a JS programmer goes into a coma for 6 months, he will need to learn everything again by the time he wakes up. This is a consequence of JavaScript's open, decentralized nature. It's both a blessing and a curse.

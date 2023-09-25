@@ -22,6 +22,7 @@
 </div>
 
 <style lang="scss">
+	@import '$lib/scss/_mixins.scss';
 	.callout-block {
 		--bg-color: var(--color--page-background);
 		--accent-color: transparent;
@@ -49,6 +50,11 @@
 			border-radius: 50%;
 			fill: var(--accent-color);
 			color: var(--accent-color);
+
+			@include for-phone-only {
+				width: 40px;
+				height: 40px;
+			}
 		}
 
 		&.info {

@@ -1,8 +1,10 @@
 <script lang="ts">
 	import Card from '$lib/components/atoms/Card.svelte';
+	import Image from '$lib/components/atoms/Image.svelte';
 	import Footer from '$lib/components/organisms/Footer.svelte';
 	import Header from '$lib/components/organisms/Header.svelte';
 	import RelatedPosts from '$lib/components/organisms/RelatedPosts.svelte';
+	import TableOfContents from '$lib/components/organisms/TableOfContents.svelte';
 
 	import type BlogPost from '$lib/data/blog-posts/model';
 	import { keywords, siteBaseUrl, title } from '$lib/data/meta';
@@ -54,7 +56,11 @@
 	<div class="article-layout" class:has-cover={showCardLayout}>
 		{#if showCardLayout && post.coverImage}
 			<div class="cover-image-wrapper">
-				<img class="cover-image" src={`${post.coverImage.src}`} alt={post.coverImage.alt} />
+				<Image
+					additionalClass="cover-image"
+					src={`${post.coverImage.src}`}
+					alt={post.coverImage.alt}
+				/>
 				<div class="cover-image-overlay" />
 			</div>
 		{/if}
@@ -62,13 +68,19 @@
 		<Header />
 
 		<main class="article-main" class:has-cover={showCardLayout}>
-			{#if showCardLayout}
-				<Card additionalClass="article-card">
-					<slot slot="content" />
-				</Card>
-			{:else}
-				<slot />
-			{/if}
+			<div class="article-content-wrapper" class:card-layout={showCardLayout}>
+				{#if showCardLayout}
+					<Card additionalClass="article-card">
+						<slot slot="content" />
+					</Card>
+				{:else}
+					<div style="overflow: hidden;"><slot /></div>
+				{/if}
+
+				{#if post.showToc}
+					<TableOfContents />
+				{/if}
+			</div>
 
 			{#if post.relatedPosts && post.relatedPosts.length > 0}
 				<div class="container">
@@ -104,13 +116,13 @@
 		top: 0;
 		left: 0;
 		width: 100%;
-		height: 60dvh;
-	}
+		height: 60vh;
 
-	.cover-image {
-		width: 100%;
-		height: 100%;
-		object-fit: cover;
+		:global(img.cover-image) {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
 	}
 
 	.cover-image-overlay {
@@ -118,7 +130,7 @@
 		top: 0;
 		left: 0;
 		width: 100%;
-		height: 60dvh;
+		height: 60vh;
 		background-image: linear-gradient(
 			to bottom,
 			var(--body-background-color) 0%,
@@ -127,12 +139,12 @@
 	}
 
 	.article-main {
-		min-height: 55dvh;
+		min-height: 55vh;
 
 		position: relative;
 		padding-top: 40px;
 		padding-bottom: 80px;
-		--inline-padding: 15px;
+		--inline-padding: 20px;
 		padding-inline: var(--inline-padding);
 
 		@include for-iphone-se {
@@ -140,7 +152,7 @@
 		}
 
 		@include for-tablet-portrait-up {
-			--inline-padding: 20px;
+			--inline-padding: 25px;
 		}
 
 		@include for-tablet-landscape-up {
@@ -157,9 +169,26 @@
 		}
 	}
 
+	.article-content-wrapper {
+		display: flex;
+		justify-content: center;
+		gap: var(--inline-padding);
+
+		&.card-layout {
+			padding-inline: var(--inline-padding);
+
+			@include for-phone-only {
+				padding-inline: 0;
+			}
+		}
+
+		:global(.table-of-contents) {
+			flex: 0 0 240px;
+		}
+	}
+
 	:global(.article-card) {
 		max-width: 85ch;
-		margin-inline: auto;
 	}
 
 	:global(.article-card .wrapper .body) {

@@ -12,6 +12,7 @@ tags: []
 categories:
   - Misc
 type: Article
+showToc: true
 ---
 
 So, today I was doing the dishes and decided to listen to some music on my headphones. I was in the mood for some Iron Maiden, so I shuffled my playlist of my favorites from them (which includes almost every one of their songs 😆). The first track to play was _Drifter_, the last song from their second album, _Killers_. It's a really good song so I decided to play the entire album instead.

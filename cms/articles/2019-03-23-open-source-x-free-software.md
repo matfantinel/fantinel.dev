@@ -12,6 +12,7 @@ tags: []
 categories:
   - Misc
 type: Article
+showToc: true
 ---
 
 Free software is a concept that's been around for a long time, and so is open source. At first glance, they may seem like the same thing with different names. However, they are very different in their philosophy. In this article, I'll explain what each one is and how they are different.

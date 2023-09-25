@@ -13,6 +13,7 @@ tags: []
 categories:
   - Games
 type: Article
+showToc: true
 ---
 
 > !!! success
