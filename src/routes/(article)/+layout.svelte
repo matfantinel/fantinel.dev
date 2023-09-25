@@ -117,12 +117,12 @@
 		left: 0;
 		width: 100%;
 		height: 60dvh;
-	}
 
-	:global(img.cover-image) {
-		width: 100%;
-		height: 100%;
-		object-fit: cover;
+		:global(img.cover-image) {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
 	}
 
 	.cover-image-overlay {
@@ -144,7 +144,7 @@
 		position: relative;
 		padding-top: 40px;
 		padding-bottom: 80px;
-		--inline-padding: 15px;
+		--inline-padding: 20px;
 		padding-inline: var(--inline-padding);
 
 		@include for-iphone-se {
@@ -152,7 +152,7 @@
 		}
 
 		@include for-tablet-portrait-up {
-			--inline-padding: 20px;
+			--inline-padding: 25px;
 		}
 
 		@include for-tablet-landscape-up {
@@ -171,6 +171,7 @@
 
 	.article-content-wrapper {
 		display: flex;
+		justify-content: center;
 		gap: var(--inline-padding);
 
 		&.card-layout {
@@ -182,13 +183,12 @@
 		}
 
 		:global(.table-of-contents) {
-			flex: 1 0 240px;
+			flex: 0 0 240px;
 		}
 	}
 
 	:global(.article-card) {
 		max-width: 85ch;
-		margin-inline: auto;
 	}
 
 	:global(.article-card .wrapper .body) {

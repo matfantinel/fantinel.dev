@@ -5,7 +5,7 @@
 
 <div class="table-of-contents">
 	<div class="wrapper">
-		<Toc keepActiveTocItemInView={false} breakpoint={767}>
+		<Toc keepActiveTocItemInView={false} breakpoint={900}>
 			<strong class="title" slot="title">Table of Contents</strong>
 
 			<ListIcon slot="open-toc-icon" />
@@ -27,7 +27,7 @@
 		background-color: rgba(var(--body-background-color-rgb), 0.8);
 		border-radius: 10px;
 
-		@include for-phone-only {
+		@include for-tablet-portrait-down {
 			background-color: var(--color--primary);
 			color: var(--color--primary-contrast);
 			box-shadow: var(--card-shadow-hover);
@@ -52,7 +52,7 @@
 		--toc-padding: 0;
 		--toc-li-margin: 5px 0;
 
-		@include for-phone-only {
+		@include for-tablet-portrait-down {
 			width: 100%;
 			height: 100%;
 		}
@@ -73,7 +73,7 @@
 		white-space: nowrap;
 	}
 
-	@include for-phone-only {
+	@include for-tablet-portrait-down {
 		:global(.toc.mobile) {
 			--toc-mobile-bottom: 10px;
 			--toc-mobile-right: 10px;
