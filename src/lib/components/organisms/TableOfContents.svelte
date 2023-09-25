@@ -3,9 +3,19 @@
 	import Toc from 'svelte-toc';
 </script>
 
+<noscript style="display: none;">
+	<!-- Hide if JavaScript is disabled -->
+	<!-- Hide if JavaScript is disabled -->
+	<style>
+		.table-of-contents {
+			display: none !important;
+		}
+	</style>
+</noscript>
+
 <div class="table-of-contents">
 	<div class="wrapper">
-		<Toc keepActiveTocItemInView={false} breakpoint={900}>
+		<Toc keepActiveTocItemInView={false} breakpoint={900} blurParams={{ duration: 0 }}>
 			<strong class="title" slot="title">Table of Contents</strong>
 
 			<ListIcon slot="open-toc-icon" />
