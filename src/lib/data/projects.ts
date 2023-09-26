@@ -6,7 +6,7 @@ export default [
     description:
       'The website you’re seeing right now. Designed to be pretty, simple, and lightweight.',
     image: 'images/projects/personal-website.png',
-    sourceCode: 'https://github.com/matfantinel/matfantinel.github.io',
+    sourceCode: 'https://github.com/matfantinel/fantinel.dev',
     blogPostLink: '/blog-development-sveltekit',
     tags: [{ label: 'Svelte' }, { label: 'Open Source', color: 'secondary' }]
   },
