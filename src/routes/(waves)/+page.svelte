@@ -8,11 +8,12 @@
 	import Projects from '$lib/components/organisms/Projects.svelte';
 	import RecentPosts from '$lib/components/organisms/RecentPosts.svelte';
 	import type BlogPost from '$lib/data/blog-posts/model';
-	import type { ExperienceEntry, Project } from '$lib/utils/types';
+	import type { Project } from '$lib/utils/types';
+	import type WorkExperience from '$lib/data/work-experience/model';
 
 	export let data: {
 		yearsOfExperience: number;
-		experienceEntries: ExperienceEntry[];
+		experienceEntries: WorkExperience[];
 		projects: Project[];
 		posts: BlogPost[];
 	};

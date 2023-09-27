@@ -23,18 +23,15 @@ export type Project = {
   tags: TagType[]
 }
 
-export type ExperienceEntry = {
-  companySlug: string,
-  company: string,
-  jobTitle: string,
-  timeframe: string,
-  current?: boolean,
-  location: string,
-  description: string,
-  tags: TagType[]
-}
-
 export type Image = {
   src: string,
   alt: string
 }
+
+export type PaginatedResponse<T> = {
+  items: T[];
+  totalItems: number;
+  totalPages: number;
+  currentPage: number;
+  currentCategory?: string;
+};

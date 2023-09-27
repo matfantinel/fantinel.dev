@@ -1,10 +1,10 @@
 <script lang="ts">
 	import PinIcon from '$lib/icons/pin.svelte';
 	import CircleIcon from '$lib/icons/circle.svelte';
-	import type { ExperienceEntry } from '$lib/utils/types';
+	import type WorkExperience from '$lib/data/work-experience/model';
 	import TintHighlight from '$lib/components/molecules/TintHighlight.svelte';
 
-	export let entries: ExperienceEntry[];
+	export let entries: WorkExperience[];
 </script>
 
 <div class="resume-experience">

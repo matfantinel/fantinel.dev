@@ -81,16 +81,97 @@
 					"type": "categories"
 				}
 			]
+		},
+		{
+			"name": "Work Experience",
+			"pageBundle": false,
+			"previewPath": null,
+			"fields": [
+				{
+					"title": "Company",
+					"name": "company",
+					"type": "string",
+					"single": true
+				},
+				{
+					"title": "Company Slug",
+					"name": "companySlug",
+					"type": "string",
+					"single": true
+				},
+				{
+					"title": "Job Title",
+					"name": "jobTitle",
+					"type": "string",
+					"single": true
+				},
+				{
+					"title": "Timeframe",
+					"name": "timeframe",
+					"type": "string",
+					"description": "e.g. '2019 -> 2020'",
+					"single": true
+				},
+				{
+					"title": "Is Current Job?",
+					"name": "current",
+					"type": "boolean"
+				},
+				{
+					"title": "Location",
+					"name": "location",
+					"type": "string",
+					"single": true
+				},
+				{
+					"title": "Description",
+					"name": "description",
+					"type": "string"
+				},
+				{
+					"title": "Tags",
+					"name": "tags",
+					"type": "block",
+					"fieldGroup": ["tag"]
+				}
+			]
+		}
+	],
+	"frontMatter.taxonomy.fieldGroups": [
+		{
+			"id": "tag",
+			"labelField": "Tag",
+			"fields": [
+				{
+					"title": "Color",
+					"name": "color",
+					"type": "choice",
+					"choices": ["", "primary", "secondary"],
+					"default": "primary"
+				},
+				{
+					"title": "Label",
+					"name": "label",
+					"type": "string",
+					"single": true
+				}
+			]
 		}
 	],
 	"frontMatter.framework.id": "other",
 	"frontMatter.content.publicFolder": "[[workspace]]/static",
 	"frontMatter.content.pageFolders": [
 		{
-			"title": "articles",
+			"title": "Articles",
 			"path": "[[workspace]]/cms/articles",
 			"contentTypes": ["Article"],
 			"filePrefix": "yyyy-MM-dd"
+		},
+		{
+			"title": "Work Experience",
+			"path": "[[workspace]]/cms/work-experience",
+			"contentTypes": ["Work Experience"],
+			"filePrefix": null
 		}
 	]
 }
