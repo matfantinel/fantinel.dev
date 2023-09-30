@@ -1,6 +1,10 @@
 {
 	"$schema": "https://frontmatter.codes/frontmatter.schema.json",
-	"frontMatter.preview.host": "https://localhost:5173",
+	"frontMatter.preview.host": "http://localhost:5173/",
+	"frontMatter.content.autoUpdateDate": false,
+	"frontMatter.content.fmHighlight": true,
+	"frontMatter.dashboard.openOnStart": false,
+	"frontMatter.framework.startCommand": "npm run dev",
 	"frontMatter.taxonomy.contentTypes": [
 		{
 			"name": "Article",
@@ -135,6 +139,54 @@
 					"fieldGroup": ["tag"]
 				}
 			]
+		},
+		{
+			"name": "Project",
+			"pageBundle": false,
+			"previewPath": null,
+			"fields": [
+				{
+					"title": "Name",
+					"name": "name",
+					"type": "string",
+					"single": true
+				},
+				{
+					"title": "Description",
+					"name": "description",
+					"type": "string"
+				},
+				{
+					"title": "Image",
+					"name": "image",
+					"type": "image",
+					"isPreviewImage": true
+				},
+				{
+					"title": "Link",
+					"name": "link",
+					"type": "string",
+					"single": true
+				},
+				{
+					"title": "Source Code",
+					"name": "sourceCode",
+					"type": "string",
+					"single": true
+				},
+				{
+					"title": "Blog Post Link",
+					"name": "blogPostLink",
+					"type": "string",
+					"single": true
+				},
+				{
+					"title": "Tags",
+					"name": "tags",
+					"type": "block",
+					"fieldGroup": ["tag"]
+				}
+			]
 		}
 	],
 	"frontMatter.taxonomy.fieldGroups": [
@@ -146,7 +198,7 @@
 					"title": "Color",
 					"name": "color",
 					"type": "choice",
-					"choices": ["", "primary", "secondary"],
+					"choices": ["primary", "secondary"],
 					"default": "primary"
 				},
 				{
@@ -159,7 +211,7 @@
 		}
 	],
 	"frontMatter.framework.id": "other",
-	"frontMatter.content.publicFolder": "[[workspace]]/static",
+	"frontMatter.content.publicFolder": "static/images",
 	"frontMatter.content.pageFolders": [
 		{
 			"title": "Articles",
@@ -169,8 +221,14 @@
 		},
 		{
 			"title": "Work Experience",
-			"path": "[[workspace]]/cms/work-experience",
+			"path": "[[workspace]]/cms/work-experiences",
 			"contentTypes": ["Work Experience"],
+			"filePrefix": null
+		},
+		{
+			"title": "Project",
+			"path": "[[workspace]]/cms/projects",
+			"contentTypes": ["Project"],
 			"filePrefix": null
 		}
 	]

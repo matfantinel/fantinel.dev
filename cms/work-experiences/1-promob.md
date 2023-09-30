@@ -10,11 +10,11 @@ tags:
   - label: JQuery
     color: primary
     fieldGroup: tag
-  - color: secondary
-    label: .NET
+  - label: .NET
+    color: secondary
     fieldGroup: tag
-  - color: secondary
-    label: SQL
+  - label: SQL
+    color: secondary
     fieldGroup: tag
 type: Work Experience
 ---
