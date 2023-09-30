@@ -133,7 +133,7 @@
 					"type": "string"
 				},
 				{
-					"title": "Tags",
+					"title": "Technologies",
 					"name": "technologies",
 					"type": "block",
 					"fieldGroup": ["coloredTag"]
@@ -181,10 +181,10 @@
 					"single": true
 				},
 				{
-					"title": "Tags",
-					"name": "tags",
+					"title": "Labels",
+					"name": "labels",
 					"type": "block",
-					"fieldGroup": ["tag"]
+					"fieldGroup": ["coloredTag"]
 				}
 			]
 		}

@@ -1,4 +1,4 @@
-import { getWorkExperience, yearsOfExperience } from '$lib/data/work-experience/api';
+import { getWorkExperience, yearsOfExperience } from '$lib/data/work-experiences/api';
 
 export async function load() {
 	const workExperience = await getWorkExperience();
