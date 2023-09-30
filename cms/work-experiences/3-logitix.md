@@ -6,18 +6,18 @@ timeframe: 2019 → 2021
 current: false
 location: USA, Remote
 description: Working on one of the biggest ticket brokerage management systems in the world, I've built new features, improved existing ones, and made huge boosts to performance.
-tags:
+technologies:
   - label: Vue
     color: primary
-    fieldGroup: tag
+    fieldGroup: coloredTag
   - label: AngularJS
     color: primary
-    fieldGroup: tag
+    fieldGroup: coloredTag
   - color: secondary
     label: .NET
-    fieldGroup: tag
+    fieldGroup: coloredTag
   - color: secondary
     label: SQL
-    fieldGroup: tag
+    fieldGroup: coloredTag
 type: Work Experience
 ---

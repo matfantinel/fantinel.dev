@@ -134,9 +134,9 @@
 				},
 				{
 					"title": "Tags",
-					"name": "tags",
+					"name": "technologies",
 					"type": "block",
-					"fieldGroup": ["tag"]
+					"fieldGroup": ["coloredTag"]
 				}
 			]
 		},
@@ -191,7 +191,7 @@
 	],
 	"frontMatter.taxonomy.fieldGroups": [
 		{
-			"id": "tag",
+			"id": "coloredTag",
 			"labelField": "label",
 			"fields": [
 				{

@@ -11,7 +11,7 @@ type WorkExperience = {
   tags: TagType[]
 }
 
-export const frontmatterToWorkExperience = (frontmatter: any, content: string): WorkExperience => {
+export const frontmatterToWorkExperience = (frontmatter: any): WorkExperience => {
   return {
     companySlug: frontmatter.companySlug,
     company: frontmatter.company,
@@ -20,8 +20,7 @@ export const frontmatterToWorkExperience = (frontmatter: any, content: string): 
     current: frontmatter.current,
     location: frontmatter.location,
     description: frontmatter.description,
-    // TODO: tags
-    tags: frontmatter.tags
+    tags: frontmatter.technologies
   }
 }
 

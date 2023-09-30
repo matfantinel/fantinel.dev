@@ -4,7 +4,7 @@ import path from 'path';
 import { frontmatterToWorkExperience } from "./model";
 import type WorkExperience from './model';
 
-const MD_FILES_PATH = path.join(process.cwd(), 'cms/work-experience');
+const MD_FILES_PATH = path.join(process.cwd(), 'cms/work-experiences');
 
 export const getWorkExperience = async (): Promise<WorkExperience[]> => {
   // Read all files in the specified directory and get the .md files
@@ -18,7 +18,7 @@ export const getWorkExperience = async (): Promise<WorkExperience[]> => {
   for (const mdFile of mdFiles) {
     const fileContent = await fs.readFile(`${MD_FILES_PATH}/${mdFile}`, 'utf-8');
     const parsedData = grayMatter(fileContent);
-    items.push(frontmatterToWorkExperience(parsedData.data, parsedData.content));
+    items.push(frontmatterToWorkExperience(parsedData.data));
   }
 
   return items;
