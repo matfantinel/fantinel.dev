@@ -5,10 +5,10 @@
 	import SectionTitle from '$lib/components/molecules/resume/SectionTitle.svelte';
 	import Experience from '$lib/components/molecules/resume/Experience.svelte';
 	import Skills from '$lib/components/molecules/resume/Skills.svelte';
-	import type { ExperienceEntry } from '$lib/utils/types';
+	import type WorkExperience from '$lib/data/work-experience/model';
 
 	export let yearsOfExperience: number;
-	export let experienceEntries: ExperienceEntry[];
+	export let experienceEntries: WorkExperience[];
 </script>
 
 <article class="resume">

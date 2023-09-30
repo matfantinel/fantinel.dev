@@ -1,6 +1,10 @@
 {
 	"$schema": "https://frontmatter.codes/frontmatter.schema.json",
-	"frontMatter.preview.host": "https://localhost:5173",
+	"frontMatter.preview.host": "http://localhost:5173/",
+	"frontMatter.content.autoUpdateDate": false,
+	"frontMatter.content.fmHighlight": true,
+	"frontMatter.dashboard.openOnStart": false,
+	"frontMatter.framework.startCommand": "npm run dev",
 	"frontMatter.taxonomy.contentTypes": [
 		{
 			"name": "Article",
@@ -81,16 +85,150 @@
 					"type": "categories"
 				}
 			]
+		},
+		{
+			"name": "Work Experience",
+			"pageBundle": false,
+			"previewPath": null,
+			"fields": [
+				{
+					"title": "Company",
+					"name": "company",
+					"type": "string",
+					"single": true
+				},
+				{
+					"title": "Company Slug",
+					"name": "companySlug",
+					"type": "string",
+					"single": true
+				},
+				{
+					"title": "Job Title",
+					"name": "jobTitle",
+					"type": "string",
+					"single": true
+				},
+				{
+					"title": "Timeframe",
+					"name": "timeframe",
+					"type": "string",
+					"description": "e.g. '2019 -> 2020'",
+					"single": true
+				},
+				{
+					"title": "Is Current Job?",
+					"name": "current",
+					"type": "boolean"
+				},
+				{
+					"title": "Location",
+					"name": "location",
+					"type": "string",
+					"single": true
+				},
+				{
+					"title": "Description",
+					"name": "description",
+					"type": "string"
+				},
+				{
+					"title": "Technologies",
+					"name": "technologies",
+					"type": "block",
+					"fieldGroup": ["coloredTag"]
+				}
+			]
+		},
+		{
+			"name": "Project",
+			"pageBundle": false,
+			"previewPath": null,
+			"fields": [
+				{
+					"title": "Name",
+					"name": "name",
+					"type": "string",
+					"single": true
+				},
+				{
+					"title": "Description",
+					"name": "description",
+					"type": "string"
+				},
+				{
+					"title": "Image",
+					"name": "image",
+					"type": "image",
+					"isPreviewImage": true
+				},
+				{
+					"title": "Link",
+					"name": "link",
+					"type": "string",
+					"single": true
+				},
+				{
+					"title": "Source Code",
+					"name": "sourceCode",
+					"type": "string",
+					"single": true
+				},
+				{
+					"title": "Blog Post Link",
+					"name": "blogPostLink",
+					"type": "string",
+					"single": true
+				},
+				{
+					"title": "Labels",
+					"name": "labels",
+					"type": "block",
+					"fieldGroup": ["coloredTag"]
+				}
+			]
+		}
+	],
+	"frontMatter.taxonomy.fieldGroups": [
+		{
+			"id": "coloredTag",
+			"labelField": "label",
+			"fields": [
+				{
+					"title": "Label",
+					"name": "label",
+					"type": "string",
+					"single": true
+				},
+				{
+					"title": "Color",
+					"name": "color",
+					"type": "choice",
+					"choices": ["primary", "secondary"]
+				}
+			]
 		}
 	],
 	"frontMatter.framework.id": "other",
-	"frontMatter.content.publicFolder": "[[workspace]]/static",
+	"frontMatter.content.publicFolder": "static/images",
 	"frontMatter.content.pageFolders": [
 		{
-			"title": "articles",
+			"title": "Articles",
 			"path": "[[workspace]]/cms/articles",
 			"contentTypes": ["Article"],
 			"filePrefix": "yyyy-MM-dd"
+		},
+		{
+			"title": "Work Experience",
+			"path": "[[workspace]]/cms/work-experiences",
+			"contentTypes": ["Work Experience"],
+			"filePrefix": null
+		},
+		{
+			"title": "Project",
+			"path": "[[workspace]]/cms/projects",
+			"contentTypes": ["Project"],
+			"filePrefix": null
 		}
 	]
 }

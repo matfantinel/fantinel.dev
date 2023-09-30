@@ -3,7 +3,7 @@
 	import Pagination from '$lib/components/molecules/Pagination.svelte';
 	import ContentSection from '$lib/components/organisms/ContentSection.svelte';
 	import type BlogPost from '$lib/data/blog-posts/model';
-	import type { PaginatedResponse } from '$lib/data/types';
+	import type { PaginatedResponse } from '$lib/utils/types';
 	import { page } from '$app/stores';
 
 	export let data: PaginatedResponse<BlogPost>;

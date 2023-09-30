@@ -3,11 +3,11 @@
 	import Resume from '$lib/components/organisms/Resume.svelte';
 	import { title } from '$lib/data/meta';
 	import DownloadIcon from '$lib/icons/download.svelte';
-	import type { ExperienceEntry } from '$lib/utils/types';
+	import type WorkExperience from '$lib/data/work-experience/model';
 
 	export let data: {
 		yearsOfExperience: number;
-		experienceEntries: ExperienceEntry[];
+		experienceEntries: WorkExperience[];
 	};
 
 	let { yearsOfExperience, experienceEntries } = data;
