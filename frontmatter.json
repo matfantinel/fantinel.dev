@@ -192,20 +192,19 @@
 	"frontMatter.taxonomy.fieldGroups": [
 		{
 			"id": "tag",
-			"labelField": "Tag",
+			"labelField": "label",
 			"fields": [
-				{
-					"title": "Color",
-					"name": "color",
-					"type": "choice",
-					"choices": ["primary", "secondary"],
-					"default": "primary"
-				},
 				{
 					"title": "Label",
 					"name": "label",
 					"type": "string",
 					"single": true
+				},
+				{
+					"title": "Color",
+					"name": "color",
+					"type": "choice",
+					"choices": ["primary", "secondary"]
 				}
 			]
 		}
