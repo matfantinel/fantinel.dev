@@ -12,7 +12,15 @@
 	export let formats: string[] = ['avif', 'webp', 'png'];
 	export let widths: string[] | undefined = undefined;
 
-	$: fileName = src ? src.split('.')[0] : '';
+	// $: fileName = src ? src.split('.')[0] : '';
+
+	let fileName: string;
+	let srcSet: string | undefined;
+
+	$: {
+		fileName = src ? src.split('.')[0] : '';
+		srcSet = buildSrcset();
+	}
 
 	function buildSrcset() {
 		if (dev || HttpRegex.test(src)) return;
@@ -44,12 +52,12 @@
 {#if src}
 	{#if figcaption}
 		<figure class={additionalClass} class:full-bleed={fullBleed}>
-			<img srcset={buildSrcset()} {src} {alt} loading="lazy" decoding="async" />
+			<img srcset={srcSet} {src} {alt} loading="lazy" decoding="async" />
 			<figcaption>{@html figcaption}</figcaption>
 		</figure>
 	{:else}
 		<img
-			srcset={buildSrcset()}
+			srcset={srcSet}
 			{src}
 			{alt}
 			loading="lazy"
