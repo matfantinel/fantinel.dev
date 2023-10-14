@@ -59,11 +59,24 @@
 		}
 
 		blockquote {
+			position: relative;
 			padding: 25px 25px 15px;
-			border-radius: 20px;
+			border-radius: 0 20px 20px 0;
 			font-size: 1.1rem;
 			border-left: 4px solid var(--color--primary);
-			background: var(--color--callout-background);
+			background: var(--color--blockquote-background);
+
+			&:before {
+				content: '';
+				background-image: url('/images/quotes.svg');
+				height: 64px;
+				width: 64px;
+				display: block;
+				position: absolute;
+				top: 8px;
+				right: 8px;
+				opacity: 0.5;
+			}
 		}
 
 		code:not([class^='language-']) {

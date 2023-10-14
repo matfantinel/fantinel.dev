@@ -30,6 +30,7 @@
 					<BlogPostCard
 						title={post.title}
 						coverImage={post.showImage ? post.coverImage : undefined}
+						showImage={post.showImage}
 						excerpt={post.excerpt}
 						readingTime={post.readingTime}
 						slug={post.slug}

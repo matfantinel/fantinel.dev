@@ -29,6 +29,8 @@
 	@include define-color('sige-tint', #cce4ff);
 	@include define-color('promob-tint', #d7e6eb);
 
+	@include define-color('blockquote-background', #eff1f3);
+
 	// Used for Callout component
 	@include define-color('callout-background', #f4f8fb);
 	@include define-color('callout-background--info', #dfeffd);
@@ -81,6 +83,8 @@
 	@include define-color('logitix-tint', #924817);
 	@include define-color('sige-tint', #003e85);
 	@include define-color('promob-tint', #2b4a55);
+
+	@include define-color('blockquote-background', #1c1e26);
 
 	// Used for Callout component
 	@include define-color('callout-background', #1c1e26);
