@@ -78,6 +78,7 @@
 		display: flex;
 		flex-direction: row;
 		flex-wrap: wrap;
+		height: 100%;
 	}
 
 	.body {
@@ -86,12 +87,16 @@
 		justify-content: space-between;
 		gap: 10px;
 		padding: 20px 20px;
-		flex: 1 0 50%;
+		flex: 1 1 50%;
 
 		.content {
 			display: flex;
 			flex-direction: column;
 			flex: 1;
+		}
+
+		.footer {
+			margin-top: auto;
 		}
 	}
 

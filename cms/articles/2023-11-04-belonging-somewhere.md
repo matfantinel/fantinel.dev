@@ -1,9 +1,9 @@
 ---
 slug: belonging-somewhere
 title: Belonging Somewhere
-excerpt: Throughout my life, I’ve never really felt like I belonged somewhere. I could see parts of myself belonging to some groups or places, but never really felt like I was truly a part of anything.
+excerpt: I could always see parts of myself belonging to some groups or places, but never really felt like I was truly a part of anything.
 coverImage: /posts/belonging-somewhere/cover.jpg
-coverImageAlt: ""
+coverImageAlt: Picture of a staircase surrounded by vineyards. In the background, a church tower and the blue sky.
 showImage: true
 socialImage: ""
 date: 2023-11-04T17:21:47.309Z

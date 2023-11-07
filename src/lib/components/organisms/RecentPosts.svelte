@@ -23,7 +23,7 @@
 				title={post.title}
 				excerpt={post.excerpt}
 				tags={post.tags}
-				categories={post.categories}
+				categories={post.categories.slice(0, 2)}
 				readingTime={post.readingTime}
 				showImage={false}
 			/>
