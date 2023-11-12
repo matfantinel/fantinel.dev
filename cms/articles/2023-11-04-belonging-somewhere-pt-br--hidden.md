@@ -28,17 +28,9 @@ Eu vivo no estado mais ao sul do Brasil, um estado conhecido por ter uma cultura
 
 Há uns 10 anos, comecei um namoro de longa distância com uma menina que morava a uns 700km daqui. Mesmo com todos os obstáculos, fizemos dar certo e agora estamos casados! Enfim, eu lembro de quando os pais dela vieram visitar minha cidade pela primeira vez. O pai dela adorava a cultura gaúcha, e estava super animado pra vir pro RS e experienciar tudo em primeira mão, e provar um autêntico churrasco gaúcho. O que ele não sabia era que... não era assim aqui.
 
----
-
-### Historical Context
-
-Back in the 1800s, the Empire of Brazil wanted to populate some areas of the south, partly to protect the land from neighboring countries, partly to push away the indigenous people. But what they also wanted was to “whiten the population”, so they started the process of bringing europeans from countries currently going through economic crisis, and bringing people that wanted to start over here. In this region, the majority came from Germany (in the 1820s), and Italy (in the 1870s).
-
-This region was unpopulated before because it was hard to do so - it is very mountainous and with really dense forestation, so nobody wanted the trouble of building things here - not when they had better (easier) options still. When the immigrants came, they didn’t have much of a choice. They didn’t speak Portuguese, and all the best pieces of land were already taken. The Serra was the only place they could build on and own a piece of land. From what I’ve heard from my grandparents (and they heard from theirs), the government didn’t do much to help, so they pretty much grew here in a partially isolated manner - with their own culture brought from their origin countries and the life they built here.
-
----
-
 Então, quando meus sogros vieram pra cá pela primeira vez, eles ficaram surpresos (e levemente desapontados) que não era que nem eles imaginavam. Ao invés de churrascarias em todo canto, tinha massa, pizza e polenta. O sotaque era diferente. A arquitetura também. Claro, como eu vivo na maior cidade da região, eventualmente as culturas de outros lugares começaram a chegar por aqui, especialmente a gaúcha, já que é a mais próxima geograficamente. Mas a predominância da cultura *colona* italiana não era o que eles esperavam.
+
+---
 
 Eu não sou o maior fã de sair por aí e experienciar essa cultura em primeira mão (pelo menos não era; conforme vou ficando mais velho, começo a gostar mais disso), mas já participei de vários eventos de família e festas de igreja com raízes italianas. Então, sempre que eu via pessoas falando sobre o Brasil ou o RS, eu nunca via eu e as pessoas ao meu redor representados ali. Minha conclusão lógica é que eu não pertencia ao estado ou país, e talvez, já que eu era um "cidadão da internet" desde criança e tive muito contato (virtual) com culturas de outros lugares do mundo, talvez meu lugar no mundo era em outro lugar!
 
