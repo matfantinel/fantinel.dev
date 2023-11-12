@@ -8,12 +8,17 @@ import type BlogPost from './model';
 const PAGE_SIZE = 12;
 const MD_FILES_PATH = path.join(process.cwd(), 'cms/articles');
 
-export const getPosts = async (page?: number, count?: number): Promise<PaginatedResponse<BlogPost>> => {
+export const getPosts = async (page?: number, count?: number, showHidden = false): Promise<PaginatedResponse<BlogPost>> => {
   // Read all files in the specified directory and get the .md files
   const fileNames = await fs.readdir(MD_FILES_PATH);
-  const mdFiles = fileNames.filter((fileName) => fileName.endsWith('.md'));
+  let mdFiles = fileNames.filter((fileName) => fileName.endsWith('.md'));
   // Reverse the array so that the newest posts are first
   mdFiles.reverse();
+
+  if (!showHidden) {
+    // Only get files that don't end with --hidden
+    mdFiles = mdFiles.filter((item) => !item.endsWith('--hidden.md'));
+  }
 
   const paginatedMdFiles = paginate(mdFiles, page, count);
 
@@ -34,7 +39,7 @@ export const getPosts = async (page?: number, count?: number): Promise<Paginated
 }
 
 export const getPostBySlug = async (slug: string): Promise<BlogPost | null> => {
-  const allPosts = await getPosts();
+  const allPosts = await getPosts(undefined, undefined, true);
   const post = allPosts.items?.find((post) => post.slug === slug) ?? null;
   if (post) {
     post.relatedPosts = getRelatedPosts(post, allPosts.items);
@@ -53,11 +58,11 @@ export const getAllSlugs = async (): Promise<string[]> => {
   return slugs;
 }
 
-export const getPostsByCategory = async (category: string, page?: number, count?: number): Promise<PaginatedResponse<BlogPost>> => {
+export const getPostsByCategory = async (category: string, page?: number, count?: number, showHidden = false): Promise<PaginatedResponse<BlogPost>> => {
   // Since categories are inside the frontmatter, we need to read all files
-  const allPosts = await getPosts();
+  const allPosts = await getPosts(undefined, undefined, showHidden);
 
-  const filteredPosts = allPosts.items?.filter(
+  let filteredPosts = allPosts.items?.filter(
     (post) => post.categories.some((cat) => cat.toLowerCase() === category.toLowerCase())
   ) ?? [];
 
