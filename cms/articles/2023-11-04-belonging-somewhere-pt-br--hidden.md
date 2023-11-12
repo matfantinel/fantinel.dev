@@ -18,9 +18,9 @@ type: Article
 
 Por toda a minha vida, eu nunca senti como se pertencesse a algum lugar. Eu sentia que algumas partes de mim pertenciam a alguns grupos ou lugares, mas nunca senti que eu era realmente parte de alguma coisa maior.
 
-Durante minha infância eu tinha alguns amigos, e tinha um grupo de crianças na minha rua com quem eu frequentemente passava tempo, mas pra mim sempre foi mais sobre as atividades que fazíamos, e não porque eu gostava de estar com eles, ou era parecido com eles. Jogávamos bola, taco, brincávamos de Beyblade ou jogávamos Winning Eleven nos PS1s, mas sempre que a atividade não era uma dessas coisas, eu simplesmente não queria estar com lá. Eu me sentia como um estrangeiro que só fazia parte do grupo por um curto período de tempo.
+Durante minha infância eu tinha alguns amigos, e tinha um grupo de crianças na minha rua com quem eu frequentemente passava tempo, mas pra mim sempre foi mais sobre as atividades que fazíamos, e não porque eu gostava de estar com eles, ou era parecido com eles. Jogávamos bola, taco, brincávamos de Beyblade ou jogávamos Winning Eleven nos PS1s, mas sempre que a atividade não era uma dessas coisas, eu simplesmente não queria estar por lá. Eu me sentia como um estrangeiro que só fazia parte do grupo por um curto período de tempo.
 
-Isso provavelmente (com certeza) tem relação com o fato de eu estar no espectro autista (algo que eu não sabia naquela época), o que *literalmente* significa que eu não era como eles. Mas o importante é que esse sentimento me persegui pela vida toda.
+Isso provavelmente (com certeza) tem relação com o fato de eu estar no espectro autista (algo que eu não sabia naquela época), o que *literalmente* significa que eu não era como eles. Mas o importante é que esse sentimento me perseguiu pela vida toda.
 
 ## Cultura Local
 
