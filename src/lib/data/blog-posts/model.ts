@@ -18,6 +18,7 @@ type BlogPost = {
   readingTime?: string,
   relatedPosts?: BlogPost[],
   showToc?: boolean,
+  hidden?: boolean
 }
 
 export const frontmatterToBlogPost = (frontmatter: any, content: string): BlogPost => {

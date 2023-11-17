@@ -89,7 +89,7 @@ const paginate = (items: any[], page?: number, count?: number): any[] => {
 }
 
 const getRelatedPosts = (post: BlogPost, allPosts: BlogPost[], count: number = 3): BlogPost[] => {
-  const otherPosts = allPosts.filter((otherPost) => otherPost.slug !== post.slug);
+  const otherPosts = allPosts.filter((otherPost) => !otherPost.hidden && otherPost.slug !== post.slug);
   const rankedPosts = otherPosts.map((otherPost) => {
     return {
       post: otherPost,
