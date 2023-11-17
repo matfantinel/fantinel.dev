@@ -41,6 +41,7 @@ export const frontmatterToBlogPost = (frontmatter: any, content: string): BlogPo
     tags: frontmatter.tags.sort((a: string, b: string) => a.localeCompare(b)),
     categories: frontmatter.categories,
     showToc: frontmatter.showToc,
+    hidden: frontmatter.hidden,
     readingTime: readingTime(striptags(content) || '').text
   }
 }
