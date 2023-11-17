@@ -60,6 +60,7 @@
 					additionalClass="cover-image"
 					src={`${post.coverImage.src}`}
 					alt={post.coverImage.alt}
+					lazy={false}
 				/>
 				<div class="cover-image-overlay" />
 			</div>

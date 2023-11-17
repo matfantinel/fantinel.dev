@@ -12,6 +12,8 @@
 	export let tags: string[] | undefined;
 	export let readingTime: string | undefined = undefined;
 	export let additionalClass: string | undefined = undefined;
+	export let hasTransition: boolean = true;
+	export let lazyImage: boolean = true;
 
 	export let showImage = true;
 </script>
@@ -19,7 +21,6 @@
 <Card
 	href="/{slug}"
 	on:click
-	style={`view-transition-name: card-${slug}`}
 	additionalClass="blog-post-card {!showImage && 'hide-image'} {showImage &&
 		!coverImage &&
 		'missing-image'} {additionalClass}"
@@ -29,11 +30,12 @@
 			<Image
 				src={typeof coverImage === 'string' ? coverImage : coverImage.src}
 				alt={typeof coverImage === 'string' ? 'Cover image of this blog post' : coverImage.alt}
+				lazy={lazyImage}
 			/>
 		{/if}
 	</div>
 	<div class="content" slot="content">
-		<p class="title" style={`view-transition-name: title-${slug}`}>
+		<p class="title" style={hasTransition ? `view-transition-name: title-${slug}` : ''}>
 			{title}
 		</p>
 		{#if readingTime}

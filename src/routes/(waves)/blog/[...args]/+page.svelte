@@ -26,7 +26,7 @@
 	<div class="container">
 		<ContentSection title="Blog Posts">
 			<div class="grid">
-				{#each posts as post}
+				{#each posts as post, index}
 					<BlogPostCard
 						title={post.title}
 						coverImage={post.showImage ? post.coverImage : undefined}
@@ -36,6 +36,7 @@
 						slug={post.slug}
 						tags={post.tags}
 						categories={post.categories}
+						lazyImage={index > 6}
 					/>
 				{/each}
 			</div>

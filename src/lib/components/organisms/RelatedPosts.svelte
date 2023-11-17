@@ -26,6 +26,7 @@
 				readingTime={post.readingTime}
 				showImage={false}
 				additionalClass="plausible-event-name=Related+Post+Click"
+				hasTransition={false}
 			/>
 		{/each}
 	</div>

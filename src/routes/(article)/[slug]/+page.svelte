@@ -9,7 +9,7 @@
 </script>
 
 {#key post}
-	<div id="article-page" style={`view-transition-name: card-${post.slug}`}>
+	<div id="article-page">
 		<div class="header">
 			{#if post}
 				<h1 style={`view-transition-name: title-${post.slug}`}>{post.title}</h1>

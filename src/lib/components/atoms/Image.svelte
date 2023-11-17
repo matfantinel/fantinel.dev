@@ -8,6 +8,7 @@
 	export let alt: string;
 	export let figcaption: string | undefined = undefined;
 	export let fullBleed: boolean | undefined = undefined;
+	export let lazy: boolean = true;
 
 	export let formats: string[] = ['avif', 'webp', 'png'];
 	export let widths: string[] | undefined = undefined;
@@ -51,8 +52,8 @@
 
 {#if src}
 	{#if figcaption}
-		<figure class={additionalClass} class:full-bleed={fullBleed}>
-			<img srcset={srcSet} {src} {alt} loading="lazy" decoding="async" />
+		<figure class={additionalClass} class:full-bleed={fullBleed} {...$$restProps}>
+			<img srcset={srcSet} {src} {alt} loading={lazy ? 'lazy' : 'eager'} decoding="async" />
 			<figcaption>{@html figcaption}</figcaption>
 		</figure>
 	{:else}
@@ -60,10 +61,11 @@
 			srcset={srcSet}
 			{src}
 			{alt}
-			loading="lazy"
+			loading={lazy ? 'lazy' : 'eager'}
 			decoding="async"
 			class={additionalClass}
 			class:full-bleed={fullBleed}
+			{...$$restProps}
 		/>
 	{/if}
 {/if}
