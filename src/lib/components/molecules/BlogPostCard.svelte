@@ -80,6 +80,7 @@
 		font-size: 1.2rem;
 		font-family: var(--font--title);
 		font-weight: 700;
+		text-wrap: balance;
 	}
 
 	.tags {

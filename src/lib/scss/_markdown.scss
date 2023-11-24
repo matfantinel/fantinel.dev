@@ -1,5 +1,5 @@
 .article-main {
-	.content {
+	.article-content {
 		a:not(.button) {
 			&:hover {
 				filter: drop-shadow(0px 0px 3px var(--color--primary));
@@ -73,9 +73,9 @@
 				width: 64px;
 				display: block;
 				position: absolute;
-				top: 8px;
-				right: 8px;
-				opacity: 0.5;
+				top: 0;
+				right: 0;
+				opacity: 0.3;
 			}
 		}
 

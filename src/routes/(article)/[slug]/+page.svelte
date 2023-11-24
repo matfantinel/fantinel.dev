@@ -43,7 +43,7 @@
 				{/if}
 			{/if}
 		</div>
-		<div class="content">
+		<div class="article-content">
 			{#if post}
 				{#if post?.content}
 					<Markdown content={post.content} />
@@ -103,7 +103,7 @@
 		}
 	}
 
-	.content {
+	.article-content {
 		display: grid;
 		grid-template-columns:
 			1fr
