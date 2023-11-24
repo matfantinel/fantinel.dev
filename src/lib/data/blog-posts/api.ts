@@ -53,7 +53,7 @@ export const getAllSlugs = async (): Promise<string[]> => {
 
   // Filenames are in the format yyyy-MM-dd-slug.md
   // Grab only the slug
-  const slugs = fileNames.map((fileName) => fileName.split('-').slice(3).join('-').replace('.md', ''));
+  const slugs = fileNames.map((fileName) => fileName.split('-').slice(3).join('-').replace('.md', '').replace('--hidden', ''));
 
   return slugs;
 }
