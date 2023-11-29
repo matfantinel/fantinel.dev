@@ -3,7 +3,7 @@
 	export let text: string | undefined = undefined;
 </script>
 
-<mark class={color}>
+<mark class={`m-marker-highlight ${color}`}>
 	{#if text}
 		{text}
 	{:else}
@@ -17,10 +17,10 @@
 		@include marker-highlight;
 
 		&.primary {
-			--mark-color: var(--color--primary-shade);
+			--mark-color: var(--color--marker-primary-background);
 		}
 		&.secondary {
-			--mark-color: var(--color--secondary-shade);
+			--mark-color: var(--color--marker-secondary-background);
 		}
 	}
 </style>

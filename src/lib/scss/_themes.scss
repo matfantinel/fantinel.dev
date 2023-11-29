@@ -30,6 +30,8 @@
 	@include define-color('promob-tint', #d7e6eb);
 
 	@include define-color('blockquote-background', #eff1f3);
+	@include define-color('marker-primary-background', #c4eeee);
+	@include define-color('marker-secondary-background', #d7d1fa);
 
 	// Used for Callout component
 	@include define-color('callout-background', #f4f8fb);
@@ -85,6 +87,8 @@
 	@include define-color('promob-tint', #2b4a55);
 
 	@include define-color('blockquote-background', #1c1e26);
+	@include define-color('marker-primary-background', #076464);
+	@include define-color('marker-secondary-background', #a66eaf);
 
 	// Used for Callout component
 	@include define-color('callout-background', #1c1e26);
