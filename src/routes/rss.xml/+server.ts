@@ -23,6 +23,9 @@ export async function GET() {
     post.content = marked.parse(
       post.content.replace(/^[\u200B\u200C\u200D\u200E\u200F\uFEFF]/, "")
     );
+
+    post.content = post.content.replaceAll('<a href="/', `<a href="${siteBaseUrl}/`);
+    post.content = post.content.replaceAll('<img src="/', `<a href="${siteBaseUrl}/`);
   });
 
   await Promise.all(promises);
