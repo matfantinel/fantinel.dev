@@ -148,6 +148,7 @@
 
 	.article-main {
 		min-height: 55vh;
+		overflow-x: clip;
 
 		position: relative;
 		padding-top: 40px;
