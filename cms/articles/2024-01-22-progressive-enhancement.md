@@ -1,7 +1,7 @@
 ---
 slug: progressive-enhancement
 title: Progressive Enhancement (and why it matters)
-excerpt: Progressive Enhancement isn't just another web jargon; it's a guiding principle shaping modern web development. Here, we'll dive into why it matters and look at some practical tips to make your websites increasingly awesome.
+excerpt: Progressive Enhancement isn't just another web jargon; it's a guiding principle shaping modern web development.
 coverImage: ""
 coverImageAlt: ""
 showImage: false
