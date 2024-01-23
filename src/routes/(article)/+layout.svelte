@@ -231,6 +231,7 @@
 			top: max(600px, calc(45% - var(--size)));
 			left: 70%;
 			animation-duration: 10s;
+			opacity: 0.8;
 		}
 		&.three {
 			border-radius: var(--radius-blob-3);
