@@ -29,13 +29,13 @@
 	{/if}
 	{#if code}
 		{#if lang}
-			<pre class={`language-${lang}`}>
-			{@html Prism.highlight(code, prism.languages[lang], lang)}
-		</pre>
+			<pre class={`language-${lang}`}>{@html Prism.highlight(
+					code,
+					prism.languages[lang],
+					lang
+				)}</pre>
 		{:else}
-			<pre>
-				{code}
-			</pre>
+			<pre>{code}</pre>
 		{/if}
 	{:else}
 		<slot />

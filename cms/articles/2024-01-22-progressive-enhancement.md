@@ -57,7 +57,24 @@ With that out of the way, these are my main tips for building websites that get 
 
 Instead of building a fully-featured UI and then stripping it down, we're doing the opposite: start with the bare minimum. It helps to disable JS for your website (can be done in the browser’s DevTools), so you’re 100% sure everything will work without it. It doesn’t need to be pretty or smooth, it just needs to function. Once that’s done, you can re-enable JavaScript and start adding the charming bits.
 
-There’s not much you can do to prepare for a case where your CSS didn’t load, but you can mitigate one of the main issues when that happens: **add height/width to your images and SVGs.** That way, they won’t be absurdly big and won’t break the layout as much. And, if you want your images to scale responsively when your CSS actually loads, just overload the height/width there! Fun fact: adding height/width properties to the `img` element also helps many frameworks load correctly-sized images to make them more lightweight.
+There’s not much you can do to prepare for a case where your CSS didn’t load, but you can mitigate one of the main issues when that happens: **add height/width to your images and SVGs.** That way, they won’t be absurdly big and won’t break the layout as much. And, if you want to style your images with more complex rules, you can add the styles in CSS and they'll overwrite the height/width attributes. For example:
+
+```html
+<img src="example.jpg" width="500" height="500" />
+```
+
+```css
+~filename styles.css
+/* These will only be applied if 
+the CSS file loads successfully */
+img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+```
+
+And, if you want your images to be scale responsively when your CSS actually loads, just overwrite the height/width there! Fun fact: adding height/width properties to the `img` element also helps many frameworks load correctly-sized images to make them more lightweight.
 
 ### Think *inside* the box 📦
 
