@@ -35,10 +35,6 @@
 				I believe software should be great for everyone — those who write it and those who use it —
 				and that bringing joy to problem-solving is the key to that.
 			</p>
-			<div class="socials">
-				<span>My socials:</span>
-				<Socials />
-			</div>
 		</div>
 		<div slot="image">
 			<AvatarWithBlobs />
@@ -54,18 +50,4 @@
 
 <style lang="scss">
 	@import '$lib/scss/breakpoints.scss';
-
-	.socials {
-		display: flex;
-		align-items: center;
-		gap: 15px;
-
-		@include for-phone-only {
-			justify-content: center;
-			margin-bottom: 10px;
-			span {
-				display: none;
-			}
-		}
-	}
 </style>

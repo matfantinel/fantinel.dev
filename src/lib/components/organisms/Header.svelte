@@ -1,12 +1,11 @@
 <script>
 	import Logo from '$lib/components/atoms/Logo.svelte';
-	import ThemeToggle from '$lib/components/molecules/ThemeToggle.svelte';
-	import RssLink from '$lib/components/atoms/RssLink.svelte';
 	import HamburgerMenu from '$lib/components/molecules/HamburgerMenu.svelte';
+	import ThemeToggle from '$lib/components/molecules/ThemeToggle.svelte';
 
 	export let animated = false;
 	export let showBackground = false;
-	export let showFullLogo = true;
+	export let showFullLogo = false;
 </script>
 
 <header class:has-background={showBackground} style="view-transition-name: header">
@@ -19,12 +18,10 @@
 				<HamburgerMenu
 					links={[
 						{ href: '/blog', text: 'Blog' },
-						// { href: '/about', text: 'About' },
 						{ href: '/resume', text: 'Resume' }
 					]}
 				/>
 			</div>
-			<RssLink />
 			<ThemeToggle />
 		</div>
 	</nav>
@@ -86,6 +83,12 @@
 				&:hover {
 					color: var(--color--primary);
 					filter: drop-shadow(0px 0px 3px var(--color--primary));
+				}
+			}
+
+			@include for-tablet-portrait-down {
+				.desktop-only {
+					display: none;
 				}
 			}
 

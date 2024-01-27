@@ -1,8 +1,7 @@
 <script>
-	import FooterWave from '$lib/icons/footer-wave.svelte';
 	import Socials from '$lib/components/molecules/Socials.svelte';
 	import ThemeToggle from '$lib/components/molecules/ThemeToggle.svelte';
-	import RssLink from '$lib/components/atoms/RssLink.svelte';
+	import FooterWave from '$lib/icons/footer-wave.svelte';
 
 	let currentYear = new Date().getFullYear();
 </script>
@@ -23,7 +22,6 @@
 		</div>
 		<div class="socials">
 			<Socials />
-			<RssLink />
 			<ThemeToggle />
 		</div>
 	</div>

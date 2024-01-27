@@ -1,5 +1,4 @@
 <script lang="ts">
-	import RssLink from '../atoms/RssLink.svelte';
 	import Socials from './Socials.svelte';
 
 	export let links: { href: string; text: string }[];
@@ -42,11 +41,11 @@
 		<span class="line three" />
 
 		<ul id="menu" class:closing={menuIsClosing}>
+			<li class="socials"><Socials /></li>
 			{#each links as link}
 				<a class="menu-item" href={link.href} on:click={handleMenuItemClick}><li>{link.text}</li></a
 				>
 			{/each}
-			<li class="socials mobile-only"><Socials /> <RssLink /></li>
 		</ul>
 	</div>
 </nav>
@@ -178,16 +177,19 @@
 		}
 	}
 
-	.socials {
-		margin-inline: auto;
-		display: flex;
-		align-items: center;
-		gap: 20px;
-		margin-top: 20px;
+	@include for-phone-only {
+		.socials {
+			margin-inline: auto;
+			display: flex;
+			align-items: center;
+			gap: 20px;
+			margin-top: 20px;
+			order: 2;
 
-		:global(a) {
-			width: 32px !important;
-			display: inline-block;
+			:global(a) {
+				width: 32px !important;
+				display: inline-block;
+			}
 		}
 	}
 

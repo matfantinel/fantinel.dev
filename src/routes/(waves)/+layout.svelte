@@ -24,7 +24,7 @@
 
 <Waves />
 
-<Header showFullLogo={true} />
+<Header animated />
 
 <main>
 	<div class="background-blurrer" />

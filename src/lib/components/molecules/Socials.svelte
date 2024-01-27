@@ -1,21 +1,21 @@
 <script>
-	import TelegramIcon from '$lib/icons/socials/telegram.svelte';
+	import RssIcon from '$lib/icons/rss.svelte';
+	import EmailIcon from '$lib/icons/socials/email.svelte';
 	import GitHubIcon from '$lib/icons/socials/github.svelte';
 	import LinkedInIcon from '$lib/icons/socials/linkedin.svelte';
-	import EmailIcon from '$lib/icons/socials/email.svelte';
-	import RssIcon from '$lib/icons/rss.svelte';
 	import MastodonIcon from '$lib/icons/socials/mastodon.svelte';
+	// import TelegramIcon from '$lib/icons/socials/telegram.svelte';
 </script>
 
 <div class="socials">
-	<a
+	<!-- <a
 		href="https://t.me/Matt_Fantinel"
 		target="_blank"
 		rel="noopener noreferrer"
 		title="Say Hi on Telegram"
 	>
 		<TelegramIcon />
-	</a>
+	</a> -->
 	<a
 		href="https://hachyderm.io/@fantinel"
 		target="_blank"
@@ -47,6 +47,9 @@
 		title="Send an email to matt@fantinel.dev"
 	>
 		<EmailIcon />
+	</a>
+	<a href="/rss.xml" target="_blank" rel="noopener noreferrer" title="Subscribe to my RSS Feed">
+		<RssIcon />
 	</a>
 </div>
 

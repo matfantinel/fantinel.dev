@@ -1,6 +1,6 @@
 <script>
-	export let animated = true;
-	export let showFullLogo = true;
+	export let animated = false;
+	export let showFullLogo = false;
 </script>
 
 <div class="logo" class:animated>
