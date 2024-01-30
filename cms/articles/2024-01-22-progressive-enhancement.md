@@ -7,7 +7,7 @@ coverImageAlt: ""
 showImage: false
 socialImage: /posts/progressive-enhancement/cover.png
 date: 2024-01-23T01:50:25.950Z
-updated: 2024-01-23T01:50:25.950Z
+updated: null
 showToc: true
 hidden: false
 tags: []
