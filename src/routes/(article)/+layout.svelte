@@ -7,7 +7,7 @@
 	import TableOfContents from '$lib/components/organisms/TableOfContents.svelte';
 
 	import type BlogPost from '$lib/data/blog-posts/model';
-	import { keywords, siteBaseUrl, title } from '$lib/data/meta';
+	import { keywords, siteBaseUrl, title, image as metaImage } from '$lib/data/meta';
 
 	export let data: { post: BlogPost };
 	$: ({ post } = data);
@@ -48,6 +48,9 @@
 		{:else if post.coverImage?.src}
 			<meta property="og:image" content="{siteBaseUrl}{post.coverImage.src}" />
 			<meta name="twitter:image" content="{siteBaseUrl}{post.coverImage.src}" />
+		{:else}
+			<meta property="og:image" content={metaImage} />
+			<meta name="twitter:image" content={metaImage} />
 		{/if}
 	{/if}
 </svelte:head>
