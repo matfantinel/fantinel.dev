@@ -1,7 +1,7 @@
 ---
 slug: stripping-web-humanity
 title: Stripping the web of its humanity
-excerpt: ""
+excerpt: A less human web is no good for anyone.
 coverImage: ""
 coverImageAlt: ""
 showImage: false
