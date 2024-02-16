@@ -19,8 +19,8 @@
 	"devDependencies": {
 		"@histoire/plugin-svelte": "^0.17.0",
 		"@svelte-put/copy": "^3.0.0",
-		"@sveltejs/adapter-auto": "^1.0.0",
-		"@sveltejs/kit": "^1.27.6",
+		"@sveltejs/adapter-auto": "^3.1.1",
+		"@sveltejs/kit": "^2.5.0",
 		"dateformat": "^5.0.3",
 		"eslint": "^8.28.0",
 		"eslint-config-prettier": "^8.5.0",
