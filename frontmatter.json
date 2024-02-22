@@ -5,6 +5,7 @@
 	"frontMatter.content.fmHighlight": true,
 	"frontMatter.dashboard.openOnStart": false,
 	"frontMatter.framework.startCommand": "npm run dev",
+	"frontMatter.taxonomy.seoDescriptionField": "excerpt",
 	"frontMatter.taxonomy.contentTypes": [
 		{
 			"name": "Article",
@@ -14,7 +15,8 @@
 				{
 					"title": "Slug",
 					"name": "slug",
-					"type": "slug"
+					"type": "slug",
+					"default": "{{slug}}"
 				},
 				{
 					"title": "Title",
