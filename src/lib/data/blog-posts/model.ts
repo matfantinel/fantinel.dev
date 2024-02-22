@@ -38,7 +38,7 @@ export const frontmatterToBlogPost = (frontmatter: any, content: string): BlogPo
       src: '/images' + frontmatter.socialImage,
       alt: ''
     } : undefined,
-    tags: frontmatter.tags.sort((a: string, b: string) => a.localeCompare(b)),
+    tags: frontmatter.tags?.sort((a: string, b: string) => a.localeCompare(b)),
     categories: frontmatter.categories,
     showToc: frontmatter.showToc,
     hidden: frontmatter.hidden,
