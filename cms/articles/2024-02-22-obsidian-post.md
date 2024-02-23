@@ -15,4 +15,5 @@ categories:
   - Meta
 type: Article
 ---
+
 This is a blog post created inside the **Obsidian** app. Let’s see ~~if~~ how it works!
