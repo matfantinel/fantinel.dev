@@ -1,5 +1,5 @@
 ---
-slug: obsidian-post-2
+slug: obsidian-post-3
 title: Obsidian Post
 excerpt: A post created inside Obsidian
 coverImage: “”
@@ -15,5 +15,4 @@ categories:
   - Meta
 type: Article
 ---
-
 This is a blog post created inside the **Obsidian** app. Let’s see ~~if~~ how it works!
