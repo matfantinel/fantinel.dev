@@ -48,3 +48,20 @@ All posts are Markdown files that are processed with [svelte-markdown](https://g
 # Hosting
 
 This site is hosted on [Vercel](https://vercel.com/), and uses SvelteKit's `adapter-auto` on build. It can also be generated as a static site, and hosted pretty much anywhere. To do that, simply replace `adapter-auto` with `adapter-static` on `svelte.config.js` and `package.json` (and re-run `npm install`).
+
+# Markdown Syntax
+
+I've recently updated the Markdown syntax to match [Obsidian's](https://help.obsidian.md/Editing+and+formatting/Basic+formatting+syntax). With a few added goodies.
+
+| Effect | Syntax | Example |
+| ---- | ---- | ---- |
+| Bold | ** or __ | \*\*example\*\* |
+| Italic | * or _ | \*example\* |
+| Strikethrough | ~~ | \~\~example\~\~ |
+| Highlight | == | \=\=example\=\= |
+| Links | \[\]\(\) | \[text\]\(url\) |
+| Blockquotes | \> | \> Quote |
+| Sparkling Highlight | @@ | \@\@example\@\@ |
+| Button | \[\[\[text \|\| prop=value\]\]\] | \[\[\[example \|\| color=secondary href=url\]\]\] |
+| Callout | > \[!type\] | > \[!info\]<br>> Example |
+| Image | !\[Alt text\](url 'figcaption') | !\[Example image\](/test.jpg 'A sample image'\]
