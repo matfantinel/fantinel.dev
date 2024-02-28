@@ -63,7 +63,7 @@ You can optimize even further than that. See, in my example, I am loading an ima
 
 The `srcset` property is smart. As the name implies, it is a set of sources, not just a single one. When we declare multiple file paths and add a width unit besides it, the browser looks at this data and tries to display the smallest possible image.
 
-On the code snippet above, the browser will follow this: ///If the size of the displayed image (on the page) is smaller or equal to 380px, it will load the file with 380px of width. Otherwise, it will try to load the next declared path (640px).///
+On the code snippet above, the browser will follow this: ==If the size of the displayed image (on the page) is smaller or equal to 380px, it will load the file with 380px of width. Otherwise, it will try to load the next declared path (640px).==
 
 **However,** not all parts of this process are smarty. The browser cannot know what is the final size of the image on the page before it actually loads it. Which is why the `sizes` property exists. Let's see how it works:
 
@@ -77,7 +77,7 @@ It is easier to understand if we visualize it like this:
 
 Of course, different websites have different needs and situations. Make sure to adapt the code to your specific need.
 
-It's also worth noting that most phones use a HiDPI mode. This means that ///even though the reported width for the phone above is 375px, the browser will likely use a higher resolution to load the images/// (usually 2x), in order to serve a higher quality image.
+It's also worth noting that most phones use a HiDPI mode. This means that ==even though the reported width for the phone above is 375px, the browser will likely use a higher resolution to load the images== (usually 2x), in order to serve a higher quality image.
 
 ## Lazy Loading and Async Decoding
 
@@ -85,7 +85,7 @@ You might have noticed the `loading="lazy"` and `decoding="async"` attributes in
 
 `decoding="async"` tells your browser it can try to parallelize loading your image. When your page is loading, it tries to decode both text and images at the same time. On lower-end devices though, decoding heavy images can take a while, and this might block the rendering of the rest of the content. With this option, the browser will try to proceed rendering the rest of the content and render the image later. This can be a great improvement to perceived performance.
 
-`loading="lazy"` is probably the most important of the two. It is an easy way of telling the browser to ///only load the images when they get close to appearing in the viewport///. There is a threshold that is defined by the browser that controls how close it needs to be before it gets loaded, so you don't have to worry about them not showing up if the user scrolls fast. ///This ensures that the initial load of the website is as lean as it can get, improving perceived performance and also saving you some money on server requests.///
+`loading="lazy"` is probably the most important of the two. It is an easy way of telling the browser to ==only load the images when they get close to appearing in the viewport==. There is a threshold that is defined by the browser that controls how close it needs to be before it gets loaded, so you don't have to worry about them not showing up if the user scrolls fast. ==This ensures that the initial load of the website is as lean as it can get, improving perceived performance and also saving you some money on server requests.==
 
 ![Screenshot of the browser tools showing network requests: There are only two images that have been downloaded.](/posts/web-images-modern-formats/first-load-requests.png "When the website is initially loaded, it only downloads what's needed: my avatar image and the preview of the first blog post, that will show up after scrolling a bit.")
 
@@ -101,7 +101,7 @@ The following data is taken from the home page of the website, since it has a lo
 
 ![Screenshot of browser tool network requests, from before and after optimization. Before: 1.6MB download; After: 249KB download](/posts/web-images-modern-formats/results.png)
 
-///The total download size decreased by a whopping 85%!!/// That's an incredible difference, with no noticeable difference in quality. Your results may vary, as they depend on how much of your website's size is images.
+==The total download size decreased by a whopping 85%!!== That's an incredible difference, with no noticeable difference in quality. Your results may vary, as they depend on how much of your website's size is images.
 
 Before the changes, out of 1.6MB total, 92% of it were images, 5% were fonts, 1% was HTML, and the remaining 2% were of JS and other things like the web manifest.
 

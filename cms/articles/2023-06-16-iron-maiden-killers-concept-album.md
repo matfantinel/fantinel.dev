@@ -17,9 +17,9 @@ showToc: true
 
 So, today I was doing the dishes and decided to listen to some music on my headphones. I was in the mood for some Iron Maiden, so I shuffled my playlist of my favorites from them (which includes almost every one of their songs 😆). The first track to play was _Drifter_, the last song from their second album, _Killers_. It's a really good song so I decided to play the entire album instead.
 
-I've listened to this album countless times, but I'd never really paid attention to the lyrics. So, as the album played, I was surprised by the small _plot twist_ at the end of _Murders In The Rue Morgue_, which was one of the songs I never really paid much attention to the lyrics. I was like _"wait, what?!"_ and decided to pay more attention to the lyrics of the rest of the album. And then it hit me: @@@Killers is a concept album@@@, with all songs being sung by the same character!
+I've listened to this album countless times, but I'd never really paid attention to the lyrics. So, as the album played, I was surprised by the small _plot twist_ at the end of _Murders In The Rue Morgue_, which was one of the songs I never really paid much attention to the lyrics. I was like _"wait, what?!"_ and decided to pay more attention to the lyrics of the rest of the album. And then it hit me: @@Killers is a concept album@@, with all songs being sung by the same character!
 
-> !!! warning
+> [!warning]
 > The album touches on the subjects of murder, suicide and drugs, so be wary of proceeding if this is a sensitive topic for you.
 
 So, let's go through each song and see how they fit together. Feel free to follow along with the music:
@@ -142,7 +142,7 @@ This is another instrumental song and doesn't really tie in to the rest of the a
 
 In this song, the Wrathchild is still suffering the consequences of the Murder in the Rue Morgue. They claim their mind is confused (which makes sense because of DID).
 
-Another **really** interesting line is when he says he "never had no trouble before this all began". Usually cases of DID occur because the mind is trying to protect itself from the trauma. So, it makes sense that this personality feels like it never had any trouble before, as it ///doesn't remember any of the trauma///. All the bottled up anger was instead channeled into the _killer_ personality.
+Another **really** interesting line is when he says he "never had no trouble before this all began". Usually cases of DID occur because the mind is trying to protect itself from the trauma. So, it makes sense that this personality feels like it never had any trouble before, as it ==doesn't remember any of the trauma==. All the bottled up anger was instead channeled into the _killer_ personality.
 
 > They say I killed a woman, they know it isn't true
 >

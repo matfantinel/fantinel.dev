@@ -17,7 +17,7 @@ type: Article
 
 When setting up a Linux server or development machine, you might need to install MongoDB. However, every single time I've stumbled upon an error right when trying to start the `mongod` service, after following [the official instructions](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/). The important line here is:
 
-> !!! error
+> [!error]
 > exception in initAndListen: NonExistentPath: Data directory /data/db not found., terminating
 
 This seems like an error on Mongo's install script. The problem is that by default, Mongo points to that `/data/db` folder, and it either forgets to create or set ownership of it on installation.

@@ -42,7 +42,7 @@ So, to solve the issue, I ended up disabling WebDAV in the whole application, by
 </system.webServer>
 ```
 
-After restarting the API in IIS, @@@TA-DA!@@@ Everything (or at least your PUT and DELETE requests) should be working normally.
+After restarting the API in IIS, @@TA-DA!@@ Everything (or at least your PUT and DELETE requests) should be working normally.
 
 This issue seems to only occur when hosting .NET Core on Windows, which is why I could not simulate the issue by running my application in production mode on my Linux machine.
 

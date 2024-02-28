@@ -16,7 +16,7 @@ type: Article
 
 Analytics have become intrinsic to software development in the past decade. On the marketing side, analytics allow us to measure the success of marketing campaigns, optimize the wording, measure ad results, or simply keep track of the growth of the audience. On the development side, it allows to more easily detect points of failure, bad patterns or UX hiccups.
 
-These benefits however, usually come at a price: ///in-depth analytics tend to store way too much information about the user///, and the user is often unaware of how much is being collected. It's a decision the user doesn't really make; we make it for them. _(Yes, I know, legally the user often accepts cookies or terms of service... but the reality is that almost nobody reads or understands that.)_
+These benefits however, usually come at a price: ==in-depth analytics tend to store way too much information about the user==, and the user is often unaware of how much is being collected. It's a decision the user doesn't really make; we make it for them. _(Yes, I know, legally the user often accepts cookies or terms of service... but the reality is that almost nobody reads or understands that.)_
 
 On platforms like Google Analytics, there is a lot of information we can see, however none of them personally identifies the user. That's good, right? Well, not really: Google can personally identify (and does through its Ads business) them, and by using Google Analytics or similar products on your site, you're feeding them your user's information for a really low price - otherwise, why would these analytics be free?
 

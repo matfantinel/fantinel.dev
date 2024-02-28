@@ -6,11 +6,11 @@ export const SparklesHighlightTokenizerExtension: marked.TokenizerAndRendererExt
   level: 'inline',
   start(src: string) {
     // Marks the start of a match
-    return src.indexOf('@@@');
+    return src.indexOf('@@');
   },
   tokenizer(src: string) {
-    // Will match anything between @@@ and @@@. e.g. @@@sparkle@@@
-    const rule = /^\@\@\@(.*?)\@\@\@/;
+    // Will match anything between @@ and @@. e.g. @@sparkle@@
+    const rule = /^\@\@(.*?)\@\@/;
     const match = rule.exec(src);
     if (match) {
       return {
@@ -32,11 +32,11 @@ export const MarkerHighlightTokenizerExtension: marked.TokenizerAndRendererExten
   name: 'markerHighlight',
   level: 'inline',
   start(src: string) {
-    return src.indexOf('///');
+    return src.indexOf('==');
   },
   tokenizer(src: string) {
-    // Will match anything between /// and ///. e.g. ///highlight///
-    const rule = /^\/\/\/(.*?)\/\/\//;
+    // Will match anything between == and == e.g. ==highlight==
+    const rule = /^\=\=(.*?)\=\=/;
     const match = rule.exec(src);
     if (match) {
       return {

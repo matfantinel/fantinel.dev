@@ -17,7 +17,7 @@ type: Article
 
 This problem usually happens when you're working on a solution with multiple projects that were created using different versions of the .NET SDK.
 
-> !!! error
+> [!error]
 > The project was restored using Microsoft.NETCore.App version x.x.x, but with current settings, version y.y.y would be used instead
 
 You may encounter this error when running `dotnet build` or maybe only on `dotnet publish`. In any case, the best way to get rid of this problem for good is the following:
@@ -40,7 +40,7 @@ What these properties do is make your projects always restore and compile using 
 
 Try running the command again. If all went right, it should be compiling successfully now!
 
-> !!! info
+> [!info]
 > In case it doesn't work for you, you can add these lines manually on each of the `.csproj` files.
 
 Thanks for reading!

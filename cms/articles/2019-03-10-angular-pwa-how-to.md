@@ -21,7 +21,7 @@ Recently, I've converted my Angular 6 app into a PWA, allowing it to work offlin
 
 Although there are many tutorials out there about turning Angular apps into PWAs, I've decided to write one simply because I faced some issues that were a bit hard to solve, so if you end up having them you don't lose as much time as I did!
 
-> !!! info
+> [!info]
 > This tutorial assumes you are using Angular CLI. Possible issues are listed at the end of the tutorial.
 
 ## Step 1. Installing the Angular PWA dependencies

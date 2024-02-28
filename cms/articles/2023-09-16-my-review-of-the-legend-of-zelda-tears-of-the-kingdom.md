@@ -16,7 +16,7 @@ type: Article
 showToc: true
 ---
 
-> !!! success
+> [!success]
 > This review is **spoiler-free**, so you can safely read it even if you haven't played or finished the game yet.
 
 The Legend of Zelda is my favorite game series of all time. Understandably, I was pretty excited for Tears of the Kingdom to come out. And it took its time! Announced in 2019, two years after the release of its predecessor (Breath of the Wild), a lot of people thought it would have a shorter development cycle, considering it seemed to feature the same world as Breath of the Wild's, the graphics were the same, and the engine was already done. How wrong we were!
@@ -90,4 +90,4 @@ I believe its impact is not as big as Breath of the Wild's was, though, at least
 
 If BOTW was a 10/10 to me, because of its impact and just how good it was, then there's no way TOTK, which improves on BOTW in every single way, could be anything less than that.
 
-So, yeah, @@@Tears of the Kingdom is a 10/10@@@. It is a masterpiece, one of the best games I've ever played, and I'll remember it fondly for years to come. It will be **very** hard for the Zelda team to ever top this game, but if anyone can do it, it's them.
+So, yeah, @@Tears of the Kingdom is a 10/10@@. It is a masterpiece, one of the best games I've ever played, and I'll remember it fondly for years to come. It will be **very** hard for the Zelda team to ever top this game, but if anyone can do it, it's them.

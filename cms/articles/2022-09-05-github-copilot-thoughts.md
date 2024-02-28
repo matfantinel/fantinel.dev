@@ -42,7 +42,7 @@ The opposite can also happen. Sometimes I write some complex functions and Copil
 
 ## What it isn't
 
-///Copilot is not something that's going to take away your job///. At least not soon. The reason is in its name itself: it is a Copilot, meant to be by your side while you're coding and help you out with busy work, not completely replace you. It's really not capable of doing that.
+==Copilot is not something that's going to take away your job==. At least not soon. The reason is in its name itself: it is a Copilot, meant to be by your side while you're coding and help you out with busy work, not completely replace you. It's really not capable of doing that.
 
 You're still responsible for the code it writes, and for the code you ship. Whatever code it suggests you'll still have to review, as it may contain flaws that are either obvious or really hidden.
 

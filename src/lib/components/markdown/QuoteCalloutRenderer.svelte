@@ -4,13 +4,16 @@
 
 	export let text: string;
 
-	const isCallout = text.trim().startsWith('!!!');
-	const calloutType = isCallout ? text.match(/!!!\s*(.*?)\n/)?.[1] || 'info' : undefined;
+	// Callouts start with a pattern like [!info] or [!success]
+	// So, we need to check if the text starts with that pattern
+	// And get the type
+	const isCallout = /^\[!([a-z]+)\]/i.test(text);
+	const calloutType = isCallout ? text.match(/^\[!([a-z]+)\]/i)?.[1] : undefined;
 
 	let cleanText = text;
 	$: {
 		if (isCallout) {
-			cleanText = cleanText.replace(/^!!!\s?\w+/, '');
+			cleanText = cleanText.replace(/^\[!\w+\]\s?/, '');
 		}
 
 		// Remove the line breaks (\n) from beginning and end of the string

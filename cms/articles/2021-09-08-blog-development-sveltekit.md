@@ -17,16 +17,16 @@ type: Article
 showToc: true
 ---
 
-I've recently re-launched my personal website and blog, that's now reached its 3rd version. There was nothing wrong with the previous one, but I wanted to both give it a small visual refresh and learn something new. So, after a month or so of working on it on my free time, @@@voilà@@@, you're seeing it right now!
+I've recently re-launched my personal website and blog, that's now reached its 3rd version. There was nothing wrong with the previous one, but I wanted to both give it a small visual refresh and learn something new. So, after a month or so of working on it on my free time, @@voilà@@, you're seeing it right now!
 
->!!! info
+> [!info]
 > While the code for this website is open-source, it has a lot of content that's very specific to myself. So, if you want to use it as a template to get your own website started, I've created a <strong>public template that you can use as a starting point</strong>!
 
 [[[ See the starting template || color=secondary href=https://github.com/matfantinel/sveltekit-static-blog-template ]]]
 
 ## About Svelte and SvelteKit
 
-[Svelte](https://svelte.dev/) is a new cool kid on the JS block - it was launched in 2016, but it really started getting traction when its 3.0 version was launched in 2019. It is a competitor to the big JS frameworks - React, Vue, Angular - but, instead of simply being an alternative way of doing things, it differentiates itself on a fundamental level: <MarkerHighlight>it is a compiler, not a framework.</MarkerHighlight>
+[Svelte](https://svelte.dev/) is a new cool kid on the JS block - it was launched in 2016, but it really started getting traction when its 3.0 version was launched in 2019. It is a competitor to the big JS frameworks - React, Vue, Angular - but, instead of simply being an alternative way of doing things, it differentiates itself on a fundamental level: ==it is a compiler, not a framework.==
 
 This means that it does its job at build time, not at runtime. While other frameworks (React, for example) need JavaScript code that runs on the client in order for your components to work properly, Svelte does not, because it interprets your code on build time, and only ships exactly what it needs to run. This means websites made with Svelte can be much smaller in size and faster because it has less code to run.
 
@@ -39,11 +39,11 @@ Using both of the above allowed my website to have two important characteristics
 
 ## Progressive Enhancement
 
-One of the concepts that really caught my eye with Svelte is the idea of Progressive Enhancement: ///making sure your app runs for everyone, and making it progressively more featureful if the user's device supports it///. My website is a pretty simple project, but still there are instances of this:
+One of the concepts that really caught my eye with Svelte is the idea of Progressive Enhancement: ==making sure your app runs for everyone, and making it progressively more featureful if the user's device supports it==. My website is a pretty simple project, but still there are instances of this:
 
 If there's no JavaScript, the website uses the browser's native navigation API. Which means you can navigate between pages normally without any client-side code. _However_, if JavaScript is available, a client-side router will be used to make the transition between pages smoother and faster. This means that even if the user's device doesn't support JS for any reason, the site will still be completely functional.
 
-> !!! info
+> [!info]
 > We tend to think of JavaScript being disabled as a user choice, but that is usually not the case. Think of someone using their phone on a weak 3G connection that fails to load the .js files, or someone in the subway that lost signal while loading the page. It happens often and being able to show your content even in these conditions is a great way of not losing a visitor.
 
 And you know what I had to do to support this? _Nothing_. Just using `<a>` elements is enough, as SvelteKit will intercept those if needed (JS enabled), or simply leave it to the browser otherwise.
@@ -60,7 +60,7 @@ After the design was complete, I finally began developing it. Since there are so
 
 ## Routing
 
-> !!! info
+> [!info]
 > Initially, SvelteKit used a _file_-based routing, as opposed to the current _folder_-based routing. This article has been updated to reflect those changes. If you were familiar with the previous system, <a href='https://github.com/sveltejs/kit/discussions/5774#discussioncomment-3294867' target='_blank'>this comment by the SvelteKit team</a> might help you understand the changes.
 
 SvelteKit uses a folder-based routing system. This means that your routes are dictated by the folder structure inside `routes` in your project. Every route **must** have a folder, except for the root ('/').
@@ -69,7 +69,7 @@ Inside each folder, you can add files that build up your page. Typically, in oth
 
 The only required file is `+page.svelte`. This is where you can add your markup, components, styles and logic. However, it's likely that your page might need to load some data to be displayed. This can be done on another file, `+page.js`, in the same folder. There, you can add a `load` function where you'll have access to query params and other things and be able to load all the data your page needs.
 
-The cool thing about that is that SvelteKit will use the content of the `+page.js` file **both server-side and client-side**, depending on the situation. However, if the data you need can only be loaded on the server (like for example querying a database or using a secret key), you can name it `+page.server.js` instead. Both would do the same thing, however ///the naming difference makes it much easier on a quick glance to identify what runs where.///
+The cool thing about that is that SvelteKit will use the content of the `+page.js` file **both server-side and client-side**, depending on the situation. However, if the data you need can only be loaded on the server (like for example querying a database or using a secret key), you can name it `+page.server.js` instead. Both would do the same thing, however ==the naming difference makes it much easier on a quick glance to identify what runs where.==
 
 So, an example of what the basic file structure for my website would look like:
 

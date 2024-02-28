@@ -28,7 +28,7 @@ I live in the southernmost state of Brazil, a state that is known to have a loca
 
 Around 10 years ago, I started a long-distance relationship with a girl that lived about 700km (430 miles) from me. Against all odds we made it work and we’re now happily married! Anyway, I remember when her parents came to visit my city for the first time. Her dad loved the “gaúcho” culture, and was looking forward to coming to my state and seeing firsthand what it was like, and to eat an authentic gaúcho barbecue. Little did he know… that’s not what it’s like here either.
 
-> !!! info
+> [!info]
 > "Gaúcho" is how the people born in the state of Rio Grande do Sul (like me) are called. The name is also used a lot in Uruguay and Argentina, since those countries share a border with my state and also share a lot of the same culture.
 
 You see, I do live in the state known for all that stuff, but the region I live in was populated waaaay later in history, by…. italian immigrants.

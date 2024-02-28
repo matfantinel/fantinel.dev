@@ -15,7 +15,7 @@ type: Article
 showToc: true
 ---
 
-> !!! info
+> [!info]
 > TL;DR: It's incredible and worth all the praise it's got. Not perfect, but really close to it.
 
 Elden Ring was probably the most hyped up game of the past couple of years, and its release in February (2022) was met with a lot of media coverage and players raving about how incredible it was.
@@ -26,7 +26,7 @@ I was completely amazed by that game, and it became one of my all-time favorites
 
 ## The Game
 
-A few minutes into the game and you're presented with its selling point: you open a door and you're now free to explore an entire world, full of mysteries and dangers. Right in front of you is a boss that @@@will totally destroy you@@@ if you try to beat it, and it's an important lesson of what to expect in the game: you need to be prepared. You circle around that boss and make a note on the map to come back to it later. Then you proceed into a forest and find some soldiers that you can defeat. You're not sure why you're fighting them or why they wanna kill you, but it's fun, so you do it. Then you find an entire camp full of them, including one with a more menacing armor, a big shield and a spear. You try to face it and it kills you <i>once. Twice. Three times</i>. You get really close to beating it, your hands start sweating with anticipation, and you finally do it! Metaphorical tears of joy roll down your face and you feel really good about what you just accomplished. Then you realize that was just a regular enemy, that will respawn every time you rest. <b>There's so much more to uncover.</b>
+A few minutes into the game and you're presented with its selling point: you open a door and you're now free to explore an entire world, full of mysteries and dangers. Right in front of you is a boss that @@will totally destroy you@@ if you try to beat it, and it's an important lesson of what to expect in the game: you need to be prepared. You circle around that boss and make a note on the map to come back to it later. Then you proceed into a forest and find some soldiers that you can defeat. You're not sure why you're fighting them or why they wanna kill you, but it's fun, so you do it. Then you find an entire camp full of them, including one with a more menacing armor, a big shield and a spear. You try to face it and it kills you <i>once. Twice. Three times</i>. You get really close to beating it, your hands start sweating with anticipation, and you finally do it! Metaphorical tears of joy roll down your face and you feel really good about what you just accomplished. Then you realize that was just a regular enemy, that will respawn every time you rest. <b>There's so much more to uncover.</b>
 
 That's the main hook of all games in the "Soulsborne" series, and it works really well. It uses frustration to build up an extremely satisfying reward when you win. Elden Ring did not change that, instead it mixed that feeling with an open world that gives you more ways to cool down between tough fights, or multiple ways to get stronger to prepare. It took me over 30 hours to have my character strong enough to tackle that boss right after the first door of the game. That was like 1/3 of my play time, and it was probably the best part of it. Every discovery was something brand new, and many encounters provided a fair challenge.
 
@@ -56,7 +56,7 @@ The Lands Between (the name of the in-game world) is a beautiful place, and all 
 
 ![Screenshot of Elden Ring. It's taken from the top of a cliff, showing a beautiful landscape. To the left, many rocky mountains and a golden tree. To the center, a huge lake covered in mist, and a castle sitting on top of a cliff farther back. To the right, more rocky cliffs with trees and another golden tree.](/posts/review-elden-ring/liurnia.jpg)
 
-///The world is fully realized, and there are rewards in every corner./// However, it's not the best part of the game.
+==The world is fully realized, and there are rewards in every corner.== However, it's not the best part of the game.
 
 In some parts of the world are places called Legacy Dungeons - they're areas that work just like the older games (like Dark Souls or Bloodborne) did: smaller, more linear areas, with great level design and that offer a more curated, if limited, experience. Those are still the best parts of the game, not its open world. I really hope they continue to be a thing in future games.
 
@@ -68,4 +68,4 @@ The sidequests, really. They're kinda bullshit. Not their content per se, but th
 
 I think the best thing I can say about this game is that after I've beat it (which took me 92 hours), I immediately started the game over again, to play with a different character. Even after so many hours, I was still wanting more. Though not my favorite game ever, it was still one of the best.
 
-I hereby give this game a sparkling @@@10/10@@@ score!
+I hereby give this game a sparkling @@10/10@@ score!
