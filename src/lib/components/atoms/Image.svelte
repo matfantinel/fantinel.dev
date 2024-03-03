@@ -26,6 +26,9 @@
 	function buildSrcset() {
 		if (dev || HttpRegex.test(src)) return;
 
+		// Only build srcset if files are png, jpg, jpeg, webp or avif
+		if (!src.match(/\.(png|jpe?g|webp|avif)$/)) return;
+
 		let srcset = '';
 
 		if (widths) {
