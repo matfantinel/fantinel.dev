@@ -7,7 +7,7 @@ const config = {
 	resolve: {
 		alias: {
 			$routes: path.resolve('./src/routes'),
-			$cms: path.resolve('./cms')
+			$cms: path.resolve('./static/cms')
 		}
 	}
 };

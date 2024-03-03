@@ -4,7 +4,7 @@ import path from 'path';
 import { frontmatterToProject } from "./model";
 import type Project from './model';
 
-const MD_FILES_PATH = path.join(process.cwd(), 'cms/projects');
+const MD_FILES_PATH = path.join(process.cwd(), 'static/cms/projects');
 
 export const getProjects = async (): Promise<Project[]> => {
   // Read all files in the specified directory and get the .md files

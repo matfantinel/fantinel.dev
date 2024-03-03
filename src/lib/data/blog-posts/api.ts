@@ -6,7 +6,7 @@ import { frontmatterToBlogPost } from "./model";
 import type BlogPost from './model';
 
 const PAGE_SIZE = 12;
-const MD_FILES_PATH = path.join(process.cwd(), 'cms/articles');
+const MD_FILES_PATH = path.join(process.cwd(), 'static/cms/articles');
 
 export const getPosts = async (page?: number, count?: number, showHidden = false): Promise<PaginatedResponse<BlogPost>> => {
   // Read all files in the specified directory and get the .md files

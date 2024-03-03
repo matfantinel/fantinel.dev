@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { HttpRegex } from '$lib/utils/regex';
 	import Image from '../atoms/Image.svelte';
 
 	export let title: string | undefined;
@@ -21,7 +20,7 @@
 		}
 	}
 
-	if (!href.startsWith('/images')) {
+	if (!href.startsWith('/images') && !href.startsWith('/cms')) {
 		href = `/images/${href}`;
 	}
 
