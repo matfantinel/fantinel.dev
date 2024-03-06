@@ -21,6 +21,10 @@
 
 		// Now, replace the remaining line breaks with <br> tags
 		cleanText = cleanText.replace(/\n/g, '<br>');
+
+		// Remove every "\" character immediately before or after a <br> tag
+		cleanText = cleanText.replace(/\\<br>/g, '<br>');
+		cleanText = cleanText.replace(/<br>\\/g, '<br>');
 	}
 </script>
 

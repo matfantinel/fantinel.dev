@@ -2,7 +2,7 @@
 slug: ionic-animal-crossing-companion
 title: Developing an Animal Crossing companion app with Ionic
 excerpt: No bells were spent while building this app.
-coverImage: /posts/ionic-animal-crossing-companion/cover.jpg
+coverImage: /images/posts/ionic-animal-crossing-companion/cover.jpg
 coverImageAlt: ""
 showImage: true
 date: 2020-07-28T01:19:02.137Z
@@ -29,21 +29,21 @@ This post illustrates my experience developing it. It is not a tutorial or an in
 
 Since I'm testing Ionic (version 5 as of writing), I tried to check out as much of the experience they provide as I could. Even though you can create an app via their CLI, they also provide [an online App Wizard](https://ionicframework.com/start) to do that visually. It's a pretty cool way to display the starting templates, easily setting theme colors, default icon and the JS Framework you'll use. I chose Angular for this one.
 
-![Screenshot of Ionic's app creation wizard. It allows you to pick a name, an icon, a template, and a framework to start your app.](/posts/ionic-animal-crossing-companion/wizard.jpg)
+![Screenshot of Ionic's app creation wizard. It allows you to pick a name, an icon, a template, and a framework to start your app.](/images/posts/ionic-animal-crossing-companion/wizard.jpg)
 
 After setting it up, the wizard gives you a CLI command with an ID to run on your machine. Therefore it still uses the CLI in the end, but it's a nice touch for the starting experience.
 
-![The wizard gives you a CLI command with an ID for you to run on your machine](/posts/ionic-animal-crossing-companion/all-set.jpg)
+![The wizard gives you a CLI command with an ID for you to run on your machine](/images/posts/ionic-animal-crossing-companion/all-set.jpg)
 
 After running that command, the CLI prompted me if I wanted to integrate with [Capacitor](https://capacitorjs.com/), which is a tool that makes the app deployable to Android/iOS. I accepted, since I plan to release it on the Play Store at some point. The main goal is to release the app as a [PWA](/what-are-pwas-and-why-should-i-care-about-them/), but an Android version wouldn't hurt, since the publishing process is almost-free and there's almost zero extra effort involved. Publishing it for iPhones is not a goal due to the cost and effort required to publish on the App Store.
 
 After installation, I could run the app with `ionic serve`, which resulted in a template app with the settings I had set on the App Wizard.
 
-![Screenshot of a browser with browser tools open, and a mobile website with Ionic's default template.](/posts/ionic-animal-crossing-companion/initial-template.jpg)
+![Screenshot of a browser with browser tools open, and a mobile website with Ionic's default template.](/images/posts/ionic-animal-crossing-companion/initial-template.jpg)
 
 The default folder structure is pretty straightforward and should be familiar to anyone who has ever worked with Angular before.
 
-![Default folder structure on an Ionic Angular app](/posts/ionic-animal-crossing-companion/default-folder-structure.jpg)
+![Default folder structure on an Ionic Angular app](/images/posts/ionic-animal-crossing-companion/default-folder-structure.jpg)
 
 ## Starting development
 
@@ -82,15 +82,15 @@ export class AppRoutingModule {}
 
 For me, this is the best part. Ionic makes it SO easy to change themes! There's a `variables.scss` file on the `theme` folder, where you can find Ionic's default color palette and change anything. But they provide [an amazing Color Generator](https://ionicframework.com/docs/theming/color-generator) that can make all the palette calculations for you. Just put your primary/secondary/success/danger/etc colors in there, and it will output the code for you to paste on your app.
 
-![Screenshot of Ionic's color generator. When you set primary, secondary, and more colors by giving a HEX value, and Ionic automatically generates shade variants and gives you a live preview.](/posts/ionic-animal-crossing-companion/color-generator.jpg)
+![Screenshot of Ionic's color generator. When you set primary, secondary, and more colors by giving a HEX value, and Ionic automatically generates shade variants and gives you a live preview.](/images/posts/ionic-animal-crossing-companion/color-generator.jpg)
 
 After some time styling, I modified the layout of the two page skeletons I wanna have, the Home page (that mimics the Nookphone in the game), and I styled the header of the other pages.
 
-![Gif showing the home screen of my app. The home screen has 4 buttons: Passport, Island, To-Do and Daily Chores. Clicking on them opens a page.](/posts/ionic-animal-crossing-companion/skeleton.gif)
+![Gif showing the home screen of my app. The home screen has 4 buttons: Passport, Island, To-Do and Daily Chores. Clicking on them opens a page.](/images/posts/ionic-animal-crossing-companion/skeleton.gif)
 
 Since I wanted to have the same header on all pages, I ended up creating a component for it. Since I had already two components and six pages, I decided to split them up in different folders (I honestly don't know why Ionic doesn't do that by default). My folder structure ended up like this:
 
-![The folder structure after my modifications](/posts/ionic-animal-crossing-companion/modified-folder-structure.jpg)
+![The folder structure after my modifications](/images/posts/ionic-animal-crossing-companion/modified-folder-structure.jpg)
 
 Also, to be able to import the same component into multiple Pages (each page with its own module), I had to create the ComponentsModule. This required a bit of searching because I wasn't familiar with this approach yet. ComponentsModule by itself is very simple, I just import the Components there:
 

@@ -2,7 +2,7 @@
 slug: what-are-pwas-and-why-should-i-care-about-them
 title: What are PWAs and why should I care about them?
 excerpt: We see a lot of talk about PWAs, but the concept is not that easy to understand.
-coverImage: /posts/what-are-pwas-and-why-should-i-care-about-them/cover.jpg
+coverImage: /images/posts/what-are-pwas-and-why-should-i-care-about-them/cover.jpg
 coverImageAlt: ""
 showImage: true
 date: 2019-03-12
@@ -37,11 +37,11 @@ This all may sound complicated, which is why there are many "recipes" of Service
 
 You probably have already found some of them in the wild. In Chrome for Android, opening a certain website might trigger this panel at the bottom of the screen:
 
-![PWA Install Prompt on Android](/posts/what-are-pwas-and-why-should-i-care-about-them/install-prompt-android.jpg 'Add Notepad to the home screen')
+![PWA Install Prompt on Android](/images/posts/what-are-pwas-and-why-should-i-care-about-them/install-prompt-android.jpg 'Add Notepad to the home screen')
 
 And on Desktop, this option shows up in the URL bar:
 
-![Chrome prompts you to install PWA](/posts/what-are-pwas-and-why-should-i-care-about-them/install-prompt.jpg)
+![Chrome prompts you to install PWA](/images/posts/what-are-pwas-and-why-should-i-care-about-them/install-prompt.jpg)
 
 With this, your app is able to be displayed on your phone or PC's app list just like any other app. Cool!
 

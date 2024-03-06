@@ -2,7 +2,7 @@
 slug: blog-development-sveltekit
 title: How I built a blog with Svelte and SvelteKit
 excerpt: An overview of the experience I've had using these amazing projects.
-coverImage: /posts/blog-development-sveltekit/cover.jpg
+coverImage: /images/posts/blog-development-sveltekit/cover.jpg
 coverImageAlt: ""
 showImage: true
 date: 2021-09-08
@@ -56,7 +56,7 @@ The design itself was something I came up with, and it's an amalgamation of idea
 
 After the design was complete, I finally began developing it. Since there are some things that you can only find out while developing it and giving it more attention, I made some small tweaks to the design while implementing it. Still, the final result was _really_ similar to the initial design. I count that as a success!
 
-![Screenshot of the design and end result of the website. Both look really similar!](/posts/blog-development-sveltekit/design-vs-result.png 'The design (left) and the result (right)')
+![Screenshot of the design and end result of the website. Both look really similar!](/images/posts/blog-development-sveltekit/design-vs-result.png 'The design (left) and the result (right)')
 
 ## Routing
 

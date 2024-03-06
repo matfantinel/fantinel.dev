@@ -2,7 +2,7 @@
 slug: fixing-favicons
 title: How to fix your Favicons
 excerpt: Favicons suck. Luckily, there are ways to make them suck less.
-coverImage: /posts/fixing-favicons/cover.jpg
+coverImage: /images/posts/fixing-favicons/cover.jpg
 coverImageAlt: ""
 showImage: true
 date: 2021-01-06
@@ -26,7 +26,7 @@ I recently met my new best friend, [Real Favicon Generator](https://realfavicong
 
 You just have to add in your existing favicon image (for best results, a SVG or high-quality PNG is recommended). From then on, the generator will display previews and allow customization of each category of favicon it will generate:
 
-![Screenshot of Real Favicon Generator's customization](/posts/fixing-favicons/favicon-generator-customization.jpg 'The customization options allow you to set different icons depending on device and OS, and even generate icons with background colors if needed.')
+![Screenshot of Real Favicon Generator's customization](/images/posts/fixing-favicons/favicon-generator-customization.jpg 'The customization options allow you to set different icons depending on device and OS, and even generate icons with background colors if needed.')
 
 At the bottom, you can even set up ways of avoiding caching issues, compression, and scaling algorithms (!). After all that, it will generate them all as set, give you a zip with all the files, and the HTML code to paste on your `<head>`. You can check the result on this very website (fantinel.dev). The favicon should look fantastic on every device/browser combination.
 
@@ -57,7 +57,7 @@ So, there are 5 types of favicons that we need to add, if we want to support eve
 
 - `safari-pinned-tab.svg` is used when users pin a tab on Safari for macOS. Basically, you declare a monochrome SVG and a theme color. Safari does the rest.
 
-![Demo of Safari pinned tabs favicon behavior](/posts/fixing-favicons/safari-pinned-tabs-demo.jpg)
+![Demo of Safari pinned tabs favicon behavior](/images/posts/fixing-favicons/safari-pinned-tabs-demo.jpg)
 
 With those files, you should be good to go on every single browser, by adding this to your `<head>`:
 

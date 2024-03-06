@@ -2,7 +2,7 @@
 slug: purpose-of-this-blog
 title: The purpose of this blog
 excerpt: Why does it exist?
-coverImage: /posts/purpose-of-this-blog/cover.jpg
+coverImage: /images/posts/purpose-of-this-blog/cover.jpg
 showImage: true
 date: 2019-03-08
 updated: null

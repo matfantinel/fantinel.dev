@@ -2,7 +2,7 @@
 slug: belonging-somewhere
 title: Belonging Somewhere
 excerpt: I could always see parts of myself belonging to some groups or places, but never really felt like I was truly a part of anything.
-coverImage: /posts/belonging-somewhere/cover.jpg
+coverImage: /images/posts/belonging-somewhere/cover.jpg
 coverImageAlt: Picture of a staircase surrounded by vineyards. In the background, a church tower and the blue sky.
 showImage: true
 socialImage: ""

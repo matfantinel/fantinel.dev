@@ -2,7 +2,7 @@
 slug: plausible-ethical-analytics
 title: Ethical Analytics are Plausible, at Last
 excerpt: Web Analytics is such a morally ambiguous area that I’ve avoided it for years, but now I can finally do it with peace of mind.
-coverImage: /posts/plausible-ethical-analytics/cover.jpg
+coverImage: /images/posts/plausible-ethical-analytics/cover.jpg
 coverImageAlt: ""
 showImage: true
 date: 2022-02-01
@@ -39,7 +39,7 @@ Plausible is a small company from Europe that makes Plausible Analytics, a priva
 - They offer [ways of bypassing adblockers](https://plausible.io/docs/proxy/introduction);
 - It's simply a great product.
 
-![Screenshot of the Plausible dashboard, showing number of visitors, top sources, top pages, visitors by city, and device information.](/posts/plausible-ethical-analytics/dashboard.png 'Clicking on some data blocks allow you to filter data - so you can still understand how your users behave differently depending on a number of factors.')
+![Screenshot of the Plausible dashboard, showing number of visitors, top sources, top pages, visitors by city, and device information.](/images/posts/plausible-ethical-analytics/dashboard.png 'Clicking on some data blocks allow you to filter data - so you can still understand how your users behave differently depending on a number of factors.')
 
 #### Custom Goals
 

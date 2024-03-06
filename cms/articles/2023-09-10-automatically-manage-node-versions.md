@@ -2,7 +2,7 @@
 slug: automatically-manage-node-versions
 title: How to automatically manage Node versions
 excerpt: Tired of manually switching Node versions for different projects? Discover how to automate the process using nvm.
-coverImage: /posts/automatically-manage-node-versions/Cover.png
+coverImage: /images/posts/automatically-manage-node-versions/Cover.png
 coverImageAlt: ""
 showImage: true
 socialImage: ""

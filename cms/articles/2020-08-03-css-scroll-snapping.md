@@ -2,7 +2,7 @@
 slug: css-scroll-snapping
 title: CSS Scroll Snapping - Improve Scrolling without JS
 excerpt: Learn how to snap scroll positions with CSS only.
-coverImage: /posts/css-scroll-snapping/cover.jpg
+coverImage: /images/posts/css-scroll-snapping/cover.jpg
 coverImageAlt: ""
 showImage: true
 date: 2020-08-03
@@ -20,7 +20,7 @@ CSS is evolving constantly and the past few years have brought us amazing stuff.
 
 It is an easy way to guarantee that users will scroll to the correct portion of your page or of a container. Picture a landing page that is easily swipable/scrollable between sections, or swipable cards. Take in mind how Android's Recent Apps screen works, for example:
 
-![Android's Recent Apps screen has scroll mapping between app cards](/posts/css-scroll-snapping/android-scroll-snapping.gif)
+![Android's Recent Apps screen has scroll mapping between app cards](/images/posts/css-scroll-snapping/android-scroll-snapping.gif)
 
 You can see that Android never allows the end of a scroll to be in a place between cards. There's a certain threshold that determines that the scroll will snap into the nearest card and put it in the center. All that while still keeping scrolling momentum, allowing you to go from one edge of the list to another in a single scroll if you want to.
 

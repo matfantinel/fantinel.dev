@@ -2,7 +2,7 @@
 slug: iron-maiden-killers-concept-album
 title: Iron Maiden's "Killers" is a concept album
 excerpt: Seriously, hear me out
-coverImage: /posts/iron-maiden-killers-concept-album/cover.png
+coverImage: /images/posts/iron-maiden-killers-concept-album/cover.png
 coverImageAlt: Cover of the album
 showImage: true
 date: 2023-06-16

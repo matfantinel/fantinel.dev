@@ -19,7 +19,7 @@ type: Article
 
 > `isolation` is a special property whose sole and unique purpose is to create a new stacking context on the element it is applied to, with no other side-effects. 😄
 >
-> - Francesco Vetere, in [The CSS property you didn't know you needed](https://dev.to/francescovetere/the-css-property-you-didnt-know-you-needed-3fk0)
+> – Francesco Vetere, in [The CSS property you didn't know you needed](https://dev.to/francescovetere/the-css-property-you-didnt-know-you-needed-3fk0)
 
 You learn something new everyday! Today, I learned about CSS's [isolation](https://developer.mozilla.org/en-US/docs/Web/CSS/isolation) property. I learned it through [this Francesco Vetere post](https://dev.to/francescovetere/the-css-property-you-didnt-know-you-needed-3fk0), which I highly recommend you to read, as he explains it way better than I do.
 

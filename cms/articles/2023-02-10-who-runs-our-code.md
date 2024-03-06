@@ -2,7 +2,7 @@
 slug: who-runs-our-code
 title: Who Runs Our Code
 excerpt: "In a world with tons of business requirements, conversion metrics, and a stampede of new technologies, front-end development can easily become oblivious of one thing: where our code runs."
-coverImage: /posts/who-runs-our-code/cover.jpg
+coverImage: /images/posts/who-runs-our-code/cover.jpg
 coverImageAlt: ""
 showImage: true
 date: 2023-02-10

@@ -30,12 +30,12 @@ export const frontmatterToBlogPost = (frontmatter: any, content: string): BlogPo
     date: frontmatter.date,
     updated: frontmatter.updated,
     coverImage: frontmatter.coverImage ? {
-      src: '/images' + frontmatter.coverImage,
+      src: frontmatter.coverImage,
       alt: frontmatter.coverImageAlt
     } : undefined,
     showImage: frontmatter.showImage,
     socialImage: frontmatter.socialImage ? {
-      src: '/images' + frontmatter.socialImage,
+      src: frontmatter.socialImage,
       alt: ''
     } : undefined,
     tags: frontmatter.tags?.sort((a: string, b: string) => a.localeCompare(b)),

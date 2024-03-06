@@ -2,7 +2,7 @@
 slug: review-zelda-tears-of-the-kingdom
 title: "My Review of The Legend of Zelda: Tears of the Kingdom"
 excerpt: A spoiler-free review of the ultimate Zelda game
-coverImage: /posts/review-zelda-tears-of-the-kingdom/cover.jpg
+coverImage: /images/posts/review-zelda-tears-of-the-kingdom/cover.jpg
 coverImageAlt: Official artwork of the game. Link stands on a floating island, with more floating island and clouds in the background
 showImage: true
 socialImage: ""
@@ -62,7 +62,7 @@ Ultrahand lets you attach objects to each other, and there are a ton of objects 
 
 I had a lot of fun building things! Honestly, most of the stuff I built either didn't work or was a car that was slower than walking, but the fun of experimenting was worth it. By the end of the game, I was already building flying machines to cross Hyrule with.
 
-![Link and Zelda in their royal clothes in a forest](/posts/review-zelda-tears-of-the-kingdom/link-and-zelda.JPG)
+![Link and Zelda in their royal clothes in a forest](/images/posts/review-zelda-tears-of-the-kingdom/link-and-zelda.JPG)
 
 ## Story
 
@@ -78,13 +78,13 @@ The problem is, it can become quite overwhelming. If you're one of those people 
 
 Not everyone will be able to do that, though. And I can totally see those people giving up on the game because it's just too much.
 
-![Screenshot of the game, with a hot air balloon flying, with the sunrise in the horizon](/posts/review-zelda-tears-of-the-kingdom/balloon.JPG)
+![Screenshot of the game, with a hot air balloon flying, with the sunrise in the horizon](/images/posts/review-zelda-tears-of-the-kingdom/balloon.JPG)
 
 ## Verdict
 
 Tears of the Kingdom is the ultimate Zelda game - and to me, also the ultimate open-world game. I finished the main story and did a lot of side content, but after 95 hours, I only played a fraction of what the game has to offer.
 
-![Screenshot of the game, showing a tropical village with palm trees and huts. A lot of people are partying around bonfires](/posts/review-zelda-tears-of-the-kingdom/tropical-village.JPG)
+![Screenshot of the game, showing a tropical village with palm trees and huts. A lot of people are partying around bonfires](/images/posts/review-zelda-tears-of-the-kingdom/tropical-village.JPG)
 
 I believe its impact is not as big as Breath of the Wild's was, though, at least not to me personally. That was a rebirth of the series, and it came at a moment of big changes in my life. TOTK, in comparison, doesn't fully reinvent anything, but instead improves (greatly) all the reinventions that BOTW did. It's not fair to judge a game by its impact alone though. If every single game reinvented everything, then reinvention wouldn't matter.
 

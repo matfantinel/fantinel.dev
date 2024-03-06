@@ -2,7 +2,7 @@
 slug: web-images-modern-formats
 title: "Smarter, Lighter, Better Images: A Guide to Optimization"
 excerpt: Learn how to reduce page loading times and bounce rate.
-coverImage: /posts/web-images-modern-formats/cover.jpg
+coverImage: /images/posts/web-images-modern-formats/cover.jpg
 coverImageAlt: Picture of sand with a feather and a footprint besides it
 showImage: true
 date: 2021-01-30
@@ -45,7 +45,7 @@ AVIF -> WebP -> JPG (or PNG)
 
 If you look at the resulting HTML in your website, you can see that the `<img>` element has a `src` defined, but when you hover over it, it shows what is the actual file that's being loaded. If you're on a supported browser, it will have loaded the AVIF file. If you're on Safari, it will have loaded the WebP one. Otherwise, if you're using IE or something (I'm sorry), the original JPG or PNG file will be loaded.
 
-![Screenshot of the generated HTML code. Hovering over the PNG filename reveals that an AVIF file is being downloaded instead.](/posts/web-images-modern-formats/generated-html.png 'The img tag shows the PNG file as source, but hovering the mouse over it reveals that the AVIF file is the one that actually loaded.')
+![Screenshot of the generated HTML code. Hovering over the PNG filename reveals that an AVIF file is being downloaded instead.](/images/posts/web-images-modern-formats/generated-html.png 'The img tag shows the PNG file as source, but hovering the mouse over it reveals that the AVIF file is the one that actually loaded.')
 
 ## Load smaller images
 
@@ -73,7 +73,7 @@ Check out the value on the example: `(max-width: 979px) 100vw, 640px`. What that
 
 It is easier to understand if we visualize it like this:
 
-![Screenshots picturing how the sizes property affects the image loading on both mobile and desktop](/posts/web-images-modern-formats/sizes.png "On mobile, the image width is almost the same as the viewport, so it's okay to use 100vw. On desktop, we usually limit the image width, so 640px was the sweet spot in this particular case.")
+![Screenshots picturing how the sizes property affects the image loading on both mobile and desktop](/images/posts/web-images-modern-formats/sizes.png "On mobile, the image width is almost the same as the viewport, so it's okay to use 100vw. On desktop, we usually limit the image width, so 640px was the sweet spot in this particular case.")
 
 Of course, different websites have different needs and situations. Make sure to adapt the code to your specific need.
 
@@ -87,9 +87,9 @@ You might have noticed the `loading="lazy"` and `decoding="async"` attributes in
 
 `loading="lazy"` is probably the most important of the two. It is an easy way of telling the browser to ==only load the images when they get close to appearing in the viewport==. There is a threshold that is defined by the browser that controls how close it needs to be before it gets loaded, so you don't have to worry about them not showing up if the user scrolls fast. ==This ensures that the initial load of the website is as lean as it can get, improving perceived performance and also saving you some money on server requests.==
 
-![Screenshot of the browser tools showing network requests: There are only two images that have been downloaded.](/posts/web-images-modern-formats/first-load-requests.png "When the website is initially loaded, it only downloads what's needed: my avatar image and the preview of the first blog post, that will show up after scrolling a bit.")
+![Screenshot of the browser tools showing network requests: There are only two images that have been downloaded.](/images/posts/web-images-modern-formats/first-load-requests.png "When the website is initially loaded, it only downloads what's needed: my avatar image and the preview of the first blog post, that will show up after scrolling a bit.")
 
-![Screenshot of the browser tools showing network requests: now, there are many more images downloaded.](/posts/web-images-modern-formats/after-scrolling-requests.png "When I scroll down the page, the images are downloaded as they're close to appearing.")
+![Screenshot of the browser tools showing network requests: now, there are many more images downloaded.](/images/posts/web-images-modern-formats/after-scrolling-requests.png "When I scroll down the page, the images are downloaded as they're close to appearing.")
 
 ## Results In Practice
 
@@ -99,7 +99,7 @@ Note: after doing some tests, I have decided that the benefits of serving differ
 
 The following data is taken from the home page of the website, since it has a lot of images:
 
-![Screenshot of browser tool network requests, from before and after optimization. Before: 1.6MB download; After: 249KB download](/posts/web-images-modern-formats/results.png)
+![Screenshot of browser tool network requests, from before and after optimization. Before: 1.6MB download; After: 249KB download](/images/posts/web-images-modern-formats/results.png)
 
 ==The total download size decreased by a whopping 85%!!== That's an incredible difference, with no noticeable difference in quality. Your results may vary, as they depend on how much of your website's size is images.
 

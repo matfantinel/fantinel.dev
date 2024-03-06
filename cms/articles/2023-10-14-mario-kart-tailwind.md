@@ -19,8 +19,8 @@ type: Article
 ---
 
 > Likewise, I suspect most people on opposing sides of the Tailwind debate actually completely agree on Tailwind itself. I don’t think our divide centers on atomic CSS, or utility classes; I think the contention comes from valuations we made long before we ever chose our tools. Where one of us sees a selling point, the other sees a flaw.
->
-> - Josh Collinsworth, in [Classic rock, Mario Kart, and why we can't agree on Tailwind](https://joshcollinsworth.com/blog/tailwind-is-smart-steering?utm_source=matt-fantinel)
+>  
+> – Josh Collinsworth, in [Classic rock, Mario Kart, and why we can't agree on Tailwind](https://joshcollinsworth.com/blog/tailwind-is-smart-steering?utm_source=matt-fantinel)
 
 I've found this gem of an article a while ago, and have been thinking constantly about it ever since. I think its idea of things being good and bad for the same reasons is spot on - and also the reason why we'll never agree on them.
 

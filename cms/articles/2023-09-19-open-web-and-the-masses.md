@@ -2,7 +2,7 @@
 slug: open-web-and-the-masses
 title: The Open Web and "the masses"
 excerpt: A rant about the Open Web and how it is not for everyone - but that's okay.
-coverImage: /posts/open-web-and-the-masses/cover.jpeg
+coverImage: /images/posts/open-web-and-the-masses/cover.jpeg
 coverImageAlt: AI-generated image of a concrete wall with barbed wire. There's a gap in the wall from which it's possible to see a vast green field below blue skies, with many people walking around and birds flying.
 showImage: true
 socialImage: ""

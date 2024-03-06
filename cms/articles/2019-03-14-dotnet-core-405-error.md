@@ -2,7 +2,7 @@
 slug: dotnet-core-405-error
 title: .NET Core - Method not allowed on PUT and DELETE requests
 excerpt: See how to solve this annoying error after deploying your .NET Core API.
-coverImage: /posts/dotnet-core-405-error/cover.jpg
+coverImage: /images/posts/dotnet-core-405-error/cover.jpg
 coverImageAlt: ""
 showImage: true
 date: 2019-03-14
@@ -19,7 +19,7 @@ Recently, I've been working on an Angular app, powered with a .NET Core API. Eve
 
 After pushing code to the beta server, most of it was working fine. The front-end was being able to call GET, POST and OPTIONS requests normally. When trying to DELETE or PUT entries, however, the following error would show up on the browser's console:
 
-![405 (Method Not Allowed) | Access to XMLHttpRequest at '...' from origin '...' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.](/posts/dotnet-core-405-error/post1.jpg)
+![405 (Method Not Allowed) | Access to XMLHttpRequest at '...' from origin '...' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.](/images/posts/dotnet-core-405-error/post1.jpg)
 
 _Method not allowed? CORS error? What?_
 

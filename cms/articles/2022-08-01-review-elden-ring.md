@@ -2,7 +2,7 @@
 slug: review-elden-ring
 title: "Review: Elden Ring"
 excerpt: My thoughts on what probably is the biggest game release of 2022.
-coverImage: /posts/review-elden-ring/cover.png
+coverImage: /images/posts/review-elden-ring/cover.png
 coverImageAlt: ""
 showImage: true
 date: 2022-08-01
@@ -30,7 +30,7 @@ A few minutes into the game and you're presented with its selling point: you ope
 
 That's the main hook of all games in the "Soulsborne" series, and it works really well. It uses frustration to build up an extremely satisfying reward when you win. Elden Ring did not change that, instead it mixed that feeling with an open world that gives you more ways to cool down between tough fights, or multiple ways to get stronger to prepare. It took me over 30 hours to have my character strong enough to tackle that boss right after the first door of the game. That was like 1/3 of my play time, and it was probably the best part of it. Every discovery was something brand new, and many encounters provided a fair challenge.
 
-![Elden Ring screenshot. In it, the player is fighting a huge knight in golden armor riding a horse, also in golden armor.](/posts/review-elden-ring/tree-sentinel.jpg "The Tree Sentinel is likely the first boss you'll encounter, but not the first one you'll defeat.")
+![Elden Ring screenshot. In it, the player is fighting a huge knight in golden armor riding a horse, also in golden armor.](/images/posts/review-elden-ring/tree-sentinel.jpg "The Tree Sentinel is likely the first boss you'll encounter, but not the first one you'll defeat.")
 
 However, I feel that the feeling of challenge was really uneven throughout the game. When both my character and I were not well prepared or strong enough, it felt more rewarding when I got a win. Later in the game, I was so overleveled for some bosses that I didn't get that feeling of adrenaline during a big fight, nor the big endorphine release when I defeated them. And that did not come from me grinding XP somewhere. I was just enjoying the game, exploring every nook and cranny I could find, and getting stronger as I did that.
 
@@ -44,7 +44,7 @@ I like this.
 
 It has a bit of a more realistic approach to storytelling - your character is part of that world, and as such you'd probably be acquainted to some of the more common stories and myths in there, and definitely not be aware at all of the secrets and twists of the royal family of demigods. Having to go out of your way to figure things out makes you more attached to the game in a way, and makes you care more. Old games used to do this for technical reasons, but there's definitely an appeal here. I do understand it's not very accessible though.
 
-![Elden Ring art. A long-haired swordswoman seems hurt, holding her arm with one hand, and a katana on another. In front of her, a huge warrior with a red mane stands tall with arms crossed.](/posts/review-elden-ring/malenia-and-radahn.jpg 'The demigods have an interesting backstory and while you interact little with them, knowing that backstory makes their appearances much more meaningful.')
+![Elden Ring art. A long-haired swordswoman seems hurt, holding her arm with one hand, and a katana on another. In front of her, a huge warrior with a red mane stands tall with arms crossed.](/images/posts/review-elden-ring/malenia-and-radahn.jpg 'The demigods have an interesting backstory and while you interact little with them, knowing that backstory makes their appearances much more meaningful.')
 
 The lore itself is great. It's a more common fantasy setting, with dragons, wizards, gods, but it feels unique by adding a lot of nuance to it, and making it centered on a family of very unique characters that you either befriend or fight during the game. These characters are well-written and have a lot of depth, and looking into how they got to be what they are now is a really cool way to spend time when you're not playing the game.
 
@@ -54,7 +54,7 @@ Had I not played this immediately after playing Bloodborne, I think I'd have enj
 
 The Lands Between (the name of the in-game world) is a beautiful place, and all of its areas tell a bit of the story surrounding everything. You have vast green areas, a huge lake surrounded by mist, a mountain around a volcano, icy peaks, a golden city, and an area that's almost literal hell and that will kill you so many times you'll kinda start to like it. Almost everything is fully explorable from the start of the game, though you might face some "natural barriers" in the form of enemies you're still not ready to face.
 
-![Screenshot of Elden Ring. It's taken from the top of a cliff, showing a beautiful landscape. To the left, many rocky mountains and a golden tree. To the center, a huge lake covered in mist, and a castle sitting on top of a cliff farther back. To the right, more rocky cliffs with trees and another golden tree.](/posts/review-elden-ring/liurnia.jpg)
+![Screenshot of Elden Ring. It's taken from the top of a cliff, showing a beautiful landscape. To the left, many rocky mountains and a golden tree. To the center, a huge lake covered in mist, and a castle sitting on top of a cliff farther back. To the right, more rocky cliffs with trees and another golden tree.](/images/posts/review-elden-ring/liurnia.jpg)
 
 ==The world is fully realized, and there are rewards in every corner.== However, it's not the best part of the game.
 

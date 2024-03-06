@@ -2,7 +2,7 @@
 slug: github-copilot-thoughts
 title: Thoughts on GitHub Copilot
 excerpt: I was initially skeptical about it, but I've come to appreciate it more and more as I use it.
-coverImage: /posts/github-copilot-thoughts/cover.jpg
+coverImage: /images/posts/github-copilot-thoughts/cover.jpg
 coverImageAlt: ""
 showImage: true
 date: 2022-09-05
@@ -21,7 +21,7 @@ I started using GitHub Copilot around May this year as part of its free beta, an
 
 First off, let's see what Copilot has to say about itself:
 
-![Screenshot of GitHub Copilot describing itself: 'GitHub Copilot is a code completion tool that uses machine learning to suggest code snippets based on the context of your code. It's available as a VS Code extension, and it's free to use for now.'](/posts/github-copilot-thoughts/copilot-describing-itself.png 'It got the idea right, however the pricing info is outdated: it\'s now $10/month.')
+![Screenshot of GitHub Copilot describing itself: 'GitHub Copilot is a code completion tool that uses machine learning to suggest code snippets based on the context of your code. It's available as a VS Code extension, and it's free to use for now.'](/images/posts/github-copilot-thoughts/copilot-describing-itself.png 'It got the idea right, however the pricing info is outdated: it\'s now $10/month.')
 
 So, yeah, it's a code completion tool. You can think of it as [Intellisense](https://code.visualstudio.com/docs/editor/intellisense) on steroids, but really it's much more than that. It is much smarter and is capable of detecting your code style, the context of what you're writing, and even the intent of what you're trying to do. So, if you've just created a form input for a phone number and start writing a function on a related file, you'll see it automatically suggest some phone number validation logic.
 
@@ -58,7 +58,7 @@ I'm not knowledgeable enough on the subject to have a well-formed opinion on thi
 
 Until a consensus is reached, GitHub has added the option to disable public code suggestions on [Copilot Settings](https://github.com/settings/copilot), so you can disable them if you're worried about licensing issues.
 
-![Screenshot of a GitHub Copilot settings displaying the option to block suggestions from public code.](/posts/github-copilot-thoughts/copilot-settings.png)
+![Screenshot of a GitHub Copilot settings displaying the option to block suggestions from public code.](/images/posts/github-copilot-thoughts/copilot-settings.png)
 
 ## Is it worth the price?
 

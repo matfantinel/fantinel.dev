@@ -5,7 +5,7 @@ excerpt: Progressive Enhancement isn't just another web jargon; it's a guiding p
 coverImage: ""
 coverImageAlt: ""
 showImage: false
-socialImage: /posts/progressive-enhancement/cover.png
+socialImage: /images/posts/progressive-enhancement/cover.png
 date: 2024-01-23T01:50:25.950Z
 updated: null
 showToc: true

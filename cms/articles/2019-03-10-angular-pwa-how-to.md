@@ -2,7 +2,7 @@
 slug: angular-pwa-how-to
 title: How to transform your Angular 6+ app into a PWA
 excerpt: Make your Angular app work like a native app on phones and desktop.
-coverImage: /posts/angular-pwa-how-to/cover.jpg
+coverImage: /images/posts/angular-pwa-how-to/cover.jpg
 coverImageAlt: ""
 showImage: true
 date: 2019-03-10
@@ -64,13 +64,13 @@ Your app should be up and running on `http://localhost:8080/` (or whichever port
 
 ### Check if the service worker is being registered
 
-![Screenshot of Chromium's Service Workers UI](/posts/angular-pwa-how-to/Service-Workers.jpg 'On dev console > Application > Service Workers, there should be a registered service worker for your app.')
+![Screenshot of Chromium's Service Workers UI](/images/posts/angular-pwa-how-to/Service-Workers.jpg 'On dev console > Application > Service Workers, there should be a registered service worker for your app.')
 
 ### Use Chrome's Audits feature to validate it as a PWA
 
-![Screenshot of Chromium's Audits tab, displaying options on how to test your page as different devices and for different metrics. The options "mobile" and "Progressive Web App" are selected.](/posts/angular-pwa-how-to/Audits.jpg 'On dev console > Audits, test it for Progressive Web Apps.')
+![Screenshot of Chromium's Audits tab, displaying options on how to test your page as different devices and for different metrics. The options "mobile" and "Progressive Web App" are selected.](/images/posts/angular-pwa-how-to/Audits.jpg 'On dev console > Audits, test it for Progressive Web Apps.')
 
-![Screenshot of a list of passed audits, with two highlighted: "User can be prompted to install the Web App" and "Registers a service worker"](/posts/angular-pwa-how-to/Passed-Audits.jpg 'If everything went well, you should see the highlighted results on the \'Passed audits\' section.')
+![Screenshot of a list of passed audits, with two highlighted: "User can be prompted to install the Web App" and "Registers a service worker"](/images/posts/angular-pwa-how-to/Passed-Audits.jpg 'If everything went well, you should see the highlighted results on the \'Passed audits\' section.')
 
 You may see some errors regarding the app not running over HTTPS. Don't worry, that's only because it's running locally.
 
@@ -78,11 +78,11 @@ You may see some errors regarding the app not running over HTTPS. Don't worry, t
 
 On Chrome/Edge, you may also see the option to install the app appear in the URL bar:
 
-![Screenshot of a browser window, showing an "Install app?" prompt on the navigation bar.](/posts/angular-pwa-how-to/install-prompt.jpg)
+![Screenshot of a browser window, showing an "Install app?" prompt on the navigation bar.](/images/posts/angular-pwa-how-to/install-prompt.jpg)
 
 After this, the app should already open on a separate window, and show up on your OS's installed apps list!
 
-![Screenshot of the dock of the operating system, showing the PWA icon besides other apps', as if it were a "real" app.](/posts/angular-pwa-how-to/dock-icon.jpg)
+![Screenshot of the dock of the operating system, showing the PWA icon besides other apps', as if it were a "real" app.](/images/posts/angular-pwa-how-to/dock-icon.jpg)
 
 ## Issues Encountered
 
