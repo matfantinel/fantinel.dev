@@ -1,7 +1,7 @@
 ---
 slug: 5-year-blog-anniversary
 title: 5 Years of Fantinel.dev!
-excerpt: Looking back at the history of this website
+excerpt: My website has existed for half of my professional life now. In this post I look back at some snapshots of its history and talk about what's next.
 coverImage: /posts/5-year-blog-anniversary/cover.jpg
 coverImageAlt: A hand holding a bunch of party balloons
 showImage: true
