@@ -95,7 +95,6 @@ export default defineConfig({
             name: "categories",
             label: "Categories",
             list: true,
-            description: "TODO: Create a category object and point to it here.",
             options: [
               'Angular',
               'Back-End',
