@@ -7,7 +7,7 @@ If you wanna use this site as a base for building your own, I highly recommend b
 This is my own personal website, built with SvelteKit. It also holds my own personal blog.
 
 <p align="center">
-    <img src="static/cms/projects/media/personal-website-transparent.png" alt="Screenshot" />
+    <img src="static/images/projects/personal-website-transparent.png" alt="Screenshot" />
 </p>
 
 It was built with a few goals in mind:
