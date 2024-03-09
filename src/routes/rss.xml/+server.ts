@@ -25,7 +25,8 @@ export async function GET() {
     );
 
     post.content = post.content.replaceAll('<a href="/', `<a href="${siteBaseUrl}/`);
-    post.content = post.content.replaceAll('<img src="/', `<img src="${siteBaseUrl}/`);
+    post.content = post.content.replaceAll('<img src="/', `<img src="${siteBaseUrl}/images/`);
+    post.content = post.content.replaceAll(`<img src="${siteBaseUrl}/images/images/`, `<img src="${siteBaseUrl}/images/`);
   });
 
   await Promise.all(promises);
