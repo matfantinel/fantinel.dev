@@ -47,6 +47,12 @@
 			box-shadow: var(--image-shadow);
 		}
 
+		.no-shadow {
+			> img {
+				box-shadow: none;
+			}
+		}
+
 		figcaption {
 			font-size: 0.85rem;
 			text-align: center;

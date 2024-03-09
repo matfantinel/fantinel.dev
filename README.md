@@ -7,7 +7,7 @@ If you wanna use this site as a base for building your own, I highly recommend b
 This is my own personal website, built with SvelteKit. It also holds my own personal blog.
 
 <p align="center">
-    <img src="static/cms/projects/media/personal-website-transparent.png" alt="Screenshot" />
+    <img src="static/images/projects/personal-website-transparent.png" alt="Screenshot" />
 </p>
 
 It was built with a few goals in mind:
@@ -64,4 +64,4 @@ I've recently updated the Markdown syntax to match [Obsidian's](https://help.obs
 | Sparkling Highlight | @@ | \@\@example\@\@ |
 | Button | \[\[\[text \|\| prop=value\]\]\] | \[\[\[example \|\| color=secondary href=url\]\]\] |
 | Callout | > \[!type\] | > \[!info\]<br>> Example |
-| Image | !\[Alt text || custom-class\](url 'figcaption') | !\[Example image || full-bleed\](/test.jpg 'A sample image'\]
+| Image | !\[Alt text \|\| custom-class\](url 'figcaption') | !\[Example image \|\| full-bleed\](/test.jpg 'A sample image'\]
