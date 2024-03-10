@@ -20,3 +20,5 @@ If I understood correctly, ==images will only work on the main branch==.
 
 > \[!warning] 🤔\
 > On second thought, do I really want to use the API? I believe handling the files directly is closer to the philosophy I want to follow. Plus, it allows doing static goodiness like Pagesearch, and I won’t be tied to Tina and Tina Cloud at all. Tina will remain as an utility only.
+>
+> What I have to do is find ways to make the build faster. **5 minutes is too long for a static site.**
