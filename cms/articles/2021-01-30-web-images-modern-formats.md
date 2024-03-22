@@ -1,19 +1,19 @@
 ---
+tags: []
+type: Article
+title: 'Smarter, Lighter, Better Images: A Guide to Optimization'
 slug: web-images-modern-formats
-title: "Smarter, Lighter, Better Images: A Guide to Optimization"
 excerpt: Learn how to reduce page loading times and bounce rate.
 coverImage: /images/posts/web-images-modern-formats/cover.jpg
 coverImageAlt: Picture of sand with a feather and a footprint besides it
 showImage: true
-date: 2021-01-30
-updated: 2023-05-17
+showToc: true
 hidden: false
-tags: []
 categories:
   - Front-End
   - Dev
-type: Article
-showToc: true
+date: 2021-01-30T00:00:00.000Z
+updated: 2023-05-17T00:00:00.000Z
 ---
 
 Do you know how big the images displayed on your website are? When you open a page, the browser starts downloading a bunch of files in order to display it. Research shows that [images are the most requested asset type](https://httparchive.org/reports/state-of-images) and take up more bandwidth than any other resource. So, making sure they are as small as they can be can greatly improve the load times for your website. (spoiler alert: mine's become 85% faster!)
@@ -26,7 +26,7 @@ WebP has been introduced in 2010, and has slowly gained adoption since then. Sin
 
 ### Browser Support
 
-_But how do we use those shiny new formats if not all browsers support them?_
+*But how do we use those shiny new formats if not all browsers support them?*
 
 With the `<img>` element, we can make the browsers do the work for us. We can declare multiple sources for the same image, and the browser will try to load them in order. If they do not support a format, they will immediatelly jump to the next one. To do that, we use the `srcset` property to declare the optimal versions (avif and webp), and then use the `src` as usual to point to the fallback image (jpg or png).
 
@@ -45,7 +45,7 @@ AVIF -> WebP -> JPG (or PNG)
 
 If you look at the resulting HTML in your website, you can see that the `<img>` element has a `src` defined, but when you hover over it, it shows what is the actual file that's being loaded. If you're on a supported browser, it will have loaded the AVIF file. If you're on Safari, it will have loaded the WebP one. Otherwise, if you're using IE or something (I'm sorry), the original JPG or PNG file will be loaded.
 
-![Screenshot of the generated HTML code. Hovering over the PNG filename reveals that an AVIF file is being downloaded instead.](/images/posts/web-images-modern-formats/generated-html.png 'The img tag shows the PNG file as source, but hovering the mouse over it reveals that the AVIF file is the one that actually loaded.')
+![Screenshot of the generated HTML code. Hovering over the PNG filename reveals that an AVIF file is being downloaded instead.](/images/posts/web-images-modern-formats/generated-html.png "The img tag shows the PNG file as source, but hovering the mouse over it reveals that the AVIF file is the one that actually loaded.")
 
 ## Load smaller images
 
@@ -101,7 +101,7 @@ The following data is taken from the home page of the website, since it has a lo
 
 ![Screenshot of browser tool network requests, from before and after optimization. Before: 1.6MB download; After: 249KB download](/images/posts/web-images-modern-formats/results.png)
 
-==The total download size decreased by a whopping 85%!!== That's an incredible difference, with no noticeable difference in quality. Your results may vary, as they depend on how much of your website's size is images.
+\\\\==The total download size decreased by a whopping 85%!!== That's an incredible difference, with no noticeable difference in quality. Your results may vary, as they depend on how much of your website's size is images.
 
 Before the changes, out of 1.6MB total, 92% of it were images, 5% were fonts, 1% was HTML, and the remaining 2% were of JS and other things like the web manifest.
 
@@ -117,9 +117,9 @@ For my needs, I have developed a NodeJS script that uses the [Sharp](https://git
 
 You can install the script as a NPM package, and then run it on a build command on your website!
 
-[[[ Check out image-transmutation! || color=secondary href=https://github.com/matfantinel/image-transmutation ]]]
+\[\[\[ Check out image-transmutation! || color=secondary href=[https://github.com/matfantinel/image-transmutation](https://github.com/matfantinel/image-transmutation) ]]]
 
-[[[ See usage example || color=secondary style=clear href=https://github.com/matfantinel/sveltekit-static-blog-template/blob/main/package.json ]]]
+\[\[\[ See usage example || color=secondary style=clear href=[https://github.com/matfantinel/sveltekit-static-blog-template/blob/main/package.json](https://github.com/matfantinel/sveltekit-static-blog-template/blob/main/package.json) ]]]
 
 ### Using the images
 
@@ -127,14 +127,14 @@ To make this setup work, I had to do some changes on how images were used on my 
 
 Pre-existing conditions:
 
-- All the images on my website were initially in a folder called "images", with various subfolders;
-- I didn't want all the versions of an image (webp, avif, etc) to take up space on my repository, so I only have them generated on build time.
+* All the images on my website were initially in a folder called "images", with various subfolders;
+* I didn't want all the versions of an image (webp, avif, etc) to take up space on my repository, so I only have them generated on build time.
 
 Modifications I did:
 
-- I have created a component to centralize all image-loading logic;
-- This component receives two parameters: the file path and the alt text;
-- If my project is running in dev mode, it won't add the srcset at all, as the optimized images won't exist;
+* I have created a component to centralize all image-loading logic;
+* This component receives two parameters: the file path and the alt text;
+* If my project is running in dev mode, it won't add the srcset at all, as the optimized images won't exist;
 
 ```html
 <script lang="ts">

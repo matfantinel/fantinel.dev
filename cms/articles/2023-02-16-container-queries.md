@@ -1,19 +1,19 @@
 ---
-slug: container-queries
+tags: []
+type: Article
 title: Container Queries Are Here!
+slug: container-queries
 excerpt: Responsive web development will never be the same again.
 coverImage: /images/posts/container-queries/cover.jpg
 coverImageAlt: Photo of fireworks on the night sky
 showImage: true
-date: 2023-02-16
-updated: null
+showToc: true
 hidden: false
-tags: []
 categories:
   - Front-End
   - Dev
-type: Article
-showToc: true
+date: 2023-02-16T00:00:00.000Z
+updated: 1970-01-01T00:00:00.000Z
 ---
 
 With the release of [Firefox 110](https://www.mozilla.org/en-US/firefox/110.0/releasenotes/), [CSS container queries](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Container_Queries) are now supported in all major browsers! It has joined Chromium (since v105) and Safari (since v16) in adding support to what I consider a revolution on responsive web development, especially to people who build UIs in a component-driven way.
@@ -24,11 +24,9 @@ Usually when we do responsive development, we use media queries to change the la
 
 ![A large window frame with a card taking up 100% of its width. Since it's a large window, the card will display its contents horizontally.](/images/posts/container-queries/Pre-CQ-Desktop.png)
 
-
 And, if the window size is smaller (for example on mobile), we can use a media query to change how the card is displayed:
 
 ![A small window frame with a card taking up 100% of its width. Since it's a small window, the card will display its contents vertically.](/images/posts/container-queries/Pre-CQ-Mobile.png)
-
 
 This can be done with code like this:
 
@@ -141,7 +139,7 @@ In situations where we would have nested containers, things can get a bit messy.
 </div>
 ```
 
-_Easy, right?_
+*Easy, right?*
 
 ## Fallback for older browsers
 
@@ -157,7 +155,7 @@ As mentioned before, the latest versions of all major browsers support this feat
 }
 ```
 
-As for fallback styles, I recommend giving `flex-wrap: wrap` a try. It's not that easy to use, but you can emulate the behavior of container queries in a way that's _good enough_ for the users who haven't updated their browsers yet.
+As for fallback styles, I recommend giving `flex-wrap: wrap` a try. It's not that easy to use, but you can emulate the behavior of container queries in a way that's *good enough* for the users who haven't updated their browsers yet.
 
 ## Wrapping Up
 

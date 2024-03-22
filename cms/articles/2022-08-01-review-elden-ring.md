@@ -1,21 +1,21 @@
 ---
+tags: []
+type: Article
+title: 'Review: Elden Ring'
 slug: review-elden-ring
-title: "Review: Elden Ring"
 excerpt: My thoughts on what probably is the biggest game release of 2022.
 coverImage: /images/posts/review-elden-ring/cover.png
-coverImageAlt: ""
+coverImageAlt: ''
 showImage: true
-date: 2022-08-01
-updated: null
+showToc: true
 hidden: false
-tags: []
 categories:
   - Games
-type: Article
-showToc: true
+date: 2022-08-01T00:00:00.000Z
+updated: 1970-01-01T00:00:00.000Z
 ---
 
-> [!info]
+> \[!info]
 > TL;DR: It's incredible and worth all the praise it's got. Not perfect, but really close to it.
 
 Elden Ring was probably the most hyped up game of the past couple of years, and its release in February (2022) was met with a lot of media coverage and players raving about how incredible it was.
@@ -44,7 +44,7 @@ I like this.
 
 It has a bit of a more realistic approach to storytelling - your character is part of that world, and as such you'd probably be acquainted to some of the more common stories and myths in there, and definitely not be aware at all of the secrets and twists of the royal family of demigods. Having to go out of your way to figure things out makes you more attached to the game in a way, and makes you care more. Old games used to do this for technical reasons, but there's definitely an appeal here. I do understand it's not very accessible though.
 
-![Elden Ring art. A long-haired swordswoman seems hurt, holding her arm with one hand, and a katana on another. In front of her, a huge warrior with a red mane stands tall with arms crossed.](/images/posts/review-elden-ring/malenia-and-radahn.jpg 'The demigods have an interesting backstory and while you interact little with them, knowing that backstory makes their appearances much more meaningful.')
+![Elden Ring art. A long-haired swordswoman seems hurt, holding her arm with one hand, and a katana on another. In front of her, a huge warrior with a red mane stands tall with arms crossed.](/images/posts/review-elden-ring/malenia-and-radahn.jpg "The demigods have an interesting backstory and while you interact little with them, knowing that backstory makes their appearances much more meaningful.")
 
 The lore itself is great. It's a more common fantasy setting, with dragons, wizards, gods, but it feels unique by adding a lot of nuance to it, and making it centered on a family of very unique characters that you either befriend or fight during the game. These characters are well-written and have a lot of depth, and looking into how they got to be what they are now is a really cool way to spend time when you're not playing the game.
 
@@ -56,7 +56,7 @@ The Lands Between (the name of the in-game world) is a beautiful place, and all 
 
 ![Screenshot of Elden Ring. It's taken from the top of a cliff, showing a beautiful landscape. To the left, many rocky mountains and a golden tree. To the center, a huge lake covered in mist, and a castle sitting on top of a cliff farther back. To the right, more rocky cliffs with trees and another golden tree.](/images/posts/review-elden-ring/liurnia.jpg)
 
-==The world is fully realized, and there are rewards in every corner.== However, it's not the best part of the game.
+\\\\==The world is fully realized, and there are rewards in every corner.== However, it's not the best part of the game.
 
 In some parts of the world are places called Legacy Dungeons - they're areas that work just like the older games (like Dark Souls or Bloodborne) did: smaller, more linear areas, with great level design and that offer a more curated, if limited, experience. Those are still the best parts of the game, not its open world. I really hope they continue to be a thing in future games.
 
