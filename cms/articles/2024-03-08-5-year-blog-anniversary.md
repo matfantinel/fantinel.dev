@@ -1,27 +1,29 @@
 ---
-slug: 5-year-blog-anniversary
+tags: []
+type: Article
 title: 5 Years of Fantinel.dev!
-excerpt: My website has existed for half of my professional life now. In this post I look back at some snapshots of its history and talk about what's next.
+slug: 5-year-blog-anniversary
+excerpt: >-
+  My website has existed for half of my professional life now. In this post I
+  look back at some snapshots of its history and talk about what's next.
 coverImage: /images/posts/5-year-blog-anniversary/cover.jpg
 coverImageAlt: A hand holding a bunch of party balloons
 showImage: true
-socialImage: ""
-date: 2024-03-08T12:05:36.542Z
-updated: null
+socialImage: ''
 showToc: false
 hidden: false
-tags: []
 categories:
   - Meta
   - Personal
-type: Article
+date: 2024-03-08T12:05:36.542Z
+updated: 1970-01-01T00:00:00.000Z
 ---
 
 On this day, 5 years ago, I launched my blog alongside [its first post](/purpose-of-this-blog)! Back then, I had little idea if I was gonna keep writing or maintaining it. Well... turns out I did!
 
 ## The First Days
 
-This blog actually began as a [Ghost](https://ghost.org) blog, using its default theme. Ghost was great as a starting point as it provided a quick way to get up and running, and most importantly, a quick way to start _writing_. Back then I had a couple ideas for blog posts related to stuff I was doing at work - I believe they were the two posts about PWAs ([How to transform your Angular app into a PWA](/angular-pwa-how-to) and [What are PWAs](/what-are-pwas-and-why-should-i-care-about-them)). So, back then, to me, it was more important to get started with writing than to have the perfect blog setup.
+This blog actually began as a [Ghost](https://ghost.org) blog, using its default theme. Ghost was great as a starting point as it provided a quick way to get up and running, and most importantly, a quick way to start *writing*. Back then I had a couple ideas for blog posts related to stuff I was doing at work - I believe they were the two posts about PWAs ([How to transform your Angular app into a PWA](/angular-pwa-how-to) and [What are PWAs](/what-are-pwas-and-why-should-i-care-about-them)). So, back then, to me, it was more important to get started with writing than to have the perfect blog setup.
 
 Unfortunately, I don't have a screenshot of what it looked like back then, but since it used the default Ghost theme (Casper), I guess it doesn't matter much.
 
@@ -35,8 +37,8 @@ Although I think it's definitely evolved since then, it still has its charm. The
 
 Even back then, I had some main goals for the website, that I had written on the project's README:
 
-> It was built with a few goals in mind:
-> 
+> It was built with a few goals in mind:\
+> \
 > • Responsive design: the website looks and behaves well on screens of all sizes;
 > • Fast: it only loads what's needed for it to work. No external JS or CSS libraries:
 > • Adaptive: it supports dark mode from most operating systems by default (desktop and mobile);
@@ -46,7 +48,7 @@ That's still what I strive for nowadays with the website, so I'm glad 2019 me se
 
 ## Version 2.0
 
-For Version 2.0, I decided to do a big redesign of the website, and add a bit more of _me_ into it, instead of it being a carbon copy of a theme. It's the first time I added the "waves" effect on the homepage, and since I wanted to design everything myself BUT don't have much design skills, I relied heavily on cards to organize content (I still rely on cards often). Unfortunately, there's no (working) snapshot of this version of the website on the Wayback Machine, so unless I run it locally (I'm too lazy to do it), all we have is this screenshot:
+For Version 2.0, I decided to do a big redesign of the website, and add a bit more of *me* into it, instead of it being a carbon copy of a theme. It's the first time I added the "waves" effect on the homepage, and since I wanted to design everything myself BUT don't have much design skills, I relied heavily on cards to organize content (I still rely on cards often). Unfortunately, there's no (working) snapshot of this version of the website on the Wayback Machine, so unless I run it locally (I'm too lazy to do it), all we have is this screenshot:
 
 ![Screenshot of the second version of my website, in light and dark themes. There is a green background with a "wavy" effect behind a big card with my picture and information about me. || no-shadow](/images/posts/5-year-blog-anniversary/v2.png "Fantinel.dev v2, November 2020")
 

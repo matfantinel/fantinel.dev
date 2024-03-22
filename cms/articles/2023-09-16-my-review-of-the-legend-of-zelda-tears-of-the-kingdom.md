@@ -1,22 +1,24 @@
 ---
+tags: []
+type: Article
+title: 'My Review of The Legend of Zelda: Tears of the Kingdom'
 slug: review-zelda-tears-of-the-kingdom
-title: "My Review of The Legend of Zelda: Tears of the Kingdom"
 excerpt: A spoiler-free review of the ultimate Zelda game
 coverImage: /images/posts/review-zelda-tears-of-the-kingdom/cover.jpg
-coverImageAlt: Official artwork of the game. Link stands on a floating island, with more floating island and clouds in the background
+coverImageAlt: >-
+  Official artwork of the game. Link stands on a floating island, with more
+  floating island and clouds in the background
 showImage: true
-socialImage: ""
-date: 2023-09-16T14:29:19.459Z
-updated: null
+socialImage: ''
+showToc: true
 hidden: false
-tags: []
 categories:
   - Games
-type: Article
-showToc: true
+date: 2023-09-16T14:29:19.459Z
+updated: 1970-01-01T00:00:00.000Z
 ---
 
-> [!success]
+> \[!success]
 > This review is **spoiler-free**, so you can safely read it even if you haven't played or finished the game yet.
 
 The Legend of Zelda is my favorite game series of all time. Understandably, I was pretty excited for Tears of the Kingdom to come out. And it took its time! Announced in 2019, two years after the release of its predecessor (Breath of the Wild), a lot of people thought it would have a shorter development cycle, considering it seemed to feature the same world as Breath of the Wild's, the graphics were the same, and the engine was already done. How wrong we were!
@@ -31,7 +33,7 @@ And then **BAM!** that final trailer shows up.
 
 <iframe style="width: 100%;aspect-ratio:16/9;border-radius:10px;box-shadow:var(--image-shadow);" src="https://www.youtube-nocookie.com/embed/uHGShqcAHlQ" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
-_It is incredible!_ It shows new story bits, but more importantly, a **lot** of new gameplay mechanics, abilities, and some of them are so unique that I don't think anyone could have imagined they'd be in a Zelda game. And so, after years of waiting for the game to come out and an extra month of waiting for my copy to be delivered, I finally played it.
+*It is incredible!* It shows new story bits, but more importantly, a **lot** of new gameplay mechanics, abilities, and some of them are so unique that I don't think anyone could have imagined they'd be in a Zelda game. And so, after years of waiting for the game to come out and an extra month of waiting for my copy to be delivered, I finally played it.
 
 ## The New Abilities
 
@@ -39,10 +41,10 @@ The game begins quite differently than it did in BOTW. In this game, the idea of
 
 There are 4 main abilities:
 
-- Ultrahand, which lets you manipulate most objects in the game, and then _stick_ them on other objects. It's an improved version of Magnesis from BOTW, and probably the one you use the most;
-- Recall, which lets you make an object go back in time (and space). You can make some really great combos with this and Ultrahand, like using Ultrahand to hold a platform up high, then let it fall, and use Recall to have it go back up with you on top of it;
-- Fuse, which lets you fuse any material to your weapon/shield/arrows, improving its attack power or giving some status effects;
-- Ascend, which lets you _swim_ through any solid material, as long as its right on top of you. Honestly, I thought this one was going to be the lamest one, but it was the biggest surprise! I used it so much and always felt smart when I did;
+* Ultrahand, which lets you manipulate most objects in the game, and then *stick* them on other objects. It's an improved version of Magnesis from BOTW, and probably the one you use the most;
+* Recall, which lets you make an object go back in time (and space). You can make some really great combos with this and Ultrahand, like using Ultrahand to hold a platform up high, then let it fall, and use Recall to have it go back up with you on top of it;
+* Fuse, which lets you fuse any material to your weapon/shield/arrows, improving its attack power or giving some status effects;
+* Ascend, which lets you *swim* through any solid material, as long as its right on top of you. Honestly, I thought this one was going to be the lamest one, but it was the biggest surprise! I used it so much and always felt smart when I did;
 
 The abilities are less specialized, but more powerful, which gives you so much freedom to use them! 80h into the game, I was still figuring out new ways to use and combine them.
 
@@ -50,7 +52,7 @@ The abilities are less specialized, but more powerful, which gives you so much f
 
 I believe TOTK fixes or remediates all of BOTW's problems. The story isn't told only through a series of flashbacks (though flashbacks are still a thing); the world feels much more alive (which makes sense after BOTW); the soundtrack is more varied; and weapon durability is fixed.
 
-_Weapon durability is fixed? Does that mean they don't break anymore?_ No, actually they break much faster now 😅. You see, the main problem with BOTW's weapon durability system is that it was very frustrating. Fighting monsters was often not worth it because it'd make your weapons break, and there was a big chance that whatever new weapons you'd get from fighting them would be worse.
+*Weapon durability is fixed? Does that mean they don't break anymore?* No, actually they break much faster now 😅. You see, the main problem with BOTW's weapon durability system is that it was very frustrating. Fighting monsters was often not worth it because it'd make your weapons break, and there was a big chance that whatever new weapons you'd get from fighting them would be worse.
 
 In TOTK, all weapons are now "decayed", which means their durability is even lower. But, remember the Fuse ability? Whenever you fuse a material to your weapons, they become stronger and more durable. And most of the better materials are obtained from... killing monsters! So, chances are, if you fight monsters you'll probably end up with better materials that make your weapons stronger than before! It's as it should be.
 

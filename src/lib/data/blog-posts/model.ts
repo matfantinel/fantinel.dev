@@ -22,6 +22,11 @@ type BlogPost = {
 }
 
 export const frontmatterToBlogPost = (frontmatter: any, content: string): BlogPost => {
+  // if frontmatter.updated is before frontmatter.date, set updated to null
+  if (frontmatter.updated && frontmatter.date && frontmatter.updated < frontmatter.date) {
+    frontmatter.updated = null;
+  }
+
   return {
     slug: frontmatter.slug,
     title: frontmatter.title,

@@ -1,19 +1,23 @@
 ---
-slug: belonging-somewhere-pt-br
+tags: []
+type: Article
 title: Pertencendo a algum lugar
-excerpt: I could always see parts of myself belonging to some groups or places, but never really felt like I was truly a part of anything.
+slug: belonging-somewhere-pt-br
+excerpt: >-
+  I could always see parts of myself belonging to some groups or places, but
+  never really felt like I was truly a part of anything.
 coverImage: /images/posts/belonging-somewhere/cover.jpg
-coverImageAlt: Picture of a staircase surrounded by vineyards. In the background, a church tower and the blue sky.
+coverImageAlt: >-
+  Picture of a staircase surrounded by vineyards. In the background, a church
+  tower and the blue sky.
 showImage: true
-socialImage: ""
-date: 2023-11-04T17:21:47.309Z
-updated: null
+socialImage: ''
 showToc: false
 hidden: true
-tags: []
 categories:
   - Personal
-type: Article
+date: 2023-11-04T17:21:47.309Z
+updated: 1970-01-01T00:00:00.000Z
 ---
 
 Por toda a minha vida, eu nunca senti como se pertencesse a algum lugar. Eu sentia que algumas partes de mim pertenciam a alguns grupos ou lugares, mas nunca senti que eu era realmente parte de alguma coisa maior.
@@ -30,7 +34,7 @@ Há uns 10 anos, comecei um namoro de longa distância com uma menina que morava
 
 Então, quando meus sogros vieram pra cá pela primeira vez, eles ficaram surpresos (e levemente desapontados) que não era que nem eles imaginavam. Ao invés de churrascarias em todo canto, tinha massa, pizza e polenta. O sotaque era diferente. A arquitetura também. Claro, como eu vivo na maior cidade da região, eventualmente as culturas de outros lugares começaram a chegar por aqui, especialmente a gaúcha, já que é a mais próxima geograficamente. Mas a predominância da cultura *colona* italiana não era o que eles esperavam.
 
----
+***
 
 Eu não sou o maior fã de sair por aí e experienciar essa cultura em primeira mão (pelo menos não era; conforme vou ficando mais velho, começo a gostar mais disso), mas já participei de vários eventos de família e festas de igreja com raízes italianas. Então, sempre que eu via pessoas falando sobre o Brasil ou o RS, eu nunca via eu e as pessoas ao meu redor representados ali. Minha conclusão lógica é que eu não pertencia ao estado ou país, e talvez, já que eu era um "cidadão da internet" desde criança e tive muito contato (virtual) com culturas de outros lugares do mundo, talvez meu lugar no mundo era em outro lugar!
 
@@ -42,7 +46,7 @@ Esses 3 meses foram... difíceis. Claro, eu estava obviamente desconfortável co
 
 De repente, tudo ficou mais claro. Embora a gente mora num lugar *ítalo-brasileiro*, ele ainda é *brasileiro*. Essa mistura de culturas pode ser mais sutil do que em outras partes do país, mas ela ainda existe. E ainda é **incrível**. As pessoas, o clima, a comida, a música, é tudo único a esse pequeno e especial pedaço do mundo. Especial porque é meu.
 
----
+***
 
 Como um autista recém diagnosticado, estou aprendendo muito sobre eu mesmo, e percebi que eu sempre sofri pra entender a minha própria identidade. Como posso aprender quem eu sou se nunca vejo muito de mim por aí? Não é uma jornada fácil, e sinceramente não acho que essa jornada tenha um fim. Nossa identidade muda o tempo todo e é moldada pelo que está ao nosso redor. Esse sentimento de pertencimento é único pra cada pessoa, alguns encontram ainda como crianças, outros nunca encontram. Eu sempre achei que eu era da turma do "nunca".
 
