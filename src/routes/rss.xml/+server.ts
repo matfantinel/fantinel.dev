@@ -1,7 +1,7 @@
 import { getPosts } from '$lib/data/blog-posts/api';
 import type BlogPost from '$lib/data/blog-posts/model';
 import { description, siteBaseUrl, title } from '$lib/data/meta';
-import { ButtonTokenizerExtension, MarkerHighlightTokenizerExtension, SparklesHighlightTokenizerExtension } from '$lib/utils/markdown';
+import { MarkerHighlightTokenizerExtension, SparklesHighlightTokenizerExtension } from '$lib/utils/markdown';
 import dateformat from 'dateformat';
 import { marked } from 'marked';
 
@@ -15,7 +15,6 @@ export async function GET() {
     extensions: [
       SparklesHighlightTokenizerExtension,
       MarkerHighlightTokenizerExtension,
-      ButtonTokenizerExtension
     ]
   });
 
