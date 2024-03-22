@@ -127,6 +127,139 @@ export default defineConfig({
           },
         ],
       },
+      {
+        name: "workExperience",
+        label: "Work Experiences",
+        path: "cms/work-experiences",
+        fields: [
+          {
+            type: "string",
+            name: "company",
+            label: "Company",
+            isTitle: true,
+            required: true,
+          },
+          {
+            type: "string",
+            name: "companySlug",
+            label: "Company Slug",
+            required: true,
+          },
+          {
+            type: "string",
+            name: "jobTitle",
+            label: "Job Title",
+            required: true,
+          },
+          {
+            type: "string",
+            name: "timeframe",
+            label: "Timeframe",
+            required: true,
+            description: "e.g. '2019 -> 2020'"
+          },
+          {
+            type: "boolean",
+            name: "current",
+            label: "Is Current Job?",
+          },
+          {
+            type: "string",
+            name: "location",
+            label: "Location",
+          },
+          {
+            type: "string",
+            name: "description",
+            label: "Description",
+            required: true,
+          },
+          {
+            type: "object",
+            name: "technologies",
+            label: "Technologies",
+            list: true,
+            fields: [
+              {
+                type: "string",
+                name: "label",
+                label: "Label",
+                required: true,
+              },
+              {
+                type: "string",
+                name: "color",
+                label: "Color",
+                required: true,
+                options: [
+                  "primary",
+                  "secondary"
+                ]
+              },
+            ]
+          },
+        ]
+      },
+      {
+        name: "project",
+        label: "Projects",
+        path: "cms/projects",
+        fields: [
+          {
+            type: "string",
+            name: "name",
+            label: "Name",
+            isTitle: true,
+            required: true,
+          },
+          {
+            type: "string",
+            name: "description",
+            label: "Description",
+            required: true,
+          },
+          {
+            type: "image",
+            name: "image",
+            label: "Image",
+            required: true,
+          },
+          {
+            type: "string",
+            name: "link",
+            label: "Link",
+          },
+          {
+            type: "string",
+            name: "sourceCode",
+            label: "Source Code",
+          },
+          {
+            type: "object",
+            name: "labels",
+            label: "Labels",
+            list: true,
+            fields: [
+              {
+                type: "string",
+                name: "label",
+                label: "Label",
+                required: true,
+              },
+              {
+                type: "string",
+                name: "color",
+                label: "Color",
+                required: true,
+                options: [
+                  "primary",
+                  "secondary"
+                ]
+              },
+            ]
+          },
+        ]
+      }
     ],
   },
 });

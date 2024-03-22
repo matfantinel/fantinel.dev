@@ -14,7 +14,7 @@ export const frontmatterToProject = (frontmatter: any): Project => {
   return {
     name: frontmatter.name,
     description: frontmatter.description,
-    image: '/images' + frontmatter.image,
+    image: frontmatter.image,
     link: frontmatter.link,
     sourceCode: frontmatter.sourceCode,
     blogPostLink: frontmatter.blogPostLink,
