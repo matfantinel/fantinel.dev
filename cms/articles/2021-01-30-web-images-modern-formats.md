@@ -117,9 +117,8 @@ For my needs, I have developed a NodeJS script that uses the [Sharp](https://git
 
 You can install the script as a NPM package, and then run it on a build command on your website!
 
-\[\[\[ Check out image-transmutation! || color=secondary href=[https://github.com/matfantinel/image-transmutation](https://github.com/matfantinel/image-transmutation) ]]]
-
-\[\[\[ See usage example || color=secondary style=clear href=[https://github.com/matfantinel/sveltekit-static-blog-template/blob/main/package.json](https://github.com/matfantinel/sveltekit-static-blog-template/blob/main/package.json) ]]]
+[Check out image-transmutation!](https://github.com/matfantinel/image-transmutation 'button || color=secondary')
+[See usage example](https://github.com/matfantinel/sveltekit-static-blog-template/blob/main/package.json 'button || color=secondary style=clear')
 
 ### Using the images
 
