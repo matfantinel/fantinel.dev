@@ -3,8 +3,8 @@
 	"version": "0.0.1",
 	"private": true,
 	"scripts": {
-		"dev": "vite dev --host",
-		"build": "vite build",
+		"dev": "tinacms dev -c \"vite dev --host\"",
+		"build": "tinacms build && vite build",
 		"preview": "vite preview",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json --watch",
@@ -21,6 +21,8 @@
 		"@svelte-put/copy": "^3.0.0",
 		"@sveltejs/adapter-auto": "^1.0.0",
 		"@sveltejs/kit": "^1.27.6",
+		"@tinacms/cli": "^1.5.40",
+		"@types/node": "^20.11.25",
 		"dateformat": "^5.0.3",
 		"eslint": "^8.28.0",
 		"eslint-config-prettier": "^8.5.0",
@@ -47,6 +49,7 @@
 	"type": "module",
 	"dependencies": {
 		"@fontsource/ubuntu-mono": "^4.5.11",
-		"svelte-toc": "^0.5.6"
+		"svelte-toc": "^0.5.6",
+		"tinacms": "^1.5.29"
 	}
 }

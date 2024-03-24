@@ -1,18 +1,20 @@
 ---
-slug: automatically-manage-node-versions
-title: How to automatically manage Node versions
-excerpt: Tired of manually switching Node versions for different projects? Discover how to automate the process using nvm.
-coverImage: /posts/automatically-manage-node-versions/Cover.png
-coverImageAlt: ""
-showImage: true
-socialImage: ""
-date: 2023-09-10T17:26:42.316Z
-updated: null
-hidden: false
 tags: []
+type: Article
+title: How to automatically manage Node versions
+slug: automatically-manage-node-versions
+excerpt: >-
+  Tired of manually switching Node versions for different projects? Discover how
+  to automate the process using nvm.
+coverImage: /images/posts/automatically-manage-node-versions/Cover.png
+coverImageAlt: ''
+showImage: true
+socialImage: ''
+hidden: false
 categories:
   - Dev
-type: Article
+date: 2023-09-10T17:26:42.316Z
+updated: 1970-01-01T00:00:00.000Z
 ---
 
 If you're like me, you're constantly jumping between projects, and often those projects need different versions of NodeJS. Ideally, all of them would be using (or compatible with) the latest version, but in reality a lot of those projects are old and you just don't have the time to update them and make sure all dependencies play nice.

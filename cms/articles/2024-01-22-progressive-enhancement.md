@@ -1,20 +1,22 @@
 ---
-slug: progressive-enhancement
+tags: []
+type: Article
 title: Progressive Enhancement (and why it matters)
-excerpt: Progressive Enhancement isn't just another web jargon; it's a guiding principle shaping modern web development.
-coverImage: ""
-coverImageAlt: ""
+slug: progressive-enhancement
+excerpt: >-
+  Progressive Enhancement isn't just another web jargon; it's a guiding
+  principle shaping modern web development.
+coverImage: ''
+coverImageAlt: ''
 showImage: false
-socialImage: /posts/progressive-enhancement/cover.png
-date: 2024-01-23T01:50:25.950Z
-updated: null
+socialImage: /images/posts/progressive-enhancement/cover.png
 showToc: true
 hidden: false
-tags: []
 categories:
   - Front-End
   - Dev
-type: Article
+date: 2024-01-23T01:50:25.950Z
+updated: 1970-01-01T00:00:00.000Z
 ---
 
 I’ve mentioned Progressive Enhancement on this blog [once before](/blog-development-sveltekit), when explaining how my blog was built and how Svelte has that concept as one of its main appeals. Since then, it’s something that has stuck with me on everything I’ve built, and as such has shaped the way I work both on personal projects and professionally as well.
@@ -37,13 +39,14 @@ When talking about Progressive Enhancement, there’s three main reasons a user 
 2. The CSS couldn’t be downloaded;
 3. The user’s browser/device doesn’t support a feature your code uses;
 
-For number 3, this can be dealt with with some clever feature-checking (more on this below) and using websites like [[caniuse.com](http://caniuse.com)](https://caniuse.com) before using newer features.
+For number 3, this can be dealt with with some clever feature-checking (more on this below) and using websites like \[[caniuse.com](http://caniuse.com)]\([https://caniuse.com](https://caniuse.com)) before using newer features.
 
 As for 1 and 2, there are numerous reasons it can happen. I like to refer to [this website](https://www.kryogenix.org/code/browser/everyonehasjs.html) whenever I want to reference why someone might not have JavaScript loaded (and the same reasons apply for CSS), but to summarize:
-- A faulty connection may make the JS/CSS file requests fail, even though the page itself loaded;
-- A lot of corporate firewalls and ISPs block domains, which might affect requests, especially 3rd-party files your code might depend on;
-- The user might have disabled JavaScript (a lot of people do);
-- Browser extensions (especially adblockers) might block your scripts from running;
+
+* A faulty connection may make the JS/CSS file requests fail, even though the page itself loaded;
+* A lot of corporate firewalls and ISPs block domains, which might affect requests, especially 3rd-party files your code might depend on;
+* The user might have disabled JavaScript (a lot of people do);
+* Browser extensions (especially adblockers) might block your scripts from running;
 
 It’s hard to know exactly how many people this affects, and the number will greatly vary depending on who your audience is. [A 2013 study by the UK Government](https://gds.blog.gov.uk/2013/10/21/how-many-people-are-missing-out-on-javascript-enhancement/) showed that 1 in 93 people won’t get your JavaScript code running correctly. 11 years later, while in general connections have gotten faster and more stable, users have also become more likely to use ad-blockers or similar tools. So I’d wager the rate hasn’t changed much.
 
@@ -80,11 +83,11 @@ And, if you want your images to be scale responsively when your CSS actually loa
 
 There’s a lot of talk about thinking outside the box when developing - and indeed it’s one of the best skills a developer can have! But often the inside of the box is really useful too. Whatever you're thinking of building, there’s probably an HTML element that behaves similarly. Why not expand on that instead of just adding more events to a div?
 
-- For hyperlinks, use `<a>` (please);
-- For accordions, use [the <details> element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/details);
-- Need to send data to a server? Just use a `<form>`! No need for onClicks or onSubmits;
-- Any element that has a toggleable state - for example, a hamburger menu or even a modal dialog - can be controlled by a checkbox instead. Yes, really! Check out the mobile hamburger menu of this website;
-- In fact, add [MDN’s list of HTML elements](https://developer.mozilla.org/en-US/docs/Web/HTML/Element) to your bookmarks. Use divs only as a last resort. Chances are, using a proper HTML element is going to make your code simpler, more readable and more accessible.
+* For hyperlinks, use `<a>` (please);
+* For accordions, use [the <details> element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/details);
+* Need to send data to a server? Just use a `<form>`! No need for onClicks or onSubmits;
+* Any element that has a toggleable state - for example, a hamburger menu or even a modal dialog - can be controlled by a checkbox instead. Yes, really! Check out the mobile hamburger menu of this website;
+* In fact, add [MDN’s list of HTML elements](https://developer.mozilla.org/en-US/docs/Web/HTML/Element) to your bookmarks. Use divs only as a last resort. Chances are, using a proper HTML element is going to make your code simpler, more readable and more accessible.
 
 ### Use feature queries
 

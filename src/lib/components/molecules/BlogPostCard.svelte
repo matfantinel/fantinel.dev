@@ -21,7 +21,7 @@
 <Card
 	href="/{slug}"
 	on:click
-	additionalClass="blog-post-card {!showImage && 'hide-image'} {showImage &&
+	additionalClass="blog-post-card {(!showImage || !coverImage) && 'hide-image'} {showImage &&
 		!coverImage &&
 		'missing-image'} {additionalClass}"
 >

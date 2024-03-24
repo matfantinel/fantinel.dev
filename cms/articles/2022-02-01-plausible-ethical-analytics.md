@@ -1,22 +1,24 @@
 ---
-slug: plausible-ethical-analytics
-title: Ethical Analytics are Plausible, at Last
-excerpt: Web Analytics is such a morally ambiguous area that I’ve avoided it for years, but now I can finally do it with peace of mind.
-coverImage: /posts/plausible-ethical-analytics/cover.jpg
-coverImageAlt: ""
-showImage: true
-date: 2022-02-01
-updated: null
-hidden: false
 tags: []
+type: Article
+title: 'Ethical Analytics are Plausible, at Last'
+slug: plausible-ethical-analytics
+excerpt: >-
+  Web Analytics is such a morally ambiguous area that I’ve avoided it for years,
+  but now I can finally do it with peace of mind.
+coverImage: /images/posts/plausible-ethical-analytics/cover.jpg
+coverImageAlt: ''
+showImage: true
+hidden: false
 categories:
   - Dev
-type: Article
+date: 2022-02-01T00:00:00.000Z
+updated: 1970-01-01T00:00:00.000Z
 ---
 
 Analytics have become intrinsic to software development in the past decade. On the marketing side, analytics allow us to measure the success of marketing campaigns, optimize the wording, measure ad results, or simply keep track of the growth of the audience. On the development side, it allows to more easily detect points of failure, bad patterns or UX hiccups.
 
-These benefits however, usually come at a price: ==in-depth analytics tend to store way too much information about the user==, and the user is often unaware of how much is being collected. It's a decision the user doesn't really make; we make it for them. _(Yes, I know, legally the user often accepts cookies or terms of service... but the reality is that almost nobody reads or understands that.)_
+These benefits however, usually come at a price: ==in-depth analytics tend to store way too much information about the user==, and the user is often unaware of how much is being collected. It's a decision the user doesn't really make; we make it for them. *(Yes, I know, legally the user often accepts cookies or terms of service... but the reality is that almost nobody reads or understands that.)*
 
 On platforms like Google Analytics, there is a lot of information we can see, however none of them personally identifies the user. That's good, right? Well, not really: Google can personally identify (and does through its Ads business) them, and by using Google Analytics or similar products on your site, you're feeding them your user's information for a really low price - otherwise, why would these analytics be free?
 
@@ -32,14 +34,14 @@ It's important to point out, though, that none of those are free. Since they don
 
 Plausible is a small company from Europe that makes Plausible Analytics, a privacy-friendly alternative to Google Analytics. The reasons I've picked Plausible instead of others are that:
 
-- It's open source;
-- It can be self-hosted in case you already have your own server;
-- It's intuitive: a quick glance through the dashboard and you're already able to understand everything that's in there. [Check out mine](https://plausible.io/fantinel.dev);
-- It's sustainable: their business model allows them to grow organically and [the project is already profitable](https://plausible.io/blog/bootstrapping-saas) without any kind of external funding (and [they have no plans of accepting it](https://twitter.com/PlausibleHQ/status/1282678251148763137));
-- They offer [ways of bypassing adblockers](https://plausible.io/docs/proxy/introduction);
-- It's simply a great product.
+* It's open source;
+* It can be self-hosted in case you already have your own server;
+* It's intuitive: a quick glance through the dashboard and you're already able to understand everything that's in there. [Check out mine](https://plausible.io/fantinel.dev);
+* It's sustainable: their business model allows them to grow organically and [the project is already profitable](https://plausible.io/blog/bootstrapping-saas) without any kind of external funding (and [they have no plans of accepting it](https://twitter.com/PlausibleHQ/status/1282678251148763137));
+* They offer [ways of bypassing adblockers](https://plausible.io/docs/proxy/introduction);
+* It's simply a great product.
 
-![Screenshot of the Plausible dashboard, showing number of visitors, top sources, top pages, visitors by city, and device information.](/posts/plausible-ethical-analytics/dashboard.png 'Clicking on some data blocks allow you to filter data - so you can still understand how your users behave differently depending on a number of factors.')
+![Screenshot of the Plausible dashboard, showing number of visitors, top sources, top pages, visitors by city, and device information.](/images/posts/plausible-ethical-analytics/dashboard.png "Clicking on some data blocks allow you to filter data - so you can still understand how your users behave differently depending on a number of factors.")
 
 #### Custom Goals
 
@@ -62,7 +64,7 @@ if (plausible) {
 }
 ```
 
-_**Note:** tracking Custom Events without user interaction like this breaks the "Bounce Rate" metric. By firing an event, Plausible interprets that the user has interacted with your site, and therefore the Bounce Rate goes to zero. If the Bounce Rate metric is important to you, this might not be a good idea._
+**Note:** *tracking Custom Events without user interaction like this breaks the "Bounce Rate" metric. By firing an event, Plausible interprets that the user has interacted with your site, and therefore the Bounce Rate goes to zero. If the Bounce Rate metric is important to you, this might not be a good idea.*
 
 ## Wrapping Up
 

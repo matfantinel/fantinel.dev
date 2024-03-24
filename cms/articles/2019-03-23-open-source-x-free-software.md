@@ -2,7 +2,7 @@
 slug: open-source-x-free-software
 title: "Open Source x Free Software: What's the difference?"
 excerpt: Learn the difference between these two terms that often get mixed up.
-coverImage: /posts/open-source-x-free-software/cover.jpg
+coverImage: /images/posts/open-source-x-free-software/cover.jpg
 coverImageAlt: ""
 showImage: true
 date: 2019-03-23

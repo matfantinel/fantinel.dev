@@ -62,6 +62,6 @@ I've recently updated the Markdown syntax to match [Obsidian's](https://help.obs
 | Links | \[\]\(\) | \[text\]\(url\) |
 | Blockquotes | \> | \> Quote |
 | Sparkling Highlight | @@ | \@\@example\@\@ |
-| Button | \[\[\[text \|\| prop=value\]\]\] | \[\[\[example \|\| color=secondary href=url\]\]\] |
+| Button | \[text\](url 'button prop=value') | \[Example\](url 'button color=secondary href=url') |
 | Callout | > \[!type\] | > \[!info\]<br>> Example |
 | Image | !\[Alt text \|\| custom-class\](url 'figcaption') | !\[Example image \|\| full-bleed\](/test.jpg 'A sample image'\]

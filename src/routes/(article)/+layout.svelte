@@ -12,7 +12,7 @@
 	export let data: { post: BlogPost };
 	$: ({ post } = data);
 
-	$: showCardLayout = Boolean(post.showImage && post.coverImage?.src);
+	$: showCardLayout = Boolean(post?.showImage && post?.coverImage?.src);
 
 	let metaKeywords = keywords;
 

@@ -2,7 +2,7 @@
 slug: github-profile-readme
 title: Spicing Up your GitHub Profile with HTML and CSS
 excerpt: 'Make your GitHub profile more appealing with what you do best: code!'
-coverImage: /posts/github-profile-readme/cover.jpg
+coverImage: /images/posts/github-profile-readme/cover.jpg
 coverImageAlt: ""
 showImage: true
 date: 2021-01-02
@@ -20,7 +20,7 @@ Last year, GitHub added a new cool feature for the user profile. You can now add
 
 For adding this to your profile, there's a little secret. Instead of an option in your "Edit Profile" settings, this is achieved by ==creating a new repository with the same name as your GitHub username.==
 
-![Screenshot of GitHub repository creation](/posts/github-profile-readme/repo-creation.jpg '🎉️ Creating a new repo with the same name as your username immediatelly makes GitHub praise you for finding out this secret.')
+![Screenshot of GitHub repository creation](/images/posts/github-profile-readme/repo-creation.jpg '🎉️ Creating a new repo with the same name as your username immediatelly makes GitHub praise you for finding out this secret.')
 
 You can choose to initialize the repository with a README file already. After that, the content of this file will already start showing on your personal profile.
 
@@ -79,7 +79,7 @@ As an example, check out the SVG file I use to add the "tags" with technologies 
 
 From there on, the possibilities are endless. On my profile, I added my personal logo SVG and the same drawing animation used on my own website.
 
-![Animation on my GitHub Profile](/posts/github-profile-readme/my-profile.gif 'Using CSS animations inside the SVG, I was able to mimic the animation on my website.')
+![Animation on my GitHub Profile](/images/posts/github-profile-readme/my-profile.gif 'Using CSS animations inside the SVG, I was able to mimic the animation on my website.')
 
 Feel free to check out [the source code](https://github.com/matfantinel/matfantinel) to find out how it works.
 

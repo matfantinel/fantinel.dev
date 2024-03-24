@@ -2,7 +2,7 @@
 slug: microfrontends
 title: "Micro Frontends: Solving the Legacy JavaScript Problem"
 excerpt: Finally a way to modernize that legacy project you keep complaining about!
-coverImage: /posts/microfrontends/cover.jpg
+coverImage: /images/posts/microfrontends/cover.jpg
 coverImageAlt: Logos of jQuery, React and Angular with a heart in the middle
 showImage: true
 date: 2019-03-17
@@ -219,7 +219,7 @@ As with all things, there are some disadvantages in this approach:
 
 ### Browser Support
 
-![Screenshot of Can I Use website, showing that Custom Elements work on current versions of Chrome and Firefox, but not IE and Edge, and is only partially supported on Safari.](/posts/microfrontends/Browser-Support.jpg 'You can check this information on the <a href='https://caniuse.com/custom-elementsv1' target='_blank'>Can I Use</a> website.')
+![Screenshot of Can I Use website, showing that Custom Elements work on current versions of Chrome and Firefox, but not IE and Edge, and is only partially supported on Safari.](/images/posts/microfrontends/Browser-Support.jpg 'You can check this information on the <a href='https://caniuse.com/custom-elementsv1' target='_blank'>Can I Use</a> website.')
 
 As of March 2019, only Firefox, Chrome and Chromium-based browsers fully support custom elements, while Safari implements them only partially. However, [there's a polyfill available](https://github.com/webcomponents/custom-elements) to bring support to older browsers.
 

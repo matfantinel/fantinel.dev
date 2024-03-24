@@ -1,28 +1,28 @@
 ---
-slug: blog-development-sveltekit
-title: How I built a blog with Svelte and SvelteKit
-excerpt: An overview of the experience I've had using these amazing projects.
-coverImage: /posts/blog-development-sveltekit/cover.jpg
-coverImageAlt: ""
-showImage: true
-date: 2021-09-08
-updated: 2023-05-21
-hidden: false
 tags: []
+type: Article
+title: How I built a blog with Svelte and SvelteKit
+slug: blog-development-sveltekit
+excerpt: An overview of the experience I've had using these amazing projects.
+coverImage: /images/posts/blog-development-sveltekit/cover.jpg
+coverImageAlt: ''
+showImage: true
+showToc: true
+hidden: false
 categories:
   - Front-End
   - Svelte
   - Dev
-type: Article
-showToc: true
+date: 2021-09-08T00:00:00.000Z
+updated: 2023-05-21T00:00:00.000Z
 ---
 
 I've recently re-launched my personal website and blog, that's now reached its 3rd version. There was nothing wrong with the previous one, but I wanted to both give it a small visual refresh and learn something new. So, after a month or so of working on it on my free time, @@voilà@@, you're seeing it right now!
 
-> [!info]
-> While the code for this website is open-source, it has a lot of content that's very specific to myself. So, if you want to use it as a template to get your own website started, I've created a <strong>public template that you can use as a starting point</strong>!
+> \[!info]
+> While the code for this website is open-source, it has a lot of content that's very specific to myself. So, if you want to use it as a template to get your own website started, I've created a **public template that you can use as a starting point**!
 
-[[[ See the starting template || color=secondary href=https://github.com/matfantinel/sveltekit-static-blog-template ]]]
+[Check out the starting template here!](https://github.com/matfantinel/sveltekit-static-blog-template "button || color=secondary")
 
 ## About Svelte and SvelteKit
 
@@ -34,19 +34,19 @@ This means that it does its job at build time, not at runtime. While other frame
 
 Using both of the above allowed my website to have two important characteristics:
 
-- Every single page is rendered at build time (server-side rendering). This means that as long as the HTML and CSS files are downloaded, it will look as it was meant to be;
-- JavaScript is not needed. Try disabling JavaScript on your browser. You'll still be able to read this blog post and everything will look the same.
+* Every single page is rendered at build time (server-side rendering). This means that as long as the HTML and CSS files are downloaded, it will look as it was meant to be;
+* JavaScript is not needed. Try disabling JavaScript on your browser. You'll still be able to read this blog post and everything will look the same.
 
 ## Progressive Enhancement
 
 One of the concepts that really caught my eye with Svelte is the idea of Progressive Enhancement: ==making sure your app runs for everyone, and making it progressively more featureful if the user's device supports it==. My website is a pretty simple project, but still there are instances of this:
 
-If there's no JavaScript, the website uses the browser's native navigation API. Which means you can navigate between pages normally without any client-side code. _However_, if JavaScript is available, a client-side router will be used to make the transition between pages smoother and faster. This means that even if the user's device doesn't support JS for any reason, the site will still be completely functional.
+If there's no JavaScript, the website uses the browser's native navigation API. Which means you can navigate between pages normally without any client-side code. *However*, if JavaScript is available, a client-side router will be used to make the transition between pages smoother and faster. This means that even if the user's device doesn't support JS for any reason, the site will still be completely functional.
 
-> [!info]
+> \[!info]
 > We tend to think of JavaScript being disabled as a user choice, but that is usually not the case. Think of someone using their phone on a weak 3G connection that fails to load the .js files, or someone in the subway that lost signal while loading the page. It happens often and being able to show your content even in these conditions is a great way of not losing a visitor.
 
-And you know what I had to do to support this? _Nothing_. Just using `<a>` elements is enough, as SvelteKit will intercept those if needed (JS enabled), or simply leave it to the browser otherwise.
+And you know what I had to do to support this? *Nothing*. Just using `<a>` elements is enough, as SvelteKit will intercept those if needed (JS enabled), or simply leave it to the browser otherwise.
 
 ## Design
 
@@ -54,14 +54,14 @@ I'm not a designer, but I like to pretend I am. So, instead of designing-as-I-go
 
 The design itself was something I came up with, and it's an amalgamation of ideas and inspirations that were stored in my head. When building it, I wasn't entirely sure where the inspiration came from, but now it is apparent to me that most of it comes from some websites I love: [Josh Comeau's](https://www.joshwcomeau.com/) and [George Francis'](https://georgefrancis.dev/).
 
-After the design was complete, I finally began developing it. Since there are some things that you can only find out while developing it and giving it more attention, I made some small tweaks to the design while implementing it. Still, the final result was _really_ similar to the initial design. I count that as a success!
+After the design was complete, I finally began developing it. Since there are some things that you can only find out while developing it and giving it more attention, I made some small tweaks to the design while implementing it. Still, the final result was *really* similar to the initial design. I count that as a success!
 
-![Screenshot of the design and end result of the website. Both look really similar!](/posts/blog-development-sveltekit/design-vs-result.png 'The design (left) and the result (right)')
+![Screenshot of the design and end result of the website. Both look really similar!](/images/posts/blog-development-sveltekit/design-vs-result.png "The design (left) and the result (right)")
 
 ## Routing
 
-> [!info]
-> Initially, SvelteKit used a _file_-based routing, as opposed to the current _folder_-based routing. This article has been updated to reflect those changes. If you were familiar with the previous system, <a href='https://github.com/sveltejs/kit/discussions/5774#discussioncomment-3294867' target='_blank'>this comment by the SvelteKit team</a> might help you understand the changes.
+> \[!info]
+> Initially, SvelteKit used a *file*-based routing, as opposed to the current *folder*-based routing. This article has been updated to reflect those changes. If you were familiar with the previous system, [this comment by the SvelteKit team](https://github.com/sveltejs/kit/discussions/5774#discussioncomment-3294867) might help you understand the changes.
 
 SvelteKit uses a folder-based routing system. This means that your routes are dictated by the folder structure inside `routes` in your project. Every route **must** have a folder, except for the root ('/').
 
@@ -100,6 +100,7 @@ The `+layout.svelte` file is a base layout for all the pages inside the route. W
 
 <Footer />
 ```
+
 ### Layout Groups
 
 Having a `+layout.svelte` file is a great way to avoid re-writing the same base layout multiple times. However, sometimes you might want to have a different layout for a group of pages. For example, I wanted the blog posts to have some extra elements that the rest of the pages didn't have, like a title and related posts at the bottom.
@@ -132,9 +133,9 @@ The main challenge for me was in processing Markdown (.md) files of the blog pos
 
 I had three requisites for this:
 
-- I wanted to write blog posts in Markdown, because of its ease, and also so I wouldn't have to rewrite all the existing posts;
-- I wanted to be able to use Svelte components inside the blog posts as well, for more interactive elements;
-- It has to be rendered on build time so the blog can be deployed as a static site;
+* I wanted to write blog posts in Markdown, because of its ease, and also so I wouldn't have to rewrite all the existing posts;
+* I wanted to be able to use Svelte components inside the blog posts as well, for more interactive elements;
+* It has to be rendered on build time so the blog can be deployed as a static site;
 
 I had heard about something similar to what I wanted, called MDX. It allows everything I wanted, however, it was React-based and I couldn't use it. Luckily, I found out about [MDsveX](https://mdsvex.com/), a project with the same goal as MDX, but for Svelte!
 
@@ -282,4 +283,4 @@ Don't forget all the code for this website and blog are open source, feel free t
 
 Thanks for reading!
 
-[[[ See the starting template || color=secondary href=https://github.com/matfantinel/sveltekit-static-blog-template ]]]
+[Check out the starting template here!](https://github.com/matfantinel/sveltekit-static-blog-template "button || color=secondary")

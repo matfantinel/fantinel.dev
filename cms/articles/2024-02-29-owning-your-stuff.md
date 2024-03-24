@@ -1,25 +1,27 @@
 ---
+tags: []
+type: Article
+title: 'Owning your stuff is pretty cool, actually'
 slug: owning-your-stuff
-title: Owning your stuff is pretty cool, actually
-excerpt: Let's talk a bit about Obsidian, VC-funded apps, the appocalypse and how awesome Markdown life can be.
-coverImage: ""
-coverImageAlt: ""
+excerpt: >-
+  Let's talk a bit about Obsidian, VC-funded apps, the appocalypse and how
+  awesome Markdown life can be.
+coverImage: ''
+coverImageAlt: ''
 showImage: false
-socialImage: ""
-date: 2024-02-29
-updated: null
+socialImage: ''
 showToc: false
 hidden: false
-tags: []
 categories:
   - Reading Recs
   - Personal
-type: Article
+date: 2024-02-29T00:00:00.000Z
+updated: 1970-01-01T00:00:00.000Z
 ---
 
 > If you want to create digital artifacts that last, they must be files you can control, in formats that are easy to retrieve and read. Use tools that give you this freedom.
-> 
-> - Steph Ango, in [Files over apps](https://stephango.com/file-over-app)
+>  
+> – Steph Ango, in [Files over apps](https://stephango.com/file-over-app)
 
 This week I re-read Steph Ango’s post about why we should prefer files over apps. The context over which it was reposted was because Notion bought Skiff, an email client, which was quickly followed by an announcement that the service is being sunset in 6 months (and its source code got moved to another repo with no warning; which made many people think it got pulled completely).
 

@@ -22,6 +22,11 @@ type BlogPost = {
 }
 
 export const frontmatterToBlogPost = (frontmatter: any, content: string): BlogPost => {
+  // if frontmatter.updated is before frontmatter.date, set updated to null
+  if (frontmatter.updated && frontmatter.date && frontmatter.updated < frontmatter.date) {
+    frontmatter.updated = null;
+  }
+
   return {
     slug: frontmatter.slug,
     title: frontmatter.title,
@@ -30,12 +35,12 @@ export const frontmatterToBlogPost = (frontmatter: any, content: string): BlogPo
     date: frontmatter.date,
     updated: frontmatter.updated,
     coverImage: frontmatter.coverImage ? {
-      src: '/images' + frontmatter.coverImage,
+      src: frontmatter.coverImage,
       alt: frontmatter.coverImageAlt
     } : undefined,
     showImage: frontmatter.showImage,
     socialImage: frontmatter.socialImage ? {
-      src: '/images' + frontmatter.socialImage,
+      src: frontmatter.socialImage,
       alt: ''
     } : undefined,
     tags: frontmatter.tags?.sort((a: string, b: string) => a.localeCompare(b)),

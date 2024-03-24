@@ -1,19 +1,22 @@
 ---
-slug: css-hover-media-query
+tags: []
+type: Article
 title: Conditional Hover Styles in CSS
-excerpt: Have you ever crafted a nice hover effect for an element in your website, then opened it on mobile and saw that effect erroneously appear when that element is tapped on?
-coverImage: /posts/css-hover-media-query/cover.jpg
+slug: css-hover-media-query
+excerpt: >-
+  Have you ever crafted a nice hover effect for an element in your website, then
+  opened it on mobile and saw that effect erroneously appear when that element
+  is tapped on?
+coverImage: /images/posts/css-hover-media-query/cover.jpg
 coverImageAlt: Laptop and phone side by side
 showImage: true
-socialImage: /posts/css-hover-media-query/social.png
-date: 2023-02-12
-updated: null
+socialImage: /images/posts/css-hover-media-query/social.png
 hidden: false
-tags: []
 categories:
   - Front-End
   - Dev
-type: Article
+date: 2023-02-12T00:00:00.000Z
+updated: 1970-01-01T00:00:00.000Z
 ---
 
 Have you ever crafted a nice hover effect for an element in your website, then opened it on mobile and saw that effect erroneously appear when that element is tapped on? That’d be nice perhaps, if it weren’t for the fact that the effect just… stays there.

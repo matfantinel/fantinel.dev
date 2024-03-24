@@ -1,19 +1,19 @@
 ---
+tags: []
+type: Article
+title: 'Smarter, Lighter, Better Images: A Guide to Optimization'
 slug: web-images-modern-formats
-title: "Smarter, Lighter, Better Images: A Guide to Optimization"
 excerpt: Learn how to reduce page loading times and bounce rate.
-coverImage: /posts/web-images-modern-formats/cover.jpg
+coverImage: /images/posts/web-images-modern-formats/cover.jpg
 coverImageAlt: Picture of sand with a feather and a footprint besides it
 showImage: true
-date: 2021-01-30
-updated: 2023-05-17
+showToc: true
 hidden: false
-tags: []
 categories:
   - Front-End
   - Dev
-type: Article
-showToc: true
+date: 2021-01-30T00:00:00.000Z
+updated: 2023-05-17T00:00:00.000Z
 ---
 
 Do you know how big the images displayed on your website are? When you open a page, the browser starts downloading a bunch of files in order to display it. Research shows that [images are the most requested asset type](https://httparchive.org/reports/state-of-images) and take up more bandwidth than any other resource. So, making sure they are as small as they can be can greatly improve the load times for your website. (spoiler alert: mine's become 85% faster!)
@@ -26,7 +26,7 @@ WebP has been introduced in 2010, and has slowly gained adoption since then. Sin
 
 ### Browser Support
 
-_But how do we use those shiny new formats if not all browsers support them?_
+*But how do we use those shiny new formats if not all browsers support them?*
 
 With the `<img>` element, we can make the browsers do the work for us. We can declare multiple sources for the same image, and the browser will try to load them in order. If they do not support a format, they will immediatelly jump to the next one. To do that, we use the `srcset` property to declare the optimal versions (avif and webp), and then use the `src` as usual to point to the fallback image (jpg or png).
 
@@ -45,7 +45,7 @@ AVIF -> WebP -> JPG (or PNG)
 
 If you look at the resulting HTML in your website, you can see that the `<img>` element has a `src` defined, but when you hover over it, it shows what is the actual file that's being loaded. If you're on a supported browser, it will have loaded the AVIF file. If you're on Safari, it will have loaded the WebP one. Otherwise, if you're using IE or something (I'm sorry), the original JPG or PNG file will be loaded.
 
-![Screenshot of the generated HTML code. Hovering over the PNG filename reveals that an AVIF file is being downloaded instead.](/posts/web-images-modern-formats/generated-html.png 'The img tag shows the PNG file as source, but hovering the mouse over it reveals that the AVIF file is the one that actually loaded.')
+![Screenshot of the generated HTML code. Hovering over the PNG filename reveals that an AVIF file is being downloaded instead.](/images/posts/web-images-modern-formats/generated-html.png "The img tag shows the PNG file as source, but hovering the mouse over it reveals that the AVIF file is the one that actually loaded.")
 
 ## Load smaller images
 
@@ -73,7 +73,7 @@ Check out the value on the example: `(max-width: 979px) 100vw, 640px`. What that
 
 It is easier to understand if we visualize it like this:
 
-![Screenshots picturing how the sizes property affects the image loading on both mobile and desktop](/posts/web-images-modern-formats/sizes.png "On mobile, the image width is almost the same as the viewport, so it's okay to use 100vw. On desktop, we usually limit the image width, so 640px was the sweet spot in this particular case.")
+![Screenshots picturing how the sizes property affects the image loading on both mobile and desktop](/images/posts/web-images-modern-formats/sizes.png "On mobile, the image width is almost the same as the viewport, so it's okay to use 100vw. On desktop, we usually limit the image width, so 640px was the sweet spot in this particular case.")
 
 Of course, different websites have different needs and situations. Make sure to adapt the code to your specific need.
 
@@ -87,9 +87,9 @@ You might have noticed the `loading="lazy"` and `decoding="async"` attributes in
 
 `loading="lazy"` is probably the most important of the two. It is an easy way of telling the browser to ==only load the images when they get close to appearing in the viewport==. There is a threshold that is defined by the browser that controls how close it needs to be before it gets loaded, so you don't have to worry about them not showing up if the user scrolls fast. ==This ensures that the initial load of the website is as lean as it can get, improving perceived performance and also saving you some money on server requests.==
 
-![Screenshot of the browser tools showing network requests: There are only two images that have been downloaded.](/posts/web-images-modern-formats/first-load-requests.png "When the website is initially loaded, it only downloads what's needed: my avatar image and the preview of the first blog post, that will show up after scrolling a bit.")
+![Screenshot of the browser tools showing network requests: There are only two images that have been downloaded.](/images/posts/web-images-modern-formats/first-load-requests.png "When the website is initially loaded, it only downloads what's needed: my avatar image and the preview of the first blog post, that will show up after scrolling a bit.")
 
-![Screenshot of the browser tools showing network requests: now, there are many more images downloaded.](/posts/web-images-modern-formats/after-scrolling-requests.png "When I scroll down the page, the images are downloaded as they're close to appearing.")
+![Screenshot of the browser tools showing network requests: now, there are many more images downloaded.](/images/posts/web-images-modern-formats/after-scrolling-requests.png "When I scroll down the page, the images are downloaded as they're close to appearing.")
 
 ## Results In Practice
 
@@ -99,9 +99,9 @@ Note: after doing some tests, I have decided that the benefits of serving differ
 
 The following data is taken from the home page of the website, since it has a lot of images:
 
-![Screenshot of browser tool network requests, from before and after optimization. Before: 1.6MB download; After: 249KB download](/posts/web-images-modern-formats/results.png)
+![Screenshot of browser tool network requests, from before and after optimization. Before: 1.6MB download; After: 249KB download](/images/posts/web-images-modern-formats/results.png)
 
-==The total download size decreased by a whopping 85%!!== That's an incredible difference, with no noticeable difference in quality. Your results may vary, as they depend on how much of your website's size is images.
+\\\\==The total download size decreased by a whopping 85%!!== That's an incredible difference, with no noticeable difference in quality. Your results may vary, as they depend on how much of your website's size is images.
 
 Before the changes, out of 1.6MB total, 92% of it were images, 5% were fonts, 1% was HTML, and the remaining 2% were of JS and other things like the web manifest.
 
@@ -117,9 +117,8 @@ For my needs, I have developed a NodeJS script that uses the [Sharp](https://git
 
 You can install the script as a NPM package, and then run it on a build command on your website!
 
-[[[ Check out image-transmutation! || color=secondary href=https://github.com/matfantinel/image-transmutation ]]]
-
-[[[ See usage example || color=secondary style=clear href=https://github.com/matfantinel/sveltekit-static-blog-template/blob/main/package.json ]]]
+[Check out image-transmutation!](https://github.com/matfantinel/image-transmutation 'button || color=secondary')
+[See usage example](https://github.com/matfantinel/sveltekit-static-blog-template/blob/main/package.json 'button || color=secondary style=clear')
 
 ### Using the images
 
@@ -127,14 +126,14 @@ To make this setup work, I had to do some changes on how images were used on my 
 
 Pre-existing conditions:
 
-- All the images on my website were initially in a folder called "images", with various subfolders;
-- I didn't want all the versions of an image (webp, avif, etc) to take up space on my repository, so I only have them generated on build time.
+* All the images on my website were initially in a folder called "images", with various subfolders;
+* I didn't want all the versions of an image (webp, avif, etc) to take up space on my repository, so I only have them generated on build time.
 
 Modifications I did:
 
-- I have created a component to centralize all image-loading logic;
-- This component receives two parameters: the file path and the alt text;
-- If my project is running in dev mode, it won't add the srcset at all, as the optimized images won't exist;
+* I have created a component to centralize all image-loading logic;
+* This component receives two parameters: the file path and the alt text;
+* If my project is running in dev mode, it won't add the srcset at all, as the optimized images won't exist;
 
 ```html
 <script lang="ts">

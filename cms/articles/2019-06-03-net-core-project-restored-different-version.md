@@ -2,7 +2,7 @@
 slug: net-core-project-restored-different-version
 title: .NET Core - Project version mismatch
 excerpt: Solving this cryptic error might take you many hours. Hopefully this will help you out.
-coverImage: /posts/net-core-project-restored-different-version/cover.jpg
+coverImage: /images/posts/net-core-project-restored-different-version/cover.jpg
 coverImageAlt: ""
 showImage: true
 date: 2019-06-03
