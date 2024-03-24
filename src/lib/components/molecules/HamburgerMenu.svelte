@@ -194,9 +194,9 @@
 	}
 
 	@include for-tablet-portrait-up {
-		.mobile-only {
-			display: none;
-		}
+		// .mobile-only {
+		// 	display: none;
+		// }
 
 		// Just show the menu as regular links
 		#control {

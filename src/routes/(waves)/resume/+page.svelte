@@ -3,7 +3,7 @@
 	import Resume from '$lib/components/organisms/Resume.svelte';
 	import { title } from '$lib/data/meta';
 	import DownloadIcon from '$lib/icons/download.svelte';
-	import type WorkExperience from '$lib/data/work-experience/model';
+	import type WorkExperience from '$lib/data/work-experiences/model';
 
 	export let data: {
 		yearsOfExperience: number;

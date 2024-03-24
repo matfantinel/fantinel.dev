@@ -31,6 +31,8 @@
 	{...linkProps}
 	data-sveltekit-preload-data
 	on:click={handleCardClick}
+	role={href ? 'link' : 'article'}
+	tabindex="0"
 	{...$$restProps}
 >
 	<div class="wrapper">

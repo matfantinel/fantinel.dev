@@ -1,7 +1,7 @@
 <script lang="ts">
 	import PinIcon from '$lib/icons/pin.svelte';
 	import CircleIcon from '$lib/icons/circle.svelte';
-	import type WorkExperience from '$lib/data/work-experience/model';
+	import type WorkExperience from '$lib/data/work-experiences/model';
 	import TintHighlight from '$lib/components/molecules/TintHighlight.svelte';
 
 	export let entries: WorkExperience[];

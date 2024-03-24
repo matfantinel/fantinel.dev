@@ -46,12 +46,6 @@
 				}
 			}
 
-			p {
-				@include for-phone-only {
-					text-align: justify;
-				}
-			}
-
 			@include for-phone-only {
 				gap: 20px;
 				:global([slot='content']) {

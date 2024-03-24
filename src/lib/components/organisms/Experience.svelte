@@ -1,7 +1,7 @@
 <script lang="ts">
 	import ExperienceCard from '$lib/components/molecules/ExperienceCard.svelte';
 	import ContentSection from '$lib/components/organisms/ContentSection.svelte';
-	import type WorkExperience from '$lib/data/work-experience/model';
+	import type WorkExperience from '$lib/data/work-experiences/model';
 	import Button from '../atoms/Button.svelte';
 
 	export let yearsOfExperience: number;

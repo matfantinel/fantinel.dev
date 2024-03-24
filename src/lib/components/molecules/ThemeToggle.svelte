@@ -15,6 +15,8 @@
 <noscript style="display: none;">
 	<!-- Hide the theme toggle if JavaScript is disabled -->
 	<!-- Hide the theme toggle if JavaScript is disabled -->
+	<!-- Hide the theme toggle if JavaScript is disabled -->
+	<!-- Hide the theme toggle if JavaScript is disabled -->
 	<style>
 		.theme-toggle {
 			display: none !important;
@@ -69,9 +71,6 @@
 			#moon,
 			#sun {
 				fill: var(--color--primary);
-				> * {
-					filter: drop-shadow(0px 0px 3px var(--color--primary));
-				}
 			}
 
 			#sun-beams {

@@ -86,11 +86,11 @@
 				}
 			}
 
-			@include for-tablet-portrait-down {
-				.desktop-only {
-					display: none;
-				}
-			}
+			// @include for-tablet-portrait-down {
+			// 	.desktop-only {
+			// 		display: none;
+			// 	}
+			// }
 
 			@include for-phone-only {
 				.menu-wrapper {
