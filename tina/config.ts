@@ -5,7 +5,7 @@ const branch =
   process.env.GITHUB_BRANCH ||
   process.env.VERCEL_GIT_COMMIT_REF ||
   process.env.HEAD ||
-  "tina";
+  "main";
 
 export default defineConfig({
   branch,
@@ -21,8 +21,8 @@ export default defineConfig({
   },
   media: {
     tina: {
-      mediaRoot: "",
-      publicFolder: "static",
+      mediaRoot: process.env.TINA_MEDIA_ROOT ?? "images",
+      publicFolder: process.env.TINA_PUBLIC_FOLDER ?? 'static',
     },
   },
   // See docs on content modeling for more info on how to setup new content models: https://tina.io/docs/schema/
