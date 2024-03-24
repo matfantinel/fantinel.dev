@@ -43,8 +43,9 @@
 		<ul id="menu" class:closing={menuIsClosing}>
 			<li class="socials"><Socials /></li>
 			{#each links as link}
-				<a class="menu-item" href={link.href} on:click={handleMenuItemClick}><li>{link.text}</li></a
-				>
+				<li class="menu-item">
+					<a href={link.href} on:click={handleMenuItemClick}>{link.text}</a>
+				</li>
 			{/each}
 		</ul>
 	</div>
