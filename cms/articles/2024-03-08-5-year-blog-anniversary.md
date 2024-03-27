@@ -56,7 +56,7 @@ Overall, I think this is my least favorite version of it. I really like the wave
 
 ## Version 3.0
 
-This was a big rewrite, and brought it really close to what it's like today. It was a complete rebuild from the ground up, now using Svelte and SvelteKit, replacing Jekyll. [I wrote about how I built it](http://localhost:5173/blog-development-sveltekit), and it became my most read post of all time!
+This was a big rewrite, and brought it really close to what it's like today. It was a complete rebuild from the ground up, now using Svelte and SvelteKit, replacing Jekyll. [I wrote about how I built it](/blog-development-sveltekit), and it became my most read post of all time!
 
 If you open it [on the Wayback Machine](https://web.archive.org/web/20211006092452/https://fantinel.dev/) and compare to the current site, it mostly looks the same. I still think the layout is not perfect, but I haven't found a better way of displaying information about me yet.
 
