@@ -1,9 +1,10 @@
 <script>
 	export let animated = false;
 	export let showFullLogo = false;
+	export let colored = false;
 </script>
 
-<div class="logo" class:animated>
+<div class="logo" class:animated class:colored>
 	<svg
 		id="logo-icon"
 		class:animated
@@ -270,6 +271,14 @@
 			}
 			#logo-name {
 				filter: drop-shadow(0px 0px 3px var(--color--primary));
+			}
+		}
+
+		&.colored {
+			#logo-icon {
+				#icon-overlay {
+					opacity: 1;
+				}
 			}
 		}
 	}
