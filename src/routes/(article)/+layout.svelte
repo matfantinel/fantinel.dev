@@ -5,6 +5,8 @@
 	import Header from '$lib/components/organisms/Header.svelte';
 	import RelatedPosts from '$lib/components/organisms/RelatedPosts.svelte';
 	import TableOfContents from '$lib/components/organisms/TableOfContents.svelte';
+	import dateformat from 'dateformat';
+	import { PUBLIC_PAGE_SCREENSHOT_SERVICE_URL } from '$env/static/public';
 
 	import type BlogPost from '$lib/data/blog-posts/model';
 	import { keywords, siteBaseUrl, title, image as metaImage } from '$lib/data/meta';
@@ -15,6 +17,7 @@
 	$: showCardLayout = Boolean(post?.showImage && post?.coverImage?.src);
 
 	let metaKeywords = keywords;
+	let genericSocialImageUrl: string | undefined;
 
 	$: {
 		if (post?.categories?.length) {
@@ -25,6 +28,12 @@
 		}
 		if (post?.keywords?.length) {
 			metaKeywords = post.keywords.concat(metaKeywords);
+		}
+
+		if (post.slug && PUBLIC_PAGE_SCREENSHOT_SERVICE_URL) {
+			genericSocialImageUrl = PUBLIC_PAGE_SCREENSHOT_SERVICE_URL;
+			genericSocialImageUrl += encodeURIComponent(`${siteBaseUrl}/opengraph/post/${post.slug}`);
+			genericSocialImageUrl += `/opengraph/_${dateformat(new Date(), 'yyyymmdd')}`;
 		}
 	}
 </script>
@@ -48,6 +57,9 @@
 		{:else if post.coverImage?.src}
 			<meta property="og:image" content="{siteBaseUrl}{post.coverImage.src}" />
 			<meta name="twitter:image" content="{siteBaseUrl}{post.coverImage.src}" />
+		{:else if genericSocialImageUrl}
+			<meta property="og:image" content={genericSocialImageUrl} />
+			<meta name="twitter:image" content={genericSocialImageUrl} />
 		{:else}
 			<meta property="og:image" content={metaImage} />
 			<meta name="twitter:image" content={metaImage} />

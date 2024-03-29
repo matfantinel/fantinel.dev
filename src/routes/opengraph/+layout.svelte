@@ -12,9 +12,6 @@
 	<div class="heading">
 		<Waves />
 		<h1>{title}</h1>
-		{#if date}
-			<p>{date}</p>
-		{/if}
 	</div>
 
 	<div class="bottom">
@@ -26,6 +23,9 @@
 				<span class="icon"><InternetIcon /></span>
 				fantinel.dev
 			</li>
+			{#if date}
+				<li>{date}</li>
+			{/if}
 		</ul>
 
 		<div class="avatar">
@@ -46,26 +46,21 @@
 	}
 
 	.heading {
+		padding: 40px;
 		position: relative;
 		width: 100%;
 		z-index: 1;
 
 		:global(.waves-container) {
 			height: max(calc(100% + 40px), 65vh);
+			top: 0;
+			left: 0;
 		}
 
 		h1 {
-			padding: 40px 40px 0;
 			font-size: 5rem;
 			z-index: 1;
 			text-wrap: balance;
-			position: relative;
-		}
-
-		p {
-			padding: 0 40px 40px;
-			font-size: 1.6rem;
-			font-weight: 600;
 			position: relative;
 		}
 	}
