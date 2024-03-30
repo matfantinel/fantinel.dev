@@ -49,11 +49,8 @@ export const getPostBySlug = async (slug: string): Promise<BlogPost | null> => {
 }
 
 export const getAllSlugs = async (): Promise<string[]> => {
-  const fileNames = await fs.readdir(MD_FILES_PATH);
-
-  // Filenames are in the format yyyy-MM-dd-slug.md
-  // Grab only the slug
-  const slugs = fileNames.map((fileName) => fileName.split('-').slice(3).join('-').replace('.md', '').replace('--hidden', ''));
+  const allPosts = await getPosts(undefined, undefined, true);
+  const slugs = allPosts.items?.map((post) => post.slug) ?? [];
 
   return slugs;
 }
