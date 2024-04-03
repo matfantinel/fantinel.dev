@@ -17,6 +17,7 @@
 	<!-- Hide the theme toggle if JavaScript is disabled -->
 	<!-- Hide the theme toggle if JavaScript is disabled -->
 	<!-- Hide the theme toggle if JavaScript is disabled -->
+	<!-- Hide the theme toggle if JavaScript is disabled -->
 	<style>
 		.theme-toggle {
 			display: none !important;
@@ -26,7 +27,8 @@
 
 <button
 	class="theme-toggle"
-	title="Toggle between light and dark theme"
+	title="Toggle between light and dark theme. Current theme: {$theme}"
+	aria-label="Toggle between light and dark theme. Current theme: {$theme}"
 	data-theme={$theme}
 	on:click={toggleTheme}
 >
