@@ -21,11 +21,12 @@
 <Card
 	href="/{slug}"
 	on:click
-	additionalClass="blog-post-card {(!showImage || !coverImage) && 'hide-image'} {showImage &&
+	additionalClass="blog-post-card {!showImage && 'hide-image'} {showImage &&
 		!coverImage &&
 		'missing-image'} {additionalClass}"
 >
 	<div class="cover-image" slot="image">
+		<div class="image-placeholder">{title.substring(0, 5)}</div>
 		{#if coverImage && showImage}
 			<Image
 				src={typeof coverImage === 'string' ? coverImage : coverImage.src}
@@ -70,6 +71,29 @@
 		flex-direction: column;
 		gap: 0px;
 		align-items: flex-start;
+	}
+
+	.cover-image {
+		background: var(--color--primary-tint);
+		isolation: isolate;
+	}
+
+	.image-placeholder {
+		position: absolute;
+		top: 50%;
+		left: 0;
+		font-size: 320px;
+		line-height: 1;
+		font-family: var(--font--mono);
+		letter-spacing: -16px;
+		color: var(--color--text-inverse-shade);
+		text-shadow: 0px 0px 4px rgba(var(--color--text-rgb), 0.5);
+		opacity: 0.2;
+		translate: 0 -50%;
+		max-height: 100%;
+		max-width: 100%;
+		overflow: hidden;
+		z-index: -1;
 	}
 
 	.title {
