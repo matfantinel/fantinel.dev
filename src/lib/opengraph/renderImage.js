@@ -2,7 +2,6 @@ import satori from 'satori';
 import { Resvg } from '@resvg/resvg-js';
 import { html as toReactNode } from 'satori-html';
 import { read } from '$app/server';
-// import { ImageResponse } from '@vercel/og';
 
 import fixelBold from '$lib/opengraph/fonts/FixelText-Bold.otf';
 import fixelBlack from '$lib/opengraph/fonts/FixelText-Black.otf';
@@ -15,23 +14,6 @@ const fixelBlackData = read(fixelBlack).arrayBuffer();
 export async function componentToPng(component, props) {
 	const result = component.render(props);
 	const markup = toReactNode(`${result.html}<style>${result.css.code}</style>`);
-
-	// return new ImageResponse(markup, {
-	// 	fonts: [
-	// 		{
-	// 			name: 'Fixel',
-	// 			data: await fixelBoldData,
-	// 			style: 'normal'
-	// 		},
-	// 		{
-	// 			name: 'Fixel Black',
-	// 			data: await fixelBlackData,
-	// 			style: 'normal'
-	// 		}
-	// 	],
-	// 	height: +height,
-	// 	width: +width
-	// });
 
 	const svg = await satori(markup, {
 		fonts: [

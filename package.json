@@ -54,7 +54,6 @@
 	"type": "module",
 	"dependencies": {
 		"@fontsource/ubuntu-mono": "^4.5.11",
-		"@vercel/og": "^0.6.2",
 		"svelte-toc": "^0.5.6",
 		"tinacms": "^1.5.29"
 	}
