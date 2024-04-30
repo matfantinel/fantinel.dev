@@ -1,5 +1,3 @@
-import satori from 'satori';
-// import { Resvg } from '@resvg/resvg-js';
 import { html as toReactNode } from 'satori-html';
 import { read } from '$app/server';
 import { ImageResponse } from '@vercel/og';
