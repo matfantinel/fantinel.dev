@@ -1,6 +1,6 @@
 <script>
 	// import { siteBaseUrl } from '$lib/data/meta';
-	const siteBaseUrl = 'https://fantineldev-git-satori-test-matfantinels-projects.vercel.app';
+	const siteBaseUrl = 'http://localhost:5173';
 
 	export let text;
 	export let date;
