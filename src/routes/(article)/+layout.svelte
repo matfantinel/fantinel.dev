@@ -6,7 +6,6 @@
 	import RelatedPosts from '$lib/components/organisms/RelatedPosts.svelte';
 	import TableOfContents from '$lib/components/organisms/TableOfContents.svelte';
 	import dateformat from 'dateformat';
-	import { PUBLIC_PAGE_SCREENSHOT_SERVICE_URL } from '$env/static/public';
 
 	import type BlogPost from '$lib/data/blog-posts/model';
 	import { keywords, siteBaseUrl, title, image as metaImage } from '$lib/data/meta';
@@ -30,10 +29,13 @@
 			metaKeywords = post.keywords.concat(metaKeywords);
 		}
 
-		if (post.slug && PUBLIC_PAGE_SCREENSHOT_SERVICE_URL) {
-			genericSocialImageUrl = PUBLIC_PAGE_SCREENSHOT_SERVICE_URL;
-			genericSocialImageUrl += encodeURIComponent(`${siteBaseUrl}/opengraph/post/${post.slug}`);
-			genericSocialImageUrl += `/opengraph/_${dateformat(new Date(), 'yyyymmdd')}`;
+		if (post) {
+			genericSocialImageUrl = `${siteBaseUrl}/opengraph?text=${encodeURIComponent(post.title)}`;
+			if (post.date) {
+				genericSocialImageUrl += `&date=${encodeURIComponent(
+					dateformat(post.date, 'mmm dd, yyyy')
+				)}`;
+			}
 		}
 	}
 </script>
