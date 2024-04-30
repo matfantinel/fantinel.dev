@@ -1,8 +1,8 @@
 import satori from 'satori';
-// import { Resvg } from '@resvg/resvg-js';
+import { Resvg } from '@resvg/resvg-js';
 import { html as toReactNode } from 'satori-html';
 import { read } from '$app/server';
-import { ImageResponse } from '@vercel/og';
+// import { ImageResponse } from '@vercel/og';
 
 import fixelBold from '$lib/opengraph/fonts/FixelText-Bold.otf';
 import fixelBlack from '$lib/opengraph/fonts/FixelText-Black.otf';
@@ -12,7 +12,7 @@ const fixelBlackData = read(fixelBlack).arrayBuffer();
 // This code was written by Geoff Rich and he wrote about it on this blog post:
 // https://geoffrich.net/posts/svelte-social-image/
 
-export async function componentToPng(component, props, height = 630, width = 1200) {
+export async function componentToPng(component, props) {
 	const result = component.render(props);
 	const markup = toReactNode(`${result.html}<style>${result.css.code}</style>`);
 
@@ -46,14 +46,14 @@ export async function componentToPng(component, props, height = 630, width = 120
 				style: 'normal'
 			}
 		],
-		height: +height,
-		width: +width
+		width: 1200,
+		height: 630
 	});
 
 	const resvg = new Resvg(svg, {
 		fitTo: {
 			mode: 'width',
-			value: +width
+			value: 1200
 		}
 	});
 
