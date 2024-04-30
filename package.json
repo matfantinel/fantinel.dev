@@ -18,8 +18,10 @@
 	},
 	"devDependencies": {
 		"@histoire/plugin-svelte": "^0.17.14",
+		"@resvg/resvg-js": "^2.6.2",
 		"@svelte-put/copy": "^3.0.0",
 		"@sveltejs/adapter-auto": "^3.0.0",
+		"@sveltejs/adapter-vercel": "^5.3.0",
 		"@sveltejs/kit": "^2.0.0",
 		"@sveltejs/vite-plugin-svelte": "^3.0.0",
 		"@tinacms/cli": "^1.5.40",
@@ -52,7 +54,6 @@
 	"type": "module",
 	"dependencies": {
 		"@fontsource/ubuntu-mono": "^4.5.11",
-		"@resvg/resvg-js": "^2.6.2",
 		"svelte-toc": "^0.5.6",
 		"tinacms": "^1.5.29"
 	}
