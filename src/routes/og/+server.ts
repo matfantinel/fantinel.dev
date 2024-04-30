@@ -3,10 +3,6 @@ import type { RequestHandler } from "@sveltejs/kit";
 import { componentToPng } from "$lib/opengraph/renderImage";
 import OpengraphImage from "./opengraph-image.svelte";
 
-export const config = {
-  runtime: 'edge',
-};
-
 export const GET: RequestHandler = async ({ url }) => {
   const query = url.searchParams;
 
