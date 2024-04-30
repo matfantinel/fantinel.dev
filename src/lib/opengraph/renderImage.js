@@ -8,6 +8,9 @@ import fixelBlack from '$lib/opengraph/fonts/FixelText-Black.otf';
 const fixelBoldData = read(fixelBold).arrayBuffer();
 const fixelBlackData = read(fixelBlack).arrayBuffer();
 
+// This code was written by Geoff Rich and he wrote about it on this blog post:
+// https://geoffrich.net/posts/svelte-social-image/
+
 export async function componentToPng(component, props, height = 630, width = 1200) {
 	const result = component.render(props);
 	const markup = toReactNode(`${result.html}<style>${result.css.code}</style>`);
