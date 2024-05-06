@@ -17,7 +17,7 @@ categories:
 type: Article
 ---
 
-![Image with my website's visual identity and the title of this blog post written on it](/posts/automating-social-media-preview-images-with-satori/example.png)
+![Image with my website's visual identity and the title of this blog post written on it](https://fantinel.dev/opengraph?text=This%20image%20was%20generated%20automatically%20right%20now!)
 
 Social media preview images (or open graph images, or og images) are very useful if you want to attract people to your website. Displaying that neat blog post featured image on the link preview might be the difference between someone scrolling past your link or clicking on it. Plus, it looks neat.
 

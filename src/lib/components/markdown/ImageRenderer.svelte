@@ -21,7 +21,7 @@
 		}
 	}
 
-	if (!href.startsWith('/images')) {
+	if (!href.startsWith('/images') && !href.startsWith('http')) {
 		href = `/images/${href}`;
 	}
 
