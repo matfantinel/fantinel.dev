@@ -6,11 +6,14 @@ coverImage: ""
 coverImageAlt: ""
 showImage: false
 socialImage: ""
-date: 2024-05-05T00:15:42.302Z
+date: 2024-05-05T22:15:42.302Z
 showToc: true
 hidden: false
 tags: []
-categories: []
+categories:
+  - Front-End
+  - Svelte
+  - Dev
 type: Article
 ---
 
