@@ -8,14 +8,6 @@
 </script>
 
 <div class="socials">
-	<!-- <a
-		href="https://t.me/Matt_Fantinel"
-		target="_blank"
-		rel="noopener noreferrer"
-		title="Say Hi on Telegram"
-	>
-		<TelegramIcon />
-	</a> -->
 	<a
 		href="https://hachyderm.io/@fantinel"
 		target="_blank"
@@ -27,7 +19,7 @@
 	<a
 		href="https://github.com/MatFantinel"
 		target="_blank"
-		rel="noopener noreferrer"
+		rel="me noopener noreferrer"
 		title="See my GitHub profile"
 	>
 		<GitHubIcon />
@@ -35,7 +27,7 @@
 	<a
 		href="https://www.linkedin.com/in/matheus-fantinel/"
 		target="_blank"
-		rel="noopener noreferrer"
+		rel="me noopener noreferrer"
 		title="Connect on LinkedIn"
 	>
 		<LinkedInIcon />
