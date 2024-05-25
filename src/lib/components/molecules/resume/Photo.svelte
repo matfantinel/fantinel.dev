@@ -5,12 +5,12 @@
 <Image
 	additionalClass="resume-photo light"
 	src="/images/resume-avatar.png"
-	alt="Matheus Fantinel's Avatar"
+	alt="Rasel Shikdar's Avatar"
 />
 <Image
 	additionalClass="resume-photo dark"
 	src="/images/resume-avatar-dark.png"
-	alt="Matheus Fantinel's Avatar"
+	alt="Rasel Shikdar's Avatar"
 />
 
 <style lang="scss">
