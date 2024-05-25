@@ -4,12 +4,12 @@
 
 <Image
 	additionalClass="resume-photo light"
-	src="/images/resume-avatar.png"
+	src="/images/resume-avatar-1.png"
 	alt="Rasel Shikdar's Avatar"
 />
 <Image
 	additionalClass="resume-photo dark"
-	src="/images/resume-avatar-dark.png"
+	src="/images/resume-avatar-1.png"
 	alt="Rasel Shikdar's Avatar"
 />
 
