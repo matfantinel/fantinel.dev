@@ -38,9 +38,9 @@
 	<section class="education">
 		<SectionTitle>Education</SectionTitle>
 		<p>
-			Graduated as a{' '}
-			<b>Technologist in System Analysis and Development</b> at{' '}
-			<i>Centro Universitário da Serra Gaúcha</i>, 2018.
+			Post Graduated as a{' '}
+			<b>Political Science</b> at{' '}
+			<i>Govt. Saadat University College, Tangail</i>, 2024.
 		</p>
 	</section>
 	<section class="skills">
