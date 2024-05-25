@@ -12,11 +12,11 @@
 	</div>
 	<div class="content">
 		<div class="copyright">
-			© {currentYear} Matheus Fantinel. Made in Brazil.
+			© {currentYear} Rasel Shikdar. Made in Bangladesh.
 		</div>
 		<div class="credits">
-			Powered by <a href="https://kit.svelte.dev/" target="_blank" rel="noopener noreferrer"
-				>SvelteKit</a
+			Powered by <a href="https://rsinfo.vercel.app/" target="_blank" rel="noopener noreferrer"
+				>RsInfo</a
 			>. Icons by
 			<a href="https://iconoir.com/" target="_blank" rel="noopener noreferrer">Iconoir</a>.
 		</div>
