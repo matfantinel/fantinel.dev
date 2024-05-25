@@ -9,7 +9,7 @@
 />
 <Image
 	additionalClass="resume-photo dark"
-	src="/images/resume-avatar-dark-2.png"
+	src="/images/resume-avatar-dark-3.png"
 	alt="Rasel Shikdar's Avatar"
 />
 
