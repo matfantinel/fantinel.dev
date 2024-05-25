@@ -31,19 +31,19 @@
 		<span class="icon"><EmailIcon /></span>
 		<a href="mailto:info@rasel.work.gd">info@rasel.work.gd</a>
 	</li>
-	<li class="linkedin">
-		<span class="icon"><LinkedInIcon /></span>
+	<li class="website">
+		<span class="icon"><InternetIcon /></span>
 		<a
-			href="https://www.linkedin.com/in/rasel597/"
+			href="https://rasel.is-a.dev"
 			target="_blank"
 			rel="noopener noreferrer"
 		>
-			LinkedIn Profile
+			rasel.is-a.dev
 		</a>
 	</li>
-	<li class="website">
-		<span class="icon"><InternetIcon /></span>
-		<a href="https://rasel.is-a.dev" target="_blank" rel="noopener noreferrer"> rasel.is-a.dev </a>
+	<li class="twitter">
+		<span class="icon"><TwitterIcon /></span>
+		<a href="https://x.com/raselshikdar_" target="_blank" rel="noopener noreferrer"> Twitter Profile </a>
 	</li>
 	<li class="github">
 		<span class="icon"><GitHubIcon /></span>
