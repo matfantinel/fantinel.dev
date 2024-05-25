@@ -29,7 +29,7 @@
 	</li>
 	<li class="email">
 		<span class="icon"><EmailIcon /></span>
-		<a href="mailto:info@rasel.work.gd">matt@fantinel.dev</a>
+		<a href="mailto:info@rasel.work.gd">info@rasel.work.gd</a>
 	</li>
 	<li class="linkedin">
 		<span class="icon"><LinkedInIcon /></span>
