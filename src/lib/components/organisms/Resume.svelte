@@ -38,8 +38,8 @@
 	<section class="education">
 		<SectionTitle>Education</SectionTitle>
 		<p>
-			Post Graduated as a{' '}
-			<b>Political Science</b> at{' '}
+			Post Graduated in{' '}
+			<b>Political Science</b> from{' '}
 			<i>Govt. Saadat University College, Tangail</i>, 2024.
 		</p>
 	</section>
