@@ -26,7 +26,7 @@
 
 	<ContentWithImage>
 		<div slot="title">
-			<span style="display: none;">My name is Matheus Fantinel</span>
+			<span style="display: none;">My name is Rasel Shikdar</span>
 			I'm a developer aiming to build things that
 			<SparklingHighlight color="secondary">spark joy</SparklingHighlight>
 		</div>
