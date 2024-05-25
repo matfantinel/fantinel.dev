@@ -6,7 +6,7 @@
 </script>
 
 <section id="hero">
-	<h1 class="hello">Hello, I'm Matt!</h1>
+	<h1 class="hello">Hello, I'm Rasel!</h1>
 	<p class="intro">
 		<span class="left">I build fun stuff on the web,</span>
 		<span class="right">and sometimes write about it.</span>
