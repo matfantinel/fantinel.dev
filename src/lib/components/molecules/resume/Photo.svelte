@@ -4,7 +4,7 @@
 
 <Image
 	additionalClass="resume-photo light"
-	src="/images/resume-avatar-2.png"
+	src="/images/resume-avatar-3.png"
 	alt="Rasel Shikdar's Avatar"
 />
 <Image
