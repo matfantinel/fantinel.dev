@@ -50,7 +50,7 @@ const xml = (posts: BlogPost[]) => `
 	xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
 >
   <channel>
-    <atom:link href="http://wwww.fantinel.dev/rss.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://rsinfo.vercel.app/rss.xml" rel="self" type="application/rss+xml" />
     <title>${title}</title>
     <link>${siteBaseUrl}</link>
     <description>${description}</description>
