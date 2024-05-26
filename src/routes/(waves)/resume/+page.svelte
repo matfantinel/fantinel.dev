@@ -22,7 +22,7 @@
 <div class="resume-wrapper">
 	<Button
 		additionalClass="download-link"
-		href="https://github.com/raselshikdar/rsinfo/raw/main/static/Matheus%20Fantinel%20-%20Resume.pdf"
+		href="https://github.com/raselshikdar/rsinfo/raw/main/static/Rasel-Shikdar-Resume.pdf"
 		style="understated"
 		color="secondary"
 	>
