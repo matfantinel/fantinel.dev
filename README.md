@@ -2,7 +2,7 @@
 
 If you wanna use this site as a base for building your own, I highly recommend basing it off [my public SvelteKit blog template](https://github.com/matfantinel/sveltekit-static-blog-template) instead! It is better documented and there is way less stuff to remove.
 
-# fantinel.dev
+# rsinfo.vercel.app
 
 This is my own personal website, built with SvelteKit. It also holds my own personal blog.
 
