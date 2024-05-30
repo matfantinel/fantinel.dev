@@ -20,10 +20,10 @@
 						alt="Rasel Shikdar"
 					/>
 					<div class="details">
-						<p class="note"><i>by</i> <a href="/resume"><b>Rasel Shikdar</b></a></p>
-						<p class="note"><s>{dateformat(post.date, 'UTC:dd mmm yyyy')} - {post.readingTime}</s></p>
+						<p class="note">By <a href="/resume"><b>Rasel Shikdar</b></a> <small>(Admin)</small></p>
+						<p class="note"><i>{dateformat(post.date, 'UTC:dd mmm yyyy')} - {post.readingTime}</i></p>
 						{#if post.updated}
-							<p class="note"><s>Updated {dateformat(post.updated, 'UTC:dd mmm yyyy')}</s></p>
+							<p class="note"><i>Updated {dateformat(post.updated, 'UTC:dd mmm yyyy')}</i></p>
 						{/if}
 					</div>
 				</div>
