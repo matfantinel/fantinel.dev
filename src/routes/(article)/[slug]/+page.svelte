@@ -16,11 +16,11 @@
 				<div class="meta">
 					<img
 						class="author-photo"
-						src="https://www.gravatar.com/avatar/03096594216040d3777c75862fde89a5?s=100"
-						alt="Matt Fantinel"
+						src="https://1.gravatar.com/avatar/55420fb619c1de81ce4a02676320d39306b6a592663750877dd55047f45d9067?size=512"
+						alt="Rasel Shikdar"
 					/>
 					<div class="details">
-						<p class="note">by Matt Fantinel</p>
+						<p class="note">by Rasel Shikdar</p>
 						<p class="note">{dateformat(post.date, 'UTC:dd mmm yyyy')} - {post.readingTime}</p>
 						{#if post.updated}
 							<p class="note">Updated {dateformat(post.updated, 'UTC:dd mmm yyyy')}</p>
