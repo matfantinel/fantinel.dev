@@ -20,7 +20,7 @@
 						alt="Rasel Shikdar"
 					/>
 					<div class="details">
-						<p class="note">by <a href="https://rsinfo.vercel.app/resume">Rasel Shikdar</a></p>
+						<p class="note">by <a href="/resume">Rasel Shikdar</a></p>
 						<p class="note">{dateformat(post.date, 'UTC:dd mmm yyyy')} - {post.readingTime}</p>
 						{#if post.updated}
 							<p class="note">Updated {dateformat(post.updated, 'UTC:dd mmm yyyy')}</p>
