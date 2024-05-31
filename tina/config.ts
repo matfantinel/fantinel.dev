@@ -117,6 +117,7 @@ export default defineConfig({
               'Internet',
               'SEO',
               'Review',
+              'Cyber Security',
             ],
           },
           {
