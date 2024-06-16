@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { HttpRegex } from '$lib/utils/regex';
+	import { handleCmsMediaPath } from '$lib/utils/functions';
 	import Image from '../atoms/Image.svelte';
 
 	export let title: string | undefined;
@@ -21,9 +21,7 @@
 		}
 	}
 
-	if (!href.startsWith('/images') && !href.startsWith('http')) {
-		href = `/images/${href}`;
-	}
+	href = handleCmsMediaPath(href);
 
 	if (text) {
 		// Alt text sometimes has some HTML encoded char codes
