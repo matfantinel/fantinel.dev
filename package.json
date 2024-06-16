@@ -15,7 +15,7 @@
 		"story:preview": "histoire preview",
 		"optimize-images": "image-transmutation --run --sourceFolder '.vercel/output/static/images' --targetFolder '.vercel/output/static/optimized-images' --inputFormats 'jpg' --inputFormats 'jpeg' --inputFormats 'png' --outputFormats 'png' --outputFormats 'webp' --outputFormats 'avif'",
 		"postbuild": "npm run optimize-images && svelte-sitemap --out-dir .vercel/output/static --domain https://fantinel.dev",
-		"update-content": "git submodule update --remote --merge"
+		"update-content": "git submodule update --remote --recursive"
 	},
 	"devDependencies": {
 		"@histoire/plugin-svelte": "^0.17.14",
