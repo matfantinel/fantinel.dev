@@ -90,7 +90,7 @@ const getRelatedPosts = (post: BlogPost, allPosts: BlogPost[], count: number = 3
   const rankedPosts = otherPosts.map((otherPost) => {
     return {
       post: otherPost,
-      score: otherPost.categories.filter((category) => post.categories.includes(category)).length
+      score: otherPost.categories?.filter((category) => post.categories?.includes(category)).length
     };
   }).sort((a, b) => {
     if (b.score === a.score && b.post.date && a.post.date) {
