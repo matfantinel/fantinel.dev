@@ -13,8 +13,9 @@
 		"story:dev": "histoire dev",
 		"story:build": "histoire build",
 		"story:preview": "histoire preview",
-		"optimize-images": "image-transmutation --run --sourceFolder '.vercel/output/static/images' --targetFolder '.vercel/output/static/optimized-images' --inputFormats 'jpg' --inputFormats 'jpeg' --inputFormats 'png' --outputFormats 'png' --outputFormats 'webp' --outputFormats 'avif'",
-		"postbuild": "npm run optimize-images && svelte-sitemap --out-dir .vercel/output/static --domain https://fantinel.dev",
+		"optimize-images": "image-transmutation --run --sourceFolder 'static/cms/media' --targetFolder 'static/cms/optimized-media' --inputFormats 'jpg' --inputFormats 'jpeg' --inputFormats 'png' --outputFormats 'png' --outputFormats 'webp' --outputFormats 'avif'",
+		"optimize-images-vercel": "image-transmutation --run --sourceFolder '.vercel/output/static/cms/media' --targetFolder '.vercel/output/static/cms/optimized-media' --inputFormats 'jpg' --inputFormats 'jpeg' --inputFormats 'png' --outputFormats 'png' --outputFormats 'webp' --outputFormats 'avif'",
+		"postbuild": "npm run optimize-images-vercel && svelte-sitemap --out-dir .vercel/output/static --domain https://fantinel.dev",
 		"update-content": "git submodule update --remote --recursive"
 	},
 	"devDependencies": {
