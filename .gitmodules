@@ -1,0 +1,3 @@
+[submodule "cms-test"]
+	path = cms-test
+	url = git@github.com:matfantinel/fantinelCMS.git
