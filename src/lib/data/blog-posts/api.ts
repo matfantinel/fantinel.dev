@@ -6,7 +6,7 @@ import { frontmatterToBlogPost } from "./model";
 import type BlogPost from './model';
 
 const PAGE_SIZE = 12;
-const MD_FILES_PATH = path.join(process.cwd(), 'cms/articles');
+const MD_FILES_PATH = path.join(process.cwd(), 'static/cms/articles');
 
 export const getPosts = async (page?: number, count?: number, showHidden = false): Promise<PaginatedResponse<BlogPost>> => {
   // Read all files in the specified directory and get the .md files
@@ -90,7 +90,7 @@ const getRelatedPosts = (post: BlogPost, allPosts: BlogPost[], count: number = 3
   const rankedPosts = otherPosts.map((otherPost) => {
     return {
       post: otherPost,
-      score: otherPost.categories.filter((category) => post.categories.includes(category)).length
+      score: otherPost.categories?.filter((category) => post.categories?.includes(category)).length
     };
   }).sort((a, b) => {
     if (b.score === a.score && b.post.date && a.post.date) {

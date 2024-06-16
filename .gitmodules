@@ -1,0 +1,4 @@
+[submodule "static/cms"]
+	path = static/cms
+	url = git@github.com:matfantinel/fantinelCMS.git
+	branch = main

@@ -3,8 +3,8 @@
 	"version": "0.0.1",
 	"private": true,
 	"scripts": {
-		"dev": "tinacms dev -c \"vite dev --host\"",
-		"build": "tinacms build && vite build",
+		"dev": "vite dev --host",
+		"build": "vite build",
 		"preview": "vite preview",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json --watch",
@@ -13,8 +13,10 @@
 		"story:dev": "histoire dev",
 		"story:build": "histoire build",
 		"story:preview": "histoire preview",
-		"optimize-images": "image-transmutation --run --sourceFolder '.vercel/output/static/images' --targetFolder '.vercel/output/static/optimized-images' --inputFormats 'jpg' --inputFormats 'jpeg' --inputFormats 'png' --outputFormats 'png' --outputFormats 'webp' --outputFormats 'avif'",
-		"postbuild": "npm run optimize-images && svelte-sitemap --out-dir .vercel/output/static --domain https://fantinel.dev"
+		"optimize-images": "image-transmutation --run --sourceFolder 'static/cms/media' --targetFolder 'static/cms/optimized-media' --inputFormats 'jpg' --inputFormats 'jpeg' --inputFormats 'png' --outputFormats 'png' --outputFormats 'webp' --outputFormats 'avif'",
+		"optimize-images-vercel": "image-transmutation --run --sourceFolder '.vercel/output/static/cms/media' --targetFolder '.vercel/output/static/cms/optimized-media' --inputFormats 'jpg' --inputFormats 'jpeg' --inputFormats 'png' --outputFormats 'png' --outputFormats 'webp' --outputFormats 'avif'",
+		"postbuild": "npm run optimize-images-vercel && svelte-sitemap --out-dir .vercel/output/static --domain https://fantinel.dev",
+		"update-content": "git submodule update --remote --recursive"
 	},
 	"devDependencies": {
 		"@histoire/plugin-svelte": "^0.17.14",
@@ -23,7 +25,6 @@
 		"@sveltejs/adapter-vercel": "^5.3.0",
 		"@sveltejs/kit": "^2.0.0",
 		"@sveltejs/vite-plugin-svelte": "^3.0.0",
-		"@tinacms/cli": "^1.5.40",
 		"@types/node": "^20.11.25",
 		"dateformat": "^5.0.3",
 		"eslint": "^8.28.0",
@@ -53,7 +54,6 @@
 	"type": "module",
 	"dependencies": {
 		"@fontsource/ubuntu-mono": "^4.5.11",
-		"svelte-toc": "^0.5.6",
-		"tinacms": "^1.5.29"
+		"svelte-toc": "^0.5.6"
 	}
 }

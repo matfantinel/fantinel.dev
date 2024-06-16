@@ -1,3 +1,4 @@
+import { handleCmsMediaPath } from "$lib/utils/functions";
 import type { Image } from "$lib/utils/types";
 import readingTime from 'reading-time/lib/reading-time';
 import striptags from 'striptags';
@@ -35,12 +36,12 @@ export const frontmatterToBlogPost = (frontmatter: any, content: string): BlogPo
     date: frontmatter.date,
     updated: frontmatter.updated,
     coverImage: frontmatter.coverImage ? {
-      src: frontmatter.coverImage,
+      src: handleCmsMediaPath(frontmatter.coverImage),
       alt: frontmatter.coverImageAlt
     } : undefined,
     showImage: frontmatter.showImage,
     socialImage: frontmatter.socialImage ? {
-      src: frontmatter.socialImage,
+      src: handleCmsMediaPath(frontmatter.socialImage),
       alt: ''
     } : undefined,
     tags: frontmatter.tags?.sort((a: string, b: string) => a.localeCompare(b)),

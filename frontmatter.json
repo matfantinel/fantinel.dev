@@ -216,19 +216,19 @@
 	"frontMatter.content.pageFolders": [
 		{
 			"title": "Articles",
-			"path": "[[workspace]]/cms/articles",
+			"path": "[[workspace]]/static/cms/articles",
 			"contentTypes": ["Article"],
 			"filePrefix": "yyyy-MM-dd"
 		},
 		{
 			"title": "Work Experience",
-			"path": "[[workspace]]/cms/work-experiences",
+			"path": "[[workspace]]/static/cms/work-experiences",
 			"contentTypes": ["Work Experience"],
 			"filePrefix": null
 		},
 		{
 			"title": "Project",
-			"path": "[[workspace]]/cms/projects",
+			"path": "[[workspace]]/static/cms/projects",
 			"contentTypes": ["Project"],
 			"filePrefix": null
 		}

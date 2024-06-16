@@ -29,10 +29,10 @@
 		// Only build srcset if files are png, jpg, jpeg, webp or avif
 		if (!src.match(/\.(png|jpe?g|webp|avif)$/)) return;
 
-		// If src is the images folder, replace it with optimized-images
-		// "images" must be in the beginning of the string (with or without a leading slash)
-		src = src.replace(/^\/?images/, '/optimized-images');
-		fileName = fileName.replace(/^\/?images/, '/optimized-images');
+		// If src is the cms/media folder, replace it with cms/optimized-media
+		// "cms/media" must be in the beginning of the string (with or without a leading slash)
+		src = src.replace(/^\/?cms\/media/, '/cms/optimized-media');
+		fileName = fileName.replace(/^\/?cms\/media/, '/cms/optimized-media');
 
 		let srcset = '';
 
