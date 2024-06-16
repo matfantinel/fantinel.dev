@@ -47,6 +47,7 @@
 		"svelte-markdown": "^0.4.0",
 		"svelte-sitemap": "^2.5.4",
 		"typescript": "^5.0.0",
+		"vercel-submodules": "^1.0.10",
 		"vite": "^5.0.0",
 		"vite-plugin-prismjs": "^0.0.8"
 	},
