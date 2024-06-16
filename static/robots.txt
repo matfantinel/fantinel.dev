@@ -33,3 +33,6 @@ Disallow: /
 
 User-Agent: cohere-ai
 Disallow: /
+
+User-Agent: AppleBot
+Disallow: /
