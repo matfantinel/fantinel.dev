@@ -31,7 +31,7 @@ export default defineConfig({
       {
         name: "post",
         label: "Posts",
-        path: "cms/articles",
+        path: "static/cms/articles",
         defaultItem: () => {
           return {
             title: "New Post",
@@ -130,7 +130,7 @@ export default defineConfig({
       {
         name: "workExperience",
         label: "Work Experiences",
-        path: "cms/work-experiences",
+        path: "static/cms/work-experiences",
         fields: [
           {
             type: "string",
@@ -203,7 +203,7 @@ export default defineConfig({
       {
         name: "project",
         label: "Projects",
-        path: "cms/projects",
+        path: "static/cms/projects",
         fields: [
           {
             type: "string",
