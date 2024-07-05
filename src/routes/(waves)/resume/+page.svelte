@@ -16,7 +16,6 @@
 <svelte:head>
 	<title>Resume - {title}</title>
 	<meta property="og:title" content="Resume - {title}" />
-	<meta name="twitter:title" content="Resume - {title}" />
 </svelte:head>
 
 <div class="resume-wrapper">

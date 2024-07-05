@@ -46,25 +46,19 @@
 
 		<meta name="description" content={post.excerpt} />
 		<meta property="og:description" content={post.excerpt} />
-		<meta name="twitter:description" content={post.excerpt} />
 		<link rel="canonical" href="{siteBaseUrl}/{post.slug}" />
 
 		<title>{post.title} - {title}</title>
 		<meta property="og:title" content="{post.title} - {title}" />
-		<meta name="twitter:title" content="{post.title} - {title}" />
 
 		{#if post.socialImage?.src}
 			<meta property="og:image" content="{siteBaseUrl}{post.socialImage.src}" />
-			<meta name="twitter:image" content="{siteBaseUrl}{post.socialImage.src}" />
 		{:else if post.coverImage?.src}
 			<meta property="og:image" content="{siteBaseUrl}{post.coverImage.src}" />
-			<meta name="twitter:image" content="{siteBaseUrl}{post.coverImage.src}" />
 		{:else if genericSocialImageUrl}
 			<meta property="og:image" content={genericSocialImageUrl} />
-			<meta name="twitter:image" content={genericSocialImageUrl} />
 		{:else}
 			<meta property="og:image" content={metaImage} />
-			<meta name="twitter:image" content={metaImage} />
 		{/if}
 	{/if}
 </svelte:head>
