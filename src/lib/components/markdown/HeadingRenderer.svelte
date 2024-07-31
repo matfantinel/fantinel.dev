@@ -1,4 +1,5 @@
 <script lang="ts">
+	import SvelteMarkdown from 'svelte-markdown';
 	import { page } from '$app/stores';
 	import LinkIcon from '$lib/icons/link.svelte';
 	import { copy } from '@svelte-put/copy';
@@ -18,7 +19,7 @@
 </script>
 
 <svelte:element this={element} id={slug}>
-	{text}
+	<SvelteMarkdown source={text} isInline />
 
 	<a
 		class="heading-link"
