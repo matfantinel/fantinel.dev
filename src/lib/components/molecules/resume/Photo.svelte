@@ -6,11 +6,13 @@
 	additionalClass="resume-photo light"
 	src="/images/resume-avatar.png"
 	alt="Matheus Fantinel's Avatar"
+	skipSrcset
 />
 <Image
 	additionalClass="resume-photo dark"
 	src="/images/resume-avatar-dark.png"
 	alt="Matheus Fantinel's Avatar"
+	skipSrcset
 />
 
 <style lang="scss">

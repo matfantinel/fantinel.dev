@@ -9,6 +9,7 @@
 	export let figcaption: string | undefined = undefined;
 	export let fullBleed: boolean | undefined = undefined;
 	export let lazy: boolean = true;
+	export let skipSrcset: boolean = false;
 
 	export let formats: string[] = ['avif', 'webp', 'png'];
 	export let widths: string[] | undefined = undefined;
@@ -24,7 +25,7 @@
 	}
 
 	function buildSrcset() {
-		if (dev || HttpRegex.test(src)) return;
+		if (dev || skipSrcset || HttpRegex.test(src)) return;
 
 		// Only build srcset if files are png, jpg, jpeg, webp or avif
 		if (!src.match(/\.(png|jpe?g|webp|avif)$/)) return;
