@@ -18,13 +18,14 @@
 <style lang="scss">
 	:global(img.resume-photo) {
 		border-radius: 50%;
-		width: 200px;
-		height: 200px;
+		width: 200px !important;
+		height: 200px !important;
 		box-sizing: border-box;
 	}
 
 	:global(.resume-photo.dark) {
 		border: 3px solid var(--color--primary-shade);
+		object-fit: cover;
 	}
 
 	:global([data-theme='dark']) :global(.resume-photo.light) {
