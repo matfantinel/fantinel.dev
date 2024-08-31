@@ -14,6 +14,7 @@
 	import SparklingHighlight from './SparklingHighlight.svelte';
 
 	export let content: string;
+	export let isInline: boolean = false;
 
 	marked.use({
 		extensions: [SparklesHighlightTokenizerExtension, MarkerHighlightTokenizerExtension]
@@ -31,4 +32,4 @@
 	} as any;
 </script>
 
-<SvelteMarkdown source={content} {renderers} {options} />
+<SvelteMarkdown source={content} {renderers} {options} {isInline} />

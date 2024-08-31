@@ -1,6 +1,6 @@
 <script lang="ts">
-	import SvelteMarkdown from 'svelte-markdown';
 	import Callout from '../molecules/Callout.svelte';
+	import Markdown from '../molecules/Markdown.svelte';
 
 	export let text: string;
 
@@ -39,10 +39,10 @@
 
 {#if isCallout}
 	<Callout type={calloutType}>
-		<SvelteMarkdown source={cleanText} />
+		<Markdown content={cleanText} />
 	</Callout>
 {:else}
 	<blockquote>
-		<SvelteMarkdown source={cleanText} />
+		<Markdown content={cleanText} />
 	</blockquote>
 {/if}
