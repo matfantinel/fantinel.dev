@@ -7,8 +7,9 @@
 	import TableOfContents from '$lib/components/organisms/TableOfContents.svelte';
 	import dateformat from 'dateformat';
 
+	import SubscribeNewsletterCard from '$lib/components/molecules/SubscribeNewsletterCard.svelte';
 	import type BlogPost from '$lib/data/blog-posts/model';
-	import { keywords, siteBaseUrl, title, image as metaImage } from '$lib/data/meta';
+	import { keywords, image as metaImage, siteBaseUrl, title } from '$lib/data/meta';
 
 	export let data: { post: BlogPost };
 	$: ({ post } = data);
@@ -92,6 +93,10 @@
 				{#if post.showToc}
 					<TableOfContents />
 				{/if}
+			</div>
+
+			<div class="container subscribe-container">
+				<SubscribeNewsletterCard />
 			</div>
 
 			{#if post.relatedPosts && post.relatedPosts.length > 0}
@@ -252,6 +257,10 @@
 			left: -10%;
 			animation-duration: 10s;
 		}
+	}
+
+	.subscribe-container {
+		margin-block: 40px 20px;
 	}
 
 	:global(.article-card) {

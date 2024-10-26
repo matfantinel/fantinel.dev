@@ -143,6 +143,10 @@
 		font-size: 1.5rem;
 		width: fit-content;
 
+		a {
+			text-decoration: none;
+		}
+
 		&:hover {
 			color: var(--color--primary);
 			filter: drop-shadow(0px 0px 3px var(--color--primary));

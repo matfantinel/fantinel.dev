@@ -12,7 +12,7 @@
 			<BlogPostCard
 				slug="blog-post"
 				title="Blog Post"
-				coverImage={{ png: 'https://placedog.net/500' }}
+				coverImage="https://placedog.net/500"
 				excerpt="This is a blog post"
 				categories={['Category 1']}
 				tags={['Tag 1', 'Tag 2']}

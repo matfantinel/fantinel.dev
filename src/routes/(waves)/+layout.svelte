@@ -1,9 +1,9 @@
 <script>
-	import Waves from '$lib/components/organisms/Waves.svelte';
-	import Header from '$lib/components/organisms/Header.svelte';
 	import Footer from '$lib/components/organisms/Footer.svelte';
+	import Header from '$lib/components/organisms/Header.svelte';
+	import Waves from '$lib/components/organisms/Waves.svelte';
 
-	import { description, image, keywords, title, siteBaseUrl } from '$lib/data/meta';
+	import { description, image, keywords, siteBaseUrl, title } from '$lib/data/meta';
 </script>
 
 <svelte:head>
@@ -24,11 +24,11 @@
 <Header animated />
 
 <main>
+	<slot />
 	<div class="background-blurrer" />
 	<div class="blob one" />
 	<div class="blob two" />
 	<div class="blob three" />
-	<slot />
 </main>
 
 <Footer />
@@ -36,7 +36,13 @@
 <style lang="scss">
 	main {
 		position: relative;
-		overflow-x: clip;
+		overflow: clip;
+
+		&:has(> .subscribe-wrapper) {
+			.blob {
+				display: none;
+			}
+		}
 	}
 
 	.background-blurrer {
