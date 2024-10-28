@@ -2,7 +2,7 @@
 	import Button from '$lib/components/atoms/Button.svelte';
 	import SubscribeCard from '$lib/components/molecules/SubscribeCard.svelte';
 	import SubscribeNewsletterCard from '$lib/components/molecules/SubscribeNewsletterCard.svelte';
-	import { title } from '$lib/data/meta';
+	import { siteBaseUrl, title } from '$lib/data/meta';
 	import RssIcon from '$lib/icons/rss.svelte';
 	import MastodonIcon from '$lib/icons/socials/mastodon.svelte';
 </script>
@@ -10,6 +10,7 @@
 <svelte:head>
 	<title>Subscribe to {title}</title>
 	<meta property="og:title" content="Subscribe to {title}" />
+	<meta property="og:image" content="{siteBaseUrl}/images/subscribe.png" />
 </svelte:head>
 
 <div class="container subscribe-wrapper">
