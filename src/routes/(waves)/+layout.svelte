@@ -1,9 +1,12 @@
-<script>
+<script lang="ts">
+	import { page } from '$app/stores';
 	import Footer from '$lib/components/organisms/Footer.svelte';
 	import Header from '$lib/components/organisms/Header.svelte';
 	import Waves from '$lib/components/organisms/Waves.svelte';
 
 	import { description, image, keywords, siteBaseUrl, title } from '$lib/data/meta';
+
+	$: ({ metaTitle, metaImage } = $page.data);
 </script>
 
 <svelte:head>
@@ -13,10 +16,19 @@
 	<meta name="description" content={description} />
 	<meta property="og:description" content={description} />
 
-	<title>{title}</title>
-	<meta property="og:title" content={title} />
+	{#if metaTitle}
+		<title>{metaTitle}</title>
+		<meta property="og:title" content={metaTitle} />
+	{:else}
+		<title>{title}</title>
+		<meta property="og:title" content={title} />
+	{/if}
 
-	<meta property="og:image" content={image} />
+	{#if metaImage}
+		<meta property="og:image" content={metaImage} />
+	{:else}
+		<meta property="og:image" content={image} />
+	{/if}
 </svelte:head>
 
 <Waves />
