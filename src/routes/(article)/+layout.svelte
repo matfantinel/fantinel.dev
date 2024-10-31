@@ -260,7 +260,17 @@
 	}
 
 	.subscribe-container {
-		margin-block: 40px 20px;
+		margin: 40px auto 20px;
+		max-width: 85ch;
+		box-sizing: content-box;
+
+		:global(.subscribe-card) {
+			background: linear-gradient(
+				120deg,
+				rgba(var(--color--primary-rgb), 0.15) 0%,
+				rgba(var(--color--primary-rgb), 0.05) 100%
+			);
+		}
 	}
 
 	:global(.article-card) {

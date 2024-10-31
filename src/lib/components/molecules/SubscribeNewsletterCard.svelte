@@ -87,8 +87,7 @@
 			touch-action: manipulation;
 			background-origin: border-box;
 			background-repeat: no-repeat;
-			border-style: solid;
-			border-width: 0;
+			border: 1px solid #c3c3c3;
 			accent-color: var(--color--primary);
 		}
 	}

@@ -62,6 +62,9 @@
 
 	.inner-content {
 		margin-top: 15px;
+		margin-top: 15px;
+		max-width: 60ch;
+		margin-inline: auto;
 	}
 
 	.footer {
