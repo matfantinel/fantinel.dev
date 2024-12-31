@@ -51,6 +51,12 @@
 
 		<title>{post.title} - {title}</title>
 		<meta property="og:title" content="{post.title} - {title}" />
+		<meta name="author" content="Matt Fantinel" />
+
+		<meta property="article:published_time" content={post.date} />
+		{#if post.updated}
+			<meta property="article:modified_time" content={post.updated} />
+		{/if}
 
 		{#if post.socialImage?.src}
 			<meta property="og:image" content="{siteBaseUrl}{post.socialImage.src}" />

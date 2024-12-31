@@ -15,6 +15,7 @@
 
 	<meta name="description" content={description} />
 	<meta property="og:description" content={description} />
+	<meta name="author" content="Matt Fantinel" />
 
 	{#if metaTitle}
 		<title>{metaTitle}</title>
