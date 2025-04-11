@@ -1,0 +1,106 @@
+// We need to have two types of variables:
+// 1. Global variables that set the colors independently from their context;
+//    Example: --color--yellow
+// 2. Contextual variables that use the global color ones to build a specific theme;
+//    Example: --color--highlight-background, that uses --color--yellow
+//    these can change between light/dark themes and in general should not be taken for granted, 
+//    while in general it's okay to assume what the global color ones are.
+//    In addition to light/dark themes, I'm also considering being able to swap accent (primary/secondary/tertiary) colors too.
+
+@mixin dark-color-palette {
+  --color--rosewater: #F5E0DC;
+  --color--flamingo:  #F2CDCD;
+  --color--pink:      #F5C2E7;
+  --color--mauve:     #CBA6F7;
+  --color--red:       #F38BA8;
+  --color--maroon:    #EBA0AC;
+  --color--peach:     #FAB387;
+  --color--yellow:    #F9E2AF;
+  --color--green:     #A6E3A1;
+  --color--teal:      #94E2D5;
+  --color--sky:       #89DCEB;
+  --color--sapphire:  #74C7EC;
+  --color--blue:      #89B4FA;
+  --color--lavender:  #B4BEFE;
+
+  --color--gray-0:    #CDD6F4;
+  --color--gray-50:   #BAC2DE;
+  --color--gray-100:  #A6ADC8;
+  --color--gray-200:  #9399B2;
+  --color--gray-300:  #7F849C;
+  --color--gray-400:  #6C7086;
+  --color--gray-500:  #585B70;
+  --color--gray-600:  #45475A;
+  --color--gray-700:  #313244;
+  --color--gray-800:  #1E1E2E;
+  --color--gray-900:  #181825;
+  --color--gray-1000: #11111B;
+}
+
+@mixin light-color-palette {
+  --color--rosewater: #DC8A78;
+  --color--flamingo:  #DD7878;
+  --color--pink:      #EA76CB;
+  --color--mauve:     #8839EF;
+  --color--red:       #D20F39;
+  --color--maroon:    #E64553;
+  --color--peach:     #FE640B;
+  --color--yellow:    #DF8E1D;
+  --color--green:     #40A02B;
+  --color--teal:      #179299;
+  --color--sky:       #04A5E5;
+  --color--sapphire:  #209FB5;
+  --color--blue:      #1E66F5;
+  --color--lavender:  #7287FD;
+
+  --color--gray-0:    #4C4F69;
+  --color--gray-50:   #5C5F77;
+  --color--gray-100:  #6C6F85;
+  --color--gray-200:  #7C7F93;
+  --color--gray-300:  #8C8FA1;
+  --color--gray-400:  #9CA0B0;
+  --color--gray-500:  #ACB0BE;
+  --color--gray-600:  #BCC0CC;
+  --color--gray-700:  #CCD0DA;
+  --color--gray-800:  #EFF1F5;
+  --color--gray-900:  #E6E9EF;
+  --color--gray-1000: #DCE0E8;
+}
+
+@mixin theme-base {
+  --theme--text-base-color: var(--color--gray-0);
+  --theme--text-accent-color: var(--color--gray-50);
+  --theme--text-heading-color: var(--color--gray-0);
+
+  --theme--background-base-color: var(--color--gray-800);
+  --theme--background-accent-color: var(--color--gray-700);
+
+  // Accent color is used in buttons, links, etc.
+  // But it's not the only color used in the theme.
+  // Colors might vary by purpose or subject.
+  --theme--color-accent: var(--color--teal);
+}
+
+@mixin dark-theme {
+  @include dark-color-palette;
+  @include theme-base;
+}
+
+@mixin light-theme {
+  @include light-color-palette;
+  @include theme-base;
+}
+
+:root {
+	@include light-theme;
+
+	&[data-theme='dark'] {
+		@include dark-theme;
+	}
+
+	&[data-theme='auto'] {
+		@media (prefers-color-scheme: dark) {
+			@include dark-theme;
+		}
+	}
+}

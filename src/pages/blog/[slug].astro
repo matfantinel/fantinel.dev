@@ -1,0 +1,25 @@
+---
+import { getCollection } from "astro:content";
+import MarkdownRenderer from "@components/molecules/MarkdownRenderer.svelte";
+import Layout from '@layouts/Layout.astro';
+
+export async function getStaticPaths () {
+  const posts = await getCollection('blog');
+  return posts.map(post => ({
+    params: {
+      slug: post.data.slug
+    },
+    props: { post }
+  }));
+};
+
+const { post } = Astro.props;
+const { url } = Astro;
+---
+
+<Layout>
+  <h1>{post.data.title}</h1>
+  <div class="u-markdown">
+    <MarkdownRenderer content={post.body} currentUrl={url} client:load />
+  </div>
+</Layout>

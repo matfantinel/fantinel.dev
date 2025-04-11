@@ -1,0 +1,4 @@
+[submodule "public/cms"]
+	path = public/cms
+	url = git@github.com:matfantinel/fantinelCMS.git
+	branch = next

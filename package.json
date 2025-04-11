@@ -1,0 +1,28 @@
+{
+  "name": "cosmic-cappuccino",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/svelte": "^7.0.6",
+    "@fontsource-variable/mona-sans": "^5.2.5",
+    "@fontsource/atkinson-hyperlegible-next": "^5.2.2",
+    "@fontsource/monaspace-krypton": "^5.2.5",
+    "astro": "^5.4.2",
+    "sass": "^1.86.0",
+    "svelte": "^5.23.1",
+    "typescript": "^5.8.2"
+  },
+  "devDependencies": {
+    "@svelte-put/copy": "^4.0.0",
+    "@types/prismjs": "^1.26.5",
+    "prism-svelte": "^0.5.0",
+    "prismjs": "^1.30.0",
+    "svelte-markdown": "^0.4.1"
+  }
+}
