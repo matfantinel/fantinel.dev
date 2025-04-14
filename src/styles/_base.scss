@@ -1,0 +1,7 @@
+@use '@styles/_mixins.scss';
+
+// Styles that are used everywhere
+
+.u-container {
+	@include mixins.padded-container;
+}

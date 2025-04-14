@@ -1,0 +1,42 @@
+---
+import metaConfig from "@public/cms/meta.yml";
+import type { SiteMeta } from "@schemas/site-meta";
+const siteMeta: SiteMeta = metaConfig;
+---
+<meta charset='UTF-8' />
+
+<!-- Favicon -->
+<link rel='apple-touch-icon' sizes='180x180' href='/favicons/apple-touch-icon.png' />
+<link rel='icon' type='image/png' sizes='32x32' href='/favicons/favicon-32x32.png' />
+<link rel='icon' type='image/png' sizes='16x16' href='/favicons/favicon-16x16.png' />
+<link rel='manifest' href='/favicons/site.webmanifest' />
+<link rel='mask-icon' href='/favicons/safari-pinned-tab.svg' color='#0ca4a5' />
+<link rel='shortcut icon' href='/favicons/favicon.ico' />
+<link rel='icon' href='/favicons/favicon.svg' />
+
+<meta name='viewport' content='width=device-width' />
+<link rel='icon' type='image/svg+xml' href='/favicon.svg' />
+<meta name='generator' content={Astro.generator} />
+
+<!-- Tell browser this site is responsive -->
+<meta name='viewport' content='width=device-width, initial-scale=1' />
+<!-- Tell browser this site supports light and dark mode -->
+<meta name='color-scheme' content='light dark' />
+<!-- Color for browser url bar in mobile/Safari -->
+{siteMeta.lightThemeColor && <meta name='theme-color' media='(prefers-color-scheme: light)' content={siteMeta.lightThemeColor} />}
+{siteMeta.darkThemeColor && <meta name='theme-color' media='(prefers-color-scheme: dark)' content={siteMeta.darkThemeColor} />}
+<!-- Disable Google FLOC -->
+<meta http-equiv='Permissions-Policy' content='interest-cohort=()' />
+
+<!-- RSS -->
+<link rel='alternate' type='application/rss+xml' title='RSS' href={`${siteMeta.baseUrl}/rss.xml`} />
+
+<!-- Fediverse author info -->
+{siteMeta.fediverseCreator && <meta name='fediverse:creator' content={siteMeta.fediverseCreator} />}
+
+<script>
+  // Calling this here so that it loads as quickly as possible
+  // Avoiding a flash of light mode in case dark mode is used
+  const theme = localStorage.getItem('theme-preference') || 'auto';
+  document.firstElementChild?.setAttribute('data-theme', theme);
+</script>

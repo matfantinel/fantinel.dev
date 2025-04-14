@@ -17,9 +17,18 @@ const { post } = Astro.props;
 const { url } = Astro;
 ---
 
-<Layout>
-  <h1>{post.data.title}</h1>
-  <div class="u-markdown">
+<Layout 
+  title={post.data.title}
+  keywords={post.data.categories}
+  description={post.data.excerpt}
+  image={post.data.coverImage}
+  autoGenerateImage={!post.data.showImage || !post.data.coverImage}
+  slug={`blog/${post.data.slug}`}
+  published_date={post.data.date}
+  modified_date={post.data.updated}
+>
+  <div class="u-markdown u-container">
+    <h1>{post.data.title}</h1>
     <MarkdownRenderer content={post.body} currentUrl={url} client:load />
   </div>
 </Layout>

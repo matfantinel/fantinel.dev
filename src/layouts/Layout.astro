@@ -1,15 +1,68 @@
 ---
 import "@styles/global.scss";
+import dateformat from "dateformat";
+import metaConfig from "@public/cms/meta.yml";
+import type { SiteMeta } from "@schemas/site-meta";
+import Head from "@layouts/Head.astro";
+
+const { 
+	title,
+	keywords,
+	description,
+	image,
+	autoGenerateImage,
+	slug,
+	published_date,
+	modified_date,
+} : {
+	title?: string;
+	keywords?: string[];
+	description?: string;
+	image?: string;
+	autoGenerateImage?: boolean;
+	slug?: string;
+	published_date?: string;
+	modified_date?: string;
+} = Astro.props;
+
+const siteMeta: SiteMeta = metaConfig;
+
+const pageTitle = title ? `${title} - ${siteMeta.title}` : siteMeta.title;
+const pageDescription = description || siteMeta.description;
+const pageKeywords = keywords ? [...keywords, ...siteMeta.keywords] : siteMeta.keywords;
+
+let pageImage = image || siteMeta.image;
+if (autoGenerateImage) {
+  pageImage = `${siteMeta.baseUrl}/opengraph?text=${encodeURIComponent(pageTitle)}`;
+	if (published_date) {
+		pageImage += `&date=${encodeURIComponent(
+			dateformat(published_date, 'mmm dd, yyyy')
+		)}`;
+	}
+}
+
 ---
 
 <!doctype html>
 <html lang="en">
 	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+		
+		<Head />
+		
+		<title>{pageTitle}</title>
+		<meta property="og:title" content={pageTitle} />
+		<meta name="author" content={siteMeta.author} />
+
+		<meta name="description" content={pageDescription} />
+		<meta property="og:description" content={pageDescription} />
+		<meta name="keywords" content={pageKeywords.join(', ')} />
+
+		{published_date && <meta property="article:published_time" content={published_date} />}
+		{modified_date && <meta property="article:modified_time" content={modified_date} />}
+
+		<meta property="og:image" content={pageImage} />
+
+		<link rel="canonical" href={`${siteMeta.baseUrl}/${slug}`} />
 	</head>
 	<body>
 		<slot />
