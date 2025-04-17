@@ -79,6 +79,13 @@
   // But it's not the only color used in the theme.
   // Colors might vary by purpose or subject.
   --theme--color-accent: var(--color--teal);
+
+  // #region Shadows
+
+  --theme--shadow-card: 0 4px 10px 0 rgba(0, 0, 0, 0.1);
+  --theme--shadow-image: 1px 3px 8px 0 rgba(39, 44, 49, 0.03), 1px 3px 8px 0 rgba(39, 44, 49, 0.06);
+
+  // #endregion
 }
 
 @mixin dark-theme {

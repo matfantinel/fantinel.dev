@@ -1,4 +1,5 @@
 <script lang="ts">
+	import Blockquote from '@components/atoms/Blockquote.svelte';
 	import Callout from '@components/molecules/Callout.svelte';
 	import MarkdownRenderer from '@components/molecules/MarkdownRenderer.svelte';
 
@@ -41,7 +42,7 @@
 		<MarkdownRenderer content={text} isInline />
 	</Callout>
 {:else}
-	<blockquote>
+	<Blockquote>
 		<MarkdownRenderer content={text} isInline />
-	</blockquote>
+	</Blockquote>
 {/if}

@@ -1,6 +1,14 @@
+<script lang="ts">
+	let {
+		size = '100%',
+		class: className,
+	}: { size?: string; class?: string } = $props();
+</script>
+
 <svg
-	width="100%"
-	height="100%"
+	width={size}
+	height={size}
+	class={className}
 	stroke-width="1.5"
 	viewBox="0 0 24 24"
 	fill="none"

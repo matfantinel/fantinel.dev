@@ -1,6 +1,12 @@
+<script lang="ts">
+	let {
+		size = '100%'
+	} = $props();
+</script>
+
 <svg
-	width="100%"
-	height="100%"
+	width={size}
+	height={size}
 	stroke-width="1.5"
 	viewBox="0 0 24 24"
 	fill="none"

@@ -9,11 +9,11 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/svelte": "^7.0.6",
+    "@astrojs/svelte": "^7.0.10",
     "@fontsource-variable/mona-sans": "^5.2.5",
     "@fontsource/atkinson-hyperlegible-next": "^5.2.2",
     "@fontsource/monaspace-krypton": "^5.2.5",
-    "astro": "^5.4.2",
+    "astro": "^5.7.2",
     "sass": "^1.86.0",
     "svelte": "^5.23.1",
     "typescript": "^5.8.2"
