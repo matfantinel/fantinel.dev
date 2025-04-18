@@ -13,6 +13,7 @@
     "@fontsource-variable/mona-sans": "^5.2.5",
     "@fontsource/atkinson-hyperlegible-next": "^5.2.2",
     "@fontsource/monaspace-krypton": "^5.2.5",
+    "@stefanjudis/sparkly-text": "^1.1.2",
     "astro": "^5.7.2",
     "sass": "^1.86.0",
     "svelte": "^5.23.1",
