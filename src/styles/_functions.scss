@@ -1,6 +1,34 @@
+@use 'sass:color';
+
 // Calculate brightness of a given color.
 @function brightness($color) {
-	// @return ((red($color) * 0.299) + (green($color) * 0.587) + (blue($color) * 0.114)) / 255 * 100%;
-	// @return math.div((red($color) * 0.299) + (green($color) * 0.587) + (blue($color) * 0.114), 255);
 	@return calc(((red($color) * 0.299) + (green($color) * 0.587) + (blue($color) * 0.114)) / 255);
+}
+
+@function red($color) {
+	@return color.channel($color, "red", $space: rgb);
+}
+
+@function green($color) {
+	@return color.channel($color, "green", $space: rgb);
+}
+
+@function blue($color) {
+	@return color.channel($color, "blue", $space: rgb);
+}
+
+@function hue($color) {
+	@return color.channel($color, "hue", $space: hsl);
+}
+
+@function saturation($color) {
+	@return color.channel($color, "saturation", $space: hsl);
+}
+
+@function lightness($color) {
+	@return color.channel($color, "lightness", $space: hsl);
+}
+	
+@function alpha($color) {
+	@return color.channel($color, "alpha", $space: hsl);
 }

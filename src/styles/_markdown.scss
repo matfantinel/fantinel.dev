@@ -2,6 +2,19 @@
   display: flex;
   flex-direction: column;
   gap: 1.8rem;
+
+  code:not([class^='language-']) {
+    font-family: var(--font--mono);
+    background: var(--theme--background-accent-color);
+    padding: var(--spacing-xxs) var(--spacing-xs);
+    border-radius: var(--border-radius--small);
+    box-shadow: var(--theme--shadow-card);
+  }
+
+  hr {
+    border: unset;
+    border-top: 1px solid var(--theme--border-base-color);
+  }
 }
 
 // .article-main {

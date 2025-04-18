@@ -48,14 +48,14 @@
 	});
 </script>
 
-<div class="a-sparkles">
+<span class="a-sparkles">
 	{#each sparkles as sparkle (sparkle.id)}
 		<Sparkle color={sparkle.color} size={sparkle.size} style={sparkle.style} />
 	{/each}
 	<span class="a-sparkles__slot">
 		{@render children?.()}
 	</span>
-</div>
+</span>
 
 <style lang="scss">
 	.a-sparkles {

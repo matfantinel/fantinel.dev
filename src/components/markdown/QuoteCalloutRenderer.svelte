@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Blockquote from '@components/atoms/Blockquote.svelte';
-	import Callout from '@components/molecules/Callout.svelte';
+	import Callout from '@components/atoms/Callout.svelte';
 	import MarkdownRenderer from '@components/molecules/MarkdownRenderer.svelte';
 
 	let { text } : {

@@ -31,22 +31,22 @@
 // Defines a bunch of CSS variables for a given color
 // In HEX, HSL and RGB formats
 // Plus a contrast option for text
-// @mixin define-color($title, $color) {
-// 	--color--#{$title}: #{$color};
+@mixin define-color($title, $color) {
+	--color--#{$title}: #{$color};
 
-// 	--color--#{$title}-h: #{hue($color)};
-// 	--color--#{$title}-l: #{lightness($color)};
-// 	--color--#{$title}-s: #{saturation($color)};
-// 	--color--#{$title}-a: #{alpha($color)};
+	--color--#{$title}-h: #{functions.hue($color)};
+	--color--#{$title}-l: #{functions.lightness($color)};
+	--color--#{$title}-s: #{functions.saturation($color)};
+	--color--#{$title}-a: #{functions.alpha($color)};
 
-// 	--color--#{$title}-rgb: #{red($color)}, #{green($color)}, #{blue($color)};
+	--color--#{$title}-rgb: #{functions.red($color)}, #{functions.green($color)}, #{functions.blue($color)};
 
-// 	--color--#{$title}-contrast: #{if(
-// 			brightness($color) > 186,
-// 			var(--color--text),
-// 			var(--color--text-inverse)
-// 		)};
-// }
+	--color--#{$title}-contrast: #{if(
+		functions.brightness($color) > 186,
+		var(--color--text),
+		var(--color--text-inverse)
+	)};
+}
 
 // @mixin marker-highlight {
 // 	--mark-color: var(--color--marker-primary-background);
