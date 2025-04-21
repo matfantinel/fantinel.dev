@@ -67,12 +67,17 @@
   @include mixins.define-color('gray-800', #EFF1F5);
   @include mixins.define-color('gray-900', #E6E9EF);
   @include mixins.define-color('gray-1000', #DCE0E8);
+
+  @include mixins.define-color('gray-1100', #FFFFFF);
+  @include mixins.define-color('code-background', #11111B);
+  @include mixins.define-color('code-text', #CDD6F4);
 }
 
 @mixin theme-base {
   --theme--text-base-color: var(--color--gray-0);
   --theme--text-accent-color: var(--color--gray-50);
   --theme--text-heading-color: var(--color--gray-0);
+  --theme--text-inverse-color: var(--color--gray-1000);
 
   --theme--background-base-color: var(--color--gray-800);
   --theme--background-accent-color: var(--color--gray-700);
@@ -83,6 +88,36 @@
   // But it's not the only color used in the theme.
   // Colors might vary by purpose or subject.
   --theme--color-accent: var(--color--teal);
+  --theme--color-accent-rgb: var(--color--teal-rgb);
+  --theme--color-accent-shade: hsl(
+    var(--color--teal-h),
+    var(--color--teal-s),
+    var(--color--teal-l - 10%)
+  );
+  --theme--color-accent-tint: hsl(
+    var(--color--teal-h),
+    var(--color--teal-s),
+    var(--color--teal-l + 10%)
+  );
+
+
+  // #region Colors for common elements
+
+  --theme--color-links: var(--theme--color-accent);
+  --theme--color-callouts-info: var(--color--blue);
+  --theme--color-callouts-warning: var(--color--yellow);
+  --theme--color-callouts-success: var(--color--green);
+
+  --theme--color-sparkles: var(--color--yellow);
+  --theme--color-marker-highlight: var(--color--yellow);
+  --theme--color-marker-highlight-rgb: var(--color--yellow-rgb);
+  --theme--color-marker-highlight-contrast: var(--color--yellow-contrast);
+
+  --theme--color-code-background: var(--color--gray-1000);
+  --theme--color-code-text: var(--color--gray-0);
+  
+
+  // #endregion
 
   // #region Shadows / Glows
 
@@ -92,6 +127,15 @@
   --theme--glow-blue: 0 0 40px 0 rgba(var(--color--blue-rgb), 0.4);
   --theme--glow-yellow: 0 0 40px 0 rgba(var(--color--yellow-rgb), 0.4);
   --theme--glow-green: 0 0 40px 0 rgba(var(--color--green-rgb), 0.4);
+  --theme--glow-teal: 0 0 40px 0 rgba(var(--color--teal-rgb), 0.4);
+  --theme--glow-lavender: 0 0 40px 0 rgba(var(--color--lavender-rgb), 0.4);
+  --theme--glow-mauve: 0 0 40px 0 rgba(var(--color--mauve-rgb), 0.4);
+
+
+  --theme--glow-callouts-info: var(--theme--glow-blue);
+  --theme--glow-callouts-warning: var(--theme--glow-yellow);
+  --theme--glow-callouts-success: var(--theme--glow-green);
+  --theme--glow-links: 0px 0px 3px rgba(var(--color--teal-rgb), 0.7);
 
   // #endregion
 }
@@ -104,6 +148,11 @@
 @mixin light-theme {
   @include light-color-palette;
   @include theme-base;
+
+  --theme--text-inverse-color: var(--color--gray-1100);
+
+  --theme--color-code-background: var(--color--code-background);
+  --theme--color-code-text: var(--color--code-text);
 }
 
 :root {

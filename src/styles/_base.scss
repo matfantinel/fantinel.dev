@@ -3,5 +3,53 @@
 // Styles that are used everywhere
 
 .u-container {
-	@include mixins.padded-container;
+  @include mixins.padded-container;
+}
+
+ul,
+ol {
+  margin: var(--spacing-xs) 0 var(--spacing-xs) var(--spacing-lg);
+  padding: 0;
+
+  li {
+    margin: var(--spacing-xs) 0;
+
+    &::marker {
+      color: var(--theme--color-accent);
+    }
+  }
+}
+ul {
+  list-style: outside;
+}
+
+code:not([class^='language-']) {
+  font-family: var(--font--mono);
+  background: var(--theme--background-accent-color);
+  padding: var(--spacing-xxs) var(--spacing-xs);
+  border-radius: var(--border-radius--small);
+  box-shadow: var(--theme--shadow-card);
+}
+
+hr {
+  border: unset;
+  border-top: 1px solid var(--theme--border-base-color);
+}
+
+a:not(.md-button):not(.a-button) {
+  color: var(--theme--color-links);
+  text-decoration-color: var(--theme--color-links);
+  text-underline-offset: 0.1em;
+  text-decoration-thickness: 1px;
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    text-underline-offset: 0.3em;
+    filter: drop-shadow(var(--theme--glow-links));
+  }
+}
+
+mark {
+	background: var(--theme--color-marker-highlight);
+	color: var(--theme--color-marker-highlight-contrast);
 }

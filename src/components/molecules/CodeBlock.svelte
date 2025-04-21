@@ -19,22 +19,24 @@
 		filename,
 		lang,
 		code,
+		class: className,
 		children
 	} : {
 		filename?: string;
 		lang: string;
 		code?: string;
 		fullBleed?: boolean;
+		class?: string;
 		children?: Snippet;
 	} = $props();
 </script>
 
-<div class="code-block">
+<div class={['m-code-block', className]}>
 	{#if filename}
-		<div class="filename">{filename}</div>
+		<div class="m-code-block__filename">{filename}</div>
 	{/if}
 	{#if lang}
-		<div class="lang">{lang}</div>
+		<div class="m-code-block__lang">{lang}</div>
 	{/if}
 	{#if code}
 		{#if lang}
@@ -50,3 +52,63 @@
 		{@render children?.()}
 	{/if}
 </div>
+
+<style lang="scss">
+	.m-code-block {
+		display: block;
+		position: relative;
+		background-color: var(--theme--color-code-background);
+		color: var(--theme--color-code-text);
+		font-family: var(--font--mono);
+		font-size: 1rem;
+		line-height: 1.33em;
+		border-radius: 8px;
+		box-shadow: var(--theme--shadow-card);
+
+		padding: var(--spacing-lg) var(--spacing-sm);
+		margin: var(--spacing-lg) 0;
+
+		:global(pre) {
+			font-family: var(--font--mono);
+			overflow-x: auto;
+			scrollbar-color: var(--theme--color-accent) rgba(var(--theme--color-accent-rgb), 0.5);
+			scrollbar-width: thin;
+			padding-bottom: var(--spacing-xxs);
+
+			tab-size: 0;
+
+			&::-webkit-scrollbar {
+				height: 8px;
+			}
+			&::-webkit-scrollbar-thumb {
+				background: var(--theme--color-accent);
+				&:hover {
+					background: var(--theme--color-accent-tint);
+				}
+			}
+		}
+
+		.m-code-block__lang {
+			position: absolute;
+			right: 0;
+			top: -15px;
+			background: inherit;
+			border-radius: var(--border-radius--small);
+			padding: var(--spacing-xxs) var(--spacing-xs);
+			z-index: 2;
+			font-size: 0.85em;
+		}
+
+		.m-code-block__filename {
+			background: inherit;
+			border-top-left-radius: var(--border-radius--small);
+			border-top-right-radius: var(--border-radius--small);
+			margin-bottom: -2px;
+			padding: var(--spacing-xxs) var(--spacing-xs);
+			position: absolute;
+			left: 0px;
+			top: -15px;
+			z-index: 1;
+		}
+	}
+</style>

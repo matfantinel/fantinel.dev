@@ -42,6 +42,11 @@ html {
 	}
 }
 
+::selection {
+	background-color: rgba(var(--theme--color-accent-rgb), 0.3);
+	text-shadow: none;
+}
+
 // body {
 // 	--body-background-color: var(--color--page-background);
 // 	--body-background-color-rgb: var(--color--page-background-rgb);

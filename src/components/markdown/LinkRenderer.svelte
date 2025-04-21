@@ -1,5 +1,7 @@
 <script lang="ts">
+  import ExternalLink from '@assets/icons/external-link.svelte';
 	import Button from '@components/atoms/Button.svelte';
+  import { HttpRegex } from '@utils/regex';
 
 	let {
 		text,
@@ -12,6 +14,8 @@
 	} = $props();
 
 	const target = href.startsWith('#') ? '_self' : '_blank';
+
+	const isExternalLink = !!href && HttpRegex.test(href);
 
 	// We'll use the title attribute to check if a link should be rendered as a Button
 	const isButton = title && title.indexOf('button') > -1;
@@ -34,12 +38,23 @@
 {#if isButton}
 	<Button {href} {...buttonProps} class="md-button">{text}</Button>
 {:else}
-	<a {href} {target} rel="noopener noreferrer">{text}</a>
+	<a {href} {target} class="md-link" rel="noopener noreferrer">
+		{text}
+		{#if isExternalLink}
+			<ExternalLink size="14px" />
+		{/if}
+	</a>
 {/if}
 
 <style lang="scss">
 	:global(.md-button) {
 		width: fit-content;
 		margin: 5px auto;
+	}
+
+	:global(.md-link) {
+		:global(svg) {
+			display: inline;
+		}
 	}
 </style>

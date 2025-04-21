@@ -43,8 +43,8 @@
 
 	--color--#{$title}-contrast: #{if(
 		functions.brightness($color) > 186,
-		var(--color--text),
-		var(--color--text-inverse)
+		var(--theme--text-base-color),
+		var(--theme--text-inverse-color)
 	)};
 }
 

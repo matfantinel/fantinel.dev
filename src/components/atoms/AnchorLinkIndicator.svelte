@@ -25,5 +25,15 @@
   aria-label={title}
   {onclick}
 >
-  <LinkIcon size="24px" />
+  <LinkIcon size="20px" />
 </a>
+
+<style lang="scss">
+  .a-anchor-link-indicator {
+    display: inline-block;
+		text-decoration: none;
+		margin-left: var(--spacing-xs);
+		height: 20px;
+		width: 20px; 
+  }
+</style>

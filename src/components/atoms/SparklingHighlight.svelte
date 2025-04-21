@@ -12,7 +12,7 @@
 	} = $props();
 </script>
 
-<sparkly-text number-of-sparkles="5" style="--sparkly-text-color: var(--color--yellow); --sparkly-text-size: 1.25rem">
+<sparkly-text number-of-sparkles="5" style="--sparkly-text-color: var(--theme--color-sparkles); --sparkly-text-size: 1.25rem">
 	<strong class={['a-sparkling-highlight', className]}>
 		{#if text}
 			{text}

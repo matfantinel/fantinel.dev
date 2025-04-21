@@ -55,21 +55,21 @@
 		}
 
 		&--info {
-			box-shadow: var(--theme--glow-blue);
-			border-color: var(--color--blue);
-			--icon-color: var(--color--blue);
+			box-shadow: var(--theme--glow-callouts-info);
+			border-color: var(--theme--color-callouts-info);
+			--icon-color: var(--theme--color-callouts-info);
 		}
 
 		&--warning {
-			box-shadow: var(--theme--glow-yellow);
-			border-color: var(--color--yellow);
-			--icon-color: var(--color--yellow);
+			box-shadow: var(--theme--glow-callouts-warning);
+			border-color: var(--theme--color-callouts-warning);
+			--icon-color: var(--theme--color-callouts-warning);
 		}
 
 		&--success {
-			box-shadow: var(--theme--glow-green);
-			border-color: var(--color--green);
-			--icon-color: var(--color--green);
+			box-shadow: var(--theme--glow-callouts-success);
+			border-color: var(--theme--color-callouts-success);
+			--icon-color: var(--theme--color-callouts-success);
 		}
   }
 </style>
