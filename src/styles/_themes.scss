@@ -89,18 +89,10 @@
   // Colors might vary by purpose or subject.
   --theme--color-accent: var(--color--teal);
   --theme--color-accent-rgb: var(--color--teal-rgb);
-  --theme--color-accent-shade: hsl(
-    var(--color--teal-h),
-    var(--color--teal-s),
-    var(--color--teal-l - 10%)
-  );
-  --theme--color-accent-tint: hsl(
-    var(--color--teal-h),
-    var(--color--teal-s),
-    var(--color--teal-l + 10%)
-  );
-
-
+  --theme--color-accent-contrast: var(--color--teal-contrast);
+  --theme--color-accent-shade: var(--color--teal-shade);
+  --theme--color-accent-tint: var(--color--teal-tint);
+  
   // #region Colors for common elements
 
   --theme--color-links: var(--theme--color-accent);

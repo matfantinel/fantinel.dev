@@ -34,11 +34,6 @@
 @mixin define-color($title, $color) {
 	--color--#{$title}: #{$color};
 
-	--color--#{$title}-h: #{functions.hue($color)};
-	--color--#{$title}-l: #{functions.lightness($color)};
-	--color--#{$title}-s: #{functions.saturation($color)};
-	--color--#{$title}-a: #{functions.alpha($color)};
-
 	--color--#{$title}-rgb: #{functions.red($color)}, #{functions.green($color)}, #{functions.blue($color)};
 
 	--color--#{$title}-contrast: #{if(
@@ -46,6 +41,18 @@
 		var(--theme--text-base-color),
 		var(--theme--text-inverse-color)
 	)};
+
+	--color--#{$title}-shade: hsl(
+		#{functions.hue($color)},
+		#{functions.saturation($color)},
+		calc(#{functions.lightness($color)} - 10%)
+	);
+
+	--color--#{$title}-tint: hsl(
+		#{functions.hue($color)},
+		#{functions.saturation($color)},
+		calc(#{functions.lightness($color)} + 10%)
+	);
 }
 
 // @mixin marker-highlight {

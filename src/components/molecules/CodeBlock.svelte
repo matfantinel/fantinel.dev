@@ -65,7 +65,7 @@
 		border-radius: 8px;
 		box-shadow: var(--theme--shadow-card);
 
-		padding: var(--spacing-lg) var(--spacing-sm);
+		padding: var(--spacing-lg) var(--spacing-sm) var(--spacing-md);
 		margin: var(--spacing-lg) 0;
 
 		:global(pre) {

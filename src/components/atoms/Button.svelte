@@ -1,19 +1,21 @@
 <script lang="ts">
-	import { HttpRegex } from '@utils/regex';
+  import { HttpRegex } from '@utils/regex';
   import type { Snippet } from 'svelte';
 
-	let { 
+  let {
     href,
     target,
     rel,
+    color = 'default',
     class: className,
     icon,
     children,
     ...props
-  } : {
+  }: {
     href?: string;
     target?: string;
     rel?: string;
+    color?: 'default' | 'green' | 'yellow' | 'peach' | 'red' | 'mauve' | 'blue' | 'teal';
     class?: string;
     icon?: Snippet;
     children?: Snippet;
@@ -24,36 +26,103 @@
   const linkProps = {
     href,
     target: target ?? (isExternalLink ? '_blank' : undefined),
-    rel: rel ?? (isExternalLink ? 'noopener noreferrer' : undefined)
+    rel: rel ?? (isExternalLink ? 'noopener noreferrer' : undefined),
   };
 
+  const classList = ['a-button', `a-button--${color}`, className];
 </script>
 
 <svelte:element
-	this={tag}
-	{...linkProps}
-	class={['a-button', className]}
-	data-sveltekit-preload-data
-	role="link"
-	tabindex="0"
-	{...props}
+  this={tag}
+  {...linkProps}
+  class={classList}
+  data-sveltekit-preload-data
+  role="link"
+  tabindex="0"
+  {...props}
 >
-	{#if icon}
-		<div class="icon">
-			{@render icon()}
-		</div>
-	{/if}
-	{@render children?.()}
+  {#if icon}
+    <div class="a-button__icon">
+      {@render icon()}
+    </div>
+  {/if}
+  <span class="a-button__text">
+    {@render children?.()}
+  </span>
 </svelte:element>
 
 <style lang="scss">
+  @use '@styles/_typography.scss';
   .a-button {
-    display: flex;
-		align-items: center;
-		justify-content: center;
-		gap: 5px;
-    
-    background: peachpuff;
-    padding: 5px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+
+    padding: 10px 20px;
+    border-radius: 20px;
+    text-decoration: none;
+    box-shadow: var(--theme--shadow-card);
+
+    transition: background 0.25s ease;
+
+    --button-color-background: var(--theme--color-accent);
+    --button-color-background-hover: var(--theme--color-accent-tint);
+    --button-color-text: var(--theme--color-accent-contrast);
+
+    background: var(--button-color-background);
+    color: var(--button-color-text);
+
+    @media (hover: hover) {
+      &:hover {
+        background: var(--button-color-background-hover);
+      }
+    }
+
+    &__text {
+      @extend .u-b1;
+    }
+
+    &--green {
+      --button-color-background: var(--color--green);
+      --button-color-background-hover: var(--color--green-tint);
+      --button-color-text: var(--color--green-contrast);
+    }
+
+    &--yellow {
+      --button-color-background: var(--color--yellow);
+      --button-color-background-hover: var(--color--yellow-tint);
+      --button-color-text: var(--color--yellow-contrast);
+    }
+
+    &--peach {
+      --button-color-background: var(--color--peach);
+      --button-color-background-hover: var(--color--peach-tint);
+      --button-color-text: var(--color--peach-contrast);
+    }
+
+    &--red {
+      --button-color-background: var(--color--red);
+      --button-color-background-hover: var(--color--red-tint);
+      --button-color-text: var(--color--red-contrast);
+    }
+
+    &--mauve {
+      --button-color-background: var(--color--mauve);
+      --button-color-background-hover: var(--color--mauve-tint);
+      --button-color-text: var(--color--mauve-contrast);
+    }
+
+    &--blue {
+      --button-color-background: var(--color--blue);
+      --button-color-background-hover: var(--color--blue-tint);
+      --button-color-text: var(--color--blue-contrast);
+    }
+
+    &--teal {
+      --button-color-background: var(--color--teal);
+      --button-color-background-hover: var(--color--teal-tint);
+      --button-color-text: var(--color--teal-contrast);
+    }
   }
 </style>
