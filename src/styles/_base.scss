@@ -6,6 +6,23 @@
   @include mixins.padded-container;
 }
 
+.u-container-small {
+  @include mixins.padded-container-small;
+}
+
+.u-noise {
+	z-index: 999;
+	pointer-events: none;
+	mix-blend-mode: color-burn;
+	will-change: opacity;
+	-webkit-backface-visibility: hidden;
+	backface-visibility: hidden;
+	background-image: url("/images/noise-texture.webp");
+	position: fixed;
+	inset: 0%;
+  opacity: var(--background-noise-opacity, 1);
+}
+
 ul,
 ol {
   margin: var(--spacing-xs) 0 var(--spacing-xs) var(--spacing-lg);

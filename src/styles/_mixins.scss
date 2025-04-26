@@ -2,9 +2,10 @@
 @use '@styles/_functions.scss';
 
 @mixin padded-container {
+	max-width: 1080px;
 	width: 100%;
-	padding-right: 15px;
-	padding-left: 15px;
+	padding-left: clamp(15px, calc((100vw - 320px) / 580 * 30), 30px);
+	padding-right: clamp(15px, calc((100vw - 320px) / 580 * 30), 30px);
 	margin-right: auto;
 	margin-left: auto;
 
@@ -12,25 +13,26 @@
 		padding-left: 0;
 		padding-right: 0;
 	}
+}
 
-	@include breakpoints.for-tablet-portrait-up {
-		padding-right: 20px;
-		padding-left: 20px;
-	}
-
-	@include breakpoints.for-tablet-landscape-up {
-		padding-right: 30px;
-		padding-left: 30px;
-	}
-
-	@include breakpoints.for-desktop-up {
-		max-width: 1080px;
+@mixin padded-container-small {
+	@include padded-container;
+	& {
+		max-width: 68ch;
 	}
 }
 
-// Defines a bunch of CSS variables for a given color
-// In HEX, HSL and RGB formats
-// Plus a contrast option for text
+/**
+ * Defines a bunch of CSS variables for a given color:
+ * - HEX (--color--example)
+ * - RGB (--color--example-rgb)
+ * - Contrast (--color--example-contrast)
+ * - Shade (--color--example-shade)
+ * - Tint (--color--example-tint)
+ * 
+ * @param {string} $title - The name of the color
+ * @param {string} $color - The color in HEX format
+ */
 @mixin define-color($title, $color) {
 	--color--#{$title}: #{$color};
 
@@ -54,21 +56,3 @@
 		calc(#{functions.lightness($color)} + 10%)
 	);
 }
-
-// @mixin marker-highlight {
-// 	--mark-color: var(--color--marker-primary-background);
-
-// 	margin-inline: calc(0.3em * -1);
-// 	padding-inline: 0.3em;
-
-// 	background-color: transparent !important;
-// 	background-image: linear-gradient(to bottom right, transparent 50%, var(--mark-color) 50%),
-// 		linear-gradient(var(--mark-color), var(--mark-color)),
-// 		linear-gradient(to top left, transparent 50%, var(--mark-color) 50%);
-// 	background-size: 0.25em 1em, calc(100% - 0.25em * 2 + 1px) 1em, 0.25em 1em;
-// 	background-position: left center, center, right center;
-// 	background-repeat: no-repeat;
-// 	color: inherit;
-// 	-webkit-box-decoration-break: clone;
-// 	box-decoration-break: clone;
-// }

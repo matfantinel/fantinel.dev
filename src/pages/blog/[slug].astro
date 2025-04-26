@@ -27,8 +27,10 @@ const { url } = Astro;
   published_date={post.data.date}
   modified_date={post.data.updated}
 >
-  <div class="u-markdown u-container">
+  <div class="future-post-hero u-container-small">
     <h1>{post.data.title}</h1>
+  </div>
+  <div class="u-markdown u-container-small">
     <MarkdownRenderer content={post.body} currentUrl={url} client:load />
   </div>
 </Layout>

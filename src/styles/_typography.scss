@@ -33,6 +33,7 @@ h2, .u-h2 {
   font-family: var(--font--mono);
   font-size: clamp(1.35rem, 1.6vw + 1rem, 2.25rem); //36px
   font-weight: 800;
+  letter-spacing: -2px;
 }
 
 h3, .u-h3 {

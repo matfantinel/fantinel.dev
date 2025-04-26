@@ -135,13 +135,18 @@
 @mixin dark-theme {
   @include dark-color-palette;
   @include theme-base;
+
+  --background-noise-opacity: 0;
 }
 
 @mixin light-theme {
   @include light-color-palette;
   @include theme-base;
 
+  --background-noise-opacity: 1;
+
   --theme--text-inverse-color: var(--color--gray-1100);
+  --theme--background-accent-color: var(--color--gray-1100);
 
   --theme--color-code-background: var(--color--code-background);
   --theme--color-code-text: var(--color--code-text);
