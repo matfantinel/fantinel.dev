@@ -6,9 +6,12 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "storybook": "storybook dev -p 6006 --no-open",
+    "build-storybook": "storybook build"
   },
-  "dependencies": {
+  "dependencies": {},
+  "devDependencies": {
     "@astrojs/svelte": "^7.0.10",
     "@fontsource-variable/mona-sans": "^5.2.5",
     "@fontsource/atkinson-hyperlegible-next": "^5.2.2",
@@ -17,15 +20,22 @@
     "astro": "^5.7.2",
     "sass": "^1.86.0",
     "svelte": "^5.23.1",
-    "typescript": "^5.8.2"
-  },
-  "devDependencies": {
+    "typescript": "^5.8.2",
     "@modyfi/vite-plugin-yaml": "^1.1.1",
+    "@storybook/addon-essentials": "^8.6.12",
+    "@storybook/addon-svelte-csf": "^5.0.0-next.0",
+    "@storybook/blocks": "^8.6.12",
+    "@storybook/svelte": "^8.6.12",
+    "@storybook/svelte-vite": "^8.6.12",
     "@svelte-put/copy": "^4.0.0",
+    "@sveltejs/vite-plugin-svelte": "^5.0.3",
+    "@types/node": "^22.15.2",
     "@types/prismjs": "^1.26.5",
     "dateformat": "^5.0.3",
     "prism-svelte": "^0.5.0",
     "prismjs": "^1.30.0",
-    "svelte-markdown": "^0.4.1"
+    "storybook": "^8.6.12",
+    "svelte-markdown": "^0.4.1",
+    "vite-tsconfig-paths": "^5.1.4"
   }
 }

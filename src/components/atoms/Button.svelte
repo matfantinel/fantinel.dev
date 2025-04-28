@@ -21,15 +21,15 @@
     children?: Snippet;
   } = $props();
 
-  const tag = href ? 'a' : 'button';
-  const isExternalLink = !!href && HttpRegex.test(href);
-  const linkProps = {
+  let tag = $derived(href ? 'a' : 'button');
+  let isExternalLink = $derived(!!href && HttpRegex.test(href));
+  let linkProps = $derived({
     href,
     target: target ?? (isExternalLink ? '_blank' : undefined),
     rel: rel ?? (isExternalLink ? 'noopener noreferrer' : undefined),
-  };
+  });
 
-  const classList = ['a-button', `a-button--${color}`, className];
+  let classList = $derived(['a-button', `a-button--${color}`, className]);
 </script>
 
 <svelte:element
@@ -63,6 +63,7 @@
     border-radius: 20px;
     text-decoration: none;
     box-shadow: var(--theme--shadow-card);
+    border: none;
 
     transition: background 0.25s ease;
 
