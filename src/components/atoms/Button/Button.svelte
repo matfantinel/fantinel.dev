@@ -65,11 +65,12 @@
     box-shadow: var(--theme--shadow-card);
     border: none;
 
-    transition: background 0.25s ease;
+    transition: all 0.25s ease;
 
     --button-color-background: var(--theme--color-accent);
     --button-color-background-hover: var(--theme--color-accent-tint);
     --button-color-text: var(--theme--color-accent-contrast);
+    --button-color-hover-glow: var(--theme--color-accent-glow);
 
     background: var(--button-color-background);
     color: var(--button-color-text);
@@ -77,6 +78,7 @@
     @media (hover: hover) {
       &:hover {
         background: var(--button-color-background-hover);
+        box-shadow: var(--button-color-hover-glow);
       }
     }
 
@@ -94,36 +96,42 @@
       --button-color-background: var(--color--yellow);
       --button-color-background-hover: var(--color--yellow-tint);
       --button-color-text: var(--color--yellow-contrast);
+      --button-color-hover-glow: var(--theme--glow-yellow);
     }
 
     &--peach {
       --button-color-background: var(--color--peach);
       --button-color-background-hover: var(--color--peach-tint);
       --button-color-text: var(--color--peach-contrast);
+      --button-color-hover-glow: var(--theme--glow-peach);
     }
 
     &--red {
       --button-color-background: var(--color--red);
       --button-color-background-hover: var(--color--red-tint);
       --button-color-text: var(--color--red-contrast);
+      --button-color-hover-glow: var(--theme--glow-red);
     }
 
     &--mauve {
       --button-color-background: var(--color--mauve);
       --button-color-background-hover: var(--color--mauve-tint);
       --button-color-text: var(--color--mauve-contrast);
+      --button-color-hover-glow: var(--theme--glow-mauve);
     }
 
     &--blue {
       --button-color-background: var(--color--blue);
       --button-color-background-hover: var(--color--blue-tint);
       --button-color-text: var(--color--blue-contrast);
+      --button-color-hover-glow: var(--theme--glow-blue);
     }
 
     &--teal {
       --button-color-background: var(--color--teal);
       --button-color-background-hover: var(--color--teal-tint);
       --button-color-text: var(--color--teal-contrast);
+      --button-color-hover-glow: var(--theme--glow-teal);
     }
   }
 </style>

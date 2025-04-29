@@ -92,6 +92,7 @@
   --theme--color-accent-contrast: var(--color--teal-contrast);
   --theme--color-accent-shade: var(--color--teal-shade);
   --theme--color-accent-tint: var(--color--teal-tint);
+  --theme--color-accent-glow: var(--theme--glow-teal);
   
   // #region Colors for common elements
 
@@ -122,7 +123,8 @@
   --theme--glow-teal: 0 0 40px 0 rgba(var(--color--teal-rgb), 0.4);
   --theme--glow-lavender: 0 0 40px 0 rgba(var(--color--lavender-rgb), 0.4);
   --theme--glow-mauve: 0 0 40px 0 rgba(var(--color--mauve-rgb), 0.4);
-
+  --theme--glow-peach: 0 0 40px 0 rgba(var(--color--peach-rgb), 0.4);
+  --theme--glow-red: 0 0 40px 0 rgba(var(--color--red-rgb), 0.4);
 
   --theme--glow-callouts-info: var(--theme--glow-blue);
   --theme--glow-callouts-warning: var(--theme--glow-yellow);

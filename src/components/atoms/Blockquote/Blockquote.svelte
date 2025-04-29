@@ -4,11 +4,13 @@
 
   let { 
     cite,
+    text,
     class: className,
     children,
     ...props
   } : {
     cite?: string;
+    text?: string;
     class?: string;
     children?: Snippet;
   } = $props();
@@ -24,7 +26,12 @@
     <Quotes class="a-blockquote__quote" size="24px" />
   </div>
 
-  {@render children?.()}
+  {#if text}
+    {text}
+  {:else}
+    {@render children?.()}
+  {/if}
+
 </blockquote>
 
 <style lang="scss">

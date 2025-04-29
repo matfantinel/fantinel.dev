@@ -6,10 +6,12 @@
 
 	let { 
     type = 'info',
+		text,
     class: className,
     children,
   } : {
     type?: 'info' | 'warning' | 'success';
+    text?: string;
     class?: string;
     children?: Snippet;
   } = $props();
@@ -31,7 +33,11 @@
 			{/if}
 		</div>
 	{/if}
-	{@render children?.()}
+	{#if text}
+		{text}
+	{:else}
+		{@render children?.()}
+	{/if}
 </div>
 
 <style lang="scss">

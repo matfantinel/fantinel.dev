@@ -23,9 +23,8 @@
 		children
 	} : {
 		filename?: string;
-		lang: string;
+		lang?: string;
 		code?: string;
-		fullBleed?: boolean;
 		class?: string;
 		children?: Snippet;
 	} = $props();

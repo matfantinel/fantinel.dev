@@ -18,7 +18,7 @@
 		isInline = false
 	} : {
 		content: string;
-		isInline: boolean;
+		isInline?: boolean;
 	} = $props();
 
 	marked.use({
