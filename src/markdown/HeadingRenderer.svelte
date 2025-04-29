@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { marked } from 'marked';
-	import MarkdownRenderer from '@components/molecules/MarkdownRenderer.svelte';
-  import AnchorLinkIndicator from '@components/atoms/AnchorLinkIndicator.svelte';
+	import MarkdownRenderer from '@components/molecules/MarkdownRenderer';
+  import AnchorLinkIndicator from '@components/atoms/AnchorLinkIndicator';
 
 	let {
 		text,

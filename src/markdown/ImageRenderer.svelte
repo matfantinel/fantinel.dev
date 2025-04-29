@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { handleCmsMediaPath } from '@utils/functions';
-	import Image from '@components/atoms/Image.svelte';
+	import Image from '@components/atoms/Image';
 
 	let {
 		title,

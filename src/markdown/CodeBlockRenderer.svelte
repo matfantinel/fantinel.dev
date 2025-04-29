@@ -1,5 +1,5 @@
 <script lang="ts">
-  import CodeBlock from "@components/molecules/CodeBlock.svelte";
+  import CodeBlock from "@components/molecules/CodeBlock";
 
 	let {
 		lang,

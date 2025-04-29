@@ -1,7 +1,7 @@
 <script lang="ts">
-	import Blockquote from '@components/atoms/Blockquote.svelte';
-	import Callout from '@components/atoms/Callout.svelte';
-	import MarkdownRenderer from '@components/molecules/MarkdownRenderer.svelte';
+	import Blockquote from '@components/atoms/Blockquote';
+	import Callout from '@components/atoms/Callout';
+	import MarkdownRenderer from '@components/molecules/MarkdownRenderer';
 
 	let { text } : {
 		text: string;

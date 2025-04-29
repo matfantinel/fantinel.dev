@@ -5,13 +5,13 @@
 	} from '@utils/markdown';
 	import { marked } from 'marked';
 	import SvelteMarkdown from 'svelte-markdown';
-	import HeadingRenderer from '@components/markdown/HeadingRenderer.svelte';
-	import ImageRenderer from '@components/markdown/ImageRenderer.svelte';
-	import LinkRenderer from '@components/markdown/LinkRenderer.svelte';
-	import QuoteCalloutRenderer from '@components/markdown/QuoteCalloutRenderer.svelte';
-  import CodeBlockRenderer from '@components/markdown/CodeBlockRenderer.svelte';
-	import MarkerHighlight from '@components/atoms/MarkerHighlight.svelte';
-	import SparklingHighlight from '@components/atoms/SparklingHighlight.svelte';
+	import HeadingRenderer from '@markdown/HeadingRenderer.svelte';
+	import ImageRenderer from '@markdown/ImageRenderer.svelte';
+	import LinkRenderer from '@markdown/LinkRenderer.svelte';
+	import QuoteCalloutRenderer from '@markdown/QuoteCalloutRenderer.svelte';
+  import CodeBlockRenderer from '@markdown/CodeBlockRenderer.svelte';
+	import MarkerHighlight from '@components/atoms/MarkerHighlight';
+	import SparklingHighlight from '@components/atoms/SparklingHighlight';
 
 	let { 
 		content, 

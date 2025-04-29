@@ -1,6 +1,6 @@
 <script lang="ts">
   import ExternalLink from '@assets/icons/external-link.svelte';
-	import Button from '@components/atoms/Button.svelte';
+	import Button from '@components/atoms/Button';
   import { HttpRegex } from '@utils/regex';
 
 	let {
