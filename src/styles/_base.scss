@@ -70,3 +70,7 @@ mark {
 	background: var(--theme--color-marker-highlight);
 	color: var(--theme--color-marker-highlight-contrast);
 }
+
+@view-transition {
+  navigation: auto; /* enabled! */
+}

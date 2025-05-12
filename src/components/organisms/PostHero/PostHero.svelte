@@ -62,10 +62,9 @@
 
 <style lang="scss">
   @use '@styles/_typography.scss';
+  @use '@styles/_breakpoints.scss';
 
   .o-post-hero {
-    background-color: var(--theme--background-accent-color);
-
     &__container {
       display: flex;
       flex-direction: column;
@@ -74,6 +73,10 @@
       gap: var(--spacing-lg);
 
       padding-block: var(--spacing-xxl);
+
+      @include breakpoints.for-phone-only {
+        padding-block: var(--spacing-xl);
+      }
     }
 
     &__title {

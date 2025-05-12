@@ -8,8 +8,8 @@
 @use '@styles/_typography.scss';
 @use '@styles/_markdown.scss';
 @use '@styles/_code-highlights.scss';
+@use '@styles/_view-transitions.scss';
 // @use '@styles/animations.scss';
-// @use '@styles/view-transitions.scss';
 
 body {
   background-color: var(--theme--background-base-color);

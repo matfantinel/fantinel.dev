@@ -111,6 +111,11 @@
   --theme--color-code-background: var(--color--gray-1000);
   --theme--color-code-text: var(--color--gray-0);
   
+  --theme--color--logo-1: var(--color--gray-0);
+  --theme--color--logo-2: var(--color--gray-100);
+
+  --theme--color--logo-1-inverted: var(--color--gray-1000);
+  --theme--color--logo-2-inverted: var(--color--gray-700);
 
   // #endregion
 
@@ -162,6 +167,12 @@
 
   --theme--color-tags-background: var(--color--gray-800);
   --theme--color-tags-background-hover: var(--color--gray-700);
+
+  --theme--color--logo-1: var(--color--gray-0);
+  --theme--color--logo-2: var(--color--gray-100);
+
+  --theme--color--logo-1-inverted: var(--color--gray-1000);
+  --theme--color--logo-2-inverted: var(--color--gray-700);
 }
 
 :root {

@@ -5,6 +5,7 @@ import PostHero from '@components/organisms/PostHero';
 import type { BlogPost } from '@schemas/blog';
 import { handleCmsMediaPath } from '@utils/functions';
 import BaseLayout from './BaseLayout.astro';
+import Header from '@components/organisms/Header';
 
 interface Props {
   post: {
@@ -28,13 +29,17 @@ const { post }: Props = Astro.props;
 >
   <main class="l-post">
     <div class="l-post__container">
-      <PostHero
-        title={post.data.title}
-        author={post.data.author}
-        date={post.data.date}
-        readingTime={post.data.readingTime}
-        tags={post.data.categories}
-      />
+      <div class="l-post__header">
+        <Header client:load />
+
+        <PostHero
+          title={post.data.title}
+          author={post.data.author}
+          date={post.data.date}
+          readingTime={post.data.readingTime}
+          tags={post.data.categories}
+        />
+    </div>
 
       <div class="u-markdown u-container-small">
         {post.data.showImage && post.data.coverImage && (
@@ -51,11 +56,23 @@ const { post }: Props = Astro.props;
 </BaseLayout>
 
 <style lang="scss">
+  @use '@styles/_breakpoints.scss';
+
   .l-post {
+    &__header {
+      background-color: var(--theme--background-accent-color);
+      border-bottom-left-radius: var(--border-radius);
+      border-bottom-right-radius: var(--border-radius);
+    }
+
     &__container {
       display: flex;
       flex-direction: column;
       gap: var(--spacing-xxl);
+
+      @include breakpoints.for-phone-only {
+        gap: var(--spacing-xl);
+      }
     }
   }
 </style>
