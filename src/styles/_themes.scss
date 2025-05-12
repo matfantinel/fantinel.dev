@@ -100,6 +100,8 @@
   --theme--color-callouts-info: var(--color--blue);
   --theme--color-callouts-warning: var(--color--yellow);
   --theme--color-callouts-success: var(--color--green);
+  --theme--color-tags-background: var(--color--gray-600);
+  --theme--color-tags-background-hover: var(--color--gray-700);
 
   --theme--color-sparkles: var(--color--yellow);
   --theme--color-marker-highlight: var(--color--yellow);
@@ -131,6 +133,11 @@
   --theme--glow-callouts-success: var(--theme--glow-green);
   --theme--glow-links: 0px 0px 3px rgba(var(--color--teal-rgb), 0.7);
 
+  // Gradients
+
+  --theme--gradient-greenish: linear-gradient(to right, var(--color--teal), var(--color--sky));
+  --theme--gradient-pinkish: linear-gradient(to right, var(--color--pink), var(--color--mauve), var(--color--lavender));
+
   // #endregion
 }
 
@@ -152,6 +159,9 @@
 
   --theme--color-code-background: var(--color--code-background);
   --theme--color-code-text: var(--color--code-text);
+
+  --theme--color-tags-background: var(--color--gray-800);
+  --theme--color-tags-background-hover: var(--color--gray-700);
 }
 
 :root {

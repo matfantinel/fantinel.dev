@@ -53,7 +53,7 @@ hr {
   border-top: 1px solid var(--theme--border-base-color);
 }
 
-a:not(.md-button):not(.a-button) {
+a:not(.md-button):not(.a-button):not(.a-tag) {
   color: var(--theme--color-links);
   text-decoration-color: var(--theme--color-links);
   text-underline-offset: 0.1em;

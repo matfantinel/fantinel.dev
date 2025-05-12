@@ -4,3 +4,4 @@ declare module 'dateformat' {
 }
 
 declare module '@stefanjudis/sparkly-text';
+declare module 'reading-time/lib/reading-time';

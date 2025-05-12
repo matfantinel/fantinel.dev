@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Alert from '@icons/alert.svelte';
-	import Check from '@icons/check.svelte';
+	import CheckCircle from '@icons/check-circle.svelte';
 	import Info from '@icons/info.svelte';
   import type { Snippet } from 'svelte';
 
@@ -29,7 +29,7 @@
 			{:else if type == 'warning'}
 				<Alert size="36px" />
 			{:else if type == 'success'}
-				<Check size="36px" />
+				<CheckCircle size="36px" />
 			{/if}
 		</div>
 	{/if}

@@ -1,10 +1,27 @@
 ---
+import PostLayout from "@layouts/PostLayout.astro";
 import { getCollection } from "astro:content";
-import MarkdownRenderer from "@components/molecules/MarkdownRenderer";
-import Layout from '@layouts/Layout.astro';
+import readingTime from 'reading-time/lib/reading-time';
+import striptags from 'striptags';
 
 export async function getStaticPaths () {
   const posts = await getCollection('blog');
+
+  // Calculate reading time of each post
+  posts.forEach(post => {
+    if (post.body) {
+      post.data.readingTime = readingTime(striptags(post.body)).text
+    }
+
+    // TODO: Author is gonna be a post type
+    if (!post.data.author) {
+      post.data.author = {
+        name: "Matt Fantinel", 
+        image: "https://www.gravatar.com/avatar/08fc2cb6e6efa9c31179805bc0e8d8bd?s=100"
+      };
+    }
+  });
+
   return posts.map(post => ({
     params: {
       slug: post.data.slug
@@ -14,23 +31,8 @@ export async function getStaticPaths () {
 };
 
 const { post } = Astro.props;
-const { url } = Astro;
 ---
 
-<Layout 
-  title={post.data.title}
-  keywords={post.data.categories}
-  description={post.data.excerpt}
-  image={post.data.coverImage}
-  autoGenerateImage={!post.data.showImage || !post.data.coverImage}
-  slug={`blog/${post.data.slug}`}
-  published_date={post.data.date}
-  modified_date={post.data.updated}
->
-  <div class="future-post-hero u-container-small">
-    <h1>{post.data.title}</h1>
-  </div>
-  <div class="u-markdown u-container-small">
-    <MarkdownRenderer content={post.body} currentUrl={url} client:load />
-  </div>
-</Layout>
+<PostLayout
+  post={post}
+/>

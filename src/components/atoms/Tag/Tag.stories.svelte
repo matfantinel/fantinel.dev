@@ -6,24 +6,23 @@
     type StoryContext,
   } from '@storybook/addon-svelte-csf';
 
-  import Button from './Button.svelte';
-  import Check from '@assets/icons/check.svelte';
+  import Tag from './Tag.svelte';
 
   const { Story } = defineMeta({
-    title: 'Atoms/Button',
-    component: Button,
+    title: 'Atoms/Tag',
+    component: Tag,
     tags: ['autodocs'],
     argTypes: {
-      color: {
+      selected: { control: 'boolean' },
+      size: {
         control: { type: 'select' },
-        options: ['default', 'green', 'yellow', 'peach', 'red', 'mauve', 'blue', 'teal'],
+        options: ['default', 'small', 'responsive'],
       },
       href: { control: 'text' },
-      children: { control: 'text', name: 'Button Text' },
+      children: { control: 'text', name: 'Tag Text' },
       target: { control: false },
       rel: { control: false },
       class: { control: false },
-      icon: { control: false }
     },
   });
 </script>
@@ -33,10 +32,13 @@
 </script>
 
 {#snippet template(args: Args<typeof Story>, context: StoryContext<typeof Story>)}
-  <Button {...args}>{args.children ?? 'Button'}</Button>
+  <Tag {...args}>{args.children ?? 'Tag'}</Tag>
 {/snippet}
 
 <Story name="Default" />
 
-{#snippet iconSnippet()}<Check />{/snippet}
-<Story name="With Icon" args={{ icon: iconSnippet }} />
+<Story name="Selected" args={{ selected: true }} />
+
+<Story name="Small" args={{ size: 'small' }} />
+
+<Story name="Small, Selected" args={{ size: 'small', selected: true }} />

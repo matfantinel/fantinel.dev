@@ -1,0 +1,61 @@
+---
+import Image from '@components/atoms/Image';
+import MarkdownRenderer from '@components/molecules/MarkdownRenderer';
+import PostHero from '@components/organisms/PostHero';
+import type { BlogPost } from '@schemas/blog';
+import { handleCmsMediaPath } from '@utils/functions';
+import BaseLayout from './BaseLayout.astro';
+
+interface Props {
+  post: {
+    body?: string;
+    data: BlogPost;
+  };
+}
+
+const { post }: Props = Astro.props;
+---
+
+<BaseLayout
+  title={post.data.title}
+  keywords={post.data.categories}
+  description={post.data.excerpt}
+  image={post.data.coverImage}
+  autoGenerateImage={!post.data.showImage || !post.data.coverImage}
+  slug={`blog/${post.data.slug}`}
+  published_date={post.data.date}
+  modified_date={post.data.updated}
+>
+  <main class="l-post">
+    <div class="l-post__container">
+      <PostHero
+        title={post.data.title}
+        author={post.data.author}
+        date={post.data.date}
+        readingTime={post.data.readingTime}
+        tags={post.data.categories}
+      />
+
+      <div class="u-markdown u-container-small">
+        {post.data.showImage && post.data.coverImage && (
+          <Image
+            src={handleCmsMediaPath(post.data.coverImage)}
+            alt={post.data.coverImageAlt}
+            lazy={false}
+          />
+        )}
+        <MarkdownRenderer content={post.body} client:load />
+      </div>
+    </div>
+  </main>
+</BaseLayout>
+
+<style lang="scss">
+  .l-post {
+    &__container {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-xxl);
+    }
+  }
+</style>

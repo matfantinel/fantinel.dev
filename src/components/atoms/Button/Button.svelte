@@ -36,8 +36,7 @@
   this={tag}
   {...linkProps}
   class={classList}
-  data-sveltekit-preload-data
-  role="link"
+  role={tag === 'a' ? 'link' : 'button'}
   tabindex="0"
   {...props}
 >
@@ -57,10 +56,10 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 5px;
+    gap: var(--spacing-xs);
 
-    padding: 10px 20px;
-    border-radius: 20px;
+    padding: var(--spacing-xs) var(--spacing-md);
+    border-radius: var(--border-radius);
     text-decoration: none;
     box-shadow: var(--theme--shadow-card);
     border: none;
@@ -83,7 +82,13 @@
     }
 
     &__text {
-      @extend .u-b1;
+      @include typography.b1;
+    }
+
+    &__icon {
+      width: 18px;
+      height: 18px;
+      aspect-ratio: 1/1;
     }
 
     &--green {

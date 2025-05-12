@@ -15,6 +15,11 @@ export const blogSchema = z.object({
   updated: z.coerce.date().optional().nullable(),
   type: z.string().optional().nullable(),
   tags: z.array(z.string()).optional().nullable(),
+  readingTime: z.string().optional().nullable(),
+  author: z.object({
+    name: z.string(),
+    image: z.string().optional().nullable(),
+  }).optional().nullable(),
 });
 
 // Infer the type from the schema
