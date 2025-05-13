@@ -57,8 +57,8 @@
 </svelte:element>
 
 <style lang="scss">
-  @use '@styles/_typography.scss';
-  @use '@styles/_breakpoints.scss';
+  @use '/src/styles/typography';
+  @use '/src/styles/breakpoints';
 
   .a-tag {
     display: inline-flex;

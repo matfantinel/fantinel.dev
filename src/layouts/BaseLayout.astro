@@ -73,11 +73,20 @@ if (autoGenerateImage) {
 	</body>
 </html>
 
-<style>
+<style lang="scss">
 	html,
 	body {
 		margin: 0;
 		width: 100%;
 		height: 100%;
+
+		.u-noise {
+			z-index: 1;
+		}
+
+		:global(main) {
+			position: relative;
+			z-index: 2;
+		}
 	}
 </style>

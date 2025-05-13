@@ -51,7 +51,7 @@
 </svelte:element>
 
 <style lang="scss">
-  @use '@styles/_typography.scss';
+  @use '/src/styles/typography';
   .a-button {
     display: inline-flex;
     align-items: center;

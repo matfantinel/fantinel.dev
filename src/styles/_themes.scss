@@ -173,6 +173,10 @@
 
   --theme--color--logo-1-inverted: var(--color--gray-1000);
   --theme--color--logo-2-inverted: var(--color--gray-700);
+
+  --theme--glow-callouts-info: var(--theme--shadow-card);
+  --theme--glow-callouts-warning: var(--theme--shadow-card);
+  --theme--glow-callouts-success: var(--theme--shadow-card);
 }
 
 :root {

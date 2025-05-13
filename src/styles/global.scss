@@ -1,15 +1,15 @@
-@use '@styles/_reset.scss';
-@use '@styles/_variables.scss';
-@use '@styles/_themes.scss';
-@use '@styles/_breakpoints.scss';
-@use '@styles/_functions.scss';
-@use '@styles/_mixins.scss';
-@use '@styles/_base.scss';
-@use '@styles/_typography.scss';
-@use '@styles/_markdown.scss';
-@use '@styles/_code-highlights.scss';
-@use '@styles/_view-transitions.scss';
-// @use '@styles/animations.scss';
+@use '/src/styles/_reset.scss';
+@use '/src/styles/_variables.scss';
+@use '/src/styles/_themes.scss';
+@use '/src/styles/breakpoints';
+@use '/src/styles/_functions.scss';
+@use '/src/styles/_mixins.scss';
+@use '/src/styles/_base.scss';
+@use '/src/styles/typography';
+@use '/src/styles/_markdown.scss';
+@use '/src/styles/_code-highlights.scss';
+@use '/src/styles/_view-transitions.scss';
+// @use '/src/styles/animations.scss';
 
 body {
   background-color: var(--theme--background-base-color);
@@ -26,7 +26,7 @@ body {
   transition: all 0.4s ease;
 
 	// Prevents scroll from happening when hamburger menu is open
-	&:has(.hamburger-menu #control:checked) {
+	&:has(.m-hamburger-menu__checkbox:checked) {
 		overflow: hidden;
 	}
 }
@@ -47,50 +47,50 @@ html {
 	text-shadow: none;
 }
 
-// body {
-// 	--body-background-color: var(--color--page-background);
-// 	--body-background-color-rgb: var(--color--page-background-rgb);
-// 	background-color: var(--body-background-color);
-// 	color: var(--color--text);
-// 	fill: var(--color--text);
-// 	transition: all 0.4s ease;
-// 	font-family: var(--font--default);
-// 	line-height: 1.3;
-
-// 	height: 100%;
-// 	min-height: 100vh;
-// 	/* safari viewport bug fix */
-// 	min-height: -webkit-fill-available;
-
-// 	width: 100%;
-// 	overflow-x: hidden;
-
-// 	// Prevents scroll from happening when hamburger menu is open
-// 	&:has(.hamburger-menu #control:checked) {
-// 		overflow: hidden;
-// 	}
-// }
-
-// html {
-// 	font-size: 18px;
-// 	width: 100%;
-
-// 	&.smooth-scroll {
-// 		scroll-behavior: smooth;
-// 		body {
-// 			scroll-behavior: smooth;
-// 		}
-// 	}
-// }
-
-// #svelte-root {
-// 	height: 100%;
-// 	position: relative;
-// }
-
 * {
 	&:focus-visible {
 		outline: 2px dashed var(--theme--color-accent);
 		outline-offset: 4px;
+	}
+}
+
+@keyframes btn-glow {
+  0% {
+    background-position: 0 100%;
+  }
+  100% {
+    background-position: 0 300%;
+  }
+}
+
+@mixin glow-experiment {
+	z-index: 2;
+
+	&:before {
+		position: absolute;
+		inset: 4px;
+		z-index: 1;
+
+		display: block;
+
+		animation: btn-glow 5s infinite linear;
+		background: linear-gradient(
+				20deg,
+				#00f8f1,
+				#ffbd1e20 16.5%,
+				#fe848f 33%,
+				#fe848f20 49.5%,
+				#00f8f1 66%,
+				#00f8f160 85.5%,
+				#ffbd1e 100%
+			)
+			0 100% / 100% 200%;
+		border-radius: inherit;
+		filter: blur(5px);
+		mix-blend-mode: overlay;
+		opacity: 0;
+		transition: opacity 0.2s linear 0.1s;
+
+		content: "";
 	}
 }

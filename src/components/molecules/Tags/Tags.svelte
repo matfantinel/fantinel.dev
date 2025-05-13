@@ -17,7 +17,7 @@
 </div>
 
 <style lang="scss">
-  @use '@styles/_breakpoints.scss';
+  @use '/src/styles/breakpoints';
 
   .m-tags {
 		display: flex;

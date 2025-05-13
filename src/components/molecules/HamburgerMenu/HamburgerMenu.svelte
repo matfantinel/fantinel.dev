@@ -1,13 +1,18 @@
 <script lang="ts">
+  import IconLink from "@components/atoms/IconLink/IconLink.svelte";
+  import type { Snippet } from "svelte";
+
   let {
     links,
-    className,
+    class: className,
   }: {
     links: {
       label: string;
       href: string;
+      icon?: Snippet;
+      title?: string;
     }[];
-    className?: string;
+    class?: string;
   } = $props();
 
   // ✨ Progressive enhancement ✨
@@ -61,7 +66,11 @@
     <ul id="menu" class="m-hamburger-menu__list" class:m-hamburger-menu__list--closing={menuIsClosing}>
       {#each links as link}
         <li class="m-hamburger-menu__item">
-          <a href={link.href} class="m-hamburger-menu__link" onclick={handleMenuItemClick}>{link.label}</a>
+          {#if link.icon}
+            <IconLink href={link.href} icon={link.icon} title={link.title} onclick={handleMenuItemClick}>{link.label}</IconLink>
+          {:else}
+            <a href={link.href} class="m-hamburger-menu__link" onclick={handleMenuItemClick}>{link.label}</a>
+          {/if}
         </li>
       {/each}
     </ul>
@@ -69,8 +78,8 @@
 </nav>
 
 <style lang="scss">
-  @use '@styles/_typography.scss';
-  @use '@styles/_breakpoints.scss';
+  @use '/src/styles/typography';
+  @use '/src/styles/breakpoints';
 
   .m-hamburger-menu {
     &__container {
@@ -93,9 +102,7 @@
     }
 
     &__label-text {
-      font-family: var(--font--default);
-      font-size: 0.65rem; //10px
-      text-transform: uppercase;
+      @include typography.icon-label;
     }
 
     &__bars {
@@ -150,6 +157,8 @@
     }
 
     &__item {
+      margin: 0;
+      
       a.m-hamburger-menu__link {
         @include typography.b1;
         font-size: 1.375rem; //22px
@@ -178,6 +187,7 @@
       @media (hover: hover) {
         &:hover {
           ~ .m-hamburger-menu__label {
+            filter: drop-shadow(var(--theme--glow-links));
             .m-hamburger-menu__bars {
               gap: var(--spacing-xs);
               .m-hamburger-menu__bar {

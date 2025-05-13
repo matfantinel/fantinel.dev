@@ -6,11 +6,11 @@
     type StoryContext,
   } from '@storybook/addon-svelte-csf';
 
-  import Header from './Header.svelte';
+  import ThemeToggle from './ThemeToggle.svelte';
 
   const { Story } = defineMeta({
-    title: 'Organisms/Header',
-    component: Header,
+    title: 'Molecules/Theme Toggle',
+    component: ThemeToggle,
     tags: ['autodocs'],
     argTypes: {
       
@@ -23,7 +23,7 @@
 </script>
 
 {#snippet template(args: Args<typeof Story>, context: StoryContext<typeof Story>)}
-  <Header {...args} />
+  <ThemeToggle {...args} />
 {/snippet}
 
 <Story name="Default" />

@@ -138,6 +138,16 @@ h5, .u-h5 {
   font-weight: 500;
 }
 
+@mixin icon-label {
+  font-family: var(--font--default);
+  font-size: 0.65rem; //10px
+  text-transform: uppercase;
+}
+
+.u-icon-label {
+  @include icon-label;
+}
+
 // #endregion
 
 // #region Gradient

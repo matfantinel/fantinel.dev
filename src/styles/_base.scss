@@ -1,4 +1,4 @@
-@use '@styles/_mixins.scss';
+@use '/src/styles/_mixins.scss';
 
 // Styles that are used everywhere
 
@@ -11,7 +11,6 @@
 }
 
 .u-noise {
-	z-index: 999;
 	pointer-events: none;
 	mix-blend-mode: color-burn;
 	will-change: opacity;
@@ -30,6 +29,13 @@ ol {
 
   li {
     margin: var(--spacing-xs) 0;
+
+    &:first-child {
+      margin-top: 0;
+    }
+    &:last-child {
+      margin-bottom: 0;
+    }
 
     &::marker {
       color: var(--theme--color-accent);
@@ -53,16 +59,19 @@ hr {
   border-top: 1px solid var(--theme--border-base-color);
 }
 
-a:not(.md-button):not(.a-button):not(.a-tag) {
+//a:not(.md-button):not(.a-button):not(.a-tag):not(.a-icon-link) {
+a:not(.md-button):not([class^='a-']) {
   color: var(--theme--color-links);
   text-decoration-color: var(--theme--color-links);
   text-underline-offset: 0.1em;
   text-decoration-thickness: 1px;
   transition: all 0.2s ease-in-out;
 
-  &:hover {
-    text-underline-offset: 0.3em;
-    filter: drop-shadow(var(--theme--glow-links));
+  @media (hover: hover) {
+    &:hover {
+      text-underline-offset: 0.3em;
+      filter: drop-shadow(var(--theme--glow-links));
+    }
   }
 }
 

@@ -4,6 +4,8 @@
   gap: 1.8rem;
   text-align: justify;
 
+  font-family: var(--font--article);
+
   picture {
     display: inline;
   }
@@ -12,8 +14,8 @@
     display: block;
     margin-left: auto;
     margin-right: auto;
-    margin-top: var(--spacing-lg);
-    margin-bottom: var(--spacing-lg);
+    // margin-top: var(--spacing-lg);
+    // margin-bottom: var(--spacing-lg);
 
     max-width: 100%;
     height: auto;
@@ -21,6 +23,10 @@
 
     box-shadow: var(--theme--shadow-image);
     border-radius: var(--border-radius--small);
+
+    + figcaption {
+      margin-top: var(--spacing-sm);
+    }
   }
 
   .no-shadow {
@@ -32,12 +38,7 @@
   figcaption {
     font-size: 0.85rem;
     text-align: center;
-    // margin-bottom: var(--spacing-lg);
     opacity: 0.9;
-  }
-
-  img + figcaption {
-    margin-top: -1rem;
   }
 
   p:empty {
@@ -48,6 +49,10 @@
         margin-top: 0;
       }
     }
+  }
+
+  ul, ol {
+    margin: 0 0 0 var(--spacing-lg);
   }
 }
 

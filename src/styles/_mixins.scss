@@ -1,5 +1,5 @@
-@use '@styles/_breakpoints.scss';
-@use '@styles/_functions.scss';
+@use '/src/styles/breakpoints';
+@use '/src/styles/_functions.scss';
 
 @mixin padded-container {
 	max-width: 1080px;
