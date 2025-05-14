@@ -24,15 +24,8 @@
 
   <div class="o-footer__container u-container">
     <div class="o-footer__copyright">
-      © {currentYear} Matheus Fantinel. Made in Brazil 🇧🇷
-    </div>
-    <div class="o-footer__credits">
-      Powered by
-      <a href="https://astro.build/" target="_blank" rel="noopener noreferrer">Astro</a>
-      . Icons by
-      <a href="https://iconoir.com/" target="_blank" rel="noopener noreferrer">Iconoir</a>
-      .
-    </div>
+      © {currentYear} Matheus Fantinel
+    </div>    
     <div class="o-footer__links">
       {#snippet mastodonIconSnippet()}<Mastodon />{/snippet}
       <IconLink
@@ -96,15 +89,26 @@
 
       <ThemeToggle class="o-footer__theme-toggle" />
     </div>
-
     <div class="o-footer__badges">
       <div class="o-footer__badge">
-        <img src="/badges/written-by-human-not-by-ai-black.svg" alt="Written by human, not by AI" />
+        <a href="https://astro.build"><img src="https://astro.badg.es/v2/built-with-astro/tiny.svg" alt="Built with Astro" width="120" height="20"></a>
+      </div>
+    </div>
+    <div class="o-footer__badges">
+      <div class="o-footer__badge">
+        <img src="/badges/MadeInBrazil.svg" alt="Made in Brazil" />
       </div>
 
       <div class="o-footer__badge">
-        <div id="wcb" class="carbonbadge wcb-d"></div>
-        <script src="https://unpkg.com/website-carbon-badges@1.1.3/b.min.js" defer></script>
+        <img src="/badges/MadeByAHuman.svg" alt="Made by a human" />
+      </div>
+
+      <div class="o-footer__badge">
+        <img src="/badges/PizzaPowered.svg" alt="Pizza Powered" />
+      </div>
+
+      <div class="o-footer__badge">
+        <img src="/badges/CoffeePowered.svg" alt="Coffee Powered" />
       </div>
     </div>
   </div>
