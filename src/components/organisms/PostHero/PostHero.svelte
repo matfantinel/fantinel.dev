@@ -23,7 +23,7 @@
   } = $props();
 </script>
 
-<div class={['o-post-hero', className]}>
+<div class={['o-post-hero', className]} style='view-transition-name: post-hero'>
   <div class="o-post-hero__container u-container-small">
     <h1 class="o-post-hero__title">{title}</h1>
 

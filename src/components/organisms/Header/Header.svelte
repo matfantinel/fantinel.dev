@@ -15,7 +15,7 @@
 
 {#snippet rssIconSnippet()}<Rss />{/snippet}
 
-<div
+<header
   class={['o-header', className]}
   class:o-header--inverted={color === 'inverted'}
   style="view-transition-name: header"
@@ -39,7 +39,7 @@
       <ThemeToggle class="o-header__theme-toggle" />
     </div>
   </div>
-</div>
+</header>
 
 <style lang="scss">
   @use '/src/styles/breakpoints';

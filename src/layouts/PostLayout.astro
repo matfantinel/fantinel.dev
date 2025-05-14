@@ -6,6 +6,7 @@ import type { BlogPost } from '@schemas/blog';
 import { handleCmsMediaPath } from '@utils/functions';
 import BaseLayout from './BaseLayout.astro';
 import Header from '@components/organisms/Header';
+import Footer from '@components/organisms/Footer';
 
 interface Props {
   post: {
@@ -27,39 +28,38 @@ const { post }: Props = Astro.props;
   published_date={post.data.date}
   modified_date={post.data.updated}
 >
-  <main class="l-post">
-    <div class="l-post__container">
-      <div class="l-post__header" style="view-transition-name: post-header" >
-        <Header client:load />
+  <Header class='l-post__header' client:load />
 
-        <PostHero
-          title={post.data.title}
-          author={post.data.author}
-          date={post.data.date}
-          readingTime={post.data.readingTime}
-          tags={post.data.categories}
-        />
-    </div>
+  <main class='l-post'>
+    <div class='l-post__container'>
+      <PostHero
+        class='l-post__hero'
+        title={post.data.title}
+        author={post.data.author}
+        date={post.data.date}
+        readingTime={post.data.readingTime}
+        tags={post.data.categories}
+      />
 
-      <div class="u-markdown u-container-small">
-        {post.data.showImage && post.data.coverImage && (
-          <Image
-            src={handleCmsMediaPath(post.data.coverImage)}
-            alt={post.data.coverImageAlt}
-            lazy={false}
-          />
-        )}
+      <div class='u-markdown u-container-small'>
+        {
+          post.data.showImage && post.data.coverImage && (
+            <Image src={handleCmsMediaPath(post.data.coverImage)} alt={post.data.coverImageAlt} lazy={false} />
+          )
+        }
         <MarkdownRenderer content={post.body} client:load />
       </div>
     </div>
   </main>
+
+  <Footer client:load />
 </BaseLayout>
 
-<style lang="scss">
+<style lang='scss'>
   @use '/src/styles/breakpoints';
 
   .l-post {
-    &__header {
+    :global(.l-post__hero) {
       background-color: var(--theme--background-accent-color);
       border-bottom-left-radius: var(--border-radius);
       border-bottom-right-radius: var(--border-radius);
@@ -74,5 +74,9 @@ const { post }: Props = Astro.props;
         gap: var(--spacing-xl);
       }
     }
+  }
+
+  :global(.l-post__header) {
+    background-color: var(--theme--background-accent-color);
   }
 </style>
