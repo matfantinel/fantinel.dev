@@ -20,7 +20,6 @@
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            console.log(entry.target);
             const slug = entry.target.id;
             items.forEach(item => {
               const isActive = item.getAttribute('data-slug') === slug;
@@ -33,10 +32,8 @@
       }
     );
 
-    // Observe each heading
     headings.forEach((heading) => {
       const el = document.getElementById(heading.slug);
-      console.log(el);
       if (el) observer.observe(el);
     });
 
