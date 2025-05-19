@@ -19,6 +19,7 @@ interface Props {
 const { post }: Props = Astro.props;
 
 const showToc = post.data.showToc && post.data.toc && post.data.toc.length > 0;
+const showImage = post.data.showImage && post.data.coverImage;
 ---
 
 <BaseLayout
@@ -44,18 +45,30 @@ const showToc = post.data.showToc && post.data.toc && post.data.toc.length > 0;
         tags={post.data.categories}
       />
 
-      <div class={['l-post__content-wrapper', showToc ? ' u-container' : 'u-container-small'].join(' ')}>
+      <div
+        class={[
+          'l-post__content-wrapper',
+          showToc ? 'l-post__content-wrapper--has-toc u-container' : 'u-container-small',
+          showImage ? 'l-post__content-wrapper--has-image' : '',
+        ].join(' ')}
+      >
         {showToc && <TableOfContents class='l-post__toc' headings={post.data.toc} client:load />}
+
+        {
+          showImage && (
+            <Image
+              class='l-post__cover-image'
+              src={handleCmsMediaPath(post.data.coverImage!)}
+              alt={post.data.coverImageAlt}
+              lazy={false}
+            />
+          )
+        }
 
         <div
           id='post-content'
           class={['l-post__content', 'u-markdown', showToc ? false : 'l-post__content--full'].filter(Boolean).join(' ')}
         >
-          {
-            post.data.showImage && post.data.coverImage && (
-              <Image src={handleCmsMediaPath(post.data.coverImage)} alt={post.data.coverImageAlt} lazy={false} />
-            )
-          }
           <MarkdownRenderer content={post.body} client:load />
         </div>
       </div>
@@ -88,24 +101,88 @@ const showToc = post.data.showToc && post.data.toc && post.data.toc.length > 0;
     }
 
     &__content-wrapper {
-      display: flex;
-      align-items: flex-start;
-      gap: var(--spacing-lg);
+      display: grid;
+      align-items: start;
+      gap: var(--spacing-xl) var(--spacing-lg);
+      grid-template-columns: 1fr;
+      grid-template-areas: 'content';
+
+      &--has-image {
+        grid-template-areas:
+          'cover-image'
+          'content';
+      }
+
+      &--has-toc {
+        grid-template-columns: calc(100% - var(--toc-width) - var(--spacing-lg)) var(--toc-width);
+        grid-template-areas: 'content toc';
+      }
+
+      &--has-image.l-post__content-wrapper--has-toc {
+        grid-template-areas:
+          'cover-image toc'
+          'content toc';
+      }
+
+      @include breakpoints.for-phone-only {
+        grid-template-columns: 100% !important;
+
+        &--has-image {
+          grid-template-areas:
+            'cover-image'
+            'content';
+        }
+
+        &--has-toc {
+          grid-template-areas:
+            'toc'
+            'content';
+        }
+
+        &--has-image.l-post__content-wrapper--has-toc {
+          grid-template-areas:
+            'cover-image'
+            'toc'
+            'content';
+        }
+      }
     }
 
     &__content {
-      width: calc(100% - var(--toc-width) - var(--spacing-lg));
+      grid-area: content;
 
       &--full {
+        width: 100%;
+      }
+
+      @include breakpoints.for-phone-only {
         width: 100%;
       }
     }
 
     :global(.l-post__toc) {
-      order: 2;
-      flex: 0 0 var(--toc-width);
+      grid-area: toc;
       position: sticky;
       top: var(--spacing-lg);
+
+      @include breakpoints.for-phone-only {
+        position: unset;
+      }
+    }
+
+    :global(.l-post__cover-image) {
+      grid-area: cover-image;
+
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+
+      max-width: 100%;
+      height: auto;
+      width: auto;
+
+      box-shadow: var(--theme--shadow-image);
+      border-radius: var(--border-radius--small);
     }
   }
 

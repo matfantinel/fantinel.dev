@@ -82,6 +82,7 @@
   --theme--background-base-color: var(--color--gray-800);
   --theme--background-accent-color: var(--color--gray-700);
   --theme--background-card-color: var(--color--gray-700);
+  --theme--background-card-color-rgb: var(--color--gray-700-rgb);
 
   --theme--border-base-color: var(--color--gray-200);
 
@@ -128,6 +129,7 @@
   // #region Shadows / Glows
 
   --theme--shadow-card: 0 4px 10px 0 rgba(0, 0, 0, 0.1);
+  --theme--shadow-card-high: 0 4px 20px 4px rgba(0, 0, 0, 0.2);
   --theme--shadow-image: 1px 3px 8px 0 rgba(39, 44, 49, 0.03), 1px 3px 8px 0 rgba(39, 44, 49, 0.06);
 
   --theme--glow-blue: 0 0 40px 0 rgba(var(--color--blue-rgb), 0.4);
@@ -167,6 +169,8 @@
 
   --theme--text-inverse-color: var(--color--gray-1100);
   --theme--background-accent-color: var(--color--gray-1100);
+  --theme--background-card-color: var(--color--gray-1100);
+  --theme--background-card-color-rgb: var(--color--gray-1100-rgb);
 
   --theme--color-code-background: var(--color--code-background);
   --theme--color-code-text: var(--color--code-text);
