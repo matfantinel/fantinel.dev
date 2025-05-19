@@ -7,6 +7,7 @@ import { handleCmsMediaPath } from '@utils/functions';
 import BaseLayout from './BaseLayout.astro';
 import Header from '@components/organisms/Header';
 import Footer from '@components/organisms/Footer';
+import TableOfContents from '@components/molecules/TableOfContents';
 
 interface Props {
   post: {
@@ -16,6 +17,8 @@ interface Props {
 }
 
 const { post }: Props = Astro.props;
+
+const showToc = post.data.showToc && post.data.toc && post.data.toc.length > 0;
 ---
 
 <BaseLayout
@@ -41,13 +44,20 @@ const { post }: Props = Astro.props;
         tags={post.data.categories}
       />
 
-      <div class='u-markdown u-container-small'>
-        {
-          post.data.showImage && post.data.coverImage && (
-            <Image src={handleCmsMediaPath(post.data.coverImage)} alt={post.data.coverImageAlt} lazy={false} />
-          )
-        }
-        <MarkdownRenderer content={post.body} client:load />
+      <div class={['l-post__content-wrapper', showToc ? ' u-container' : 'u-container-small'].join(' ')}>
+        {showToc && <TableOfContents class='l-post__toc' headings={post.data.toc} client:load />}
+
+        <div
+          id='post-content'
+          class={['l-post__content', 'u-markdown', showToc ? false : 'l-post__content--full'].filter(Boolean).join(' ')}
+        >
+          {
+            post.data.showImage && post.data.coverImage && (
+              <Image src={handleCmsMediaPath(post.data.coverImage)} alt={post.data.coverImageAlt} lazy={false} />
+            )
+          }
+          <MarkdownRenderer content={post.body} client:load />
+        </div>
       </div>
     </div>
   </main>
@@ -59,6 +69,8 @@ const { post }: Props = Astro.props;
   @use '/src/styles/breakpoints';
 
   .l-post {
+    --toc-width: 240px;
+
     :global(.l-post__hero) {
       background-color: var(--theme--background-accent-color);
       border-bottom-left-radius: var(--border-radius);
@@ -73,6 +85,27 @@ const { post }: Props = Astro.props;
       @include breakpoints.for-phone-only {
         gap: var(--spacing-xl);
       }
+    }
+
+    &__content-wrapper {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--spacing-lg);
+    }
+
+    &__content {
+      width: calc(100% - var(--toc-width) - var(--spacing-lg));
+
+      &--full {
+        width: 100%;
+      }
+    }
+
+    :global(.l-post__toc) {
+      order: 2;
+      flex: 0 0 var(--toc-width);
+      position: sticky;
+      top: var(--spacing-lg);
     }
   }
 

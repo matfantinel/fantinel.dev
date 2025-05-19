@@ -48,6 +48,8 @@ html {
 }
 
 * {
+	scroll-margin-top: var(--spacing-lg);
+	
 	&:focus-visible {
 		outline: 2px dashed var(--theme--color-accent);
 		outline-offset: 4px;

@@ -13,6 +13,16 @@ export async function getStaticPaths () {
       post.data.readingTime = readingTime(striptags(post.body)).text
     }
 
+    if (post.data.showToc && post.rendered?.metadata?.headings) {
+      post.data.toc = (post.rendered.metadata.headings as any[]).map((heading: any) => {
+        return {
+          slug: heading.slug,
+          text: heading.text,
+          depth: heading.depth
+        }
+      });
+    }
+
     // TODO: Author is gonna be a post type
     if (!post.data.author) {
       post.data.author = {

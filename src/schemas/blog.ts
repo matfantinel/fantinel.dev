@@ -16,6 +16,11 @@ export const blogSchema = z.object({
   type: z.string().optional().nullable(),
   tags: z.array(z.string()).optional().nullable(),
   readingTime: z.string().optional().nullable(),
+  toc: z.array(z.object({
+    slug: z.string(),
+    text: z.string(),
+    depth: z.number(),
+  })).optional().nullable(),
   author: z.object({
     name: z.string(),
     image: z.string().optional().nullable(),

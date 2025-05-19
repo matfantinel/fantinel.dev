@@ -59,8 +59,8 @@ hr {
   border-top: 1px solid var(--theme--border-base-color);
 }
 
-//a:not(.md-button):not(.a-button):not(.a-tag):not(.a-icon-link) {
-a:not(.md-button):not([class^='a-']) {
+a:not(.md-button),
+a:not([class^='a-']) {
   color: var(--theme--color-links);
   text-decoration-color: var(--theme--color-links);
   text-underline-offset: 0.1em;
