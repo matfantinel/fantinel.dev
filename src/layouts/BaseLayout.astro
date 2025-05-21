@@ -32,10 +32,10 @@ const pageDescription = description || siteMeta.description;
 const pageKeywords = keywords ? [...keywords, ...siteMeta.keywords] : siteMeta.keywords;
 
 let pageImage = image || siteMeta.image;
-if (autoGenerateImage) {
-  pageImage = `${siteMeta.baseUrl}/opengraph?text=${encodeURIComponent(pageTitle)}`;
+if (autoGenerateImage && title) {
+  pageImage = `${siteMeta.baseUrl}/opengraph?title=${encodeURIComponent(title)}`;
 	if (published_date) {
-		pageImage += `&date=${encodeURIComponent(
+		pageImage += `&subtitle=${encodeURIComponent(
 			dateformat(published_date, 'mmm dd, yyyy')
 		)}`;
 	}

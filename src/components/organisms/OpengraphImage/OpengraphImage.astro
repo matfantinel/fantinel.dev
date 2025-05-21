@@ -1,0 +1,89 @@
+---
+import metaConfig from "@public/cms/meta.yml";
+import type { SiteMeta } from "@schemas/site-meta";
+const siteMeta: SiteMeta = metaConfig;
+const isDev = import.meta.env.DEV;
+
+const baseUrl = isDev ? 'http://localhost:4321' : siteMeta.baseUrl;
+
+interface Props {
+  title: string;
+  subtitle?: string;
+}
+
+const { title, subtitle } = Astro.props;
+---
+
+<div style="
+	height: 100%;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	background-color: #1E1E2E;
+	color: #CDD6F4;
+	font-family: 'Monaspace Krypton', sans-serif;
+	padding: 40px;
+">
+	<div style="
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		width: 100%;
+	">
+		<h1 style="
+			font-size: 64px;
+			line-height: 1.5;
+			z-index: 1;
+			text-wrap: balance;
+			text-align: center;
+			max-width: 1000px;
+			font-family: 'Mona Sans', sans-serif;
+			font-weight: 900;
+			background: linear-gradient(to right, #F5C2E7, #CBA6F7, #B4BEFE);
+			-webkit-background-clip: text;
+			background-clip: text;
+			color: transparent;
+		">
+			{title}
+		</h1>
+		{subtitle && (
+			<h2 style="
+				font-size: 42px;
+				line-height: 1.5;
+				z-index: 1;
+				text-wrap: balance;
+				text-align: center;
+				max-width: 900px;
+				margin-top: 20px;
+				font-family: 'Monaspace Krypton', sans-serif;
+				background: linear-gradient(to right, #94E2D5, #89DCEB);
+				-webkit-background-clip: text;
+				background-clip: text;
+				color: transparent;
+			">
+				{subtitle}
+			</h2>
+		)}
+	</div>
+	<div style="
+		display: flex;
+		align-items: flex-end;
+		justify-content: center;
+		width: 100%;
+		z-index: 2;
+		position: absolute;
+		bottom: 40px;
+	">
+		<img
+			src={`${baseUrl}/og/Logo-full.png`}
+			alt="Logo"
+			style="
+				width: 296px;
+				height: 94px;
+			"
+		/>
+	</div>
+</div>
