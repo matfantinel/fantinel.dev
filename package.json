@@ -44,5 +44,8 @@
     "svelte-animated-details": "^1.0.2",
     "typescript": "^5.8.2",
     "vite-tsconfig-paths": "^5.1.4"
+  },
+  "dependencies": {
+    "@astrojs/vercel": "^8.1.4"
   }
 }
