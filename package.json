@@ -15,6 +15,7 @@
     "@fontsource-variable/mona-sans": "^5.2.5",
     "@fontsource/atkinson-hyperlegible-next": "^5.2.2",
     "@fontsource/monaspace-krypton": "^5.2.5",
+    "@humanspeak/svelte-markdown": "^0.8.6",
     "@modyfi/vite-plugin-yaml": "^1.1.1",
     "@resvg/resvg-js": "^2.6.2",
     "@stefanjudis/sparkly-text": "^1.1.2",
@@ -29,6 +30,8 @@
     "@types/prismjs": "^1.26.5",
     "astro": "^5.7.2",
     "dateformat": "^5.0.3",
+    "github-slugger": "^2.0.0",
+    "marked": "^15.0.11",
     "prism-svelte": "^0.5.0",
     "prismjs": "^1.30.0",
     "reading-time": "^1.5.0",
@@ -39,7 +42,6 @@
     "striptags": "^3.2.0",
     "svelte": "^5.23.1",
     "svelte-animated-details": "^1.0.2",
-    "svelte-markdown": "^0.4.1",
     "typescript": "^5.8.2",
     "vite-tsconfig-paths": "^5.1.4"
   }

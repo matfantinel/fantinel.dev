@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { marked } from 'marked';
 	import MarkdownRenderer from '@components/molecules/MarkdownRenderer';
   import AnchorLinkIndicator from '@components/atoms/AnchorLinkIndicator';
+	import GithubSlugger from 'github-slugger'
 
 	let {
 		text,
@@ -13,7 +13,7 @@
 		raw: string;
 	} = $props();
 
-	const slugger = new marked.Slugger();
+	const slugger = new GithubSlugger()
 
 	const headingLevel = depth ?? raw.match(/#/g)?.length;
 	const element = `h${headingLevel}`;

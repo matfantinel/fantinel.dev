@@ -4,7 +4,7 @@
 		SparklesHighlightTokenizerExtension
 	} from '@utils/markdown';
 	import { marked } from 'marked';
-	import SvelteMarkdown from 'svelte-markdown';
+	import SvelteMarkdown from '@humanspeak/svelte-markdown';
 	import HeadingRenderer from '@markdown/HeadingRenderer.svelte';
 	import ImageRenderer from '@markdown/ImageRenderer.svelte';
 	import LinkRenderer from '@markdown/LinkRenderer.svelte';
