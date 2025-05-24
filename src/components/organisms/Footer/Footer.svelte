@@ -96,6 +96,10 @@
     </div>
     <div class="o-footer__badges">
       <div class="o-footer__badge">
+        <img src="/badges/CoffeePowered.svg" alt="Coffee Powered" />
+      </div>
+
+      <div class="o-footer__badge">
         <img src="/badges/MadeInBrazil.svg" alt="Made in Brazil" />
       </div>
 
@@ -104,11 +108,11 @@
       </div>
 
       <div class="o-footer__badge">
-        <img src="/badges/PizzaPowered.svg" alt="Pizza Powered" />
+        <img src="/badges/RssIsAwesome.svg" alt="RSS is awesome" />
       </div>
 
       <div class="o-footer__badge">
-        <img src="/badges/CoffeePowered.svg" alt="Coffee Powered" />
+        <img src="/badges/TransRights.svg" alt="Trans Rights are Human Rights" />
       </div>
     </div>
   </div>

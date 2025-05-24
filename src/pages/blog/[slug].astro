@@ -3,8 +3,11 @@ import PostLayout from "@layouts/PostLayout.astro";
 import { getCollection } from "astro:content";
 import readingTime from 'reading-time/lib/reading-time';
 import striptags from 'striptags';
+import metaConfig from "@public/cms/meta.yml";
+import type { SiteMeta } from "@schemas/site-meta";
 
 export async function getStaticPaths () {
+  const siteMeta: SiteMeta = metaConfig;
   const posts = await getCollection('blog');
 
   // Calculate reading time of each post
@@ -23,11 +26,10 @@ export async function getStaticPaths () {
       });
     }
 
-    // TODO: Author is gonna be a post type
-    if (!post.data.author) {
+    if (!post.data.author && siteMeta.author) {
       post.data.author = {
-        name: "Matt Fantinel", 
-        image: "https://www.gravatar.com/avatar/08fc2cb6e6efa9c31179805bc0e8d8bd?s=100"
+        name: siteMeta.author.name, 
+        image: siteMeta.author.avatar
       };
     }
   });

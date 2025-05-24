@@ -19,7 +19,6 @@ interface Props {
 const { post }: Props = Astro.props;
 
 const showToc = post.data.showToc && post.data.toc && post.data.toc.length > 0;
-const showImage = post.data.showImage && post.data.coverImage;
 ---
 
 <BaseLayout
@@ -27,7 +26,7 @@ const showImage = post.data.showImage && post.data.coverImage;
   keywords={post.data.categories}
   description={post.data.excerpt}
   image={post.data.coverImage}
-  autoGenerateImage={!post.data.showImage || !post.data.coverImage}
+  autoGenerateImage={!post.data.coverImage}
   slug={`blog/${post.data.slug}`}
   published_date={post.data.date}
   modified_date={post.data.updated}
@@ -41,6 +40,7 @@ const showImage = post.data.showImage && post.data.coverImage;
         title={post.data.title}
         author={post.data.author}
         date={post.data.date}
+        updated={post.data.updated}
         readingTime={post.data.readingTime}
         tags={post.data.categories}
       />
@@ -49,13 +49,13 @@ const showImage = post.data.showImage && post.data.coverImage;
         class={[
           'l-post__content-wrapper',
           showToc ? 'l-post__content-wrapper--has-toc u-container' : 'u-container-small',
-          showImage ? 'l-post__content-wrapper--has-image' : '',
+          post.data.coverImage ? 'l-post__content-wrapper--has-image' : '',
         ].join(' ')}
       >
         {showToc && <TableOfContents class='l-post__toc' headings={post.data.toc} client:load />}
 
         {
-          showImage && (
+          post.data.coverImage && (
             <Image
               class='l-post__cover-image'
               src={handleCmsMediaPath(post.data.coverImage!)}

@@ -7,14 +7,12 @@ export const blogSchema = z.object({
   excerpt: z.string(),
   coverImage: z.string().optional().nullable(),
   coverImageAlt: z.string().optional().nullable(),
-  showImage: z.boolean().optional(),
   showToc: z.boolean().optional(),
   hidden: z.boolean().optional(),
   categories: z.array(z.string()),
   date: z.coerce.date(),
   updated: z.coerce.date().optional().nullable(),
-  type: z.string().optional().nullable(),
-  tags: z.array(z.string()).optional().nullable(),
+  // Props below are filled dynamically based on content
   readingTime: z.string().optional().nullable(),
   toc: z.array(z.object({
     slug: z.string(),

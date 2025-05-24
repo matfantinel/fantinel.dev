@@ -51,7 +51,7 @@ if (autoGenerateImage && title) {
 		
 		<title>{pageTitle}</title>
 		<meta property="og:title" content={pageTitle} />
-		<meta name="author" content={siteMeta.author} />
+		{siteMeta.author?.name && <meta name="author" content={siteMeta.author.name} />}
 
 		<meta name="description" content={pageDescription} />
 		<meta property="og:description" content={pageDescription} />

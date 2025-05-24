@@ -7,6 +7,7 @@
     title,
     author,
     date,
+    updated,
     readingTime,
     tags,
     class: className,
@@ -17,6 +18,7 @@
       image: string;
     };
     date?: Date;
+    updated?: Date;
     readingTime?: string;
     tags?: string[];
     class?: string;
@@ -44,6 +46,9 @@
               .filter(Boolean)
               .join(' - ')}
           </div>
+        {/if}
+        {#if updated && (updated.getTime() > 86400000)}
+          <div class="o-post-hero__detail">Updated {dateformat(updated, 'UTC:dd mmm yyyy')}</div>
         {/if}
       </div>
     </div>

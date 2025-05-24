@@ -2,7 +2,10 @@ export type SiteMeta = {
   baseUrl: string;
   title: string;
   image: string;
-  author: string;
+  author: {
+    name: string;
+    avatar: string;
+  };
   keywords: string[];
   description: string;
   lightThemeColor: string;
