@@ -124,7 +124,7 @@ const showToc = post.data.showToc && post.data.toc && post.data.toc.length > 0;
           'content toc';
       }
 
-      @include breakpoints.for-phone-only {
+      @include breakpoints.for-tablet-portrait-down {
         grid-template-columns: 100% !important;
 
         &--has-image {
@@ -155,7 +155,7 @@ const showToc = post.data.showToc && post.data.toc && post.data.toc.length > 0;
         width: 100%;
       }
 
-      @include breakpoints.for-phone-only {
+      @include breakpoints.for-tablet-portrait-down {
         width: 100%;
       }
     }
@@ -165,7 +165,7 @@ const showToc = post.data.showToc && post.data.toc && post.data.toc.length > 0;
       position: sticky;
       top: var(--spacing-lg);
 
-      @include breakpoints.for-phone-only {
+      @include breakpoints.for-tablet-portrait-down {
         position: unset;
       }
     }
