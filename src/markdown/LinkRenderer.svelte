@@ -39,10 +39,7 @@
 	<Button {href} {...buttonProps} class="md-button">{text}</Button>
 {:else}
 	<a {href} {target} class="md-link" rel="noopener noreferrer">
-		{text}
-		{#if isExternalLink}
-			<ExternalLink size="14px" />
-		{/if}
+		{text}{#if isExternalLink} <ExternalLink size="14px" />{/if}
 	</a>
 {/if}
 
@@ -55,6 +52,7 @@
 	:global(.md-link) {
 		:global(svg) {
 			display: inline;
+			margin-left: 5px;
 		}
 	}
 </style>
