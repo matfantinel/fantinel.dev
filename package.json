@@ -11,7 +11,7 @@
     "build-storybook": "storybook build"
   },
   "devDependencies": {
-    "@astrojs/svelte": "^7.0.10",
+    "@astrojs/svelte": "^7.1.0",
     "@fontsource-variable/mona-sans": "^5.2.5",
     "@fontsource/atkinson-hyperlegible-next": "^5.2.2",
     "@fontsource/monaspace-krypton": "^5.2.5",
@@ -28,7 +28,7 @@
     "@sveltejs/vite-plugin-svelte": "^5.0.3",
     "@types/node": "^22.15.2",
     "@types/prismjs": "^1.26.5",
-    "astro": "^5.7.2",
+    "astro": "^5.8.0",
     "dateformat": "^5.0.3",
     "github-slugger": "^2.0.0",
     "marked": "^15.0.11",
