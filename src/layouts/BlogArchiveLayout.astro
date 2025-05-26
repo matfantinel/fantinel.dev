@@ -34,7 +34,7 @@ allCategories?.forEach((category) => {
 <BaseLayout title={`${siteMeta.author?.name}'s Blog`} autoGenerateImage>
   <Header class='l-blog-archive__header' client:load />
 
-  <main class='l-blog-archive'>
+  <main class='l-blog-archive' style="view-transition-name: blog-archive-hero">
     <div class='l-blog-archive__container'>
       <BlogArchiveHero
         class="l-blog-archive__hero"
