@@ -1,0 +1,22 @@
+---
+import BlogArchiveLayout from "@layouts/BlogArchiveLayout.astro";
+import { getAllCategorySlugs, getPaginatedPosts } from "@data/blogPosts";
+
+export async function getStaticPaths() {
+  const categories = await getAllCategorySlugs();
+
+  return categories.map((category) => ({
+    params: { category },
+  }));
+}
+
+const category = Astro.params.category;
+const { posts, currentPage, totalPages } = await getPaginatedPosts(1, category);
+---
+
+<BlogArchiveLayout
+  posts={posts}
+  currentPage={currentPage}
+  totalPages={totalPages}
+  category={category}
+/>

@@ -5,6 +5,7 @@
 
   let {
     title,
+    slug,
     author,
     date,
     updated,
@@ -13,6 +14,7 @@
     class: className,
   }: {
     title: string;
+    slug?: string;
     author?: {
       name: string;
       image: string;
@@ -20,14 +22,16 @@
     date?: Date;
     updated?: Date;
     readingTime?: string;
-    tags?: string[];
+    tags?: (string | { name: string; slug: string; url: string })[];
     class?: string;
   } = $props();
 </script>
 
-<div class={['o-post-hero', className]} style='view-transition-name: post-hero'>
+<div class={['o-post-hero', className]} style={slug ? `view-transition-name: post-card-${slug}` : undefined}>
   <div class="o-post-hero__container u-container-small">
-    <h1 class="o-post-hero__title">{title}</h1>
+    <h1 class="o-post-hero__title">
+      {title}
+    </h1>
 
     <div class="o-post-hero__meta">
       {#if author?.image}
@@ -39,15 +43,12 @@
         {/if}
         {#if date || readingTime}
           <div class="o-post-hero__detail">
-            {[
-              date ? dateformat(date, 'UTC:dd mmm yyyy') : undefined,
-              readingTime ? readingTime : undefined,
-            ]
+            {[date ? dateformat(date, 'UTC:dd mmm yyyy') : undefined, readingTime ? readingTime : undefined]
               .filter(Boolean)
               .join(' - ')}
           </div>
         {/if}
-        {#if updated && (updated.getTime() > 86400000)}
+        {#if updated && updated.getTime() > 86400000}
           <div class="o-post-hero__detail">Updated {dateformat(updated, 'UTC:dd mmm yyyy')}</div>
         {/if}
       </div>
@@ -57,7 +58,11 @@
       <div class="o-post-hero__tags">
         <Tags size="responsive">
           {#each tags as tag}
-            <Tag size="responsive">{tag}</Tag>
+            {#if typeof tag === 'string'}
+              <Tag size="responsive">{tag}</Tag>
+            {:else}
+              <Tag size="responsive" href={tag.url} title={`View all posts in category “${tag.name}”`}>{tag.name}</Tag>
+            {/if}
           {/each}
         </Tags>
       </div>

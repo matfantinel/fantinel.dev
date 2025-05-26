@@ -78,11 +78,14 @@
   --theme--text-accent-color: var(--color--gray-50);
   --theme--text-heading-color: var(--color--gray-0);
   --theme--text-inverse-color: var(--color--gray-1000);
+  --theme--text-medium-color: var(--color--gray-500);
 
   --theme--background-base-color: var(--color--gray-800);
   --theme--background-accent-color: var(--color--gray-700);
   --theme--background-card-color: var(--color--gray-700);
   --theme--background-card-color-rgb: var(--color--gray-700-rgb);
+  --theme--background-card-accent-color: var(--color--gray-600);
+  --theme--background-card-accent-color-rgb: var(--color--gray-600-rgb);
 
   --theme--border-base-color: var(--color--gray-200);
 
@@ -123,6 +126,9 @@
   --theme--color-footer--wave-2: var(--color--gray-400);
   --theme--color-footer--wave-3: var(--color--gray-500);
   --theme--color-footer--wave-4: var(--color--gray-600);
+
+  --theme--color-inner-text-shadow: var(--color--gray-400);
+  --theme--color-inner-text-shadow-rgb: var(--color--gray-400-rgb);
 
   // #endregion
 
@@ -168,9 +174,13 @@
   --background-noise-opacity: 1;
 
   --theme--text-inverse-color: var(--color--gray-1100);
+  --theme--text-medium-color: var(--color--gray-700);
+
   --theme--background-accent-color: var(--color--gray-1100);
   --theme--background-card-color: var(--color--gray-1100);
   --theme--background-card-color-rgb: var(--color--gray-1100-rgb);
+  --theme--background-card-accent-color: var(--color--gray-800);
+  --theme--background-card-accent-color-rgb: var(--color--gray-800-rgb);
 
   --theme--color-code-background: var(--color--code-background);
   --theme--color-code-text: var(--color--code-text);
@@ -192,6 +202,9 @@
   --theme--color-footer--wave-2: rgba(var(--color--teal-rgb), 0.4);
   --theme--color-footer--wave-3: rgba(var(--color--teal-rgb), 0.5);
   --theme--color-footer--wave-4: var(--color--gray-1100);
+
+  --theme--color-inner-text-shadow: var(--color--gray-400);
+  --theme--color-inner-text-shadow-rgb: var(--color--gray-400-rgb);
 }
 
 :root {

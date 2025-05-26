@@ -5,7 +5,6 @@
     type Args,
     type StoryContext,
   } from '@storybook/addon-svelte-csf';
-  import { LoremIpsum } from '@utils/lorem-ipsum';
 
   import Tags from './Tags.svelte';
   import Tag from '@components/atoms/Tag';

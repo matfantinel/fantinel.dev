@@ -1,0 +1,85 @@
+---
+import BlogPostCard from '@components/molecules/BlogPostCard';
+import BlogPostCards from '@components/molecules/BlogPostCards';
+import Footer from '@components/organisms/Footer';
+import Header from '@components/organisms/Header';
+import metaConfig from "@public/cms/meta.yml";
+import type { BlogPost } from "@schemas/blog";
+import type { SiteMeta } from "@schemas/site-meta";
+import BaseLayout from './BaseLayout.astro';
+
+interface Props {
+  posts: BlogPost[];
+  currentPage: number;
+  totalPages: number;
+  category?: string;
+}
+
+const { posts, currentPage, totalPages, category }: Props = Astro.props;
+
+const siteMeta: SiteMeta = metaConfig;
+---
+
+<BaseLayout
+  title={`${siteMeta.author?.name}'s Blog`}
+  autoGenerateImage
+>
+  <Header class='l-blog-archive__header' client:load />
+
+  <main class='l-blog-archive'>
+    <div class='l-blog-archive__container'>
+      <h1>Hero, page {currentPage}, total pages {totalPages}, category {category}</h1>
+      
+      <div class="l-blog-archive__content-wrapper u-container">
+        {posts && (
+          <BlogPostCards class="l-blog-archive__list">
+            {posts.map((post) => (
+              <BlogPostCard
+                title={post.title}
+                slug={post.slug}
+                url={`/blog/${post.slug}`}
+                image={post.coverImage}
+                imageAlt={post.coverImageAlt}
+                readingTime={post.readingTime}
+                excerpt={post.excerpt}
+                tags={post.categories?.slice(0, 2)}
+              />
+            ))}
+          </BlogPostCards>
+        )}
+      </div>
+    </div>
+  </main>
+
+  <Footer client:load />
+</BaseLayout>
+
+<style lang='scss'>
+  @use '/src/styles/breakpoints';
+
+  .l-blog-archive {
+    :global(.l-blog-archive__hero) {
+      background-color: var(--theme--background-accent-color);
+      border-bottom-left-radius: var(--border-radius);
+      border-bottom-right-radius: var(--border-radius);
+    }
+
+    &__container {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-xxl);
+
+      @include breakpoints.for-phone-only {
+        gap: var(--spacing-xl);
+      }
+    }
+
+    &__content-wrapper {
+      
+    }
+  }
+
+  :global(.l-blog-archive__header) {
+    background-color: var(--theme--background-accent-color);
+  }
+</style>

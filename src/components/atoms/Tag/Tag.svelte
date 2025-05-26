@@ -9,6 +9,7 @@
     href,
     target,
     rel,
+    title,
     class: className,
     children,
     ...props
@@ -18,6 +19,7 @@
     href?: string;
     target?: string;
     rel?: string;
+    title?: string;
     class?: string;
     children?: Snippet;
   } = $props();
@@ -43,7 +45,7 @@
   {...linkProps}
   class={classList}
   role={tag === 'a' ? 'link' : undefined}
-  tabindex="0"
+  title={title}
   {...props}
 >
   {#if selected}

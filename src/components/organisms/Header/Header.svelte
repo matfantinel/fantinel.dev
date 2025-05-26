@@ -29,7 +29,7 @@
       <HamburgerMenu
         class="o-header__hamburger-menu"
         links={[
-          { label: 'All Posts', href: '/' },
+          { label: 'Blog', href: '/blog' },
           { label: 'Testing Grounds', href: '/blog/testing-grounds' },
           { label: 'Real Post', href: '/blog/review-zelda-tears-of-the-kingdom' },
           { label: 'RSS', href: '/rss', icon: rssIconSnippet, title: 'Subscribe to my RSS Feed' },

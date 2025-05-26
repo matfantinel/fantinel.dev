@@ -1,50 +1,27 @@
 ---
-import PostLayout from "@layouts/PostLayout.astro";
-import { getCollection } from "astro:content";
-import readingTime from 'reading-time/lib/reading-time';
-import striptags from 'striptags';
-import metaConfig from "@public/cms/meta.yml";
-import type { SiteMeta } from "@schemas/site-meta";
+import { sanitizePostData } from '@data/blogPosts';
+import PostLayout from '@layouts/PostLayout.astro';
+import { getCollection } from 'astro:content';
+import type { BlogPost } from '@schemas/blog';
 
-export async function getStaticPaths () {
-  const siteMeta: SiteMeta = metaConfig;
+export async function getStaticPaths() {
   const posts = await getCollection('blog');
-
-  // Calculate reading time of each post
-  posts.forEach(post => {
-    if (post.body) {
-      post.data.readingTime = readingTime(striptags(post.body)).text
-    }
-
-    if (post.data.showToc && post.rendered?.metadata?.headings) {
-      post.data.toc = (post.rendered.metadata.headings as any[]).map((heading: any) => {
-        return {
-          slug: heading.slug,
-          text: heading.text,
-          depth: heading.depth
-        }
-      });
-    }
-
-    if (!post.data.author && siteMeta.author) {
-      post.data.author = {
-        name: siteMeta.author.name, 
-        image: siteMeta.author.avatar
-      };
-    }
+  const sanitizedPosts = posts.map((post) => {
+    return {
+      data: sanitizePostData(post.data as unknown as BlogPost, post.body, post.rendered),
+      body: post.body,
+    };
   });
 
-  return posts.map(post => ({
+  return sanitizedPosts.map((post) => ({
     params: {
-      slug: post.data.slug
+      slug: post.data.slug,
     },
-    props: { post }
+    props: { post },
   }));
-};
+}
 
 const { post } = Astro.props;
 ---
 
-<PostLayout
-  post={post}
-/>
+<PostLayout post={{ body: post.body, data: post.data }} />
