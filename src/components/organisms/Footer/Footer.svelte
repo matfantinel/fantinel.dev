@@ -124,7 +124,7 @@
   .o-footer {
     color: var(--theme--text-base-color);
     position: relative;
-    z-index: 9;
+    z-index: 8;
 
     margin-top: var(--spacing-xxl);
 
