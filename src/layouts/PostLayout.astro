@@ -8,6 +8,8 @@ import BaseLayout from './BaseLayout.astro';
 import Header from '@components/organisms/Header';
 import Footer from '@components/organisms/Footer';
 import TableOfContents from '@components/molecules/TableOfContents';
+import metaConfig from "@public/cms/meta.yml";
+import type { SiteMeta } from "@schemas/site-meta";
 
 interface Props {
   post: {
@@ -19,13 +21,16 @@ interface Props {
 const { post }: Props = Astro.props;
 
 const showToc = post.data.showToc && post.data.toc && post.data.toc.length > 0;
+
+const siteMeta: SiteMeta = metaConfig;
+const coverImage = post.data.coverImage ? `${siteMeta.baseUrl}${handleCmsMediaPath(post.data.coverImage)}` : undefined;
 ---
 
 <BaseLayout
   title={post.data.title}
   keywords={post.data.categories}
   description={post.data.excerpt}
-  image={post.data.coverImage}
+  image={coverImage}
   autoGenerateImage={!post.data.coverImage}
   slug={`blog/${post.data.slug}`}
   published_date={post.data.date}
