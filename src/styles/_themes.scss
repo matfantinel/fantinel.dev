@@ -130,6 +130,8 @@
   --theme--color-inner-text-shadow: var(--color--gray-400);
   --theme--color-inner-text-shadow-rgb: var(--color--gray-400-rgb);
 
+  --theme--glowing-text-animation: text-glow 3.5s cubic-bezier(0.66, 0, 0.34, 1) infinite alternate;
+
   // #endregion
 
   // #region Shadows / Glows
@@ -205,6 +207,8 @@
 
   --theme--color-inner-text-shadow: var(--color--gray-400);
   --theme--color-inner-text-shadow-rgb: var(--color--gray-400-rgb);
+
+  --theme--glowing-text-animation: unset;
 }
 
 :root {

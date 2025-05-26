@@ -95,9 +95,9 @@
       </div>
     </div>
     <div class="o-footer__badges">
-      <div class="o-footer__badge">
+      <!-- <div class="o-footer__badge">
         <img src="/badges/CoffeePowered.svg" alt="Coffee Powered" />
-      </div>
+      </div> -->
 
       <div class="o-footer__badge">
         <img src="/badges/MadeInBrazil.svg" alt="Made in Brazil" />

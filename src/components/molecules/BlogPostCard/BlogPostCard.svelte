@@ -38,7 +38,7 @@
       {/if}
     </div>
   {/if}
-  <div class="m-blog-post-card__content" style={slug ? `view-transition-name: post-card-${slug}` : undefined}>
+  <div class="m-blog-post-card__content">
     <p class="m-blog-post-card__title">
       {title}
     </p>
@@ -137,18 +137,15 @@
     &__reading-time {
       @include typography.b3;
       color: var(--theme--text-accent-color);
-      z-index: 2;
     }
 
     &__excerpt {
       @include typography.b2;
       text-align: justify;
-      z-index: 2;
 
       text-overflow: ellipsis;
       overflow: hidden;
       display: -webkit-box;
-      /* Set this to the max number of lines you want */
       -webkit-line-clamp: 4;
       -webkit-box-orient: vertical;
     }

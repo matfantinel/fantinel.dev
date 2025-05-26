@@ -1,0 +1,17 @@
+@keyframes text-glow {
+  0% {
+    filter: drop-shadow(0 0 4px rgba(var(--color--teal-rgb), 0.4));
+  }
+  25% {
+    filter: drop-shadow(0 0 5px rgba(var(--color--teal-rgb), 0.45));
+  }
+  50% {
+    filter: drop-shadow(0 0 8px rgba(var(--color--teal-rgb), 0.6));
+  }
+  75% {
+    filter: drop-shadow(0 0 10px rgba(var(--color--teal-rgb), 0.7));
+  }
+  100% {
+    filter: drop-shadow(0 0 6px rgba(var(--color--teal-rgb), 0.5));
+  }
+}

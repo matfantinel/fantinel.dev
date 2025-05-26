@@ -1,10 +1,18 @@
 ---
-import Posts from '@components/Posts.astro';
-import BaseLayout from '@layouts/BaseLayout.astro';
+import Footer from '@components/organisms/Footer';
 import Header from '@components/organisms/Header';
+import BaseLayout from '@layouts/BaseLayout.astro';
 ---
 
 <BaseLayout>
-	<Header client:load />
-	<Posts />
+  <Header client:load />
+  <div class='u-container'>
+    <br />
+    <h1>This page is under construction. 🚧</h1>
+    <br />
+    <p class='u-b1'>
+      In the meantime, check out the <a href='/blog'>blog</a>!
+    </p>
+  </div>
+  <Footer client:load />
 </BaseLayout>

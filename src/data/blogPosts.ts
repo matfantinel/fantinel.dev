@@ -6,7 +6,7 @@ import { getCollection } from "astro:content";
 import readingTime from 'reading-time/lib/reading-time';
 import striptags from 'striptags';
 import { slug } from 'github-slugger'
-import type { BlogPost } from "@schemas/blog";
+import type { BlogPost, BlogPostCategory } from "@schemas/blog";
 
 const siteMeta: SiteMeta = metaConfig;
 
@@ -75,18 +75,46 @@ export async function getPaginatedPosts(page: number, category?: string, options
     posts: pagePosts,
     currentPage: page,
     totalPages,
+    totalPosts: sanitizedPosts.length,
     category
   };
 }
 
-export async function getAllCategorySlugs(): Promise<string[]> {
+export async function getAllCategories(): Promise<BlogPostCategory[]> {
   const posts = await getCollection("blog");
   const sanitizedPosts = posts.map((post) => sanitizePostData(post.data as unknown as BlogPost, post.body, post.rendered));
 
-  const categories = sanitizedPosts.flatMap((post) => {
-    const cats = post.categories?.map(c => c.slug);
-    return Array.isArray(cats) ? cats : [];
+  // First collect all categories from all posts
+  const allCategories: BlogPostCategory[] = [];
+  
+  sanitizedPosts.forEach(post => {
+    if (post.categories && post.categories.length > 0) {
+      allCategories.push(...post.categories);
+    }
   });
 
-  return [...new Set(categories)];
+  // Count occurrences of each category by slug
+  const categoryCount = new Map<string, number>();
+  const categoryMap = new Map<string, BlogPostCategory>();
+
+  allCategories.forEach(category => {
+    const count = categoryCount.get(category.slug) || 0;
+    categoryCount.set(category.slug, count + 1);
+    
+    // Store the category object by slug (we only need one instance)
+    if (!categoryMap.has(category.slug)) {
+      categoryMap.set(category.slug, category);
+    }
+  });
+
+  // Convert to array of categories with counts and sort by count (descending)
+  const uniqueCategories = Array.from(categoryMap.values());
+  
+  uniqueCategories.sort((a, b) => {
+    const countA = categoryCount.get(a.slug) || 0;
+    const countB = categoryCount.get(b.slug) || 0;
+    return countB - countA; // Sort descending (most frequent first)
+  });
+
+  return uniqueCategories;
 }

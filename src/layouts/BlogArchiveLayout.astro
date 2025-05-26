@@ -1,52 +1,92 @@
 ---
 import BlogPostCard from '@components/molecules/BlogPostCard';
 import BlogPostCards from '@components/molecules/BlogPostCards';
+import Pagination from '@components/molecules/Pagination';
+import BlogArchiveHero from '@components/organisms/BlogArchiveHero';
 import Footer from '@components/organisms/Footer';
 import Header from '@components/organisms/Header';
-import metaConfig from "@public/cms/meta.yml";
-import type { BlogPost } from "@schemas/blog";
-import type { SiteMeta } from "@schemas/site-meta";
+import metaConfig from '@public/cms/meta.yml';
+import type { BlogPost, BlogPostCategory } from '@schemas/blog';
+import type { SiteMeta } from '@schemas/site-meta';
 import BaseLayout from './BaseLayout.astro';
 
 interface Props {
   posts: BlogPost[];
   currentPage: number;
   totalPages: number;
-  category?: string;
+  totalPosts: number;
+  currentCategory?: BlogPostCategory;
+  allCategories?: BlogPostCategory[];
 }
 
-const { posts, currentPage, totalPages, category }: Props = Astro.props;
+const { posts, currentPage, totalPages, totalPosts, currentCategory, allCategories }: Props = Astro.props;
 
 const siteMeta: SiteMeta = metaConfig;
+
+allCategories?.forEach((category) => {
+  category.active = category.slug === currentCategory?.slug;
+  if (category.active) {
+    category.url = '/blog';
+  }
+});
 ---
 
-<BaseLayout
-  title={`${siteMeta.author?.name}'s Blog`}
-  autoGenerateImage
->
+<BaseLayout title={`${siteMeta.author?.name}'s Blog`} autoGenerateImage>
   <Header class='l-blog-archive__header' client:load />
 
   <main class='l-blog-archive'>
     <div class='l-blog-archive__container'>
-      <h1>Hero, page {currentPage}, total pages {totalPages}, category {category}</h1>
-      
-      <div class="l-blog-archive__content-wrapper u-container">
-        {posts && (
-          <BlogPostCards class="l-blog-archive__list">
-            {posts.map((post) => (
-              <BlogPostCard
-                title={post.title}
-                slug={post.slug}
-                url={`/blog/${post.slug}`}
-                image={post.coverImage}
-                imageAlt={post.coverImageAlt}
-                readingTime={post.readingTime}
-                excerpt={post.excerpt}
-                tags={post.categories?.slice(0, 2)}
-              />
-            ))}
-          </BlogPostCards>
-        )}
+      <BlogArchiveHero
+        class="l-blog-archive__hero"
+        title={`${siteMeta.author?.name}'s Blog`}
+        body="I usually post about the topics below. You can click on a category to filter posts by it."
+        tags={allCategories}
+      />
+
+      <div class='l-blog-archive__content-wrapper u-container'>
+        {
+          !posts.length && (
+            <p class="u-h4">No posts found</p>
+          )
+        }
+
+        {
+          currentCategory && (
+            <p class="l-blog-archive__summary">
+              {totalPosts} posts found for category “{currentCategory.name}”.
+            </p>
+          )
+        }
+
+        {
+          posts && (
+            <BlogPostCards class='l-blog-archive__posts'>
+              {posts.map((post) => (
+                <BlogPostCard
+                  title={post.title}
+                  slug={post.slug}
+                  url={`/blog/${post.slug}`}
+                  image={post.coverImage}
+                  imageAlt={post.coverImageAlt}
+                  readingTime={post.readingTime}
+                  excerpt={post.excerpt}
+                  tags={post.categories?.slice(0, 1)}
+                />
+              ))}
+            </BlogPostCards>
+          )
+        }
+
+        {
+          totalPages > 1 && (
+            <Pagination
+              class='l-blog-archive__pagination'
+              currentPage={currentPage}
+              totalPages={totalPages}
+              baseUrl={`/blog${currentCategory ? `/category/${currentCategory.slug}` : ''}`}
+            />
+          )
+        }
       </div>
     </div>
   </main>
@@ -56,6 +96,7 @@ const siteMeta: SiteMeta = metaConfig;
 
 <style lang='scss'>
   @use '/src/styles/breakpoints';
+  @use '/src/styles/typography';
 
   .l-blog-archive {
     :global(.l-blog-archive__hero) {
@@ -75,7 +116,15 @@ const siteMeta: SiteMeta = metaConfig;
     }
 
     &__content-wrapper {
-      
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-lg);
+    }
+
+    &__summary {
+      @include typography.h2;
+      text-align: center;
+      color: var(--theme--color-accent);
     }
   }
 

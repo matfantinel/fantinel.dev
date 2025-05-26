@@ -1,6 +1,6 @@
 ---
 import BlogArchiveLayout from "@layouts/BlogArchiveLayout.astro";
-import { getPaginatedPosts } from "@data/blogPosts";
+import { getAllCategories, getPaginatedPosts } from "@data/blogPosts";
 
 export async function getStaticPaths() {
   const { totalPages } = await getPaginatedPosts(1); // Just to get count
@@ -10,12 +10,16 @@ export async function getStaticPaths() {
   }));
 }
 
-const pageParam = Number(Astro.params.page);
-const { posts, currentPage, totalPages } = await getPaginatedPosts(pageParam);
+const { page } = Astro.params;
+const { posts, currentPage, totalPages, totalPosts } = await getPaginatedPosts(Number(page));
+
+const allCategories = await getAllCategories();
 ---
 
 <BlogArchiveLayout
   posts={posts}
   currentPage={currentPage}
   totalPages={totalPages}
+  totalPosts={totalPosts}
+  allCategories={allCategories}
 />

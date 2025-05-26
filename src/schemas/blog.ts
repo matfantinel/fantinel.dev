@@ -21,11 +21,7 @@ export type BlogPostBase = z.infer<typeof blogSchema>;
 export type BlogPost = Omit<BlogPostBase, 'categories'> & {
   // Properties that are added dynamically at runtime
   readingTime?: string | null;
-  categories?: {
-    name: string;
-    slug: string;
-    url: string;
-  }[];
+  categories?: BlogPostCategory[];
   toc?: {
     slug: string;
     text: string;
@@ -35,4 +31,11 @@ export type BlogPost = Omit<BlogPostBase, 'categories'> & {
     name: string;
     image: string | null;
   };
+};
+
+export type BlogPostCategory = {
+  name: string;
+  slug: string;
+  url: string;
+  active?: boolean;
 };
