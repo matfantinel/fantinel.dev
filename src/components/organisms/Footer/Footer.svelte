@@ -111,9 +111,9 @@
         <img src="/badges/RssIsAwesome.svg" alt="RSS is awesome" />
       </div>
 
-      <div class="o-footer__badge">
+      <!-- <div class="o-footer__badge">
         <img src="/badges/TransRights.svg" alt="Trans Rights are Human Rights" />
-      </div>
+      </div> -->
     </div>
   </div>
 </footer>
