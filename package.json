@@ -46,14 +46,15 @@
     "vite-tsconfig-paths": "^5.1.4"
   },
   "dependencies": {
+    "@astrojs/svelte": "^7.1.0",
     "@astrojs/vercel": "^8.1.4"
   },
   "optionalDependencies": {
     "@rollup/rollup-linux-x64-gnu": "4.40.1"
   },
   "overrides": {
-     "vite": {
-       "rollup": "npm:@rollup/wasm-node"
-     }
-   }
+    "vite": {
+      "rollup": "npm:@rollup/wasm-node"
+    }
+  }
 }
