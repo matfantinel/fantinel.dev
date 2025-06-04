@@ -10,6 +10,8 @@ import Footer from '@components/organisms/Footer';
 import TableOfContents from '@components/molecules/TableOfContents';
 import metaConfig from "@public/cms/meta.yml";
 import type { SiteMeta } from "@schemas/site-meta";
+import CoolLinksImage from '@components/molecules/CoolLinksImage';
+import { title } from 'process';
 
 interface Props {
   post: {
@@ -24,6 +26,13 @@ const showToc = post.data.showToc && post.data.toc && post.data.toc.length > 0;
 
 const siteMeta: SiteMeta = metaConfig;
 const coverImage = post.data.coverImage ? `${siteMeta.baseUrl}${handleCmsMediaPath(post.data.coverImage)}` : undefined;
+
+const isCoolLinksImage = Boolean(coverImage?.includes('/opengraph/cool-links'));
+const imageUrl = isCoolLinksImage && coverImage ? new URL(coverImage) : null;
+const coolLinksImageParams = isCoolLinksImage ? {
+  title: imageUrl?.searchParams.get('title') ?? title,
+  date: imageUrl?.searchParams.get('date') ? new Date(imageUrl.searchParams.get('date') as string) : new Date(),
+} : null;
 ---
 
 <BaseLayout
@@ -62,12 +71,11 @@ const coverImage = post.data.coverImage ? `${siteMeta.baseUrl}${handleCmsMediaPa
 
         {
           post.data.coverImage && (
-            <Image
-              class='l-post__cover-image'
-              src={handleCmsMediaPath(post.data.coverImage!)}
-              alt={post.data.coverImageAlt}
-              lazy={false}
-            />
+            isCoolLinksImage && coolLinksImageParams ? (
+              <CoolLinksImage class="l-post__cover-image" title={coolLinksImageParams.title} date={coolLinksImageParams.date} />
+            ) : (
+              <Image class="l-post__cover-image" src={handleCmsMediaPath(post.data.coverImage!)} alt={post.data.coverImageAlt} lazy={false} />
+            )
           )
         }
 
@@ -184,11 +192,16 @@ const coverImage = post.data.coverImage ? `${siteMeta.baseUrl}${handleCmsMediaPa
       margin-right: auto;
 
       max-width: 100%;
+      width: 100%;
       height: auto;
-      width: auto;
 
       box-shadow: var(--theme--shadow-image);
       border-radius: var(--border-radius--small);
+    }
+
+    :global(.m-cool-links-image) {
+      pointer-events: none;
+      aspect-ratio: 1200 / 630;
     }
   }
 
