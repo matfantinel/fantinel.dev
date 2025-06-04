@@ -47,5 +47,8 @@
   },
   "dependencies": {
     "@astrojs/vercel": "^8.1.4"
+  },
+  "optionalDependencies": {
+    "@rollup/rollup-linux-x64-gnu": "4.9.5"
   }
 }
