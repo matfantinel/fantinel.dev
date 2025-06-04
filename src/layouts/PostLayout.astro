@@ -25,7 +25,14 @@ const { post }: Props = Astro.props;
 const showToc = post.data.showToc && post.data.toc && post.data.toc.length > 0;
 
 const siteMeta: SiteMeta = metaConfig;
-const coverImage = post.data.coverImage ? `${siteMeta.baseUrl}${handleCmsMediaPath(post.data.coverImage)}` : undefined;
+let coverImage;
+if (post.data.coverImage) {
+  if (post.data.coverImage.includes(siteMeta.baseUrl)) {
+    coverImage = post.data.coverImage;
+  } else {
+    coverImage = `${siteMeta.baseUrl}${handleCmsMediaPath(post.data.coverImage)}`;
+  }
+}
 
 const isCoolLinksImage = Boolean(coverImage?.includes('/opengraph/cool-links'));
 const imageUrl = isCoolLinksImage && coverImage ? new URL(coverImage) : null;
