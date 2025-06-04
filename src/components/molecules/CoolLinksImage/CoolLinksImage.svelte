@@ -323,7 +323,7 @@
           fill="#1E1E2E"
           xml:space="preserve"
           style="white-space: pre"
-          font-family="Mona Sans"
+          font-family="Mona Sans Variable"
           font-size="32"
           font-weight="800"
           letter-spacing="0em"

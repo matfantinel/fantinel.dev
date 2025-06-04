@@ -49,6 +49,11 @@
     "@astrojs/vercel": "^8.1.4"
   },
   "optionalDependencies": {
-    "@rollup/rollup-linux-x64-gnu": "4.9.5"
-  }
+    "@rollup/rollup-linux-x64-gnu": "4.40.1"
+  },
+  "overrides": {
+     "vite": {
+       "rollup": "npm:@rollup/wasm-node"
+     }
+   }
 }
