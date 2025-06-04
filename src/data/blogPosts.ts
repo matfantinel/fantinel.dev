@@ -49,6 +49,12 @@ export function sanitizePostData(post: BlogPost, postBody?: string, renderedPost
     });
   }
 
+  // Handle cool-links cover images
+  if (!post.coverImage && post.categories?.some((cat) => cat.slug === 'cool-links')) {
+    const title = post.title.split(':')[0];
+    post.coverImage = `${siteMeta.baseUrl}/opengraph/cool-links?title=${encodeURIComponent(title)}&date=${encodeURIComponent(post.date.toISOString())}`;
+  }
+
   return post;
 }
 

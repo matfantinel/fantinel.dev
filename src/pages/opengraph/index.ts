@@ -1,5 +1,5 @@
 import { componentToPng } from "@utils/opengraph";
-import OpengraphImage from "@components/organisms/OpengraphImage";
+import OpengraphImage from "@components/opengraph/OpengraphImage";
 
 export const prerender = false;
 

@@ -1,0 +1,14 @@
+---
+import CoolLinksImage from '@components/molecules/CoolLinksImage';
+
+interface Props {
+  title: string;
+  date: Date;
+  background?: string;
+	willRenderWithSatori?: boolean;
+}
+
+const { title, date, background, willRenderWithSatori = false } = Astro.props;
+---
+
+<CoolLinksImage title={title} date={date} background={background} willRenderWithSatori={willRenderWithSatori} />
