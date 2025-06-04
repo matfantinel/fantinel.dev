@@ -13,17 +13,7 @@ const siteMeta: SiteMeta = metaConfig;
 export function sanitizePostData(post: BlogPost, postBody?: string, renderedPost?: RenderedContent) {
   if (postBody) {
     post.readingTime = readingTime(striptags(postBody)).text
-  }
-
-  if (post.showToc && renderedPost?.metadata?.headings) {
-    post.toc = (renderedPost.metadata.headings as any[]).map((heading: any) => {
-      return {
-        slug: heading.slug,
-        text: heading.text,
-        depth: heading.depth
-      }
-    });
-  }
+  }  
 
   if (!post.author && siteMeta.author) {
     post.author = {
@@ -49,10 +39,26 @@ export function sanitizePostData(post: BlogPost, postBody?: string, renderedPost
     });
   }
 
+  const isCoolLinksPost = post.categories?.some((cat) => cat.slug === 'cool-links');
+
   // Handle cool-links cover images
-  if (!post.coverImage && post.categories?.some((cat) => cat.slug === 'cool-links')) {
+  if (!post.coverImage && isCoolLinksPost) {
     const title = post.title.split(':')[0];
     post.coverImage = `${siteMeta.baseUrl}/opengraph/cool-links?title=${encodeURIComponent(title)}&date=${encodeURIComponent(post.date.toISOString())}`;
+  }
+
+  if (post.showToc && renderedPost?.metadata?.headings) {
+    post.toc = (renderedPost.metadata.headings as any[]).map((heading: any) => {
+      // If isCoolLinksPost, only consider h2s
+      if (isCoolLinksPost && heading.depth !== 2) {
+        return null;
+      }
+      return {
+        slug: heading.slug,
+        text: heading.text,
+        depth: heading.depth
+      }
+    }).filter((heading) => heading !== null);
   }
 
   return post;
