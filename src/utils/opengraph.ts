@@ -6,11 +6,9 @@ import { getContainerRenderer as svelteContainerRenderer } from "@astrojs/svelte
 import { loadRenderers } from 'astro:container';
 
 import { readFileSync } from 'fs';
-import { fileURLToPath } from 'url';
-import { dirname, resolve } from 'path';
+import { resolve } from 'path';
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
-const rootDir = resolve(__dirname, '../..');
+const rootDir = process.cwd();
 const monaspaceKryptonPath = resolve(
   rootDir,
   'public/og/monaspace-krypton-latin-600-normal.woff'
