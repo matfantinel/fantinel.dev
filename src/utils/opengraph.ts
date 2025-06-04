@@ -13,8 +13,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const rootDir = resolve(__dirname, '../..');
 const monaspaceKryptonPath = resolve(
   rootDir,
-  'node_modules',
-  '@fontsource/monaspace-krypton/files/monaspace-krypton-latin-600-normal.woff'
+  'public/og/monaspace-krypton-latin-600-normal.woff'
 );
 
 const monaSansPath = resolve(
