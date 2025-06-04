@@ -2,8 +2,7 @@ import satori from 'satori';
 import { Resvg } from '@resvg/resvg-js';
 import { html as toReactNode } from 'satori-html';
 import { experimental_AstroContainer } from "astro/container";
-import { getContainerRenderer as svelteContainerRenderer } from "@astrojs/svelte";
-import { loadRenderers } from 'astro:container';
+import svelteRenderer from "@astrojs/svelte/server.js";
 
 import { readFileSync } from 'fs';
 import { resolve } from 'path';
@@ -23,10 +22,8 @@ const monaspaceKryptonBuffer = readFileSync(monaspaceKryptonPath);
 const monaSansBuffer = readFileSync(monaSansPath);
 
 export async function componentToPng(component: any, props: any) {
-	const renderers = await loadRenderers([svelteContainerRenderer()]);
-	const container = await experimental_AstroContainer.create({
-		renderers
-	});
+	const container = await experimental_AstroContainer.create();
+	container.addServerRenderer({ renderer: svelteRenderer, name: "svelte" });
 	const result = await container.renderToString(component, { props });
 	const markup = toReactNode(result);
 
