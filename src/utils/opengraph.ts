@@ -25,7 +25,8 @@ export async function componentToPng(component: any, props: any) {
 	const container = await experimental_AstroContainer.create();
 	container.addServerRenderer({ renderer: svelteRenderer, name: "svelte" });
 	const result = await container.renderToString(component, { props });
-	const markup = toReactNode(result);
+	const html = unescapeHtml(result);
+	const markup = toReactNode(html);
 
 	const svg = await satori(markup, {
 		fonts: [
@@ -58,4 +59,14 @@ export async function componentToPng(component: any, props: any) {
 			'content-type': 'image/png'
 		}
 	});
+}
+
+// https://github.com/natemoo-re/satori-html/issues/20
+function unescapeHtml(html: string) {
+	return html
+			.replace(/&amp;/g, '&')
+			.replace(/&lt;/g, '<')
+			.replace(/&gt;/g, '>')
+			.replace(/&quot;/g, '"')
+			.replace(/&#39;/g, "'");
 }
