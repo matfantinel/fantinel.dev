@@ -8,11 +8,13 @@ import BaseLayout from './BaseLayout.astro';
 import Header from '@components/organisms/Header';
 import Footer from '@components/organisms/Footer';
 import TableOfContents from '@components/molecules/TableOfContents';
-import metaConfig from "@public/cms/meta.yml";
-import type { SiteMeta } from "@schemas/site-meta";
+import metaConfig from '@public/cms/meta.yml';
+import type { SiteMeta } from '@schemas/site-meta';
 import CoolLinksImage from '@components/molecules/CoolLinksImage';
 import { title } from 'process';
 import AboutAuthorCard from '@components/organisms/AboutAuthorCard';
+import BlogPostCard from '@components/molecules/BlogPostCard';
+import BlogPostCards from '@components/molecules/BlogPostCards';
 
 interface Props {
   post: {
@@ -37,10 +39,12 @@ if (post.data.coverImage) {
 
 const isCoolLinksImage = Boolean(coverImage?.includes('/opengraph/cool-links'));
 const imageUrl = isCoolLinksImage && coverImage ? new URL(coverImage) : null;
-const coolLinksImageParams = isCoolLinksImage ? {
-  title: imageUrl?.searchParams.get('title') ?? title,
-  date: imageUrl?.searchParams.get('date') ? new Date(imageUrl.searchParams.get('date') as string) : new Date(),
-} : null;
+const coolLinksImageParams = isCoolLinksImage
+  ? {
+      title: imageUrl?.searchParams.get('title') ?? title,
+      date: imageUrl?.searchParams.get('date') ? new Date(imageUrl.searchParams.get('date') as string) : new Date(),
+    }
+  : null;
 ---
 
 <BaseLayout
@@ -79,13 +83,21 @@ const coolLinksImageParams = isCoolLinksImage ? {
         {showToc && <TableOfContents class='l-post__toc' headings={post.data.toc} client:load />}
 
         {
-          post.data.coverImage && (
-            isCoolLinksImage && coolLinksImageParams ? (
-              <CoolLinksImage class="l-post__cover-image" title={coolLinksImageParams.title} date={coolLinksImageParams.date} />
+          post.data.coverImage &&
+            (isCoolLinksImage && coolLinksImageParams ? (
+              <CoolLinksImage
+                class='l-post__cover-image'
+                title={coolLinksImageParams.title}
+                date={coolLinksImageParams.date}
+              />
             ) : (
-              <Image class="l-post__cover-image" src={handleCmsMediaPath(post.data.coverImage!)} alt={post.data.coverImageAlt} lazy={false} />
-            )
-          )
+              <Image
+                class='l-post__cover-image'
+                src={handleCmsMediaPath(post.data.coverImage!)}
+                alt={post.data.coverImageAlt}
+                lazy={false}
+              />
+            ))
         }
 
         <div
@@ -96,17 +108,44 @@ const coolLinksImageParams = isCoolLinksImage ? {
         </div>
       </div>
 
-      {post.data.author && (
-        <AboutAuthorCard 
-          kicker="Written by"
-          name={post.data.author.name}
-          bio={post.data.author.bio}
-          image={post.data.author.image}
-          extraImages={post.data.author.extraImages}
-          socials={post.data.author.socials}
-          client:load
-        />
-      )}
+      <div class='l-post__after-content'>
+        {
+          post.data.author && (
+            <AboutAuthorCard
+              kicker='Written by'
+              name={post.data.author.name}
+              bio={post.data.author.bio}
+              image={post.data.author.image}
+              extraImages={post.data.author.extraImages}
+              socials={post.data.author.socials}
+              client:load
+            />
+          )
+        }
+
+        {
+          post.data.relatedPosts && (
+            <div class='l-post__related-posts'>
+              <p class='l-post__related-posts-summary'>You might also like</p>
+              <BlogPostCards class='l-post__related-posts-grid'>
+                {post.data.relatedPosts.map((relatedPost) => (
+                  <BlogPostCard
+                    title={relatedPost.title}
+                    slug={relatedPost.slug}
+                    url={`/blog/${relatedPost.slug}`}
+                    image={relatedPost.coverImage}
+                    imageAlt={relatedPost.coverImageAlt}
+                    readingTime={relatedPost.readingTime}
+                    excerpt={relatedPost.excerpt}
+                    tags={relatedPost.categories?.slice(0, 1)}
+                    hideImage
+                  />
+                ))}
+              </BlogPostCards>
+            </div>
+          )
+        }
+      </div>
     </div>
   </main>
 
@@ -115,6 +154,8 @@ const coolLinksImageParams = isCoolLinksImage ? {
 
 <style lang='scss'>
   @use '/src/styles/breakpoints';
+  @use '/src/styles/mixins';
+  @use '/src/styles/typography';
 
   .l-post {
     --toc-width: 240px;
@@ -223,6 +264,33 @@ const coolLinksImageParams = isCoolLinksImage ? {
     :global(.m-cool-links-image) {
       pointer-events: none;
       aspect-ratio: 1200 / 630;
+    }
+
+    &__after-content {
+      padding-top: var(--spacing-xxl);
+      border-top: 1px dashed var(--theme--border-medium-color);
+
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-xxl);
+
+      @include breakpoints.for-phone-only {
+        padding-top: var(--spacing-xxl);
+        gap: var(--spacing-xl);
+      }
+    }
+
+    &__related-posts {
+      @include mixins.padded-container;
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-lg);
+    }
+
+    &__related-posts-summary {
+      @include typography.h2;
+      @include typography.gradient-greenish;
+      text-align: center;
     }
   }
 

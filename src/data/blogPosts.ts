@@ -10,10 +10,10 @@ import type { BlogPost, BlogPostCategory } from "@schemas/blog";
 
 const siteMeta: SiteMeta = metaConfig;
 
-export function sanitizePostData(post: BlogPost, postBody?: string, renderedPost?: RenderedContent) {
+export function sanitizePostData(post: BlogPost, postBody?: string, renderedPost?: RenderedContent, allPosts?: BlogPost[]) {
   if (postBody) {
     post.readingTime = readingTime(striptags(postBody)).text
-  }  
+  }
 
   if (!post.author && siteMeta.author) {
     post.author = siteMeta.author;
@@ -58,6 +58,10 @@ export function sanitizePostData(post: BlogPost, postBody?: string, renderedPost
     }).filter((heading) => heading !== null);
   }
 
+  if (!post.relatedPosts && allPosts) {
+    post.relatedPosts = getRelatedPosts(post, allPosts);
+  }
+
   return post;
 }
 
@@ -65,7 +69,7 @@ export async function getPaginatedPosts(page: number, category?: string, options
   const { postsPerPage = 12 } = options;
 
   let posts = await getCollection("blog");
-  let sanitizedPosts = posts.map((post) => sanitizePostData(post.data as unknown as BlogPost, post.body, post.rendered));
+  let sanitizedPosts = posts.map((post) => sanitizePostData(post.data as unknown as BlogPost, post.body, post.rendered, posts.map(p => p.data as unknown as BlogPost)));
 
   // Sort and filter
   sanitizedPosts = sanitizedPosts
@@ -95,7 +99,7 @@ export async function getAllCategories(): Promise<BlogPostCategory[]> {
 
   // First collect all categories from all posts
   const allCategories: BlogPostCategory[] = [];
-  
+
   sanitizedPosts.forEach(post => {
     if (post.categories && post.categories.length > 0) {
       allCategories.push(...post.categories);
@@ -109,7 +113,7 @@ export async function getAllCategories(): Promise<BlogPostCategory[]> {
   allCategories.forEach(category => {
     const count = categoryCount.get(category.slug) || 0;
     categoryCount.set(category.slug, count + 1);
-    
+
     // Store the category object by slug (we only need one instance)
     if (!categoryMap.has(category.slug)) {
       categoryMap.set(category.slug, category);
@@ -118,7 +122,7 @@ export async function getAllCategories(): Promise<BlogPostCategory[]> {
 
   // Convert to array of categories with counts and sort by count (descending)
   const uniqueCategories = Array.from(categoryMap.values());
-  
+
   uniqueCategories.sort((a, b) => {
     const countA = categoryCount.get(a.slug) || 0;
     const countB = categoryCount.get(b.slug) || 0;
@@ -126,4 +130,55 @@ export async function getAllCategories(): Promise<BlogPostCategory[]> {
   });
 
   return uniqueCategories;
+}
+
+export function getRelatedPosts(post: BlogPost, allPosts: BlogPost[]): BlogPost[] {
+  // If the post has no categories, return empty array
+  if (!post.categories || post.categories.length === 0) {
+    return [];
+  }
+
+  // Get the current post's category slugs
+  const postCategorySlugs = post.categories.map(cat => cat.slug);
+
+  // Filter out the current post and hidden posts
+  const otherPosts = allPosts.filter(p =>
+    p.slug !== post.slug && !p.hidden
+  );
+
+  // Calculate relevance score for each post based on shared categories
+  const scoredPosts = otherPosts.map(otherPost => {
+    // Get the other post's category slugs
+    const otherCategorySlugs = otherPost.categories?.map(cat => cat.slug) || [];
+
+    // Count how many categories are shared
+    const sharedCategories = postCategorySlugs.filter(slug =>
+      otherCategorySlugs.includes(slug)
+    );
+
+    return {
+      post: otherPost,
+      score: sharedCategories.length,
+      date: otherPost.date
+    };
+  });
+
+  // Filter posts that have at least one shared category
+  const relatedPosts = scoredPosts
+    .filter(item => item.score > 0)
+    // Sort by score (descending) and then by date (newest first)
+    .sort((a, b) => {
+      // First sort by score
+      if (b.score !== a.score) {
+        return b.score - a.score;
+      }
+      // If scores are equal, sort by date
+      return b.date.getTime() - a.date.getTime();
+    })
+    // Extract just the posts
+    .map(item => item.post)
+    // Limit to 3 related posts
+    .slice(0, 3);
+
+  return relatedPosts;
 }

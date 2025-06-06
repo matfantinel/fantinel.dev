@@ -88,6 +88,7 @@
   --theme--background-card-accent-color-rgb: var(--color--gray-600-rgb);
 
   --theme--border-base-color: var(--color--gray-200);
+  --theme--border-medium-color: var(--color--gray-500);
 
   // Accent color is used in buttons, links, etc.
   // But it's not the only color used in the theme.
@@ -198,6 +199,8 @@
   --theme--background-card-color-rgb: var(--color--gray-1100-rgb);
   --theme--background-card-accent-color: var(--color--gray-800);
   --theme--background-card-accent-color-rgb: var(--color--gray-800-rgb);
+
+  --theme--border-medium-color: var(--color--gray-700);
 
   --theme--color-code-background: var(--color--code-background);
   --theme--color-code-text: var(--color--code-text);

@@ -29,6 +29,7 @@ export type BlogPost = Omit<BlogPostBase, 'categories'> & {
     depth: number;
   }[];
   author?: SiteAuthor;
+  relatedPosts?: BlogPost[];
 };
 
 export type BlogPostCategory = {
