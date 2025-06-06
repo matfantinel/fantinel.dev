@@ -27,10 +27,7 @@ export type BlogPost = Omit<BlogPostBase, 'categories'> & {
     text: string;
     depth: number;
   }[];
-  author?: {
-    name: string;
-    image: string | null;
-  };
+  author?: BlogPostAuthor;
 };
 
 export type BlogPostCategory = {
@@ -39,3 +36,9 @@ export type BlogPostCategory = {
   url: string;
   active?: boolean;
 };
+
+export type BlogPostAuthor = {
+  name: string;
+    image: string | null;
+    extraImages?: string[]
+}

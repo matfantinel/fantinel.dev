@@ -167,4 +167,12 @@ h5, .u-h5 {
   @include gradient(var(--theme--gradient-pinkish));
 }
 
+@mixin gradient-rainbow {
+  @include gradient(var(--theme--gradient-rainbow));
+}
+
+@mixin gradient-rainbow-circle {
+  @include gradient(var(--theme--gradient-rainbow-circle));
+}
+
 // #endregion

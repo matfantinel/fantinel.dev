@@ -45,21 +45,7 @@
       width: 100%;
       height: 100%;
       border-radius: 50%;
-      background: conic-gradient(
-        from 0deg,
-        var(--color--pink),
-        var(--color--mauve),
-        var(--color--red),
-        var(--color--maroon),
-        var(--color--peach),
-        var(--color--yellow),
-        var(--color--green),
-        var(--color--teal),
-        var(--color--sky),
-        var(--color--sapphire),
-        var(--color--blue),
-        var(--color--lavender)
-      );
+      background: var(--theme--gradient-rainbow-circle);
 
       filter: blur(20px);
       transition: all 0.25s ease-out;
@@ -82,15 +68,6 @@
           scale: 1;
         }
       }
-    }
-  }
-
-  @keyframes rotate {
-    from {
-      transform: rotate(0deg) translate3d(0, 0, 0);
-    }
-    to {
-      transform: rotate(360deg) translate3d(0, 0, 0);
     }
   }
 </style>

@@ -1,6 +1,8 @@
 <script lang="ts">
   import Tag from '@components/atoms/Tag';
+  import AuthorAvatar from '@components/molecules/AuthorAvatar';
   import Tags from '@components/molecules/Tags';
+  import type { BlogPostAuthor } from '@schemas/blog';
   import dateformat from 'dateformat';
 
   let {
@@ -15,10 +17,7 @@
   }: {
     title: string;
     slug?: string;
-    author?: {
-      name: string;
-      image: string;
-    };
+    author?: BlogPostAuthor;
     date?: Date;
     updated?: Date;
     readingTime?: string;
@@ -35,7 +34,7 @@
 
     <div class="o-post-hero__meta">
       {#if author?.image}
-        <img class="o-post-hero__author-image" src={author.image} alt={author.name} />
+        <AuthorAvatar src={author.image} alt={author.name} extraImages={author.extraImages} />
       {/if}
       <div class="o-post-hero__details">
         {#if author?.name}
@@ -100,14 +99,6 @@
       display: flex;
       align-items: center;
       gap: var(--spacing-sm);
-    }
-
-    &__author-image {
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      object-fit: cover;
-      margin: 0;
     }
 
     &__details {
