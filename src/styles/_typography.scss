@@ -175,4 +175,8 @@ h5, .u-h5 {
   @include gradient(var(--theme--gradient-rainbow-circle));
 }
 
+@mixin gradient-rainbow-circle-dark {
+  @include gradient(var(--theme--gradient-rainbow-circle-dark));
+}
+
 // #endregion

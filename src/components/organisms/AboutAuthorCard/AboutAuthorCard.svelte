@@ -76,6 +76,7 @@
 
       display: flex;
       flex-direction: column;
+      align-items: flex-start;
       gap: var(--spacing-sm);
     }
 
@@ -87,8 +88,8 @@
 
     &__name {
       @include typography.h1;
+      @include typography.gradient-greenish;
       font-size: clamp(1.35rem, 1.6vw + 1rem, 2.25rem); //36px
-      color: var(--theme--color-accent);
     }
 
     &__bio {
@@ -115,6 +116,10 @@
           &__kicker,
           &__name {
             text-align: center;
+            align-self: center;
+          }
+          &__name {
+            margin-top: calc(var(--spacing-sm) * -1);
           }
           &__socials {
             justify-content: center;
