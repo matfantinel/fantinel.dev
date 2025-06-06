@@ -12,6 +12,7 @@ import metaConfig from "@public/cms/meta.yml";
 import type { SiteMeta } from "@schemas/site-meta";
 import CoolLinksImage from '@components/molecules/CoolLinksImage';
 import { title } from 'process';
+import AboutAuthorCard from '@components/organisms/AboutAuthorCard';
 
 interface Props {
   post: {
@@ -94,10 +95,22 @@ const coolLinksImageParams = isCoolLinksImage ? {
           <MarkdownRenderer content={post.body} client:load />
         </div>
       </div>
+
+      {post.data.author && (
+        <AboutAuthorCard 
+          kicker="Written by"
+          name={post.data.author.name}
+          bio={post.data.author.bio}
+          image={post.data.author.image}
+          extraImages={post.data.author.extraImages}
+          socials={post.data.author.socials}
+          client:load
+        />
+      )}
     </div>
   </main>
 
-  <Footer client:load />
+  <Footer socials={siteMeta.author?.socials} client:load />
 </BaseLayout>
 
 <style lang='scss'>

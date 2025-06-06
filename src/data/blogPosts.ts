@@ -16,11 +16,7 @@ export function sanitizePostData(post: BlogPost, postBody?: string, renderedPost
   }  
 
   if (!post.author && siteMeta.author) {
-    post.author = {
-      name: siteMeta.author.name,
-      image: siteMeta.author.avatar,
-      extraImages: siteMeta.author.extraImages
-    };
+    post.author = siteMeta.author;
   }
 
   if (post.coverImage) {

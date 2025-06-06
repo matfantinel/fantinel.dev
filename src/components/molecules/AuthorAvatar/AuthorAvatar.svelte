@@ -7,6 +7,7 @@
     extraImages,
     size = '50px',
     theme = 'greenish',
+    animated = false,
     class: className,
   }: {
     src: string;
@@ -14,6 +15,7 @@
     extraImages?: string[];
     size?: string;
     theme?: 'greenish' | 'pinkish' | 'rainbow'
+    animated?: boolean;
     class?: string;
   } = $props();
 
@@ -28,7 +30,7 @@
 
 <svelte:element
   this={tag}
-  class={['m-author-avatar', `m-author-avatar--theme--${theme}`, className]}
+  class={['m-author-avatar', `m-author-avatar--theme--${theme}`, animated ? 'm-author-avatar--animated' : '', className]}
   style={`--size:${size}`}
   {onclick}
   role="button"
@@ -54,6 +56,7 @@
     border: none;
     overflow: hidden;
     position: relative;
+    isolation: isolate;
     width: var(--size);
     height: var(--size);
     border-radius: 50%;
@@ -76,9 +79,15 @@
       background: var(--theme--gradient-greenish);
       will-change: transform, opacity;
       transform: rotate(0deg) translate3d(0, 0, 0);
-      filter: blur(4px);
+      border-radius: 50%;
       animation: rotate 4s linear infinite;
       animation-play-state: paused;
+    }
+
+    &--animated {
+      &:before {
+        animation-play-state: running;
+      }
     }
 
     &:hover,
@@ -114,7 +123,8 @@
 
     &--theme--rainbow {
       &:before {
-        background: var(--theme--gradient-rainbow-circle);
+        background: var(--theme--gradient-rainbow-circle-dark);        
+        filter: blur(20px);
       }
     }
   }

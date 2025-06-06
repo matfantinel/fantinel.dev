@@ -91,7 +91,7 @@ allCategories?.forEach((category) => {
     </div>
   </main>
 
-  <Footer client:load />
+  <Footer socials={siteMeta.author?.socials} client:load />
 </BaseLayout>
 
 <style lang='scss'>

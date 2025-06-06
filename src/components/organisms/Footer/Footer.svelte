@@ -1,16 +1,17 @@
 <script lang="ts">
-  import IconLink from '@components/atoms/IconLink';
-  import Mastodon from '@assets/icons/socials/mastodon.svelte';
-  import GitHub from '@assets/icons/socials/github.svelte';
-  import LinkedIn from '@assets/icons/socials/linkedin.svelte';
-  import Email from '@assets/icons/socials/email.svelte';
-  import Rss from '@assets/icons/rss.svelte';
-  import ThemeToggle from '@components/molecules/ThemeToggle';
   import FooterWaves from '@assets/brand/FooterWaves.svelte';
+  import Rss from '@assets/icons/rss.svelte';
+  import IconLink from '@components/atoms/IconLink';
+  import ThemeToggle from '@components/molecules/ThemeToggle';
+
+  import SocialLink from '@components/molecules/SocialLink';
+  import type { SocialLink as SocialLinkType } from '@schemas/site-meta';
 
   let {
+    socials,
     class: className,
   }: {
+    socials?: SocialLinkType[];
     class?: string;
   } = $props();
 
@@ -27,53 +28,16 @@
       © {currentYear} Matheus Fantinel
     </div>    
     <div class="o-footer__links">
-      {#snippet mastodonIconSnippet()}<Mastodon />{/snippet}
-      <IconLink
-        class="o-footer__link"
-        icon={mastodonIconSnippet}
-        href="https://hachyderm.io/@fantinel"
-        target="_blank"
-        rel="me noreferrer"
-        title="Say Hi on Mastodon"
-      >
-        Mastodon
-      </IconLink>
-
-      {#snippet githubIconSnippet()}<GitHub />{/snippet}
-      <IconLink
-        class="o-footer__link"
-        icon={githubIconSnippet}
-        href="https://github.com/MatFantinel"
-        target="_blank"
-        rel="noopener noreferrer"
-        title="See my GitHub profile"
-      >
-        GitHub
-      </IconLink>
-
-      {#snippet linkedinIconSnippet()}<LinkedIn />{/snippet}
-      <IconLink
-        class="o-footer__link"
-        icon={linkedinIconSnippet}
-        href="https://www.linkedin.com/in/matheus-fantinel/"
-        target="_blank"
-        rel="noopener noreferrer"
-        title="Connect on LinkedIn"
-      >
-        LinkedIn
-      </IconLink>
-
-      {#snippet emailIconSnippet()}<Email />{/snippet}
-      <IconLink
-        class="o-footer__link"
-        icon={emailIconSnippet}
-        href="mailto:matt@fantinel.dev"
-        target="_blank"
-        rel="noopener noreferrer"
-        title="Send me an email"
-      >
-        Email
-      </IconLink>
+      {#if socials}
+        {#each socials as social}
+          <SocialLink
+            name={social.name}
+            url={social.url}
+            label={social.label}
+            class="o-footer__link"
+          />
+        {/each}
+      {/if}
 
       {#snippet rssIconSnippet()}<Rss />{/snippet}
       <IconLink

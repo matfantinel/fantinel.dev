@@ -70,7 +70,7 @@ h4, .u-h4 {
 }
 
 @mixin h5 {
-  font-family: var(--font--headings);
+  font-family: var(--font--mono);
   font-size: 1.125rem; //18px
   font-weight: 700;
   line-height: 1.2;

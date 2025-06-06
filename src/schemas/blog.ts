@@ -1,4 +1,5 @@
 import { z } from 'astro:content';
+import type { SiteAuthor } from './site-meta';
 
 // Blog post schema definition
 export const blogSchema = z.object({
@@ -27,7 +28,7 @@ export type BlogPost = Omit<BlogPostBase, 'categories'> & {
     text: string;
     depth: number;
   }[];
-  author?: BlogPostAuthor;
+  author?: SiteAuthor;
 };
 
 export type BlogPostCategory = {
@@ -36,9 +37,3 @@ export type BlogPostCategory = {
   url: string;
   active?: boolean;
 };
-
-export type BlogPostAuthor = {
-  name: string;
-    image: string | null;
-    extraImages?: string[]
-}

@@ -2,7 +2,7 @@
   import Tag from '@components/atoms/Tag';
   import AuthorAvatar from '@components/molecules/AuthorAvatar';
   import Tags from '@components/molecules/Tags';
-  import type { BlogPostAuthor } from '@schemas/blog';
+  import type { SiteAuthor } from '@schemas/site-meta';
   import dateformat from 'dateformat';
 
   let {
@@ -17,7 +17,7 @@
   }: {
     title: string;
     slug?: string;
-    author?: BlogPostAuthor;
+    author?: SiteAuthor;
     date?: Date;
     updated?: Date;
     readingTime?: string;

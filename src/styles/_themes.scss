@@ -160,7 +160,20 @@
   --theme--gradient-pinkish: linear-gradient(to right, var(--color--pink), var(--color--mauve), var(--color--lavender));
   --theme--gradient-rainbow: linear-gradient(to right, var(--color--pink), var(--color--mauve), var(--color--red), var(--color--maroon), var(--color--peach), var(--color--yellow), var(--color--green), var(--color--teal), var(--color--sky), var(--color--sapphire), var(--color--blue), var(--color--lavender));
   --theme--gradient-rainbow-circle: conic-gradient(from 0deg, var(--color--pink), var(--color--mauve), var(--color--red), var(--color--maroon), var(--color--peach), var(--color--yellow), var(--color--green), var(--color--teal), var(--color--sky), var(--color--sapphire), var(--color--blue), var(--color--lavender));
-
+  --theme--gradient-rainbow-circle-dark: conic-gradient(from 0deg, 
+    #F5C2E7, /* dark pink */
+    #CBA6F7, /* dark mauve */
+    #F38BA8, /* dark red */
+    #EBA0AC, /* dark maroon */
+    #FAB387, /* dark peach */
+    #F9E2AF, /* dark yellow */
+    #A6E3A1, /* dark green */
+    #94E2D5, /* dark teal */
+    #89DCEB, /* dark sky */
+    #74C7EC, /* dark sapphire */
+    #89B4FA, /* dark blue */
+    #B4BEFE  /* dark lavender */
+  );
   // #endregion
 }
 
