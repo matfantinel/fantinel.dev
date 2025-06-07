@@ -187,8 +187,8 @@ export function getRelatedPosts(post: BlogPost, allPosts: BlogPost[]): BlogPost[
     })
     // Extract just the posts
     .map(item => item.post)
-    // Limit to 3 related posts
-    .slice(0, 3);
+    // Limit to 4 related posts
+    .slice(0, 4);
 
   return relatedPosts;
 }

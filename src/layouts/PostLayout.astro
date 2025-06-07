@@ -12,9 +12,10 @@ import metaConfig from '@public/cms/meta.yml';
 import type { SiteMeta } from '@schemas/site-meta';
 import CoolLinksImage from '@components/molecules/CoolLinksImage';
 import { title } from 'process';
-import AboutAuthorCard from '@components/organisms/AboutAuthorCard';
+import AboutAuthor from '@components/organisms/AboutAuthor';
 import BlogPostCard from '@components/molecules/BlogPostCard';
 import BlogPostCards from '@components/molecules/BlogPostCards';
+import SectionHeader from '@components/molecules/SectionHeader';
 
 interface Props {
   post: {
@@ -111,13 +112,14 @@ const coolLinksImageParams = isCoolLinksImage
       <div class='l-post__after-content'>
         {
           post.data.author && (
-            <AboutAuthorCard
+            <AboutAuthor
               kicker='Written by'
               name={post.data.author.name}
-              bio={post.data.author.bio}
+              bio={post.data.author.shortBio}
               image={post.data.author.image}
               extraImages={post.data.author.extraImages}
               socials={post.data.author.socials}
+              button={{ text: 'About', url: '/about' }}
               client:load
             />
           )
@@ -126,8 +128,14 @@ const coolLinksImageParams = isCoolLinksImage
         {
           post.data.relatedPosts && (
             <div class='l-post__related-posts'>
-              <p class='l-post__related-posts-summary'>You might also like</p>
-              <BlogPostCards class='l-post__related-posts-grid'>
+              <SectionHeader 
+                title="You might also like"
+                button={{
+                  text: 'View all',
+                  url: '/blog'
+                }} 
+              />
+              <BlogPostCards class='l-post__related-posts-grid' maxPerRow={2}>
                 {post.data.relatedPosts.map((relatedPost) => (
                   <BlogPostCard
                     title={relatedPost.title}
@@ -267,15 +275,14 @@ const coolLinksImageParams = isCoolLinksImage
     }
 
     &__after-content {
-      padding-top: var(--spacing-xxl);
-      border-top: 1px dashed var(--theme--border-medium-color);
+      margin-top: var(--spacing-xxl);
 
       display: flex;
       flex-direction: column;
       gap: var(--spacing-xxl);
 
       @include breakpoints.for-phone-only {
-        padding-top: var(--spacing-xxl);
+        margin-top: var(--spacing-xl);
         gap: var(--spacing-xl);
       }
     }
@@ -284,13 +291,8 @@ const coolLinksImageParams = isCoolLinksImage
       @include mixins.padded-container;
       display: flex;
       flex-direction: column;
-      gap: var(--spacing-lg);
-    }
-
-    &__related-posts-summary {
-      @include typography.h2;
-      @include typography.gradient-greenish;
-      text-align: center;
+      gap: var(--spacing-xl);
+      margin-top: var(--spacing-xxl);
     }
   }
 

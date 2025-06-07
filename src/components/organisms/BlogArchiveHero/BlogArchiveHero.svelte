@@ -85,7 +85,7 @@
       color: var(--theme--color-accent);
       text-align: center;
       text-wrap: balance;
-      animation:var(--theme--glowing-text-animation);
+      animation: var(--theme--glowing-text-animation);
     }
 
     &__body {

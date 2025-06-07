@@ -4,11 +4,11 @@
   } from '@storybook/addon-svelte-csf';
   import { LoremIpsum } from '@utils/lorem-ipsum';
 
-  import AboutAuthorCard from './AboutAuthorCard.svelte';
+  import AboutAuthor from './AboutAuthor.svelte';
 
   const { Story } = defineMeta({
-    title: 'Organisms/About Author Card',
-    component: AboutAuthorCard,
+    title: 'Organisms/About Author',
+    component: AboutAuthor,
     tags: ['autodocs'],
     argTypes: {
       kicker: { control: 'text' },
@@ -17,21 +17,16 @@
       image: { control: 'text' },
       extraImages: { control: 'object' },
       socials: { control: 'object' },
+      button: { control: 'object' },
+      isCard: { control: 'boolean' }
     },
     render: template
   });
-</script>
 
-{#snippet template(args)}
-  <AboutAuthorCard {...args} />
-{/snippet}
-
-<Story 
-  name="Default" 
-  args={{ 
-    kicker: LoremIpsum.words,
-    name: LoremIpsum.words,
-    bio: LoremIpsum.mdCode,
+  const defaultArgs = {
+    kicker: 'About the author',
+    name: 'Doggy Dogginton',
+    bio: LoremIpsum.paragraph,
     image: "https://placedog.net/500/500", 
     extraImages: [
       "https://placedog.net/501/501",
@@ -59,5 +54,45 @@
         label: "Send me an email"
       }
     ],
-  }} 
+  };
+</script>
+
+{#snippet template(args)}
+  <AboutAuthor {...args} />
+{/snippet}
+
+<Story 
+  name="Default" 
+  args={defaultArgs} 
+/>
+
+<Story
+  name="With Button"
+  args={{
+    ...defaultArgs,
+    button: {
+      text: 'About',
+      url: '#'
+    }
+  }}
+/>
+
+<Story
+  name="Card"
+  args={{
+    ...defaultArgs,
+    isCard: true
+  }}
+/>
+
+<Story
+  name="Card with Button"
+  args={{
+    ...defaultArgs,
+    isCard: true,
+    button: {
+      text: 'About',
+      url: '#'
+    }
+  }}
 />

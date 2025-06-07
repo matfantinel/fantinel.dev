@@ -15,6 +15,7 @@ export type SiteAuthor = {
   image: string | null;
   extraImages?: string[];
   bio?: string;
+  shortBio?: string;
   socials?: SocialLink[];
 }
 
