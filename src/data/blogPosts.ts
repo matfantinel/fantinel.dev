@@ -139,7 +139,12 @@ export function getRelatedPosts(post: BlogPost, allPosts: BlogPost[]): BlogPost[
   }
 
   // Get the current post's category slugs
-  const postCategorySlugs = post.categories.map(cat => cat.slug);
+  const postCategorySlugs = post.categories.map(cat => {
+    if (typeof cat === 'string') {
+      return slug(cat);
+    }
+    return cat.slug;
+  });
 
   // Filter out the current post and hidden posts
   const otherPosts = allPosts.filter(p =>
@@ -149,7 +154,12 @@ export function getRelatedPosts(post: BlogPost, allPosts: BlogPost[]): BlogPost[
   // Calculate relevance score for each post based on shared categories
   const scoredPosts = otherPosts.map(otherPost => {
     // Get the other post's category slugs
-    const otherCategorySlugs = otherPost.categories?.map(cat => cat.slug) || [];
+    const otherCategorySlugs = otherPost.categories?.map(cat => {
+      if (typeof cat === 'string') {
+        return slug(cat);
+      }
+      return cat.slug;
+    }) || [];
 
     // Count how many categories are shared
     const sharedCategories = postCategorySlugs.filter(slug =>

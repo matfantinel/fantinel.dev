@@ -42,6 +42,7 @@
     padding-left: var(--spacing-xl);
     border-radius: var(--border-radius);
     box-shadow: var(--theme--shadow-card);
+    word-wrap: break-word;
 
     &__quotes {
       position: absolute;

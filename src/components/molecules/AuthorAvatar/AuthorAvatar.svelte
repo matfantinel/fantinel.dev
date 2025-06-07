@@ -43,7 +43,7 @@
       {alt} 
       height={size} 
       width={size} 
-      in:fly={{ delay: 1300, duration: 500, y: parseInt(size), opacity: 1 }}
+      in:fly={{ delay:800, duration: 500, y: parseInt(size), opacity: 1 }}
       out:fly={{ duration: 500, y: parseInt(size), opacity: 1 }}
     />
   {/key}
@@ -111,7 +111,7 @@
 
     &--theme--greenish {
       &:before {
-        background: var(--theme--gradient-greenish);
+        background: var(--theme--color-accent);
       }
     }
 
