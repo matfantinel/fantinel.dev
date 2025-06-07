@@ -1,10 +1,5 @@
-<script module lang="ts">
-  import {
-    defineMeta,
-    setTemplate,
-    type Args,
-    type StoryContext,
-  } from '@storybook/addon-svelte-csf';
+<script module>
+  import { defineMeta } from '@storybook/addon-svelte-csf';
 
   import Tag from './Tag.svelte';
 
@@ -24,14 +19,11 @@
       rel: { control: false },
       class: { control: false },
     },
+    render: template
   });
 </script>
 
-<script lang="ts">
-  setTemplate(template);
-</script>
-
-{#snippet template(args: Args<typeof Story>, context: StoryContext<typeof Story>)}
+{#snippet template(args)}
   <Tag {...args}>{args.children ?? 'Tag'}</Tag>
 {/snippet}
 

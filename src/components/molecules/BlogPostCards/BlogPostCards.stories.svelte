@@ -1,5 +1,5 @@
-<script module lang="ts">
-  import { defineMeta, setTemplate, type Args, type StoryContext } from '@storybook/addon-svelte-csf';
+<script module>
+  import { defineMeta } from '@storybook/addon-svelte-csf';
 
   import BlogPostCards from './BlogPostCards.svelte';
   import BlogPostCard from '@components/molecules/BlogPostCard';
@@ -12,20 +12,17 @@
     argTypes: {
       class: { control: false },
     },
+    render: template
   });
 </script>
 
-<script lang="ts">
-  setTemplate(template);
-</script>
-
-{#snippet template(args: Args<typeof Story>, context: StoryContext<typeof Story>)}
+{#snippet template(args)}
   <BlogPostCards {...args}>
     {@render args.children?.()}
   </BlogPostCards>
 {/snippet}
 
-{#snippet contentVariety(hideImage?: boolean)}
+{#snippet contentVariety(hideImage)}
   {#each Array(10) as _, index}
     <BlogPostCard
       title={LoremIpsum.paragraph.split(' ').slice(0, index + 4).join(' ')}
@@ -56,4 +53,3 @@
 <Story name="Default" args={{ children: contentVariety }} />
 
 <Story name="Hide Images" args={{ children: hideImage }} />
-

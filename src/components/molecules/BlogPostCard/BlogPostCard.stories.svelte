@@ -1,5 +1,5 @@
-<script module lang="ts">
-  import { defineMeta, setTemplate, type Args, type StoryContext } from '@storybook/addon-svelte-csf';
+<script module>
+  import { defineMeta } from '@storybook/addon-svelte-csf';
   import { LoremIpsum } from '@utils/lorem-ipsum';
 
   import BlogPostCard from './BlogPostCard.svelte';
@@ -17,14 +17,11 @@
       url: { control: 'text' },
       class: { control: false },
     },
+    render: template
   });
 </script>
 
-<script lang="ts">
-  setTemplate(template);
-</script>
-
-{#snippet template(args: Args<typeof Story>, context: StoryContext<typeof Story>)}
+{#snippet template(args)}
   <BlogPostCard
     title={args.title || 'Blog Post Title'}
     url={args.url || '#'}

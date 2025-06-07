@@ -1,10 +1,5 @@
-<script module lang="ts">
-  import {
-    defineMeta,
-    setTemplate,
-    type Args,
-    type StoryContext,
-  } from '@storybook/addon-svelte-csf';
+<script module>
+  import { defineMeta } from '@storybook/addon-svelte-csf';
   import { LoremIpsum } from '@utils/lorem-ipsum';
 
   import PostHero from './PostHero.svelte';
@@ -20,14 +15,11 @@
       readingTime: { control: 'number' },
       tags: { control: 'object' },
     },
+    render: template
   });
 </script>
 
-<script lang="ts">
-  setTemplate(template);
-</script>
-
-{#snippet template(args: Args<typeof Story>, context: StoryContext<typeof Story>)}
+{#snippet template(args)}
   <PostHero title={args.title ?? LoremIpsum.sentence} {...args} />
 {/snippet}
 

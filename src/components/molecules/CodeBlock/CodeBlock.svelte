@@ -74,9 +74,9 @@
 			scrollbar-width: thin;
 			padding-bottom: var(--spacing-xxs);
 
-			-moz-tab-size: 4;
-			-o-tab-size: 4;
-			tab-size: 4;
+			-moz-tab-size: 2;
+			-o-tab-size: 2;
+			tab-size: 2;
 
 			&::-webkit-scrollbar {
 				height: 8px;
