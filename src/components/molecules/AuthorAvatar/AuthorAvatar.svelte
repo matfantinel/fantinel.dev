@@ -124,7 +124,7 @@
     &--theme--rainbow {
       &:before {
         background: var(--theme--gradient-rainbow-circle-dark);        
-        filter: blur(20px);
+        filter: blur(4px);
       }
     }
   }

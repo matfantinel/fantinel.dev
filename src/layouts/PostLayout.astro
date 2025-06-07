@@ -16,6 +16,7 @@ import AboutAuthor from '@components/organisms/AboutAuthor';
 import BlogPostCard from '@components/molecules/BlogPostCard';
 import BlogPostCards from '@components/molecules/BlogPostCards';
 import SectionHeader from '@components/molecules/SectionHeader';
+import NewsletterCta from '@components/organisms/NewsletterCta';
 
 interface Props {
   post: {
@@ -124,6 +125,14 @@ const coolLinksImageParams = isCoolLinksImage
             />
           )
         }
+
+        {siteMeta.newsletterCta && (
+          <NewsletterCta
+            heading={siteMeta.newsletterCta.heading}
+            body={siteMeta.newsletterCta.body}
+            tag="cta-after-post-content"
+          />
+        )}
 
         {
           post.data.relatedPosts && (

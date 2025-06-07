@@ -118,8 +118,8 @@
     }
 
     &__bio {
-      grid-area: bio;
       @include typography.b2;
+      grid-area: bio;
       gap: 1rem;
       text-align: left;
     }

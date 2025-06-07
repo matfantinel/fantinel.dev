@@ -8,6 +8,10 @@ export type SiteMeta = {
   lightThemeColor: string;
   darkThemeColor: string;
   fediverseCreator: string;
+  newsletterCta: {
+    heading: string;
+    body: string;
+  };
 };
 
 export type SiteAuthor = {

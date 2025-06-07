@@ -1,4 +1,5 @@
 @use '/src/styles/_mixins.scss';
+@use '/src/styles/typography';
 
 // Styles that are used everywhere
 
@@ -20,6 +21,37 @@
 	position: fixed;
 	inset: 0%;
   opacity: var(--background-noise-opacity, 1);
+}
+
+.u-field-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+
+  label {
+    @include typography.b2;
+    color: var(--theme--text-base-color);
+  }
+
+  input {
+    @include typography.b2;
+    background-color: transparent;
+    border-radius: var(--border-radius);
+    padding: 10px 20px;
+    width: 100%;
+    font-size: 1rem;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+    background-origin: border-box;
+    background-repeat: no-repeat;
+    border: 1px solid var(--theme--border-base-color);
+    accent-color: var(--theme--color-accent);
+    color: var(--theme--text-base-color);
+    
+    &::placeholder {
+      color: var(--theme--text-medium-color);
+    }
+  }
 }
 
 ul,

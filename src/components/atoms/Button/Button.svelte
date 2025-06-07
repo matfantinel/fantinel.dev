@@ -15,10 +15,11 @@
     href?: string;
     target?: string;
     rel?: string;
-    color?: 'default' | 'green' | 'yellow' | 'peach' | 'red' | 'mauve' | 'blue' | 'teal';
+    color?: 'default' | 'complementary' | 'green' | 'yellow' | 'peach' | 'red' | 'mauve' | 'blue' | 'teal';
     class?: string;
     icon?: Snippet;
     children?: Snippet;
+    [key: string]: any;
   } = $props();
 
   let tag = $derived(href ? 'a' : 'button');
@@ -91,10 +92,18 @@
       aspect-ratio: 1/1;
     }
 
+    &--complementary {
+      --button-color-background: var(--theme--color-complementary);
+      --button-color-background-hover: var(--theme--color-complementary-tint);
+      --button-color-text: var(--theme--color-complementary-contrast);
+      --button-color-hover-glow: var(--theme--color-complementary-glow);
+    }
+
     &--green {
       --button-color-background: var(--color--green);
       --button-color-background-hover: var(--color--green-tint);
       --button-color-text: var(--color--green-contrast);
+      --button-color-hover-glow: var(--theme--glow-green);
     }
 
     &--yellow {
