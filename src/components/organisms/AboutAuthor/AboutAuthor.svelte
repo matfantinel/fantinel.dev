@@ -207,13 +207,19 @@
       @container (max-width: 380px) {
         .o-about-author {
           &__container {
-            grid-template-columns: 64px 1fr;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
           }
-          &__socials {
-            width: 100%;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
+          &__image-container {
+            width: 64px;
           }
+          &__bio {
+            text-align: justify;
+          }
+        }
+        :global(.o-about-author__button) {
+          order: 4;
         }
       }
     }

@@ -27,6 +27,7 @@
 </div>
 
 <style lang="scss">
+  @use '/src/styles/breakpoints';
   @use '/src/styles/typography';
 
   .m-section-header {
@@ -35,6 +36,7 @@
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
+    container-type: inline-size;
 
     &__title {
       @include typography.h2;
@@ -42,6 +44,17 @@
     }
 
     &--centered {
+      flex-direction: column;
+      justify-content: center;
+
+      .m-section-header {
+        &__title {
+          text-align: center;
+        }
+      }
+    }
+
+    @include breakpoints.for-phone-only {
       flex-direction: column;
       justify-content: center;
 
