@@ -62,6 +62,13 @@ const siteMeta: SiteMeta = metaConfig;
       will-change: transform;
       transform: translate3d(0, 0, 0);
       animation: floating 7.5s infinite cubic-bezier(0.455, 0.03, 0.515, 0.955);
+
+      transition: all 0.25s ease-in-out;
+
+      &:hover {
+        scale: 1.05;
+        filter: drop-shadow(8px 8px 0px #313244);
+      }
     }
 
     &__title {
