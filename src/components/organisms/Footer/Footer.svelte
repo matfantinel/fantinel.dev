@@ -43,7 +43,7 @@
       <IconLink
         class="o-footer__link"
         icon={rssIconSnippet}
-        href="/rss"
+        href="/rss.xml"
         target="_blank"
         rel="noopener noreferrer"
         title="Subscribe to my RSS Feed"

@@ -31,7 +31,7 @@
         links={[
           { label: 'Blog', href: '/blog' },
           { label: 'Testing Grounds', href: '/blog/testing-grounds' },
-          { label: 'RSS', href: '/rss', icon: rssIconSnippet, title: 'Subscribe to my RSS Feed' },
+          { label: 'RSS', href: '/rss.xml', icon: rssIconSnippet, title: 'Subscribe to my RSS Feed' },
         ]}
       />
 

@@ -18,9 +18,6 @@ export async function GET({ request }: { request: Request }) {
   });
 
   const promises = posts.map(async (post) => {
-    // post.content = marked.parse(
-    //   post.content.replace(/^[\u200B\u200C\u200D\u200E\u200F\uFEFF]/, "")
-    // );
     if (!post.content) {
       return;
     }
@@ -38,7 +35,15 @@ export async function GET({ request }: { request: Request }) {
     'Content-Type': 'application/xml'
   };
   return new Response(body, { headers });
+}
 
+function escapeXml(str: string): string {
+  return str
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&apos;');
 }
 
 const generateXml = (posts: BlogPost[]) => `
@@ -54,12 +59,12 @@ const generateXml = (posts: BlogPost[]) => `
 >
   <channel>
     <atom:link href="${siteMeta.baseUrl}/rss.xml" rel="self" type="application/rss+xml" />
-    <title>${siteMeta.title}</title>
+    <title>${escapeXml(siteMeta.title)}</title>
     <link>${siteMeta.baseUrl}</link>
-    <description>${siteMeta.description}</description>
+    <description>${escapeXml(siteMeta.description)}</description>
     <image>
       <url>${siteMeta.baseUrl}/favicons/favicon-96x96.png</url>
-      <title>${siteMeta.title}</title>
+      <title>${escapeXml(siteMeta.title)}</title>
       <link>${siteMeta.baseUrl}</link>
       <width>96</width>
       <height>96</height>
@@ -71,18 +76,18 @@ const generateXml = (posts: BlogPost[]) => `
         // Their URL will redirect automatically, but I don't wanna change the RSS guid
         // To avoid the post being duplicated in the RSS feed of existing subscribers
         const guid = siteMeta.baseUrl + (post.date < new Date('2025-06-01') ? '' : '/blog') + '/' + post.slug;
-        let coverImage = post.coverImage;
+        let coverImage = post.coverImage ? escapeXml(post.coverImage) : null;
         if (coverImage && !coverImage.includes(siteMeta.baseUrl)) {
           coverImage = `${siteMeta.baseUrl}${coverImage}`;
         }
         return `
         <item>
           <guid>${guid}</guid>
-          <title>${post.title}</title>
-          <description>${post.excerpt}</description>
+          <title>${escapeXml(post.title)}</title>
+          <description>${escapeXml(post.excerpt)}</description>
           <link>${siteMeta.baseUrl}/blog/${post.slug}</link>
           <pubDate>${dateformat(post.date, 'ddd, dd mmm yyyy HH:MM:ss o')}</pubDate>
-          ${post.categories ? post.categories.map((cat) => `<category>${cat.name}</category>`).join('') : ''}
+          ${post.categories ? post.categories.map((cat) => `<category>${escapeXml(cat.name)}</category>`).join('') : ''}
           <content:encoded><![CDATA[
             <div style="margin: 50px 0; font-style: italic;">
               If anything looks wrong, 
