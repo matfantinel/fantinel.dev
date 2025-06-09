@@ -1,0 +1,92 @@
+---
+import Footer from '@components/organisms/Footer';
+import Header from '@components/organisms/Header';
+import BaseLayout from '@layouts/BaseLayout.astro';
+---
+
+<BaseLayout>
+  <Header client:load />
+  <sparkly-text
+    class='p-404__void'
+    number-of-sparkles='10'
+    style='--sparkly-text-color: var(--theme--text-base-color); --sparkly-text-size: 1.25rem'
+  >
+    <div class='p-404 u-container' style='min-height: calc(100dvh - 164px - 506px);'>
+      <img class='p-404__image' src='/images/404.png' alt='Astronaut floating in space' />
+      <h1 class='p-404__title'><strong>404</strong>This page drifted into the stars.</h1>
+      <p class='p-404__subtitle'>Time slows, thoughts stretch, and the universe listens.
+        But not even the cosmos knows what you were looking for.</p>
+      <p class='p-404__text'>
+        (Fortunately, the blog is <a href='/blog'>just one click away</a>.)
+      </p>
+    </div>
+  </sparkly-text>
+  <Footer client:load />
+</BaseLayout>
+
+<style lang='scss'>
+  @use '/src/styles/breakpoints';
+  @use '/src/styles/typography';
+
+  .p-404 {
+    display: grid;
+    grid-template-columns: 360px 1fr;
+    grid-template-areas:
+      '. title'
+      'image title'
+      'image subtitle'
+      'image text';
+    gap: var(--spacing-lg);
+    align-items: center;
+
+    &__image {
+      grid-area: image;
+      animation: floating 7.5s infinite cubic-bezier(0.455, 0.03, 0.515, 0.955);
+    }
+
+    &__title {
+      @include typography.h1;
+      @include typography.gradient-pinkish;      
+      grid-area: title;
+      text-align: center;
+      text-wrap: balance;
+
+      strong {
+        display: block;
+        font-size: clamp(3.75rem, 2.2045rem + 7.7273vw, 8rem); // 128px
+      }
+    }
+
+    &__subtitle {
+      grid-area: subtitle;
+      @include typography.h3;
+      text-align: center;
+      text-wrap: balance;
+    }
+
+    &__text {
+      grid-area: text;
+      @include typography.b2;
+      text-align: center;
+      text-wrap: balance;
+    }
+
+    @include breakpoints.for-tablet-portrait-down {
+      grid-template-columns: 260px 1fr;
+    }
+
+    @include breakpoints.for-phone-only {
+      grid-template-columns: 1fr;
+      grid-template-areas:
+        'title'
+        'image'
+        'subtitle'
+        'text';
+
+      &__image {
+        width: 160px;
+        margin-left: 15%;
+      }
+    }
+  }
+</style>

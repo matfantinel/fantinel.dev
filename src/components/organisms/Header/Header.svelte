@@ -30,7 +30,7 @@
         class="o-header__hamburger-menu"
         links={[
           { label: 'Blog', href: '/blog' },
-          { label: 'Testing Grounds', href: '/blog/testing-grounds' },
+          { label: 'About', href: '/about' },
           { label: 'RSS', href: '/rss.xml', icon: rssIconSnippet, title: 'Subscribe to my RSS Feed' },
         ]}
       />
