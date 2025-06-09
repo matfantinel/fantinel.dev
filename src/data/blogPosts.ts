@@ -14,6 +14,8 @@ export function sanitizePostData(post: BlogPost, postBody?: string, renderedPost
   if (postBody) {
     post.readingTime = readingTime(striptags(postBody)).text
   }
+  
+  post.content = renderedPost?.html;
 
   if (!post.author && siteMeta.author) {
     post.author = siteMeta.author;

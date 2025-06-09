@@ -20,6 +20,7 @@ export type BlogPostBase = z.infer<typeof blogSchema>;
 
 // Extend the base type with additional runtime properties
 export type BlogPost = Omit<BlogPostBase, 'categories'> & {
+  content?: string | null;
   // Properties that are added dynamically at runtime
   readingTime?: string | null;
   categories?: BlogPostCategory[];
