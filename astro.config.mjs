@@ -6,12 +6,10 @@ import yaml from '@modyfi/vite-plugin-yaml';
 
 import vercel from '@astrojs/vercel';
 import sitemap from '@astrojs/sitemap';
-import metaConfig from "@public/cms/meta.yml";
-const siteMeta = metaConfig;
 
 // https://astro.build/config
 export default defineConfig({
-  site: siteMeta.baseUrl,
+  site: "https://fantinel-dev-next.vercel.app",
   integrations: [svelte(),sitemap()],
 
   vite: {
