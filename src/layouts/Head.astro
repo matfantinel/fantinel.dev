@@ -29,6 +29,8 @@ const siteMeta: SiteMeta = metaConfig;
 
 <!-- RSS -->
 <link rel='alternate' type='application/rss+xml' title='RSS' href={`${siteMeta.baseUrl}/rss.xml`} />
+<!-- Sitemap -->
+<link rel="sitemap" href="/sitemap-index.xml" />
 
 <!-- Fediverse author info -->
 {siteMeta.fediverseCreator && <meta name='fediverse:creator' content={siteMeta.fediverseCreator} />}
