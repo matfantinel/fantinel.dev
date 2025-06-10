@@ -57,43 +57,17 @@ html {
 	}
 }
 
-@keyframes btn-glow {
-  0% {
-    background-position: 0 100%;
-  }
-  100% {
-    background-position: 0 300%;
-  }
-}
+// If prefers-reduced-motion is set, disable all animations and transitions globally
+@media (prefers-reduced-motion: reduce) {
+	* {
+		animation: none !important;
+		transition: none !important;
 
-@mixin glow-experiment {
-	z-index: 2;
-
-	&:before {
-		position: absolute;
-		inset: 4px;
-		z-index: 1;
-
-		display: block;
-
-		animation: btn-glow 5s infinite linear;
-		background: linear-gradient(
-				20deg,
-				#00f8f1,
-				#ffbd1e20 16.5%,
-				#fe848f 33%,
-				#fe848f20 49.5%,
-				#00f8f1 66%,
-				#00f8f160 85.5%,
-				#ffbd1e 100%
-			)
-			0 100% / 100% 200%;
-		border-radius: inherit;
-		filter: blur(5px);
-		mix-blend-mode: overlay;
-		opacity: 0;
-		transition: opacity 0.2s linear 0.1s;
-
-		content: "";
+		&:before,
+		&:after {
+			animation: none !important;
+			transition: none !important;
+		}
 	}
 }
+	

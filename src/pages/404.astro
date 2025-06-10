@@ -59,11 +59,11 @@ const siteMeta: SiteMeta = metaConfig;
 
     &__image {
       grid-area: image;
-      will-change: transform;
+      will-change: scale;
       transform: translate3d(0, 0, 0);
       animation: floating 7.5s infinite cubic-bezier(0.455, 0.03, 0.515, 0.955);
 
-      transition: all 0.25s ease-in-out;
+      transition: all 0.5s cubic-bezier(0.455, 0.03, 0.515, 0.955);
 
       &:hover {
         scale: 1.05;

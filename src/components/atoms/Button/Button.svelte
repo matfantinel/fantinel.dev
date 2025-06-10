@@ -64,6 +64,7 @@
     text-decoration: none;
     box-shadow: var(--theme--shadow-card);
     border: none;
+    cursor: pointer;
 
     transition: all 0.25s ease;
 

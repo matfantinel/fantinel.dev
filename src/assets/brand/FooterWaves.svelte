@@ -37,3 +37,29 @@
     </clipPath>
   </defs>
 </svg>
+
+
+<style lang="scss">
+  svg {
+    path {
+      will-change: transform;
+      transform: translate3d(0, 0, 0);
+
+      &:nth-child(1) {
+        animation: floating 7.75s infinite cubic-bezier(0.455,0.03,0.515,0.955);
+      }
+
+      &:nth-child(2) {
+        animation: floating 8.5s infinite cubic-bezier(0.455,0.03,0.515,0.955);
+      }
+
+      &:nth-child(3) {
+        animation: floating 7.5s infinite cubic-bezier(0.455,0.03,0.515,0.955);
+      }
+
+      &:nth-child(4) {
+        animation: floating 6.5s infinite cubic-bezier(0.455,0.03,0.515,0.955);
+      }
+    }
+  }
+</style>
