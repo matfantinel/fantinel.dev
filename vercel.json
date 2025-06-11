@@ -5,6 +5,14 @@
       "destination": "/rss.xml",
       "permanent": true
     },
+    {
+			"source": "/stats/js/script.tagged-events.manual.js",
+			"destination": "https://plausible.io/js/script.tagged-events.manual.js"
+		},
+		{
+			"source": "/stats/api/event",
+			"destination": "https://plausible.io/api/event"
+		},
     { "source": "/purpose-of-this-blog", "destination": "/blog/purpose-of-this-blog", "permanent": true },
     { "source": "/angular-pwa-how-to", "destination": "/blog/angular-pwa-how-to", "permanent": true },
     { "source": "/what-are-pwas-and-why-should-i-care-about-them", "destination": "/blog/what-are-pwas-and-why-should-i-care-about-them", "permanent": true },

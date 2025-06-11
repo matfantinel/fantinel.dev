@@ -35,6 +35,14 @@ const siteMeta: SiteMeta = metaConfig;
 <!-- Fediverse author info -->
 {siteMeta.fediverseCreator && <meta name='fediverse:creator' content={siteMeta.fediverseCreator} />}
 
+<!-- Plausible - ethical analytics -->
+{import.meta.env.PUBLIC_PLAUSIBLE_URL && <script
+src={import.meta.env.PUBLIC_PLAUSIBLE_URL}
+data-api="/stats/api/event"
+data-domain="fantinel.dev"
+is:inline
+></script>}
+
 <script>
   // Calling this here so that it loads as quickly as possible
   // Avoiding a flash of light mode in case dark mode is used

@@ -46,7 +46,7 @@ if (!image && autoGenerateImage && title) {
 ---
 
 <!doctype html>
-<html lang="en" data-theme="auto" class="smooth-scroll">
+<html lang="en" data-theme="auto">
 	<head>
 		
 		<Head />
@@ -71,6 +71,37 @@ if (!image && autoGenerateImage && title) {
 		<slot />
 		<script>
 			import(/* @vite-ignore */ '@stefanjudis/sparkly-text');
+
+			document.addEventListener('DOMContentLoaded', () => {
+				// Add smooth-scroll class to html element on page load
+				// Instead of adding it directly to the element.
+				// This is because, when navigating between pages using the same layout,
+				// The page is scrolled to the top. With smooth scrolling enabled, this causes a
+				// weird animation.
+				const root = document.getElementsByTagName('html')[0];
+				root.classList.add('smooth-scroll');
+
+				// Send page view event to Plausible
+				// The pageview is registed automatically, but this allows
+				// us to send additional data, such as the theme preference
+				if (window) {
+					// @ts-ignore
+					const { plausible } = window;
+					if (plausible) {
+						if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+							plausible('pageview', { props: { theme_preference: 'Dark' } });
+						} else if (
+							window.matchMedia &&
+							window.matchMedia('(prefers-color-scheme: light)').matches
+						) {
+							plausible('pageview', { props: { theme_preference: 'Light' } });
+						} else {
+							plausible('pageview', { props: { theme_preference: 'None' } });
+						}
+					}
+				}
+			});
+
 		</script>
 	</body>
 </html>
