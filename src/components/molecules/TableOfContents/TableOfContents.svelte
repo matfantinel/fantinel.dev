@@ -2,6 +2,7 @@
   import { onMount } from 'svelte';
   import { fade } from 'svelte/transition';
   import { animatedDetails } from 'svelte-animated-details';
+  import { isInViewport } from '@utils/functions';
 
   let {
     headings,
@@ -15,10 +16,12 @@
     class?: string;
   } = $props();
 
-  let currentHeading = $state<string | undefined>(undefined);
+  let currentHeading = $state<string | undefined>(undefined);  
 
   onMount(() => {
     const items = Array.from(document.querySelectorAll('.m-table-of-contents__item'));
+    const footer = document.querySelector('.o-footer') as HTMLElement;
+    const toc = document.querySelector('.m-table-of-contents') as HTMLElement;
 
     const headingsObserver = new IntersectionObserver(
       (entries) => {
@@ -33,12 +36,12 @@
           }
         });
       }
-    );    
+    );
 
     const tocObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          const isStuck = entry.intersectionRatio < 1 && entry.intersectionRect.top < 10;
+          let isStuck = entry.intersectionRatio < 1 && entry.intersectionRect.top < 10;
           const toc = document.querySelector('.m-table-of-contents');
 
           const previousStatus = toc?.classList.contains('m-table-of-contents--off-screen');
@@ -56,7 +59,21 @@
       }
     );
 
-    const toc = document.querySelector('.m-table-of-contents') as HTMLElement;
+    const footerObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            // If footer is in the viewport, let's remove the off-screen class from toc
+            toc?.classList.remove('m-table-of-contents--off-screen');
+          } else {
+            if (!isInViewport(toc)) {
+              toc?.classList.add('m-table-of-contents--off-screen');
+            }
+          }
+        });
+      }
+    );
+    
     if (toc) {
       // If JS is enabled, remove the off-screen class so we can toggle it intelligently
       toc.classList.remove('m-table-of-contents--off-screen');
@@ -71,11 +88,15 @@
       if (toc) {
         tocObserver.observe(toc);
       }
+      if (footer && toc) {
+        footerObserver.observe(footer);
+      }
     }, 500);
 
     return () => {
       headingsObserver.disconnect();
       tocObserver.disconnect();
+      footerObserver.disconnect();
     };
   });
 </script>
