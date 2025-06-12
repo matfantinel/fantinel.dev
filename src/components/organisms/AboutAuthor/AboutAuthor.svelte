@@ -36,6 +36,7 @@
     'o-about-author',
     isCard ? 'o-about-author--is-card' : '',
     button ? 'o-about-author--has-button' : '',
+    socials ? 'o-about-author--has-socials' : '',
     'u-container',
     className,
   ]}
@@ -151,11 +152,36 @@
     &--has-button {
       .o-about-author {
         &__container {
-          grid-template-columns: 164px 1fr 120px;
+          grid-template-columns: 164px 1fr;
           grid-template-areas:
-            'image name socials'
-            'image bio socials'
-            'image button socials';
+            'image name'
+            'image bio'
+            'image button';
+        }
+      }
+    }
+
+    &--has-socials {
+      .o-about-author {
+        &__container {
+          grid-template-areas:
+            'image name'
+            'image bio'
+            'image socials';
+        }
+      }
+    }
+
+    &--has-button {
+      &.o-about-author--has-socials {
+        .o-about-author {
+          &__container {
+            grid-template-columns: 164px 1fr 120px;
+            grid-template-areas:
+              'image name socials'
+              'image bio socials'
+              'image button socials';
+          }
         }
       }
     }

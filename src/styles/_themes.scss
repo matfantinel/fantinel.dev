@@ -109,6 +109,17 @@
   
   // #region Colors for common elements
 
+  --theme--color-input-empty-border: var(--color--gray-100);
+  --theme--color-input-hover-border: var(--theme--text-base-color);
+  --theme--color-input-filled-border: var(--theme--text-base-color);
+
+  --theme--color-input-empty-background: transparent;
+  --theme--color-input-hover-background: rgba(var(--color--gray-500-rgb), 0.3);
+  --theme--color-input-filled-background: transparent;
+
+  --theme--color-input-placeholder: var(--theme--text-medium-color);
+  --theme--color-input-value: var(--theme--text-base-color);
+
   --theme--color-links: var(--theme--color-accent);
   --theme--color-callouts-info: var(--color--blue);
   --theme--color-callouts-warning: var(--color--yellow);

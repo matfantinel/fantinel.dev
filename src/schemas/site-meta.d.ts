@@ -11,6 +11,7 @@ export type SiteMeta = {
   newsletterCta: {
     heading: string;
     body: string;
+    formUrl: string;
   };
 };
 

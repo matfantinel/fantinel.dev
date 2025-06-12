@@ -100,9 +100,28 @@ if (!image && autoGenerateImage && title) {
 						}
 					}
 				}
+
+				// Add helper class for focus styles
+				if (document?.body) {
+					document.body.addEventListener('keydown', () => {
+						document.body.classList.add('keyboard-in-use');
+					});
+					document.body.addEventListener('mousedown', () => {
+						document.body.classList.remove('keyboard-in-use');
+					});
+				}
 			});
 
 		</script>
+
+		<noscript>
+			<style>
+				*:focus-visible {
+					outline: 2px dashed var(--theme--color-accent);
+					outline-offset: 4px;
+				}
+			</style>
+		</noscript>
 	</body>
 </html>
 

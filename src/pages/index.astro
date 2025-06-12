@@ -4,12 +4,23 @@ import Header from '@components/organisms/Header';
 import BaseLayout from '@layouts/BaseLayout.astro';
 import metaConfig from '@public/cms/meta.yml';
 import type { SiteMeta } from '@schemas/site-meta';
+import AboutAuthor from '@components/organisms/AboutAuthor';
 
 const siteMeta: SiteMeta = metaConfig;
 ---
 
 <BaseLayout>
   <Header client:load />
+  <AboutAuthor
+    kicker='Hi there! I‘m'
+    name={siteMeta.author.name}
+    bio={siteMeta.author.bio}
+    image={siteMeta.author.image}
+    extraImages={siteMeta.author.extraImages}
+    button={{ text: 'About', url: '/about' }}
+    isCard
+    client:load
+  />
   <div class='u-container' style="min-height: calc(100dvh - 164px - 506px);">
     <br />
     <h1>This page is under construction. 🚧</h1>
@@ -17,6 +28,7 @@ const siteMeta: SiteMeta = metaConfig;
     <p class='u-b1'>
       In the meantime, check out the <a href='/blog'>blog</a>!
     </p>
-  </div>
+  </div>  
+
   <Footer socials={siteMeta.author?.socials} client:load />
 </BaseLayout>

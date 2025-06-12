@@ -50,8 +50,8 @@ html {
 
 * {
 	scroll-margin-top: var(--spacing-lg);
-	
-	&:focus-visible {
+
+	.keyboard-in-use &:focus {
 		outline: 2px dashed var(--theme--color-accent);
 		outline-offset: 4px;
 	}

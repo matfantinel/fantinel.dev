@@ -1,19 +1,19 @@
 <script lang="ts">
-  import Button from '@components/atoms/Button';
-  import AuthorAvatar from '@components/molecules/AuthorAvatar';
-  import MarkdownRenderer from '@components/molecules/MarkdownRenderer';
-  import SocialLink from '@components/molecules/SocialLink';
-  import type { SocialLink as SocialLinkType } from '@schemas/site-meta';
   import EmailIcon from '@assets/icons/socials/email.svelte';
+  import Button from '@components/atoms/Button';
+  import Field from '@components/molecules/Field';
+  import MarkdownRenderer from '@components/molecules/MarkdownRenderer';
 
   let {
     heading,
     body,
+    formUrl,
     tag = 'website',
     class: className,
   }: {
     heading: string;
     body: string;
+    formUrl: string;
     tag?: string;
     class?: string;
   } = $props();
@@ -27,16 +27,16 @@
         <MarkdownRenderer content={body} />
       </div>
     </div>
-    <form class="o-newsletter-cta__form" action="https://buttondown.com/api/emails/embed-subscribe/fantinel" method="post" target="popupwindow">
-      <div class="u-field-group">
-        <label for="email">Your Email</label>
-        <input type="email" name="email" required placeholder="you@example.com" />
-        <input type="hidden" name="tag" value={tag} />
-      </div>
+    <form
+      class="o-newsletter-cta__form"
+      action={formUrl}
+      method="post"
+      target="popupwindow"
+    >
+      <Field label="Your Email" type="email" name="email" required placeholder="you@example.com" />
+      <input type="hidden" name="tag" value={tag} />
       {#snippet emailIconSnippet()}<EmailIcon />{/snippet}
-      <Button type="submit" icon={emailIconSnippet} color="complementary">
-        Subscribe
-      </Button>
+      <Button type="submit" icon={emailIconSnippet} color="complementary">Subscribe</Button>
     </form>
   </div>
 </div>
