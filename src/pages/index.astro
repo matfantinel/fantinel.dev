@@ -1,16 +1,13 @@
 ---
-import Footer from '@components/organisms/Footer';
-import Header from '@components/organisms/Header';
+import AboutAuthor from '@components/organisms/AboutAuthor';
 import BaseLayout from '@layouts/BaseLayout.astro';
 import metaConfig from '@public/cms/meta.yml';
 import type { SiteMeta } from '@schemas/site-meta';
-import AboutAuthor from '@components/organisms/AboutAuthor';
 
 const siteMeta: SiteMeta = metaConfig;
 ---
 
 <BaseLayout>
-  <Header client:load />
   <AboutAuthor
     kicker='Hi there! I‘m'
     name={siteMeta.author.name}
@@ -28,7 +25,5 @@ const siteMeta: SiteMeta = metaConfig;
     <p class='u-b1'>
       In the meantime, check out the <a href='/blog'>blog</a>!
     </p>
-  </div>  
-
-  <Footer socials={siteMeta.author?.socials} client:load />
+  </div>
 </BaseLayout>

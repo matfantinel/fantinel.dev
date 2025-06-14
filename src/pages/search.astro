@@ -1,5 +1,6 @@
 ---
 import PagefindSearchResults from "@components/molecules/PagefindSearchResults";
+import BaseLayout from "@layouts/BaseLayout.astro";
 
 export const prerender = false;
 
@@ -7,4 +8,6 @@ const searchParams = new URL(Astro.request.url).searchParams;
 const search = searchParams.get('search');
 ---
 
-<PagefindSearchResults client:load query={search} />
+<BaseLayout title="Search">
+  <PagefindSearchResults client:load query={search} />
+</BaseLayout>

@@ -4,6 +4,8 @@ import dateformat from "dateformat";
 import metaConfig from "@public/cms/meta.yml";
 import type { SiteMeta } from "@schemas/site-meta";
 import Head from "@layouts/Head.astro";
+import Header from "@components/organisms/Header";
+import Footer from "@components/organisms/Footer";
 
 const { 
 	title,
@@ -68,7 +70,12 @@ if (!image && autoGenerateImage && title) {
 	</head>
 	<body>
 		<div class="u-noise"></div>
+
+		<Header client:load />
+
 		<slot />
+
+		<Footer socials={siteMeta.author?.socials} client:load />
 		<script>
 			import(/* @vite-ignore */ '@stefanjudis/sparkly-text');
 

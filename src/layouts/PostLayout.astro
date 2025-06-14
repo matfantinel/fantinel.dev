@@ -1,22 +1,20 @@
 ---
 import Image from '@components/atoms/Image';
-import MarkdownRenderer from '@components/molecules/MarkdownRenderer';
-import PostHero from '@components/organisms/PostHero';
-import type { BlogPost } from '@schemas/blog';
-import { handleCmsMediaPath } from '@utils/functions';
-import BaseLayout from './BaseLayout.astro';
-import Header from '@components/organisms/Header';
-import Footer from '@components/organisms/Footer';
-import TableOfContents from '@components/molecules/TableOfContents';
-import metaConfig from '@public/cms/meta.yml';
-import type { SiteMeta } from '@schemas/site-meta';
-import CoolLinksImage from '@components/molecules/CoolLinksImage';
-import { title } from 'process';
-import AboutAuthor from '@components/organisms/AboutAuthor';
 import BlogPostCard from '@components/molecules/BlogPostCard';
 import BlogPostCards from '@components/molecules/BlogPostCards';
+import CoolLinksImage from '@components/molecules/CoolLinksImage';
+import MarkdownRenderer from '@components/molecules/MarkdownRenderer';
 import SectionHeader from '@components/molecules/SectionHeader';
+import TableOfContents from '@components/molecules/TableOfContents';
+import AboutAuthor from '@components/organisms/AboutAuthor';
 import NewsletterCta from '@components/organisms/NewsletterCta';
+import PostHero from '@components/organisms/PostHero';
+import metaConfig from '@public/cms/meta.yml';
+import type { BlogPost } from '@schemas/blog';
+import type { SiteMeta } from '@schemas/site-meta';
+import { handleCmsMediaPath } from '@utils/functions';
+import { title } from 'process';
+import BaseLayout from './BaseLayout.astro';
 
 interface Props {
   post: {
@@ -59,7 +57,6 @@ const coolLinksImageParams = isCoolLinksImage
   published_date={post.data.date}
   modified_date={post.data.updated}
 >
-  <Header class='l-post__header' client:load />
 
   <main class='l-post'>
     <div class='l-post__container' data-pagefind-body>
@@ -166,8 +163,6 @@ const coolLinksImageParams = isCoolLinksImage
       </div>
     </div>
   </main>
-
-  <Footer socials={siteMeta.author?.socials} client:load />
 </BaseLayout>
 
 <style lang='scss'>
@@ -306,7 +301,7 @@ const coolLinksImageParams = isCoolLinksImage
     }
   }
 
-  :global(.l-post__header) {
+  :global(.o-header) {
     background-color: var(--theme--background-accent-color);
   }
 </style>

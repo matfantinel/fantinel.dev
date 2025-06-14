@@ -1,15 +1,8 @@
 ---
-import Footer from '@components/organisms/Footer';
-import Header from '@components/organisms/Header';
 import BaseLayout from '@layouts/BaseLayout.astro';
-import metaConfig from '@public/cms/meta.yml';
-import type { SiteMeta } from '@schemas/site-meta';
-
-const siteMeta: SiteMeta = metaConfig;
 ---
 
 <BaseLayout>
-  <Header client:load />
   <div class='p-404'>
     <sparkly-text
       class='p-404__void'
@@ -29,7 +22,6 @@ const siteMeta: SiteMeta = metaConfig;
       </div>
     </sparkly-text>
   </div>
-  <Footer socials={siteMeta.author?.socials} client:load />
 </BaseLayout>
 
 <style lang='scss'>

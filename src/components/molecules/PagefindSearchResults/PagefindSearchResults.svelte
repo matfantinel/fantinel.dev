@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { Pagefind, PagefindResult } from '@schemas/global';
+  import type { Pagefind, PagefindResult } from '@schemas/pagefind';
   import { onMount } from 'svelte';
 
   let {

@@ -3,8 +3,6 @@ import BlogPostCard from '@components/molecules/BlogPostCard';
 import BlogPostCards from '@components/molecules/BlogPostCards';
 import Pagination from '@components/molecules/Pagination';
 import BlogArchiveHero from '@components/organisms/BlogArchiveHero';
-import Footer from '@components/organisms/Footer';
-import Header from '@components/organisms/Header';
 import metaConfig from '@public/cms/meta.yml';
 import type { BlogPost, BlogPostCategory } from '@schemas/blog';
 import type { SiteMeta } from '@schemas/site-meta';
@@ -32,7 +30,6 @@ allCategories?.forEach((category) => {
 ---
 
 <BaseLayout title={`${siteMeta.author?.name}'s Blog`} autoGenerateImage>
-  <Header class='l-blog-archive__header' client:load />
 
   <main class='l-blog-archive' style="view-transition-name: blog-archive-hero">
     <div class='l-blog-archive__container'>
@@ -90,8 +87,6 @@ allCategories?.forEach((category) => {
       </div>
     </div>
   </main>
-
-  <Footer socials={siteMeta.author?.socials} client:load />
 </BaseLayout>
 
 <style lang='scss'>
@@ -128,7 +123,7 @@ allCategories?.forEach((category) => {
     }
   }
 
-  :global(.l-blog-archive__header) {
+  :global(.o-header) {
     background-color: var(--theme--background-accent-color);
   }
 </style>
