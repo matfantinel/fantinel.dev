@@ -11,6 +11,7 @@
   } = $props();
 
   let results = $state<PagefindResult[]>([]);
+  let isLoading = $state<boolean>(true);
 
   onMount(async () => {
     if (!query) return;
@@ -22,11 +23,15 @@
 
     const search = await pagefind.search(query);
     results = await Promise.all(search.results.map(async (result) => await result.data()));
+    isLoading = false;
     console.log({results});
   });
 </script>
 
-<h1>(WIP)</h1>
+{#if isLoading}
+  <p>Loading...</p>
+{/if}
+
 {#if !query}
   <p>No valid query provided</p>
 {/if}
@@ -37,7 +42,9 @@
   <ul>
     {#each results as result}
       <li>
-        <a href={result.url}>{result.excerpt}</a>
+        <p>{result.meta.title}</p>
+        <p>{@html result.excerpt}</p>
+        <p><a href={result.url}>View</a></p>
       </li>
     {/each}
   </ul>

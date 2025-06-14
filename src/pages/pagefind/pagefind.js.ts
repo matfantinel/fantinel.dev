@@ -15,25 +15,31 @@ export async function GET({ }: APIContext) {
         {
           id: '1',
           data: () => Promise.resolve({
-            title: 'Result 1',
+            meta: {
+              title: 'Result 1',
+            },
             url: '/result-1',
-            excerpt: 'Do ut officia reprehenderit. Aute aliquip qui sit qui pariatur est fugiat velit tempor labore laboris aute. Nisi labore adipisicing adipisicing esse enim. Ipsum consequat laborum cupidatat aliqua cupidatat cupidatat elit incididunt minim tempor do dolor. Excepteur tempor magna deserunt proident incididunt laborum.',
+            excerpt: 'Do ut officia reprehenderit. Aute aliquip <mark>test</mark> qui sit qui pariatur est fugiat velit tempor labore laboris aute. Nisi labore adipisicing adipisicing esse enim. Ipsum consequat laborum cupidatat aliqua cupidatat cupidatat elit incididunt minim tempor do dolor. Excepteur tempor magna deserunt proident incididunt laborum.',
           })
         },
         {
           id: '2',
           data: () => Promise.resolve({
-            title: 'Result 2',
+            meta: {
+              title: 'Result 2',
+            },
             url: '/result-2',
-            excerpt: 'Cillum fugiat excepteur non est minim qui sit est officia excepteur ipsum.',
+            excerpt: 'Cillum <mark>test</mark> fugiat excepteur non est minim qui sit est officia excepteur ipsum.',
           })
         },
         {
           id: '3',
           data: () => Promise.resolve({
-            title: 'Result 3',
+            meta: {
+              title: 'Result 3',
+            },
             url: '/result-3',
-            excerpt: 'Do ut officia reprehenderit. Aute aliquip qui sit qui pariatur est fugiat velit tempor labore laboris aute. Nisi labore adipisicing adipisicing esse enim. Ipsum consequat laborum cupidatat aliqua cupidatat cupidatat elit incididunt minim tempor do dolor.',
+            excerpt: 'Do ut officia reprehenderit. Aute <mark>test</mark> aliquip qui sit qui pariatur est fugiat velit tempor labore laboris aute. Nisi labore adipisicing adipisicing esse enim. Ipsum consequat laborum cupidatat aliqua cupidatat cupidatat elit incididunt minim tempor do dolor.',
           })
         }
       ]

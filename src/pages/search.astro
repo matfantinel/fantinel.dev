@@ -1,5 +1,6 @@
 ---
 import PagefindSearchResults from "@components/molecules/PagefindSearchResults";
+import SimpleHero from "@components/organisms/SimpleHero";
 import BaseLayout from "@layouts/BaseLayout.astro";
 
 export const prerender = false;
@@ -9,5 +10,9 @@ const search = searchParams.get('search');
 ---
 
 <BaseLayout title="Search">
-  <PagefindSearchResults client:load query={search} />
+  <SimpleHero title={`Searching for "${search}"`} />
+
+  <div class="u-container">
+    <PagefindSearchResults client:load query={search} />
+  </div>
 </BaseLayout>
