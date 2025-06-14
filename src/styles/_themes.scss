@@ -148,6 +148,8 @@
 
   --theme--color-inner-text-shadow: var(--color--gray-400);
   --theme--color-inner-text-shadow-rgb: var(--color--gray-400-rgb);
+  --theme--color-inner-text-shadow-light: var(--color--gray-500);
+  --theme--color-inner-text-shadow-light-rgb: var(--color--gray-500-rgb);
 
   --theme--glowing-text-animation: text-glow 3.5s cubic-bezier(0.66, 0, 0.34, 1) infinite alternate;
 
@@ -210,7 +212,6 @@
   --background-noise-opacity: 1;
 
   --theme--text-inverse-color: var(--color--gray-1100);
-  --theme--text-medium-color: var(--color--gray-700);
 
   --theme--background-accent-color: var(--color--gray-1100);
   --theme--background-card-color: var(--color--gray-1100);
@@ -243,6 +244,8 @@
 
   --theme--color-inner-text-shadow: var(--color--gray-400);
   --theme--color-inner-text-shadow-rgb: var(--color--gray-400-rgb);
+  --theme--color-inner-text-shadow-light: var(--color--gray-700);
+  --theme--color-inner-text-shadow-light-rgb: var(--color--gray-700-rgb);
 
   --theme--glowing-text-animation: unset;
 }

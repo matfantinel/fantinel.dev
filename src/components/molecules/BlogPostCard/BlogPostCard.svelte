@@ -123,9 +123,9 @@
       font-weight: 700;
       color: transparent;
       text-shadow:
-        0px 4px 4px var(--theme--text-medium-color),
+        0px 4px 4px var(--theme--color-inner-text-shadow-light),
         0 0 18px var(--theme--color-inner-text-shadow),
-        0px 4px 4px var(--theme--text-medium-color);
+        0px 4px 4px var(--theme--color-inner-text-shadow-light);
     }
 
     :global(.m-blog-post-card__image) {
