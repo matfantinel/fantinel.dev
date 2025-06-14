@@ -1,10 +1,11 @@
 <script lang="ts">
   import IconLink from "@components/atoms/IconLink/IconLink.svelte";
   import type { Snippet } from "svelte";
-  import PagefindSearch from "../PagefindSearchField";
+  import PagefindSearchField from "../PagefindSearchField";
 
   let {
     links,
+    currentSearch,
     class: className,
   }: {
     links: {
@@ -13,6 +14,7 @@
       icon?: Snippet;
       title?: string;
     }[];
+    currentSearch?: string;
     class?: string;
   } = $props();
 
@@ -66,7 +68,7 @@
 
     <ul id="menu" class="m-hamburger-menu__list" class:m-hamburger-menu__list--closing={menuIsClosing}>
       <li class="m-hamburger-menu__item m-hamburger-menu__search">
-        <PagefindSearch class="m-hamburger-menu__search-field" expandable />
+        <PagefindSearchField class="m-hamburger-menu__search-field" expandable={!currentSearch} value={currentSearch} />
       </li>
 
       {#each links as link}

@@ -6,9 +6,11 @@
 
   let {
     color = 'default',
+    currentSearch,
     class: className,
   }: {
     color?: 'default' | 'inverted';
+    currentSearch?: string;
     class?: string;
   } = $props();
 </script>
@@ -33,6 +35,7 @@
           { label: 'About', href: '/about' },
           { label: 'RSS', href: '/rss.xml', icon: rssIconSnippet, title: 'Subscribe to my RSS Feed' },
         ]}
+        {currentSearch}
       />
 
       <ThemeToggle class="o-header__theme-toggle" />

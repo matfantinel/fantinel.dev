@@ -17,13 +17,6 @@
   } = $props();
 
   let classList = ['m-pagefind-search-field', expandable ? 'm-pagefind-search-field--expandable' : '', className];
-
-  onMount(() => {
-    if (!value) {
-      let searchParams = new URL(window.location.href).searchParams;
-      value = searchParams.get('search') ?? '';
-    }
-  });
 </script>
 
 <!-- Hide if JavaScript is disabled -->
@@ -53,6 +46,7 @@
   @use '/src/styles/breakpoints';
 
   .m-pagefind-search-field {
+    width: 180px;
     @include breakpoints.for-tablet-portrait-up {
       &--expandable {
         width: 54px;

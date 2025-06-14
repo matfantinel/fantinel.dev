@@ -45,6 +45,9 @@ if (!image && autoGenerateImage && title) {
 	pageImage = siteMeta.image;
 }
 
+const searchParams = new URL(Astro.request.url).searchParams;
+const currentSearch = searchParams.get('search');
+
 ---
 
 <!doctype html>
@@ -71,7 +74,7 @@ if (!image && autoGenerateImage && title) {
 	<body>
 		<div class="u-noise"></div>
 
-		<Header client:load />
+		<Header client:load {currentSearch} />
 
 		<slot />
 
