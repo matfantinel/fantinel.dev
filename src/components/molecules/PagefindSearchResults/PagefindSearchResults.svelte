@@ -42,7 +42,7 @@
   <ul>
     {#each results as result}
       <li>
-        <p>{result.meta.title}</p>
+        <p><strong>{result.meta.title}</strong></p>
         <p>{@html result.excerpt}</p>
         <p><a href={result.url}>View</a></p>
       </li>

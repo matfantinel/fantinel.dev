@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { onMount } from 'svelte';
   import Field from '../Field/Field.svelte';
 
   let {
@@ -16,6 +17,13 @@
   } = $props();
 
   let classList = ['m-pagefind-search-field', expandable ? 'm-pagefind-search-field--expandable' : '', className];
+
+  onMount(() => {
+    if (!value) {
+      let searchParams = new URL(window.location.href).searchParams;
+      value = searchParams.get('search') ?? '';
+    }
+  });
 </script>
 
 <!-- Hide if JavaScript is disabled -->
