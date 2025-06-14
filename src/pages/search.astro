@@ -1,0 +1,10 @@
+---
+import PagefindSearchResults from "@components/molecules/PagefindSearchResults";
+
+export const prerender = false;
+
+const searchParams = new URL(Astro.request.url).searchParams;
+const search = searchParams.get('search');
+---
+
+<PagefindSearchResults client:load query={search} />

@@ -1,6 +1,7 @@
 <script lang="ts">
   import IconLink from "@components/atoms/IconLink/IconLink.svelte";
   import type { Snippet } from "svelte";
+  import PagefindSearch from "../PagefindSearchField";
 
   let {
     links,
@@ -64,6 +65,10 @@
     </label>
 
     <ul id="menu" class="m-hamburger-menu__list" class:m-hamburger-menu__list--closing={menuIsClosing}>
+      <li class="m-hamburger-menu__item m-hamburger-menu__search">
+        <PagefindSearch class="m-hamburger-menu__search-field" expandable />
+      </li>
+
       {#each links as link}
         <li class="m-hamburger-menu__item">
           {#if link.icon}
@@ -72,7 +77,7 @@
             <a href={link.href} class="m-hamburger-menu__link" onclick={handleMenuItemClick}>{link.label}</a>
           {/if}
         </li>
-      {/each}
+      {/each}      
     </ul>
   </div>
 </nav>
@@ -170,6 +175,10 @@
       }
     }
 
+    &__search {
+      order: 9;
+    }
+
     &__checkbox {
       display: block;
       width: 60px;
@@ -264,9 +273,14 @@
       }
 
       &__item {
+        order: 2;
         a.m-hamburger-menu__link {
           font-size: 1.125rem; //18px
         }
+      }
+
+      &__search {
+        order: 1;
       }
     }
   }

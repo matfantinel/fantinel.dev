@@ -103,7 +103,11 @@ if (!image && autoGenerateImage && title) {
 
 				// Add helper class for focus styles
 				if (document?.body) {
-					document.body.addEventListener('keydown', () => {
+					document.body.addEventListener('keydown', (e) => {
+						const ignore = ['input', 'textarea', 'select'];
+						if (ignore.includes((e.target as HTMLElement)?.tagName?.toLowerCase())) {
+							return;
+						}
 						document.body.classList.add('keyboard-in-use');
 					});
 					document.body.addEventListener('mousedown', () => {

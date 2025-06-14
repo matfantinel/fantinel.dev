@@ -62,7 +62,7 @@ const coolLinksImageParams = isCoolLinksImage
   <Header class='l-post__header' client:load />
 
   <main class='l-post'>
-    <div class='l-post__container'>
+    <div class='l-post__container' data-pagefind-body>
       <PostHero
         class='l-post__hero'
         title={post.data.title}
@@ -80,7 +80,7 @@ const coolLinksImageParams = isCoolLinksImage
           'l-post__content-wrapper',
           showToc ? 'l-post__content-wrapper--has-toc u-container' : 'u-container-small',
           post.data.coverImage ? 'l-post__content-wrapper--has-image' : '',
-        ].join(' ')}
+        ].join(' ')}        
       >
         {showToc && <TableOfContents class='l-post__toc' headings={post.data.toc} client:load />}
 
@@ -110,7 +110,7 @@ const coolLinksImageParams = isCoolLinksImage
         </div>
       </div>
 
-      <div class='l-post__after-content'>
+      <div class='l-post__after-content' data-pagefind-ignore>
         {
           post.data.author && (
             <AboutAuthor
@@ -126,10 +126,11 @@ const coolLinksImageParams = isCoolLinksImage
           )
         }
 
-        {siteMeta.newsletterCta && (
+        {siteMeta.newsletterCta && siteMeta.newsletterCta.formUrl && (
           <NewsletterCta
             heading={siteMeta.newsletterCta.heading}
             body={siteMeta.newsletterCta.body}
+            formUrl={siteMeta.newsletterCta.formUrl}
             tag="cta-after-post-content"
           />
         )}

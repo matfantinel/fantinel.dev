@@ -1,8 +1,8 @@
 <script lang="ts">
   import Logo from '@assets/brand/Logo.svelte';
+  import Rss from '@assets/icons/rss.svelte';
   import HamburgerMenu from '@components/molecules/HamburgerMenu';
   import ThemeToggle from '@components/molecules/ThemeToggle';
-  import Rss from '@assets/icons/rss.svelte';
 
   let {
     color = 'default',
@@ -77,7 +77,7 @@
     }
 
     :global(.o-header__hamburger-menu) {
-      order: 2;
+      order: 3;
     }
 
     :global(.o-header__theme-toggle) {
@@ -87,11 +87,11 @@
 
     @include breakpoints.for-tablet-portrait-up {
       :global(.o-header__hamburger-menu) {
-        order: 1;
+        order: 2;
       }
 
       :global(.o-header__theme-toggle) {
-        order: 2;
+        order: 3;
       }
     }
 
