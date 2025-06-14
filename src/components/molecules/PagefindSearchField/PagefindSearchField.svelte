@@ -43,7 +43,7 @@
 
 <style lang="scss">
   @use '/src/styles/breakpoints';
-  
+
   .m-pagefind-search-field {
     @include breakpoints.for-tablet-portrait-up {
       &--expandable {
@@ -58,8 +58,10 @@
           }
         }
 
-        :global(.m-field__input) {
-          padding-inline: var(--spacing-md);
+        &:not(:focus-within) {
+          :global(.m-field__input) {
+            padding-left: var(--spacing-md);
+          }
         }
       }
     }

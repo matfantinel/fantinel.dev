@@ -4,9 +4,7 @@
 // And will take preference over this file.
 // Source: https://blog.otterlord.dev/posts/astro-search/
 
-import type { APIContext } from "astro"
-import type { Pagefind, PagefindResult, PagefindResultFragment } from '@schemas/global';
-import { LoremIpsum } from "@utils/lorem-ipsum";
+import type { APIContext } from "astro";
 
 export async function GET({ }: APIContext) {
   // You can add here any test result data you want.  
