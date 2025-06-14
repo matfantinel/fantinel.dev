@@ -22,6 +22,7 @@
 
     const search = await pagefind.search(query);
     results = await Promise.all(search.results.map(async (result) => await result.data()));
+    console.log({results});
   });
 </script>
 
