@@ -3,6 +3,8 @@ import PagefindSearchResults from "@components/organisms/PagefindSearchResults";
 import SimpleHero from "@components/organisms/SimpleHero";
 import BaseLayout from "@layouts/BaseLayout.astro";
 
+export const prerender = false
+
 const searchParams = new URL(Astro.request.url).searchParams;
 const search = searchParams.get('search');
 ---
