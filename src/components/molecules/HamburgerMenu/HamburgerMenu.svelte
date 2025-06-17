@@ -179,6 +179,7 @@
 
     &__search {
       order: 9;
+      margin-inline: calc(var(--spacing-sm) * -1);
     }
 
     &__checkbox {
@@ -275,15 +276,15 @@
       }
 
       &__item {
-        order: 2;
+        // order: 2;
         a.m-hamburger-menu__link {
           font-size: 1.125rem; //18px
         }
       }
 
-      &__search {
-        order: 1;
-      }
+      // &__search {
+      //   order: 1;
+      // }
     }
   }
 </style>

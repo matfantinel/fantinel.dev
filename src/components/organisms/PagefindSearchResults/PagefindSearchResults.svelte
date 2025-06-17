@@ -28,14 +28,16 @@
       pagefind = await import(/* @vite-ignore */ `${origin}/pagefind/pagefind.js`);
     }
 
-    await pagefind.options({
-      ranking: {
-        // https://pagefind.app/docs/ranking
-        termFrequency: 0.0,
-        termSimilarity: 0.0,
-        termSaturation: 0.0
-      }
-    });
+    if (pagefind.options) {
+      await pagefind.options({
+        ranking: {
+          // https://pagefind.app/docs/ranking
+          termFrequency: 0.0,
+          termSimilarity: 0.0,
+          termSaturation: 0.0
+        }
+      });
+    }
 
     // By default, Pagefind looks for similar words
     // e.g. searching for "useful" would return "use" and "using"
