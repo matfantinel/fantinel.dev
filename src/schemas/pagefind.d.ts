@@ -1,6 +1,7 @@
 // #region Pagefind
 export interface Pagefind {
   search: (query: string) => Promise<PagefindResponse>;
+  options: (options: any) => void;
 };
 
 // The interface representing pagefind response after searching
@@ -27,6 +28,11 @@ export interface PagefindResult {
   };
   content: string;
   word_count: number;
+  sub_results: {
+    excerpt: string;
+    title: string;
+    url: string;
+  }[];
 };
 
 // #endregion

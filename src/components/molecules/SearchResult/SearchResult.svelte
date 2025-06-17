@@ -1,20 +1,20 @@
 <script lang="ts">
-  import Image from '@components/atoms/Image';
-  import Tags from '@components/molecules/Tags';
-  import Tag from '@components/atoms/Tag';
   import ArrowLink from '@components/atoms/ArrowLink';
-  import CoolLinksImage from '@components/molecules/CoolLinksImage';
 
   let {
     title,
     excerpt,
     url,
+    subResults,
     class: className,
   }: {
     title: string;
     url: string;
     readingTime?: string;
     excerpt?: string;
+    subResults?: {
+      excerpt: string;
+    }[];
     class?: string;
   } = $props();
 </script>
@@ -24,8 +24,12 @@
     <p class="m-search-result__title">
       {title}
     </p>
-    {#if excerpt}
-      <p class="m-search-result__excerpt">{@html excerpt}</p>
+    {#if subResults && subResults.length}
+      {#each subResults.slice(0, 3) as subResult}
+        <p class="m-search-result__excerpt">“(...) {@html subResult.excerpt} (...)”</p>
+      {/each}
+    {:else if excerpt}
+      <p class="m-search-result__excerpt">“(...) {@html excerpt} (...)”</p>
     {/if}
   </div>
   <div class="m-search-result__footer">
@@ -63,13 +67,7 @@
 
     &__excerpt {
       @include typography.b2;
-      text-align: justify;
-
-      text-overflow: ellipsis;
-      overflow: hidden;
-      display: -webkit-box;
-      -webkit-line-clamp: 4;
-      -webkit-box-orient: vertical;
+      font-style: italic;
     }
 
     &__footer {
