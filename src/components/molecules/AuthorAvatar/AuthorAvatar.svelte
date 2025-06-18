@@ -43,7 +43,7 @@
       {alt} 
       height={size} 
       width={size} 
-      in:fly={{ delay:800, duration: 500, y: parseInt(size), opacity: 1 }}
+      in:fly={{ delay:700, duration: 500, y: parseInt(size), opacity: 1 }}
       out:fly={{ duration: 500, y: parseInt(size), opacity: 1 }}
     />
   {/key}
@@ -88,7 +88,7 @@
       &:before {
         animation-play-state: running;
       }
-    }
+    }    
 
     &:hover,
     &:active,
@@ -103,9 +103,15 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
+      will-change: transform;
+      transition: transform .2s ease-in-out;
 
       &--extra {
         display: none;
+      }
+
+      &:hover {
+        transform: scale(1.1) rotate(5deg);
       }
     }
 

@@ -146,6 +146,13 @@
   --theme--color-footer--wave-3: var(--color--gray-500);
   --theme--color-footer--wave-4: var(--color--gray-600);
 
+  .o-home-page-hero {
+    --theme--color-footer--wave-1: var(--color--gray-300);
+    --theme--color-footer--wave-2: var(--color--gray-400);
+    --theme--color-footer--wave-3: var(--color--gray-500);
+    --theme--color-footer--wave-4: var(--color--gray-600);
+  }
+
   --theme--color-inner-text-shadow: var(--color--gray-400);
   --theme--color-inner-text-shadow-rgb: var(--color--gray-400-rgb);
   --theme--color-inner-text-shadow-light: var(--color--gray-500);
@@ -241,6 +248,13 @@
   --theme--color-footer--wave-2: rgba(var(--color--teal-rgb), 0.4);
   --theme--color-footer--wave-3: rgba(var(--color--teal-rgb), 0.5);
   --theme--color-footer--wave-4: var(--color--gray-1100);
+
+  .o-home-page-hero {
+    --theme--color-footer--wave-1: rgba(var(--color--gray-700-rgb), 0.3);
+    --theme--color-footer--wave-2: rgba(var(--color--gray-700-rgb), 0.4);
+    --theme--color-footer--wave-3: rgba(var(--color--gray-700-rgb), 0.5);
+    --theme--color-footer--wave-4: var(--color--gray-1100);
+  }
 
   --theme--color-inner-text-shadow: var(--color--gray-400);
   --theme--color-inner-text-shadow-rgb: var(--color--gray-400-rgb);

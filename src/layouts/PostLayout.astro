@@ -1,14 +1,12 @@
 ---
 import Image from '@components/atoms/Image';
-import BlogPostCard from '@components/molecules/BlogPostCard';
-import BlogPostCards from '@components/molecules/BlogPostCards';
 import CoolLinksImage from '@components/molecules/CoolLinksImage';
 import MarkdownRenderer from '@components/molecules/MarkdownRenderer';
-import SectionHeader from '@components/molecules/SectionHeader';
 import TableOfContents from '@components/molecules/TableOfContents';
 import AboutAuthor from '@components/organisms/AboutAuthor';
 import NewsletterCta from '@components/organisms/NewsletterCta';
 import PostHero from '@components/organisms/PostHero';
+import PostsSection from '@components/organisms/PostsSection';
 import metaConfig from '@public/cms/meta.yml';
 import type { BlogPost } from '@schemas/blog';
 import type { SiteMeta } from '@schemas/site-meta';
@@ -134,30 +132,14 @@ const coolLinksImageParams = isCoolLinksImage
 
         {
           post.data.relatedPosts && (
-            <div class='l-post__related-posts'>
-              <SectionHeader 
-                title="You might also like"
-                button={{
-                  text: 'View all',
-                  url: '/blog'
-                }} 
-              />
-              <BlogPostCards class='l-post__related-posts-grid' maxPerRow={2}>
-                {post.data.relatedPosts.map((relatedPost) => (
-                  <BlogPostCard
-                    title={relatedPost.title}
-                    slug={relatedPost.slug}
-                    url={`/blog/${relatedPost.slug}`}
-                    image={relatedPost.coverImage}
-                    imageAlt={relatedPost.coverImageAlt}
-                    readingTime={relatedPost.readingTime}
-                    excerpt={relatedPost.excerpt}
-                    tags={relatedPost.categories?.slice(0, 1)}
-                    hideImage
-                  />
-                ))}
-              </BlogPostCards>
-            </div>
+            <PostsSection
+              title="You might also like"
+              button={{
+                text: 'View blog',
+                url: '/blog'
+              }}
+              posts={post.data.relatedPosts}
+            />
           )
         }
       </div>
@@ -291,13 +273,6 @@ const coolLinksImageParams = isCoolLinksImage
         margin-top: var(--spacing-xl);
         gap: var(--spacing-xl);
       }
-    }
-
-    &__related-posts {
-      @include mixins.padded-container;
-      display: flex;
-      flex-direction: column;
-      gap: var(--spacing-xl);
     }
   }
 

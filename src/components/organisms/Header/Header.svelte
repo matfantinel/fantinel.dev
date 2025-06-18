@@ -50,6 +50,7 @@
     color: var(--theme--text-base-color);
     position: relative;
     z-index: 9;
+    height: var(--header-height);
 
     &__container {
       display: flex;

@@ -95,6 +95,11 @@ export async function getPaginatedPosts(page: number, category?: string, options
   };
 }
 
+export async function getRecentPosts(limit: number = 4): Promise<BlogPost[]> {
+  const { posts } = await getPaginatedPosts(1, undefined, { postsPerPage: limit });
+  return posts;
+}
+
 export async function getAllCategories(): Promise<BlogPostCategory[]> {
   const posts = await getCollection("blog");
   const sanitizedPosts = posts.map((post) => sanitizePostData(post.data as unknown as BlogPost, post.body, post.rendered));

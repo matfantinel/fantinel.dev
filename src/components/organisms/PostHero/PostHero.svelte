@@ -26,7 +26,7 @@
   } = $props();
 </script>
 
-<div class={['o-post-hero', className]} style={slug ? `view-transition-name: post-card-${slug}` : undefined}>
+<div class={['o-post-hero', className]}>
   <div class="o-post-hero__container u-container-small">
     <h1 class="o-post-hero__title">
       {title}

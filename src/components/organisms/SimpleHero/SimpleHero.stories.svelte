@@ -17,7 +17,7 @@
 </script>
 
 {#snippet template(args)}
-  <PostHero title={args.title ?? LoremIpsum.sentence} {...args} />
+  <SimpleHero title={args.title ?? LoremIpsum.sentence} {...args} />
 {/snippet}
 
 <Story 

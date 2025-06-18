@@ -30,6 +30,11 @@ body {
 	&:has(.m-hamburger-menu__checkbox:checked) {
 		overflow: hidden;
 	}
+
+	--header-height: 144px;
+	@include breakpoints.for-phone-only {
+		--header-height: 112px;
+	}
 }
 
 html {

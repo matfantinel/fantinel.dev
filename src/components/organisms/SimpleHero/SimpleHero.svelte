@@ -2,12 +2,10 @@
   let {
     title,
     body,
-    isCard,
     class: className,
   }: {
     title: string;
     body?: string;
-    isCard?: boolean;
     class?: string;
   } = $props();
 </script>
