@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { onMount } from 'svelte';
   import Field from '../Field/Field.svelte';
   import ChevronRight from '@assets/icons/chevron-right.svelte';
 
@@ -16,7 +17,12 @@
     [key: string]: any;
   } = $props();
 
-  let classList = ['m-pagefind-search-field', expandable ? 'm-pagefind-search-field--expandable' : '', className];
+  let isExpandable = $state(expandable && !value);
+  let classList = ['m-pagefind-search-field', className];
+
+  $effect(() => {
+    isExpandable = expandable && !value;
+  });
 </script>
 
 <!-- Hide if JavaScript is disabled -->
@@ -28,10 +34,10 @@
   </style>
 </noscript>
 
-<form class={classList} action="/search" method="get">
+<form class={classList} class:m-pagefind-search-field--expandable={isExpandable} action="/search" method="get">
   <Field
     id="pagefind-search"
-    {value}
+    bind:value={value}
     placeholder="Search"
     required
     type="search"
@@ -52,6 +58,8 @@
 
   .m-pagefind-search-field {
     width: 220px;
+    position: relative;
+
     @include breakpoints.for-tablet-portrait-up {
       &--expandable {
         width: 54px;
@@ -96,7 +104,7 @@
       
       position: absolute;
       top: 50%;
-      right: -10px;
+      right: 5px;
       translate: 0 -50%;
 
       display: flex;

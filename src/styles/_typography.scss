@@ -1,8 +1,23 @@
 @use '@fontsource-variable/mona-sans';
 @use '@fontsource/atkinson-hyperlegible-next';
 
-@import '@fontsource/monaspace-krypton/500.css';
-@import '@fontsource/monaspace-krypton/800.css';
+// @import '@fontsource/monaspace-krypton/500.css';
+// @import '@fontsource/monaspace-krypton/800.css';
+
+@font-face {
+  font-family: 'Monaspace Krypton';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 500;
+  src: url('/fonts/monaspace-krypton/monaspace-krypton-latin-500-normal.woff2') format('woff2'), url('/fonts/monaspace-krypton/monaspace-krypton-latin-500-normal.woff') format('woff');
+}
+@font-face {
+  font-family: 'Monaspace Krypton';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 800;
+  src: url('/fonts/monaspace-krypton/monaspace-krypton-latin-800-normal.woff2') format('woff2'), url('/fonts/monaspace-krypton/monaspace-krypton-latin-800-normal.woff') format('woff');
+}
 
 :root {
   --font--default: 'Mona Sans Variable', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";

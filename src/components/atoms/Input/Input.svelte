@@ -1,6 +1,6 @@
 <script lang="ts">
   let {
-    value,
+    value = $bindable(),
     placeholder,
     required,
     type,
@@ -20,7 +20,7 @@
 
 <input
   class={classList}
-  value={value}
+  bind:value={value}
   placeholder={placeholder ?? ''}
   required={required}
   type={type}

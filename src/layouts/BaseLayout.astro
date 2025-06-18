@@ -54,7 +54,7 @@ const currentSearch = searchParams.get('search');
 <html lang="en" data-theme="auto">
 	<head>
 		
-		<Head />
+		<Head />		
 		
 		<title>{pageTitle}</title>
 		<meta property="og:title" content={pageTitle} />
@@ -69,16 +69,18 @@ const currentSearch = searchParams.get('search');
 
 		<meta property="og:image" content={pageImage} />
 
-		<link rel="canonical" href={`${siteMeta.baseUrl}/${slug}`} />
+		<link rel="canonical" href={`${siteMeta.baseUrl}/${slug}`} />		
 	</head>
 	<body>
 		<div class="u-noise"></div>
 
-		<Header client:load {currentSearch} />
+		<Header client:load {currentSearch} transition:persist />
 
-		<slot />
+		<main>
+			<slot />
+		</main>
 
-		<Footer socials={siteMeta.author?.socials} client:load />
+		<Footer socials={siteMeta.author?.socials} client:load transition:persist />
 		<script>
 			import(/* @vite-ignore */ '@stefanjudis/sparkly-text');
 

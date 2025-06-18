@@ -68,7 +68,7 @@
 
     <ul id="menu" class="m-hamburger-menu__list" class:m-hamburger-menu__list--closing={menuIsClosing}>
       <li class="m-hamburger-menu__item m-hamburger-menu__search">
-        <PagefindSearchField class="m-hamburger-menu__search-field" expandable={!currentSearch} value={currentSearch} />
+        <PagefindSearchField class="m-hamburger-menu__search-field" expandable value={currentSearch} />
       </li>
 
       {#each links as link}

@@ -5,7 +5,7 @@
   let {
     id,
     label,
-    value,
+    value = $bindable(),
     placeholder,
     required,
     type,
@@ -41,7 +41,7 @@
     <Input
       id={inputId}
       class="m-field__input"
-      {value}
+      bind:value={value}
       placeholder={placeholder ?? ''}
       {required}
       {type}

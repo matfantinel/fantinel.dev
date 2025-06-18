@@ -1,4 +1,5 @@
 ---
+import { ClientRouter } from "astro:transitions";
 import metaConfig from "@public/cms/meta.yml";
 import type { SiteMeta } from "@schemas/site-meta";
 const siteMeta: SiteMeta = metaConfig;
@@ -43,9 +44,17 @@ data-domain="fantinel.dev"
 is:inline
 ></script>}
 
-<script>
-  // Calling this here so that it loads as quickly as possible
-  // Avoiding a flash of light mode in case dark mode is used
-  const theme = localStorage.getItem('theme-preference') || 'auto';
-  document.firstElementChild?.setAttribute('data-theme', theme);
+<script is:inline>
+  function setTheme(document) {
+    const theme = localStorage.getItem('theme-preference') || 'auto';
+    document.firstElementChild?.setAttribute('data-theme', theme);
+  }
+  setTheme(document);
+
+  // https://docs.astro.build/en/guides/view-transitions/#astrobefore-swap
+  document.addEventListener('astro:before-swap', (event) => {
+    setTheme(event.newDocument);
+  });
 </script>
+
+<ClientRouter />

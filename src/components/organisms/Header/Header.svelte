@@ -20,7 +20,6 @@
 <header
   class={['o-header', className]}
   class:o-header--inverted={color === 'inverted'}
-  style="view-transition-name: header"
 >
   <div class="o-header__container u-container">
     <a href="/" aria-label="Home" class="o-header__logo">
