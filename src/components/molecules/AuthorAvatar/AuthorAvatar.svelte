@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { handleCmsMediaPath } from '@utils/functions';
   import { fly } from 'svelte/transition';
 
   let {
@@ -20,7 +21,7 @@
   } = $props();
 
   let tag = $derived(extraImages ? 'button' : 'div');
-  let images = $derived(extraImages ? [src, ...extraImages] : [src]);
+  let images = $derived(extraImages ? [handleCmsMediaPath(src), ...extraImages.map(handleCmsMediaPath)] : [handleCmsMediaPath(src)]);
   let currentImage = $state(0);
 
   function onclick() {
