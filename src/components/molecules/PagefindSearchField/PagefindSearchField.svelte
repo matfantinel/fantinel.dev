@@ -19,11 +19,18 @@
   } = $props();
 
   let isExpandable = $state(expandable && !value);
+  let hasValue = $state(value);
   let classList = ['m-pagefind-search-field', className];
 
   $effect(() => {
     isExpandable = expandable && !value;
+    hasValue = value;
   });
+
+  const handleReset = () => {
+    value = '';
+    console.log(value);
+  };
 </script>
 
 <!-- Hide if JavaScript is disabled -->
@@ -35,10 +42,18 @@
   </style>
 </noscript>
 
-<form class={classList} class:m-pagefind-search-field--expandable={isExpandable} action="/search" method="get" onsubmit={onsubmit}>
+<form
+  class={classList}
+  class:m-pagefind-search-field--expandable={isExpandable}
+  class:m-pagefind-search-field--has-value={hasValue}
+  action="/search"
+  method="get"
+  {onsubmit}
+  {...props}
+>
   <Field
     id="pagefind-search"
-    bind:value={value}
+    bind:value
     placeholder="Search"
     required
     type="search"
@@ -51,6 +66,13 @@
   <button class="m-pagefind-search-field__submit" type="submit" aria-label="Submit search">
     Go<ChevronRight size="16px" />
   </button>
+  <input
+    class="m-pagefind-search-field__clear"
+    type="reset"
+    value="Clear"
+    aria-label="Clear search"
+    onclick={handleReset}
+  />
 </form>
 
 <style lang="scss">
@@ -58,7 +80,7 @@
   @use '/src/styles/typography';
 
   .m-pagefind-search-field {
-    width: 220px;
+    width: 280px;
     position: relative;
 
     @include breakpoints.for-tablet-portrait-up {
@@ -67,15 +89,11 @@
         transition: all 0.2s cubic-bezier(0.3, 0.8, 0.4, 1);
 
         &:focus-within {
-          width: 220px;
+          width: 280px;
 
           :global(.m-field__input) {
             padding-left: var(--spacing-xl);
             padding-right: var(--spacing-xl);
-          }
-
-          .m-pagefind-search-field__submit {
-            display: flex;
           }
         }
 
@@ -94,15 +112,27 @@
     }
 
     :global(.m-field__input) {
-      padding-right: var(--spacing-xl);
+      padding-right: 100px;
+
+      -webkit-appearance: none;
+      appearance: none;
+
+      /* clears the 'X' from Chrome */
+      &::-webkit-search-decoration,
+      &::-webkit-search-cancel-button,
+      &::-webkit-search-results-button,
+      &::-webkit-search-results-decoration {
+        display: none;
+      }
     }
 
-    &__submit {
+    &__submit,
+    &__clear {
       @include typography.icon-label;
       background: transparent;
       border: none;
       cursor: pointer;
-      
+
       position: absolute;
       top: 50%;
       right: 5px;
@@ -113,12 +143,23 @@
       gap: var(--spacing-xxs);
 
       border-radius: var(--border-radius--small);
-      transition: all .15s ease;
+      transition: all 0.15s ease;
       padding: var(--spacing-xxs);
       color: var(--theme--text-accent-color);
 
       &:hover {
-        background: var(--theme--color-input-hover-background);        
+        background: var(--theme--color-input-hover-background);
+      }
+    }
+
+    &__clear {
+      display: none;
+      right: 50px;
+    }
+
+    &--has-value {
+      .m-pagefind-search-field__clear {
+        display: flex;
       }
     }
   }

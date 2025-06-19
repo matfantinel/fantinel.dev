@@ -12,7 +12,7 @@ const search = searchParams.get('search');
 
 <BaseLayout title="Search">
   <SimpleHero title={`Searching for ${search ? `“${search}”...` : '... nothing?'}`}>
-    <PagefindSearchField value={search} />
+    <PagefindSearchField value={search} client:load style="width: 280px;" />
   </SimpleHero>
 
   <PagefindSearchResults client:load query={search} />
