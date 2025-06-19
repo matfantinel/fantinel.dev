@@ -42,7 +42,7 @@ if (!image && autoGenerateImage && title) {
 		)}`;
 	}
 } else if (!image) {
-	pageImage = siteMeta.image;
+	pageImage = `${siteMeta.baseUrl}/${siteMeta.image}`;
 }
 
 const searchParams = new URL(Astro.request.url).searchParams;
