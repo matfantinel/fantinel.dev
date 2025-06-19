@@ -2,10 +2,12 @@
   let {
     title,
     body,
+    children,
     class: className,
   }: {
     title: string;
     body?: string;
+    children?: any;
     class?: string;
   } = $props();
 </script>
@@ -21,6 +23,10 @@
         <p class="o-simple-hero__body">
           {body}
         </p>
+      {/if}
+
+      {#if children}
+        {@render children()}
       {/if}
     </div> 
   </div>

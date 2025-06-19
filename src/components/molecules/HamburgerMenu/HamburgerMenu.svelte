@@ -68,7 +68,7 @@
 
     <ul id="menu" class="m-hamburger-menu__list" class:m-hamburger-menu__list--closing={menuIsClosing}>
       <li class="m-hamburger-menu__item m-hamburger-menu__search">
-        <PagefindSearchField class="m-hamburger-menu__search-field" expandable value={currentSearch} onsubmit={handleMenuItemClick} />
+        <PagefindSearchField class="m-hamburger-menu__search-field" expandable onsubmit={handleMenuItemClick} />
       </li>
 
       {#each links as link}

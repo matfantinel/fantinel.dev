@@ -1,7 +1,6 @@
 <script lang="ts">
-  import { onMount } from 'svelte';
-  import Field from '../Field/Field.svelte';
   import ChevronRight from '@assets/icons/chevron-right.svelte';
+  import Field from '../Field/Field.svelte';
 
   let {
     id,
