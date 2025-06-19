@@ -41,7 +41,7 @@
 
   function handleMenuItemClick() {
     // Close the menu
-    const control = document.getElementById('control') as HTMLInputElement;
+    const control = document.getElementById('menu-control') as HTMLInputElement;
     control.checked = false;
   }
 </script>

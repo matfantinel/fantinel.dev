@@ -182,6 +182,10 @@ h5, .u-h5 {
   @include gradient(var(--theme--gradient-pinkish));
 }
 
+@mixin gradient-yellowish {
+  @include gradient(var(--theme--gradient-yellowish));
+}
+
 @mixin gradient-rainbow {
   @include gradient(var(--theme--gradient-rainbow));
 }

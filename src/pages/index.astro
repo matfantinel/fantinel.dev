@@ -1,7 +1,7 @@
 ---
 import HomePageHero from '@components/organisms/HomePageHero';
-import NewsletterCta from '@components/organisms/NewsletterCta';
 import PostsSection from '@components/organisms/PostsSection';
+import UnderConstructionDisclaimer from '@components/organisms/UnderConstructionDisclaimer';
 import { getRecentPosts } from '@data/blogPosts';
 import BaseLayout from '@layouts/BaseLayout.astro';
 import metaConfig from '@public/cms/meta.yml';
@@ -23,6 +23,8 @@ const recentPosts = await getRecentPosts();
       client:load
     />
 
+    <UnderConstructionDisclaimer />
+
     {recentPosts?.length > 0 && (
       <PostsSection
         title="Latest on the blog"
@@ -32,15 +34,6 @@ const recentPosts = await getRecentPosts();
         }}
         posts={recentPosts}
       />
-    )}
-
-    {siteMeta.newsletterCta && siteMeta.newsletterCta.formUrl && (
-      <NewsletterCta
-        heading={siteMeta.newsletterCta.heading}
-        body={siteMeta.newsletterCta.body}
-        formUrl={siteMeta.newsletterCta.formUrl}
-        tag="cta-home-page"
-      />
-    )}
+    )}    
   </div>
 </BaseLayout>

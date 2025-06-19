@@ -7,6 +7,7 @@ import metaConfig from '@public/cms/meta.yml';
 import type { BlogPost, BlogPostCategory } from '@schemas/blog';
 import type { SiteMeta } from '@schemas/site-meta';
 import BaseLayout from './BaseLayout.astro';
+import NewsletterCta from '@components/organisms/NewsletterCta';
 
 interface Props {
   posts: BlogPost[];
@@ -85,6 +86,15 @@ allCategories?.forEach((category) => {
           )
         }
       </div>
+
+      {siteMeta.newsletterCta && siteMeta.newsletterCta.formUrl && (
+        <NewsletterCta
+          heading={siteMeta.newsletterCta.heading}
+          body={siteMeta.newsletterCta.body}
+          formUrl={siteMeta.newsletterCta.formUrl}
+          tag="cta-home-page"
+        />
+      )}
     </div>
   </main>
 </BaseLayout>

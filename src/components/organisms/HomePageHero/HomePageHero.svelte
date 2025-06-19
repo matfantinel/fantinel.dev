@@ -66,6 +66,7 @@
 <style lang="scss">
   @use '/src/styles/typography';
   @use '/src/styles/breakpoints';
+  @use '/src/styles/mixins';
 
   .o-home-page-hero {
     &__container {
@@ -163,10 +164,15 @@
       margin-top: calc(var(--header-height) * -1);
 
       &__container {
-        border-radius: 0;
-        padding: var(--spacing-lg) var(--spacing-lg) var(--spacing-xl);
+        @include mixins.padded-container;
+        
         padding-top: calc(var(--header-height) + var(--spacing-lg));
+        padding-bottom: 0;
         text-align: center;
+
+        background-color: unset;
+        border-radius: unset;
+        box-shadow: unset;
 
         justify-items: center;
         grid-template-columns: 1fr;
