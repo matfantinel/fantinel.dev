@@ -103,6 +103,10 @@
             padding-left: var(--spacing-md);
             padding-right: var(--spacing-md);
             --theme--color-input-empty-border: transparent;
+            // Placeholder
+            &::placeholder {
+              color: transparent;
+            }
           }
         }
 
