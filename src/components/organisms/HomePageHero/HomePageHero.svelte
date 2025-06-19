@@ -75,9 +75,9 @@
       overflow: hidden;
 
       padding: var(--spacing-xxl);
-      background-color: var(--theme--background-card-color);
+      background-color: var(--theme--background-base-color);
       border-radius: var(--border-radius);
-      box-shadow: var(--theme--shadow-card);
+      box-shadow: var(--theme--shadow-card), inset 0 0 400px var(--theme--background-card-color);
 
       display: grid;
       grid-template-columns: 164px 1fr;
