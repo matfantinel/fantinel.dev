@@ -48,6 +48,7 @@
   class:m-pagefind-search-field--has-value={hasValue}
   action="/search"
   method="get"
+  data-astro-reload
   {onsubmit}
   {...props}
 >

@@ -16,6 +16,7 @@ const {
 	slug,
 	published_date,
 	modified_date,
+	disableClientRouter
 } : {
 	title?: string;
 	keywords?: string[];
@@ -25,6 +26,7 @@ const {
 	slug?: string;
 	published_date?: string;
 	modified_date?: string;
+	disableClientRouter?: boolean;
 } = Astro.props;
 
 const siteMeta: SiteMeta = metaConfig;
@@ -54,7 +56,7 @@ const currentSearch = searchParams.get('search');
 <html lang="en" data-theme="auto">
 	<head>
 		
-		<Head />		
+		<Head disableClientRouter={disableClientRouter} />		
 		
 		<title>{pageTitle}</title>
 		<meta property="og:title" content={pageTitle} />

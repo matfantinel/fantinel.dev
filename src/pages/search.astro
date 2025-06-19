@@ -10,9 +10,9 @@ const searchParams = new URL(Astro.request.url).searchParams;
 const search = searchParams.get('search');
 ---
 
-<BaseLayout title="Search">
-  <SimpleHero title={`Searching for ${search ? `“${search}”...` : '... nothing?'}`}>
-    <PagefindSearchField value={search} client:load style="width: 280px;" />
+<BaseLayout title="Search" disableClientRouter>
+  <SimpleHero title={`Searching for ${search ? `“${search}”...` : '... nothing?'}`} client:load transition:persist>
+    <PagefindSearchField value={search} client:load style="width: 280px;" transition:persist transition:name="test" />
   </SimpleHero>
 
   <PagefindSearchResults client:load query={search} />
