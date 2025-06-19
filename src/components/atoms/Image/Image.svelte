@@ -21,6 +21,7 @@
 		formats?: string[];
 		widths?: string[];
 		class?: string;
+		[key: string]: any;
 	} = $props();
 
 	let fileName = src ? src.split('.')[0] : '';

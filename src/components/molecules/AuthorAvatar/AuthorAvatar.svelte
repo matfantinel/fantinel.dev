@@ -1,4 +1,5 @@
 <script lang="ts">
+  import Image from '@components/atoms/Image';
   import { handleCmsMediaPath } from '@utils/functions';
   import { fly } from 'svelte/transition';
 
@@ -15,13 +16,15 @@
     alt: string;
     extraImages?: string[];
     size?: string;
-    theme?: 'greenish' | 'pinkish' | 'rainbow'
+    theme?: 'greenish' | 'pinkish' | 'rainbow';
     animated?: boolean;
     class?: string;
   } = $props();
 
   let tag = $derived(extraImages ? 'button' : 'div');
-  let images = $derived(extraImages ? [handleCmsMediaPath(src), ...extraImages.map(handleCmsMediaPath)] : [handleCmsMediaPath(src)]);
+  let images = $derived(
+    extraImages ? [handleCmsMediaPath(src), ...extraImages.map(handleCmsMediaPath)] : [handleCmsMediaPath(src)]
+  );
   let currentImage = $state(0);
 
   function onclick() {
@@ -31,22 +34,24 @@
 
 <svelte:element
   this={tag}
-  class={['m-author-avatar', `m-author-avatar--theme--${theme}`, animated ? 'm-author-avatar--animated' : '', className]}
+  class={[
+    'm-author-avatar',
+    `m-author-avatar--theme--${theme}`,
+    animated ? 'm-author-avatar--animated' : '',
+    className,
+  ]}
   style={`--size:${size}`}
   {onclick}
   role="button"
   tabindex="-1"
 >
   {#key currentImage}
-    <img 
-      class="m-author-avatar__image" 
-      src={images[currentImage]} 
-      {alt} 
-      height={size} 
-      width={size} 
-      in:fly={{ delay:700, duration: 500, y: parseInt(size), opacity: 1 }}
+    <div
+      in:fly={{ delay: 700, duration: 500, y: parseInt(size), opacity: 1 }}
       out:fly={{ duration: 500, y: parseInt(size), opacity: 1 }}
-    />
+    >
+      <Image class="m-author-avatar__image" src={images[currentImage]} {alt} height={size} width={size} lazy={false} />
+    </div>
   {/key}
 </svelte:element>
 
@@ -89,7 +94,7 @@
       &:before {
         animation-play-state: running;
       }
-    }    
+    }
 
     &:hover,
     &:active,
@@ -100,14 +105,14 @@
       }
     }
 
-    &__image {
+    :global(.m-author-avatar__image) {
       width: 100%;
       height: 100%;
       object-fit: cover;
       will-change: transform;
-      transition: transform .2s ease-in-out;
+      transition: transform 0.2s ease-in-out;
 
-      &--extra {
+      &.m-author-avatar__image--extra {
         display: none;
       }
 
@@ -130,7 +135,7 @@
 
     &--theme--rainbow {
       &:before {
-        background: var(--theme--gradient-rainbow-circle-dark);        
+        background: var(--theme--gradient-rainbow-circle-dark);
         filter: blur(4px);
       }
     }
