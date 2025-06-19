@@ -7,12 +7,14 @@
     id,
     value,
     expandable,
+    onsubmit,
     class: className,
     ...props
   }: {
     id?: string;
     value?: string;
     expandable?: boolean;
+    onsubmit?: (event: Event) => void;
     class?: string;
     [key: string]: any;
   } = $props();
@@ -34,7 +36,7 @@
   </style>
 </noscript>
 
-<form class={classList} class:m-pagefind-search-field--expandable={isExpandable} action="/search" method="get">
+<form class={classList} class:m-pagefind-search-field--expandable={isExpandable} action="/search" method="get" onsubmit={onsubmit}>
   <Field
     id="pagefind-search"
     bind:value={value}
