@@ -16,7 +16,8 @@ const {
 	slug,
 	published_date,
 	modified_date,
-	disableClientRouter
+	disableClientRouter,
+	hasHeaderBackground = false
 } : {
 	title?: string;
 	keywords?: string[];
@@ -27,6 +28,7 @@ const {
 	published_date?: string;
 	modified_date?: string;
 	disableClientRouter?: boolean;
+	hasHeaderBackground?: boolean;
 } = Astro.props;
 
 const siteMeta: SiteMeta = metaConfig;
@@ -76,7 +78,7 @@ const currentSearch = searchParams.get('search');
 	<body>
 		<div class="u-noise"></div>
 
-		<Header client:load {currentSearch} transition:persist />
+		<Header client:load {currentSearch} transition:persist hasBackground={hasHeaderBackground} />
 
 		<main>
 			<slot />

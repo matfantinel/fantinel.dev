@@ -30,7 +30,7 @@ allCategories?.forEach((category) => {
 });
 ---
 
-<BaseLayout title={`${siteMeta.author?.name}'s Blog`} autoGenerateImage>
+<BaseLayout title={`${siteMeta.author?.name}'s Blog`} autoGenerateImage hasHeaderBackground>
 
   <main class='l-blog-archive' style="view-transition-name: blog-archive-hero">
     <div class='l-blog-archive__container'>
@@ -131,9 +131,5 @@ allCategories?.forEach((category) => {
       text-align: center;
       color: var(--theme--color-accent);
     }
-  }
-
-  :global(.o-header) {
-    background-color: var(--theme--background-accent-color);
   }
 </style>

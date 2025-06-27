@@ -54,6 +54,7 @@ const coolLinksImageParams = isCoolLinksImage
   slug={`blog/${post.data.slug}`}
   published_date={post.data.date}
   modified_date={post.data.updated}
+  hasHeaderBackground
 >
 
   <main class='l-post'>
@@ -274,9 +275,5 @@ const coolLinksImageParams = isCoolLinksImage
         gap: var(--spacing-xl);
       }
     }
-  }
-
-  :global(.o-header) {
-    background-color: var(--theme--background-accent-color);
   }
 </style>

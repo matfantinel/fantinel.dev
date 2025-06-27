@@ -6,10 +6,12 @@
 
   let {
     color = 'default',
+    hasBackground = false,
     currentSearch,
     class: className,
   }: {
     color?: 'default' | 'inverted';
+    hasBackground?: boolean;
     currentSearch?: string;
     class?: string;
   } = $props();
@@ -20,6 +22,7 @@
 <header
   class={['o-header', className]}
   class:o-header--inverted={color === 'inverted'}
+  class:o-header--has-background={hasBackground}
 >
   <div class="o-header__container u-container">
     <a href="/" aria-label="Home" class="o-header__logo">
@@ -99,6 +102,10 @@
 
     &--inverted {
       color: var(--theme--text-inverse-color);
+    }
+
+    &--has-background {
+      background-color: var(--theme--background-accent-color);
     }
   }
 </style>
