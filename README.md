@@ -10,7 +10,7 @@
 >
 > This website was previously built with SvelteKit. If you're looking for that, check the [v4 branch](https://github.com/matfantinel/fantinel.dev/tree/v4). If you're looking for a SvelteKit template to use as a starting point, check out [my public SvelteKit blog template](https://github.com/matfantinel/sveltekit-static-blog-template).
 
-# fantinel.dev
+# fantinel.dev (v5)
 
 This is my own personal website, built with Astro and Svelte. It also holds my own personal blog.
 
