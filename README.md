@@ -1,10 +1,12 @@
-> [!NOTE] Forking discouraged!
->
+> [!IMPORTANT]
+> ## Forking discouraged!
+> 
 > This website is a work in progress and has some stuff that is very specific to my use case. I don't recommend forking it yet if you want to build your own.
 > 
 > In the spirit of open source, I'm building it in public. If you still want to use it as a base, at least make sure to remove my name, logo and pictures from it.
 
-> [!NOTE] Looking for the SvelteKit version?
+> [!NOTE]
+> ## Looking for the SvelteKit version?
 >
 > This website was previously built with SvelteKit. If you're looking for that, check the [v4 branch](https://github.com/matfantinel/fantinel.dev/tree/v4). If you're looking for a SvelteKit template to use as a starting point, check out [my public SvelteKit blog template](https://github.com/matfantinel/sveltekit-static-blog-template).
 
