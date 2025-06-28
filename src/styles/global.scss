@@ -13,7 +13,7 @@
 // @use '/src/styles/animations.scss';
 
 body {
-  background-color: var(--theme--background-base-color);
+  background: var(--theme--background-root-color, var(--theme--background-base-color));
   color: var(--theme--text-base-color);
   fill: var(--theme--text-base-color);
   

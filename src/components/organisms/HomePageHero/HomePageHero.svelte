@@ -75,7 +75,7 @@
       overflow: hidden;
 
       padding: var(--spacing-xxl);
-      background-color: var(--theme--background-base-color);
+      background-color: var(--theme--background-card-color);
       border-radius: var(--border-radius);
       box-shadow: var(--theme--shadow-card), inset 0 0 400px var(--theme--background-card-color);
 
