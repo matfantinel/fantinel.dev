@@ -17,6 +17,9 @@
 	if (isCallout) {
 		text = text.replace(/^\[!\w+\]\s?/, '');
 	}
+
+	// Replace single line breaks with double line breaks
+	text = text.replace(/\n/g, '\n\n');
 </script>
 
 {#if isCallout}
