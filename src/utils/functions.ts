@@ -1,3 +1,6 @@
+import type { BlogPost } from "@schemas/blog";
+import dateformat from "dateformat";
+
 export const calculateYearsSince = (date: Date) => {
   const ageDifMs = Date.now() - date.getTime();
   const ageDate = new Date(ageDifMs); // miliseconds from epoch
@@ -38,4 +41,31 @@ export const isInViewport = (el: HTMLElement) => {
       rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
       rect.right <= (window.innerWidth || document.documentElement.clientWidth)
   );
+}
+
+export const generateOgPathFromPost = (post: BlogPost) => {
+  let result = '/opengraph';
+  result += `/${btoa(encodeURIComponent(post.title))}`;
+  if (post.date) {
+    result += `/${btoa(encodeURIComponent(
+      dateformat(post.date, 'mmm dd, yyyy')
+    ))}`;
+  }
+  result += '/image.png';
+
+  return result;
+}
+
+export const generateOgPathFromCoolLinksPost = (post: BlogPost) => {
+  let result = '/opengraph/cool-links';
+  const title = post.title.split(':')[0];
+  result += `/${btoa(encodeURIComponent(title))}`;
+  if (post.date) {
+    result += `/${btoa(encodeURIComponent(
+      post.date.toISOString()
+    ))}`;
+  }
+  result += '/image.png';
+
+  return result;
 }

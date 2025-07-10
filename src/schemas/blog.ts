@@ -8,6 +8,7 @@ export const blogSchema = z.object({
   excerpt: z.string(),
   coverImage: z.string().optional().nullable(),
   coverImageAlt: z.string().optional().nullable(),
+  ogImage: z.string().optional().nullable(),
   showToc: z.boolean().optional(),
   hidden: z.boolean().optional(),
   categories: z.array(z.string()),

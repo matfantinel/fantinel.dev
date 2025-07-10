@@ -1,9 +1,8 @@
 <script lang="ts">
-  import Image from '@components/atoms/Image';
-  import Tags from '@components/molecules/Tags';
-  import Tag from '@components/atoms/Tag';
   import ArrowLink from '@components/atoms/ArrowLink';
-  import CoolLinksImage from '@components/molecules/CoolLinksImage';
+  import Image from '@components/atoms/Image';
+  import Tag from '@components/atoms/Tag';
+  import Tags from '@components/molecules/Tags';
 
   let {
     image,
@@ -28,13 +27,6 @@
     hideImage?: boolean;
     class?: string;
   } = $props();
-
-  const isCoolLinksImage = Boolean(image?.includes('/opengraph/cool-links'));
-  const imageUrl = isCoolLinksImage && image ? new URL(image) : null;
-  const coolLinksImageParams = isCoolLinksImage ? {
-    title: imageUrl?.searchParams.get('title') ?? title,
-    date: imageUrl?.searchParams.get('date') ? new Date(imageUrl.searchParams.get('date') as string) : new Date(),
-  } : null;
 </script>
 
 <article class={['m-blog-post-card', className]}>
@@ -42,11 +34,7 @@
     <div class="m-blog-post-card__image-container">
       <div class="m-blog-post-card__image-placeholder">{title.substring(0, 5)}</div>
       {#if image}
-        {#if isCoolLinksImage && coolLinksImageParams}
-          <CoolLinksImage class="m-blog-post-card__image" title={coolLinksImageParams.title} date={coolLinksImageParams.date} />
-        {:else}
-          <Image class="m-blog-post-card__image" src={image} alt={imageAlt || title} />
-        {/if}
+        <Image class="m-blog-post-card__image" src={image} alt={imageAlt || title} />
       {/if}
     </div>
   {/if}

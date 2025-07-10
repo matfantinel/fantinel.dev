@@ -29,7 +29,6 @@
 
   const handleReset = () => {
     value = '';
-    console.log(value);
   };
 </script>
 

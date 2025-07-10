@@ -7,6 +7,7 @@ import readingTime from 'reading-time/lib/reading-time';
 import striptags from 'striptags';
 import { slug } from 'github-slugger'
 import type { BlogPost, BlogPostCategory } from "@schemas/blog";
+import { generateOgPathFromPost, generateOgPathFromCoolLinksPost } from "@utils/functions";
 
 const siteMeta: SiteMeta = metaConfig;
 
@@ -40,10 +41,16 @@ export function sanitizePostData(post: BlogPost, postBody?: string, renderedPost
 
   const isCoolLinksPost = post.categories?.some((cat) => cat.slug === 'cool-links');
 
-  // Handle cool-links cover images
-  if (!post.coverImage && isCoolLinksPost) {
-    const title = post.title.split(':')[0];
-    post.coverImage = `${siteMeta.baseUrl}/opengraph/cool-links?title=${encodeURIComponent(title)}&date=${encodeURIComponent(post.date.toISOString())}`;
+  // Handle cover images
+  post.ogImage = post.coverImage;
+
+  if (!post.coverImage) {
+    if (isCoolLinksPost) {      
+      post.coverImage = `${siteMeta.baseUrl}${generateOgPathFromCoolLinksPost(post)}`;
+      post.ogImage = post.coverImage;
+    } else if (post.title) {
+      post.ogImage = `${siteMeta.baseUrl}${generateOgPathFromPost(post)}`;
+    }
   }
 
   if (post.showToc && renderedPost?.metadata?.headings) {

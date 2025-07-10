@@ -1,6 +1,5 @@
 ---
 import Image from '@components/atoms/Image';
-import CoolLinksImage from '@components/molecules/CoolLinksImage';
 import MarkdownRenderer from '@components/molecules/MarkdownRenderer';
 import TableOfContents from '@components/molecules/TableOfContents';
 import AboutAuthor from '@components/organisms/AboutAuthor';
@@ -11,7 +10,6 @@ import metaConfig from '@public/cms/meta.yml';
 import type { BlogPost } from '@schemas/blog';
 import type { SiteMeta } from '@schemas/site-meta';
 import { handleCmsMediaPath } from '@utils/functions';
-import { title } from 'process';
 import BaseLayout from './BaseLayout.astro';
 
 interface Props {
@@ -27,22 +25,13 @@ const showToc = post.data.showToc && post.data.toc && post.data.toc.length > 0;
 
 const siteMeta: SiteMeta = metaConfig;
 let coverImage;
-if (post.data.coverImage) {
-  if (post.data.coverImage.includes(siteMeta.baseUrl)) {
-    coverImage = post.data.coverImage;
+if (post.data.ogImage) {
+  if (post.data.ogImage.includes(siteMeta.baseUrl)) {
+    coverImage = post.data.ogImage;
   } else {
-    coverImage = `${siteMeta.baseUrl}${handleCmsMediaPath(post.data.coverImage)}`;
+    coverImage = `${siteMeta.baseUrl}${handleCmsMediaPath(post.data.ogImage)}`;
   }
 }
-
-const isCoolLinksImage = Boolean(coverImage?.includes('/opengraph/cool-links'));
-const imageUrl = isCoolLinksImage && coverImage ? new URL(coverImage) : null;
-const coolLinksImageParams = isCoolLinksImage
-  ? {
-      title: imageUrl?.searchParams.get('title') ?? title,
-      date: imageUrl?.searchParams.get('date') ? new Date(imageUrl.searchParams.get('date') as string) : new Date(),
-    }
-  : null;
 ---
 
 <BaseLayout
@@ -50,13 +39,12 @@ const coolLinksImageParams = isCoolLinksImage
   keywords={post.data.categories}
   description={post.data.excerpt}
   image={coverImage}
-  autoGenerateImage={!post.data.coverImage}
+  autoGenerateImage={!post.data.ogImage}
   slug={`blog/${post.data.slug}`}
-  published_date={post.data.date}
-  modified_date={post.data.updated}
+  publishedDate={post.data.date}
+  modifiedDate={post.data.updated}
   hasHeaderBackground
 >
-
   <main class='l-post'>
     <div class='l-post__container' data-pagefind-body>
       <PostHero
@@ -76,26 +64,19 @@ const coolLinksImageParams = isCoolLinksImage
           'l-post__content-wrapper',
           showToc ? 'l-post__content-wrapper--has-toc u-container' : 'u-container-small',
           post.data.coverImage ? 'l-post__content-wrapper--has-image' : '',
-        ].join(' ')}        
+        ].join(' ')}
       >
         {showToc && <TableOfContents class='l-post__toc' headings={post.data.toc} client:load />}
 
         {
-          post.data.coverImage &&
-            (isCoolLinksImage && coolLinksImageParams ? (
-              <CoolLinksImage
-                class='l-post__cover-image'
-                title={coolLinksImageParams.title}
-                date={coolLinksImageParams.date}
-              />
-            ) : (
-              <Image
-                class='l-post__cover-image'
-                src={handleCmsMediaPath(post.data.coverImage!)}
-                alt={post.data.coverImageAlt}
-                lazy={false}
-              />
-            ))
+          post.data.coverImage && (
+            <Image
+              class='l-post__cover-image'
+              src={handleCmsMediaPath(post.data.coverImage!)}
+              alt={post.data.coverImageAlt}
+              lazy={false}
+            />
+          )
         }
 
         <div
@@ -122,22 +103,24 @@ const coolLinksImageParams = isCoolLinksImage
           )
         }
 
-        {siteMeta.newsletterCta && siteMeta.newsletterCta.formUrl && (
-          <NewsletterCta
-            heading={siteMeta.newsletterCta.heading}
-            body={siteMeta.newsletterCta.body}
-            formUrl={siteMeta.newsletterCta.formUrl}
-            tag="cta-after-post-content"
-          />
-        )}
+        {
+          siteMeta.newsletterCta && siteMeta.newsletterCta.formUrl && (
+            <NewsletterCta
+              heading={siteMeta.newsletterCta.heading}
+              body={siteMeta.newsletterCta.body}
+              formUrl={siteMeta.newsletterCta.formUrl}
+              tag='cta-after-post-content'
+            />
+          )
+        }
 
         {
           post.data.relatedPosts && (
             <PostsSection
-              title="You might also like"
+              title='You might also like'
               button={{
                 text: 'View blog',
-                url: '/blog'
+                url: '/blog',
               }}
               posts={post.data.relatedPosts}
             />
