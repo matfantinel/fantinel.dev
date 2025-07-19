@@ -204,6 +204,30 @@
     #B4BEFE  /* dark lavender */
   );
   // #endregion
+
+  // #region Quick Reviews
+
+  --theme--qr-base-dark-color: #1E1E2E;
+  --theme--qr-base-light-color: #ffffff;
+
+  --theme--qr-movie-color: #FE640B;
+  --theme--qr-movie-color-rgb: 254, 100, 11;
+
+  --theme--qr-tv-show-color: #D20F39;
+  --theme--qr-tv-show-color-rgb: 210, 15, 57;
+
+  --theme--qr-game-color: #40A02B;
+  --theme--qr-game-color-rgb: 64, 160, 43;
+
+  --theme--qr-album-color: #EA76CB;
+  --theme--qr-album-color-rgb: 234, 118, 203;
+
+  --theme--qr-loved-color: var(--theme--gradient-rainbow-circle-dark);
+  --theme--qr-liked-color: #89B4FA;
+  --theme--qr-decent-color: #FAB387;
+  --theme--qr-not-liked-color: #F38BA8;
+
+  // #endregion
 }
 
 @mixin dark-theme {

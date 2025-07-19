@@ -1,0 +1,94 @@
+---
+import Pagination from '@components/molecules/Pagination';
+import QuickReviewCard from '@components/molecules/QuickReviewCard';
+import QuickReviewCards from '@components/molecules/QuickReviewCards';
+import BlogArchiveHero from '@components/organisms/BlogArchiveHero';
+import type { QuickReview } from '@schemas/quick-review';
+import BaseLayout from './BaseLayout.astro';
+
+interface Props {
+  reviews: QuickReview[];
+  currentPage: number;
+  totalPages: number;
+}
+
+const { reviews, currentPage, totalPages }: Props = Astro.props;
+---
+
+<BaseLayout title='Quick Reviews' autoGenerateImage hasHeaderBackground>
+  <main class='l-quick-reviews-archive' style='view-transition-name: blog-archive-hero'>
+    <div class='l-quick-reviews-archive__container'>
+      
+      <BlogArchiveHero
+        class='l-quick-reviews-archive__hero'
+        title='Quick Reviews'
+        body='Since June 2024, I started writing quick reviews of movies, TV shows and games I’ve watched or played. Here’s every one of them.'
+      />
+
+      <div class='l-quick-reviews-archive__content-wrapper u-container'>
+        {!reviews.length && <p class='u-h4'>No reviews found</p>}
+
+        {
+          reviews && (
+            <QuickReviewCards>
+              {reviews.map((review) => (
+                <QuickReviewCard
+                  title={review.title}
+                  metadata={review.metadata}
+                  slug={review.slug}
+                  image={review.image}
+                  rating={review.rating}
+                  theme={review.theme}
+                  customBg={review.customBg}
+                  content={review.content}
+                  type={review.type}
+                  date={review.date}
+                />
+              ))}
+            </QuickReviewCards>
+          )
+        }
+
+        {
+          totalPages > 1 && (
+            <Pagination
+              class='l-quick-reviews-archive__pagination'
+              currentPage={currentPage}
+              totalPages={totalPages}
+              baseUrl={`/quick-reviews`}
+            />
+          )
+        }
+      </div>
+    </div>
+  </main>
+</BaseLayout>
+
+<style lang='scss'>
+  @use '/src/styles/breakpoints';
+  @use '/src/styles/typography';
+
+  .l-quick-reviews-archive {
+    :global(.l-quick-reviews-archive__hero) {
+      background-color: var(--theme--background-accent-color);
+      border-bottom-left-radius: var(--border-radius);
+      border-bottom-right-radius: var(--border-radius);
+    }
+
+    &__container {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-xxl);
+
+      @include breakpoints.for-phone-only {
+        gap: var(--spacing-xl);
+      }
+    }
+
+    &__content-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-lg);
+    }
+  }
+</style>
