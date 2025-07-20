@@ -1,0 +1,23 @@
+---
+import { getPaginatedReviews } from '@data/quickReviews';
+import QuickReviewsArchiveLayout from '@layouts/QuickReviewsArchiveLayout.astro';
+import { QuickReviewType } from '@schemas/quick-review-types';
+
+const { type } = Astro.params;
+const { reviews, currentPage, totalPages } = await getPaginatedReviews(1, undefined, type);
+
+export async function getStaticPaths() {
+  const paths = Object.keys(QuickReviewType).map((key) => ({
+    params: { type: key.toLowerCase() },
+  }));
+
+  return paths;
+}
+---
+
+<QuickReviewsArchiveLayout
+  reviews={reviews}
+  currentPage={currentPage}
+  totalPages={totalPages}
+  currentType={type as QuickReviewType}
+/>

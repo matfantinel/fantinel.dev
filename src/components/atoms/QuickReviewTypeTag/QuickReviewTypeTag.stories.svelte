@@ -10,7 +10,7 @@
     argTypes: {
       type: {
         control: { type: 'select' },
-        options: ['Movie', 'TV Show', 'Game', 'Album'],
+        options: Object.values(QuickReviewType),
       },
       class: { control: false },
     },

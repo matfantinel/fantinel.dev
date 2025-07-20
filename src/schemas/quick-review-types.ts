@@ -11,3 +11,19 @@ export enum QuickReviewRating {
   LikeIt = 'I like it',
   LovedIt = 'Loved it!'
 }
+
+export function getTypeFromLowercaseKey(lowercaseKey: string) {
+  const enumKey = Object.keys(QuickReviewType).find(
+    key => key.toLowerCase() === lowercaseKey.toLowerCase()
+  );
+
+  return enumKey ? QuickReviewType[enumKey as keyof typeof QuickReviewType] : undefined;
+}
+
+export function getRatingFromLowercaseKey(lowercaseKey: string) {
+  const enumKey = Object.keys(QuickReviewRating).find(
+    key => key.toLowerCase() === lowercaseKey.toLowerCase()
+  );
+
+  return enumKey ? QuickReviewRating[enumKey as keyof typeof QuickReviewRating] : undefined;
+}

@@ -1,0 +1,30 @@
+---
+import { getPaginatedReviews } from '@data/quickReviews';
+import QuickReviewsArchiveLayout from '@layouts/QuickReviewsArchiveLayout.astro';
+import { QuickReviewType } from '@schemas/quick-review-types';
+
+const { type, page } = Astro.params;
+const { reviews, currentPage, totalPages } = await getPaginatedReviews(Number(page), undefined, type);
+
+export async function getStaticPaths() {
+  const types = Object.keys(QuickReviewType).map((key) => key);
+
+  const paths = await Promise.all(
+    types.map(async (type) => {
+      const { totalPages } = await getPaginatedReviews(1, undefined, type);
+      return Array.from({ length: totalPages }).map((_, i) => ({
+        params: { type: type, page: String(i + 2) }, // start at page 2
+      }));
+    })
+  );
+
+  return paths.flat();
+}
+---
+
+<QuickReviewsArchiveLayout
+  reviews={reviews}
+  currentPage={currentPage}
+  totalPages={totalPages}
+  currentType={type as QuickReviewType}
+/>

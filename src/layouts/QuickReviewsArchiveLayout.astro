@@ -5,24 +5,51 @@ import QuickReviewCards from '@components/molecules/QuickReviewCards';
 import BlogArchiveHero from '@components/organisms/BlogArchiveHero';
 import type { QuickReview } from '@schemas/quick-review';
 import BaseLayout from './BaseLayout.astro';
+import { QuickReviewType, QuickReviewRating } from '@schemas/quick-review-types';
 
 interface Props {
   reviews: QuickReview[];
   currentPage: number;
   totalPages: number;
+  currentType?: QuickReviewType;
+  // currentRating?: QuickReviewRating;
 }
 
-const { reviews, currentPage, totalPages }: Props = Astro.props;
+const { reviews, currentPage, totalPages, currentType }: Props = Astro.props;
+
+const allTypes = Object.keys(QuickReviewType).map((key) => key);
+// const allRatings = Object.keys(QuickReviewRating).map((key) => key);
+
+// { name: string; slug: string; url: string; active?: boolean }
+const typeTags = allTypes.map((type) => {
+  const isActive = type.toLowerCase() === currentType?.toLowerCase();
+  return {
+    name: QuickReviewType[type as keyof typeof QuickReviewType] + 's',
+    slug: type.toLowerCase(),
+    url: isActive ? `/quick-reviews` : `/quick-reviews/${type.toLowerCase()}`,
+    active: isActive,
+  };
+});
+
+// const ratingTags = allRatings.map((rating) => {
+//   const isActive = rating.toLowerCase() === currentRating?.toLowerCase();
+//   return {
+//     name: QuickReviewRating[rating as keyof typeof QuickReviewRating],
+//     slug: rating.toLowerCase(),
+//     url: isActive ? `/quick-reviews` : `/quick-reviews/${rating.toLowerCase()}`,
+//     active: isActive,
+//   }
+// });
 ---
 
 <BaseLayout title='Quick Reviews' autoGenerateImage hasHeaderBackground>
   <main class='l-quick-reviews-archive' style='view-transition-name: blog-archive-hero'>
     <div class='l-quick-reviews-archive__container'>
-      
       <BlogArchiveHero
         class='l-quick-reviews-archive__hero'
         title='Quick Reviews'
         body='Since June 2024, I started writing quick reviews of movies, TV shows and games I’ve watched or played. Here’s every one of them.'
+        tags={typeTags}
       />
 
       <div class='l-quick-reviews-archive__content-wrapper u-container'>
