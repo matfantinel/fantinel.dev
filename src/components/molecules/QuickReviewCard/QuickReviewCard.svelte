@@ -128,7 +128,7 @@
   .u-noise {
     position: absolute;
     z-index: 1;
-    opacity: 1;
+    opacity: 0.2;
   }
 
   .m-quick-review-card {
