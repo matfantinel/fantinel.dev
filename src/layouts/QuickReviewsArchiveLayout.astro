@@ -6,6 +6,9 @@ import BlogArchiveHero from '@components/organisms/BlogArchiveHero';
 import type { QuickReview } from '@schemas/quick-review';
 import BaseLayout from './BaseLayout.astro';
 import { QuickReviewType, QuickReviewRating } from '@schemas/quick-review-types';
+import metaConfig from "@public/cms/meta.yml";
+import type { SiteMeta } from "@schemas/site-meta";
+const siteMeta: SiteMeta = metaConfig;
 
 interface Props {
   reviews: QuickReview[];
@@ -42,9 +45,9 @@ const typeTags = allTypes.map((type) => {
 // });
 ---
 
-<BaseLayout title='Quick Reviews' autoGenerateImage hasHeaderBackground>
+<BaseLayout title='Quick Reviews' image={siteMeta.baseUrl + "/cms/media/articles/quick-reviews-cover.jpg"} hasHeaderBackground>
   <main class='l-quick-reviews-archive' style='view-transition-name: blog-archive-hero'>
-    <div class='l-quick-reviews-archive__container'>
+    <div class='l-quick-reviews-archive__container' data-pagefind-body>
       <BlogArchiveHero
         class='l-quick-reviews-archive__hero'
         title='Quick Reviews'
