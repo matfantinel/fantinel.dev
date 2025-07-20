@@ -10,7 +10,7 @@
     argTypes: {
       type: {
         control: { type: 'select' },
-        options: ['Movie', 'TVShow', 'Game', 'Album'],
+        options: ['Movie', 'TV Show', 'Game', 'Album'],
       },
       class: { control: false },
     },
@@ -23,6 +23,6 @@
 {/snippet}
 
 <Story name="Movie" args={{ type: 'Movie' }} />
-<Story name="TV Show" args={{ type: 'TVShow' }} />
+<Story name="TV Show" args={{ type: 'TV Show' }} />
 <Story name="Game" args={{ type: 'Game' }} />
 <Story name="Album" args={{ type: 'Album' }} />

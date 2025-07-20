@@ -1,18 +1,5 @@
 import { z } from 'astro:content';
-
-export enum QuickReviewType {
-  Movie = 'Movie',
-  TvShow = 'TV Show',
-  Game = 'Game',
-  Album = 'Album'
-}
-
-export enum QuickReviewRating {
-  DidntLikeIt = 'Didn\'t like it',
-  Decent = 'Decent',
-  LikeIt = 'I like it',
-  LovedIt = 'Loved it!'
-}
+import { QuickReviewRating, QuickReviewType } from './quick-review-types';
 
 export const quickReviewSchema = z.object({
   type: z.enum([QuickReviewType.Movie, QuickReviewType.TvShow, QuickReviewType.Game, QuickReviewType.Album]),

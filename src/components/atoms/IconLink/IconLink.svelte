@@ -14,16 +14,17 @@
     onclick,
     ...props
   }: {
-    href: string;
+    href?: string;
     target?: string;
     rel?: string;
     title?: string;
     class?: string;
-    icon: Snippet;
+    icon?: Snippet;
     children?: Snippet;
     onclick?: EventListener;
   } = $props();
 
+  let tag = $derived(href ? 'a' : 'button');
   let isExternalLink = $derived(!!href && HttpRegex.test(href));
   let linkProps = $derived({
     href,
@@ -34,14 +35,23 @@
   let classList = $derived(['a-icon-link', className]);
 </script>
 
-<a {...linkProps} class={classList} {...props} title={title} {onclick}>
-  <div class="a-icon-link__icon">
-    {@render icon()}
-  </div>
+<svelte:element
+  this={tag}
+  {...linkProps}
+  class={classList}
+  {...props}
+  title={title}
+  {onclick}
+>
+  {#if icon}
+    <div class="a-icon-link__icon">
+      {@render icon()}
+    </div>
+  {/if}
   <span class="a-icon-link__text">
     {@render children?.()}
   </span>
-</a>
+</svelte:element>
 
 <style lang="scss">
   @use '/src/styles/typography';
@@ -53,6 +63,13 @@
 
     text-decoration: none;
     color: currentColor;
+
+    border: none;
+    appearance: none;
+    background-color: transparent;
+    text-align: left;
+    width: fit-content;
+    cursor: pointer;
 
     &__icon {
       width: 24px;

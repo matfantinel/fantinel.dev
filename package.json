@@ -51,7 +51,8 @@
   "dependencies": {
     "@astrojs/sitemap": "^3.4.1",
     "@astrojs/svelte": "^7.1.0",
-    "@astrojs/vercel": "^8.1.4"
+    "@astrojs/vercel": "^8.1.4",
+    "html-to-image": "^1.11.13"
   },
   "optionalDependencies": {
     "@rollup/rollup-linux-x64-gnu": "4.40.1"

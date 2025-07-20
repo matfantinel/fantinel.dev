@@ -3,8 +3,11 @@
   import QuickReviewTypeTag from '@components/atoms/QuickReviewTypeTag';
   import MarkdownRenderer from '@components/molecules/MarkdownRenderer';
   import QuickReviewRatings from '@components/molecules/QuickReviewRatings';
-  import type { QuickReviewRating, QuickReviewType } from '@schemas/quick-review';
+  import type { QuickReviewRating, QuickReviewType } from '@schemas/quick-review-types';
   import dateformat from 'dateformat';
+  import IconLink from '@components/atoms/IconLink';
+
+  import * as htmlToImage from 'html-to-image';
 
   let {
     title,
@@ -37,13 +40,58 @@
   let customStyles = $derived([
     customBg ? `--background-color: ${customBg.startsWith('#') ? customBg : `#${customBg}`}` : '',
   ]);
+
+  let id = $derived(`quick-review-${slug}`);
+
+  function downloadReview() {
+    // Hide download button so it doesn't show up on image
+    const downloadButton = document.querySelector(`#${id} .m-quick-review-card__download-button`) as HTMLElement;
+    let prevDisplay = downloadButton?.style.display;
+    if (downloadButton) {
+      downloadButton.style.display = 'none';
+    }
+
+    // Remove border radius from card so it looks better in the image
+    const card = document.getElementById(id) as HTMLElement;
+    let prevBorderRadius = card.style.borderRadius;
+    card.style.borderRadius = '0';
+
+    setTimeout(() => {
+      htmlToImage.toPng(card).then((dataUrl) => {
+        const link = document.createElement('a');
+        link.download = `quick-review-${slug}.png`;
+        link.href = dataUrl;
+        link.click();
+      });
+
+      setTimeout(() => {
+        if (downloadButton) {
+          downloadButton.style.display = prevDisplay;
+        }
+        card.style.borderRadius = prevBorderRadius;
+      }, 100);
+    }, 100);
+  }
 </script>
 
-<article class={classList} style={customStyles.join(';')}>
+<article class={classList} style={customStyles.join(';')} {id}>
+  <div class="u-noise"></div>
   <div class="m-quick-review-card__container">
     <div class="m-quick-review-card__image-container">
       {#if image}
         <Image class="m-quick-review-card__image" src={image} alt={`Cover of ${title}`} />
+      {/if}
+
+      {#if slug}
+        <IconLink class="m-quick-review-card__download-button" onclick={downloadReview}>Download Review</IconLink>
+        <!-- Hide if JavaScript is disabled -->
+        <noscript style="display: none;">
+          <style>
+            .m-quick-review-card__download-button {
+              display: none !important;
+            }
+          </style>
+        </noscript>
       {/if}
     </div>
 
@@ -77,12 +125,20 @@
   @use '/src/styles/typography';
   @use '/src/styles/breakpoints';
 
+  .u-noise {
+    position: absolute;
+    z-index: 1;
+    opacity: 1;
+  }
+
   .m-quick-review-card {
     padding: var(--spacing-sm);
     border-radius: var(--border-radius);
     box-shadow: var(--theme--shadow-card);
     width: min(100%, 780px);
     container-type: inline-size;
+    position: relative;
+    isolation: isolate;
 
     --background-color: var(--theme--qr-base-dark-color);
     --text-color: var(--theme--qr-base-light-color);
@@ -107,17 +163,20 @@
       grid-column: 1;
       grid-row: span 5;
 
-      background: var(--theme--background-card-accent-color);
       isolation: isolate;
       width: 100%;
       height: auto;
-      border-radius: var(--border-radius);
       overflow: hidden;
-      box-shadow: var(--theme--shadow-image);
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
     :global(.m-quick-review-card__image) {
       object-fit: cover;
+      border-radius: var(--border-radius);
+      box-shadow: var(--theme--shadow-image);
     }
 
     &__title {
@@ -157,6 +216,10 @@
       grid-column: span 2;
       order: 5;
       margin-top: var(--spacing-md);
+    }
+
+    :global(.m-quick-review-card__download-button) {
+      margin-top: var(--spacing-xxs);
     }
 
     @mixin small-layout-styles {

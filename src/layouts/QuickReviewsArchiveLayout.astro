@@ -43,6 +43,7 @@ const { reviews, currentPage, totalPages }: Props = Astro.props;
                   content={review.content}
                   type={review.type}
                   date={review.date}
+                  client:load
                 />
               ))}
             </QuickReviewCards>

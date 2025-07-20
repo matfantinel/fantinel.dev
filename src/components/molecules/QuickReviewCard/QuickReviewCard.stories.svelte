@@ -12,11 +12,8 @@
       title: { control: 'text' },
       slug: { control: 'text' },
       image: { control: 'text' },
-      rating: { control: 'select', options: ['Didn\'t like it', 'Decent', 'I like it', 'Loved it!'] },
-      theme: { control: 'select', options: ['dark', 'light'] },
       customBg: { control: 'text' },
       content: { control: 'text' },
-      type: { control: 'select', options: ['movie', 'tv-show', 'game', 'album'] },
       class: { control: false },
     },
     render: template
@@ -28,7 +25,7 @@
     metadata: '2025 - Director, Artist, Publisher, Developer',
     image: 'https://placedog.net/220/330',
     date: '2025-01-01',
-    type: 'movie',
+    type: 'Movie',
     rating: 'Loved it!',
     content: LoremIpsum.paragraph
   };

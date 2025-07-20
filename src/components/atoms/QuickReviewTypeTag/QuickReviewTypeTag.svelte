@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { QuickReviewType } from '@schemas/quick-review';
+  import { QuickReviewType } from '@schemas/quick-review-types';
   import MovieIcon from '@assets/icons/movie.svelte';
   import TvIcon from '@assets/icons/tv.svelte';
   import GameIcon from '@assets/icons/game.svelte';

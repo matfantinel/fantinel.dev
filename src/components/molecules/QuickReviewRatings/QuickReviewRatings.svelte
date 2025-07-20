@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { QuickReviewRating } from '@schemas/quick-review';
+  import { QuickReviewRating } from '@schemas/quick-review-types';
 
   let {
     rating,
@@ -71,6 +71,7 @@
 </div>
 
 <style lang="scss">
+  @use '/src/styles/breakpoints';
   @use '/src/styles/typography';
 
   .m-quick-review-ratings {
@@ -98,12 +99,13 @@
       &.m-quick-review-ratings--monochrome {
         --rating-color: var(--theme--qr-base-light-color);
       }
-    }    
+    }
 
     &__rating {
       @include typography.b1;
       padding: var(--spacing-xs) var(--spacing-sm);
       border-radius: var(--border-radius);
+      text-align: center;
 
       &--active {
         background: var(--rating-color);
@@ -122,10 +124,37 @@
 
         &.m-quick-review-ratings__rating--loved {
           color: var(--theme--qr-base-dark-color);
-          
+
           --glow-color: var(--color--yellow-rgb);
           animation: text-glow 3.5s cubic-bezier(0.66, 0, 0.34, 1) infinite alternate;
         }
+      }
+    }
+
+    @mixin small-layout-styles {
+      flex-direction: column;
+      justify-content: center;
+      border: unset;
+      padding: 0;
+
+      &__rating {
+        display: none;
+
+        &.m-quick-review-ratings__rating--active {
+          display: block;
+          margin: 0;
+        }
+      }
+    }
+
+    @container (max-width: 600px) {
+      @include small-layout-styles;
+    }
+
+    // Fallback styles for browsers that don't support container queries
+    @supports not (container-type: inline-size) {
+      @include breakpoints.for-phone-only {
+        @include small-layout-styles;
       }
     }
   }
