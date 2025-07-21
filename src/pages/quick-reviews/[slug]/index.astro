@@ -1,0 +1,19 @@
+---
+import { getPaginatedReviews } from '@data/quickReviews';
+import QuickReviewLayout from '@layouts/QuickReviewLayout.astro';
+
+export async function getStaticPaths() {
+  const { reviews } = await getPaginatedReviews(1, undefined);
+
+  const paths = reviews.map((review) => ({
+    params: { slug: review.slug },
+    props: { review },
+  }));
+
+  return paths;
+}
+
+const { review } = Astro.props;
+---
+
+<QuickReviewLayout review={review} />

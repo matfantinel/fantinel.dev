@@ -1,0 +1,61 @@
+---
+import Button from '@components/atoms/Button';
+import QuickReviewCard from '@components/molecules/QuickReviewCard';
+import type { QuickReview } from '@schemas/quick-review';
+import BaseLayout from './BaseLayout.astro';
+
+interface Props {
+  review: QuickReview;
+}
+
+const { review }: Props = Astro.props;
+
+---
+
+<BaseLayout
+  title={review.title}
+  keywords={review.title}
+  description={review.content}
+  image={review.image}
+  autoGenerateImage={!review.image}
+  slug={`quick-reviews/${review.slug}`}
+  publishedDate={review.date}
+>
+  <main class='l-quick-review'>
+    <div class='l-quick-review__container u-container' data-pagefind-body>
+      <QuickReviewCard
+        title={review.title}
+        metadata={review.metadata}
+        slug={review.slug}
+        image={review.image}
+        rating={review.rating}
+        theme={review.theme}
+        customBg={review.customBg}
+        content={review.content}
+        type={review.type}
+        date={review.date}
+        client:load
+      />
+
+      <div class="l-quick-review__cta">
+        <Button href="/quick-reviews">View all Quick Reviews</Button>
+      </div>
+    </div>
+  </main>
+</BaseLayout>
+
+<style lang='scss'>
+  @use '/src/styles/breakpoints';
+  @use '/src/styles/mixins';
+  @use '/src/styles/typography';
+
+  .l-quick-review {
+    &__container {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-lg);
+      align-items: center;
+      justify-content: center;
+    }
+  }
+</style>
