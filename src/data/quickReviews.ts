@@ -23,7 +23,7 @@ export async function getPaginatedReviews(page: number, rating?: QuickReviewRati
   const { postsPerPage = 12 } = options;
 
   let reviews = await getCollection("quickReviews");
-  let sanitizedReviews = reviews.map((review) => sanitizeQuickReview(review.data as unknown as QuickReview, review.filePath ?? "", review.body));
+  let sanitizedReviews = reviews.map((review) => sanitizeQuickReview(review.data as unknown as QuickReview, review.filePath ?? "", review.rendered?.html));
 
   if (type) {
     type = getTypeFromLowercaseKey(type);

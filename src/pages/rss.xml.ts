@@ -100,6 +100,7 @@ function reviewToRssItem(review: QuickReview) {
   if (coverImage && !coverImage.includes(siteMeta.baseUrl) && !coverImage.startsWith('http')) {
     coverImage = `${siteMeta.baseUrl}${coverImage}`;
   }
+  console.log(review.content);
   return `
     <item>
       <guid>${siteMeta.baseUrl}/quick-reviews/${review.slug}</guid>
@@ -110,7 +111,8 @@ function reviewToRssItem(review: QuickReview) {
         ${review.title ? `<p>${review.title}${review.metadata ? ` <br> ${review.metadata}` : ''}</p>` : ''}
         ${review.rating ? `<p>My rating: ${review.rating}</p>` : ''}
         ${coverImage ? `<p><img src="${coverImage}" /></p>` : ''}
-        ${review.content ? `<div>${review.content}</div>` : ''}
+        
+        ${review.content}
       ]]></content:encoded>
       ${coverImage ? `<media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="${coverImage}"/>` : ''}
       ${coverImage ? `<media:content xmlns:media="http://search.yahoo.com/mrss/" medium="image" url="${coverImage}"/>` : ''}          
