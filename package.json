@@ -17,6 +17,7 @@
     "@fontsource-variable/mona-sans": "^5.2.5",
     "@fontsource/atkinson-hyperlegible-next": "^5.2.2",
     "@fontsource/monaspace-krypton": "^5.2.5",
+    "@fontsource/sriracha": "^5.2.6",
     "@humanspeak/svelte-markdown": "^0.8.6",
     "@modyfi/vite-plugin-yaml": "^1.1.1",
     "@resvg/resvg-js": "^2.6.2",

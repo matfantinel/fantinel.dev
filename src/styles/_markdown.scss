@@ -71,4 +71,10 @@
       margin-top: var(--spacing-md);
     }
   }
+
+  em, i {
+    font-family: var(--font--spicy);
+    letter-spacing: -.25px;
+    font-style: normal;
+  }
 }
