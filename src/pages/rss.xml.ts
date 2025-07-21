@@ -95,6 +95,11 @@ function reviewToRssItem(review: QuickReview) {
   // Reviews don't have time, so we're setting it to 12:00 UTC
   const date = new Date(review.date);
   date.setUTCHours(12, 0, 0, 0);
+
+  let coverImage = review.image ? escapeXml(review.image) : null;
+  if (coverImage && !coverImage.includes(siteMeta.baseUrl) && !coverImage.startsWith('http')) {
+    coverImage = `${siteMeta.baseUrl}${coverImage}`;
+  }
   return `
     <item>
       <guid>${siteMeta.baseUrl}/quick-reviews/${review.slug}</guid>
@@ -104,11 +109,11 @@ function reviewToRssItem(review: QuickReview) {
       <content:encoded><![CDATA[
         ${review.title ? `<p>${review.title}${review.metadata ? ` <br> ${review.metadata}` : ''}</p>` : ''}
         ${review.rating ? `<p>My rating: ${review.rating}</p>` : ''}
-        ${review.image ? `<p><img src="${review.image}" /></p>` : ''}
+        ${coverImage ? `<p><img src="${coverImage}" /></p>` : ''}
         ${review.content ? `<div>${review.content}</div>` : ''}
       ]]></content:encoded>
-      ${review.image ? `<media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="${review.image}"/>` : ''}
-      ${review.image ? `<media:content xmlns:media="http://search.yahoo.com/mrss/" medium="image" url="${review.image}"/>` : ''}          
+      ${coverImage ? `<media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="${coverImage}"/>` : ''}
+      ${coverImage ? `<media:content xmlns:media="http://search.yahoo.com/mrss/" medium="image" url="${coverImage}"/>` : ''}          
     </item>
   `
 }
