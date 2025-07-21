@@ -100,7 +100,6 @@ function reviewToRssItem(review: QuickReview) {
   if (coverImage && !coverImage.includes(siteMeta.baseUrl) && !coverImage.startsWith('http')) {
     coverImage = `${siteMeta.baseUrl}${coverImage}`;
   }
-  console.log(review.content);
   return `
     <item>
       <guid>${siteMeta.baseUrl}/quick-reviews/${review.slug}</guid>
