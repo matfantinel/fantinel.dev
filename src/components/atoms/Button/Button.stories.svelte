@@ -25,7 +25,14 @@
 </script>
 
 {#snippet template(args)}
-  <Button {...args}>{args.children ?? 'Button'}</Button>
+  <Button {...args}>{args.children ?? 'Button'}</Button> <br><br>
+  <Button {...args} color="green">{args.children ?? 'Button'}</Button> <br><br>
+  <Button {...args} color="yellow">{args.children ?? 'Button'}</Button> <br><br>
+  <Button {...args} color="peach">{args.children ?? 'Button'}</Button> <br><br>
+  <Button {...args} color="red">{args.children ?? 'Button'}</Button> <br><br>
+  <Button {...args} color="mauve">{args.children ?? 'Button'}</Button> <br><br>
+  <Button {...args} color="blue">{args.children ?? 'Button'}</Button> <br><br>
+  <Button {...args} color="teal">{args.children ?? 'Button'}</Button>
 {/snippet}
 
 <Story name="Default" />

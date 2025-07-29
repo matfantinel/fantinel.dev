@@ -1,5 +1,6 @@
 <script module>
   import { defineMeta } from '@storybook/addon-svelte-csf';
+  import { QuickReviewType } from '@schemas/quick-review-types';
 
   import QuickReviewTypeTag from './QuickReviewTypeTag.svelte';
 

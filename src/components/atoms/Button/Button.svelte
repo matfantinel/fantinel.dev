@@ -62,7 +62,7 @@
     padding: var(--spacing-xs) var(--spacing-md);
     border-radius: var(--border-radius);
     text-decoration: none;
-    box-shadow: var(--theme--shadow-card);
+    box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.25), var(--theme--shadow-card);
     border: none;
     cursor: pointer;
 
@@ -73,13 +73,13 @@
     --button-color-text: var(--theme--color-accent-contrast);
     --button-color-hover-glow: var(--theme--color-accent-glow);
 
-    background: var(--button-color-background);
-    color: var(--button-color-text);
+    background: linear-gradient(180deg, var(--button-color-background-hover) 0%, var(--button-color-background) 100%);
+    color: var(--button-color-text);    
 
     @media (hover: hover) {
       &:hover {
-        background: var(--button-color-background-hover);
-        box-shadow: var(--button-color-hover-glow);
+        background: linear-gradient(180deg, var(--button-color-background-hover) 100%, var(--button-color-background) 0%);
+        box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.25), var(--button-color-hover-glow);
       }
     }
 

@@ -25,13 +25,14 @@
 {#snippet children()}
   {#each Array(10) as _, index}
     <QuickReviewCard
-      title={LoremIpsum.paragraph.split(' ').slice(0, index + 4).join(' ')}
-      slug={LoremIpsum.paragraph.split(' ').slice(0, index + 4).join(' ')}
-      image={LoremIpsum.paragraph.split(' ').slice(0, index + 4).join(' ')}
-      rating={LoremIpsum.paragraph.split(' ').slice(0, index + 4).join(' ')}
-      theme={LoremIpsum.paragraph.split(' ').slice(0, index + 4).join(' ')}
-      customBg={LoremIpsum.paragraph.split(' ').slice(0, index + 4).join(' ')}
-      content={LoremIpsum.paragraph.split(' ').slice(0, index + 4).join(' ')}
+      title="Title of movie, tv show, game or music album"
+      slug="slug-of-the-review"
+      metadata="2025 - Director, Artist, Publisher, Developer"
+      image="https://placedog.net/220/330"
+      date="2025-01-01"
+      type="Movie"
+      rating="Loved it!"
+      content={LoremIpsum.paragraph}
     />
   {/each}
 {/snippet}
