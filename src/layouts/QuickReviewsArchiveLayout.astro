@@ -75,24 +75,11 @@ const typeTags = allTypes.map((type) => {
         {!reviews.length && <p class='u-h4'>No reviews found</p>}
 
         {
-          reviews && (
-            <QuickReviewCards>
-              {reviews.map((review) => (
-                <QuickReviewCard
-                  title={review.title}
-                  metadata={review.metadata}
-                  slug={review.slug}
-                  image={review.image}
-                  rating={review.rating}
-                  theme={review.theme}
-                  customBg={review.customBg}
-                  content={review.content}
-                  type={review.type}
-                  date={review.date}
-                  client:load
-                />
-              ))}
-            </QuickReviewCards>
+          // I'm passing reviews as a prop here to avoid having multiple
+          // Elements with client:load. Having multiple islands like that
+          // can cause issues.
+          reviews && (            
+            <QuickReviewCards reviews={reviews} client:load />
           )
         }
 

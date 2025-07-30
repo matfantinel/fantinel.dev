@@ -19,8 +19,8 @@ export function sanitizeQuickReview(review: QuickReview, filepath: string, body?
   return review;
 }
 
-export async function getPaginatedReviews(page: number, rating?: QuickReviewRating, type?: QuickReviewType, options: { postsPerPage?: number } = { postsPerPage: 20 }) {
-  const { postsPerPage = 12 } = options;
+export async function getPaginatedReviews(page: number, rating?: QuickReviewRating, type?: QuickReviewType, options: { postsPerPage?: number } = { postsPerPage: 10 }) {
+  const { postsPerPage = 10 } = options;
 
   let reviews = await getCollection("quickReviews");
   let sanitizedReviews = reviews.map((review) => sanitizeQuickReview(review.data as unknown as QuickReview, review.filePath ?? "", review.rendered?.html));
