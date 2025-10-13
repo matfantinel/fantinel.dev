@@ -12,6 +12,10 @@
 @use '/src/styles/_view-transitions.scss';
 // @use '/src/styles/animations.scss';
 
+html {
+	background: var(--theme--background-base-color);
+}
+
 body {
   background: var(--theme--background-root-color, var(--theme--background-base-color));
   color: var(--theme--text-base-color);

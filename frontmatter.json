@@ -1,0 +1,213 @@
+{
+  "$schema": "https://frontmatter.codes/frontmatter.schema.json",
+  "frontMatter.framework.id": "other",
+  "frontMatter.preview.host": "http://localhost:4321",
+  "frontMatter.content.publicFolder": "public/cms",
+  "frontMatter.content.pageFolders": [
+    {
+      "title": "quick-reviews",
+      "path": "[[workspace]]/public/cms/quick-reviews",
+      "contentTypes": [
+        "Quick Review"
+      ]
+    },
+    {
+      "title": "cool-links",
+      "path": "[[workspace]]/public/cms/cool-links",
+      "contentTypes": [
+        "Cool Link"
+      ]
+    },
+    {
+      "title": "articles",
+      "path": "[[workspace]]/public/cms/articles",
+      "contentTypes": [
+        "Blog Post"
+      ]
+    }
+  ],
+  "frontMatter.taxonomy.contentTypes": [
+    {
+      "name": "Blog Post",
+      "pageBundle": false,
+      "previewPath": "blog",
+      "filePrefix": null,
+      "clearEmpty": true,
+      "fields": [
+        {
+          "title": "Title",
+          "name": "title",
+          "type": "string",
+          "single": true,
+          "required": true
+        },
+        {
+          "title": "Slug",
+          "name": "slug",
+          "type": "string",
+          "single": true,
+          "required": true
+        },
+        {
+          "title": "Excerpt",
+          "name": "excerpt",
+          "type": "string",
+          "single": true
+        },
+        {
+          "title": "Cover Image",
+          "name": "coverImage",
+          "type": "image",
+          "isPreviewImage": true
+        },
+        {
+          "title": "Cover Image Alt",
+          "name": "coverImageAlt",
+          "type": "string"
+        },
+        {
+          "title": "OG Image",
+          "name": "ogImage",
+          "type": "image"
+        },
+        {
+          "title": "Show Table of Contents",
+          "name": "showToc",
+          "type": "boolean"
+        },
+        {
+          "title": "Hidden",
+          "name": "hidden",
+          "type": "boolean"
+        },
+        {
+          "title": "Categories",
+          "name": "categories",
+          "type": "categories"
+        },
+        {
+          "title": "Date",
+          "name": "date",
+          "type": "datetime",
+          "isPublishDate": true
+        },
+        {
+          "title": "Updated",
+          "name": "updated",
+          "type": "datetime",
+          "isModifiedDate": true
+        }
+      ]
+    },
+    {
+      "name": "Quick Review",
+      "pageBundle": false,
+      "previewPath": "quick-reviews",
+      "filePrefix": null,
+      "clearEmpty": true,
+      "fields": [
+        {
+          "title": "Type",
+          "name": "type",
+          "type": "choice",
+          "required": true,
+          "choices": [
+            "Movie",
+            "TV Show",
+            "Game",
+            "Album"
+          ]
+        },
+        {
+          "title": "Metadata",
+          "name": "metadata",
+          "type": "string",
+          "single": true,
+          "required": true
+        },
+        {
+          "title": "Image",
+          "name": "image",
+          "type": "image",
+          "isPreviewImage": true
+        },
+        {
+          "title": "Rating",
+          "name": "rating",
+          "type": "choice",
+          "required": true,
+          "choices": [
+            "Didn't like it",
+            "Decent",
+            "I like it",
+            "Loved it!"
+          ]
+        },
+        {
+          "title": "Date",
+          "name": "date",
+          "type": "datetime",
+          "isPublishDate": true
+        },
+        {
+          "title": "Theme",
+          "name": "theme",
+          "type": "string",
+          "single": true,
+          "required": true
+        },
+        {
+          "title": "Custom Background",
+          "name": "customBg",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "Cool Link",
+      "pageBundle": false,
+      "previewPath": "cool-links",
+      "filePrefix": null,
+      "clearEmpty": true,
+      "fields": [
+        {
+          "title": "Title",
+          "name": "title",
+          "type": "string",
+          "single": true,
+          "required": true
+        },
+        {
+          "title": "Author",
+          "name": "author",
+          "type": "string"
+        },
+        {
+          "title": "URL",
+          "name": "url",
+          "type": "string",
+          "required": true
+        },
+        {
+          "title": "Saved On",
+          "name": "savedOn",
+          "type": "datetime",
+          "isPublishDate": true
+        },
+        {
+          "title": "Tags",
+          "name": "tags",
+          "type": "tags"
+        },
+        {
+          "title": "Posted",
+          "name": "posted",
+          "type": "boolean"
+        }
+      ]
+    }
+  ],
+  "frontMatter.framework.startCommand": "npm run dev",
+  "frontMatter.git.enabled": false,
+  "frontMatter.panel.openOnSupportedFile": false
+}
