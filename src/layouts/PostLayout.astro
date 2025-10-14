@@ -115,7 +115,7 @@ if (post.data.ogImage) {
         }
 
         {
-          post.data.relatedPosts && (
+          post.data.relatedPosts && post.data.relatedPosts.length > 0 && (
             <PostsSection
               title='You might also like'
               button={{
