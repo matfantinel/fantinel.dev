@@ -1,7 +1,7 @@
 ---
 import Pagination from '@components/molecules/Pagination';
 import QuickReviewCards from '@components/molecules/QuickReviewCards';
-import BlogArchiveHero from '@components/organisms/BlogArchiveHero';
+import ArchiveHero from '@components/organisms/ArchiveHero';
 import metaConfig from '@public/cms/meta.yml';
 import type { QuickReview } from '@schemas/quick-review';
 import { QuickReviewType } from '@schemas/quick-review-types';
@@ -52,11 +52,12 @@ const typeTags = allTypes.map((type) => {
 >
   <main class='l-quick-reviews-archive' style='view-transition-name: blog-archive-hero'>
     <div class='l-quick-reviews-archive__container' data-pagefind-body>
-      <BlogArchiveHero
+      <ArchiveHero
         class='l-quick-reviews-archive__hero'
         title='Quick Reviews'
-        body='Since June 2024, I started writing quick reviews of movies, TV shows and games I’ve watched or played. Here’s every one of them.'
-        tags={typeTags}
+        body="Since June 2024, I started writing quick reviews of movies, TV shows and games I’ve watched or played. Here’s every one of them."
+        tagGroups={typeTags ? [{ label: 'Filter by type:', tags: typeTags }] : []}
+        postType="quick-review"
       />
 
       <div class='l-quick-reviews-archive__content-wrapper u-container'>

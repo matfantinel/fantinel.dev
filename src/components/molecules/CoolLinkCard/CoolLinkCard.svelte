@@ -13,6 +13,7 @@
     tags,
     content,
     class: className,
+    ...props
   }: {
     title: string;
     author?: string;
@@ -21,14 +22,15 @@
     tags?: (string | { name: string; slug: string; url: string })[];
     content?: string;
     class?: string;
+    [key: string]: any;
   } = $props();
 </script>
 
-<article class={['m-cool-link-card', className]}>
+<article class={['m-cool-link-card', className]} {...props}>
   <div class="m-cool-link-card__container">
     <div class="m-cool-link-card__header">
       <p class="m-cool-link-card__title">
-        <span class="m-cool-link-card__title-text">{title}</span>
+        <a class="m-cool-link-card__title-link" href={url} target="_blank" rel="noopener">{title}</a>
         {#if author}
           <span class="m-cool-link-card__author">, by {author}</span>
         {/if}
@@ -100,7 +102,7 @@
       @include typography.h4;
     }
 
-    &__title-text {
+    &__title-link {
       color: var(--color--blue);
       text-decoration: underline;
 
@@ -142,11 +144,12 @@
   }
 
   @media (hover: hover) {
-    :global(.m-cool-link-card:has(.m-cool-link-card__link:hover)) {
+    :global(.m-cool-link-card:has(.m-cool-link-card__link:hover)),
+    :global(.m-cool-link-card:has(.m-cool-link-card__title-link:hover)) {
       box-shadow: var(--theme--shadow-card-high);
-      .m-cool-link-card__title-text {
+      .m-cool-link-card__title-link {
         text-underline-offset: 0.3em;
-        filter: drop-shadow(var(--theme--glow-blue));
+        filter: unset;
       }
     }
   }

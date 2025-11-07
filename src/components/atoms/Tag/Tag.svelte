@@ -22,6 +22,7 @@
     title?: string;
     class?: string;
     children?: Snippet;
+    [key: string]: any;
   } = $props();
 
   let tag = $derived(href ? 'a' : 'div');
@@ -46,7 +47,7 @@
   class={classList}
   role={tag === 'a' ? 'link' : undefined}
   title={title}
-  {...props}
+  {...props}  
 >
   {#if selected}
     <div class="a-tag__icon">

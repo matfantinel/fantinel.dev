@@ -26,6 +26,7 @@
         date={link.savedOn as any}
         tags={link.tags}
         content={link.content as string | undefined}
+        style={`view-transition-name: cool-link-card-${link.slug}`}
       />
     {/each}
   {/if}

@@ -11,7 +11,7 @@
   } = $props();
 
   let classList = $derived(['a-cool-link-stamp', className]);
-  let randomOpacity = $derived(0.8 + Math.random() * 0.2); // Random between 0.8 and 1.0
+  let randomOpacity = $derived(0.7 + Math.random() * 0.2); // Random between 0.7 and 0.9
 </script>
 
 <div class={classList} style="opacity: {randomOpacity}">

@@ -1,11 +1,11 @@
 ---
+import CoolLinkCards from '@components/molecules/CoolLinkCards';
 import Pagination from '@components/molecules/Pagination';
-import BlogArchiveHero from '@components/organisms/BlogArchiveHero';
+import ArchiveHero from '@components/organisms/ArchiveHero';
 import metaConfig from '@public/cms/meta.yml';
 import type { CoolLink, CoolLinkTag } from '@schemas/cool-link';
 import type { SiteMeta } from '@schemas/site-meta';
 import BaseLayout from './BaseLayout.astro';
-import CoolLinkCards from '@components/molecules/CoolLinkCards';
 const siteMeta: SiteMeta = metaConfig;
 
 interface Props {
@@ -30,17 +30,19 @@ allTags?.forEach((tag) => {
 
 <BaseLayout
   title='Cool Links'
-  image={siteMeta.baseUrl + '/cms/media/articles/cool-links-cover.jpg'}
+  image={siteMeta.baseUrl + '/cms/media/articles/cool-links-cover.png'}
   description="A collection of links to interesting things I've come across."
   hasHeaderBackground
 >
-  <main class='l-cool-links-archive' style='view-transition-name: blog-archive-hero'>
+  <main class='l-cool-links-archive' style='view-transition-name: archive-hero'>
     <div class='l-cool-links-archive__container' data-pagefind-body>
-      <BlogArchiveHero
+      <ArchiveHero
         class='l-cool-links-archive__hero'
         title='Cool Links'
-        body={allTags ? "Here's a collection of links to interesting things I've come across. You can click on a tag to filter links by it." : "Here's a collection of links to interesting things I've come across."}
-        tags={allTags}
+        body="Here’s a collection of interesting links I’ve found around the web. The feed updates frequently, and I compile everything into a blog post on the last day of each month."
+        tagGroups={allTags ? [{ label: 'Filter by tag:', tags: allTags }] : []}
+        postType="cool-link"
+        image={siteMeta.baseUrl + '/cms/media/articles/cool-links-cover.png'}
       />
 
       <div class='l-cool-links-archive__content-wrapper u-container'>

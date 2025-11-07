@@ -2,12 +2,12 @@
 import BlogPostCard from '@components/molecules/BlogPostCard';
 import BlogPostCards from '@components/molecules/BlogPostCards';
 import Pagination from '@components/molecules/Pagination';
-import BlogArchiveHero from '@components/organisms/BlogArchiveHero';
+import ArchiveHero from '@components/organisms/ArchiveHero';
+import NewsletterCta from '@components/organisms/NewsletterCta';
 import metaConfig from '@public/cms/meta.yml';
 import type { BlogPost, BlogPostCategory } from '@schemas/blog';
 import type { SiteMeta } from '@schemas/site-meta';
 import BaseLayout from './BaseLayout.astro';
-import NewsletterCta from '@components/organisms/NewsletterCta';
 
 interface Props {
   posts: BlogPost[];
@@ -34,11 +34,12 @@ allCategories?.forEach((category) => {
 
   <main class='l-blog-archive' style="view-transition-name: blog-archive-hero">
     <div class='l-blog-archive__container'>
-      <BlogArchiveHero
-        class="l-blog-archive__hero"
-        title="Blog"
+      <ArchiveHero
+        class='l-blog-archive__hero'
+        title='Blog'
         body="I usually post about the topics below. You can click on a category to filter posts by it."
-        tags={allCategories}
+        tagGroups={allCategories ? [{ label: 'Filter by category:', tags: allCategories }] : []}
+        postType="blog"
       />
 
       <div class='l-blog-archive__content-wrapper u-container'>
