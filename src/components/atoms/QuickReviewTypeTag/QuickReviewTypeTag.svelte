@@ -22,16 +22,16 @@
 
 {#snippet icon()}
   {#if type === QuickReviewType.Movie}
-    <MovieIcon />
+    <MovieIcon size="16px" />
   {/if}
   {#if type === QuickReviewType.TvShow}
-    <TvIcon />
+    <TvIcon size="16px" />
   {/if}
   {#if type === QuickReviewType.Game}
-    <GameIcon />
+    <GameIcon size="16px" />
   {/if}
   {#if type === QuickReviewType.Album}
-    <AlbumIcon />
+    <AlbumIcon size="16px" />
   {/if}
 {/snippet}
 

@@ -2,6 +2,7 @@ import { defineCollection } from "astro:content";
 import { glob } from "astro/loaders";
 import { blogSchema } from "@schemas/blog";
 import { quickReviewSchema } from "@schemas/quick-review";
+import { coolLinkSchema } from "@schemas/cool-link";
 
 const blog = defineCollection({
   loader: glob({ pattern: "**/*.md", base: "./public/cms/articles" }),
@@ -13,4 +14,9 @@ const quickReviews = defineCollection({
   schema: quickReviewSchema
 });
 
-export const collections = { blog, quickReviews };
+const coolLinks = defineCollection({
+  loader: glob({ pattern: "**/*.md", base: "./public/cms/cool-links" }),
+  schema: coolLinkSchema
+});
+
+export const collections = { blog, quickReviews, coolLinks };

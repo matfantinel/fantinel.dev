@@ -1,13 +1,12 @@
 ---
 import Pagination from '@components/molecules/Pagination';
-import QuickReviewCard from '@components/molecules/QuickReviewCard';
 import QuickReviewCards from '@components/molecules/QuickReviewCards';
-import BlogArchiveHero from '@components/organisms/BlogArchiveHero';
-import type { QuickReview } from '@schemas/quick-review';
-import BaseLayout from './BaseLayout.astro';
-import { QuickReviewType, QuickReviewRating } from '@schemas/quick-review-types';
+import ArchiveHero from '@components/organisms/ArchiveHero';
 import metaConfig from '@public/cms/meta.yml';
+import type { QuickReview } from '@schemas/quick-review';
+import { QuickReviewType, QuickReviewRating } from '@schemas/quick-review-types';
 import type { SiteMeta } from '@schemas/site-meta';
+import BaseLayout from './BaseLayout.astro';
 const siteMeta: SiteMeta = metaConfig;
 
 interface Props {
@@ -15,13 +14,13 @@ interface Props {
   currentPage: number;
   totalPages: number;
   currentType?: QuickReviewType;
-  // currentRating?: QuickReviewRating;
+  currentRating?: QuickReviewRating;
 }
 
-const { reviews, currentPage, totalPages, currentType }: Props = Astro.props;
+const { reviews, currentPage, totalPages, currentType, currentRating }: Props = Astro.props;
 
 const allTypes = Object.keys(QuickReviewType).map((key) => key);
-// const allRatings = Object.keys(QuickReviewRating).map((key) => key);
+const allRatings = Object.keys(QuickReviewRating).map((key) => key).reverse();
 
 // { name: string; slug: string; url: string; active?: boolean }
 const typeTags = allTypes.map((type) => {
@@ -29,20 +28,30 @@ const typeTags = allTypes.map((type) => {
   return {
     name: QuickReviewType[type as keyof typeof QuickReviewType] + 's',
     slug: type.toLowerCase(),
-    url: isActive ? `/quick-reviews` : `/quick-reviews/${type.toLowerCase()}`,
+    url: isActive ? `/quick-reviews` : `/quick-reviews/type/${type.toLowerCase()}`,
     active: isActive,
   };
 });
 
-// const ratingTags = allRatings.map((rating) => {
-//   const isActive = rating.toLowerCase() === currentRating?.toLowerCase();
-//   return {
-//     name: QuickReviewRating[rating as keyof typeof QuickReviewRating],
-//     slug: rating.toLowerCase(),
-//     url: isActive ? `/quick-reviews` : `/quick-reviews/${rating.toLowerCase()}`,
-//     active: isActive,
-//   }
-// });
+const ratingTags = allRatings.map((rating) => {
+  const isActive = rating.toLowerCase() === currentRating?.toLowerCase();
+  return {
+    name: QuickReviewRating[rating as keyof typeof QuickReviewRating],
+    slug: rating.toLowerCase(),
+    url: isActive ? `/quick-reviews` : `/quick-reviews/rating/${rating.toLowerCase()}`,
+    active: isActive,
+  }
+});
+
+const tagGroups = [
+  typeTags ? { label: 'Filter by media type:', tags: typeTags } : null,
+  ratingTags ? { label: 'or filter by rating:', tags: ratingTags } : null,
+].filter(a => a);
+
+let paginationBaseUrl = '/quick-reviews';
+if (currentType) paginationBaseUrl += `/type/${currentType.toLowerCase()}`;
+if (currentRating) paginationBaseUrl += `/rating/${currentRating.toLowerCase()}`;
+
 ---
 
 <BaseLayout
@@ -53,11 +62,12 @@ const typeTags = allTypes.map((type) => {
 >
   <main class='l-quick-reviews-archive' style='view-transition-name: blog-archive-hero'>
     <div class='l-quick-reviews-archive__container' data-pagefind-body>
-      <BlogArchiveHero
+      <ArchiveHero
         class='l-quick-reviews-archive__hero'
         title='Quick Reviews'
-        body='Since June 2024, I started writing quick reviews of movies, TV shows and games I’ve watched or played. Here’s every one of them.'
-        tags={typeTags}
+        body="Since June 2024, I started writing quick reviews of movies, TV shows and games I’ve watched or played. Here’s every one of them."
+        tagGroups={tagGroups}
+        postType="quick-review"
       />
 
       <div class='l-quick-reviews-archive__content-wrapper u-container'>
@@ -89,7 +99,7 @@ const typeTags = allTypes.map((type) => {
               class='l-quick-reviews-archive__pagination'
               currentPage={currentPage}
               totalPages={totalPages}
-              baseUrl={`/quick-reviews`}
+              baseUrl={paginationBaseUrl}
             />
           )
         }
