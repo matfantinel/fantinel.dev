@@ -96,6 +96,11 @@
       gap: var(--spacing-sm);
       width: 100%;
       min-height: 60px;
+
+      @include breakpoints.for-phone-only {
+        grid-template-columns: 1fr 88px;
+        column-gap: 0;
+      }
     }
 
     &__title {
@@ -128,6 +133,10 @@
     margin-bottom: -100%;
     translate: 0 -15%;
     rotate: 7deg;
+
+    @include breakpoints.for-phone-only {
+      scale: 0.8;
+    }
   }
 
   :global(.m-cool-link-card__link) {
