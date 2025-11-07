@@ -43,7 +43,7 @@
 
 <div class={classList}>
   <div class="o-archive-hero__container">
-    <div class="o-archive-hero__main">
+    <div class="o-archive-hero__main u-container">
       <div class="o-archive-hero__content">
         <h1 class={['o-archive-hero__title', titleColorClass()]}>
           {title}
@@ -62,7 +62,7 @@
     </div>
 
     {#if tagGroups && tagGroups.length > 0}
-      <div class="o-archive-hero__tag-groups">
+      <div class="o-archive-hero__tag-groups u-container-small">
         {#each tagGroups as group}
           <div class="o-archive-hero__tag-group">
             <h3 class="o-archive-hero__tag-group-label">{group.label}</h3>
@@ -91,9 +91,9 @@
 </div>
 
 <style lang="scss">
+  @use '/src/styles/_mixins';
   @use '/src/styles/typography';
   @use '/src/styles/breakpoints';
-  @use '/src/styles/_mixins';
 
   .o-archive-hero {
     &__container {
@@ -107,8 +107,6 @@
     }
 
     &__main {
-      @include mixins.padded-container;
-
       display: flex;
       flex-direction: row;
       align-items: center;
@@ -157,7 +155,6 @@
     }
 
     &__tag-groups {
-      @include mixins.padded-container-small;
       display: flex;
       flex-direction: column;
       gap: var(--spacing-md);

@@ -13,7 +13,7 @@ export async function getStaticPaths() {
     types.map(async (type) => {
       const { totalPages } = await getPaginatedReviews(1, undefined, type as QuickReviewType);
       return Array.from({ length: totalPages }).map((_, i) => ({
-        params: { type: type, page: String(i + 2) }, // start at page 2
+        params: { type: type.toLowerCase(), page: String(i + 2) }, // start at page 2
       }));
     })
   );
