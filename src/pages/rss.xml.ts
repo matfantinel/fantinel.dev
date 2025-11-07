@@ -1,5 +1,6 @@
 import { getPaginatedPosts } from "@data/blogPosts";
 import { getPaginatedReviews } from "@data/quickReviews";
+import { getPaginatedCoolLinks } from "@data/coolLinks";
 import {
   MarkerHighlightTokenizerExtension,
   SparklesHighlightTokenizerExtension
@@ -10,11 +11,16 @@ import metaConfig from "@public/cms/meta.yml";
 import type { BlogPost } from "@schemas/blog";
 import dateformat from "dateformat";
 import type { QuickReview } from "@schemas/quick-review";
+import type { CoolLink } from "@schemas/cool-link";
 const siteMeta: SiteMeta = metaConfig;
+
+// Extend CoolLink to include date property for RSS feed
+type CoolLinkWithDate = CoolLink & { date: Date };
 
 export async function GET({ request }: { request: Request }) {
   const { posts } = await getPaginatedPosts(1, undefined, { postsPerPage: 1000 });
   const { reviews } = await getPaginatedReviews(1, undefined, undefined, { postsPerPage: 1000 });
+  let { links } = (await getPaginatedCoolLinks(1, undefined, { postsPerPage: 1000 })) as unknown as { links: CoolLinkWithDate[] };
 
   marked.use({
     extensions: [SparklesHighlightTokenizerExtension, MarkerHighlightTokenizerExtension]
@@ -32,11 +38,20 @@ export async function GET({ request }: { request: Request }) {
 
   await Promise.all(promises);
 
+  // Let's convert cool links' "savedOn" prop to "date", 
+  // just to match the others and make filtering easier
+  links = links.map(link => ({ ...link, date: link.savedOn }));
+
+  // Let's not add links saved before 01/11/2025 to the feed, to avoid polluting
+  // existing subscribers' feeds with old stuff
+  links = links.filter(link => link.savedOn >= new Date('2025-11-01'));
+
   // Let's add reviews and posts to the same array, and order by their respective date props
   // Something like [{type: 'post', ...post}, {type: 'review', ...review}]
   const items = [
     ...posts.map(post => ({ type: 'post', data: post })), 
-    ...reviews.map(review => ({ type: 'review', data: review }))
+    ...reviews.map(review => ({ type: 'review', data: review })),
+    ...links.map(link => ({ type: 'link', data: link }))
   ].sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 
   const body = generateXml(items);
@@ -119,7 +134,23 @@ function reviewToRssItem(review: QuickReview) {
   `
 }
 
-const generateXml = (items: { type: string, data: BlogPost | QuickReview }[]) => `
+function coolLinkToRssItem(link: CoolLinkWithDate) {
+  return `
+    <item>
+      <guid>${link.url}</guid>
+      <title>Cool Link: ${escapeXml(link.title as string)}</title>
+      <link>${link.url}</link>
+      <pubDate>${dateformat(link.date, 'ddd, dd mmm yyyy HH:MM:ss o', true)}</pubDate>
+      <content:encoded><![CDATA[
+        ${link.title ? `<p><a href="${link.url}">${link.title}</a>${link.author ? ', by ' + link.author : ''}</p>` : ''}
+        
+        ${link.content}
+      ]]></content:encoded>
+    </item>
+  `
+}
+
+const generateXml = (items: { type: string, data: BlogPost | QuickReview | CoolLinkWithDate }[]) => `
 <rss version="2.0"
 	xmlns:content="http://purl.org/rss/1.0/modules/content/"
 	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
@@ -142,6 +173,14 @@ const generateXml = (items: { type: string, data: BlogPost | QuickReview }[]) =>
       <width>96</width>
       <height>96</height>
     </image>
-    ${items.map(item => item.type === 'post' ? postToRssItem(item.data as BlogPost) : reviewToRssItem(item.data as QuickReview)).join('')}
+    ${items.map(item => {
+      if (item.type === 'post') {
+        return postToRssItem(item.data as BlogPost);
+      } else if (item.type === 'review') {
+        return reviewToRssItem(item.data as QuickReview);
+      } else if (item.type === 'link') {
+        return coolLinkToRssItem(item.data as CoolLinkWithDate);
+      }
+    }).join('')}
   </channel>
 </rss>`;
