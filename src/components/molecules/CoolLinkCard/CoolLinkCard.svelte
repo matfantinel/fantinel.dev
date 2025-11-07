@@ -105,6 +105,7 @@
     &__title-link {
       color: var(--color--blue);
       text-decoration: underline;
+      text-decoration-color: var(--color--blue);
 
       text-underline-offset: 0.1em;
       text-decoration-thickness: 2px;
