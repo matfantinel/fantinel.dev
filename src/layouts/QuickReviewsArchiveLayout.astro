@@ -1,13 +1,12 @@
 ---
 import Pagination from '@components/molecules/Pagination';
-import QuickReviewCard from '@components/molecules/QuickReviewCard';
 import QuickReviewCards from '@components/molecules/QuickReviewCards';
 import BlogArchiveHero from '@components/organisms/BlogArchiveHero';
-import type { QuickReview } from '@schemas/quick-review';
-import BaseLayout from './BaseLayout.astro';
-import { QuickReviewType, QuickReviewRating } from '@schemas/quick-review-types';
 import metaConfig from '@public/cms/meta.yml';
+import type { QuickReview } from '@schemas/quick-review';
+import { QuickReviewType } from '@schemas/quick-review-types';
 import type { SiteMeta } from '@schemas/site-meta';
+import BaseLayout from './BaseLayout.astro';
 const siteMeta: SiteMeta = metaConfig;
 
 interface Props {

@@ -1,0 +1,24 @@
+---
+import CoolLinksArchiveLayout from "@layouts/CoolLinksArchiveLayout.astro";
+import { getAllTags, getPaginatedCoolLinks } from "@data/coolLinks";
+
+export async function getStaticPaths() {
+  const { totalPages } = await getPaginatedCoolLinks(1); // Just to get count
+
+  return Array.from({ length: totalPages }).map((_, i) => ({
+    params: { page: String(i + 2) }, // start at page 2
+  }));
+}
+
+const { page } = Astro.params;
+const { links, currentPage, totalPages, totalLinks } = await getPaginatedCoolLinks(Number(page));
+const allTags = await getAllTags();
+---
+
+<CoolLinksArchiveLayout
+  links={links}
+  currentPage={currentPage}
+  totalPages={totalPages}
+  totalLinks={totalLinks}
+  allTags={allTags}
+/>

@@ -35,6 +35,7 @@
         links={[
           { label: 'Blog', href: '/blog' },
           { label: 'Quick Reviews', href: '/quick-reviews' },
+          { label: 'Cool Links', href: '/cool-links' },
           { label: 'RSS', href: '/rss.xml', icon: rssIconSnippet, title: 'Subscribe to my RSS Feed' },
         ]}
         {currentSearch}

@@ -4,6 +4,13 @@ import { getCollection } from "astro:content";
 import { slug } from 'github-slugger';
 import { QuickReviewType, QuickReviewRating, getTypeFromLowercaseKey, getRatingFromLowercaseKey } from "@schemas/quick-review-types";
 
+/**
+ * Sanitizes a quick review to make it ready for using it in the UI.
+ * @param review The quick review to sanitize.
+ * @param filepath The path to the quick review file.
+ * @param body The body of the quick review.
+ * @returns The sanitized quick review.
+ */
 export function sanitizeQuickReview(review: QuickReview, filepath: string, body?: string) {
   review.content = body;
 
@@ -19,6 +26,14 @@ export function sanitizeQuickReview(review: QuickReview, filepath: string, body?
   return review;
 }
 
+/**
+ * Gets paginated reviews based on the given rating and type.
+ * @param page The page number to get reviews for.
+ * @param rating The rating to filter reviews by.
+ * @param type The type to filter reviews by.
+ * @param options The options for the pagination.
+ * @returns The paginated reviews.
+ */
 export async function getPaginatedReviews(page: number, rating?: QuickReviewRating, type?: QuickReviewType, options: { postsPerPage?: number } = { postsPerPage: 10 }) {
   const { postsPerPage = 10 } = options;
 
@@ -57,6 +72,11 @@ export async function getPaginatedReviews(page: number, rating?: QuickReviewRati
   };
 }
 
+/**
+ * Gets the recent reviews.
+ * @param limit The number of reviews to get.
+ * @returns The recent reviews.
+ */
 export async function getRecentReviews(limit: number = 4): Promise<QuickReview[]> {
   const { reviews } = await getPaginatedReviews(1, undefined, undefined, { postsPerPage: limit });
   return reviews;

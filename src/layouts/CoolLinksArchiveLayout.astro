@@ -1,0 +1,108 @@
+---
+import Pagination from '@components/molecules/Pagination';
+import BlogArchiveHero from '@components/organisms/BlogArchiveHero';
+import metaConfig from '@public/cms/meta.yml';
+import type { CoolLink, CoolLinkTag } from '@schemas/cool-link';
+import type { SiteMeta } from '@schemas/site-meta';
+import BaseLayout from './BaseLayout.astro';
+import CoolLinkCards from '@components/molecules/CoolLinkCards';
+const siteMeta: SiteMeta = metaConfig;
+
+interface Props {
+  links: CoolLink[];
+  currentPage: number;
+  totalPages: number;
+  totalLinks: number;
+  currentTag?: CoolLinkTag;
+  allTags?: CoolLinkTag[];
+}
+
+const { links, currentPage, totalPages, totalLinks, currentTag, allTags }: Props = Astro.props;
+
+allTags?.forEach((tag) => {
+  tag.active = tag.slug === currentTag?.slug;
+  tag.name = `#${tag.name}`;
+  if (tag.active) {
+    tag.url = '/cool-links';
+  }
+});
+---
+
+<BaseLayout
+  title='Cool Links'
+  image={siteMeta.baseUrl + '/cms/media/articles/cool-links-cover.jpg'}
+  description="A collection of links to interesting things I've come across."
+  hasHeaderBackground
+>
+  <main class='l-cool-links-archive' style='view-transition-name: blog-archive-hero'>
+    <div class='l-cool-links-archive__container' data-pagefind-body>
+      <BlogArchiveHero
+        class='l-cool-links-archive__hero'
+        title='Cool Links'
+        body={allTags ? "Here's a collection of links to interesting things I've come across. You can click on a tag to filter links by it." : "Here's a collection of links to interesting things I've come across."}
+        tags={allTags}
+      />
+
+      <div class='l-cool-links-archive__content-wrapper u-container'>
+        {!links.length && <p class='u-h4'>No links found</p>}
+
+        {
+          currentTag && (
+            <p class="l-cool-links-archive__summary">
+              {totalLinks} links found for tag "{currentTag.name}".
+            </p>
+          )
+        }
+
+        {
+          // I'm passing reviews as a prop here to avoid having multiple
+          // Elements with client:load. Having multiple islands like that
+          // can cause issues.
+          links && (
+            <CoolLinkCards {links} client:load />
+          )
+        }
+
+        {
+          totalPages > 1 && (
+            <Pagination
+              class='l-cool-links-archive__pagination'
+              currentPage={currentPage}
+              totalPages={totalPages}
+              baseUrl={`/cool-links${currentTag ? `/tag/${currentTag.slug}` : ''}`}
+            />
+          )
+        }
+      </div>
+    </div>
+  </main>
+</BaseLayout>
+
+<style lang='scss'>
+  @use '/src/styles/breakpoints';
+  @use '/src/styles/typography';
+
+  .l-cool-links-archive {
+    :global(.l-cool-links-archive__hero) {
+      background-color: var(--theme--background-accent-color);
+      border-bottom-left-radius: var(--border-radius);
+      border-bottom-right-radius: var(--border-radius);
+    }
+
+    &__container {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-xxl);
+
+      @include breakpoints.for-phone-only {
+        gap: var(--spacing-xl);
+      }
+    }
+
+    &__content-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-lg);
+    }
+  }
+</style>

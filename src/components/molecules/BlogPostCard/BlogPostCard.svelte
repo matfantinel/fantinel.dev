@@ -173,8 +173,6 @@
         left: 0;
         width: 100%;
         height: 100%;
-        // background: rgba(var(--theme--color-accent-rgb), 0.2);
-        // backdrop-filter: invert(1);
         z-index: 1;
       }
     }

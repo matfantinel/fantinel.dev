@@ -1,0 +1,15 @@
+---
+import { getAllTags, getPaginatedCoolLinks } from '@data/coolLinks';
+import CoolLinksArchiveLayout from '@layouts/CoolLinksArchiveLayout.astro';
+
+const { links, currentPage, totalPages, totalLinks } = await getPaginatedCoolLinks(1);
+const allTags = await getAllTags();
+---
+
+<CoolLinksArchiveLayout
+  links={links}
+  currentPage={currentPage}
+  totalPages={totalPages}
+  totalLinks={totalLinks}
+  allTags={allTags}
+/>

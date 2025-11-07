@@ -1,0 +1,27 @@
+---
+import CoolLinksArchiveLayout from "@layouts/CoolLinksArchiveLayout.astro";
+import { getAllTags, getPaginatedCoolLinks } from "@data/coolLinks";
+
+export async function getStaticPaths() {
+  const tags = await getAllTags();
+
+  return tags.map((tag) => ({
+    params: { tag: tag.slug },
+  }));
+}
+
+const { tag } = Astro.params;
+const { links, currentPage, totalPages, totalLinks } = await getPaginatedCoolLinks(1, tag);
+
+const allTags = await getAllTags();
+const currentTag = allTags.find((t) => t.slug === tag);
+---
+
+<CoolLinksArchiveLayout
+  links={links}
+  currentPage={currentPage}
+  totalPages={totalPages}
+  totalLinks={totalLinks}
+  currentTag={currentTag}
+  allTags={allTags}
+/>

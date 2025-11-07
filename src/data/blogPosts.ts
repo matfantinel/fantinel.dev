@@ -11,6 +11,14 @@ import { generateOgPathFromPost, generateOgPathFromCoolLinksPost } from "@utils/
 
 const siteMeta: SiteMeta = metaConfig;
 
+/**
+ * Sanitizes a blog post to make it ready for using it in the UI.
+ * @param post The blog post to sanitize.
+ * @param postBody The body of the blog post.
+ * @param renderedPost The rendered blog post.
+ * @param allPosts All the blog posts.
+ * @returns The sanitized blog post.
+ */
 export function sanitizePostData(post: BlogPost, postBody?: string, renderedPost?: RenderedContent, allPosts?: BlogPost[]) {
   if (postBody) {
     post.readingTime = readingTime(striptags(postBody)).text
@@ -74,6 +82,13 @@ export function sanitizePostData(post: BlogPost, postBody?: string, renderedPost
   return post;
 }
 
+/**
+ * Gets paginated posts based on the given category.
+ * @param page The page number to get posts for.
+ * @param category The category to filter posts by.
+ * @param options The options for the pagination.
+ * @returns The paginated posts.
+ */
 export async function getPaginatedPosts(page: number, category?: string, options: { postsPerPage?: number } = { postsPerPage: 12 }) {
   const { postsPerPage = 12 } = options;
 
@@ -102,11 +117,20 @@ export async function getPaginatedPosts(page: number, category?: string, options
   };
 }
 
+/**
+ * Gets the recent posts.
+ * @param limit The number of posts to get.
+ * @returns The recent posts.
+ */
 export async function getRecentPosts(limit: number = 4): Promise<BlogPost[]> {
   const { posts } = await getPaginatedPosts(1, undefined, { postsPerPage: limit });
   return posts;
 }
 
+/**
+ * Gets all categories.
+ * @returns All categories.
+ */
 export async function getAllCategories(): Promise<BlogPostCategory[]> {
   const posts = await getCollection("blog");
   const sanitizedPosts = posts.map((post) => sanitizePostData(post.data as unknown as BlogPost, post.body, post.rendered));
@@ -146,6 +170,12 @@ export async function getAllCategories(): Promise<BlogPostCategory[]> {
   return uniqueCategories;
 }
 
+/**
+ * Gets related posts based on the given post.
+ * @param post The post to get related posts for.
+ * @param allPosts All the blog posts.
+ * @returns The related posts.
+ */
 export function getRelatedPosts(post: BlogPost, allPosts: BlogPost[]): BlogPost[] {
   // If the post has no categories, return empty array
   if (!post.categories || post.categories.length === 0) {
