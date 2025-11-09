@@ -1,9 +1,12 @@
 ---
 import Pagination from '@components/molecules/Pagination';
-import ArchiveHero from '@components/organisms/ArchiveHero';
-import type { Photography } from '@schemas/photography';
-import BaseLayout from './BaseLayout.astro';
 import PhotographyCards from '@components/molecules/PhotographyCards';
+import ArchiveHero from '@components/organisms/ArchiveHero';
+import metaConfig from '@public/cms/meta.yml';
+import type { Photography } from '@schemas/photography';
+import type { SiteMeta } from '@schemas/site-meta';
+import BaseLayout from './BaseLayout.astro';
+const siteMeta: SiteMeta = metaConfig;
 
 interface Props {
   photographies: Photography[];
@@ -18,6 +21,7 @@ const paginationBaseUrl = '/photography';
 
 <BaseLayout
   title='Photography'
+  image={siteMeta.baseUrl + '/cms/media/articles/photography-preview.png'}
   description="I'm no professional, but sometimes I like to capture the world around me. Sometimes, the photos turn out pretty nice."
   hasHeaderBackground
 >
