@@ -1,0 +1,12 @@
+---
+import { getPaginatedPhotographies } from '@data/photographies';
+import PhotographyArchiveLayout from '@layouts/PhotographyArchiveLayout.astro';
+
+const { photographies, currentPage, totalPages } = await getPaginatedPhotographies(1);
+---
+
+<PhotographyArchiveLayout
+  photographies={photographies}
+  currentPage={currentPage}
+  totalPages={totalPages}
+/>

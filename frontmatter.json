@@ -24,6 +24,13 @@
       "contentTypes": [
         "Blog Post"
       ]
+    },
+    {
+      "title": "photographies",
+      "path": "[[workspace]]/public/cms/photographies",
+      "contentTypes": [
+        "Photography"
+      ]
     }
   ],
   "frontMatter.taxonomy.contentTypes": [
@@ -203,6 +210,48 @@
           "title": "Posted",
           "name": "posted",
           "type": "boolean"
+        }
+      ]
+    },
+    {
+      "name": "Photography",
+      "pageBundle": false,
+      "previewPath": "photographies",
+      "filePrefix": null,
+      "clearEmpty": true,
+      "fields": [
+        {
+          "title": "Title",
+          "name": "title",
+          "type": "string",
+          "single": true,
+          "required": true
+        },
+        {
+          "title": "Image",
+          "name": "image",
+          "type": "image",
+          "isPreviewImage": true,
+          "required": true
+        },
+        {
+          "title": "Image Alt",
+          "name": "imageAlt",
+          "type": "string",
+          "description": "Leave empty to use the content as the alt text"
+        },
+        {
+          "title": "Photo Date",
+          "name": "photoDate",
+          "type": "datetime",
+          "dateFormat": "yyyy-MM-dd"
+        },
+        {
+          "title": "Published Date",
+          "name": "publishedDate",
+          "type": "datetime",
+          "default": "{{now}}",
+          "isPublishDate": true
         }
       ]
     }

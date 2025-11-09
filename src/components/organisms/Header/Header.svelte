@@ -37,6 +37,7 @@
           { label: 'Blog', href: '/blog' },
           { label: 'Quick Reviews', href: '/quick-reviews' },
           { label: 'Cool Links', href: '/cool-links' },
+          { label: 'Photography', href: '/photography' },
           { label: 'RSS', href: '/rss.xml', icon: rssIconSnippet, title: 'Subscribe to my RSS Feed' },
         ]}
         {currentSearch}

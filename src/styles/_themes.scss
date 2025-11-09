@@ -134,6 +134,9 @@
 
   --theme--color-code-background: var(--color--gray-1000);
   --theme--color-code-text: var(--color--gray-0);
+
+  --theme--color-close-button-color: var(--color--gray-0);
+  --theme--color-close-button-color-hover: var(--color--gray-500);
   
   --theme--color--logo-1: var(--color--gray-0);
   --theme--color--logo-2: var(--color--gray-100);
@@ -276,6 +279,9 @@
   --theme--color-footer--wave-2: rgba(var(--color--teal-rgb), 0.4);
   --theme--color-footer--wave-3: rgba(var(--color--teal-rgb), 0.5);
   --theme--color-footer--wave-4: var(--color--gray-1100);
+
+  --theme--color-close-button-color: var(--color--gray-900);
+  --theme--color-close-button-color-hover: var(--color--gray-200);
 
   .o-home-page-hero {
     --theme--color-footer--wave-1: rgba(var(--color--gray-700-rgb), 0.3);

@@ -20,7 +20,7 @@
     body?: string;
     tagGroups?: TagGroup[];
     image?: string;
-    postType?: 'blog' | 'cool-link' | 'quick-review';
+    postType?: 'blog' | 'cool-link' | 'quick-review' | 'photography';
     class?: string;
   } = $props();
 
@@ -33,6 +33,8 @@
         return 'o-archive-hero__title--blue';
       case 'quick-review':
         return 'o-archive-hero__title--peach';
+      case 'photography':
+        return 'o-archive-hero__title--maroon';
       default:
         return 'o-archive-hero__title--teal';
     }
@@ -142,10 +144,17 @@
 
       &--blue {
         color: var(--color--blue);
+        --glow-color: var(--color--blue-rgb);
       }
 
       &--peach {
         color: var(--color--peach);
+        --glow-color: var(--color--peach-rgb);
+      }
+
+      &--maroon {
+        color: var(--color--maroon);
+        --glow-color: var(--color--maroon-rgb);
       }
     }
 

@@ -1,0 +1,21 @@
+---
+import { getPaginatedPhotographies } from '@data/photographies';
+import PhotographyArchiveLayout from '@layouts/PhotographyArchiveLayout.astro';
+
+export async function getStaticPaths() {
+  const { totalPages } = await getPaginatedPhotographies(1); // Just to get count
+
+  return Array.from({ length: totalPages }).map((_, i) => ({
+    params: { page: String(i + 2) }, // start at page 2
+  }));
+}
+
+const { page } = Astro.params;
+const { photographies, currentPage, totalPages } = await getPaginatedPhotographies(Number(page));
+---
+
+<PhotographyArchiveLayout
+  photographies={photographies}
+  currentPage={currentPage}
+  totalPages={totalPages}
+/>

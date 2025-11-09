@@ -57,6 +57,75 @@ html {
 	text-shadow: none;
 }
 
+dialog-image {
+	display: contents;
+}
+
+.u-image-dialog {
+  background: none;
+  border: none;
+  width: 100vw;
+	max-width: 100vw;
+  height: 100%;
+
+  transition: all 0.25s ease-out allow-discrete;
+  opacity: 0;
+
+  overscroll-behavior: contain;
+
+  &[open] {
+    opacity: 1;
+  }
+
+  @starting-style {
+    &[open] {
+      opacity: 0;
+    }
+  }
+
+  &::backdrop {
+    transition: all 0.25s ease-out allow-discrete;
+    background: rgba(0,0,0,0.7);
+    backdrop-filter: blur(10px);
+  }  
+
+  form {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    place-items: center;
+  }
+
+  img {
+    max-width: 90vw;
+    max-height: 80vh;
+  }
+
+  &__close-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: transparent;
+    border: none;
+    font-size: 2.5rem;
+    line-height: 1;
+    color: var(--theme--color-close-button-color);
+    border-radius: 50%;
+    height: 42px;
+    width: 42px;
+    cursor: pointer;
+
+		transition: .25s ease-in-out;
+
+		@media (hover: hover) {
+			&:hover {
+				background: var(--theme--color-close-button-color-hover);
+			}
+		}
+  }
+}
+
 * {
 	scroll-margin-top: var(--spacing-lg);
 
