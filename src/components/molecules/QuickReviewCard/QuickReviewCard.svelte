@@ -75,7 +75,6 @@
 </script>
 
 <article class={classList} style={customStyles.join(';')} {id}>
-  <div class="u-noise"></div>
   <div class="m-quick-review-card__container">
     <div class="m-quick-review-card__image-container">
       {#if image}
@@ -124,12 +123,6 @@
 <style lang="scss">
   @use '/src/styles/typography';
   @use '/src/styles/breakpoints';
-
-  .u-noise {
-    position: absolute;
-    z-index: 1;
-    opacity: 0.2;
-  }
 
   .m-quick-review-card {
     padding: var(--spacing-sm);
