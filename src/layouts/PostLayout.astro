@@ -45,7 +45,7 @@ if (post.data.ogImage) {
   modifiedDate={post.data.updated}
   hasHeaderBackground
 >
-  <main class='l-post'>
+  <div class='l-post'>
     <div class='l-post__container' data-pagefind-body>
       <PostHero
         class='l-post__hero'
@@ -128,7 +128,7 @@ if (post.data.ogImage) {
         }
       </div>
     </div>
-  </main>
+  </div>
 </BaseLayout>
 
 <style lang='scss'>
@@ -138,12 +138,6 @@ if (post.data.ogImage) {
 
   .l-post {
     --toc-width: 240px;
-
-    :global(.l-post__hero) {
-      background-color: var(--theme--background-accent-color);
-      border-bottom-left-radius: var(--border-radius);
-      border-bottom-right-radius: var(--border-radius);
-    }
 
     &__container {
       display: flex;

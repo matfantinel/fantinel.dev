@@ -21,7 +21,7 @@ const { review }: Props = Astro.props;
   slug={`quick-reviews/${review.slug}`}
   publishedDate={review.date}
 >
-  <main class='l-quick-review'>
+  <div class='l-quick-review'>
     <div class='l-quick-review__container u-container' data-pagefind-body>
       <QuickReviewCard
         title={review.title}
@@ -41,7 +41,7 @@ const { review }: Props = Astro.props;
         <Button href="/quick-reviews">View all Quick Reviews</Button>
       </div>
     </div>
-  </main>
+  </div>
 </BaseLayout>
 
 <style lang='scss'>

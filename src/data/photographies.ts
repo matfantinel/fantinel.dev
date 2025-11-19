@@ -30,7 +30,7 @@ export function sanitizePhotography(photography: Photography, filepath: string, 
  * @param options The options for the pagination.
  * @returns The paginated photography posts.
  */
-export async function getPaginatedPhotographies(page: number, options: { postsPerPage?: number } = { postsPerPage: 12 }) {
+export async function getPaginatedPhotographies(page: number, options: { postsPerPage?: number } = { postsPerPage: 20 }) {
   const { postsPerPage = 12 } = options;
 
   let photographies = await getCollection("photographies");

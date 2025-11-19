@@ -3,7 +3,7 @@ import QuickReviewsArchiveLayout from "@layouts/QuickReviewsArchiveLayout.astro"
 import { getPaginatedReviews } from "@data/quickReviews";
 
 export async function getStaticPaths() {
-  const { totalPages } = await getPaginatedReviews(1); // Just to get count
+  const { totalPages, totalReviews } = await getPaginatedReviews(1); // Just to get count
 
   return Array.from({ length: totalPages }).map((_, i) => ({
     params: { page: String(i + 2) }, // start at page 2
@@ -11,11 +11,12 @@ export async function getStaticPaths() {
 }
 
 const { page } = Astro.params;
-const { reviews, currentPage, totalPages } = await getPaginatedReviews(Number(page));
+const { reviews, currentPage, totalPages, totalReviews } = await getPaginatedReviews(Number(page));
 ---
 
 <QuickReviewsArchiveLayout
   reviews={reviews}
   currentPage={currentPage}
   totalPages={totalPages}
+  totalReviews={totalReviews}
 />

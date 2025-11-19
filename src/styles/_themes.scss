@@ -180,11 +180,12 @@
   --theme--glow-mauve: 0 0 40px 0 rgba(var(--color--mauve-rgb), 0.4);
   --theme--glow-peach: 0 0 40px 0 rgba(var(--color--peach-rgb), 0.4);
   --theme--glow-red: 0 0 40px 0 rgba(var(--color--red-rgb), 0.4);
+  --theme--glow-maroon: 0 0 40px 0 rgba(var(--color--maroon-rgb), 0.4);
 
   --theme--glow-callouts-info: var(--theme--glow-blue);
   --theme--glow-callouts-warning: var(--theme--glow-yellow);
   --theme--glow-callouts-success: var(--theme--glow-green);
-  --theme--glow-links: 0px 0px 3px rgba(var(--color--teal-rgb), 0.7);
+  --theme--glow-links: 0px 0px 3px rgba(var(--theme--color-accent-rgb), 0.7);
 
   // Gradients
 
@@ -232,6 +233,38 @@
   --theme--qr-not-liked-color: #F38BA8;
 
   // #endregion
+
+  // #region Post Types
+
+  --theme--color-post: var(--color--teal);
+  --theme--color-post-rgb: var(--color--teal-rgb);
+  --theme--color-post-contrast: var(--color--teal-contrast);
+  --theme--color-post-shade: var(--color--teal-shade);
+  --theme--color-post-tint: var(--color--teal-tint);
+  --theme--color-post-glow: var(--theme--glow-teal);
+
+  --theme--color-cool-link: var(--color--blue);
+  --theme--color-cool-link-rgb: var(--color--blue-rgb);
+  --theme--color-cool-link-contrast: var(--color--blue-contrast);
+  --theme--color-cool-link-shade: var(--color--blue-shade);
+  --theme--color-cool-link-tint: var(--color--blue-tint);
+  --theme--color-cool-link-glow: var(--theme--glow-blue);
+
+  --theme--color-quick-review: var(--color--peach);
+  --theme--color-quick-review-rgb: var(--color--peach-rgb);
+  --theme--color-quick-review-contrast: var(--color--peach-contrast);
+  --theme--color-quick-review-shade: var(--color--peach-shade);
+  --theme--color-quick-review-tint: var(--color--peach-tint);
+  --theme--color-quick-review-glow: var(--theme--glow-peach);
+
+  --theme--color-photography: var(--color--maroon);
+  --theme--color-photography-rgb: var(--color--maroon-rgb);
+  --theme--color-photography-contrast: var(--color--maroon-contrast);
+  --theme--color-photography-shade: var(--color--maroon-shade);
+  --theme--color-photography-tint: var(--color--maroon-tint);
+  --theme--color-photography-glow: var(--theme--glow-maroon);
+
+  // #endregion
 }
 
 @mixin dark-theme {
@@ -252,6 +285,7 @@
   --theme--text-inverse-color: var(--color--gray-1100);
 
   --theme--background-accent-color: var(--color--gray-1100);
+  --theme--background-accent-color-rgb: var(--color--gray-1100-rgb);
   --theme--background-card-color: var(--color--gray-1100);
   --theme--background-card-color-rgb: var(--color--gray-1100-rgb);
   --theme--background-card-accent-color: var(--color--gray-800);

@@ -89,7 +89,7 @@ export function sanitizePostData(post: BlogPost, postBody?: string, renderedPost
  * @param options The options for the pagination.
  * @returns The paginated posts.
  */
-export async function getPaginatedPosts(page: number, category?: string, options: { postsPerPage?: number } = { postsPerPage: 12 }) {
+export async function getPaginatedPosts(page: number, category?: string, options: { postsPerPage?: number } = { postsPerPage: 24 }) {
   const { postsPerPage = 12 } = options;
 
   let posts = await getCollection("blog");

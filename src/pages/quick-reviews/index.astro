@@ -2,11 +2,12 @@
 import { getPaginatedReviews } from '@data/quickReviews';
 import QuickReviewsArchiveLayout from '@layouts/QuickReviewsArchiveLayout.astro';
 
-const { reviews, currentPage, totalPages } = await getPaginatedReviews(1);
+const { reviews, currentPage, totalPages, totalReviews } = await getPaginatedReviews(1);
 ---
 
 <QuickReviewsArchiveLayout
   reviews={reviews}
   currentPage={currentPage}
   totalPages={totalPages}
+  totalReviews={totalReviews}
 />

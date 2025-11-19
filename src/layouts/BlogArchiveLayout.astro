@@ -32,14 +32,13 @@ allCategories?.forEach((category) => {
 
 <BaseLayout title={`${siteMeta.author?.name}'s Blog`} autoGenerateImage hasHeaderBackground>
 
-  <main class='l-blog-archive' style="view-transition-name: blog-archive-hero">
+  <div class='l-blog-archive'>
     <div class='l-blog-archive__container'>
       <ArchiveHero
         class='l-blog-archive__hero'
         title='Blog'
         body="I usually post about the topics below. You can click on a category to filter posts by it."
         tagGroups={allCategories ? [{ label: 'Filter by category:', tags: allCategories }] : []}
-        postType="blog"
       />
 
       <div class='l-blog-archive__content-wrapper u-container'>
@@ -97,20 +96,23 @@ allCategories?.forEach((category) => {
         />
       )}
     </div>
-  </main>
+  </div>
 </BaseLayout>
 
 <style lang='scss'>
   @use '/src/styles/breakpoints';
   @use '/src/styles/typography';
 
-  .l-blog-archive {
-    :global(.l-blog-archive__hero) {
-      background-color: var(--theme--background-accent-color);
-      border-bottom-left-radius: var(--border-radius);
-      border-bottom-right-radius: var(--border-radius);
-    }
+  :root:has(.l-blog-archive) {
+    --theme--color-accent: var(--theme--color-post);
+    --theme--color-accent-rgb: var(--theme--color-post-rgb);
+    --theme--color-accent-contrast: var(--theme--color-post-contrast);
+    --theme--color-accent-shade: var(--theme--color-post-shade);
+    --theme--color-accent-tint: var(--theme--color-post-tint);
+    --theme--color-accent-glow: var(--theme--color-post-glow);
+  }
 
+  .l-blog-archive {
     &__container {
       display: flex;
       flex-direction: column;

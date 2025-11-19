@@ -2,6 +2,8 @@
   import Tag from '@components/atoms/Tag';
   import Tags from '@components/molecules/Tags';
   import Image from '@components/atoms/Image';
+  import GithubSlugger from 'github-slugger'
+  const slugger = new GithubSlugger();
 
   type TagGroup = {
     label: string;
@@ -13,41 +15,25 @@
     body,
     tagGroups,
     image,
-    postType = 'blog',
     class: className,
   }: {
     title: string;
     body?: string;
     tagGroups?: TagGroup[];
     image?: string;
-    postType?: 'blog' | 'cool-link' | 'quick-review' | 'photography';
     class?: string;
   } = $props();
 
-  // Determine title color based on post type
-  const titleColorClass = $derived(() => {
-    switch (postType) {
-      case 'blog':
-        return 'o-archive-hero__title--teal';
-      case 'cool-link':
-        return 'o-archive-hero__title--blue';
-      case 'quick-review':
-        return 'o-archive-hero__title--peach';
-      case 'photography':
-        return 'o-archive-hero__title--maroon';
-      default:
-        return 'o-archive-hero__title--teal';
-    }
-  });
-
   let classList = $derived(['o-archive-hero', image ? 'o-archive-hero--has-image' : '', className]);
+
+  const slug = slugger.slug(title);
 </script>
 
-<div class={classList}>
+<div class={classList} style={`view-transition-name: archive-hero-${slug}`}>
   <div class="o-archive-hero__container">
     <div class="o-archive-hero__main u-container">
       <div class="o-archive-hero__content">
-        <h1 class={['o-archive-hero__title', titleColorClass()]}>
+        <h1 class="o-archive-hero__title">
           {title}
         </h1>
 
@@ -59,7 +45,11 @@
       </div>
 
       {#if image}
-        <Image class="o-archive-hero__image" src={image} alt={title} style={`view-transition-name: archive-hero-image`} />
+        <Image
+          class="o-archive-hero__image"
+          src={image}
+          alt={title}
+        />
       {/if}
     </div>
 
@@ -98,6 +88,12 @@
   @use '/src/styles/breakpoints';
 
   .o-archive-hero {
+    background-color: var(--theme--background-accent-color);
+    border-bottom-left-radius: var(--border-radius);
+    border-bottom-right-radius: var(--border-radius);
+    margin-top: calc(var(--spacing-lg) * -1);
+    margin-left: -1px;
+
     &__container {
       display: flex;
       flex-direction: column;
@@ -105,7 +101,7 @@
       justify-content: center;
       gap: var(--spacing-lg);
 
-      padding-block: var(--spacing-xxl);
+      padding-block: var(--spacing-xxxl) var(--spacing-xxl);      
     }
 
     &__main {
@@ -138,24 +134,8 @@
       text-wrap: balance;
       animation: var(--theme--glowing-text-animation);
 
-      &--teal {
-        color: var(--color--teal);
-      }
-
-      &--blue {
-        color: var(--color--blue);
-        --glow-color: var(--color--blue-rgb);
-      }
-
-      &--peach {
-        color: var(--color--peach);
-        --glow-color: var(--color--peach-rgb);
-      }
-
-      &--maroon {
-        color: var(--color--maroon);
-        --glow-color: var(--color--maroon-rgb);
-      }
+      color: var(--theme--color-accent);
+      --glow-color: var(--theme--color-accent-rgb);
     }
 
     &__body {

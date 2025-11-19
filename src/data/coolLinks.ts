@@ -37,7 +37,7 @@ export function sanitizeCoolLink(link: CoolLink, filepath: string, body?: string
  * @param options The options for the pagination.
  * @returns The paginated links.
  */
-export async function getPaginatedCoolLinks(page: number, tag?: string, options: { postsPerPage?: number } = { postsPerPage: 10 }) {
+export async function getPaginatedCoolLinks(page: number, tag?: string, options: { postsPerPage?: number } = { postsPerPage: 20 }) {
   const { postsPerPage = 10 } = options;
 
   let links = await getCollection("coolLinks");

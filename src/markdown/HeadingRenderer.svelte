@@ -13,7 +13,7 @@
 		raw: string;
 	} = $props();
 
-	const slugger = new GithubSlugger()
+	const slugger = new GithubSlugger();
 
 	const headingLevel = depth ?? raw.match(/#/g)?.length;
 	const element = `h${headingLevel}`;
