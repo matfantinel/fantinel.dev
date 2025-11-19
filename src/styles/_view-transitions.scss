@@ -32,13 +32,13 @@
 // 		300ms cubic-bezier(0.4, 0, 0.2, 1) both slide-from-right;
 // }
 
-:root::view-transition-old(root) {
-	animation: 90ms cubic-bezier(0.4, 0, 1, 1) both fade-out;
-}
+// :root::view-transition-old(root) {
+// 	animation: 90ms cubic-bezier(0.4, 0, 1, 1) both fade-out;
+// }
 
-:root::view-transition-new(root) {
-	animation: 250ms cubic-bezier(0, 0, 0.2, 1) 90ms both fade-in;
-}
+// :root::view-transition-new(root) {
+// 	animation: 250ms cubic-bezier(0, 0, 0.2, 1) 90ms both fade-in;
+// }
 
 @media (prefers-reduced-motion) {
 	::view-transition-group(*),

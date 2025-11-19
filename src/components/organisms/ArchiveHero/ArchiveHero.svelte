@@ -101,7 +101,11 @@
       justify-content: center;
       gap: var(--spacing-lg);
 
-      padding-block: var(--spacing-xxxl) var(--spacing-xxl);      
+      padding-block: var(--spacing-xxxl) var(--spacing-xxl);
+
+      @include breakpoints.for-phone-only {
+        padding-block: var(--spacing-xxl);
+      }
     }
 
     &__main {

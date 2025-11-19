@@ -8,6 +8,7 @@
     rel,
     title,
     active,
+    color,
     class: className,
     icon,
     children,
@@ -19,6 +20,7 @@
     rel?: string;
     title?: string;
     active?: boolean;
+    color?: string;
     class?: string;
     icon?: Snippet;
     children?: Snippet;
@@ -34,9 +36,13 @@
   });
 
   let classList = $derived(['a-nav-menu-link', className, { 'a-nav-menu-link--active': active }]);
+
+  let customStyles = $derived([
+    color ? `--color: var(--theme--color-${color})` : '',
+  ]);
 </script>
 
-<svelte:element this={tag} {...linkProps} class={classList} {...props} {title} {onclick}>
+<svelte:element this={tag} {...linkProps} class={classList} {...props} {title} {onclick} style={customStyles.join(';')}>
   {#if icon}
     <div class="a-nav-menu-link__icon">
       {@render icon()}
@@ -92,10 +98,17 @@
       color: var(--theme--color-accent);
     }
 
-    @media (hover: hover) {
-      &:hover {
-        filter: none;
-        background-color: var(--theme--background-accent-color);
+    &:hover,
+    &:active,
+    &:focus {
+      filter: none;
+      background-color: var(--theme--background-accent-color);
+
+      .a-nav-menu-link {
+        &__icon {
+          color: var(--color, var(--theme--color-accent));
+          animation: nudge-and-grow 0.5s ease-in;
+        }
       }
     }
   }

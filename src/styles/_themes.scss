@@ -236,6 +236,13 @@
 
   // #region Post Types
 
+  --theme--color-generic: var(--color--teal);
+  --theme--color-generic-rgb: var(--color--teal-rgb);
+  --theme--color-generic-contrast: var(--color--teal-contrast);
+  --theme--color-generic-shade: var(--color--teal-shade);
+  --theme--color-generic-tint: var(--color--teal-tint);
+  --theme--color-generic-glow: var(--theme--glow-teal);
+
   --theme--color-post: var(--color--teal);
   --theme--color-post-rgb: var(--color--teal-rgb);
   --theme--color-post-contrast: var(--color--teal-contrast);

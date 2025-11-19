@@ -15,6 +15,7 @@
       icon?: Snippet;
       title?: string;
       active?: boolean;
+      color?: string;
     }[];
     currentSearch?: string;
     class?: string;
@@ -70,12 +71,23 @@
 
     <ul id="menu" class="m-hamburger-menu__list" class:m-hamburger-menu__list--closing={menuIsClosing}>
       <li class="m-hamburger-menu__item m-hamburger-menu__search">
-        <PagefindSearchField class="m-hamburger-menu__search-field" expandable value={currentSearch} onsubmit={handleMenuItemClick} />
+        <PagefindSearchField
+          class="m-hamburger-menu__search-field"
+          expandable
+          value={currentSearch}
+          onsubmit={handleMenuItemClick}
+        />
       </li>
 
       {#each links as link}
         <li class="m-hamburger-menu__item">
-          <NavMenuLink href={link.href} icon={link.icon} active={link.active} onclick={handleMenuItemClick}>
+          <NavMenuLink
+            href={link.href}
+            icon={link.icon}
+            active={link.active}
+            color={link.color}
+            onclick={handleMenuItemClick}
+          >
             {link.label}
           </NavMenuLink>
         </li>

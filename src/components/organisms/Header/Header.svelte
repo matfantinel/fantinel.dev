@@ -7,6 +7,7 @@
   import PhotographyIcon from '@assets/icons/post-types/photography.svelte';
   import HamburgerMenu from '@components/molecules/HamburgerMenu';
   import ThemeToggle from '@components/molecules/ThemeToggle';
+  import HomeIcon from '@assets/icons/home.svelte';
 
   let {
     color = 'default',
@@ -44,11 +45,30 @@
   });
 
   const links = $derived([
-    { label: 'Blog', href: '/blog', icon: postIconSnippet, active: pathname.startsWith('/blog') },
-    { label: 'Quick Reviews', href: '/quick-reviews', icon: quickReviewIconSnippet, active: pathname.startsWith('/quick-reviews') },
-    { label: 'Cool Links', href: '/cool-links', icon: coolLinkIconSnippet, active: pathname.startsWith('/cool-links') },
-    { label: 'Photography', href: '/photography', icon: photographyIconSnippet, active: pathname.startsWith('/photography') },
-    { label: 'RSS Feed', href: '/rss.xml', icon: rssIconSnippet, title: 'Subscribe to my RSS Feed' },
+    { label: 'Home', href: '/', icon: homeIconSnippet, active: pathname === '/', color: 'generic' },
+    { label: 'Blog', href: '/blog', icon: postIconSnippet, active: pathname.startsWith('/blog'), color: 'post' },
+    {
+      label: 'Quick Reviews',
+      href: '/quick-reviews',
+      icon: quickReviewIconSnippet,
+      active: pathname.startsWith('/quick-reviews'),
+      color: 'quick-review',
+    },
+    {
+      label: 'Cool Links',
+      href: '/cool-links',
+      icon: coolLinkIconSnippet,
+      active: pathname.startsWith('/cool-links'),
+      color: 'cool-link',
+    },
+    {
+      label: 'Photography',
+      href: '/photography',
+      icon: photographyIconSnippet,
+      active: pathname.startsWith('/photography'),
+      color: 'photography',
+    },
+    { label: 'RSS Feed', href: '/rss.xml', icon: rssIconSnippet, title: 'Subscribe to my RSS Feed', color: 'generic' },
   ]);
 </script>
 
@@ -57,6 +77,7 @@
 {#snippet quickReviewIconSnippet()}<QuickReviewIcon size="20px" />{/snippet}
 {#snippet coolLinkIconSnippet()}<CoolLinkIcon size="20px" />{/snippet}
 {#snippet photographyIconSnippet()}<PhotographyIcon size="20px" />{/snippet}
+{#snippet homeIconSnippet()}<HomeIcon size="20px" />{/snippet}
 
 <header
   class={['o-header', className]}
@@ -70,11 +91,7 @@
     </a>
 
     <div class="o-header__links">
-      <HamburgerMenu
-        class="o-header__hamburger-menu"
-        {links}
-        {currentSearch}
-      />
+      <HamburgerMenu class="o-header__hamburger-menu" {links} {currentSearch} />
 
       <ThemeToggle class="o-header__theme-toggle" />
     </div>
@@ -136,6 +153,18 @@
 
       :global(.o-header__theme-toggle) {
         order: 3;
+      }
+
+      @container (min-width: 321px) {
+        :global(.m-hamburger-menu__item) {
+          width: fit-content;
+        }
+        :global(.a-nav-menu-link) {
+          width: fit-content;
+        }
+        :global(.a-nav-menu-link__icon) {
+          display: none;
+        }
       }
 
       @container (max-width: 320px) {
