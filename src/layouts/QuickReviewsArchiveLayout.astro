@@ -156,7 +156,9 @@ if (currentRating) paginationBaseUrl += `/rating/${currentRating.toLowerCase()}`
     }
 
     &__summary {
+      @include typography.h2;
       text-align: center;
+      color: var(--theme--color-accent);
     }
   }
 </style>
