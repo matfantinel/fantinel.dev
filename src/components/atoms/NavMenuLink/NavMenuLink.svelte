@@ -69,12 +69,12 @@
     appearance: none;
     background-color: transparent;
     text-align: left;
-    width: 100%;
     cursor: pointer;
-
+    
     padding: var(--spacing-xs);
-    margin-inline: calc(var(--spacing-xs) * -1);
     border-radius: var(--border-radius--small);
+    width: calc(100% + var(--spacing-sm));
+    margin-inline: calc(var(--spacing-xs) * -1);
 
     &__icon {
       width: 20px;

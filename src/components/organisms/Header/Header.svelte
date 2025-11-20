@@ -174,16 +174,17 @@
             align-items: flex-start;
             height: 100dvh;
             justify-content: flex-start;
+
+            padding-inline: clamp(12px, (100vw - 320px) / 580 * 30, 22px);
           }
           &__links {
             flex-direction: column;
             width: 100%;
             align-items: flex-start;
           }
-
-          :global(.o-header__hamburger-menu) {
-            width: 100%;
-          }
+        }
+        :global(.o-header__hamburger-menu) {
+          width: 100%;
         }
       }
     }

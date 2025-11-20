@@ -290,6 +290,7 @@
         &__list {
           flex-direction: column;
           align-items: flex-start;
+          width: 100%;
         }
       }
     }

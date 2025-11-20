@@ -82,6 +82,7 @@
   .m-pagefind-search-field {
     width: min(280px, 100%);
     position: relative;
+    container-type: inline-size;
 
     @include breakpoints.for-tablet-portrait-up {
       @container (min-width: 320px) {
@@ -118,7 +119,7 @@
     }
 
     :global(.m-field__input) {
-      padding-right: 100px;
+      padding-right: min(100px, 33%);
 
       -webkit-appearance: none;
       appearance: none;
@@ -165,7 +166,9 @@
 
     &--has-value {
       .m-pagefind-search-field__clear {
-        display: flex;
+        @container (min-width: 201px) {
+          display: flex;
+        }
       }
     }
   }

@@ -24,9 +24,13 @@
 	-webkit-backface-visibility: hidden;
 	backface-visibility: hidden;
 	background-image: url("/images/noise-texture.webp");
-	position: fixed;
-	inset: 0%;
+	position: absolute;
+  height: 100%;
+  width: 100%;
+	top: 0;
+  left: 0;
   opacity: var(--background-noise-opacity, 1);
+  z-index: 1;
 }
 
 ul,
