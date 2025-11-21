@@ -156,7 +156,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-end;
       gap: var(--spacing-sm) var(--spacing-lg);
 
       background: var(--theme--background-base-color);
@@ -183,6 +183,11 @@
     &__search {
       order: 9;
       margin-inline: calc(var(--spacing-sm) * -1);
+      width: calc(100% + var(--spacing-sm));
+    }
+
+    :global(.m-hamburger-menu__search-field) {
+      width: 100%;
     }
 
     &__checkbox {
@@ -266,12 +271,13 @@
       }
 
       &__list {
-        flex-direction: row;
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
 
         z-index: unset;
         position: relative;
         padding: 0;
-        width: fit-content;
         height: unset;
         background: unset;
         transform: unset;
@@ -285,14 +291,6 @@
       // &__search {
       //   order: 1;
       // }
-
-      @container (max-width: 320px) {
-        &__list {
-          flex-direction: column;
-          align-items: flex-start;
-          width: 100%;
-        }
-      }
     }
   }
 </style>

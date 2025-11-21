@@ -154,38 +154,24 @@
       :global(.o-header__theme-toggle) {
         order: 3;
       }
+      
+      .o-header {
+        &__container {
+          flex-direction: column;
+          align-items: flex-start;
+          height: 100dvh;
+          justify-content: flex-start;
 
-      @container (min-width: 321px) {
-        :global(.m-hamburger-menu__item) {
-          width: fit-content;
+          padding-inline: clamp(12px, (100vw - 320px) / 580 * 30, 22px);
         }
-        :global(.a-nav-menu-link) {
-          width: fit-content;
-        }
-        :global(.a-nav-menu-link__icon) {
-          display: none;
+        &__links {
+          flex-direction: column;
+          width: 100%;
+          align-items: flex-start;
         }
       }
-
-      @container (max-width: 320px) {
-        .o-header {
-          &__container {
-            flex-direction: column;
-            align-items: flex-start;
-            height: 100dvh;
-            justify-content: flex-start;
-
-            padding-inline: clamp(12px, (100vw - 320px) / 580 * 30, 22px);
-          }
-          &__links {
-            flex-direction: column;
-            width: 100%;
-            align-items: flex-start;
-          }
-        }
-        :global(.o-header__hamburger-menu) {
-          width: 100%;
-        }
+      :global(.o-header__hamburger-menu) {
+        width: 100%;
       }
     }
 

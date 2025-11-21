@@ -72,10 +72,11 @@ const currentUrl = Astro.request.url;
 
     <link rel='canonical' href={`${siteMeta.baseUrl}/${slug}`} />
   </head>
-  <body><div class='l-base l-base--sidebar'>
+  <body>
+    <div class='l-base'>
       <Header client:load {currentSearch} transition:persist hasBackground={hasHeaderBackground} {currentUrl} />
 
-      <main style="view-transition-name: main">
+      <main style='view-transition-name: main'>
         <slot />
         <div class='u-noise'></div>
       </main>
@@ -147,9 +148,10 @@ const currentUrl = Astro.request.url;
     width: 100%;
     height: auto;
 
-    // .u-noise {
-    //   z-index: 1;
-    // }
+    main .u-noise {
+      height: calc(100% + var(--header-height));
+      top: calc(var(--header-height) * -1);
+    }
 
     :global(main) {
       position: relative;
@@ -158,38 +160,40 @@ const currentUrl = Astro.request.url;
   }
 
   .l-base {
-    &--sidebar {
-      @include breakpoints.for-tablet-portrait-up {
-        background: var(--color--gray-1000);
-        padding-block: var(--spacing-xs);
-        display: grid;
-        grid-template-columns: clamp(200px, 20%, 300px) 1fr;
-        grid-template-areas:
-          'header main'
-          'header footer';
+    @include breakpoints.for-tablet-portrait-up {
+      --header-height: 100vh;
+      background: var(--color--gray-1000);
+      display: grid;
+      grid-template-columns: clamp(220px, 20%, 300px) 1fr;
+      grid-template-areas:
+        'header main'
+        'header footer';
 
-        :global(header) {
-          --header-height: 100vh;
-          grid-area: header;
-          position: sticky;
-          top: 0;
-        }
+      :global(header) {
+        grid-area: header;
+        position: sticky;
+        top: 0;
+      }
 
-        :global(main) {
-          grid-area: main;
-          padding-top: var(--spacing-lg);
-          background: var(--theme--background-base-color);
-          border-top-left-radius: var(--border-radius);          
-          padding-block: var(--spacing-lg);
-          overflow: hidden;
-        }
+      :global(main) {
+        grid-area: main;
+        padding-top: var(--spacing-lg);
+        background: var(--theme--background-base-color);
+        border-top-left-radius: var(--border-radius);
+        padding-block: var(--spacing-lg);
+        margin-top: var(--spacing-xs);
+        overflow: hidden;
 
-        :global(footer) {
-          grid-area: footer;
-          border-bottom-left-radius: var(--border-radius);
-          background: var(--theme--background-base-color);
-          overflow: hidden;
+        .u-noise {
         }
+      }
+
+      :global(footer) {
+        grid-area: footer;
+        border-bottom-left-radius: var(--border-radius);
+        background: var(--theme--background-base-color);
+        margin-bottom: var(--spacing-xs);
+        overflow: hidden;
       }
     }
   }
