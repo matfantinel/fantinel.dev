@@ -1,34 +1,34 @@
 ---
-import "@styles/global.scss";
-import dateformat from "dateformat";
-import metaConfig from "@public/cms/meta.yml";
-import type { SiteMeta } from "@schemas/site-meta";
-import Head from "@layouts/Head.astro";
-import Header from "@components/organisms/Header";
-import Footer from "@components/organisms/Footer";
+import '@styles/global.scss';
+import dateformat from 'dateformat';
+import metaConfig from '@public/cms/meta.yml';
+import type { SiteMeta } from '@schemas/site-meta';
+import Head from '@layouts/Head.astro';
+import Header from '@components/organisms/Header';
+import Footer from '@components/organisms/Footer';
 
-const { 
-	title,
-	keywords,
-	description,
-	image,
-	autoGenerateImage,
-	slug,
-	publishedDate,
-	modifiedDate,
-	disableClientRouter,
-	hasHeaderBackground = false
-} : {
-	title?: string;
-	keywords?: string[];
-	description?: string;
-	image?: string;
-	autoGenerateImage?: boolean;
-	slug?: string;
-	publishedDate?: string;
-	modifiedDate?: string;
-	disableClientRouter?: boolean;
-	hasHeaderBackground?: boolean;
+const {
+  title,
+  keywords,
+  description,
+  image,
+  autoGenerateImage,
+  slug,
+  publishedDate,
+  modifiedDate,
+  disableClientRouter,
+  hasHeaderBackground,
+}: {
+  title?: string;
+  keywords?: string[];
+  description?: string;
+  image?: string;
+  autoGenerateImage?: boolean;
+  slug?: string;
+  publishedDate?: string;
+  modifiedDate?: string;
+  disableClientRouter?: boolean;
+  hasHeaderBackground?: boolean;
 } = Astro.props;
 
 const siteMeta: SiteMeta = metaConfig;
@@ -40,125 +40,161 @@ const pageKeywords = keywords ? [...keywords, ...siteMeta.keywords] : siteMeta.k
 let pageImage = image;
 if (!image && autoGenerateImage && title) {
   pageImage = `${siteMeta.baseUrl}/opengraph?title=${encodeURIComponent(title)}`;
-	if (publishedDate) {
-		pageImage += `&subtitle=${encodeURIComponent(
-			dateformat(publishedDate, 'mmm dd, yyyy')
-		)}`;
-	}
+  if (publishedDate) {
+    pageImage += `&subtitle=${encodeURIComponent(dateformat(publishedDate, 'mmm dd, yyyy'))}`;
+  }
 } else if (!image) {
-	pageImage = `${siteMeta.baseUrl}/${siteMeta.image}`;
+  pageImage = `${siteMeta.baseUrl}/${siteMeta.image}`;
 }
 
 const searchParams = new URL(Astro.request.url).searchParams;
 const currentSearch = searchParams.get('search');
-
+const currentUrl = Astro.request.url;
 ---
 
 <!doctype html>
-<html lang="en" data-theme="auto">
-	<head>
-		
-		<Head disableClientRouter={disableClientRouter} />		
-		
-		<title>{pageTitle}</title>
-		<meta property="og:title" content={pageTitle} />
-		{siteMeta.author?.name && <meta name="author" content={siteMeta.author.name} />}
+<html lang='en' data-theme='auto'>
+  <head>
+    <Head disableClientRouter={disableClientRouter} />
 
-		<meta name="description" content={pageDescription} />
-		<meta property="og:description" content={pageDescription} />
-		<meta name="keywords" content={pageKeywords.join(', ')} />
+    <title>{pageTitle}</title>
+    <meta property='og:title' content={pageTitle} />
+    {siteMeta.author?.name && <meta name='author' content={siteMeta.author.name} />}
 
-		{publishedDate && <meta property="article:published_time" content={publishedDate} />}
-		{modifiedDate && <meta property="article:modified_time" content={modifiedDate} />}
+    <meta name='description' content={pageDescription} />
+    <meta property='og:description' content={pageDescription} />
+    <meta name='keywords' content={pageKeywords.join(', ')} />
 
-		<meta property="og:image" content={pageImage} />
+    {publishedDate && <meta property='article:published_time' content={publishedDate} />}
+    {modifiedDate && <meta property='article:modified_time' content={modifiedDate} />}
 
-		<link rel="canonical" href={`${siteMeta.baseUrl}/${slug}`} />		
-	</head>
-	<body>
-		<div class="u-noise"></div>
+    <meta property='og:image' content={pageImage} />
 
-		<Header client:load {currentSearch} transition:persist hasBackground={hasHeaderBackground} />
+    <link rel='canonical' href={`${siteMeta.baseUrl}/${slug}`} />
+  </head>
+  <body>
+    <div class='l-base'>
+      <Header client:load {currentSearch} transition:persist hasBackground={hasHeaderBackground} {currentUrl} />
 
-		<main>
-			<slot />
-		</main>
+      <main style='view-transition-name: main'>
+        <slot />
+        <div class='u-noise'></div>
+      </main>
 
-		<Footer socials={siteMeta.author?.socials} client:load transition:persist />
-		<script>
-			import(/* @vite-ignore */ '@stefanjudis/sparkly-text');
+      <Footer socials={siteMeta.author?.socials} client:load transition:persist />
+    </div>
+    <script>
+      import(/* @vite-ignore */ '@stefanjudis/sparkly-text');
 
-			document.addEventListener('DOMContentLoaded', () => {
-				// Add smooth-scroll class to html element on page load
-				// Instead of adding it directly to the element.
-				// This is because, when navigating between pages using the same layout,
-				// The page is scrolled to the top. With smooth scrolling enabled, this causes a
-				// weird animation.
-				const root = document.getElementsByTagName('html')[0];
-				root.classList.add('smooth-scroll');
+      document.addEventListener('DOMContentLoaded', () => {
+        // Add smooth-scroll class to html element on page load
+        // Instead of adding it directly to the element.
+        // This is because, when navigating between pages using the same layout,
+        // The page is scrolled to the top. With smooth scrolling enabled, this causes a
+        // weird animation.
+        const root = document.getElementsByTagName('html')[0];
+        root.classList.add('smooth-scroll');
 
-				// Send page view event to Plausible
-				// The pageview is registed automatically, but this allows
-				// us to send additional data, such as the theme preference
-				if (window) {
-					// @ts-ignore
-					const { plausible } = window;
-					if (plausible) {
-						if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-							plausible('pageview', { props: { theme_preference: 'Dark' } });
-						} else if (
-							window.matchMedia &&
-							window.matchMedia('(prefers-color-scheme: light)').matches
-						) {
-							plausible('pageview', { props: { theme_preference: 'Light' } });
-						} else {
-							plausible('pageview', { props: { theme_preference: 'None' } });
-						}
-					}
-				}
+        // Send page view event to Plausible
+        // The pageview is registed automatically, but this allows
+        // us to send additional data, such as the theme preference
+        // if (window) {
+        //   // @ts-ignore
+        //   const { plausible } = window;
+        //   if (plausible) {
+        //     if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        //       plausible('pageview', { props: { theme_preference: 'Dark' } });
+        //     } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+        //       plausible('pageview', { props: { theme_preference: 'Light' } });
+        //     } else {
+        //       plausible('pageview', { props: { theme_preference: 'None' } });
+        //     }
+        //   }
+        // }
 
-				// Add helper class for focus styles
-				if (document?.body) {
-					document.body.addEventListener('keydown', (e) => {
-						const ignore = ['input', 'textarea', 'select'];
-						if (ignore.includes((e.target as HTMLElement)?.tagName?.toLowerCase())) {
-							return;
-						}
-						document.body.classList.add('keyboard-in-use');
-					});
-					document.body.addEventListener('mousedown', () => {
-						document.body.classList.remove('keyboard-in-use');
-					});
-				}
-			});
+        // Add helper class for focus styles
+        if (document?.body) {
+          document.body.addEventListener('keydown', (e) => {
+            const ignore = ['input', 'textarea', 'select'];
+            if (ignore.includes((e.target as HTMLElement)?.tagName?.toLowerCase())) {
+              return;
+            }
+            document.body.classList.add('keyboard-in-use');
+          });
+          document.body.addEventListener('mousedown', () => {
+            document.body.classList.remove('keyboard-in-use');
+          });
+        }
+      });
+    </script>
 
-		</script>
-
-		<noscript>
-			<style>
-				*:focus-visible {
-					outline: 2px dashed var(--theme--color-accent);
-					outline-offset: 4px;
-				}
-			</style>
-		</noscript>
-	</body>
+    <noscript>
+      <style>
+        *:focus-visible {
+          outline: 2px dashed var(--theme--color-accent);
+          outline-offset: 4px;
+        }
+      </style>
+    </noscript>
+  </body>
 </html>
 
-<style lang="scss">
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
+<style lang='scss'>
+  @use '/src/styles/breakpoints';
 
-		.u-noise {
-			z-index: 1;
-		}
+  html,
+  body {
+    margin: 0;
+    width: 100%;
+    height: auto;
 
-		:global(main) {
-			position: relative;
-			z-index: 2;
-		}
-	}
+    main .u-noise {
+      height: calc(100% + var(--header-height));
+      top: calc(var(--header-height) * -1);
+    }
+
+    :global(main) {
+      position: relative;
+      z-index: 2;
+    }
+  }
+
+  .l-base {
+    @include breakpoints.for-tablet-portrait-up {
+      --header-height: 100vh;
+      background: var(--color--gray-1000);
+      display: grid;
+      grid-template-columns: clamp(220px, 20%, 300px) 1fr;
+      grid-template-areas:
+        'header main'
+        'header footer';
+
+      :global(header) {
+        grid-area: header;
+        position: sticky;
+        top: 0;
+      }
+
+      :global(main) {
+        grid-area: main;
+        padding-top: var(--spacing-lg);
+        background: var(--theme--background-base-color);
+        border-top-left-radius: var(--border-radius);
+        padding-block: var(--spacing-lg);
+        margin-top: var(--spacing-xs);
+        overflow: hidden;
+
+        .u-noise {
+        }
+      }
+
+      :global(footer) {
+        grid-area: footer;
+        border-bottom-left-radius: var(--border-radius);
+        background: var(--theme--background-base-color);
+        margin-bottom: var(--spacing-xs);
+        overflow: hidden;
+      }
+    }
+  }
 </style>

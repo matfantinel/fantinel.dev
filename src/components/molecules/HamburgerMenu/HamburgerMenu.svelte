@@ -1,7 +1,8 @@
 <script lang="ts">
-  import IconLink from "@components/atoms/IconLink/IconLink.svelte";
-  import type { Snippet } from "svelte";
-  import PagefindSearchField from "../PagefindSearchField";
+  import IconLink from '@components/atoms/IconLink/IconLink.svelte';
+  import type { Snippet } from 'svelte';
+  import PagefindSearchField from '../PagefindSearchField';
+  import NavMenuLink from '@components/atoms/NavMenuLink/NavMenuLink.svelte';
 
   let {
     links,
@@ -13,6 +14,8 @@
       href: string;
       icon?: Snippet;
       title?: string;
+      active?: boolean;
+      color?: string;
     }[];
     currentSearch?: string;
     class?: string;
@@ -29,7 +32,7 @@
     const target = e.target as HTMLInputElement;
     if (!target.checked) {
       menuIsClosing = true;
-      menuLabel = 'Menu';      
+      menuLabel = 'Menu';
 
       setTimeout(() => {
         menuIsClosing = false;
@@ -68,18 +71,27 @@
 
     <ul id="menu" class="m-hamburger-menu__list" class:m-hamburger-menu__list--closing={menuIsClosing}>
       <li class="m-hamburger-menu__item m-hamburger-menu__search">
-        <PagefindSearchField class="m-hamburger-menu__search-field" expandable onsubmit={handleMenuItemClick} />
+        <PagefindSearchField
+          class="m-hamburger-menu__search-field"
+          expandable
+          value={currentSearch}
+          onsubmit={handleMenuItemClick}
+        />
       </li>
 
       {#each links as link}
         <li class="m-hamburger-menu__item">
-          {#if link.icon}
-            <IconLink href={link.href} icon={link.icon} title={link.title} onclick={handleMenuItemClick}>{link.label}</IconLink>
-          {:else}
-            <a href={link.href} class="m-hamburger-menu__link" onclick={handleMenuItemClick}>{link.label}</a>
-          {/if}
+          <NavMenuLink
+            href={link.href}
+            icon={link.icon}
+            active={link.active}
+            color={link.color}
+            onclick={handleMenuItemClick}
+          >
+            {link.label}
+          </NavMenuLink>
         </li>
-      {/each}      
+      {/each}
     </ul>
   </div>
 </nav>
@@ -144,8 +156,8 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
-      gap: var(--spacing-md) var(--spacing-lg);
+      justify-content: flex-end;
+      gap: var(--spacing-sm) var(--spacing-lg);
 
       background: var(--theme--background-base-color);
       list-style-type: none;
@@ -165,21 +177,17 @@
 
     &__item {
       margin: 0;
-      
-      a.m-hamburger-menu__link {
-        @include typography.b1;
-        font-size: 1.375rem; //22px
-        font-weight: 500;
-        line-height: 1.2;
-
-        color: currentColor;
-        text-decoration: none;
-      }
+      width: 100%;
     }
 
     &__search {
       order: 9;
       margin-inline: calc(var(--spacing-sm) * -1);
+      width: calc(100% + var(--spacing-sm));
+    }
+
+    :global(.m-hamburger-menu__search-field) {
+      width: 100%;
     }
 
     &__checkbox {
@@ -263,24 +271,22 @@
       }
 
       &__list {
-        flex-direction: row;
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
 
         z-index: unset;
         position: relative;
         padding: 0;
-        width: fit-content;
         height: unset;
         background: unset;
         transform: unset;
         opacity: 1;
       }
 
-      &__item {
-        // order: 2;
-        a.m-hamburger-menu__link {
-          font-size: 1.125rem; //18px
-        }
-      }
+      // &__item {
+      //   order: 2;
+      // }
 
       // &__search {
       //   order: 1;

@@ -80,43 +80,46 @@
   @use '/src/styles/typography';
 
   .m-pagefind-search-field {
-    width: 280px;
+    width: min(280px, 100%);
     position: relative;
+    container-type: inline-size;
 
     @include breakpoints.for-tablet-portrait-up {
-      &--expandable {
-        width: 54px;
-        transition: all 0.2s cubic-bezier(0.3, 0.8, 0.4, 1);
+      @container (min-width: 320px) {
+        &--expandable {
+          width: 54px;
+          transition: all 0.2s cubic-bezier(0.3, 0.8, 0.4, 1);
 
-        &:focus-within {
-          width: 280px;
+          &:focus-within {
+            width: min(280px, 100%);
 
-          :global(.m-field__input) {
-            padding-left: var(--spacing-xl);
-            padding-right: var(--spacing-xl);
-          }
-        }
-
-        &:not(:focus-within) {
-          :global(.m-field__input) {
-            padding-left: var(--spacing-md);
-            padding-right: var(--spacing-md);
-            --theme--color-input-empty-border: transparent;
-            // Placeholder
-            &::placeholder {
-              color: transparent;
+            :global(.m-field__input) {
+              padding-left: var(--spacing-xl);
+              padding-right: var(--spacing-xl);
             }
           }
-        }
 
-        .m-pagefind-search-field__submit {
-          display: none;
+          &:not(:focus-within) {
+            :global(.m-field__input) {
+              padding-left: var(--spacing-md);
+              padding-right: var(--spacing-md);
+              --theme--color-input-empty-border: transparent;
+              // Placeholder
+              &::placeholder {
+                color: transparent;
+              }
+            }
+          }
+
+          .m-pagefind-search-field__submit {
+            display: none;
+          }
         }
       }
     }
 
     :global(.m-field__input) {
-      padding-right: 100px;
+      padding-right: min(100px, 33%);
 
       -webkit-appearance: none;
       appearance: none;
@@ -163,7 +166,9 @@
 
     &--has-value {
       .m-pagefind-search-field__clear {
-        display: flex;
+        @container (min-width: 201px) {
+          display: flex;
+        }
       }
     }
   }

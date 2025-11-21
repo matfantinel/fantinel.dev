@@ -6,6 +6,7 @@ import metaConfig from '@public/cms/meta.yml';
 import type { QuickReview } from '@schemas/quick-review';
 import { QuickReviewType, QuickReviewRating } from '@schemas/quick-review-types';
 import type { SiteMeta } from '@schemas/site-meta';
+import { getTypeFromLowercaseKey, getRatingFromLowercaseKey } from '@schemas/quick-review-types';
 import BaseLayout from './BaseLayout.astro';
 const siteMeta: SiteMeta = metaConfig;
 
@@ -13,20 +14,26 @@ interface Props {
   reviews: QuickReview[];
   currentPage: number;
   totalPages: number;
-  currentType?: QuickReviewType;
-  currentRating?: QuickReviewRating;
+  totalReviews: number;
+  currentType?: string;
+  currentRating?: string;
 }
 
-const { reviews, currentPage, totalPages, currentType, currentRating }: Props = Astro.props;
+const { reviews, currentPage, totalPages, totalReviews, currentType: currentTypeParam, currentRating: currentRatingParam }: Props = Astro.props;
+
+// Convert lowercase params to proper enum values
+const currentType = currentTypeParam ? getTypeFromLowercaseKey(currentTypeParam) : undefined;
+const currentRating = currentRatingParam ? getRatingFromLowercaseKey(currentRatingParam) : undefined;
 
 const allTypes = Object.keys(QuickReviewType).map((key) => key);
 const allRatings = Object.keys(QuickReviewRating).map((key) => key).reverse();
 
 // { name: string; slug: string; url: string; active?: boolean }
 const typeTags = allTypes.map((type) => {
-  const isActive = type.toLowerCase() === currentType?.toLowerCase();
+  const typeValue = QuickReviewType[type as keyof typeof QuickReviewType];
+  const isActive = typeValue === currentType;
   return {
-    name: QuickReviewType[type as keyof typeof QuickReviewType] + 's',
+    name: typeValue + 's',
     slug: type.toLowerCase(),
     url: isActive ? `/quick-reviews` : `/quick-reviews/type/${type.toLowerCase()}`,
     active: isActive,
@@ -34,9 +41,10 @@ const typeTags = allTypes.map((type) => {
 });
 
 const ratingTags = allRatings.map((rating) => {
-  const isActive = rating.toLowerCase() === currentRating?.toLowerCase();
+  const ratingValue = QuickReviewRating[rating as keyof typeof QuickReviewRating];
+  const isActive = ratingValue === currentRating;
   return {
-    name: QuickReviewRating[rating as keyof typeof QuickReviewRating],
+    name: ratingValue,
     slug: rating.toLowerCase(),
     url: isActive ? `/quick-reviews` : `/quick-reviews/rating/${rating.toLowerCase()}`,
     active: isActive,
@@ -60,14 +68,13 @@ if (currentRating) paginationBaseUrl += `/rating/${currentRating.toLowerCase()}`
   description="A special place to dump my unsolicited opinions of pieces of media!"
   hasHeaderBackground
 >
-  <main class='l-quick-reviews-archive' style='view-transition-name: blog-archive-hero'>
+  <div class='l-quick-reviews-archive'>
     <div class='l-quick-reviews-archive__container' data-pagefind-body>
       <ArchiveHero
         class='l-quick-reviews-archive__hero'
         title='Quick Reviews'
         body="Since June 2024, I started writing quick reviews of movies, TV shows and games I’ve watched or played. Here’s every one of them."
         tagGroups={tagGroups}
-        postType="quick-review"
       />
 
       <div class='l-quick-reviews-archive__content-wrapper u-container'>
@@ -83,6 +90,16 @@ if (currentRating) paginationBaseUrl += `/rating/${currentRating.toLowerCase()}`
         </div>
 
         {!reviews.length && <p class='u-h4'>No reviews found</p>}
+
+        {
+          totalReviews && (
+            <p class='l-quick-reviews-archive__summary'>
+              {totalReviews} reviews
+              {currentType && ` for "${currentType}"`}
+              {currentRating && ` rated "${currentRating}"`}
+            </p>
+          )
+        }
 
         {
           // I'm passing reviews as a prop here to avoid having multiple
@@ -105,20 +122,23 @@ if (currentRating) paginationBaseUrl += `/rating/${currentRating.toLowerCase()}`
         }
       </div>
     </div>
-  </main>
+  </div>
 </BaseLayout>
 
 <style lang='scss'>
   @use '/src/styles/breakpoints';
   @use '/src/styles/typography';
 
-  .l-quick-reviews-archive {
-    :global(.l-quick-reviews-archive__hero) {
-      background-color: var(--theme--background-accent-color);
-      border-bottom-left-radius: var(--border-radius);
-      border-bottom-right-radius: var(--border-radius);
-    }
+  :root:has(.l-quick-reviews-archive) {
+    --theme--color-accent: var(--theme--color-quick-review);
+    --theme--color-accent-rgb: var(--theme--color-quick-review-rgb);
+    --theme--color-accent-contrast: var(--theme--color-quick-review-contrast);
+    --theme--color-accent-shade: var(--theme--color-quick-review-shade);
+    --theme--color-accent-tint: var(--theme--color-quick-review-tint);
+    --theme--color-accent-glow: var(--theme--color-quick-review-glow);
+  }
 
+  .l-quick-reviews-archive {
     &__container {
       display: flex;
       flex-direction: column;
@@ -133,6 +153,12 @@ if (currentRating) paginationBaseUrl += `/rating/${currentRating.toLowerCase()}`
       display: flex;
       flex-direction: column;
       gap: var(--spacing-lg);
+    }
+
+    &__summary {
+      @include typography.h2;
+      text-align: center;
+      color: var(--theme--color-accent);
     }
   }
 </style>

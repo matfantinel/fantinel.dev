@@ -34,7 +34,7 @@ export function sanitizeQuickReview(review: QuickReview, filepath: string, body?
  * @param options The options for the pagination.
  * @returns The paginated reviews.
  */
-export async function getPaginatedReviews(page: number, rating?: QuickReviewRating, type?: QuickReviewType, options: { postsPerPage?: number } = { postsPerPage: 10 }) {
+export async function getPaginatedReviews(page: number, rating?: QuickReviewRating, type?: QuickReviewType, options: { postsPerPage?: number } = { postsPerPage: 20 }) {
   const { postsPerPage = 10 } = options;
 
   let reviews = await getCollection("quickReviews");

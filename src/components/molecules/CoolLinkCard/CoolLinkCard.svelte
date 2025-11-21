@@ -4,6 +4,7 @@
   import Tags from '@components/molecules/Tags';
   import MarkdownRenderer from '@components/molecules/MarkdownRenderer';
   import CoolLinkStamp from '@components/atoms/CoolLinkStamp';
+  import GithubSlugger from 'github-slugger'
 
   let {
     title,
@@ -24,9 +25,11 @@
     class?: string;
     [key: string]: any;
   } = $props();
+
+  const slugger = new GithubSlugger();
 </script>
 
-<article class={['m-cool-link-card', className]} {...props}>
+<article class={['m-cool-link-card', className]} {...props} style={`view-transition-name: cool-link-${slugger.slug(title)}`}>
   <div class="m-cool-link-card__container">
     <div class="m-cool-link-card__header">
       <p class="m-cool-link-card__title">

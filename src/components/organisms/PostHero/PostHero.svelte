@@ -74,6 +74,11 @@
   @use '/src/styles/breakpoints';
 
   .o-post-hero {
+    background-color: var(--theme--background-accent-color);
+    border-bottom-left-radius: var(--border-radius);
+    border-bottom-right-radius: var(--border-radius);
+    margin-top: calc(var(--spacing-lg) * -1);
+    
     &__container {
       display: flex;
       flex-direction: column;
@@ -81,7 +86,7 @@
       justify-content: center;
       gap: var(--spacing-lg);
 
-      padding-block: var(--spacing-xxl);
+      padding-block: var(--spacing-xxxl) var(--spacing-xxl);
 
       @include breakpoints.for-phone-only {
         padding-block: var(--spacing-xl);

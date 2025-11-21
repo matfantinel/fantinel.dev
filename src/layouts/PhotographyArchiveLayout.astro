@@ -25,13 +25,12 @@ const paginationBaseUrl = '/photography';
   description="I'm no professional, but sometimes I like to capture the world around me. Sometimes, the photos turn out pretty nice."
   hasHeaderBackground
 >
-  <main class='l-photography-archive' style='view-transition-name: archive-hero'>
+  <div class='l-photography-archive'>
     <div class='l-photography-archive__container' data-pagefind-body>
       <ArchiveHero
         class='l-photography-archive__hero'
         title='Photography'
         body="I'm no professional, but sometimes I like to capture the world around me. Sometimes, the photos turn out pretty nice."
-        postType="photography"
       />
 
       <div class='l-photography-archive__content-wrapper u-container'>
@@ -53,19 +52,22 @@ const paginationBaseUrl = '/photography';
         }
       </div>
     </div>
-  </main>
+  </div>
 </BaseLayout>
 
 <style lang='scss'>
   @use '/src/styles/breakpoints';
 
-  .l-photography-archive {
-    :global(.l-photography-archive__hero) {
-      background-color: var(--theme--background-accent-color);
-      border-bottom-left-radius: var(--border-radius);
-      border-bottom-right-radius: var(--border-radius);
-    }
+  :root:has(.l-photography-archive) {
+    --theme--color-accent: var(--theme--color-photography);
+    --theme--color-accent-rgb: var(--theme--color-photography-rgb);
+    --theme--color-accent-contrast: var(--theme--color-photography-contrast);
+    --theme--color-accent-shade: var(--theme--color-photography-shade);
+    --theme--color-accent-tint: var(--theme--color-photography-tint);
+    --theme--color-accent-glow: var(--theme--color-photography-glow);
+  }
 
+  .l-photography-archive {
     &__container {
       display: flex;
       flex-direction: column;

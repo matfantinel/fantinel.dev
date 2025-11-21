@@ -34,14 +34,13 @@ allTags?.forEach((tag) => {
   description="A collection of links to interesting things I've come across."
   hasHeaderBackground
 >
-  <main class='l-cool-links-archive' style='view-transition-name: archive-hero'>
+  <div class='l-cool-links-archive'>
     <div class='l-cool-links-archive__container' data-pagefind-body>
       <ArchiveHero
         class='l-cool-links-archive__hero'
         title='Cool Links'
-        body="Here’s a collection of interesting links I’ve found around the web. The feed updates frequently, and I compile everything into a blog post on the last day of each month."
+        body='Here’s a collection of interesting links I’ve found around the web. The feed updates frequently, and I compile everything into a blog post on the last day of each month.'
         tagGroups={allTags ? [{ label: 'Filter by tag:', tags: allTags }] : []}
-        postType="cool-link"
         image={siteMeta.baseUrl + '/cms/media/articles/cool-links-cover.png'}
       />
 
@@ -49,9 +48,10 @@ allTags?.forEach((tag) => {
         {!links.length && <p class='u-h4'>No links found</p>}
 
         {
-          currentTag && (
-            <p class="l-cool-links-archive__summary">
-              {totalLinks} links found for tag "{currentTag.name}".
+          totalLinks && (
+            <p class='l-cool-links-archive__summary'>
+              {totalLinks} links
+              {currentTag && ` tagged "${currentTag.name}"`}
             </p>
           )
         }
@@ -60,9 +60,7 @@ allTags?.forEach((tag) => {
           // I'm passing reviews as a prop here to avoid having multiple
           // Elements with client:load. Having multiple islands like that
           // can cause issues.
-          links && (
-            <CoolLinkCards {links} client:load />
-          )
+          links && <CoolLinkCards {links} client:load />
         }
 
         {
@@ -77,20 +75,23 @@ allTags?.forEach((tag) => {
         }
       </div>
     </div>
-  </main>
+  </div>
 </BaseLayout>
 
 <style lang='scss'>
   @use '/src/styles/breakpoints';
   @use '/src/styles/typography';
 
-  .l-cool-links-archive {
-    :global(.l-cool-links-archive__hero) {
-      background-color: var(--theme--background-accent-color);
-      border-bottom-left-radius: var(--border-radius);
-      border-bottom-right-radius: var(--border-radius);
-    }
+  :root:has(.l-cool-links-archive) {
+    --theme--color-accent: var(--theme--color-cool-link);
+    --theme--color-accent-rgb: var(--theme--color-cool-link-rgb);
+    --theme--color-accent-contrast: var(--theme--color-cool-link-contrast);
+    --theme--color-accent-shade: var(--theme--color-cool-link-shade);
+    --theme--color-accent-tint: var(--theme--color-cool-link-tint);
+    --theme--color-accent-glow: var(--theme--color-cool-link-glow);
+  }
 
+  .l-cool-links-archive {
     &__container {
       display: flex;
       flex-direction: column;
@@ -105,6 +106,12 @@ allTags?.forEach((tag) => {
       display: flex;
       flex-direction: column;
       gap: var(--spacing-lg);
+    }
+
+    &__summary {
+      @include typography.h2;
+      text-align: center;
+      color: var(--theme--color-accent);
     }
   }
 </style>

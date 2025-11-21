@@ -36,3 +36,31 @@
     transform: translateY(0px);
   }
 }
+
+@keyframes nudge {
+  0% {
+    transform: rotate(-10deg);
+  }
+
+  33% {
+    transform: rotate(10deg);
+  }
+
+  66% {
+    transform: rotate(-10deg);
+  }
+}
+
+@keyframes nudge-and-grow {
+  0% {
+    transform: rotate(-10deg) scale(1);
+  }
+
+  33% {
+    transform: rotate(10deg) scale(1.1);
+  }
+
+  66% {
+    transform: rotate(-10deg) scale(1);
+  }
+}

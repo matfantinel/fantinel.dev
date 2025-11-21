@@ -1,23 +1,83 @@
 <script lang="ts">
   import Logo from '@assets/brand/Logo.svelte';
   import Rss from '@assets/icons/rss.svelte';
+  import PostIcon from '@assets/icons/post-types/post.svelte';
+  import QuickReviewIcon from '@assets/icons/post-types/quick-review.svelte';
+  import CoolLinkIcon from '@assets/icons/post-types/cool-link.svelte';
+  import PhotographyIcon from '@assets/icons/post-types/photography.svelte';
   import HamburgerMenu from '@components/molecules/HamburgerMenu';
   import ThemeToggle from '@components/molecules/ThemeToggle';
+  import HomeIcon from '@assets/icons/home.svelte';
 
   let {
     color = 'default',
     hasBackground = false,
     currentSearch,
+    currentUrl,
     class: className,
   }: {
     color?: 'default' | 'inverted';
     hasBackground?: boolean;
     currentSearch?: string;
+    currentUrl?: string;
     class?: string;
   } = $props();
+
+  let pathname = $state('/');
+
+  if (currentUrl) {
+    let urlTest = new URL(currentUrl);
+    pathname = urlTest.pathname;
+  }
+
+  // Update pathname on client-side navigation
+  $effect(() => {
+    const updatePathname = () => {
+      pathname = window.location.pathname;
+    };
+
+    // Listen for Astro view transition navigation
+    document.addEventListener('astro:page-load', updatePathname);
+
+    return () => {
+      document.removeEventListener('astro:page-load', updatePathname);
+    };
+  });
+
+  const links = $derived([
+    { label: 'Home', href: '/', icon: homeIconSnippet, active: pathname === '/', color: 'generic' },
+    { label: 'Blog', href: '/blog', icon: postIconSnippet, active: pathname.startsWith('/blog'), color: 'post' },
+    {
+      label: 'Quick Reviews',
+      href: '/quick-reviews',
+      icon: quickReviewIconSnippet,
+      active: pathname.startsWith('/quick-reviews'),
+      color: 'quick-review',
+    },
+    {
+      label: 'Cool Links',
+      href: '/cool-links',
+      icon: coolLinkIconSnippet,
+      active: pathname.startsWith('/cool-links'),
+      color: 'cool-link',
+    },
+    {
+      label: 'Photography',
+      href: '/photography',
+      icon: photographyIconSnippet,
+      active: pathname.startsWith('/photography'),
+      color: 'photography',
+    },
+    { label: 'RSS Feed', href: '/rss.xml', icon: rssIconSnippet, title: 'Subscribe to my RSS Feed', color: 'generic' },
+  ]);
 </script>
 
-{#snippet rssIconSnippet()}<Rss />{/snippet}
+{#snippet rssIconSnippet()}<Rss size="20px" />{/snippet}
+{#snippet postIconSnippet()}<PostIcon size="20px" />{/snippet}
+{#snippet quickReviewIconSnippet()}<QuickReviewIcon size="20px" />{/snippet}
+{#snippet coolLinkIconSnippet()}<CoolLinkIcon size="20px" />{/snippet}
+{#snippet photographyIconSnippet()}<PhotographyIcon size="20px" />{/snippet}
+{#snippet homeIconSnippet()}<HomeIcon size="20px" />{/snippet}
 
 <header
   class={['o-header', className]}
@@ -31,17 +91,7 @@
     </a>
 
     <div class="o-header__links">
-      <HamburgerMenu
-        class="o-header__hamburger-menu"
-        links={[
-          { label: 'Blog', href: '/blog' },
-          { label: 'Quick Reviews', href: '/quick-reviews' },
-          { label: 'Cool Links', href: '/cool-links' },
-          { label: 'Photography', href: '/photography' },
-          { label: 'RSS', href: '/rss.xml', icon: rssIconSnippet, title: 'Subscribe to my RSS Feed' },
-        ]}
-        {currentSearch}
-      />
+      <HamburgerMenu class="o-header__hamburger-menu" {links} {currentSearch} />
 
       <ThemeToggle class="o-header__theme-toggle" />
     </div>
@@ -56,6 +106,8 @@
     position: relative;
     z-index: 9;
     height: var(--header-height);
+
+    container-type: inline-size;
 
     &__container {
       display: flex;
@@ -82,7 +134,7 @@
     &__links {
       display: flex;
       align-items: center;
-      gap: var(--spacing-md) var(--spacing-lg);      
+      gap: var(--spacing-md) var(--spacing-lg);
     }
 
     :global(.o-header__hamburger-menu) {
@@ -102,6 +154,25 @@
       :global(.o-header__theme-toggle) {
         order: 3;
       }
+      
+      .o-header {
+        &__container {
+          flex-direction: column;
+          align-items: flex-start;
+          height: 100dvh;
+          justify-content: flex-start;
+
+          padding-inline: clamp(12px, (100vw - 320px) / 580 * 30, 22px);
+        }
+        &__links {
+          flex-direction: column;
+          width: 100%;
+          align-items: flex-start;
+        }
+      }
+      :global(.o-header__hamburger-menu) {
+        width: 100%;
+      }
     }
 
     &--inverted {
@@ -109,7 +180,15 @@
     }
 
     &--has-background {
-      background-color: var(--theme--background-accent-color);
+      @include breakpoints.for-phone-only {
+        background-color: var(--theme--background-accent-color);
+      }
+
+      // @include breakpoints.for-tablet-portrait-up {
+      //   box-shadow: var(--theme--shadow-image);
+      //   border-top-right-radius: var(--border-radius--small);
+      //   border-bottom-right-radius: var(--border-radius--small);
+      // }
     }
   }
 </style>
