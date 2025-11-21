@@ -13,7 +13,6 @@ const {
   description,
   image,
   autoGenerateImage,
-  slug,
   publishedDate,
   modifiedDate,
   disableClientRouter,
@@ -24,7 +23,6 @@ const {
   description?: string;
   image?: string;
   autoGenerateImage?: boolean;
-  slug?: string;
   publishedDate?: string;
   modifiedDate?: string;
   disableClientRouter?: boolean;
@@ -50,6 +48,7 @@ if (!image && autoGenerateImage && title) {
 const searchParams = new URL(Astro.request.url).searchParams;
 const currentSearch = searchParams.get('search');
 const currentUrl = Astro.request.url;
+const pathname = new URL(Astro.request.url).pathname;
 ---
 
 <!doctype html>
@@ -70,7 +69,7 @@ const currentUrl = Astro.request.url;
 
     <meta property='og:image' content={pageImage} />
 
-    <link rel='canonical' href={`${siteMeta.baseUrl}/${slug}`} />
+    <link rel='canonical' href={`${siteMeta.baseUrl}${pathname}`} />
   </head>
   <body>
     <div class='l-base'>
