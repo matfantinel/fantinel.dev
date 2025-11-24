@@ -1,7 +1,10 @@
 <script lang="ts">
-  import type { Snippet } from 'svelte';
-  import type { Photography } from '@schemas/photography';
   import PhotographyCard from '@components/molecules/PhotographyCard';
+  import type { Photography } from '@schemas/photography';
+  import type { Snippet } from 'svelte';
+  import Masonry from 'svelte-masonry';
+
+  import { onMount } from 'svelte';
 
   let {
     class: className,
@@ -12,23 +15,35 @@
     photographies?: Photography[];
     children: Snippet;
   } = $props();
+
+  let refreshLayout = $state<() => void>();
+
+  onMount(() => {
+    // Manuall refreshLayout of masonry now that JS is available
+    setTimeout(() => {
+      refreshLayout?.();
+    }, 50);
+  });
+
 </script>
 
 <div class={['m-photography-cards', className]}>
   {@render children?.()}
 
   {#if photographies}
-    {#each photographies as photography}
-      <PhotographyCard
-        title={photography.title}
-        slug={photography.slug}
-        image={photography.image}
-        photoDate={photography.photoDate}
-        publishedDate={photography.publishedDate}
-        imageAlt={photography.imageAlt as string | undefined}
-        content={photography.content as string}
-      />
-    {/each}
+    <Masonry bind:refreshLayout>
+      {#each photographies as photography}
+        <PhotographyCard
+          title={photography.title}
+          slug={photography.slug}
+          image={photography.image}
+          photoDate={photography.photoDate}
+          publishedDate={photography.publishedDate}
+          imageAlt={photography.imageAlt as string | undefined}
+          content={photography.content as string}
+        />
+      {/each}
+    </Masonry>
   {/if}
 </div>
 
