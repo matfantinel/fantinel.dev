@@ -45,7 +45,7 @@
       },
       {
         name: "LinkedIn",
-        url: "https://linkedin.com/in/matfantinel",
+        url: "https://www.linkedin.com/in/matheus-fantinel/",
         label: "Connect with me on LinkedIn"
       },
       {

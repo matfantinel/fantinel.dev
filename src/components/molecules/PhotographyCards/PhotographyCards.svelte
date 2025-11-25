@@ -22,6 +22,11 @@
     // Manuall refreshLayout of masonry now that JS is available
     setTimeout(() => {
       refreshLayout?.();
+
+      setTimeout(() => {
+        // Do it again just to make sure it worked...
+        refreshLayout?.();
+      }, 450);
     }, 50);
   });
 
