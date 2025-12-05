@@ -82,13 +82,27 @@ allTags?.forEach((tag) => {
   @use '/src/styles/breakpoints';
   @use '/src/styles/typography';
 
-  :root:has(.l-cool-links-archive) {
-    --theme--color-accent: var(--theme--color-cool-link);
-    --theme--color-accent-rgb: var(--theme--color-cool-link-rgb);
-    --theme--color-accent-contrast: var(--theme--color-cool-link-contrast);
-    --theme--color-accent-shade: var(--theme--color-cool-link-shade);
-    --theme--color-accent-tint: var(--theme--color-cool-link-tint);
-    --theme--color-accent-glow: var(--theme--color-cool-link-glow);
+  :root {
+    &:has(.l-cool-links-archive) {
+      --theme--color-accent: var(--theme--color-cool-link);
+      --theme--color-accent-rgb: var(--theme--color-cool-link-rgb);
+      --theme--color-accent-contrast: var(--theme--color-cool-link-contrast);
+      --theme--color-accent-shade: var(--theme--color-cool-link-shade);
+      --theme--color-accent-tint: var(--theme--color-cool-link-tint);
+      --theme--color-accent-glow: var(--theme--color-cool-link-glow);
+    }
+
+    &[data-theme='dark'],
+    &[data-theme='auto'] {
+      &:has(.l-cool-links-archive) {
+        --theme--color-accent: var(--theme--color-cool-link);
+        --theme--color-accent-rgb: var(--theme--color-cool-link-rgb);
+        --theme--color-accent-contrast: var(--theme--color-cool-link-contrast);
+        --theme--color-accent-shade: var(--theme--color-cool-link-shade);
+        --theme--color-accent-tint: var(--theme--color-cool-link-tint);
+        --theme--color-accent-glow: var(--theme--color-cool-link-glow);
+      }
+    }
   }
 
   .l-cool-links-archive {

@@ -58,13 +58,27 @@ const paginationBaseUrl = '/photography';
 <style lang='scss'>
   @use '/src/styles/breakpoints';
 
-  :root:has(.l-photography-archive) {
-    --theme--color-accent: var(--theme--color-photography);
-    --theme--color-accent-rgb: var(--theme--color-photography-rgb);
-    --theme--color-accent-contrast: var(--theme--color-photography-contrast);
-    --theme--color-accent-shade: var(--theme--color-photography-shade);
-    --theme--color-accent-tint: var(--theme--color-photography-tint);
-    --theme--color-accent-glow: var(--theme--color-photography-glow);
+  :root {
+    &:has(.l-photography-archive) {
+      --theme--color-accent: var(--theme--color-photography);
+      --theme--color-accent-rgb: var(--theme--color-photography-rgb);
+      --theme--color-accent-contrast: var(--theme--color-photography-contrast);
+      --theme--color-accent-shade: var(--theme--color-photography-shade);
+      --theme--color-accent-tint: var(--theme--color-photography-tint);
+      --theme--color-accent-glow: var(--theme--color-photography-glow);
+    }
+
+    &[data-theme='dark'],
+    &[data-theme='auto'] {
+      &:has(.l-photography-archive) {
+        --theme--color-accent: var(--theme--color-photography);
+        --theme--color-accent-rgb: var(--theme--color-photography-rgb);
+        --theme--color-accent-contrast: var(--theme--color-photography-contrast);
+        --theme--color-accent-shade: var(--theme--color-photography-shade);
+        --theme--color-accent-tint: var(--theme--color-photography-tint);
+        --theme--color-accent-glow: var(--theme--color-photography-glow);
+      }
+    }
   }
 
   .l-photography-archive {
