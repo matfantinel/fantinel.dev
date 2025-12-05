@@ -129,13 +129,27 @@ if (currentRating) paginationBaseUrl += `/rating/${currentRating.toLowerCase()}`
   @use '/src/styles/breakpoints';
   @use '/src/styles/typography';
 
-  :root:has(.l-quick-reviews-archive) {
-    --theme--color-accent: var(--theme--color-quick-review);
-    --theme--color-accent-rgb: var(--theme--color-quick-review-rgb);
-    --theme--color-accent-contrast: var(--theme--color-quick-review-contrast);
-    --theme--color-accent-shade: var(--theme--color-quick-review-shade);
-    --theme--color-accent-tint: var(--theme--color-quick-review-tint);
-    --theme--color-accent-glow: var(--theme--color-quick-review-glow);
+  :root {
+    &:has(.l-quick-reviews-archive) {
+      --theme--color-accent: var(--theme--color-quick-review);
+      --theme--color-accent-rgb: var(--theme--color-quick-review-rgb);
+      --theme--color-accent-contrast: var(--theme--color-quick-review-contrast);
+      --theme--color-accent-shade: var(--theme--color-quick-review-shade);
+      --theme--color-accent-tint: var(--theme--color-quick-review-tint);
+      --theme--color-accent-glow: var(--theme--color-quick-review-glow);
+    }
+
+    &[data-theme='dark'],
+    &[data-theme='auto'] {
+      &:has(.l-quick-reviews-archive) {
+        --theme--color-accent: var(--theme--color-quick-review);
+        --theme--color-accent-rgb: var(--theme--color-quick-review-rgb);
+        --theme--color-accent-contrast: var(--theme--color-quick-review-contrast);
+        --theme--color-accent-shade: var(--theme--color-quick-review-shade);
+        --theme--color-accent-tint: var(--theme--color-quick-review-tint);
+        --theme--color-accent-glow: var(--theme--color-quick-review-glow);
+      }
+    }
   }
 
   .l-quick-reviews-archive {
