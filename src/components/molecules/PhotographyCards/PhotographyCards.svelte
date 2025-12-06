@@ -26,7 +26,7 @@
       setTimeout(() => {
         // Do it again just to make sure it worked...
         refreshLayout?.();
-      }, 450);
+      }, 950);
     }, 50);
   });
 
@@ -36,7 +36,7 @@
   {@render children?.()}
 
   {#if photographies}
-    <Masonry bind:refreshLayout>
+    <Masonry bind:refreshLayout colWidth={'minmax(Min(30rem, 100%), 1fr)'}>
       {#each photographies as photography}
         <PhotographyCard
           title={photography.title}
