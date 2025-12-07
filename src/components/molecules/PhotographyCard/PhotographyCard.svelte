@@ -59,6 +59,12 @@
         </div>
       {/if}
     </div>
+
+    {#if photoDate}
+      <div class="m-photography-card__date-cool">
+        {dateformat(photoDate, 'yyyy-mm-dd', true)}
+      </div>
+    {/if}
   </div>
 </article>
 
@@ -76,7 +82,8 @@
     container-type: inline-size;
 
     &__container {
-      padding: var(--spacing-sm);
+      --container-padding: var(--spacing-sm);
+      padding: var(--container-padding);
 
       display: flex;
       flex-direction: column;
@@ -84,6 +91,7 @@
     }
 
     :global(.m-photography-card__image) {
+      transition: 0.15s ease-in-out;
       border-radius: var(--border-radius--small);
     }
 
@@ -102,18 +110,30 @@
     }
 
     &__date {
-      font-family: var(--font--spicy);
+      font-family: var(--font--mono);
       font-size: 0.875rem; //14px
       font-weight: 500;
       color: var(--theme--text-accent-color);
+      display: none;
+    }
+
+    &__date-cool {
+      font-family: var(--font--mono);
+      font-size: 1rem;
+      font-weight: 700;
+      color: #fee92f;
+      text-shadow: 0 0 6px black;
+      position: absolute;
+      top: calc(var(--container-padding) + var(--spacing-xs));
+      right: calc(var(--container-padding) + var(--spacing-xs));
+      opacity: 0.8;
     }
 
     &__content {
-      font-family: var(--font--spicy);
       color: var(--theme--text-accent-color);
     }
 
-    @container (min-width: 600px) {
+    @container (min-width: 1000px) {
       &__container {
         flex-direction: row;
       }
@@ -122,6 +142,45 @@
         max-width: 60%;
         max-height: 440px;
         width: auto;
+      }
+
+      &__date-cool {
+        display: none;
+      }
+
+      &__date {
+        display: block;
+      }
+    }
+
+    @container (max-width: 999px) {
+      @media (hover: hover) {
+        &:hover {
+          .m-photography-card {
+            &__footer {
+              translate: 0 0;
+            }
+          }
+        }
+
+        .m-photography-card {
+          &__container {
+            --container-padding: 0px;
+          }
+          &__footer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+
+            padding: var(--spacing-sm);
+
+            background: rgba(var(--theme--background-card-color-rgb), 0.8);
+
+            translate: 0 100%;
+            transition: 0.25s ease-in-out;
+          }
+        }
       }
     }
   }

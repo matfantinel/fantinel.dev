@@ -36,7 +36,7 @@
   {@render children?.()}
 
   {#if photographies}
-    <Masonry bind:refreshLayout colWidth={'minmax(Min(30rem, 100%), 1fr)'}>
+    <Masonry bind:refreshLayout colWidth={'minmax(Min(24rem, 100%), 1fr)'} gridGap={'var(--grid-gap)'}>
       {#each photographies as photography}
         <PhotographyCard
           title={photography.title}
@@ -59,5 +59,6 @@
     display: flex;
     flex-direction: column;
     gap: var(--spacing-md);
+    --grid-gap: var(--spacing-md);
   }
 </style>
