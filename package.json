@@ -53,6 +53,7 @@
     "@astrojs/sitemap": "^3.4.1",
     "@astrojs/svelte": "^7.1.0",
     "@astrojs/vercel": "^8.1.4",
+    "@vercel/analytics": "^1.6.1",
     "html-to-image": "^1.11.13",
     "svelte-masonry": "^0.1.5"
   },
