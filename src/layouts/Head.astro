@@ -39,12 +39,22 @@ const disableClientRouter = Astro.props.disableClientRouter;
 {siteMeta.fediverseCreator && <meta name='fediverse:creator' content={siteMeta.fediverseCreator} />}
 
 <!-- Plausible - ethical analytics -->
-{import.meta.env.PUBLIC_PLAUSIBLE_URL && <script
+<!-- {import.meta.env.PUBLIC_PLAUSIBLE_URL && <script
 src={import.meta.env.PUBLIC_PLAUSIBLE_URL}
 data-api="/stats/api/event"
 data-domain="fantinel.dev"
 is:inline
-></script>}
+></script>} -->
+
+<!-- Plausible - ethical analytics -->
+{!import.meta.env.DEV && (
+  <script async src="/stats/js/script.js" is:inline></script>
+  <script is:inline>
+    window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
+    plausible.init()
+  </script>
+)}
+
 
 <script is:inline>
   function setTheme(document) {
