@@ -47,7 +47,7 @@
     icon={getIconSnippet(name)}
     href={url}
     target="_blank"
-    rel="me noopener noreferrer"
+    rel="me noopener"
     title={label}
   >
     {name}

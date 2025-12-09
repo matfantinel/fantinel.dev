@@ -38,7 +38,7 @@
 {#if isButton}
 	<Button {href} {...buttonProps} class="md-button">{text}</Button>
 {:else}
-	<a {href} {target} class="md-link" rel="noopener noreferrer">
+	<a {href} {target} class="md-link" rel="noopener">
 		{text}{#if isExternalLink} <ExternalLink size="14px" />{/if}
 	</a>
 {/if}

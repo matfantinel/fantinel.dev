@@ -41,7 +41,7 @@
           icon={rssIconSnippet}
           href="/rss.xml"
           target="_blank"
-          rel="noopener noreferrer"
+          rel="noopener"
           title="Subscribe to my RSS Feed"
         >
           RSS

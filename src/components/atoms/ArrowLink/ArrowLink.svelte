@@ -25,7 +25,7 @@
   let linkProps = $derived({
     href,
     target: target ?? (isExternalLink ? '_blank' : undefined),
-    rel: rel ?? (isExternalLink ? 'noopener noreferrer' : undefined),
+    rel: rel ?? (isExternalLink ? 'noopener' : undefined),
   });
 
   let classList = $derived(['a-arrow-link', `a-arrow-link--${color}`, className]);
