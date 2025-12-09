@@ -1,10 +1,5 @@
 {
-  "redirects": [
-    {
-      "source": "/rss",
-      "destination": "/rss.xml",
-      "permanent": true
-    },
+  "rewrites": [
     {
 			"source": "/curiosity/js/script.js",
 			"destination": "https://plausible.io/js/pa-fo3cnkoM4yMRPGzO15xWU.js"
@@ -12,7 +7,14 @@
 		{
 			"source": "/curiosity/api/event",
 			"destination": "https://plausible.io/api/event"
-		},
+		}
+  ],
+  "redirects": [
+    {
+      "source": "/rss",
+      "destination": "/rss.xml",
+      "permanent": true
+    },    
     { "source": "/purpose-of-this-blog", "destination": "/blog/purpose-of-this-blog", "permanent": true },
     { "source": "/angular-pwa-how-to", "destination": "/blog/angular-pwa-how-to", "permanent": true },
     { "source": "/what-are-pwas-and-why-should-i-care-about-them", "destination": "/blog/what-are-pwas-and-why-should-i-care-about-them", "permanent": true },
