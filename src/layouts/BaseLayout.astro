@@ -6,7 +6,6 @@ import type { SiteMeta } from '@schemas/site-meta';
 import Head from '@layouts/Head.astro';
 import Header from '@components/organisms/Header';
 import Footer from '@components/organisms/Footer';
-import Analytics from '@vercel/analytics/astro'
 
 const {
   title,
@@ -71,8 +70,6 @@ const pathname = new URL(Astro.request.url).pathname;
     <meta property='og:image' content={pageImage} />
 
     <link rel='canonical' href={`${siteMeta.baseUrl}${pathname}`} />
-
-    <Analytics />
   </head>
   <body>
     <div class='l-base'>
