@@ -5,13 +5,13 @@ import BaseLayout from './BaseLayout.astro';
 import Image from '@components/atoms/Image';
 import MarkdownRenderer from '@components/molecules/MarkdownRenderer';
 import dateformat from 'dateformat';
+import ArchiveHero from '@components/organisms/ArchiveHero';
 
 interface Props {
   photography: Photography;
 }
 
 const { photography }: Props = Astro.props;
-
 ---
 
 <BaseLayout
@@ -24,54 +24,86 @@ const { photography }: Props = Astro.props;
   publishedDate={photography.publishedDate}
 >
   <div class='l-photography'>
-    <div class='l-photography__container u-container' data-pagefind-body>
+    <div class='l-photography__container' data-pagefind-body>
+      <ArchiveHero
+        class='l-photography__hero'
+        title={'Photography: ' + photography.title}
+        body={photography.photoDate ? 'Taken on ' + dateformat(photography.publishedDate, 'yyyy-mm-dd', true) : ''}
+        button={{ label: 'View all Photography', href: '/photography' }}
+      />
 
-      <h1 class="l-photography__title">{photography.title}</h1>
+      <div class='l-photography__inner-container u-container'>
+        <div class='l-photography__content-wrapper'>
+          {
+            photography.content && (
+              <div class='l-photography__content u-markdown'>
+                <MarkdownRenderer content={photography.content} />
+              </div>
+            )
+          }
+        </div>
 
-      <div class="l-photography__content-wrapper">
-        {photography.content && (
-          <div class="l-photography__content u-markdown">
-            <MarkdownRenderer content={photography.content} />
-          </div>
-        )}
-        {photography.publishedDate && (
-          <div class="l-photography__date">
-            Taken on {dateformat(photography.publishedDate, 'yyyy-mm-dd', true)}.
-          </div>
-        )}
-      </div>
-
-      <Image class="m-photography-card__image" src={photography.image} alt={photography.imageAlt ? photography.imageAlt : photography.content} />      
-      
-      <div class="l-photography__cta">
-        <Button color="maroon" href="/photography">View all Photography</Button>
+        <Image
+          class='m-photography-card__image'
+          src={photography.image}
+          alt={photography.imageAlt ? photography.imageAlt : photography.content}
+        />
       </div>
     </div>
   </div>
+
+  <style lang='scss'>
+    @use '/src/styles/breakpoints';
+    @use '/src/styles/mixins';
+    @use '/src/styles/typography';
+
+    :root {
+      &:has(.l-photography) {
+        --theme--color-accent: var(--theme--color-photography);
+        --theme--color-accent-rgb: var(--theme--color-photography-rgb);
+        --theme--color-accent-contrast: var(--theme--color-photography-contrast);
+        --theme--color-accent-shade: var(--theme--color-photography-shade);
+        --theme--color-accent-tint: var(--theme--color-photography-tint);
+        --theme--color-accent-glow: var(--theme--color-photography-glow);
+      }
+
+      &[data-theme='dark'],
+      &[data-theme='auto'] {
+        &:has(.l-photography) {
+          --theme--color-accent: var(--theme--color-photography);
+          --theme--color-accent-rgb: var(--theme--color-photography-rgb);
+          --theme--color-accent-contrast: var(--theme--color-photography-contrast);
+          --theme--color-accent-shade: var(--theme--color-photography-shade);
+          --theme--color-accent-tint: var(--theme--color-photography-tint);
+          --theme--color-accent-glow: var(--theme--color-photography-glow);
+        }
+      }
+    }
+
+    .l-photography {
+      &__container {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-xxl);
+
+        @include breakpoints.for-phone-only {
+          gap: var(--spacing-xl);
+        }
+      }
+
+      &__inner-container {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-lg);
+        align-items: center;
+        justify-content: center;
+      }
+
+      &__content-wrapper {
+        @include typography.b2;
+        font-family: var(--font--article);
+        width: 100%;
+      }
+    }
+  </style>
 </BaseLayout>
-
-<style lang='scss'>
-  @use '/src/styles/breakpoints';
-  @use '/src/styles/mixins';
-  @use '/src/styles/typography';
-
-  .l-photography {
-    &__container {
-      display: flex;
-      flex-direction: column;
-      gap: var(--spacing-lg);
-      align-items: center;
-      justify-content: center;
-    }
-
-    &__content-wrapper {
-      @include typography.b2;
-      font-family: var(--font--article);
-      width: 100%;
-    }
-
-    &__title {
-      color: var(--theme--color-photography);
-    }
-  }
-</style>

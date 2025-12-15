@@ -1,8 +1,10 @@
 <script lang="ts">
+  import FooterWaves from '@assets/brand/FooterWaves.svelte';
   import Tag from '@components/atoms/Tag';
   import Tags from '@components/molecules/Tags';
   import Image from '@components/atoms/Image';
-  import GithubSlugger from 'github-slugger'
+  import Button from '@components/atoms/Button';
+  import GithubSlugger from 'github-slugger';
   const slugger = new GithubSlugger();
 
   type TagGroup = {
@@ -13,12 +15,14 @@
   let {
     title,
     body,
+    button,
     tagGroups,
     image,
     class: className,
   }: {
     title: string;
     body?: string;
+    button?: { label: string; href: string; color?: string };
     tagGroups?: TagGroup[];
     image?: string;
     class?: string;
@@ -42,14 +46,16 @@
             {body}
           </p>
         {/if}
+
+        {#if button}
+          <Button class="o-archive-hero__button" href={button.href} color={button.color as any}>
+            {button.label}
+          </Button>
+        {/if}
       </div>
 
       {#if image}
-        <Image
-          class="o-archive-hero__image"
-          src={image}
-          alt={title}
-        />
+        <Image class="o-archive-hero__image" src={image} alt={title} />
       {/if}
     </div>
 
@@ -80,6 +86,11 @@
       </div>
     {/if}
   </div>
+
+  <div class="o-archive-hero__waves-container" aria-hidden="true">
+    <FooterWaves class="o-archive-hero__waves" opacity={1} forceGray invertWaveColors />
+  </div>
+  <div class="u-noise"></div>
 </div>
 
 <style lang="scss">
@@ -93,6 +104,7 @@
     border-bottom-right-radius: var(--border-radius);
     margin-top: calc(var(--spacing-lg) * -1);
     margin-left: -1px;
+    position: relative;
 
     &__container {
       display: flex;
@@ -101,10 +113,10 @@
       justify-content: center;
       gap: var(--spacing-lg);
 
-      padding-block: var(--spacing-xxxl) var(--spacing-xxl);
+      padding-block: var(--spacing-xxxl) calc(var(--spacing-xxl) + 200px);
 
       @include breakpoints.for-phone-only {
-        padding-block: var(--spacing-xxl);
+        padding-block: var(--spacing-xxl) calc(var(--spacing-xxl) + 30px);
       }
     }
 
@@ -167,6 +179,28 @@
       color: var(--theme--text-accent-color);
       font-weight: 600;
       margin-top: var(--spacing-sm);
+    }
+
+    &__waves-container {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 200px;
+      z-index: -1;
+
+      @include breakpoints.for-phone-only {
+        height: 180px;
+        bottom: -100px;
+      }
+
+      :global(.o-archive-hero__waves) {
+        width: 100%;
+        height: 100%;
+        display: block;
+
+        --theme--color-footer--wave-1: var(--theme--background-base-color) !important;
+      }
     }
 
     &--has-image {

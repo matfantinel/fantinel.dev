@@ -3,74 +3,74 @@
 //    Example: --color--yellow
 // 2. Contextual variables that use the global color ones to build a specific theme;
 //    Example: --color--highlight-background, that uses --color--yellow
-//    these can change between light/dark themes and in general should not be taken for granted, 
+//    these can change between light/dark themes and in general should not be taken for granted,
 //    while in general it's okay to assume what the global color ones are.
 //    In addition to light/dark themes, I'm also considering being able to swap accent (primary/secondary/tertiary) colors too.
 
 @use './_mixins.scss' as mixins;
 
 @mixin dark-color-palette {
-  @include mixins.define-color('rosewater', #F5E0DC);
-  @include mixins.define-color('flamingo', #F2CDCD);
-  @include mixins.define-color('pink', #F5C2E7);
-  @include mixins.define-color('mauve', #CBA6F7);
-  @include mixins.define-color('red', #F38BA8);
-  @include mixins.define-color('maroon', #EBA0AC);
-  @include mixins.define-color('peach', #FAB387);
-  @include mixins.define-color('yellow', #F9E2AF);
-  @include mixins.define-color('green', #A6E3A1);
-  @include mixins.define-color('teal', #94E2D5);
-  @include mixins.define-color('sky', #89DCEB);
-  @include mixins.define-color('sapphire', #74C7EC);
-  @include mixins.define-color('blue', #89B4FA);
-  @include mixins.define-color('lavender', #B4BEFE);
+  @include mixins.define-color('rosewater', #f5e0dc);
+  @include mixins.define-color('flamingo', #f2cdcd);
+  @include mixins.define-color('pink', #f5c2e7);
+  @include mixins.define-color('mauve', #cba6f7);
+  @include mixins.define-color('red', #f38ba8);
+  @include mixins.define-color('maroon', #eba0ac);
+  @include mixins.define-color('peach', #fab387);
+  @include mixins.define-color('yellow', #f9e2af);
+  @include mixins.define-color('green', #a6e3a1);
+  @include mixins.define-color('teal', #94e2d5);
+  @include mixins.define-color('sky', #89dceb);
+  @include mixins.define-color('sapphire', #74c7ec);
+  @include mixins.define-color('blue', #89b4fa);
+  @include mixins.define-color('lavender', #b4befe);
 
-  @include mixins.define-color('gray-0', #CDD6F4);
-  @include mixins.define-color('gray-50', #BAC2DE);
-  @include mixins.define-color('gray-100', #A6ADC8);
-  @include mixins.define-color('gray-200', #9399B2);
-  @include mixins.define-color('gray-300', #7F849C);
-  @include mixins.define-color('gray-400', #6C7086);
-  @include mixins.define-color('gray-500', #585B70);
-  @include mixins.define-color('gray-600', #45475A);
+  @include mixins.define-color('gray-0', #cdd6f4);
+  @include mixins.define-color('gray-50', #bac2de);
+  @include mixins.define-color('gray-100', #a6adc8);
+  @include mixins.define-color('gray-200', #9399b2);
+  @include mixins.define-color('gray-300', #7f849c);
+  @include mixins.define-color('gray-400', #6c7086);
+  @include mixins.define-color('gray-500', #585b70);
+  @include mixins.define-color('gray-600', #45475a);
   @include mixins.define-color('gray-700', #313244);
-  @include mixins.define-color('gray-800', #1E1E2E);
+  @include mixins.define-color('gray-800', #1e1e2e);
   @include mixins.define-color('gray-900', #181825);
-  @include mixins.define-color('gray-1000', #11111B);
+  @include mixins.define-color('gray-1000', #11111b);
 }
 
 @mixin light-color-palette {
-  @include mixins.define-color('rosewater', #DC8A78);
-  @include mixins.define-color('flamingo', #DD7878);
-  @include mixins.define-color('pink', #EA76CB);
-  @include mixins.define-color('mauve', #8839EF);
-  @include mixins.define-color('red', #D20F39);
-  @include mixins.define-color('maroon', #E64553);
-  @include mixins.define-color('peach', #FE640B);
-  @include mixins.define-color('yellow', #DF8E1D);
-  @include mixins.define-color('green', #40A02B);
+  @include mixins.define-color('rosewater', #dc8a78);
+  @include mixins.define-color('flamingo', #dd7878);
+  @include mixins.define-color('pink', #ea76cb);
+  @include mixins.define-color('mauve', #8839ef);
+  @include mixins.define-color('red', #d20f39);
+  @include mixins.define-color('maroon', #e64553);
+  @include mixins.define-color('peach', #fe640b);
+  @include mixins.define-color('yellow', #df8e1d);
+  @include mixins.define-color('green', #40a02b);
   @include mixins.define-color('teal', #179299);
-  @include mixins.define-color('sky', #04A5E5);
-  @include mixins.define-color('sapphire', #209FB5);
-  @include mixins.define-color('blue', #1E66F5);
-  @include mixins.define-color('lavender', #7287FD);
+  @include mixins.define-color('sky', #04a5e5);
+  @include mixins.define-color('sapphire', #209fb5);
+  @include mixins.define-color('blue', #1e66f5);
+  @include mixins.define-color('lavender', #7287fd);
 
-  @include mixins.define-color('gray-0', #4C4F69);
-  @include mixins.define-color('gray-50', #5C5F77);
-  @include mixins.define-color('gray-100', #6C6F85);
-  @include mixins.define-color('gray-200', #7C7F93);
-  @include mixins.define-color('gray-300', #8C8FA1);
-  @include mixins.define-color('gray-400', #9CA0B0);
-  @include mixins.define-color('gray-500', #ACB0BE);
-  @include mixins.define-color('gray-600', #BCC0CC);
-  @include mixins.define-color('gray-700', #CCD0DA);
-  @include mixins.define-color('gray-800', #EFF1F5);
-  @include mixins.define-color('gray-900', #E6E9EF);
-  @include mixins.define-color('gray-1000', #DCE0E8);
+  @include mixins.define-color('gray-0', #4c4f69);
+  @include mixins.define-color('gray-50', #5c5f77);
+  @include mixins.define-color('gray-100', #6c6f85);
+  @include mixins.define-color('gray-200', #7c7f93);
+  @include mixins.define-color('gray-300', #8c8fa1);
+  @include mixins.define-color('gray-400', #9ca0b0);
+  @include mixins.define-color('gray-500', #acb0be);
+  @include mixins.define-color('gray-600', #bcc0cc);
+  @include mixins.define-color('gray-700', #ccd0da);
+  @include mixins.define-color('gray-800', #eff1f5);
+  @include mixins.define-color('gray-900', #e6e9ef);
+  @include mixins.define-color('gray-1000', #dce0e8);
 
-  @include mixins.define-color('gray-1100', #FFFFFF);
-  @include mixins.define-color('code-background', #11111B);
-  @include mixins.define-color('code-text', #CDD6F4);
+  @include mixins.define-color('gray-1100', #ffffff);
+  @include mixins.define-color('code-background', #11111b);
+  @include mixins.define-color('code-text', #cdd6f4);
 }
 
 @mixin theme-base {
@@ -106,7 +106,7 @@
   --theme--color-complementary-shade: var(--color--mauve-shade);
   --theme--color-complementary-tint: var(--color--mauve-tint);
   --theme--color-complementary-glow: var(--theme--glow-mauve);
-  
+
   // #region Colors for common elements
 
   --theme--color-input-empty-border: var(--color--gray-100);
@@ -137,7 +137,7 @@
 
   --theme--color-close-button-color: var(--color--gray-0);
   --theme--color-close-button-color-hover: var(--color--gray-500);
-  
+
   --theme--color--logo-1: var(--color--gray-0);
   --theme--color--logo-2: var(--color--gray-100);
 
@@ -149,7 +149,7 @@
   --theme--color-footer--wave-3: var(--color--gray-500);
   --theme--color-footer--wave-4: var(--color--gray-600);
 
-  .o-home-page-hero {
+  .footer-waves--force-gray {
     --theme--color-footer--wave-1: var(--color--gray-300);
     --theme--color-footer--wave-2: var(--color--gray-400);
     --theme--color-footer--wave-3: var(--color--gray-500);
@@ -192,45 +192,74 @@
   --theme--gradient-greenish: linear-gradient(to right, var(--color--teal), var(--color--sky));
   --theme--gradient-pinkish: linear-gradient(to right, var(--color--pink), var(--color--mauve), var(--color--lavender));
   --theme--gradient-yellowish: linear-gradient(to right, var(--color--yellow), var(--color--peach));
-  --theme--gradient-rainbow: linear-gradient(to right, var(--color--pink), var(--color--mauve), var(--color--red), var(--color--maroon), var(--color--peach), var(--color--yellow), var(--color--green), var(--color--teal), var(--color--sky), var(--color--sapphire), var(--color--blue), var(--color--lavender));
-  --theme--gradient-rainbow-circle: conic-gradient(from 0deg, var(--color--pink), var(--color--mauve), var(--color--red), var(--color--maroon), var(--color--peach), var(--color--yellow), var(--color--green), var(--color--teal), var(--color--sky), var(--color--sapphire), var(--color--blue), var(--color--lavender));
-  --theme--gradient-rainbow-circle-dark: conic-gradient(from 0deg, 
-    #F5C2E7, /* dark pink */
-    #CBA6F7, /* dark mauve */
-    #F38BA8, /* dark red */
-    #EBA0AC, /* dark maroon */
-    #FAB387, /* dark peach */
-    #F9E2AF, /* dark yellow */
-    #A6E3A1, /* dark green */
-    #94E2D5, /* dark teal */
-    #89DCEB, /* dark sky */
-    #74C7EC, /* dark sapphire */
-    #89B4FA, /* dark blue */
-    #B4BEFE  /* dark lavender */
+  --theme--gradient-rainbow: linear-gradient(
+    to right,
+    var(--color--pink),
+    var(--color--mauve),
+    var(--color--red),
+    var(--color--maroon),
+    var(--color--peach),
+    var(--color--yellow),
+    var(--color--green),
+    var(--color--teal),
+    var(--color--sky),
+    var(--color--sapphire),
+    var(--color--blue),
+    var(--color--lavender)
+  );
+  --theme--gradient-rainbow-circle: conic-gradient(
+    from 0deg,
+    var(--color--pink),
+    var(--color--mauve),
+    var(--color--red),
+    var(--color--maroon),
+    var(--color--peach),
+    var(--color--yellow),
+    var(--color--green),
+    var(--color--teal),
+    var(--color--sky),
+    var(--color--sapphire),
+    var(--color--blue),
+    var(--color--lavender)
+  );
+  --theme--gradient-rainbow-circle-dark: conic-gradient(
+    from 0deg,
+    #f5c2e7,
+    /* dark pink */ #cba6f7,
+    /* dark mauve */ #f38ba8,
+    /* dark red */ #eba0ac,
+    /* dark maroon */ #fab387,
+    /* dark peach */ #f9e2af,
+    /* dark yellow */ #a6e3a1,
+    /* dark green */ #94e2d5,
+    /* dark teal */ #89dceb,
+    /* dark sky */ #74c7ec,
+    /* dark sapphire */ #89b4fa,
+    /* dark blue */ #b4befe /* dark lavender */
   );
   // #endregion
 
   // #region Quick Reviews
 
-  --theme--qr-base-dark-color: #11111B;
+  --theme--qr-base-dark-color: #11111b;
   --theme--qr-base-light-color: #ffffff;
 
-  --theme--qr-movie-color: #FE640B;
+  --theme--qr-movie-color: #fe640b;
   --theme--qr-movie-color-rgb: 254, 100, 11;
 
-  --theme--qr-tv-show-color: #D20F39;
+  --theme--qr-tv-show-color: #d20f39;
   --theme--qr-tv-show-color-rgb: 210, 15, 57;
 
-  --theme--qr-game-color: #40A02B;
+  --theme--qr-game-color: #40a02b;
   --theme--qr-game-color-rgb: 64, 160, 43;
 
-  --theme--qr-album-color: #EA76CB;
+  --theme--qr-album-color: #ea76cb;
   --theme--qr-album-color-rgb: 234, 118, 203;
 
   --theme--qr-loved-color: var(--theme--gradient-rainbow-circle-dark);
-  --theme--qr-liked-color: #89B4FA;
-  --theme--qr-decent-color: #FAB387;
-  --theme--qr-not-liked-color: #F38BA8;
+  --theme--qr-liked-color: #89b4fa;
+  --theme--qr-decent-color: #fab387;
+  --theme--qr-not-liked-color: #f38ba8;
 
   // #endregion
 
@@ -316,20 +345,20 @@
   --theme--glow-callouts-warning: var(--theme--shadow-card);
   --theme--glow-callouts-success: var(--theme--shadow-card);
 
-  --theme--color-footer--wave-1: rgba(var(--color--teal-rgb), 0.3);
-  --theme--color-footer--wave-2: rgba(var(--color--teal-rgb), 0.4);
-  --theme--color-footer--wave-3: rgba(var(--color--teal-rgb), 0.5);
+  --theme--color-footer--wave-1: rgba(var(--theme--color-accent-rgb), 0.3);
+  --theme--color-footer--wave-2: rgba(var(--theme--color-accent-rgb), 0.4);
+  --theme--color-footer--wave-3: rgba(var(--theme--color-accent-rgb), 0.5);
   --theme--color-footer--wave-4: var(--color--gray-1100);
 
-  --theme--color-close-button-color: var(--color--gray-900);
-  --theme--color-close-button-color-hover: var(--color--gray-200);
-
-  .o-home-page-hero {
+  .footer-waves--force-gray {
     --theme--color-footer--wave-1: rgba(var(--color--gray-700-rgb), 0.3);
     --theme--color-footer--wave-2: rgba(var(--color--gray-700-rgb), 0.4);
     --theme--color-footer--wave-3: rgba(var(--color--gray-700-rgb), 0.5);
     --theme--color-footer--wave-4: var(--color--gray-1100);
   }
+
+  --theme--color-close-button-color: var(--color--gray-900);
+  --theme--color-close-button-color-hover: var(--color--gray-200);
 
   --theme--color-inner-text-shadow: var(--color--gray-400);
   --theme--color-inner-text-shadow-rgb: var(--color--gray-400-rgb);
@@ -340,15 +369,15 @@
 }
 
 :root {
-	@include light-theme;
+  @include light-theme;
 
-	&[data-theme='dark'] {
-		@include dark-theme;
-	}
+  &[data-theme='dark'] {
+    @include dark-theme;
+  }
 
-	&[data-theme='auto'] {
-		@media (prefers-color-scheme: dark) {
-			@include dark-theme;
-		}
-	}
+  &[data-theme='auto'] {
+    @media (prefers-color-scheme: dark) {
+      @include dark-theme;
+    }
+  }
 }

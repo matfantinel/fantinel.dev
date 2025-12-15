@@ -138,6 +138,7 @@ const pathname = new URL(Astro.request.url).pathname;
     :global(main) {
       position: relative;
       z-index: 2;
+      background: var(--theme--background-base-color);
     }
   }
 
@@ -160,7 +161,6 @@ const pathname = new URL(Astro.request.url).pathname;
       :global(main) {
         grid-area: main;
         padding-top: var(--spacing-lg);
-        background: var(--theme--background-base-color);
         border-top-left-radius: var(--border-radius);
         padding-block: var(--spacing-lg);
         margin-top: var(--spacing-xs);

@@ -58,7 +58,7 @@
     {/if}
 
     <div class="o-home-page-hero__waves-container" aria-hidden="true">
-      <FooterWaves class="o-home-page-hero__waves" />
+      <FooterWaves forceGray class="o-home-page-hero__waves" />
     </div>
   </div>
 </div>

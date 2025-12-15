@@ -3,13 +3,14 @@ import Button from '@components/atoms/Button';
 import QuickReviewCard from '@components/molecules/QuickReviewCard';
 import type { QuickReview } from '@schemas/quick-review';
 import BaseLayout from './BaseLayout.astro';
+import ArchiveHero from '@components/organisms/ArchiveHero';
+import dateformat from 'dateformat';
 
 interface Props {
   review: QuickReview;
 }
 
 const { review }: Props = Astro.props;
-
 ---
 
 <BaseLayout
@@ -22,23 +23,27 @@ const { review }: Props = Astro.props;
   publishedDate={review.date}
 >
   <div class='l-quick-review'>
-    <div class='l-quick-review__container u-container' data-pagefind-body>
-      <QuickReviewCard
-        title={review.title}
-        metadata={review.metadata}
-        slug={review.slug}
-        image={review.image}
-        rating={review.rating}
-        theme={review.theme}
-        customBg={review.customBg}
-        content={review.content}
-        type={review.type}
-        date={review.date}
-        client:load
+    <div class='l-quick-review__container' data-pagefind-body>
+      <ArchiveHero
+        class='l-quick-review__hero'
+        title={'Quick Review: ' + review.title}
+        button={{ label: 'View all Quick Reviews', href: '/quick-reviews' }}
       />
 
-      <div class="l-quick-review__cta">
-        <Button href="/quick-reviews">View all Quick Reviews</Button>
+      <div class='l-quick-review__inner-container u-container'>
+        <QuickReviewCard
+          title={review.title}
+          metadata={review.metadata}
+          slug={review.slug}
+          image={review.image}
+          rating={review.rating}
+          theme={review.theme}
+          customBg={review.customBg}
+          content={review.content}
+          type={review.type}
+          date={review.date}
+          client:load
+        />
       </div>
     </div>
   </div>
@@ -49,8 +54,41 @@ const { review }: Props = Astro.props;
   @use '/src/styles/mixins';
   @use '/src/styles/typography';
 
+  :root {
+    &:has(.l-quick-review) {
+      --theme--color-accent: var(--theme--color-quick-review);
+      --theme--color-accent-rgb: var(--theme--color-quick-review-rgb);
+      --theme--color-accent-contrast: var(--theme--color-quick-review-contrast);
+      --theme--color-accent-shade: var(--theme--color-quick-review-shade);
+      --theme--color-accent-tint: var(--theme--color-quick-review-tint);
+      --theme--color-accent-glow: var(--theme--color-quick-review-glow);
+    }
+
+    &[data-theme='dark'],
+    &[data-theme='auto'] {
+      &:has(.l-quick-review) {
+        --theme--color-accent: var(--theme--color-quick-review);
+        --theme--color-accent-rgb: var(--theme--color-quick-review-rgb);
+        --theme--color-accent-contrast: var(--theme--color-quick-review-contrast);
+        --theme--color-accent-shade: var(--theme--color-quick-review-shade);
+        --theme--color-accent-tint: var(--theme--color-quick-review-tint);
+        --theme--color-accent-glow: var(--theme--color-quick-review-glow);
+      }
+    }
+  }
+
   .l-quick-review {
     &__container {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-xxl);
+
+      @include breakpoints.for-phone-only {
+        gap: var(--spacing-xl);
+      }
+    }
+
+    &__inner-container {
       display: flex;
       flex-direction: column;
       gap: var(--spacing-lg);

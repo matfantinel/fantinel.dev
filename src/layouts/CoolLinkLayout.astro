@@ -3,6 +3,9 @@ import Button from '@components/atoms/Button';
 import type { CoolLink } from '@schemas/cool-link';
 import BaseLayout from './BaseLayout.astro';
 import CoolLinkCard from '@components/molecules/CoolLinkCard';
+import ArchiveHero from '@components/organisms/ArchiveHero';
+import metaConfig from '@public/cms/meta.yml';
+import type { SiteMeta } from '@schemas/site-meta';
 
 interface Props {
   link: CoolLink;
@@ -10,6 +13,7 @@ interface Props {
 
 const { link }: Props = Astro.props;
 
+const siteMeta: SiteMeta = metaConfig;
 ---
 
 <BaseLayout
@@ -20,19 +24,24 @@ const { link }: Props = Astro.props;
   publishedDate={link.savedOn}
 >
   <div class='l-cool-link'>
-    <div class='l-cool-link__container u-container' data-pagefind-body>
-      
-      <CoolLinkCard
-        title={link.title as string}
-        author={link.author as string | undefined}
-        url={link.url}
-        date={link.savedOn as any}
-        tags={link.tags}
-        content={link.content as string | undefined}
+    <div class='l-cool-link__container' data-pagefind-body>
+      <ArchiveHero
+        class='l-cool-link__hero'
+        title={'Cool Link: ' + link.title}
+        body={link.author ? 'by ' + link.author : ''}
+        button={{ label: 'View all Cool Links', href: '/cool-links' }}
+        image={siteMeta.baseUrl + '/cms/media/articles/cool-links-cover.png'}
       />
 
-      <div class="l-cool-link__cta">
-        <Button color="blue" href="/cool-links">View all Cool Links</Button>
+      <div class='l-cool-link__inner-container u-container'>
+        <CoolLinkCard
+          title={link.title as string}
+          author={link.author as string | undefined}
+          url={link.url}
+          date={link.savedOn as any}
+          tags={link.tags}
+          content={link.content as string | undefined}
+        />
       </div>
     </div>
   </div>
@@ -43,8 +52,41 @@ const { link }: Props = Astro.props;
   @use '/src/styles/mixins';
   @use '/src/styles/typography';
 
+  :root {
+    &:has(.l-cool-link) {
+      --theme--color-accent: var(--theme--color-cool-link);
+      --theme--color-accent-rgb: var(--theme--color-cool-link-rgb);
+      --theme--color-accent-contrast: var(--theme--color-cool-link-contrast);
+      --theme--color-accent-shade: var(--theme--color-cool-link-shade);
+      --theme--color-accent-tint: var(--theme--color-cool-link-tint);
+      --theme--color-accent-glow: var(--theme--color-cool-link-glow);
+    }
+
+    &[data-theme='dark'],
+    &[data-theme='auto'] {
+      &:has(.l-cool-link) {
+        --theme--color-accent: var(--theme--color-cool-link);
+        --theme--color-accent-rgb: var(--theme--color-cool-link-rgb);
+        --theme--color-accent-contrast: var(--theme--color-cool-link-contrast);
+        --theme--color-accent-shade: var(--theme--color-cool-link-shade);
+        --theme--color-accent-tint: var(--theme--color-cool-link-tint);
+        --theme--color-accent-glow: var(--theme--color-cool-link-glow);
+      }
+    }
+  }
+
   .l-cool-link {
     &__container {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-xxl);
+
+      @include breakpoints.for-phone-only {
+        gap: var(--spacing-xl);
+      }
+    }
+
+    &__inner-container {
       display: flex;
       flex-direction: column;
       gap: var(--spacing-lg);
