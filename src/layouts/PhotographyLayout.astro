@@ -1,0 +1,77 @@
+---
+import Button from '@components/atoms/Button';
+import type { Photography } from '@schemas/photography';
+import BaseLayout from './BaseLayout.astro';
+import Image from '@components/atoms/Image';
+import MarkdownRenderer from '@components/molecules/MarkdownRenderer';
+import dateformat from 'dateformat';
+
+interface Props {
+  photography: Photography;
+}
+
+const { photography }: Props = Astro.props;
+
+---
+
+<BaseLayout
+  title={photography.title}
+  keywords={photography.title}
+  description={photography.content}
+  image={photography.image}
+  autoGenerateImage={!photography.image}
+  slug={`photography/${photography.slug}`}
+  publishedDate={photography.publishedDate}
+>
+  <div class='l-photography'>
+    <div class='l-photography__container u-container' data-pagefind-body>
+
+      <h1 class="l-photography__title">{photography.title}</h1>
+
+      <div class="l-photography__content-wrapper">
+        {photography.content && (
+          <div class="l-photography__content u-markdown">
+            <MarkdownRenderer content={photography.content} />
+          </div>
+        )}
+        {photography.publishedDate && (
+          <div class="l-photography__date">
+            Taken on {dateformat(photography.publishedDate, 'yyyy-mm-dd', true)}.
+          </div>
+        )}
+      </div>
+
+      <Image class="m-photography-card__image" src={photography.image} alt={photography.imageAlt ? photography.imageAlt : photography.content} />      
+      
+      <div class="l-photography__cta">
+        <Button color="maroon" href="/photography">View all Photography</Button>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<style lang='scss'>
+  @use '/src/styles/breakpoints';
+  @use '/src/styles/mixins';
+  @use '/src/styles/typography';
+
+  .l-photography {
+    &__container {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-lg);
+      align-items: center;
+      justify-content: center;
+    }
+
+    &__content-wrapper {
+      @include typography.b2;
+      font-family: var(--font--article);
+      width: 100%;
+    }
+
+    &__title {
+      color: var(--theme--color-photography);
+    }
+  }
+</style>

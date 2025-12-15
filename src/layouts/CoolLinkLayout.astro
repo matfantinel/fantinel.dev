@@ -1,0 +1,55 @@
+---
+import Button from '@components/atoms/Button';
+import type { CoolLink } from '@schemas/cool-link';
+import BaseLayout from './BaseLayout.astro';
+import CoolLinkCard from '@components/molecules/CoolLinkCard';
+
+interface Props {
+  link: CoolLink;
+}
+
+const { link }: Props = Astro.props;
+
+---
+
+<BaseLayout
+  title={link.title || 'Cool Link'}
+  keywords={link.title || 'Cool Link'}
+  description={link.content}
+  slug={`cool-links/${link.slug}`}
+  publishedDate={link.savedOn}
+>
+  <div class='l-cool-link'>
+    <div class='l-cool-link__container u-container' data-pagefind-body>
+      
+      <CoolLinkCard
+        title={link.title as string}
+        author={link.author as string | undefined}
+        url={link.url}
+        date={link.savedOn as any}
+        tags={link.tags}
+        content={link.content as string | undefined}
+      />
+
+      <div class="l-cool-link__cta">
+        <Button color="blue" href="/cool-links">View all Cool Links</Button>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<style lang='scss'>
+  @use '/src/styles/breakpoints';
+  @use '/src/styles/mixins';
+  @use '/src/styles/typography';
+
+  .l-cool-link {
+    &__container {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-lg);
+      align-items: center;
+      justify-content: center;
+    }
+  }
+</style>

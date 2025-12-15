@@ -15,7 +15,7 @@
     href?: string;
     target?: string;
     rel?: string;
-    color?: 'default' | 'complementary' | 'green' | 'yellow' | 'peach' | 'red' | 'mauve' | 'blue' | 'teal';
+    color?: 'default' | 'complementary' | 'green' | 'yellow' | 'peach' | 'red' | 'mauve' | 'blue' | 'teal' | 'maroon';
     class?: string;
     icon?: Snippet;
     children?: Snippet;
@@ -147,6 +147,13 @@
       --button-color-background-hover: var(--color--teal-tint);
       --button-color-text: var(--color--teal-contrast);
       --button-color-hover-glow: var(--theme--glow-teal);
+    }
+
+    &--maroon {
+      --button-color-background: var(--color--maroon);
+      --button-color-background-hover: var(--color--maroon-tint);
+      --button-color-text: var(--color--maroon-contrast);
+      --button-color-hover-glow: var(--theme--glow-maroon);
     }
   }
 </style>

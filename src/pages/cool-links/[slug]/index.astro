@@ -1,0 +1,19 @@
+---
+import { getPaginatedCoolLinks } from '@data/coolLinks';
+import CoolLinkLayout from '@layouts/CoolLinkLayout.astro';
+
+export async function getStaticPaths() {
+  const { links } = await getPaginatedCoolLinks(1, undefined, { postsPerPage: 999 });
+
+  const paths = links.map((link) => ({
+    params: { slug: link.slug },
+    props: { link },
+  }));
+
+  return paths;
+}
+
+const { link } = Astro.props;
+---
+
+<CoolLinkLayout link={link} />

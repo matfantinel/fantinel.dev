@@ -13,6 +13,7 @@ export function sanitizeCoolLink(link: CoolLink, filepath: string, body?: string
 
   link.title = title;
   link.slug = slug(title);
+  link.selfUrl = `/cool-links/${link.slug}`;
 
   if (link.tags) {
     link.tags = link.tags.map((tag) => {

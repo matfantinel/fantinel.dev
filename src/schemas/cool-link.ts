@@ -15,6 +15,7 @@ export type CoolLink = Omit<CoolLinkBase, 'tags'> & {
   slug: string;
   content?: string | null;
   tags?: CoolLinkTag[];
+  selfUrl?: string;
 };
 
 export type CoolLinkTag = {

@@ -1,0 +1,19 @@
+---
+import { getPaginatedPhotographies } from '@data/photographies';
+import PhotographyLayout from '@layouts/PhotographyLayout.astro';
+
+export async function getStaticPaths() {
+  const { photographies } = await getPaginatedPhotographies(1, { postsPerPage: 999 });
+
+  const paths = photographies.map((photography) => ({
+    params: { slug: photography.slug },
+    props: { photography },
+  }));
+
+  return paths;
+}
+
+const { photography } = Astro.props;
+---
+
+<PhotographyLayout photography={photography} />
