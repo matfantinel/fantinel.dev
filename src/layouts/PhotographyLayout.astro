@@ -22,6 +22,7 @@ const { photography }: Props = Astro.props;
   autoGenerateImage={!photography.image}
   slug={`photography/${photography.slug}`}
   publishedDate={photography.publishedDate}
+  hasHeaderBackground
 >
   <div class='l-photography'>
     <div class='l-photography__container' data-pagefind-body>

@@ -105,6 +105,7 @@
     margin-top: calc(var(--spacing-lg) * -1);
     margin-left: -1px;
     position: relative;
+    overflow: hidden;
 
     &__container {
       display: flex;

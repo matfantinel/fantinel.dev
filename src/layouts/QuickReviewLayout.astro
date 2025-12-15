@@ -21,6 +21,7 @@ const { review }: Props = Astro.props;
   autoGenerateImage={!review.image}
   slug={`quick-reviews/${review.slug}`}
   publishedDate={review.date}
+  hasHeaderBackground
 >
   <div class='l-quick-review'>
     <div class='l-quick-review__container' data-pagefind-body>
