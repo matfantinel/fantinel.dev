@@ -2,6 +2,9 @@
   import ExternalLink from '@assets/icons/external-link.svelte';
 	import Button from '@components/atoms/Button';
   import { HttpRegex } from '@utils/regex';
+	import metaConfig from "@public/cms/meta.yml";
+	import type { SiteMeta } from "@schemas/site-meta";
+	const siteMeta: SiteMeta = metaConfig;
 
 	let {
 		text,
@@ -15,7 +18,7 @@
 
 	const target = href.startsWith('#') ? '_self' : '_blank';
 
-	const isExternalLink = !!href && HttpRegex.test(href);
+	const isExternalLink = !!href && HttpRegex.test(href) && !href.startsWith(siteMeta.baseUrl);
 
 	// We'll use the title attribute to check if a link should be rendered as a Button
 	const isButton = title && title.indexOf('button') > -1;
@@ -38,7 +41,7 @@
 {#if isButton}
 	<Button {href} {...buttonProps} class="md-button">{text}</Button>
 {:else}
-	<a {href} {target} class="md-link" rel="noopener">
+	<a {href} {target} class={["md-link", isExternalLink ? 'md-link--external' : '']} rel="noopener">
 		{text}{#if isExternalLink} <ExternalLink size="14px" />{/if}
 	</a>
 {/if}
