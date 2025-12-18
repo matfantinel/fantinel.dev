@@ -42,7 +42,7 @@
     "sass": "^1.86.0",
     "satori": "^0.13.1",
     "satori-html": "^0.3.2",
-    "storybook": "^8.6.12",
+    "storybook": "^8.6.15",
     "striptags": "^3.2.0",
     "svelte": "^5.23.1",
     "svelte-animated-details": "^1.0.2",
