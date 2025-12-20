@@ -6,13 +6,12 @@ import yaml from '@modyfi/vite-plugin-yaml';
 
 import vercel from '@astrojs/vercel';
 import sitemap from '@astrojs/sitemap';
+import sitemapNoindexFilter from './integrations/sitemap-noindex-filter.mjs';
 
 // https://astro.build/config
 export default defineConfig({
   site: "https://fantinel.dev",
-  integrations: [svelte(),sitemap({
-    filter: (page) => page !== 'https://fantinel.dev/iphanpy-privacy-policy/'
-  })],
+  integrations: [svelte(), sitemap(), sitemapNoindexFilter()],
 
   vite: {
     plugins: [yaml()]
