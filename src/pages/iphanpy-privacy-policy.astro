@@ -1,0 +1,24 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+---
+
+<BaseLayout noindex={true}>
+  <div class='p-privacy-policy'>
+    <div class="p-privacy-policy__container u-container u-markdown">
+      <h1>iPhanpy Privacy Policy</h1>
+      <p>
+        iPhanpy's privacy policy is very simple: it does not collect any data, and in fact has no server to store any data in.
+      </p>
+      <p>
+        All your interactions are handled by your Mastodon instance's servers and are subject to their privacy policy. 
+      </p>
+    </div>
+  </div>
+</BaseLayout>
+
+<style lang='scss'>
+
+  .p-privacy-policy {
+    margin-top: 80px;
+  }
+</style>

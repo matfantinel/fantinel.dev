@@ -17,6 +17,7 @@ const {
   modifiedDate,
   disableClientRouter,
   hasHeaderBackground,
+  noindex,
 }: {
   title?: string;
   keywords?: string[];
@@ -27,6 +28,7 @@ const {
   modifiedDate?: string;
   disableClientRouter?: boolean;
   hasHeaderBackground?: boolean;
+  noindex?: boolean;
 } = Astro.props;
 
 const siteMeta: SiteMeta = metaConfig;
@@ -63,6 +65,7 @@ const pathname = new URL(Astro.request.url).pathname;
     <meta name='description' content={pageDescription} />
     <meta property='og:description' content={pageDescription} />
     <meta name='keywords' content={pageKeywords.join(', ')} />
+    {noindex && <meta name='robots' content='noindex, nofollow' />}
 
     {publishedDate && <meta property='article:published_time' content={publishedDate} />}
     {modifiedDate && <meta property='article:modified_time' content={modifiedDate} />}

@@ -10,7 +10,9 @@ import sitemap from '@astrojs/sitemap';
 // https://astro.build/config
 export default defineConfig({
   site: "https://fantinel.dev",
-  integrations: [svelte(),sitemap()],
+  integrations: [svelte(),sitemap({
+    filter: (page) => page !== 'https://fantinel.dev/iphanpy-privacy-policy/'
+  })],
 
   vite: {
     plugins: [yaml()]
