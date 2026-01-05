@@ -38,6 +38,10 @@
 		src = src.replace(/^\/?cms\/media/, '/cms/optimized-media');
 		fileName = fileName.replace(/^\/?cms\/media/, '/cms/optimized-media');
 
+		// Replace .jpg or .jpeg extensions with .png for optimized media
+		src = src.replace(/\.jpe?g$/i, '.png');
+		fileName = fileName.replace(/\.jpe?g$/i, '.png');
+
 		let srcset = '';
 
 		if (widths) {
