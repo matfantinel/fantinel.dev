@@ -43,7 +43,7 @@
       case PostType.COOL_LINK:
         return 'shared a <em>Cool Link</em>';
       case PostType.PHOTOGRAPHY:
-        return 'took a <em>Photo</em>';
+        return 'posted a <em>Photo</em>';
       default:
         return 'published <em>something</em>';
     }
@@ -105,12 +105,16 @@
     display: flex;
     flex-direction: column;
     gap: var(--spacing-md);
+    align-items: center;
+
+    width: 100%;
 
     &__header {
       display: flex;
       align-items: center;
       gap: var(--spacing-sm);
       padding-block: var(--spacing-sm);
+      width: 100%;
 
       position: sticky;
       top: 0;

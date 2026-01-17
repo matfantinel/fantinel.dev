@@ -28,14 +28,15 @@ const {
   title='Timeline'
   hasHeaderBackground
 >
-  <div class='l-everything-archive'>
-    <div class='l-everything-archive__container'>
+  <div class='l-timeline-archive'>
+    <div class='l-timeline-archive__container'>
       <ArchiveHero
-        class='l-everything-archive__hero'
-        title='Timeline'
+        class='l-timeline-archive__hero'
+        title='Chronological Feed'
+        body="A chronological view of *everything* I've posted here, since the beginning of time (or the blog's inception, whichever comes first)."
       />
 
-      <div class='l-everything-archive__content-wrapper'>
+      <div class='l-timeline-archive__content-wrapper'>
         <PostsTimeline
           postGroups={groups}
         />
@@ -43,10 +44,10 @@ const {
         {
           totalPages > 1 && (
             <Pagination
-              class='l-everything-archive__pagination'
+              class='l-timeline-archive__pagination'
               currentPage={currentPage}
               totalPages={totalPages}
-              baseUrl='/everything'
+              baseUrl='/timeline'
             />
           )
         }
@@ -59,7 +60,7 @@ const {
   @use '/src/styles/breakpoints';
   @use '/src/styles/typography';
 
-  .l-everything-archive {
+  .l-timeline-archive {
     &__container {
       display: flex;
       flex-direction: column;

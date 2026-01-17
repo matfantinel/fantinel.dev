@@ -1,15 +1,19 @@
 ---
 import HomePageHero from '@components/organisms/HomePageHero';
 import PostsSection from '@components/organisms/PostsSection';
+import PostsTimeline from '@components/organisms/PostsTimeline';
 import UnderConstructionDisclaimer from '@components/organisms/UnderConstructionDisclaimer';
 import { getRecentBlogPosts } from '@data/blogPosts';
+import { getPaginatedTimelineEntries } from '@data/everything';
 import BaseLayout from '@layouts/BaseLayout.astro';
 import metaConfig from '@public/cms/meta.yml';
 import type { SiteMeta } from '@schemas/site-meta';
 
+
 const siteMeta: SiteMeta = metaConfig;
 
 const recentPosts = await getRecentBlogPosts();
+const latestTimelineEntries = (await getPaginatedTimelineEntries(1, undefined, { postsPerPage: 5 })).posts;
 ---
 
 <BaseLayout>
@@ -21,11 +25,9 @@ const recentPosts = await getRecentBlogPosts();
       image={siteMeta.author.image}
       extraImages={siteMeta.author.extraImages}
       client:load
-    />
+    />    
 
-    <UnderConstructionDisclaimer />
-
-    {recentPosts?.length > 0 && (
+    <!-- {recentPosts?.length > 0 && (
       <PostsSection
         title="Latest on the blog"
         button={{
@@ -34,6 +36,19 @@ const recentPosts = await getRecentBlogPosts();
         }}
         posts={recentPosts}
       />
-    )}    
+    )} -->
+
+    {latestTimelineEntries?.length > 0 && (
+      <PostsTimeline
+        title="Latest posts"
+        bottomButton={{
+          text: 'View more',
+          url: '/timeline'
+        }}
+        postGroups={latestTimelineEntries}
+      />
+    )}
+
+    <UnderConstructionDisclaimer />
   </div>
 </BaseLayout>

@@ -15,7 +15,7 @@ import { getAllQuickReviews } from "./quickReviews";
  * @param options Pagination options including postsPerPage.
  * @returns The paginated posts grouped by date.
  */
-export async function getPaginatedTimelineEntries(page: number = 1, postTypes?: PostType[], options: { postsPerPage?: number } = { postsPerPage: 20 }) {
+export async function getPaginatedTimelineEntries(page: number = 1, postTypes?: PostType[], options: { postsPerPage?: number } = { postsPerPage: 12 }) {
   const { postsPerPage = 20 } = options;
   const allPosts = await getAllPosts(postTypes);
   
