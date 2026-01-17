@@ -1,0 +1,22 @@
+---
+import { getPaginatedTimelineEntries } from '@data/everything';
+import TimelineArchiveLayout from '@layouts/TimelineArchiveLayout.astro';
+
+export async function getStaticPaths() {
+  const { totalPages } = await getPaginatedTimelineEntries(1); // Just to get count
+
+  return Array.from({ length: totalPages }).map((_, i) => ({
+    params: { page: String(i + 2) }, // start at page 2
+  }));
+}
+
+const { page } = Astro.params;
+const { posts, currentPage, totalPages, totalPosts } = await getPaginatedTimelineEntries(Number(page));
+---
+
+<TimelineArchiveLayout
+  groups={posts}
+  currentPage={currentPage}
+  totalPages={totalPages}
+  totalPosts={totalPosts}
+/>

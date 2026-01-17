@@ -8,6 +8,7 @@ import metaConfig from '@public/cms/meta.yml';
 import type { BlogPost, BlogPostCategory } from '@schemas/blog';
 import type { SiteMeta } from '@schemas/site-meta';
 import BaseLayout from './BaseLayout.astro';
+import { blogPostToBlogPostCardProps } from '@utils/prop-mapping';
 
 interface Props {
   posts: BlogPost[];
@@ -61,14 +62,7 @@ allCategories?.forEach((category) => {
             <BlogPostCards class='l-blog-archive__posts'>
               {posts.map((post) => (
                 <BlogPostCard
-                  title={post.title}
-                  slug={post.slug}
-                  url={`/blog/${post.slug}`}
-                  image={post.coverImage}
-                  imageAlt={post.coverImageAlt}
-                  readingTime={post.readingTime}
-                  excerpt={post.excerpt}
-                  tags={post.categories?.slice(0, 1)}
+                  {...blogPostToBlogPostCardProps(post)}
                 />
               ))}
             </BlogPostCards>
@@ -104,12 +98,12 @@ allCategories?.forEach((category) => {
   @use '/src/styles/typography';
 
   :root:has(.l-blog-archive) {
-    --theme--color-accent: var(--theme--color-post);
-    --theme--color-accent-rgb: var(--theme--color-post-rgb);
-    --theme--color-accent-contrast: var(--theme--color-post-contrast);
-    --theme--color-accent-shade: var(--theme--color-post-shade);
-    --theme--color-accent-tint: var(--theme--color-post-tint);
-    --theme--color-accent-glow: var(--theme--color-post-glow);
+    --theme--color-accent: var(--theme--color-blog-post);
+    --theme--color-accent-rgb: var(--theme--color-blog-post-rgb);
+    --theme--color-accent-contrast: var(--theme--color-blog-post-contrast);
+    --theme--color-accent-shade: var(--theme--color-blog-post-shade);
+    --theme--color-accent-tint: var(--theme--color-blog-post-tint);
+    --theme--color-accent-glow: var(--theme--color-blog-post-glow);
   }
 
   .l-blog-archive {

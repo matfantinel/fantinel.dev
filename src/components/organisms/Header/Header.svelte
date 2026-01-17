@@ -8,6 +8,8 @@
   import HamburgerMenu from '@components/molecules/HamburgerMenu';
   import ThemeToggle from '@components/molecules/ThemeToggle';
   import HomeIcon from '@assets/icons/home.svelte';
+  import TimelineIcon from '@assets/icons/timeline.svelte';
+  import { PostType } from '@schemas/post-types';
 
   let {
     color = 'default',
@@ -46,29 +48,30 @@
 
   const links = $derived([
     { label: 'Home', href: '/', icon: homeIconSnippet, active: pathname === '/', color: 'generic' },
-    { label: 'Blog', href: '/blog', icon: postIconSnippet, active: pathname.startsWith('/blog'), color: 'post' },
+    { label: 'Feed', href: '/timeline', icon: timelineIconSnippet, active: pathname === '/timeline', color: 'timeline' },
+    { label: 'Blog', href: '/blog', icon: postIconSnippet, active: pathname.startsWith('/blog'), color: PostType.BLOG_POST },
     {
       label: 'Quick Reviews',
       href: '/quick-reviews',
       icon: quickReviewIconSnippet,
       active: pathname.startsWith('/quick-reviews'),
-      color: 'quick-review',
+      color: PostType.QUICK_REVIEW,
     },
     {
       label: 'Cool Links',
       href: '/cool-links',
       icon: coolLinkIconSnippet,
       active: pathname.startsWith('/cool-links'),
-      color: 'cool-link',
+      color: PostType.COOL_LINK,
     },
     {
       label: 'Photography',
       href: '/photography',
       icon: photographyIconSnippet,
       active: pathname.startsWith('/photography'),
-      color: 'photography',
+      color: PostType.PHOTOGRAPHY,
     },
-    { label: 'RSS Feed', href: '/rss.xml', icon: rssIconSnippet, title: 'Subscribe to my RSS Feed', color: 'generic' },
+    { label: 'RSS', href: '/rss.xml', icon: rssIconSnippet, title: 'Subscribe to my RSS Feed', color: 'generic' },
   ]);
 </script>
 
@@ -78,6 +81,7 @@
 {#snippet coolLinkIconSnippet()}<CoolLinkIcon size="20px" />{/snippet}
 {#snippet photographyIconSnippet()}<PhotographyIcon size="20px" />{/snippet}
 {#snippet homeIconSnippet()}<HomeIcon size="20px" />{/snippet}
+{#snippet timelineIconSnippet()}<TimelineIcon size="20px" />{/snippet}
 
 <header
   class={['o-header', className]}

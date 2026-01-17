@@ -1,13 +1,13 @@
 ---
 import BlogArchiveLayout from "@layouts/BlogArchiveLayout.astro";
-import { getAllCategories, getPaginatedPosts } from "@data/blogPosts";
+import { getAllCategories, getPaginatedBlogPosts } from "@data/blogPosts";
 
 export async function getStaticPaths() {
   const categories = await getAllCategories();
   
   const paths = await Promise.all(
     categories.map(async (category) => {
-      const { totalPages } = await getPaginatedPosts(1, category.slug);
+      const { totalPages } = await getPaginatedBlogPosts(1, category.slug);
       return Array.from({ length: totalPages }).map((_, i) => ({
         params: { category: category.slug, page: String(i + 2) }, // start at page 2
       }));
@@ -18,7 +18,7 @@ export async function getStaticPaths() {
 }
 
 const { category, page } = Astro.params;
-const { posts, currentPage, totalPages, totalPosts } = await getPaginatedPosts(Number(page), category);
+const { posts, currentPage, totalPages, totalPosts } = await getPaginatedBlogPosts(Number(page), category);
 
 const allCategories = await getAllCategories();
 const currentCategory = allCategories.find((c) => c.slug === category);

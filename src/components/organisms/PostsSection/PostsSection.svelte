@@ -3,6 +3,7 @@
   import BlogPostCards from '@components/molecules/BlogPostCards';
   import BlogPostCard from '@components/molecules/BlogPostCard';
   import type { BlogPost } from '@schemas/blog';
+  import { blogPostToBlogPostCardProps } from '@utils/prop-mapping';
 
   let {
     title,
@@ -28,14 +29,7 @@
       {#each posts as post}
         <BlogPostCard
           class="l-posts-section__card"
-          title={post.title}
-          slug={post.slug}
-          url={`/blog/${post.slug}`}
-          image={post.coverImage ?? undefined}
-          imageAlt={post.coverImageAlt ?? undefined}
-          readingTime={post.readingTime ?? undefined}
-          excerpt={post.excerpt}
-          tags={post.categories?.slice(0, 1)}
+          {...blogPostToBlogPostCardProps(post)}
           hideImage
         />
       {/each}

@@ -81,3 +81,12 @@ export async function getRecentReviews(limit: number = 4): Promise<QuickReview[]
   const { reviews } = await getPaginatedReviews(1, undefined, undefined, { postsPerPage: limit });
   return reviews;
 }
+
+/**
+ * Gets all quick reviews.
+ * @returns All quick reviews.
+ */
+export async function getAllQuickReviews(): Promise<QuickReview[]> {
+  const { reviews } = await getPaginatedReviews(1, undefined, undefined, { postsPerPage: 1000 });
+  return reviews;
+}

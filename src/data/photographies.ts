@@ -62,3 +62,12 @@ export async function getRecentPhotographies(limit: number = 4): Promise<Photogr
   const { photographies } = await getPaginatedPhotographies(1, { postsPerPage: limit });
   return photographies;
 }
+
+/**
+ * Gets all photography posts.
+ * @returns All photography posts.
+ */
+export async function getAllPhotographyPosts(): Promise<Photography[]> {
+  const { photographies } = await getPaginatedPhotographies(1, { postsPerPage: 1000 });
+  return photographies;
+}
