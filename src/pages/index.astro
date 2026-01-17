@@ -13,7 +13,7 @@ import type { SiteMeta } from '@schemas/site-meta';
 const siteMeta: SiteMeta = metaConfig;
 
 // const recentPosts = await getRecentBlogPosts();
-const latestTimelineEntries = (await getPaginatedTimelineEntries(1, undefined, { postsPerPage: 8 })).posts;
+const latestTimelineEntries = (await getPaginatedTimelineEntries(1, undefined, { postsPerPage: 7, breakDays: true })).posts;
 ---
 
 <BaseLayout>

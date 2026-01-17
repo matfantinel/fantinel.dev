@@ -15,8 +15,8 @@ import { getAllQuickReviews } from "./quickReviews";
  * @param options Pagination options including postsPerPage.
  * @returns The paginated posts grouped by date.
  */
-export async function getPaginatedTimelineEntries(page: number = 1, postTypes?: PostType[], options: { postsPerPage?: number } = { postsPerPage: 12 }) {
-  const { postsPerPage = 20 } = options;
+export async function getPaginatedTimelineEntries(page: number = 1, postTypes?: PostType[], options: { postsPerPage?: number, breakDays?: boolean } = { postsPerPage: 12, breakDays: false }) {
+  const { postsPerPage = 20, breakDays = false } = options;
   const allPosts = await getAllPosts(postTypes);
   
   // Helper to get date from any post type
@@ -32,6 +32,7 @@ export async function getPaginatedTimelineEntries(page: number = 1, postTypes?: 
   // This means that pages have dynamic sizes.
   // The cleanest way to do this is to just build all the pages and then return the requested one.
   // Since this website is static, there's no performance considerations here, as it's all gonna run just on build.
+  // All of the above doesn't apply if "breakDays" is set to true
 
   const pages: { date: string; posts: typeof allPosts }[][] = [];
   let remainingPosts = [...allPosts];
@@ -40,7 +41,7 @@ export async function getPaginatedTimelineEntries(page: number = 1, postTypes?: 
     let pagePosts = remainingPosts.slice(0, postsPerPage);
     
     // Extend to complete the date group
-    if (remainingPosts.length > postsPerPage) {
+    if (remainingPosts.length > postsPerPage && !breakDays) {
       const lastPostDate = getPostDate(pagePosts[pagePosts.length - 1]).toISOString().split('T')[0];
       let extraIndex = postsPerPage;
       
