@@ -52,6 +52,7 @@
 
 <div class={['m-timeline-group', className]}>
   <div class="m-timeline-group__header">
+    <div class="u-noise"></div>
     <h2 class="m-timeline-group__heading">{dateformat(date, 'UTC:dd mmm yyyy')}</h2>
     <!-- Check if date is today (UTC, always) -->
     {#if dateformat(date, 'UTC:dd mmm yyyy') === dateformat(new Date(), 'UTC:dd mmm yyyy')}

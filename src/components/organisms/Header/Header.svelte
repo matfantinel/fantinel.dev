@@ -48,7 +48,7 @@
 
   const links = $derived([
     { label: 'Home', href: '/', icon: homeIconSnippet, active: pathname === '/', color: 'generic' },
-    { label: 'Feed', href: '/timeline', icon: timelineIconSnippet, active: pathname === '/timeline', color: 'generic' },
+    { label: 'Feed', href: '/timeline', icon: timelineIconSnippet, active: pathname === '/timeline', color: 'timeline' },
     { label: 'Blog', href: '/blog', icon: postIconSnippet, active: pathname.startsWith('/blog'), color: PostType.BLOG_POST },
     {
       label: 'Quick Reviews',

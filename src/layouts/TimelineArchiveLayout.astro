@@ -60,6 +60,29 @@ const {
   @use '/src/styles/breakpoints';
   @use '/src/styles/typography';
 
+  :root {
+    &:has(.l-timeline-archive) {
+      --theme--color-accent: var(--theme--color-timeline);
+      --theme--color-accent-rgb: var(--theme--color-timeline-rgb);
+      --theme--color-accent-contrast: var(--theme--color-timeline-contrast);
+      --theme--color-accent-shade: var(--theme--color-timeline-shade);
+      --theme--color-accent-tint: var(--theme--color-timeline-tint);
+      --theme--color-accent-glow: var(--theme--color-timeline-glow);
+    }
+
+    &[data-theme='dark'],
+    &[data-theme='auto'] {
+      &:has(.l-timeline-archive) {
+        --theme--color-accent: var(--theme--color-timeline);
+        --theme--color-accent-rgb: var(--theme--color-timeline-rgb);
+        --theme--color-accent-contrast: var(--theme--color-timeline-contrast);
+        --theme--color-accent-shade: var(--theme--color-timeline-shade);
+        --theme--color-accent-tint: var(--theme--color-timeline-tint);
+        --theme--color-accent-glow: var(--theme--color-timeline-glow);
+      }
+    }
+  }
+
   .l-timeline-archive {
     &__container {
       display: flex;
