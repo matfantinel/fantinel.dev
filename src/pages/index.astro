@@ -12,8 +12,8 @@ import type { SiteMeta } from '@schemas/site-meta';
 
 const siteMeta: SiteMeta = metaConfig;
 
-const recentPosts = await getRecentBlogPosts();
-const latestTimelineEntries = (await getPaginatedTimelineEntries(1, undefined, { postsPerPage: 5 })).posts;
+// const recentPosts = await getRecentBlogPosts();
+const latestTimelineEntries = (await getPaginatedTimelineEntries(1, undefined, { postsPerPage: 8 })).posts;
 ---
 
 <BaseLayout>
@@ -26,6 +26,8 @@ const latestTimelineEntries = (await getPaginatedTimelineEntries(1, undefined, {
       extraImages={siteMeta.author.extraImages}
       client:load
     />    
+
+    <UnderConstructionDisclaimer />
 
     <!-- {recentPosts?.length > 0 && (
       <PostsSection
@@ -48,7 +50,6 @@ const latestTimelineEntries = (await getPaginatedTimelineEntries(1, undefined, {
         postGroups={latestTimelineEntries}
       />
     )}
-
-    <UnderConstructionDisclaimer />
+    
   </div>
 </BaseLayout>
