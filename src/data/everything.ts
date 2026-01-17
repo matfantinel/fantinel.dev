@@ -11,13 +11,13 @@ import { getAllQuickReviews } from "./quickReviews";
 /**
  * Gets posts from all content types, sorted by date (newest first)
  * @param page The page number (1-indexed).
+ * @param postTypes The post types to filter by.
  * @param options Pagination options including postsPerPage.
- * @param type The post types to filter by.
  * @returns The paginated posts grouped by date.
  */
-export async function getPaginatedTimelineEntries(page: number = 1, options: { postsPerPage?: number } = { postsPerPage: 20 }, type?: string[]) {
+export async function getPaginatedTimelineEntries(page: number = 1, postTypes?: PostType[], options: { postsPerPage?: number } = { postsPerPage: 20 }) {
   const { postsPerPage = 20 } = options;
-  const allPosts = await getAllPosts();
+  const allPosts = await getAllPosts(postTypes);
   
   // Helper to get date from any post type
   const getPostDate = (item: typeof allPosts[0]) => {
@@ -100,11 +100,20 @@ export async function getPaginatedTimelineEntries(page: number = 1, options: { p
  * Gets all posts from all post types, sorted by date (newest first).
  * @returns The posts, with their type and data in separate properties.
  */
-export async function getAllPosts() {
-  const blogPosts = await getAllBlogPosts();
-  const reviews = await getAllQuickReviews();
-  const links = await getAllCoolLinks();
-  const photographies = await getAllPhotographyPosts();
+export async function getAllPosts(postTypes?: PostType[]) {
+  if (!postTypes || !postTypes.length) {
+    postTypes = [
+      PostType.BLOG_POST,
+      PostType.QUICK_REVIEW,
+      PostType.COOL_LINK,
+      PostType.PHOTOGRAPHY
+    ];
+  }
+
+  const blogPosts = postTypes.includes(PostType.BLOG_POST) ? await getAllBlogPosts() : [];
+  const reviews = postTypes.includes(PostType.QUICK_REVIEW) ? await getAllQuickReviews() : [];
+  const links = postTypes.includes(PostType.COOL_LINK) ? await getAllCoolLinks() : [];
+  const photographies = postTypes.includes(PostType.PHOTOGRAPHY) ? await getAllPhotographyPosts() : [];
   
   const posts = [
     ...blogPosts.map(post => ({ type: PostType.BLOG_POST, data: post })), 

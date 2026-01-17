@@ -115,8 +115,7 @@
       position: sticky;
       top: 0;
       z-index: 2;
-      background: rgba(var(--theme--background-base-color-rgb), 0.8);
-      backdrop-filter: blur(20px);
+      background: rgba(var(--theme--background-base-color-rgb), 0.9);
       border-bottom-left-radius: var(--border-radius--small);
       border-bottom-right-radius: var(--border-radius--small);
     }
