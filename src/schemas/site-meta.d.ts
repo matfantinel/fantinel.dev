@@ -17,6 +17,7 @@ export type SiteMeta = {
 
 export type SiteAuthor = {
   name: string;
+  shortName: string;
   image: string | null;
   extraImages?: string[];
   bio?: string;

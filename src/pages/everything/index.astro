@@ -1,0 +1,13 @@
+---
+import { getPaginatedTimelineEntries } from '@data/everything';
+import EverythingArchiveLayout from '@layouts/EverythingArchiveLayout.astro';
+
+const { posts, currentPage, totalPages, totalPosts } = await getPaginatedTimelineEntries(1);
+---
+
+<EverythingArchiveLayout
+  groups={posts}
+  currentPage={currentPage}
+  totalPages={totalPages}
+  totalPosts={totalPosts}
+/>

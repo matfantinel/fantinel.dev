@@ -13,7 +13,7 @@
     "postbuild": "pagefind --site .vercel/output/static/"
   },
   "devDependencies": {
-    "@astrojs/svelte": "^7.1.0",
+    "@astrojs/svelte": "^7.2.5",
     "@fontsource-variable/mona-sans": "^5.2.5",
     "@fontsource/atkinson-hyperlegible-next": "^5.2.2",
     "@fontsource/monaspace-krypton": "^5.2.5",
@@ -31,7 +31,7 @@
     "@sveltejs/vite-plugin-svelte": "^5.0.3",
     "@types/node": "^22.15.2",
     "@types/prismjs": "^1.26.5",
-    "astro": "^5.13.2",
+    "astro": "^5.16.11",
     "dateformat": "^5.0.3",
     "github-slugger": "^2.0.0",
     "marked": "^15.0.11",
@@ -50,9 +50,8 @@
     "vite-tsconfig-paths": "^5.1.4"
   },
   "dependencies": {
-    "@astrojs/sitemap": "^3.4.1",
-    "@astrojs/svelte": "^7.1.0",
-    "@astrojs/vercel": "^8.1.4",
+    "@astrojs/sitemap": "^3.7.0",
+    "@astrojs/vercel": "^9.0.4",
     "html-to-image": "^1.11.13",
     "svelte-masonry": "^0.1.5"
   },

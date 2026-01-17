@@ -1,0 +1,79 @@
+---
+import Pagination from '@components/molecules/Pagination';
+import ArchiveHero from '@components/organisms/ArchiveHero';
+import PostsTimeline from '@components/organisms/PostsTimeline/PostsTimeline.svelte';
+import type { BlogPost } from '@schemas/blog';
+import type { CoolLink } from '@schemas/cool-link';
+import type { Photography } from '@schemas/photography';
+import type { QuickReview } from '@schemas/quick-review';
+import BaseLayout from './BaseLayout.astro';
+
+interface Props {
+  groups: { date: string, posts: { type: string, data: BlogPost | QuickReview | CoolLink | Photography }[] }[];
+  currentPage: number;
+  totalPages: number;
+  totalPosts: number;
+}
+
+const {
+  groups,
+  currentPage,
+  totalPages,
+  totalPosts,
+}: Props = Astro.props;
+
+---
+
+<BaseLayout
+  title='Timeline'
+  hasHeaderBackground
+>
+  <div class='l-everything-archive'>
+    <div class='l-everything-archive__container'>
+      <ArchiveHero
+        class='l-everything-archive__hero'
+        title='Timeline'
+      />
+
+      <div class='l-everything-archive__content-wrapper'>
+        <PostsTimeline
+          postGroups={groups}
+        />
+
+        {
+          totalPages > 1 && (
+            <Pagination
+              class='l-everything-archive__pagination'
+              currentPage={currentPage}
+              totalPages={totalPages}
+              baseUrl='/everything'
+            />
+          )
+        }
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<style lang='scss'>
+  @use '/src/styles/breakpoints';
+  @use '/src/styles/typography';
+
+  .l-everything-archive {
+    &__container {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-xxl);
+
+      @include breakpoints.for-phone-only {
+        gap: var(--spacing-xl);
+      }
+    }
+
+    &__content-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-lg);
+    }
+  }
+</style>

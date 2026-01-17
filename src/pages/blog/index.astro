@@ -1,8 +1,8 @@
 ---
-import { getAllCategories, getPaginatedPosts } from "@data/blogPosts";
+import { getAllCategories, getPaginatedBlogPosts } from "@data/blogPosts";
 import BlogArchiveLayout from "@layouts/BlogArchiveLayout.astro";
 
-const { posts, currentPage, totalPages, totalPosts } = await getPaginatedPosts(1);
+const { posts, currentPage, totalPages, totalPosts } = await getPaginatedBlogPosts(1);
 const allCategories = await getAllCategories();
 ---
 

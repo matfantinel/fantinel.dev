@@ -1,6 +1,6 @@
 ---
 import BlogArchiveLayout from "@layouts/BlogArchiveLayout.astro";
-import { getAllCategories, getPaginatedPosts } from "@data/blogPosts";
+import { getAllCategories, getPaginatedBlogPosts } from "@data/blogPosts";
 
 export async function getStaticPaths() {
   const categories = await getAllCategories();
@@ -11,7 +11,7 @@ export async function getStaticPaths() {
 }
 
 const { category } = Astro.params;
-const { posts, currentPage, totalPages, totalPosts } = await getPaginatedPosts(1, category);
+const { posts, currentPage, totalPages, totalPosts } = await getPaginatedBlogPosts(1, category);
 
 const allCategories = await getAllCategories();
 const currentCategory = allCategories.find((c) => c.slug === category);

@@ -2,6 +2,7 @@
   import type { Snippet } from 'svelte';
   import type { QuickReview } from '@schemas/quick-review';
   import QuickReviewCard from '@components/molecules/QuickReviewCard';
+  import { quickReviewToQuickReviewCardProps } from '@utils/prop-mapping';
 
   let {
     class: className,
@@ -19,18 +20,7 @@
 
   {#if reviews}
     {#each reviews as review}
-      <QuickReviewCard
-        title={review.title}
-        metadata={review.metadata as string | undefined}
-        slug={review.slug}
-        image={review.image as string | undefined}
-        rating={review.rating}
-        theme={review.theme}
-        customBg={review.customBg as string | undefined}
-        content={review.content as string}
-        type={review.type}
-        date={review.date as any}
-      />
+      <QuickReviewCard {...quickReviewToQuickReviewCardProps(review)} />
     {/each}
   {/if}
 </div>

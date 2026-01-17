@@ -78,6 +78,7 @@
     background-color: var(--theme--background-card-color);
     overflow: hidden;
     position: relative;
+    width: 100%;
 
     container-type: inline-size;
 

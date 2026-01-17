@@ -1,11 +1,9 @@
-import { getPaginatedPosts } from "@data/blogPosts";
-import { getPaginatedCoolLinks } from "@data/coolLinks";
-import { getPaginatedPhotographies } from "@data/photographies";
-import { getPaginatedReviews } from "@data/quickReviews";
+import { getAllPosts } from "@data/everything";
 import metaConfig from "@public/cms/meta.yml";
 import type { BlogPost } from "@schemas/blog";
 import type { CoolLink } from "@schemas/cool-link";
 import type { Photography } from "@schemas/photography";
+import { PostType } from "@schemas/post-types";
 import type { QuickReview } from "@schemas/quick-review";
 import type { SiteMeta } from "@schemas/site-meta";
 import {
@@ -17,50 +15,32 @@ import { marked } from 'marked';
 const siteMeta: SiteMeta = metaConfig;
 
 export async function GET({ request }: { request: Request }) {
-  const { posts } = await getPaginatedPosts(1, undefined, { postsPerPage: 1000 });
-  const { reviews } = await getPaginatedReviews(1, undefined, undefined, { postsPerPage: 1000 });
-  let { links } = await getPaginatedCoolLinks(1, undefined, { postsPerPage: 1000 });
-  const { photographies } = await getPaginatedPhotographies(1, { postsPerPage: 1000 });
+  const posts = await getAllPosts();
 
   marked.use({
     extensions: [SparklesHighlightTokenizerExtension, MarkerHighlightTokenizerExtension]
   });
 
   const promises = posts.map(async (post) => {
-    if (!post.content) {
+    const data = post.data;
+    if (!data.content) {
       return;
     }
 
-    post.content = post.content.replaceAll('<a href="/', `<a href="${siteMeta.baseUrl}/`);
-    post.content = post.content.replaceAll('<img src="/', `<img src="${siteMeta.baseUrl}/cms/media/`);
-    post.content = post.content.replaceAll(`<img src="${siteMeta.baseUrl}/cms/media/media/`, `<img src="${siteMeta.baseUrl}/cms/media/`);
+    data.content = data.content.replaceAll('<a href="/', `<a href="${siteMeta.baseUrl}/`);
+    data.content = data.content.replaceAll('<img src="/', `<img src="${siteMeta.baseUrl}/cms/media/`);
+    data.content = data.content.replaceAll(`<img src="${siteMeta.baseUrl}/cms/media/media/`, `<img src="${siteMeta.baseUrl}/cms/media/`);
   });
 
   await Promise.all(promises);
 
   // Let's not add links saved before 01/11/2025 to the feed, to avoid polluting
   // existing subscribers' feeds with old stuff
-  links = links.filter(link => link.savedOn >= new Date('2025-11-01'));
-
-  // Let's add reviews and posts to the same array, and order by their respective date props
-  // Something like [{type: 'post', ...post}, {type: 'review', ...review}]
-  const items = [
-    ...posts.map(post => ({ type: 'post', data: post })), 
-    ...reviews.map(review => ({ type: 'review', data: review })),
-    ...links.map(link => ({ type: 'link', data: link })),
-    ...photographies.map(photo => ({ type: 'photo', data: photo }))
-  ].sort((a, b) => {
-    // Get the appropriate date property based on content type
-    const getDate = (item: typeof a) => {
-      if (item.type === 'link') return (item.data as CoolLink).savedOn;
-      if (item.type === 'photo') return (item.data as Photography).publishedDate;
-      return (item.data as BlogPost | QuickReview).date;
-    };
-    
-    return getDate(b).getTime() - getDate(a).getTime();
+  const filteredPosts = posts.filter(post => {
+    return post.type !== PostType.COOL_LINK || (post.data as CoolLink).savedOn >= new Date('2025-11-01');
   });
 
-  const body = generateXml(items);
+  const body = generateXml(filteredPosts);
   const headers = {
     'Cache-Control': 'max-age=0, s-maxage=3600',
     'Content-Type': 'application/xml'
@@ -202,13 +182,13 @@ const generateXml = (items: { type: string, data: BlogPost | QuickReview | CoolL
       <height>96</height>
     </image>
     ${items.map(item => {
-      if (item.type === 'post') {
+      if (item.type === PostType.BLOG_POST) {
         return postToRssItem(item.data as BlogPost);
-      } else if (item.type === 'review') {
+      } else if (item.type === PostType.QUICK_REVIEW) {
         return reviewToRssItem(item.data as QuickReview);
-      } else if (item.type === 'link') {
+      } else if (item.type === PostType.COOL_LINK) {
         return coolLinkToRssItem(item.data as CoolLink);
-      } else if (item.type === 'photo') {
+      } else if (item.type === PostType.PHOTOGRAPHY) {
         return photoToRssItem(item.data as Photography);
       }
     }).join('')}

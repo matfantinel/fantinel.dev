@@ -81,3 +81,14 @@
   args={{
   }}
 />
+
+<Story
+  name="Wide Card"
+  args={{
+    image: 'https://placedog.net/600/315',
+    readingTime: '5 min',
+    excerpt: LoremIpsum.paragraph,
+    tags: ['Tag 1', 'Tag 2'],
+    goesWide: true
+  }}
+/>

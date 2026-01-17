@@ -2,6 +2,7 @@
   import CoolLinkCard from '@components/molecules/CoolLinkCard';
   import type { CoolLink } from '@schemas/cool-link';
   import type { Snippet } from 'svelte';
+  import { coolLinkToCoolLinkCardProps } from '@utils/prop-mapping';
 
   let {
     class: className,
@@ -20,12 +21,7 @@
   {#if links}
     {#each links as link}
       <CoolLinkCard
-        title={link.title as string}
-        author={link.author as string | undefined}
-        url={link.url}
-        date={link.savedOn as any}
-        tags={link.tags}
-        content={link.content as string | undefined}
+        {...coolLinkToCoolLinkCardProps(link)}
       />
     {/each}
   {/if}

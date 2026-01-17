@@ -8,6 +8,7 @@
   import HamburgerMenu from '@components/molecules/HamburgerMenu';
   import ThemeToggle from '@components/molecules/ThemeToggle';
   import HomeIcon from '@assets/icons/home.svelte';
+  import { PostType } from '@schemas/post-types';
 
   let {
     color = 'default',
@@ -46,27 +47,27 @@
 
   const links = $derived([
     { label: 'Home', href: '/', icon: homeIconSnippet, active: pathname === '/', color: 'generic' },
-    { label: 'Blog', href: '/blog', icon: postIconSnippet, active: pathname.startsWith('/blog'), color: 'post' },
+    { label: 'Blog', href: '/blog', icon: postIconSnippet, active: pathname.startsWith('/blog'), color: PostType.BLOG_POST },
     {
       label: 'Quick Reviews',
       href: '/quick-reviews',
       icon: quickReviewIconSnippet,
       active: pathname.startsWith('/quick-reviews'),
-      color: 'quick-review',
+      color: PostType.QUICK_REVIEW,
     },
     {
       label: 'Cool Links',
       href: '/cool-links',
       icon: coolLinkIconSnippet,
       active: pathname.startsWith('/cool-links'),
-      color: 'cool-link',
+      color: PostType.COOL_LINK,
     },
     {
       label: 'Photography',
       href: '/photography',
       icon: photographyIconSnippet,
       active: pathname.startsWith('/photography'),
-      color: 'photography',
+      color: PostType.PHOTOGRAPHY,
     },
     { label: 'RSS Feed', href: '/rss.xml', icon: rssIconSnippet, title: 'Subscribe to my RSS Feed', color: 'generic' },
   ]);

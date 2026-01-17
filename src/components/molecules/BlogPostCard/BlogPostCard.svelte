@@ -14,6 +14,7 @@
     tags,
     url,
     hideImage,
+    goesWide = true,
     class: className,
   }: {
     title: string;
@@ -25,51 +26,56 @@
     excerpt?: string;
     tags?: (string | { name: string; slug: string; url: string })[];
     hideImage?: boolean;
+    goesWide?: boolean;
     class?: string;
   } = $props();
+
+  const cardGoesWide = $derived(goesWide && !hideImage);
 </script>
 
-<article class={['m-blog-post-card', className]}>
-  {#if !hideImage}
-    <div class="m-blog-post-card__image-container">
-      <div class="m-blog-post-card__image-placeholder">{title.substring(0, 5)}</div>
-      {#if image}
-        <Image class="m-blog-post-card__image" src={image} alt={imageAlt || title} />
+<article class={['m-blog-post-card', className, cardGoesWide ? 'm-blog-post-card--wide' : '']}>
+  <div class="m-blog-post-card__container">
+    {#if !hideImage}
+      <div class="m-blog-post-card__image-container">
+        <div class="m-blog-post-card__image-placeholder">{title.substring(0, 5)}</div>
+        {#if image}
+          <Image class="m-blog-post-card__image" src={image} alt={imageAlt || title} />
+        {/if}
+      </div>
+    {/if}
+    <div class="m-blog-post-card__content">
+      <p class="m-blog-post-card__title">
+        {title}
+      </p>
+      {#if readingTime}
+        <p class="m-blog-post-card__reading-time">{readingTime}</p>
+      {/if}
+      {#if excerpt}
+        <p class="m-blog-post-card__excerpt">{excerpt}</p>
       {/if}
     </div>
-  {/if}
-  <div class="m-blog-post-card__content">
-    <p class="m-blog-post-card__title">
-      {title}
-    </p>
-    {#if readingTime}
-      <p class="m-blog-post-card__reading-time">{readingTime}</p>
-    {/if}
-    {#if excerpt}
-      <p class="m-blog-post-card__excerpt">{excerpt}</p>
-    {/if}
-  </div>
-  <div class="m-blog-post-card__footer">
-    {#if tags}
-      <Tags size="responsive" class="m-blog-post-card__tags">
-        {#each tags as tag}
-          {#if typeof tag === 'string'}
-            <Tag size="small" class="m-blog-post-card__tag">{tag}</Tag>
-          {:else}
-            <Tag
-              size="small"
-              class="m-blog-post-card__tag"
-              href={tag.url}
-              title={`View all posts in category “${tag.name}”`}
-            >
-              {tag.name}
-            </Tag>
-          {/if}
-        {/each}
-      </Tags>
-    {/if}
+    <div class="m-blog-post-card__footer">
+      {#if tags}
+        <Tags size="responsive" class="m-blog-post-card__tags">
+          {#each tags as tag}
+            {#if typeof tag === 'string'}
+              <Tag size="small" class="m-blog-post-card__tag">{tag}</Tag>
+            {:else}
+              <Tag
+                size="small"
+                class="m-blog-post-card__tag"
+                href={tag.url}
+                title={`View all posts in category “${tag.name}”`}
+              >
+                {tag.name}
+              </Tag>
+            {/if}
+          {/each}
+        </Tags>
+      {/if}
 
-    <ArrowLink class="m-blog-post-card__link" href={url} title={`Open blog post`}>Read</ArrowLink>
+      <ArrowLink class="m-blog-post-card__link" href={url} title={`Open blog post`}>Read</ArrowLink>
+    </div>
   </div>
 </article>
 
@@ -83,9 +89,15 @@
     overflow: hidden;
     position: relative;
 
-    display: flex;
-    flex-direction: column;
-    transition: all .25s ease-in-out;
+    container-type: inline-size;
+    width: 100%;
+
+    transition: all 0.25s ease-in-out;
+
+    &__container {
+      display: flex;
+      flex-direction: column;
+    }
 
     &__image-container {
       background: var(--theme--background-card-accent-color);
@@ -181,6 +193,23 @@
       justify-content: flex-start;
       flex-wrap: nowrap;
       z-index: 2;
+    }
+
+    &--wide {
+      @container (min-width: 600px) {
+        .m-blog-post-card {
+          &__container {
+            display: grid;
+            grid-template-columns: 50% 50%;
+            grid-template-rows: 1fr;
+          }
+
+          &__image-container {
+            grid-row: span 2;
+            aspect-ratio: unset;
+          }
+        }
+      }
     }
   }
 

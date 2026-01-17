@@ -19,11 +19,11 @@ const siteMeta: SiteMeta = metaConfig;
  * @param allPosts All the blog posts.
  * @returns The sanitized blog post.
  */
-export function sanitizePostData(post: BlogPost, postBody?: string, renderedPost?: RenderedContent, allPosts?: BlogPost[]) {
+export function sanitizeBlogPostData(post: BlogPost, postBody?: string, renderedPost?: RenderedContent, allPosts?: BlogPost[]) {
   if (postBody) {
     post.readingTime = readingTime(striptags(postBody)).text
   }
-  
+
   post.content = renderedPost?.html;
 
   if (!post.author && siteMeta.author) {
@@ -53,7 +53,7 @@ export function sanitizePostData(post: BlogPost, postBody?: string, renderedPost
   post.ogImage = post.coverImage;
 
   if (!post.coverImage) {
-    if (isCoolLinksPost) {      
+    if (isCoolLinksPost) {
       post.coverImage = `${siteMeta.baseUrl}${generateOgPathFromCoolLinksPost(post)}`;
       post.ogImage = post.coverImage;
     } else if (post.title) {
@@ -76,7 +76,7 @@ export function sanitizePostData(post: BlogPost, postBody?: string, renderedPost
   }
 
   if (!post.relatedPosts && allPosts) {
-    post.relatedPosts = getRelatedPosts(post, allPosts);
+    post.relatedPosts = getRelatedBlogPosts(post, allPosts);
   }
 
   return post;
@@ -89,11 +89,11 @@ export function sanitizePostData(post: BlogPost, postBody?: string, renderedPost
  * @param options The options for the pagination.
  * @returns The paginated posts.
  */
-export async function getPaginatedPosts(page: number, category?: string, options: { postsPerPage?: number } = { postsPerPage: 24 }) {
+export async function getPaginatedBlogPosts(page: number, category?: string, options: { postsPerPage?: number } = { postsPerPage: 24 }) {
   const { postsPerPage = 12 } = options;
 
   let posts = await getCollection("blog");
-  let sanitizedPosts = posts.map((post) => sanitizePostData(post.data as unknown as BlogPost, post.body, post.rendered, posts.map(p => p.data as unknown as BlogPost)));
+  let sanitizedPosts = posts.map((post) => sanitizeBlogPostData(post.data as unknown as BlogPost, post.body, post.rendered, posts.map(p => p.data as unknown as BlogPost)));
 
   // Sort and filter
   sanitizedPosts = sanitizedPosts
@@ -122,8 +122,17 @@ export async function getPaginatedPosts(page: number, category?: string, options
  * @param limit The number of posts to get.
  * @returns The recent posts.
  */
-export async function getRecentPosts(limit: number = 4): Promise<BlogPost[]> {
-  const { posts } = await getPaginatedPosts(1, undefined, { postsPerPage: limit });
+export async function getRecentBlogPosts(limit: number = 4): Promise<BlogPost[]> {
+  const { posts } = await getPaginatedBlogPosts(1, undefined, { postsPerPage: limit });
+  return posts;
+}
+
+/**
+ * Gets all blog posts.
+ * @returns All blog posts.
+ */
+export async function getAllBlogPosts(): Promise<BlogPost[]> {
+  const { posts } = await getPaginatedBlogPosts(1, undefined, { postsPerPage: 1000 });
   return posts;
 }
 
@@ -133,7 +142,7 @@ export async function getRecentPosts(limit: number = 4): Promise<BlogPost[]> {
  */
 export async function getAllCategories(): Promise<BlogPostCategory[]> {
   const posts = await getCollection("blog");
-  const sanitizedPosts = posts.map((post) => sanitizePostData(post.data as unknown as BlogPost, post.body, post.rendered));
+  const sanitizedPosts = posts.map((post) => sanitizeBlogPostData(post.data as unknown as BlogPost, post.body, post.rendered));
 
   // First collect all categories from all posts
   const allCategories: BlogPostCategory[] = [];
@@ -176,7 +185,7 @@ export async function getAllCategories(): Promise<BlogPostCategory[]> {
  * @param allPosts All the blog posts.
  * @returns The related posts.
  */
-export function getRelatedPosts(post: BlogPost, allPosts: BlogPost[]): BlogPost[] {
+export function getRelatedBlogPosts(post: BlogPost, allPosts: BlogPost[]): BlogPost[] {
   // If the post has no categories, return empty array
   if (!post.categories || post.categories.length === 0) {
     return [];

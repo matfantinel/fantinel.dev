@@ -2,14 +2,14 @@
 import HomePageHero from '@components/organisms/HomePageHero';
 import PostsSection from '@components/organisms/PostsSection';
 import UnderConstructionDisclaimer from '@components/organisms/UnderConstructionDisclaimer';
-import { getRecentPosts } from '@data/blogPosts';
+import { getRecentBlogPosts } from '@data/blogPosts';
 import BaseLayout from '@layouts/BaseLayout.astro';
 import metaConfig from '@public/cms/meta.yml';
 import type { SiteMeta } from '@schemas/site-meta';
 
 const siteMeta: SiteMeta = metaConfig;
 
-const recentPosts = await getRecentPosts();
+const recentPosts = await getRecentBlogPosts();
 ---
 
 <BaseLayout>

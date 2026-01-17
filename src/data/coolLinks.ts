@@ -76,6 +76,15 @@ export async function getRecentLinks(limit: number = 4): Promise<CoolLink[]> {
 }
 
 /**
+ * Gets all cool links.
+ * @returns All cool links.
+ */
+export async function getAllCoolLinks(): Promise<CoolLink[]> {
+  const { links } = await getPaginatedCoolLinks(1, undefined, { postsPerPage: 1000 });
+  return links;
+}
+
+/**
  * Gets all tags.
  * @returns All tags.
  */

@@ -5,6 +5,7 @@
   import Masonry from 'svelte-masonry';
 
   import { onMount } from 'svelte';
+  import { photographyToPhotographyCardProps } from '@utils/prop-mapping';
 
   let {
     class: className,
@@ -39,6 +40,7 @@
     <Masonry bind:refreshLayout colWidth={'minmax(Min(24rem, 100%), 1fr)'} gridGap={'var(--grid-gap)'}>
       {#each photographies as photography}
         <PhotographyCard
+          {...photographyToPhotographyCardProps(photography)}
           title={photography.title}
           slug={photography.slug}
           image={photography.image}

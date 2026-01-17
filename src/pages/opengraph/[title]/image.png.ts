@@ -2,13 +2,13 @@ import { componentToPng } from "@utils/opengraph";
 import OpengraphImage from "@components/opengraph/OpengraphImage";
 import { getCollection } from "astro:content";
 import type { BlogPost } from "@schemas/blog";
-import { sanitizePostData } from "@data/blogPosts";
+import { sanitizeBlogPostData } from "@data/blogPosts";
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
   const sanitizedPosts = posts.map((post) => {
     return {
-      data: sanitizePostData(post.data as unknown as BlogPost, post.body, post.rendered, posts.map(p => p.data as unknown as BlogPost)),
+      data: sanitizeBlogPostData(post.data as unknown as BlogPost, post.body, post.rendered, posts.map(p => p.data as unknown as BlogPost)),
       body: post.body,
     };
   });
