@@ -111,7 +111,7 @@ export async function getAllPosts(postTypes?: PostType[]) {
     ];
   }
 
-  const blogPosts = postTypes.includes(PostType.BLOG_POST) ? await getAllBlogPosts() : [];
+  const blogPosts = postTypes.includes(PostType.BLOG_POST) ? await getAllBlogPosts(true) : [];
   const reviews = postTypes.includes(PostType.QUICK_REVIEW) ? await getAllQuickReviews() : [];
   const links = postTypes.includes(PostType.COOL_LINK) ? await getAllCoolLinks() : [];
   const photographies = postTypes.includes(PostType.PHOTOGRAPHY) ? await getAllPhotographyPosts() : [];

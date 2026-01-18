@@ -22,6 +22,7 @@
     quickReviewToQuickReviewCardProps,
   } from '@utils/prop-mapping';
   import dateformat from 'dateformat';
+  import { onMount } from 'svelte';
 	const siteMeta: SiteMeta = metaConfig;
 
   let {
@@ -33,6 +34,12 @@
     posts: { type: string; data: BlogPost | QuickReview | CoolLink | Photography }[];
     class?: string;
   } = $props();
+
+  let isToday = $state(false);
+
+  onMount(() => {
+    isToday = dateformat(date, 'UTC:dd mmm yyyy') === dateformat(new Date(), 'UTC:dd mmm yyyy');
+  });
 
   function getPostActionLabel(postType: string) {
     switch (postType) {
@@ -54,8 +61,7 @@
   <div class="m-timeline-group__header">
     <div class="u-noise"></div>
     <h2 class="m-timeline-group__heading">{dateformat(date, 'UTC:dd mmm yyyy')}</h2>
-    <!-- Check if date is today (UTC, always) -->
-    {#if dateformat(date, 'UTC:dd mmm yyyy') === dateformat(new Date(), 'UTC:dd mmm yyyy')}
+    {#if isToday}
       <span class="m-timeline-group__header-note">Today</span>
     {/if}
   </div>

@@ -19,7 +19,7 @@ const siteMeta: SiteMeta = metaConfig;
  * @param allPosts All the blog posts.
  * @returns The sanitized blog post.
  */
-export function sanitizeBlogPostData(post: BlogPost, postBody?: string, renderedPost?: RenderedContent, allPosts?: BlogPost[]) {
+export function sanitizeBlogPostData(post: BlogPost, postBody?: string, renderedPost?: RenderedContent, allPosts?: BlogPost[], skipRelatedPosts?: boolean) {
   if (postBody) {
     post.readingTime = readingTime(striptags(postBody)).text
   }
@@ -75,7 +75,7 @@ export function sanitizeBlogPostData(post: BlogPost, postBody?: string, rendered
     }).filter((heading) => heading !== null);
   }
 
-  if (!post.relatedPosts && allPosts) {
+  if (!post.relatedPosts && allPosts && !skipRelatedPosts) {
     post.relatedPosts = getRelatedBlogPosts(post, allPosts);
   }
 
@@ -89,11 +89,11 @@ export function sanitizeBlogPostData(post: BlogPost, postBody?: string, rendered
  * @param options The options for the pagination.
  * @returns The paginated posts.
  */
-export async function getPaginatedBlogPosts(page: number, category?: string, options: { postsPerPage?: number } = { postsPerPage: 24 }) {
+export async function getPaginatedBlogPosts(page: number, category?: string, options: { postsPerPage?: number, skipRelatedPosts?: boolean } = { postsPerPage: 24 }) {
   const { postsPerPage = 12 } = options;
 
   let posts = await getCollection("blog");
-  let sanitizedPosts = posts.map((post) => sanitizeBlogPostData(post.data as unknown as BlogPost, post.body, post.rendered, posts.map(p => p.data as unknown as BlogPost)));
+  let sanitizedPosts = posts.map((post) => sanitizeBlogPostData(post.data as unknown as BlogPost, post.body, post.rendered, posts.map(p => p.data as unknown as BlogPost), options.skipRelatedPosts));
 
   // Sort and filter
   sanitizedPosts = sanitizedPosts
@@ -131,8 +131,8 @@ export async function getRecentBlogPosts(limit: number = 4): Promise<BlogPost[]>
  * Gets all blog posts.
  * @returns All blog posts.
  */
-export async function getAllBlogPosts(): Promise<BlogPost[]> {
-  const { posts } = await getPaginatedBlogPosts(1, undefined, { postsPerPage: 1000 });
+export async function getAllBlogPosts(skipRelatedPosts?: boolean): Promise<BlogPost[]> {
+  const { posts } = await getPaginatedBlogPosts(1, undefined, { postsPerPage: 1000, skipRelatedPosts });
   return posts;
 }
 

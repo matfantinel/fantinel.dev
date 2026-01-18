@@ -48,6 +48,7 @@ const latestTimelineEntries = (await getPaginatedTimelineEntries(1, undefined, {
           url: '/timeline'
         }}
         postGroups={latestTimelineEntries}
+        client:load
       />
     )}
     
