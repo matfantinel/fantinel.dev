@@ -37,6 +37,17 @@ const {
       />
 
       <div class='l-timeline-archive__content-wrapper'>
+        {
+          totalPages > 1 && (
+            <Pagination
+              class='l-timeline-archive__pagination'
+              currentPage={currentPage}
+              totalPages={totalPages}
+              baseUrl='/timeline'
+            />
+          )
+        }
+        
         <PostsTimeline
           postGroups={groups}
           client:load

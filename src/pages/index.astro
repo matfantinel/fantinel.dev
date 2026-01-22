@@ -1,9 +1,7 @@
 ---
 import HomePageHero from '@components/organisms/HomePageHero';
-import PostsSection from '@components/organisms/PostsSection';
 import PostsTimeline from '@components/organisms/PostsTimeline';
 import UnderConstructionDisclaimer from '@components/organisms/UnderConstructionDisclaimer';
-import { getRecentBlogPosts } from '@data/blogPosts';
 import { getPaginatedTimelineEntries } from '@data/everything';
 import BaseLayout from '@layouts/BaseLayout.astro';
 import metaConfig from '@public/cms/meta.yml';
@@ -13,7 +11,7 @@ import type { SiteMeta } from '@schemas/site-meta';
 const siteMeta: SiteMeta = metaConfig;
 
 // const recentPosts = await getRecentBlogPosts();
-const latestTimelineEntries = (await getPaginatedTimelineEntries(1, undefined, { postsPerPage: 7, breakDays: true })).posts;
+const latestTimelineEntries = (await getPaginatedTimelineEntries(1)).posts;
 ---
 
 <BaseLayout>
@@ -45,7 +43,7 @@ const latestTimelineEntries = (await getPaginatedTimelineEntries(1, undefined, {
         title="Latest posts"
         bottomButton={{
           text: 'View more',
-          url: '/timeline'
+          url: '/timeline/page/2'
         }}
         postGroups={latestTimelineEntries}
         client:load
