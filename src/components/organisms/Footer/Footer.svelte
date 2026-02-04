@@ -49,7 +49,7 @@
 
         <ThemeToggle class="o-footer__theme-toggle" />
       </div>
-      <div class="o-footer__badges">
+      <!-- <div class="o-footer__badges">
         <div class="o-footer__badge">
           <a href="https://astro.build">
             <img
@@ -60,23 +60,31 @@
             />
           </a>
         </div>
-      </div>
-      <div class="o-footer__badges">
-        <!-- <div class="o-footer__badge">
-        <img src="/badges/CoffeePowered.svg" alt="Coffee Powered" />
       </div> -->
-
+      <div class="o-footer__badges">
         <div class="o-footer__badge">
           <img src="/badges/MadeInBrazil.svg" alt="Made in Brazil" />
         </div>
+
+        <div class="o-footer__badge">
+          <img src="/badges/NowInItaly.svg" alt="Now in Italy" />
+        </div>
+
+        <!-- <div class="o-footer__badge">
+          <img src="/badges/CoffeePowered.svg" alt="Coffee Powered" />
+        </div> -->
 
         <div class="o-footer__badge">
           <img src="/badges/MadeByAHuman.svg" alt="Made by a human" />
         </div>
 
         <div class="o-footer__badge">
-          <img src="/badges/RssIsAwesome.svg" alt="RSS is awesome" />
+          <img src="/badges/PoweredByAutism.svg" alt="Powered by autism" />
         </div>
+
+        <!-- <div class="o-footer__badge">
+          <img src="/badges/RssIsAwesome.svg" alt="RSS is awesome" />
+        </div> -->
 
         <div class="o-footer__badge">
           <img src="/badges/TransRights.svg" alt="Trans Rights are Human Rights" />
