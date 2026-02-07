@@ -137,6 +137,14 @@ function coolLinkToRssItem(link: CoolLink) {
 }
 
 function photoToRssItem(photo: Photography) {
+  const additionalImagesHtml = photo.additionalImages?.map(img => 
+    `<p><img src="${img.src}" alt="${img.alt || ''}" /></p>`
+  ).join('\n        ') || '';
+  
+  const additionalMediaContent = photo.additionalImages?.map(img => 
+    `<media:content xmlns:media="http://search.yahoo.com/mrss/" medium="image" url="${img.src}"/>`
+  ).join('\n      ') || '';
+  
   return `
     <item>
       <guid>${siteMeta.baseUrl}/photography/${photo.slug}</guid>
@@ -146,14 +154,16 @@ function photoToRssItem(photo: Photography) {
       <content:encoded><![CDATA[
         ${photo.title ? `<p>${photo.title}</p>` : ''}
 
-        ${photo.photoDate ? `<p>Photo taken on ${dateformat(photo.photoDate, 'ddd, dd mmm yyyy', true)}</p>` : ''}
-
-        ${photo.image ? `<p><img src="${photo.image}" /></p>` : ''}
-        
         ${photo.content}
+
+        ${photo.photoDate ? `<p>Photo${additionalImagesHtml ? 's' : ''} taken on ${dateformat(photo.photoDate, 'dddd, dd mmm yyyy', true)}</p>` : ''}
+
+        ${photo.image ? `<p><img src="${photo.image}" alt="${photo.imageAlt || ''}" /></p>` : ''}
+        ${additionalImagesHtml}        
       ]]></content:encoded>
       ${photo.image ? `<media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="${photo.image}"/>` : ''}
-      ${photo.image ? `<media:content xmlns:media="http://search.yahoo.com/mrss/" medium="image" url="${photo.image}"/>` : ''}          
+      ${photo.image ? `<media:content xmlns:media="http://search.yahoo.com/mrss/" medium="image" url="${photo.image}"/>` : ''}
+      ${additionalMediaContent}
     </item>
   `
 }

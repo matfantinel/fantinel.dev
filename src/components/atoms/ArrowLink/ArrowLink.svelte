@@ -8,6 +8,7 @@
     target,
     rel,
     color = 'default',
+    arrowPosition = 'right',
     class: className,
     children,
     ...props
@@ -16,11 +17,13 @@
     target?: string;
     rel?: string;
     color?: 'default' | 'green' | 'yellow' | 'peach' | 'red' | 'mauve' | 'blue' | 'teal';
+    arrowPosition?: 'left' | 'right';
     class?: string;
     children?: Snippet;
     [key: string]: any;
   } = $props();
 
+  let tag = $derived(href ? 'a' : 'button');
   let isExternalLink = $derived(!!href && HttpRegex.test(href));
   let linkProps = $derived({
     href,
@@ -28,17 +31,31 @@
     rel: rel ?? (isExternalLink ? 'noopener' : undefined),
   });
 
-  let classList = $derived(['a-arrow-link', `a-arrow-link--${color}`, className]);
+  let classList = $derived(['a-arrow-link', `a-arrow-link--${color}`, `a-arrow-link--arrow-${arrowPosition}`, className]);
 </script>
 
-<a {...linkProps} class={classList} {...props}>    
+<svelte:element
+  this={tag}
+  {...linkProps}
+  class={classList}
+  role={tag === 'a' ? 'link' : 'button'}
+  tabindex="0"
+  {...props}
+>    
+  {#if arrowPosition === 'left'}
+    <div class="a-arrow-link__icon">
+      <ChevronRight />
+    </div>
+  {/if}
   <span class="a-arrow-link__text">
     {@render children?.()}
   </span>
-  <div class="a-arrow-link__icon">
-    <ChevronRight />
-  </div>
-</a>
+  {#if arrowPosition === 'right'}
+    <div class="a-arrow-link__icon">
+      <ChevronRight />
+    </div>
+  {/if}
+</svelte:element>
 
 <style lang="scss">
   @use '/src/styles/typography';
@@ -57,6 +74,13 @@
 
     color: var(--arrow-link-color);
 
+    appearance: none;
+    border: unset;
+    background: unset;
+    padding: unset;
+    text-align: unset;
+    cursor: pointer;
+
     @media (hover: hover) {
       &:hover {
         color: var(--arrow-link-color-hover);
@@ -64,6 +88,10 @@
 
         .a-arrow-link__icon {
           transform: translateX(4px);
+
+          &:first-child {
+            transform: rotate(180deg) translateX(4px);
+          }
         }
       }
     }
@@ -78,6 +106,10 @@
       aspect-ratio: 1/1;
 
       transition: transform 0.25s ease;
+
+      &:first-child {
+        transform: rotate(180deg);
+      }
     }
 
     &--green {

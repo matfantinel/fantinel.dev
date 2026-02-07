@@ -36,6 +36,7 @@ export function photographyToPhotographyCardProps(photography: Photography) {
     publishedDate: photography.publishedDate,
     imageAlt: photography.imageAlt as string | undefined,
     content: photography.content as string,
+    additionalImages: photography.additionalImages as any,
   };
 }
 
