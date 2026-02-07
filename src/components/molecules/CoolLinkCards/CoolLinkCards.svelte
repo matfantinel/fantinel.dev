@@ -11,7 +11,7 @@
   }: {
     class?: string;
     links?: CoolLink[];
-    children: Snippet;
+    children?: Snippet;
   } = $props();
 </script>
 

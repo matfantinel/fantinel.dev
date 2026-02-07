@@ -14,7 +14,7 @@
   }: {
     class?: string;
     photographies?: Photography[];
-    children: Snippet;
+    children?: Snippet;
   } = $props();
 
   let refreshLayout = $state<() => void>();
