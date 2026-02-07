@@ -1,5 +1,4 @@
 <script lang="ts">
-  import ArrowLink from '@components/atoms/ArrowLink';
   import MarkdownRenderer from '@components/molecules/MarkdownRenderer';
   import PhotographyThumbnail from '@components/molecules/PhotographyThumbnail';
   import dateformat from 'dateformat';
@@ -13,6 +12,7 @@
     image,
     imageAlt,
     additionalImages,
+    immersive,
     class: className,
   }: {
     title: string;
@@ -23,15 +23,16 @@
     image: string;
     imageAlt?: string;
     additionalImages?: Array<{ src: string; alt: string }>;
+    immersive?: boolean;
     class?: string;
   } = $props();
 
-  let classList = $derived(['m-new-photography-card', className]);
+  let classList = $derived(['m-new-photography-card', immersive ? 'm-new-photography-card--immersive' : '', className]);
 </script>
 
 <article class={classList}>
   <div class="m-new-photography-card__container">
-    <PhotographyThumbnail class="m-new-photography-card__thumbnail" {image} {imageAlt} {additionalImages}/>
+    <PhotographyThumbnail class="m-new-photography-card__thumbnail" {image} {imageAlt} {additionalImages} />
 
     <div class="m-new-photography-card__content">
       <p class="m-new-photography-card__title">
@@ -47,10 +48,6 @@
           <MarkdownRenderer {content} />
         </div>
       {/if}
-    </div>
-
-    <div class="m-new-photography-card__footer">
-      <ArrowLink class="m-photography__link" title={`View in full screen`}>View</ArrowLink>
     </div>
   </div>
 </article>
@@ -78,7 +75,6 @@
     }
 
     :global(.m-new-photography-card__thumbnail) {
-      background: var(--theme--background-card-accent-color);
       isolation: isolate;
       position: relative;
       min-height: 214px;
@@ -86,7 +82,7 @@
     }
 
     &__content {
-      padding: var(--spacing-md) var(--spacing-md) 0;
+      padding: var(--spacing-md) var(--spacing-md) var(--spacing-lg);
       flex-grow: 1;
       background-color: var(--theme--background-card-color);
 
@@ -97,9 +93,11 @@
 
     &__title {
       @include typography.h4;
+      font-family: var(--font--spicy);
+      color: var(--theme--color-photography);
     }
 
-    &__reading-time {
+    &__date {
       @include typography.b3;
       color: var(--theme--text-accent-color);
     }
@@ -107,21 +105,6 @@
     &__description {
       @include typography.b2;
       text-align: justify;
-
-      text-overflow: ellipsis;
-      overflow: hidden;
-      display: -webkit-box;
-      -webkit-line-clamp: 4;
-      -webkit-box-orient: vertical;
-    }
-
-    &__footer {
-      padding: var(--spacing-md);
-
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: var(--spacing-xs);
     }
 
     :global(.m-new-photography-card__link) {
@@ -142,21 +125,51 @@
       .m-new-photography-card {
         &__container {
           display: grid;
-          grid-template-columns: 60% 40%;
+          grid-template-columns: 50% 50%;
           grid-template-rows: 1fr;
         }
       }
 
       :global(.m-new-photography-card__thumbnail) {
-        grid-row: span 2;
-        aspect-ratio: unset; 
+        aspect-ratio: unset;
       }
     }
-  }
 
-  @media (hover: hover) {
-    :global(.m-new-photography-card:has(.m-new-photography-card__link:hover)) {
-      box-shadow: var(--theme--shadow-card-high);
+    &--immersive {
+      @media (hover: hover) {
+        &:hover {
+          .m-new-photography-card {
+            &__content {
+              translate: 0 0;
+            }
+          }
+        }
+
+        .m-new-photography-card {
+          &__container {
+            flex-direction: row;
+          }
+          &__content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+
+            padding: var(--spacing-sm);
+
+            background: rgba(var(--theme--background-card-color-rgb), 0.8);
+
+            translate: 0 100%;
+            transition: 0.25s ease-in-out;
+          }
+        }
+
+        :global(.m-new-photography-card__thumbnail) {
+          aspect-ratio: unset;
+          width: auto;
+          height: auto;
+        }
+      }
     }
   }
 </style>
