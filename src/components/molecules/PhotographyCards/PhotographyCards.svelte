@@ -1,5 +1,6 @@
 <script lang="ts">
   import PhotographyCard from '@components/molecules/PhotographyCard';
+  import NewPhotographyCard from '@components/molecules/NewPhotographyCard';
   import type { Photography } from '@schemas/photography';
   import type { Snippet } from 'svelte';
   import Masonry from 'svelte-masonry';
@@ -39,7 +40,7 @@
   {#if photographies}
     <Masonry bind:refreshLayout colWidth={'minmax(Min(24rem, 100%), 1fr)'} gridGap={'var(--grid-gap)'}>
       {#each photographies as photography}
-        <PhotographyCard
+        <NewPhotographyCard
           {...photographyToPhotographyCardProps(photography)}
           title={photography.title}
           slug={photography.slug}

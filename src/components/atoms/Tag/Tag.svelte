@@ -11,6 +11,7 @@
     rel,
     title,
     class: className,
+    icon,
     children,
     ...props
   }: {
@@ -21,6 +22,7 @@
     rel?: string;
     title?: string;
     class?: string;
+    icon?: Snippet;
     children?: Snippet;
     [key: string]: any;
   } = $props();
@@ -52,6 +54,11 @@
   {#if selected}
     <div class="a-tag__icon">
       <Check />
+    </div>
+  {/if}
+  {#if icon}
+    <div class="a-tag__icon">
+      {@render icon()}
     </div>
   {/if}
   <span class="a-tag__text">

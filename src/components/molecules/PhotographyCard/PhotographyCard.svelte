@@ -11,6 +11,7 @@
     publishedDate,
     image,
     imageAlt,
+    additionalImages,
     class: className,
   }: {
     title: string;
@@ -20,6 +21,7 @@
     publishedDate?: Date;
     image: string;
     imageAlt?: string;
+    additionalImages?: Array<{ src: string; alt: string }>;
     class?: string;
   } = $props();
 
@@ -29,6 +31,7 @@
   $effect(() => {
     isBrowser = typeof window !== 'undefined';
     if (isBrowser) {
+      // @ts-ignore
       import('@utils/dialog-image.js');
     }
   });
