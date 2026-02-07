@@ -16,7 +16,7 @@
     "@astrojs/svelte": "^7.2.5",
     "@fontsource-variable/mona-sans": "^5.2.5",
     "@fontsource/atkinson-hyperlegible-next": "^5.2.2",
-    "@fontsource/monaspace-krypton": "^5.2.5",
+    "@fontsource/maple-mono": "^5.2.6",
     "@fontsource/sriracha": "^5.2.6",
     "@humanspeak/svelte-markdown": "^0.8.6",
     "@modyfi/vite-plugin-yaml": "^1.1.1",
@@ -53,8 +53,7 @@
   "dependencies": {
     "@astrojs/sitemap": "^3.7.0",
     "@astrojs/vercel": "^9.0.4",
-    "html-to-image": "^1.11.13",
-    "svelte-masonry": "^0.1.5"
+    "html-to-image": "^1.11.13"
   },
   "optionalDependencies": {
     "@rollup/rollup-linux-x64-gnu": "4.40.1"

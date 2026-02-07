@@ -1,30 +1,13 @@
 @use '@fontsource-variable/mona-sans';
 @use '@fontsource/atkinson-hyperlegible-next';
 @use '@fontsource/sriracha';
-
-// @import '@fontsource/monaspace-krypton/500.css';
-// @import '@fontsource/monaspace-krypton/800.css';
-
-@font-face {
-  font-family: 'Monaspace Krypton';
-  font-style: normal;
-  font-display: swap;
-  font-weight: 500;
-  src: url('/fonts/monaspace-krypton/monaspace-krypton-latin-500-normal.woff2') format('woff2'), url('/fonts/monaspace-krypton/monaspace-krypton-latin-500-normal.woff') format('woff');
-}
-@font-face {
-  font-family: 'Monaspace Krypton';
-  font-style: normal;
-  font-display: swap;
-  font-weight: 800;
-  src: url('/fonts/monaspace-krypton/monaspace-krypton-latin-800-normal.woff2') format('woff2'), url('/fonts/monaspace-krypton/monaspace-krypton-latin-800-normal.woff') format('woff');
-}
+@import '@fontsource/maple-mono/500.css';
 
 :root {
   --font--default: 'Mona Sans Variable', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   --font--headings: 'Mona Sans Variable', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   --font--article: 'Atkinson Hyperlegible Next', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  --font--mono: 'Monaspace Krypton', monospace;
+  --font--mono: 'Maple Mono', monospace;
   --font--spicy: 'Sriracha', 'Atkinson Hyperlegible Next', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
 
@@ -55,7 +38,6 @@ h1, .u-h1 {
   font-family: var(--font--mono);
   font-size: clamp(1.35rem, 1.6vw + 1rem, 2.25rem); //36px
   font-weight: 800;
-  letter-spacing: -2px;
   line-height: 1.2;
   text-align: left;
 }
