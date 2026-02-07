@@ -21,6 +21,19 @@ export function sanitizePhotography(photography: Photography, filepath: string, 
     photography.image = handleCmsMediaPath(photography.image);
   }
 
+  if (photography.additionalImages) {
+    photography.additionalImages = photography.additionalImages.map(
+      (img, index) => {
+        return {
+          src: handleCmsMediaPath(img as unknown as string),
+          alt: (photography .additionalImageAlts?.[index] || "") as string
+        }
+      }
+    );
+
+    delete photography.additionalImageAlts;
+  }
+
   return photography;
 }
 

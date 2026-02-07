@@ -8,7 +8,7 @@
   }: {
     size?: 'default' | 'small' | 'responsive';
     class?: string;
-    children: Snippet;
+    children?: Snippet;
   } = $props();
 </script>
 

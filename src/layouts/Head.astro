@@ -4,7 +4,7 @@ import metaConfig from "@public/cms/meta.yml";
 import type { SiteMeta } from "@schemas/site-meta";
 const siteMeta: SiteMeta = metaConfig;
 
-const disableClientRouter = Astro.props.disableClientRouter;
+const disableClientRouter = true; // Astro.props.disableClientRouter;
 ---
 <meta charset='UTF-8' />
 

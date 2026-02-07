@@ -8,7 +8,7 @@
   }: {
     class?: string;
     maxPerRow?: number;
-    children: Snippet;
+    children?: Snippet;
   } = $props();
 </script>
 

@@ -11,7 +11,7 @@
   }: {
     class?: string;
     reviews?: QuickReview[];
-    children: Snippet;
+    children?: Snippet;
   } = $props();
 </script>
 

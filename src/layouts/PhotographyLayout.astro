@@ -47,8 +47,18 @@ const { photography }: Props = Astro.props;
         <Image
           class='m-photography-card__image'
           src={photography.image}
-          alt={photography.imageAlt ? photography.imageAlt : photography.content}
+          alt={photography.imageAlt || photography.content || ''}
         />
+        
+        {
+          photography.additionalImages && photography.additionalImages.map((additionalImage) => (
+            <Image
+              class='m-photography-card__image'
+              src={additionalImage.src}
+              alt={additionalImage.alt || photography.content || ''}
+            />
+          ))
+        }
       </div>
     </div>
   </div>

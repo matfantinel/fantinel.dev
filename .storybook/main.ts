@@ -16,6 +16,7 @@ const config: StorybookConfig = {
   "viteFinal": async (config) => {
     const { svelte } = await import('@sveltejs/vite-plugin-svelte');
     const tsconfigPaths = await import('vite-tsconfig-paths').then(m => m.default);
+    const ViteYaml = await import('@modyfi/vite-plugin-yaml').then(m => m.default);
     
     config.plugins = config.plugins || [];
     config.plugins.push(
@@ -24,7 +25,8 @@ const config: StorybookConfig = {
       }),
       tsconfigPaths({
         projects: ['./tsconfig.json'],
-      })
+      }),
+      ViteYaml()
     );
 
 

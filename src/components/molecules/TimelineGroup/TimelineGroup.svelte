@@ -6,7 +6,7 @@
   import AuthorAvatar from '@components/molecules/AuthorAvatar';
   import BlogPostCard from '@components/molecules/BlogPostCard';
   import CoolLinkCard from '@components/molecules/CoolLinkCard';
-  import PhotographyCard from '@components/molecules/PhotographyCard';
+  import NewPhotographyCard from '@components/molecules/NewPhotographyCard';
   import QuickReviewCard from '@components/molecules/QuickReviewCard';
   import metaConfig from '@public/cms/meta.yml';
   import type { BlogPost } from '@schemas/blog';
@@ -41,18 +41,21 @@
     isToday = dateformat(date, 'UTC:dd mmm yyyy') === dateformat(new Date(), 'UTC:dd mmm yyyy');
   });
 
-  function getPostActionLabel(postType: string) {
-    switch (postType) {
-      case PostType.BLOG_POST:
-        return 'published a <em>Blog Post</em>';
-      case PostType.QUICK_REVIEW:
-        return 'posted a <em>Quick Review</em>';
-      case PostType.COOL_LINK:
-        return 'shared a <em>Cool Link</em>';
-      case PostType.PHOTOGRAPHY:
-        return 'posted a <em>Photo</em>';
-      default:
-        return 'published <em>something</em>';
+  function getPostActionLabel(postType: string, postData: BlogPost | QuickReview | CoolLink | Photography) {
+    if (postType === PostType.BLOG_POST) {
+      return 'published a <em>Blog Post</em>';
+    } else if (postType === PostType.QUICK_REVIEW) {
+      return 'posted a <em>Quick Review</em>';
+    } else if (postType === PostType.COOL_LINK) {
+      return 'shared a <em>Cool Link</em>';
+    } else if (postType === PostType.PHOTOGRAPHY) {
+      const photoCount = ((postData as Photography).additionalImages?.length || 0) + 1;
+      if (photoCount > 1) {
+        return `posted <em>${photoCount} Photos</em>`;
+      }
+      return 'posted a <em>Photo</em>';
+    } else {
+      return 'published <em>something</em>';
     }
   }
 </script>
@@ -87,7 +90,7 @@
             <AuthorAvatar src={siteMeta.author.image} alt={siteMeta.author.name} theme="rainbow" size="36px" />
           {/if}
           <div class="m-timeline-group__item-content-heading">
-            {siteMeta.author.shortName} {@html getPostActionLabel(post.type)}
+            {siteMeta.author.shortName} {@html getPostActionLabel(post.type, post.data)}
           </div>
         </div>
         {#if post.type === PostType.BLOG_POST}
@@ -97,7 +100,7 @@
         {:else if post.type === PostType.COOL_LINK}
           <CoolLinkCard {...coolLinkToCoolLinkCardProps(post.data as CoolLink)} />
         {:else if post.type === PostType.PHOTOGRAPHY}
-          <PhotographyCard {...photographyToPhotographyCardProps(post.data as Photography)} />
+          <NewPhotographyCard {...photographyToPhotographyCardProps(post.data as Photography)} />
         {/if}
       </div>
     </div>
