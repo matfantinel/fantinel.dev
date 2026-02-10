@@ -12,6 +12,7 @@ import sitemapNoindexFilter from './integrations/sitemap-noindex-filter.mjs';
 export default defineConfig({
   site: "https://fantinel.dev",
   integrations: [svelte(), sitemap(), sitemapNoindexFilter()],
+  devToolbar: { enabled: false },
 
   vite: {
     plugins: [yaml()]
