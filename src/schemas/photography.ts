@@ -16,4 +16,5 @@ export type Photography = Omit<PhotographyBase, 'additionalImages'> & {
   slug: string;
   content?: string | null;
   additionalImages?: { src: string; alt: string }[];
+  url: string;
 };

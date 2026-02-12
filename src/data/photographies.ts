@@ -17,6 +17,8 @@ export function sanitizePhotography(photography: Photography, filepath: string, 
 
   photography.slug = slug(title);
 
+  photography.url = `/photography/${photography.slug}`;
+
   if (photography.image) {
     photography.image = handleCmsMediaPath(photography.image);
   }

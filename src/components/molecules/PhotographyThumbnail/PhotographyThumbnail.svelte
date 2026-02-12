@@ -10,43 +10,64 @@
     image,
     imageAlt,
     additionalImages,
+    url,
   }: {
     class?: string;
     slug?: string;
     image: string;
     imageAlt?: string;
     additionalImages?: Array<{ src: string; alt: string }>;
+    url?: string;
   } = $props();
 
   // If slug is null, set a random id to it
   if (!slug) {
     slug = `photography-thumbnail-${Math.random()}`;
   }
+
+  // Feature detect Invoker Commands API support
+  let supportsInvokerCommands = $state(false);
+
+  $effect(() => {
+    if (typeof window !== 'undefined') {
+      supportsInvokerCommands = 'commandForElement' in HTMLButtonElement.prototype;
+    }
+  });
 </script>
 
 {#snippet photographyIconSnippet()}<PhotographyIcon size="18px" />{/snippet}
 
-<div class={['m-photography-thumbnail', className]}>
-  <button class="m-photography-thumbnail__zoom-button" aria-label="Zoom image" commandfor={slug} command="show-modal">
-    <div class="m-photography-thumbnail__container">
-      <Image
-        class="m-photography-thumbnail__image m-photography-thumbnail__main-image"
-        src={image}
-        alt={imageAlt || ''}
-      />
-      {#if additionalImages && additionalImages.length > 0}
-        <div class="m-photography-thumbnail__additional-images">
-          {#each additionalImages.slice(0, 2) as additionalImage}
-            <Image class="m-photography-thumbnail__image" src={additionalImage.src} alt={additionalImage.alt} />
-          {/each}
+{#snippet thumbnailContent()}
+  <div class="m-photography-thumbnail__container">
+    <Image
+      class="m-photography-thumbnail__image m-photography-thumbnail__main-image"
+      src={image}
+      alt={imageAlt || ''}
+    />
+    {#if additionalImages && additionalImages.length > 0}
+      <div class="m-photography-thumbnail__additional-images">
+        {#each additionalImages.slice(0, 2) as additionalImage}
+          <Image class="m-photography-thumbnail__image" src={additionalImage.src} alt={additionalImage.alt} />
+        {/each}
 
-          <Tag class="m-photography-thumbnail__total" icon={photographyIconSnippet}>
-            {additionalImages.length + 1} photos
-          </Tag>
-        </div>
-      {/if}
-    </div>
-  </button>
+        <Tag class="m-photography-thumbnail__total" icon={photographyIconSnippet}>
+          {additionalImages.length + 1} photos
+        </Tag>
+      </div>
+    {/if}
+  </div>
+{/snippet}
+
+<div class={['m-photography-thumbnail', className]}>
+  {#if supportsInvokerCommands}
+    <button class="m-photography-thumbnail__zoom-button" aria-label="Zoom image" commandfor={slug} command="show-modal">
+      {@render thumbnailContent()}
+    </button>
+  {:else}
+    <a class="m-photography-thumbnail__zoom-button" href={url} aria-label="Open image">
+      {@render thumbnailContent()}
+    </a>
+  {/if}
 </div>
 
 <PhotographySlideshowDialog {slug} {image} {imageAlt} {additionalImages} />
@@ -90,15 +111,6 @@
 
       width: 100%;
       height: 100%;
-
-      @media (hover: hover) {
-        &:hover {
-          :global(.m-photography-thumbnail__image),
-          :global(.m-photography-thumbnail__total) {
-            transform: scale(1.05);
-          }
-        }
-      }
     }
 
     :global(.m-photography-thumbnail__main-image) {

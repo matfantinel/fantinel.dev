@@ -53,6 +53,31 @@
           <ArrowLink class="m-photography-slideshow-dialog__nav-button" data-slider-slot="next">Next</ArrowLink>
         {/if}
       </div>
+
+      <noscript style="display: none">
+        <!-- Hide JS-only elements if JavaScript is unavailable -->
+        <style>
+            .m-photography-slideshow-dialog__nav {
+              display: none !important;
+            }
+            /* Show the scrollbar when JavaScript is unavailable */
+            .m-photography-slideshow-dialog__list {
+              scrollbar-width: auto !important; /* Firefox */
+            }
+            .m-photography-slideshow-dialog__list::-webkit-scrollbar {
+              width: 16px !important;
+              height: 8px !important;
+              display: block !important;
+            }
+            .m-photography-slideshow-dialog__list::-webkit-scrollbar-track {
+              background: rgba(0, 0, 0, 0.1) !important;
+            }
+            .m-photography-slideshow-dialog__list::-webkit-scrollbar-thumb {
+              background: rgba(0, 0, 0, 0.3) !important;
+              border-radius: 4px !important;
+            }
+        </style>
+      </noscript>
     </enhanced-css-slider>
   </div>
 </dialog>

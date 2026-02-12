@@ -31,6 +31,7 @@
         publishedDate={photography.publishedDate}
         imageAlt={photography.imageAlt as string | undefined}
         content={photography.content as string}
+        url={photography.url as string | undefined}
         immersive
       />
     {/each}
