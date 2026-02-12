@@ -34,7 +34,15 @@
 
 <article class={classList}>
   <div class="m-new-photography-card__container">
-    <PhotographyThumbnail class="m-new-photography-card__thumbnail" {image} {imageAlt} {additionalImages} {url} />
+    <PhotographyThumbnail
+      class="m-new-photography-card__thumbnail"
+      {image}
+      {imageAlt}
+      {additionalImages}
+      {photoDate}
+      {content}
+      {url}
+    />
 
     <div class="m-new-photography-card__content">
       <p class="m-new-photography-card__title">

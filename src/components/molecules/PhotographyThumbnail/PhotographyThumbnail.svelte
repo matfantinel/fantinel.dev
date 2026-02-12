@@ -10,6 +10,8 @@
     image,
     imageAlt,
     additionalImages,
+    photoDate,
+    content,
     url,
   }: {
     class?: string;
@@ -17,6 +19,8 @@
     image: string;
     imageAlt?: string;
     additionalImages?: Array<{ src: string; alt: string }>;
+    photoDate?: Date;
+    content?: string;
     url?: string;
   } = $props();
 
@@ -70,7 +74,14 @@
   {/if}
 </div>
 
-<PhotographySlideshowDialog {slug} {image} {imageAlt} {additionalImages} />
+<PhotographySlideshowDialog
+  {slug}
+  {image}
+  {imageAlt}
+  {additionalImages}
+  {photoDate}
+  {content}
+/>
 
 <style lang="scss">
   @use '/src/styles/breakpoints';
