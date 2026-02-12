@@ -10,12 +10,18 @@
     image,
     imageAlt,
     additionalImages,
+    photoDate,
+    content,
+    url,
   }: {
     class?: string;
     slug?: string;
     image: string;
     imageAlt?: string;
     additionalImages?: Array<{ src: string; alt: string }>;
+    photoDate?: Date;
+    content?: string;
+    url?: string;
   } = $props();
 
   // If slug is null, set a random id to it
@@ -49,7 +55,14 @@
   </button>
 </div>
 
-<PhotographySlideshowDialog {slug} {image} {imageAlt} {additionalImages} />
+<PhotographySlideshowDialog
+  {slug}
+  {image}
+  {imageAlt}
+  {additionalImages}
+  {photoDate}
+  {content}
+/>
 
 <style lang="scss">
   @use '/src/styles/breakpoints';
@@ -90,15 +103,6 @@
 
       width: 100%;
       height: 100%;
-
-      @media (hover: hover) {
-        &:hover {
-          :global(.m-photography-thumbnail__image),
-          :global(.m-photography-thumbnail__total) {
-            transform: scale(1.05);
-          }
-        }
-      }
     }
 
     :global(.m-photography-thumbnail__main-image) {

@@ -149,7 +149,7 @@ function photoToRssItem(photo: Photography) {
     <item>
       <guid>${siteMeta.baseUrl}/photography/${photo.slug}</guid>
       <title>Photography: ${escapeXml(photo.title)}</title>
-      <link>${siteMeta.baseUrl}/photography/${photo.slug}</link>
+      <link>${siteMeta.baseUrl}${photo.url}</link>
       <pubDate>${dateformat(photo.publishedDate, 'ddd, dd mmm yyyy HH:MM:ss o', true)}</pubDate>
       <content:encoded><![CDATA[
         ${photo.title ? `<p>${photo.title}</p>` : ''}
