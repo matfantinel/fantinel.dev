@@ -173,7 +173,9 @@
             translate: 0 100%;
             transition: 0.25s ease-out;
 
-            pointer-events: none;
+            &:not(:has(.m-new-photography-card__link)) {
+              pointer-events: none;
+            }
           }
 
           &__description {
