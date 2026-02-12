@@ -118,9 +118,37 @@
     max-height: unset;
     max-width: unset;
 
+    // Animate dialog opening
+    opacity: 1;
+    transform: scale(1);
+    transition: opacity 0.3s ease, transform 0.3s ease, overlay 0.3s ease allow-discrete, display 0.3s ease allow-discrete;
+
+    // Starting state for opening animation
+    @starting-style {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+
+    // Closing state
+    &:not([open]) {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+
     &::backdrop {
       background: rgba(var(--theme--background-base-color-rgb), 0.9);
       backdrop-filter: blur(10px);
+      transition: background 0.3s ease, backdrop-filter 0.3s ease, overlay 0.3s ease allow-discrete, display 0.3s ease allow-discrete;
+
+      @starting-style {
+        background: rgba(var(--theme--background-base-color-rgb), 0);
+        backdrop-filter: blur(0px);
+      }
+    }
+
+    &:not([open])::backdrop {
+      background: rgba(var(--theme--background-base-color-rgb), 0);
+      backdrop-filter: blur(0px);
     }
 
     &__container {
