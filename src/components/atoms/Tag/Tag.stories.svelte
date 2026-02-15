@@ -34,3 +34,5 @@
 <Story name="Small" args={{ size: 'small' }} />
 
 <Story name="Small, Selected" args={{ size: 'small', selected: true }} />
+
+<Story name="Inverted" args={{ color: 'inverted' }} />

@@ -7,6 +7,7 @@ import readingTime from 'reading-time/lib/reading-time';
 import striptags from 'striptags';
 import { slug } from 'github-slugger'
 import type { BlogPost, BlogPostCategory } from "@schemas/blog";
+import type { FilterTag, FilterGroup } from "@schemas/filter";
 import { generateOgPathFromPost, generateOgPathFromCoolLinksPost } from "@utils/functions";
 
 const siteMeta: SiteMeta = metaConfig;
@@ -137,6 +138,32 @@ export async function getAllBlogPosts(skipRelatedPosts?: boolean): Promise<BlogP
 }
 
 /**
+ * Gets all blog posts for a specific year-month.
+ * @param dateSlug - The date slug in YYYY-MM format.
+ * @returns All blog posts for that month.
+ */
+export async function getBlogPostsByDate(dateSlug: string): Promise<BlogPost[]> {
+  const posts = await getCollection("blog");
+  let sanitizedPosts = posts
+    .map((post) => sanitizeBlogPostData(post.data as unknown as BlogPost, post.body, post.rendered))
+    .filter((p) => !p.hidden);
+
+  // Filter by date (year-month)
+  sanitizedPosts = sanitizedPosts.filter((post) => {
+    const date = new Date(post.date);
+    const year = date.getFullYear();
+    const month = date.getMonth() + 1; // Convert to 1-indexed
+    const postDateSlug = `${year}-${String(month).padStart(2, '0')}`;
+    return postDateSlug === dateSlug;
+  });
+
+  // Sort by date (most recent first)
+  sanitizedPosts.sort((a, b) => b.date.getTime() - a.date.getTime());
+
+  return sanitizedPosts;
+}
+
+/**
  * Gets all categories.
  * @returns All categories.
  */
@@ -178,6 +205,167 @@ export async function getAllCategories(): Promise<BlogPostCategory[]> {
 
   return uniqueCategories;
 }
+
+/**
+ * Gets category filters for the blog archive.
+ * @param activeSlug - The currently active category slug (optional).
+ * @returns Array of filter tags with name, url, active state, and count.
+ */
+export async function getCategoryFilters(activeSlug?: string): Promise<FilterTag[]> {
+  const posts = await getCollection("blog");
+  const sanitizedPosts = posts.map((post) => sanitizeBlogPostData(post.data as unknown as BlogPost, post.body, post.rendered));
+
+  // First collect all categories from all posts
+  const allCategories: BlogPostCategory[] = [];
+
+  sanitizedPosts.forEach(post => {
+    if (post.categories && post.categories.length > 0) {
+      allCategories.push(...post.categories);
+    }
+  });
+
+  // Count occurrences of each category by slug
+  const categoryCount = new Map<string, number>();
+  const categoryMap = new Map<string, BlogPostCategory>();
+
+  allCategories.forEach(category => {
+    const count = categoryCount.get(category.slug) || 0;
+    categoryCount.set(category.slug, count + 1);
+
+    // Store the category object by slug (we only need one instance)
+    if (!categoryMap.has(category.slug)) {
+      categoryMap.set(category.slug, category);
+    }
+  });
+
+  // Convert to array of filter tags
+  const filterTags: FilterTag[] = Array.from(categoryMap.entries()).map(([slug, category]) => ({
+    name: category.name,
+    url: category.url,
+    active: slug === activeSlug,
+    count: categoryCount.get(slug) || 0
+  }));
+
+  // Sort by count (descending)
+  filterTags.sort((a, b) => b.count - a.count);
+
+  return filterTags;
+}
+
+/**
+ * Gets all unique post dates (year-month combinations) for filtering.
+ * @returns All post dates as filter tags.
+ */
+export async function getAllPostDates(): Promise<BlogPostCategory[]> {
+  const posts = await getCollection("blog");
+  const sanitizedPosts = posts
+    .map((post) => sanitizeBlogPostData(post.data as unknown as BlogPost, post.body, post.rendered))
+    .filter((p) => !p.hidden);
+
+  // Count occurrences of each year-month combination
+  const dateCount = new Map<string, number>();
+  const dateMap = new Map<string, { year: number; month: number; date: Date }>();
+
+  sanitizedPosts.forEach(post => {
+    const date = new Date(post.date);
+    const year = date.getFullYear();
+    const month = date.getMonth(); // 0-indexed
+    const key = `${year}-${String(month + 1).padStart(2, '0')}`;
+
+    const count = dateCount.get(key) || 0;
+    dateCount.set(key, count + 1);
+
+    // Store the date info by key (we only need one instance)
+    if (!dateMap.has(key)) {
+      dateMap.set(key, { year, month, date });
+    }
+  });
+
+  // Convert to array of date tags
+  const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 
+                      'July', 'August', 'September', 'October', 'November', 'December'];
+
+  const dateTags: BlogPostCategory[] = Array.from(dateMap.entries()).map(([key, { year, month }]) => ({
+    name: `${monthNames[month]} ${year}`,
+    slug: key,
+    url: `/blog/date/${key}`
+  }));
+
+  // Sort by date (most recent first)
+  dateTags.sort((a, b) => {
+    return b.slug.localeCompare(a.slug); // Descending order (newest first)
+  });
+
+  return dateTags;
+}
+
+/**
+ * Gets date filters for the blog archive, grouped by year.
+ * @param activeSlug - The currently active date slug in YYYY-MM format (optional).
+ * @returns Array of filter groups with months grouped by year.
+ */
+export async function getDateFilters(activeSlug?: string): Promise<FilterGroup[]> {
+  const posts = await getCollection("blog");
+  const sanitizedPosts = posts
+    .map((post) => sanitizeBlogPostData(post.data as unknown as BlogPost, post.body, post.rendered))
+    .filter((p) => !p.hidden);
+
+  // Count occurrences of each year-month combination
+  const dateCount = new Map<string, number>();
+  const dateMap = new Map<string, { year: number; month: number }>();
+
+  sanitizedPosts.forEach(post => {
+    const date = new Date(post.date);
+    const year = date.getFullYear();
+    const month = date.getMonth(); // 0-indexed
+    const key = `${year}-${String(month + 1).padStart(2, '0')}`;
+
+    const count = dateCount.get(key) || 0;
+    dateCount.set(key, count + 1);
+
+    // Store the date info by key (we only need one instance)
+    if (!dateMap.has(key)) {
+      dateMap.set(key, { year, month });
+    }
+  });
+
+  // Group by year
+  const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 
+                      'July', 'August', 'September', 'October', 'November', 'December'];
+
+  const yearGroups = new Map<number, FilterTag[]>();
+
+  dateMap.forEach(({ year, month }, key) => {
+    if (!yearGroups.has(year)) {
+      yearGroups.set(year, []);
+    }
+
+    yearGroups.get(year)!.push({
+      name: monthNames[month],
+      url: `/blog/date/${key}`,
+      active: key === activeSlug,
+      count: dateCount.get(key) || 0
+    });
+  });
+
+  // Convert to FilterGroup array and sort
+  const filterGroups: FilterGroup[] = Array.from(yearGroups.entries()).map(([year, tags]) => {
+    // Sort months within each year (most recent first)
+    tags.sort((a, b) => b.url.localeCompare(a.url));
+
+    return {
+      label: String(year),
+      tags
+    };
+  });
+
+  // Sort years (most recent first)
+  filterGroups.sort((a, b) => Number(b.label) - Number(a.label));
+
+  return filterGroups;
+}
+
+
 
 /**
  * Gets related posts based on the given post.

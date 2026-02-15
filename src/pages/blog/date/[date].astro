@@ -1,0 +1,49 @@
+---
+import BlogArchiveLayout from "@layouts/BlogArchiveLayout.astro";
+import { getBlogPostsByDate, getCategoryFilters, getDateFilters } from "@data/blogPosts";
+
+export async function getStaticPaths() {
+  const dateFilters = await getDateFilters();
+  
+  // Flatten all date groups to get individual month slugs
+  const dates: string[] = [];
+  dateFilters.forEach((yearGroup) => {
+    if (yearGroup.tags) {
+      yearGroup.tags.forEach((tag) => {
+        // Extract the date slug from the URL (e.g., "/blog/date/2026-01" -> "2026-01")
+        const slug = tag.url.split('/').pop();
+        if (slug) {
+          dates.push(slug);
+        }
+      });
+    }
+  });
+
+  return dates.map((date) => ({
+    params: { date },
+  }));
+}
+
+const { date } = Astro.params;
+const posts = await getBlogPostsByDate(date);
+
+const categoryFilters = await getCategoryFilters();
+const dateFilters = await getDateFilters(date);
+
+// Parse the date for display
+const [year, month] = date.split('-');
+const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 
+                    'July', 'August', 'September', 'October', 'November', 'December'];
+const monthName = monthNames[parseInt(month) - 1];
+const dateDisplay = `${monthName} ${year}`;
+---
+
+<BlogArchiveLayout
+  posts={posts}
+  currentPage={1}
+  totalPages={1}
+  totalPosts={posts.length}
+  currentDate={dateDisplay}
+  categoryFilters={categoryFilters}
+  dateFilters={dateFilters}
+/>

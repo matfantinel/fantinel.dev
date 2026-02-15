@@ -1,0 +1,165 @@
+---
+import Pagination from '@components/molecules/Pagination';
+import ArchiveHero from '@components/organisms/ArchiveHero';
+import NewsletterCta from '@components/organisms/NewsletterCta';
+import metaConfig from '@public/cms/meta.yml';
+import type { FilterGroup } from '@schemas/filter';
+import type { SiteMeta } from '@schemas/site-meta';
+import BaseLayout from './BaseLayout.astro';
+import Filters from '@components/molecules/Filters';
+
+interface Props {
+  title: string;
+  heroTitle: string;
+  heroBody: string;
+  baseUrl: string;
+  basePaginationUrl?: string;
+  currentPage: number;
+  totalPages: number;
+  filterGroups?: FilterGroup[];
+  summaryText?: string;
+  className?: string;
+}
+
+const { 
+  title, 
+  heroTitle, 
+  heroBody, 
+  baseUrl, 
+  basePaginationUrl,
+  currentPage, 
+  totalPages, 
+  filterGroups, 
+  summaryText,
+  className,
+}: Props = Astro.props;
+
+const siteMeta: SiteMeta = metaConfig;
+
+// Update active filter URLs to point to base URL (deselect filter)
+const processedFilterGroups = filterGroups?.map(group => {
+  if (group.tags) {
+    return {
+      ...group,
+      tags: group.tags.map(tag => ({
+        ...tag,
+        url: tag.active ? baseUrl : tag.url
+      }))
+    };
+  }
+  if (group.groups) {
+    return {
+      ...group,
+      groups: group.groups.map(nestedGroup => ({
+        ...nestedGroup,
+        tags: nestedGroup.tags?.map(tag => ({
+          ...tag,
+          url: tag.active ? baseUrl : tag.url
+        }))
+      }))
+    };
+  }
+  return group;
+});
+---
+
+<BaseLayout title={title} autoGenerateImage hasHeaderBackground>
+  <div class={`l-base-archive ${className || ''}`}>
+    <div class='l-base-archive__container'>
+      <ArchiveHero
+        class='l-base-archive__hero'
+        title={heroTitle}
+        body={heroBody}
+      />
+
+      <div class='l-base-archive__content-wrapper u-container-large'>
+        <div class='l-base-archive__side'>
+          {processedFilterGroups && processedFilterGroups.length > 0 && <Filters filterGroups={processedFilterGroups} size="small" tagColor="inverted" collapseInnerGroups />}
+        </div>
+
+        <div class='l-base-archive__main'>
+          {summaryText && <p class='l-base-archive__summary'>{summaryText}</p>}
+
+          <slot />
+
+          {
+            totalPages > 1 && (
+              <Pagination
+                class='l-base-archive__pagination'
+                currentPage={currentPage}
+                totalPages={totalPages}
+                baseUrl={basePaginationUrl || baseUrl}
+              />
+            )
+          }
+        </div>
+      </div>
+
+      {
+        siteMeta.newsletterCta && siteMeta.newsletterCta.formUrl && (
+          <NewsletterCta
+            heading={siteMeta.newsletterCta.heading}
+            body={siteMeta.newsletterCta.body}
+            formUrl={siteMeta.newsletterCta.formUrl}
+            tag='cta-home-page'
+          />
+        )
+      }
+    </div>
+  </div>
+</BaseLayout>
+
+<style lang='scss'>
+  @use '/src/styles/breakpoints';
+  @use '/src/styles/typography';
+
+  .l-base-archive {
+    --side-width: 240px;
+
+    &__container {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-xxl);
+
+      @include breakpoints.for-phone-only {
+        gap: var(--spacing-xl);
+      }
+    }
+
+    &__content-wrapper {
+      display: grid;
+      align-items: start;
+      gap: var(--spacing-xl) var(--spacing-lg);
+      grid-template-columns: calc(100% - var(--side-width) - var(--spacing-lg)) var(--side-width);
+      grid-template-areas: 'main side';
+
+      @include breakpoints.for-tablet-portrait-down {
+        grid-template-columns: 100% !important;
+        grid-template-areas:
+          'side'
+          'main';
+      }
+    }
+
+    &__main {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-lg);
+      grid-area: main;
+    }
+
+    &__side {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-lg);
+      grid-area: side;
+    }
+
+    &__summary {
+      @include typography.h4;
+      text-align: center;
+      color: var(--theme--color-accent);
+    }
+
+  }
+</style>

@@ -3,16 +3,18 @@
 
   let {
     size,
+    centered = true,
     class: className,
     children,
   }: {
     size?: 'default' | 'small' | 'responsive';
+    centered?: boolean;
     class?: string;
     children?: Snippet;
   } = $props();
 </script>
 
-<div class={['m-tags', size ? `m-tags--${size}` : undefined, className]}>
+<div class={['m-tags', size ? `m-tags--${size}` : undefined, centered ? 'm-tags--centered' : undefined, className]}>
   {@render children?.()}
 </div>
 
@@ -24,7 +26,7 @@
 		gap: var(--spacing-sm) var(--spacing-xs);
 		flex-wrap: wrap;
 		align-items: center;
-		justify-content: center;
+		justify-content: flex-start;
 
     &--small {
       gap: var(--spacing-xs) var(--spacing-xxs);
@@ -34,6 +36,10 @@
 			@include breakpoints.for-phone-only {
 				gap: var(--spacing-xs) var(--spacing-xxs);
 			}
+    }
+
+    &--centered {
+      justify-content: center;
     }
   }
 </style>
