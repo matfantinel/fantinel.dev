@@ -6,9 +6,11 @@ import ArchiveHero from '@components/organisms/ArchiveHero';
 import NewsletterCta from '@components/organisms/NewsletterCta';
 import metaConfig from '@public/cms/meta.yml';
 import type { BlogPost, BlogPostCategory } from '@schemas/blog';
+import type { FilterTag, FilterGroup } from '@schemas/filter';
 import type { SiteMeta } from '@schemas/site-meta';
 import BaseLayout from './BaseLayout.astro';
 import { blogPostToBlogPostCardProps } from '@utils/prop-mapping';
+import Filters from '@components/molecules/Filters';
 
 interface Props {
   posts: BlogPost[];
@@ -16,79 +18,97 @@ interface Props {
   totalPages: number;
   totalPosts: number;
   currentCategory?: BlogPostCategory;
-  allCategories?: BlogPostCategory[];
+  currentDate?: string;
+  categoryFilters?: FilterTag[];
+  dateFilters?: FilterGroup[];
 }
 
-const { posts, currentPage, totalPages, totalPosts, currentCategory, allCategories }: Props = Astro.props;
+const { posts, currentPage, totalPages, totalPosts, currentCategory, currentDate, categoryFilters, dateFilters }: Props = Astro.props;
 
 const siteMeta: SiteMeta = metaConfig;
 
-allCategories?.forEach((category) => {
-  category.active = category.slug === currentCategory?.slug;
-  if (category.active) {
-    category.url = '/blog';
-  }
-});
+const filterGroups: FilterGroup[] = [];
+if (categoryFilters) {
+  // Update active category tag URL to point to /blog (deselect filter)
+  const updatedCategoryFilters = categoryFilters.map(tag => ({
+    ...tag,
+    url: tag.active ? '/blog' : tag.url
+  }));
+  filterGroups.push({ label: 'Filter by category:', tags: updatedCategoryFilters });
+}
+if (dateFilters) {
+  // Update active date tag URL to point to /blog (deselect filter)
+  const updatedDateFilters = dateFilters.map(group => ({
+    ...group,
+    tags: group.tags?.map(tag => ({
+      ...tag,
+      url: tag.active ? '/blog' : tag.url
+    }))
+  }));
+  filterGroups.push({ label: 'Filter by date:', groups: updatedDateFilters });
+}
 ---
 
 <BaseLayout title={`${siteMeta.author?.name}'s Blog`} autoGenerateImage hasHeaderBackground>
-
   <div class='l-blog-archive'>
     <div class='l-blog-archive__container'>
       <ArchiveHero
         class='l-blog-archive__hero'
         title='Blog'
-        body="I usually post about the topics below. You can click on a category to filter posts by it."
-        tagGroups={allCategories ? [{ label: 'Filter by category:', tags: allCategories }] : []}
+        body='I usually post about the topics below. You can click on a category to filter posts by it.'
       />
 
-      <div class='l-blog-archive__content-wrapper u-container'>
-        {
-          !posts.length && (
-            <p class="u-h4">No posts found</p>
-          )
-        }
+      <div class='l-blog-archive__content-wrapper u-container-large'>
+        <div class='l-blog-archive__side'>
+          {filterGroups && filterGroups.length > 0 && <Filters filterGroups={filterGroups} size="small" tagColor="inverted" />}
+        </div>
 
-        {
-          currentCategory && (
-            <p class="l-blog-archive__summary">
-              {totalPosts} posts found for category “{currentCategory.name}”.
-            </p>
-          )
-        }
+        <div class='l-blog-archive__main'>
+          {!posts.length && <p class='u-h4'>No posts found</p>}
 
-        {
-          posts && (
-            <BlogPostCards class='l-blog-archive__posts'>
-              {posts.map((post) => (
-                <BlogPostCard
-                  {...blogPostToBlogPostCardProps(post)}
-                />
-              ))}
-            </BlogPostCards>
-          )
-        }
+          {
+            (currentCategory || currentDate) && (
+              <p class='l-blog-archive__summary'>
+                {totalPosts} {totalPosts === 1 ? 'post' : 'posts'}
+                {currentCategory && ` for category "${currentCategory.name}"`}
+                {currentDate && ` from ${currentDate}`}.
+              </p>
+            )
+          }
 
-        {
-          totalPages > 1 && (
-            <Pagination
-              class='l-blog-archive__pagination'
-              currentPage={currentPage}
-              totalPages={totalPages}
-              baseUrl={`/blog${currentCategory ? `/category/${currentCategory.slug}` : ''}`}
-            />
-          )
-        }
+          {
+            posts && (
+              <BlogPostCards class='l-blog-archive__posts' maxPerRow={1}>
+                {posts.map((post) => (
+                  <BlogPostCard {...blogPostToBlogPostCardProps(post)} />
+                ))}
+              </BlogPostCards>
+            )
+          }
+
+          {
+            totalPages > 1 && (
+              <Pagination
+                class='l-blog-archive__pagination'
+                currentPage={currentPage}
+                totalPages={totalPages}
+                baseUrl={`/blog${currentCategory ? `/category/${currentCategory.slug}` : ''}`}
+              />
+            )
+          }
+        </div>
       </div>
 
-      {siteMeta.newsletterCta && siteMeta.newsletterCta.formUrl && (
-        <NewsletterCta
-          heading={siteMeta.newsletterCta.heading}
-          body={siteMeta.newsletterCta.body}
-          formUrl={siteMeta.newsletterCta.formUrl}
-          tag="cta-home-page"
-        />
-      )}
+      {
+        siteMeta.newsletterCta && siteMeta.newsletterCta.formUrl && (
+          <NewsletterCta
+            heading={siteMeta.newsletterCta.heading}
+            body={siteMeta.newsletterCta.body}
+            formUrl={siteMeta.newsletterCta.formUrl}
+            tag='cta-home-page'
+          />
+        )
+      }
     </div>
   </div>
 </BaseLayout>
@@ -107,6 +127,8 @@ allCategories?.forEach((category) => {
   }
 
   .l-blog-archive {
+    --side-width: 240px;
+
     &__container {
       display: flex;
       flex-direction: column;
@@ -118,15 +140,39 @@ allCategories?.forEach((category) => {
     }
 
     &__content-wrapper {
+      display: grid;
+      align-items: start;
+      gap: var(--spacing-xl) var(--spacing-lg);
+      grid-template-columns: calc(100% - var(--side-width) - var(--spacing-lg)) var(--side-width);
+      grid-template-areas: 'main side';
+
+      @include breakpoints.for-tablet-portrait-down {
+        grid-template-columns: 100% !important;
+        grid-template-areas:
+          'side'
+          'main';
+      }
+    }
+
+    &__main {
       display: flex;
       flex-direction: column;
       gap: var(--spacing-lg);
+      grid-area: main;
+    }
+
+    &__side {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-lg);
+      grid-area: side;
     }
 
     &__summary {
-      @include typography.h2;
+      @include typography.h4;
       text-align: center;
       color: var(--theme--color-accent);
     }
+
   }
 </style>
