@@ -1,5 +1,4 @@
 <script lang="ts">
-  import type { Snippet } from 'svelte';
   import type { FilterGroup } from '@schemas/filter';
   import Tag from '@components/atoms/Tag';
   import Tags from '@components/molecules/Tags';
@@ -10,6 +9,7 @@
     size = 'responsive',
     tagColor,
     centered = false,
+    collapseInnerGroups = false,
     class: className,
   }: {
     heading?: string;
@@ -17,6 +17,7 @@
     size?: 'default' | 'small' | 'responsive';
     tagColor?: 'default' | 'inverted';
     centered?: boolean;
+    collapseInnerGroups?: boolean;
     class?: string;
   } = $props();
 
@@ -58,19 +59,39 @@
           <div class="m-filters__nested-groups">
             {#each rendered.group.groups as nestedGroup}
               {@const nestedRendered = renderFilterGroup(nestedGroup, rendered.depth + 1)}
-              <div class="m-filters__group m-filters__group--nested" data-depth={nestedRendered.depth}>
-                <h4 class="m-filters__group-label m-filters__group-label--nested">{nestedRendered.group.label}</h4>
-                
-                {#if nestedRendered.hasTags}
-                  <Tags size={size} class="m-filters__tags" centered={centered}>
-                    {#each nestedRendered.group.tags as tag}
-                      <Tag size={size} href={tag.url} selected={tag.active} color={tagColor}>
-                        {tag.name} ({tag.count})
-                      </Tag>
-                    {/each}
-                  </Tags>
-                {/if}
-              </div>
+              {@const hasActiveTag = nestedRendered.hasTags && nestedRendered.group.tags?.some(tag => tag.active)}
+              {#if collapseInnerGroups}
+                <details class="m-filters__details" open={hasActiveTag}>
+                  <summary class="m-filters__group-label m-filters__group-label--nested m-filters__summary">
+                    {nestedRendered.group.label}
+                  </summary>
+                  <div class="m-filters__group m-filters__group--nested" data-depth={nestedRendered.depth}>
+                    {#if nestedRendered.hasTags}
+                      <Tags size={size} class="m-filters__tags" centered={centered}>
+                        {#each nestedRendered.group.tags as tag}
+                          <Tag size={size} href={tag.url} selected={tag.active} color={tagColor}>
+                            {tag.name} ({tag.count})
+                          </Tag>
+                        {/each}
+                      </Tags>
+                    {/if}
+                  </div>
+                </details>
+              {:else}
+                <div class="m-filters__group m-filters__group--nested" data-depth={nestedRendered.depth}>
+                  <h4 class="m-filters__group-label m-filters__group-label--nested">{nestedRendered.group.label}</h4>
+                  
+                  {#if nestedRendered.hasTags}
+                    <Tags size={size} class="m-filters__tags" centered={centered}>
+                      {#each nestedRendered.group.tags as tag}
+                        <Tag size={size} href={tag.url} selected={tag.active} color={tagColor}>
+                          {tag.name} ({tag.count})
+                        </Tag>
+                      {/each}
+                    </Tags>
+                  {/if}
+                </div>
+              {/if}
             {/each}
           </div>
         {/if}
@@ -105,20 +126,19 @@
       gap: var(--spacing-sm);
 
       &--nested {
-        // padding-left: var(--spacing-md);
         gap: var(--spacing-xs);
       }
     }
 
     &__group-label {
-      @include typography.b2;
-      font-weight: 600;
+      @include typography.b1;
+      font-weight: 700;
       margin: 0;
       color: var(--theme--text-color);
 
       &--nested {
-        @include typography.b3;
-        font-weight: 500;
+        @include typography.b2;
+        font-weight: 700;
         color: var(--theme--text-muted-color);
       }
     }
@@ -128,6 +148,37 @@
       flex-direction: column;
       gap: var(--spacing-md);
       margin-top: var(--spacing-xs);
+    }
+
+    &__details {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-xs);
+    }
+
+    &__summary {
+      cursor: pointer;
+      list-style: none;
+      user-select: none;
+
+      &::-webkit-details-marker {
+        display: none;
+      }
+
+      &::marker {
+        display: none;
+      }
+
+      &::before {
+        content: '▶';
+        display: inline-block;
+        margin-right: var(--spacing-xs);
+        transition: transform 0.2s ease;
+      }
+    }
+
+    &__details[open] &__summary::before {
+      transform: rotate(90deg);
     }
   }
 </style>

@@ -88,4 +88,6 @@
 
 <Story name="Nested Groups" args={{ heading: 'Filter Posts', filterGroups: nestedFilterGroups }} />
 
+<Story name="Nested Groups, Collapsed" args={{ heading: 'Filter Posts', filterGroups: nestedFilterGroups, collapseInnerGroups: true }} />
+
 <Story name="Single Group" args={{ filterGroups: singleGroup }} />

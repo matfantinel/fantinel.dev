@@ -1,16 +1,12 @@
 ---
 import BlogPostCard from '@components/molecules/BlogPostCard';
 import BlogPostCards from '@components/molecules/BlogPostCards';
-import Pagination from '@components/molecules/Pagination';
-import ArchiveHero from '@components/organisms/ArchiveHero';
-import NewsletterCta from '@components/organisms/NewsletterCta';
 import metaConfig from '@public/cms/meta.yml';
 import type { BlogPost, BlogPostCategory } from '@schemas/blog';
 import type { FilterTag, FilterGroup } from '@schemas/filter';
 import type { SiteMeta } from '@schemas/site-meta';
-import BaseLayout from './BaseLayout.astro';
+import BaseArchiveLayout from './BaseArchiveLayout.astro';
 import { blogPostToBlogPostCardProps } from '@utils/prop-mapping';
-import Filters from '@components/molecules/Filters';
 
 interface Props {
   posts: BlogPost[];
@@ -29,94 +25,49 @@ const siteMeta: SiteMeta = metaConfig;
 
 const filterGroups: FilterGroup[] = [];
 if (categoryFilters) {
-  // Update active category tag URL to point to /blog (deselect filter)
-  const updatedCategoryFilters = categoryFilters.map(tag => ({
-    ...tag,
-    url: tag.active ? '/blog' : tag.url
-  }));
-  filterGroups.push({ label: 'Filter by category:', tags: updatedCategoryFilters });
+  filterGroups.push({ label: 'Filter by category:', tags: categoryFilters });
 }
 if (dateFilters) {
-  // Update active date tag URL to point to /blog (deselect filter)
-  const updatedDateFilters = dateFilters.map(group => ({
-    ...group,
-    tags: group.tags?.map(tag => ({
-      ...tag,
-      url: tag.active ? '/blog' : tag.url
-    }))
-  }));
-  filterGroups.push({ label: 'Filter by date:', groups: updatedDateFilters });
+  filterGroups.push({ label: 'Filter by date:', groups: dateFilters });
 }
+
+let summaryText = '';
+if (currentCategory || currentDate) {
+  summaryText = `${totalPosts} ${totalPosts === 1 ? 'post' : 'posts'}`;
+  if (currentCategory) summaryText += ` for category "${currentCategory.name}"`;
+  if (currentDate) summaryText += ` from ${currentDate}`;
+}
+
+const baseUrl = '/blog';
+const basePaginationUrl = `/blog${currentCategory ? `/category/${currentCategory.slug}` : ''}`;
 ---
 
-<BaseLayout title={`${siteMeta.author?.name}'s Blog`} autoGenerateImage hasHeaderBackground>
-  <div class='l-blog-archive'>
-    <div class='l-blog-archive__container'>
-      <ArchiveHero
-        class='l-blog-archive__hero'
-        title='Blog'
-        body='I usually post about the topics below. You can click on a category to filter posts by it.'
-      />
+<BaseArchiveLayout
+  title={`${siteMeta.author?.name}'s Blog`}
+  heroTitle='Blog'
+  heroBody='I usually post about the topics below. You can click on a category to filter posts by it.'
+  baseUrl={baseUrl}
+  basePaginationUrl={basePaginationUrl}
+  currentPage={currentPage}
+  totalPages={totalPages}
+  filterGroups={filterGroups}
+  summaryText={summaryText}
+  className='l-blog-archive'
+>
+  {!posts.length && <p class='u-h4'>No posts found</p>}
 
-      <div class='l-blog-archive__content-wrapper u-container-large'>
-        <div class='l-blog-archive__side'>
-          {filterGroups && filterGroups.length > 0 && <Filters filterGroups={filterGroups} size="small" tagColor="inverted" />}
-        </div>
-
-        <div class='l-blog-archive__main'>
-          {!posts.length && <p class='u-h4'>No posts found</p>}
-
-          {
-            (currentCategory || currentDate) && (
-              <p class='l-blog-archive__summary'>
-                {totalPosts} {totalPosts === 1 ? 'post' : 'posts'}
-                {currentCategory && ` for category "${currentCategory.name}"`}
-                {currentDate && ` from ${currentDate}`}.
-              </p>
-            )
-          }
-
-          {
-            posts && (
-              <BlogPostCards class='l-blog-archive__posts' maxPerRow={1}>
-                {posts.map((post) => (
-                  <BlogPostCard {...blogPostToBlogPostCardProps(post)} />
-                ))}
-              </BlogPostCards>
-            )
-          }
-
-          {
-            totalPages > 1 && (
-              <Pagination
-                class='l-blog-archive__pagination'
-                currentPage={currentPage}
-                totalPages={totalPages}
-                baseUrl={`/blog${currentCategory ? `/category/${currentCategory.slug}` : ''}`}
-              />
-            )
-          }
-        </div>
-      </div>
-
-      {
-        siteMeta.newsletterCta && siteMeta.newsletterCta.formUrl && (
-          <NewsletterCta
-            heading={siteMeta.newsletterCta.heading}
-            body={siteMeta.newsletterCta.body}
-            formUrl={siteMeta.newsletterCta.formUrl}
-            tag='cta-home-page'
-          />
-        )
-      }
-    </div>
-  </div>
-</BaseLayout>
+  {
+    posts && (
+      <BlogPostCards class='l-blog-archive__posts' maxPerRow={2}>
+        {posts.map((post) => (
+          <BlogPostCard {...blogPostToBlogPostCardProps(post)} />
+        ))}
+      </BlogPostCards>
+    )
+  }
+</BaseArchiveLayout>
 
 <style lang='scss'>
-  @use '/src/styles/breakpoints';
-  @use '/src/styles/typography';
-
   :root:has(.l-blog-archive) {
     --theme--color-accent: var(--theme--color-blog-post);
     --theme--color-accent-rgb: var(--theme--color-blog-post-rgb);
@@ -124,55 +75,5 @@ if (dateFilters) {
     --theme--color-accent-shade: var(--theme--color-blog-post-shade);
     --theme--color-accent-tint: var(--theme--color-blog-post-tint);
     --theme--color-accent-glow: var(--theme--color-blog-post-glow);
-  }
-
-  .l-blog-archive {
-    --side-width: 240px;
-
-    &__container {
-      display: flex;
-      flex-direction: column;
-      gap: var(--spacing-xxl);
-
-      @include breakpoints.for-phone-only {
-        gap: var(--spacing-xl);
-      }
-    }
-
-    &__content-wrapper {
-      display: grid;
-      align-items: start;
-      gap: var(--spacing-xl) var(--spacing-lg);
-      grid-template-columns: calc(100% - var(--side-width) - var(--spacing-lg)) var(--side-width);
-      grid-template-areas: 'main side';
-
-      @include breakpoints.for-tablet-portrait-down {
-        grid-template-columns: 100% !important;
-        grid-template-areas:
-          'side'
-          'main';
-      }
-    }
-
-    &__main {
-      display: flex;
-      flex-direction: column;
-      gap: var(--spacing-lg);
-      grid-area: main;
-    }
-
-    &__side {
-      display: flex;
-      flex-direction: column;
-      gap: var(--spacing-lg);
-      grid-area: side;
-    }
-
-    &__summary {
-      @include typography.h4;
-      text-align: center;
-      color: var(--theme--color-accent);
-    }
-
   }
 </style>
