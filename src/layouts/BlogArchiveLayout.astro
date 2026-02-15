@@ -25,10 +25,10 @@ const siteMeta: SiteMeta = metaConfig;
 
 const filterGroups: FilterGroup[] = [];
 if (categoryFilters) {
-  filterGroups.push({ label: 'Filter by category:', tags: categoryFilters });
+  filterGroups.push({ label: 'Filter by category', tags: categoryFilters });
 }
 if (dateFilters) {
-  filterGroups.push({ label: 'Filter by date:', groups: dateFilters });
+  filterGroups.push({ label: 'Filter by date', groups: dateFilters });
 }
 
 let summaryText = '';
@@ -58,7 +58,7 @@ const basePaginationUrl = `/blog${currentCategory ? `/category/${currentCategory
 
   {
     posts && (
-      <BlogPostCards class='l-blog-archive__posts' maxPerRow={2}>
+      <BlogPostCards class='l-blog-archive__posts'>
         {posts.map((post) => (
           <BlogPostCard {...blogPostToBlogPostCardProps(post)} />
         ))}
