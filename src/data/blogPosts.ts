@@ -8,6 +8,8 @@ import striptags from 'striptags';
 import { slug } from 'github-slugger'
 import type { BlogPost, BlogPostCategory } from "@schemas/blog";
 import { generateOgPathFromPost, generateOgPathFromCoolLinksPost } from "@utils/functions";
+import { escapeXml, siteMeta as rssSiteMeta } from "@utils/rss";
+import dateformat from "dateformat";
 
 const siteMeta: SiteMeta = metaConfig;
 
@@ -244,4 +246,59 @@ export function getRelatedBlogPosts(post: BlogPost, allPosts: BlogPost[]): BlogP
     .slice(0, 4);
 
   return relatedPosts;
+}
+
+/**
+ * Converts a blog post to an RSS item.
+ * @param post The blog post to convert.
+ * @param options.excerptOnly If true, only include the excerpt instead of full content.
+ * @returns The RSS item string.
+ */
+export function blogPostToRssItem(post: BlogPost, options: { excerptOnly?: boolean } = {}): string {
+  const { excerptOnly = false } = options;
+
+  // Posts before 2025-06-01 don't have the /blog prefix
+  // Their URL will redirect automatically, but I don't wanna change the RSS guid
+  // To avoid the post being duplicated in the RSS feed of existing subscribers
+  const guid = rssSiteMeta.baseUrl + (post.date < new Date('2025-06-01') ? '' : '/blog') + '/' + post.slug;
+  let coverImage = post.coverImage ? escapeXml(post.coverImage) : null;
+  if (coverImage && !coverImage.includes(rssSiteMeta.baseUrl)) {
+    coverImage = `${rssSiteMeta.baseUrl}${coverImage}`;
+  }
+
+  // Process content URLs to use absolute paths
+  let content = post.content || '';
+  content = content.replaceAll('<a href="/', `<a href="${rssSiteMeta.baseUrl}/`);
+  content = content.replaceAll('<img src="/', `<img src="${rssSiteMeta.baseUrl}/cms/media/`);
+  content = content.replaceAll(`<img src="${rssSiteMeta.baseUrl}/cms/media/media/`, `<img src="${rssSiteMeta.baseUrl}/cms/media/`);
+
+  const contentEncoded = excerptOnly
+    ? `<p>${escapeXml(post.excerpt)}</p>
+        <p><a href="${rssSiteMeta.baseUrl}/blog/${post.slug}">Read more</a></p>`
+    : `<div style="margin: 50px 0; font-style: italic;">
+          If anything looks wrong, 
+          <strong>
+            <a href="${rssSiteMeta.baseUrl}/blog/${post.slug}">
+              read on the site!
+            </a>
+          </strong>
+        </div>
+
+        ${content}`;
+
+  return `
+    <item>
+      <guid>${guid}</guid>
+      <title>${escapeXml(post.title)}</title>
+      <description>${escapeXml(post.excerpt)}</description>
+      <link>${rssSiteMeta.baseUrl}/blog/${post.slug}</link>
+      <pubDate>${dateformat(post.date, 'ddd, dd mmm yyyy HH:MM:ss o')}</pubDate>
+      ${post.categories ? post.categories.map((cat) => `<category>${escapeXml(cat.name)}</category>`).join('') : ''}
+      <content:encoded><![CDATA[
+        ${contentEncoded}
+      ]]></content:encoded>
+      ${coverImage ? `<media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="${coverImage}"/>` : ''}
+      ${coverImage ? `<media:content xmlns:media="http://search.yahoo.com/mrss/" medium="image" url="${coverImage}"/>` : ''}          
+    </item>
+  `;
 }

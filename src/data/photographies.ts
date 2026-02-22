@@ -2,6 +2,8 @@ import type { Photography } from "@schemas/photography";
 import { handleCmsMediaPath } from "@utils/functions";
 import { getCollection } from "astro:content";
 import { slug } from 'github-slugger';
+import { escapeXml, siteMeta } from "@utils/rss";
+import dateformat from "dateformat";
 
 /**
  * Sanitizes a photography post to make it ready for using it in the UI.
@@ -85,4 +87,41 @@ export async function getRecentPhotographies(limit: number = 4): Promise<Photogr
 export async function getAllPhotographyPosts(): Promise<Photography[]> {
   const { photographies } = await getPaginatedPhotographies(1, { postsPerPage: 1000 });
   return photographies;
+}
+
+/**
+ * Converts a photography post to an RSS item.
+ * @param photo The photography post to convert.
+ * @returns The RSS item string.
+ */
+export function photographyToRssItem(photo: Photography): string {
+  const additionalImagesHtml = photo.additionalImages?.map(img => 
+    `<p><img src="${img.src}" alt="${img.alt || ''}" /></p>`
+  ).join('\n        ') || '';
+  
+  const additionalMediaContent = photo.additionalImages?.map(img => 
+    `<media:content xmlns:media="http://search.yahoo.com/mrss/" medium="image" url="${img.src}"/>`
+  ).join('\n      ') || '';
+  
+  return `
+    <item>
+      <guid>${siteMeta.baseUrl}/photography/${photo.slug}</guid>
+      <title>Photography: ${escapeXml(photo.title)}</title>
+      <link>${siteMeta.baseUrl}${photo.url}</link>
+      <pubDate>${dateformat(photo.publishedDate, 'ddd, dd mmm yyyy HH:MM:ss o', true)}</pubDate>
+      <content:encoded><![CDATA[
+        ${photo.title ? `<p>${photo.title}</p>` : ''}
+
+        ${photo.content}
+
+        ${photo.photoDate ? `<p>Photo${additionalImagesHtml ? 's' : ''} taken on ${dateformat(photo.photoDate, 'dddd, dd mmm yyyy', true)}</p>` : ''}
+
+        ${photo.image ? `<p><img src="${photo.image}" alt="${photo.imageAlt || ''}" /></p>` : ''}
+        ${additionalImagesHtml}        
+      ]]></content:encoded>
+      ${photo.image ? `<media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="${photo.image}"/>` : ''}
+      ${photo.image ? `<media:content xmlns:media="http://search.yahoo.com/mrss/" medium="image" url="${photo.image}"/>` : ''}
+      ${additionalMediaContent}
+    </item>
+  `;
 }
