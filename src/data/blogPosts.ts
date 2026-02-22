@@ -273,8 +273,7 @@ export function blogPostToRssItem(post: BlogPost, options: { excerptOnly?: boole
   content = content.replaceAll(`<img src="${rssSiteMeta.baseUrl}/cms/media/media/`, `<img src="${rssSiteMeta.baseUrl}/cms/media/`);
 
   const contentEncoded = excerptOnly
-    ? `<p>${escapeXml(post.excerpt)}</p>
-        <p><a href="${rssSiteMeta.baseUrl}/blog/${post.slug}">Read more</a></p>`
+    ? `<p>${escapeXml(post.excerpt)}</p>`
     : `<div style="margin: 50px 0; font-style: italic;">
           If anything looks wrong, 
           <strong>
