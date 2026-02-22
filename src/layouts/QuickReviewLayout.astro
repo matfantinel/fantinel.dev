@@ -1,10 +1,9 @@
 ---
-import Button from '@components/atoms/Button';
 import QuickReviewCard from '@components/molecules/QuickReviewCard';
+import ArchiveHero from '@components/organisms/ArchiveHero';
 import type { QuickReview } from '@schemas/quick-review';
 import BaseLayout from './BaseLayout.astro';
-import ArchiveHero from '@components/organisms/ArchiveHero';
-import dateformat from 'dateformat';
+import striptags from 'striptags';
 
 interface Props {
   review: QuickReview;
@@ -16,7 +15,7 @@ const { review }: Props = Astro.props;
 <BaseLayout
   title={review.title}
   keywords={review.title}
-  description={review.content}
+  description={striptags(review.content || '')}
   image={review.image}
   autoGenerateImage={!review.image}
   slug={`quick-reviews/${review.slug}`}
