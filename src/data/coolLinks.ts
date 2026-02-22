@@ -142,7 +142,7 @@ export function coolLinkToRssItem(link: CoolLink): string {
       <link>${link.url}</link>
       <pubDate>${dateformat(link.savedOn, 'ddd, dd mmm yyyy HH:MM:ss o', true)}</pubDate>
       <content:encoded><![CDATA[
-        ${link.title ? `<p>${link.title}${link.author ? ', by ' + link.author : ''}</p>` : ''}
+        ${link.author ? `<p>by ${link.author}</p>` : ''}
         
         ${link.content}
       ]]></content:encoded>
