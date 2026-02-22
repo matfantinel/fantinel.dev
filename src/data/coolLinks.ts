@@ -1,6 +1,8 @@
 import type { CoolLink, CoolLinkTag } from "@schemas/cool-link";
 import { getCollection } from "astro:content";
 import { slug } from 'github-slugger';
+import { escapeXml } from "@utils/rss";
+import dateformat from "dateformat";
 
 /**
  * Sanitizes a cool link to make it ready for using it in the UI.
@@ -125,4 +127,25 @@ export async function getAllTags(): Promise<CoolLinkTag[]> {
   });
 
   return uniqueTags;
+}
+
+/**
+ * Converts a cool link to an RSS item.
+ * @param link The cool link to convert.
+ * @returns The RSS item string.
+ */
+export function coolLinkToRssItem(link: CoolLink): string {
+  return `
+    <item>
+      <guid>${link.url}</guid>
+      <title>Cool Link: ${escapeXml(link.title as string)}</title>
+      <link>${link.url}</link>
+      <pubDate>${dateformat(link.savedOn, 'ddd, dd mmm yyyy HH:MM:ss o', true)}</pubDate>
+      <content:encoded><![CDATA[
+        ${link.title ? `<p><a href="${link.url}">${link.title}</a>${link.author ? ', by ' + link.author : ''}</p>` : ''}
+        
+        ${link.content}
+      ]]></content:encoded>
+    </item>
+  `;
 }

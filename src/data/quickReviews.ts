@@ -3,6 +3,8 @@ import { handleCmsMediaPath } from "@utils/functions";
 import { getCollection } from "astro:content";
 import { slug } from 'github-slugger';
 import { QuickReviewType, QuickReviewRating, getTypeFromLowercaseKey, getRatingFromLowercaseKey } from "@schemas/quick-review-types";
+import { escapeXml, siteMeta } from "@utils/rss";
+import dateformat from "dateformat";
 
 /**
  * Sanitizes a quick review to make it ready for using it in the UI.
@@ -89,4 +91,37 @@ export async function getRecentReviews(limit: number = 4): Promise<QuickReview[]
 export async function getAllQuickReviews(): Promise<QuickReview[]> {
   const { reviews } = await getPaginatedReviews(1, undefined, undefined, { postsPerPage: 1000 });
   return reviews;
+}
+
+/**
+ * Converts a quick review to an RSS item.
+ * @param review The quick review to convert.
+ * @returns The RSS item string.
+ */
+export function quickReviewToRssItem(review: QuickReview): string {
+  // Reviews don't have time, so we're setting it to 12:00 UTC
+  const date = new Date(review.date);
+  date.setUTCHours(12, 0, 0, 0);
+
+  let coverImage = review.image ? escapeXml(review.image) : null;
+  if (coverImage && !coverImage.includes(siteMeta.baseUrl) && !coverImage.startsWith('http')) {
+    coverImage = `${siteMeta.baseUrl}${coverImage}`;
+  }
+  return `
+    <item>
+      <guid>${siteMeta.baseUrl}/quick-reviews/${review.slug}</guid>
+      <title>Quick Review: ${escapeXml(review.title)}</title>
+      <link>${siteMeta.baseUrl}/quick-reviews/${review.slug}</link>
+      <pubDate>${dateformat(date, 'ddd, dd mmm yyyy HH:MM:ss o', true)}</pubDate>
+      <content:encoded><![CDATA[
+        ${review.title ? `<p>${review.title}${review.metadata ? ` <br> ${review.metadata}` : ''}</p>` : ''}
+        ${review.rating ? `<p>My rating: ${review.rating}</p>` : ''}
+        ${coverImage ? `<p><img src="${coverImage}" /></p>` : ''}
+        
+        ${review.content}
+      ]]></content:encoded>
+      ${coverImage ? `<media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="${coverImage}"/>` : ''}
+      ${coverImage ? `<media:content xmlns:media="http://search.yahoo.com/mrss/" medium="image" url="${coverImage}"/>` : ''}          
+    </item>
+  `;
 }
