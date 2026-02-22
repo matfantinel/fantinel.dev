@@ -11,6 +11,10 @@
   @include mixins.padded-container-small;
 }
 
+.u-container-large {
+  @include mixins.padded-container-large;
+}
+
 .u-spaced-content {
   display: flex;
   flex-direction: column;

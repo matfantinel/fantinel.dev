@@ -54,8 +54,8 @@ if (post.data.ogImage) {
         slug={post.data.slug}
         author={post.data.author}
         date={post.data.date}
-        updated={post.data.updated}
-        readingTime={post.data.readingTime}
+        updated={post.data.updated || undefined}
+        readingTime={post.data.readingTime || undefined}
         tags={post.data.categories}
         client:load
       />
@@ -67,14 +67,14 @@ if (post.data.ogImage) {
           post.data.coverImage ? 'l-post__content-wrapper--has-image' : '',
         ].join(' ')}
       >
-        {showToc && <TableOfContents class='l-post__toc' headings={post.data.toc} client:load />}
+        {showToc && post.data.toc && <TableOfContents class='l-post__toc' headings={post.data.toc} client:load />}
 
         {
           post.data.coverImage && (
             <Image
               class='l-post__cover-image'
               src={handleCmsMediaPath(post.data.coverImage!)}
-              alt={post.data.coverImageAlt}
+              alt={post.data.coverImageAlt || ''}
               lazy={false}
             />
           )
@@ -84,7 +84,7 @@ if (post.data.ogImage) {
           id='post-content'
           class={['l-post__content', 'u-markdown', showToc ? false : 'l-post__content--full'].filter(Boolean).join(' ')}
         >
-          <MarkdownRenderer content={post.body} client:load />
+          <MarkdownRenderer content={post.body || ''} client:load />
         </div>
       </div>
 
@@ -94,8 +94,8 @@ if (post.data.ogImage) {
             <AboutAuthor
               kicker='Written by'
               name={post.data.author.name}
-              bio={post.data.author.shortBio}
-              image={post.data.author.image}
+              bio={post.data.author.shortBio || ''}
+              image={post.data.author.image || ''}
               extraImages={post.data.author.extraImages}
               socials={post.data.author.socials}
               button={{ text: 'About', url: '/about' }}

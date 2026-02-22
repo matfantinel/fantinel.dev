@@ -31,6 +31,10 @@
         grid-template-columns: 1fr;
       }
     }
+
+    &--max-per-row-1 {
+      grid-template-columns: 1fr;
+    }
   }
 
 </style>
