@@ -2,6 +2,9 @@
   import type { FilterGroup } from '@schemas/filter';
   import Tag from '@components/atoms/Tag';
   import Tags from '@components/molecules/Tags';
+  import { onMount } from 'svelte';
+  import Button from '@components/atoms/Button';
+  import FilterIcon from '@assets/icons/filter.svelte';
 
   let {
     heading,
@@ -21,7 +24,7 @@
     class?: string;
   } = $props();
 
-  function renderFilterGroup(group: FilterGroup, depth: number = 0) {
+  function normalizeFilterGroup(group: FilterGroup, depth: number = 0) {
     const hasNestedGroups = group.groups && group.groups.length > 0;
     const hasTags = group.tags && group.tags.length > 0;
 
@@ -29,47 +32,63 @@
       group,
       depth,
       hasNestedGroups,
-      hasTags
+      hasTags,
     };
   }
+
+  let supportsInvokerCommands = $state(false);
+  $effect(() => {
+    if (typeof window !== 'undefined') {
+      supportsInvokerCommands = 'commandForElement' in HTMLButtonElement.prototype;
+    }
+  });
+
+  function handleFiltersClick() {
+    if (!supportsInvokerCommands) {
+      const dialog = document.getElementById('filters-modal') as HTMLDialogElement;
+      dialog?.showModal();
+    }
+  }
+
+  let classList = $derived(['m-filters', className]);
 </script>
 
-<div class={['m-filters', className]}>
+{#snippet filtersContent()}
   {#if heading}
     <h2 class="m-filters__heading">{heading}</h2>
   {/if}
 
   <div class="m-filters__groups">
     {#each filterGroups as filterGroup}
-      {@const rendered = renderFilterGroup(filterGroup)}
-      <div class="m-filters__group" data-depth={rendered.depth}>
-        <h3 class="m-filters__group-label">{rendered.group.label}</h3>
-        
-        {#if rendered.hasTags}
-          <Tags size={size} class="m-filters__tags" centered={centered}>
-            {#each rendered.group.tags as tag}
-              <Tag size={size} href={tag.url} selected={tag.active} color={tagColor}>
+      {@const normalized = normalizeFilterGroup(filterGroup)}
+      <div class="m-filters__group" data-depth={normalized.depth}>
+        <p class="m-filters__group-label">{normalized.group.label}</p>
+
+        {#if normalized.hasTags}
+          <Tags {size} class="m-filters__tags" {centered}>
+            {#each normalized.group.tags as tag}
+              <Tag {size} href={tag.url} selected={tag.active} color={tagColor}>
                 {tag.name} ({tag.count})
               </Tag>
             {/each}
           </Tags>
         {/if}
 
-        {#if rendered.hasNestedGroups}
+        {#if normalized.hasNestedGroups}
           <div class="m-filters__nested-groups">
-            {#each rendered.group.groups as nestedGroup}
-              {@const nestedRendered = renderFilterGroup(nestedGroup, rendered.depth + 1)}
-              {@const hasActiveTag = nestedRendered.hasTags && nestedRendered.group.tags?.some(tag => tag.active)}
+            {#each normalized.group.groups as nestedGroup}
+              {@const nestedNormalized = normalizeFilterGroup(nestedGroup, normalized.depth + 1)}
+              {@const hasActiveTag = nestedNormalized.hasTags && nestedNormalized.group.tags?.some((tag) => tag.active)}
               {#if collapseInnerGroups}
                 <details class="m-filters__details" open={hasActiveTag}>
                   <summary class="m-filters__group-label m-filters__group-label--nested m-filters__summary">
-                    {nestedRendered.group.label}
+                    {nestedNormalized.group.label}
                   </summary>
-                  <div class="m-filters__group m-filters__group--nested" data-depth={nestedRendered.depth}>
-                    {#if nestedRendered.hasTags}
-                      <Tags size={size} class="m-filters__tags" centered={centered}>
-                        {#each nestedRendered.group.tags as tag}
-                          <Tag size={size} href={tag.url} selected={tag.active} color={tagColor}>
+                  <div class="m-filters__group m-filters__group--nested" data-depth={nestedNormalized.depth}>
+                    {#if nestedNormalized.hasTags}
+                      <Tags {size} class="m-filters__tags" {centered}>
+                        {#each nestedNormalized.group.tags as tag}
+                          <Tag {size} href={tag.url} selected={tag.active} color={tagColor}>
                             {tag.name} ({tag.count})
                           </Tag>
                         {/each}
@@ -78,13 +97,13 @@
                   </div>
                 </details>
               {:else}
-                <div class="m-filters__group m-filters__group--nested" data-depth={nestedRendered.depth}>
-                  <h4 class="m-filters__group-label m-filters__group-label--nested">{nestedRendered.group.label}</h4>
-                  
-                  {#if nestedRendered.hasTags}
-                    <Tags size={size} class="m-filters__tags" centered={centered}>
-                      {#each nestedRendered.group.tags as tag}
-                        <Tag size={size} href={tag.url} selected={tag.active} color={tagColor}>
+                <div class="m-filters__group m-filters__group--nested" data-depth={nestedNormalized.depth}>
+                  <h4 class="m-filters__group-label m-filters__group-label--nested">{nestedNormalized.group.label}</h4>
+
+                  {#if nestedNormalized.hasTags}
+                    <Tags {size} class="m-filters__tags" {centered}>
+                      {#each nestedNormalized.group.tags as tag}
+                        <Tag {size} href={tag.url} selected={tag.active} color={tagColor}>
                           {tag.name} ({tag.count})
                         </Tag>
                       {/each}
@@ -97,6 +116,33 @@
         {/if}
       </div>
     {/each}
+  </div>
+{/snippet}
+
+{#snippet filtersIconSnippet()}<FilterIcon size="18px" />{/snippet}
+
+<div class={classList}>
+  <div class="m-filters__mobile">
+    <Button
+      class="m-filters__mobile-button"
+      icon={filtersIconSnippet}
+      aria-label="Show filters"
+      commandfor="filters-modal"
+      command="show-modal"
+      onclick={handleFiltersClick}
+    >
+      Filters
+    </Button>
+    <dialog class={['m-filters__mobile-dialog', className]} id="filters-modal">
+      <div class="m-filters__mobile-dialog__container">
+        <Button color="complementary" commandfor="filters-modal" command="close">Close</Button>
+        {@render filtersContent()}
+      </div>
+    </dialog>
+  </div>
+
+  <div class="m-filters__desktop">
+    {@render filtersContent()}
   </div>
 </div>
 
@@ -179,6 +225,28 @@
 
     &__details[open] &__summary::before {
       transform: rotate(90deg);
+    }
+
+    &__mobile {
+      display: none;
+    }
+
+    &__desktop {
+      display: block;
+    }
+
+    @include breakpoints.for-tablet-portrait-down {
+      .m-filters {
+        &__mobile {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        &__desktop {
+          display: none;
+        }
+      }
     }
   }
 </style>

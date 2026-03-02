@@ -21,15 +21,15 @@ interface Props {
   className?: string;
 }
 
-const { 
-  title, 
-  heroTitle, 
-  heroBody, 
-  baseUrl, 
+const {
+  title,
+  heroTitle,
+  heroBody,
+  baseUrl,
   basePaginationUrl,
-  currentPage, 
-  totalPages, 
-  filterGroups, 
+  currentPage,
+  totalPages,
+  filterGroups,
   summaryText,
   className,
 }: Props = Astro.props;
@@ -37,26 +37,26 @@ const {
 const siteMeta: SiteMeta = metaConfig;
 
 // Update active filter URLs to point to base URL (deselect filter)
-const processedFilterGroups = filterGroups?.map(group => {
+const processedFilterGroups = filterGroups?.map((group) => {
   if (group.tags) {
     return {
       ...group,
-      tags: group.tags.map(tag => ({
+      tags: group.tags.map((tag) => ({
         ...tag,
-        url: tag.active ? baseUrl : tag.url
-      }))
+        url: tag.active ? baseUrl : tag.url,
+      })),
     };
   }
   if (group.groups) {
     return {
       ...group,
-      groups: group.groups.map(nestedGroup => ({
+      groups: group.groups.map((nestedGroup) => ({
         ...nestedGroup,
-        tags: nestedGroup.tags?.map(tag => ({
+        tags: nestedGroup.tags?.map((tag) => ({
           ...tag,
-          url: tag.active ? baseUrl : tag.url
-        }))
-      }))
+          url: tag.active ? baseUrl : tag.url,
+        })),
+      })),
     };
   }
   return group;
@@ -66,15 +66,21 @@ const processedFilterGroups = filterGroups?.map(group => {
 <BaseLayout title={title} autoGenerateImage hasHeaderBackground>
   <div class={`l-base-archive ${className || ''}`}>
     <div class='l-base-archive__container'>
-      <ArchiveHero
-        class='l-base-archive__hero'
-        title={heroTitle}
-        body={heroBody}
-      />
+      <ArchiveHero class='l-base-archive__hero' title={heroTitle} body={heroBody} />
 
       <div class='l-base-archive__content-wrapper u-container-large'>
         <div class='l-base-archive__side'>
-          {processedFilterGroups && processedFilterGroups.length > 0 && <Filters filterGroups={processedFilterGroups} size="small" tagColor="inverted" collapseInnerGroups />}
+          {
+            processedFilterGroups && processedFilterGroups.length > 0 && (
+              <Filters
+                filterGroups={processedFilterGroups}
+                size='small'
+                tagColor='inverted'
+                collapseInnerGroups
+                client:load
+              />
+            )
+          }
         </div>
 
         <div class='l-base-archive__main'>
@@ -160,6 +166,5 @@ const processedFilterGroups = filterGroups?.map(group => {
       text-align: center;
       color: var(--theme--color-accent);
     }
-
   }
 </style>
