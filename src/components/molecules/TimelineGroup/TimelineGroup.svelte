@@ -132,6 +132,10 @@
       background: rgba(var(--theme--background-base-color-rgb), 0.9);
       border-bottom-left-radius: var(--border-radius--small);
       border-bottom-right-radius: var(--border-radius--small);
+
+      @include breakpoints.for-phone-only {
+        position: relative;
+      }
     }
 
     &:not(:first-child) {
