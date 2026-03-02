@@ -110,13 +110,11 @@ export function photographyToRssItem(photo: Photography): string {
       <link>${siteMeta.baseUrl}${photo.url}</link>
       <pubDate>${dateformat(photo.publishedDate, 'ddd, dd mmm yyyy HH:MM:ss o', true)}</pubDate>
       <content:encoded><![CDATA[
-        ${photo.title ? `<p>${photo.title}</p>` : ''}
-
         ${photo.content}
 
         ${photo.photoDate ? `<p>Photo${additionalImagesHtml ? 's' : ''} taken on ${dateformat(photo.photoDate, 'dddd, dd mmm yyyy', true)}</p>` : ''}
 
-        ${photo.image ? `<p><img src="${photo.image}" alt="${photo.imageAlt || ''}" /></p>` : ''}
+        ${photo.image ? `<p><img src="${siteMeta.baseUrl}${photo.image}" alt="${photo.imageAlt || ''}" /></p>` : ''}
         ${additionalImagesHtml}        
       ]]></content:encoded>
       ${photo.image ? `<media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="${photo.image}"/>` : ''}
