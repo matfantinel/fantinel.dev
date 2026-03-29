@@ -27,10 +27,10 @@
     kicker: 'About the author',
     name: 'Doggy Dogginton',
     bio: LoremIpsum.paragraph,
-    image: "https://placedog.net/500/500", 
+    image: "https://picsum.photos/500/500", 
     extraImages: [
-      "https://placedog.net/501/501",
-      "https://placedog.net/502/502",
+      "https://picsum.photos/501/501",
+      "https://picsum.photos/502/502",
     ],
     socials: [
       {

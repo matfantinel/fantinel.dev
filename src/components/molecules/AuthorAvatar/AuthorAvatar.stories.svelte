@@ -25,7 +25,7 @@
 <Story
   name="Default"
   args={{
-    src: 'https://placedog.net/100/100',
+    src: 'https://picsum.photos/100/100',
     alt: 'Doggy Dogginton',
     size: '50px',
   }}
@@ -34,8 +34,8 @@
 <Story
   name="Multiple Images"
   args={{
-    src: 'https://placedog.net/100/100',
-    extraImages: ['https://placedog.net/200/200', 'https://placedog.net/300/300'],
+    src: 'https://picsum.photos/100/100',
+    extraImages: ['https://picsum.photos/200/200', 'https://picsum.photos/300/300'],
     alt: 'Doggy Dogginton',
     size: '100px',
   }}

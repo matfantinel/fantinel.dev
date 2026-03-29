@@ -19,7 +19,7 @@
 {#snippet template(args)}
   <div style="width: min(100%, 800px); aspect-ratio: 1 / 1;">
     <PhotographyThumbnail
-      image={args.image || 'https://placedog.net/1000/1000'}
+      image={args.image || 'https://picsum.photos/1000/1000'}
       {...args}
     />
   </div>
@@ -28,16 +28,16 @@
 <Story
   name="Single Photo"
   args={{
-    image: 'https://placedog.net/1000/1000',
+    image: 'https://picsum.photos/1000/1000',
   }}
 />
 
 <Story
   name="Two Photos"
   args={{
-    image: 'https://placedog.net/1000/1000',
+    image: 'https://picsum.photos/1000/1000',
     additionalImages: [
-      { src: 'https://placedog.net/800/450', alt: 'Additional image 1' },
+      { src: 'https://picsum.photos/800/450', alt: 'Additional image 1' },
     ],
   }}
 />
@@ -45,10 +45,10 @@
 <Story
   name="Three Photos"
   args={{
-    image: 'https://placedog.net/1000/1000',
+    image: 'https://picsum.photos/1000/1000',
     additionalImages: [
-      { src: 'https://placedog.net/800/450', alt: 'Additional image 1' },
-      { src: 'https://placedog.net/450/800', alt: 'Additional image 2' },
+      { src: 'https://picsum.photos/800/450', alt: 'Additional image 1' },
+      { src: 'https://picsum.photos/450/800', alt: 'Additional image 2' },
     ],
   }}
 />
@@ -56,12 +56,12 @@
 <Story
   name="Five Photos"
   args={{
-    image: 'https://placedog.net/1000/1000',
+    image: 'https://picsum.photos/1000/1000',
     additionalImages: [
-      { src: 'https://placedog.net/800/450', alt: 'Additional image 1' },
-      { src: 'https://placedog.net/600/600', alt: 'Additional image 3' },
-      { src: 'https://placedog.net/450/800', alt: 'Additional image 2' },
-      { src: 'https://placedog.net/500/900', alt: 'Additional image 4' },
+      { src: 'https://picsum.photos/800/450', alt: 'Additional image 1' },
+      { src: 'https://picsum.photos/600/600', alt: 'Additional image 3' },
+      { src: 'https://picsum.photos/450/800', alt: 'Additional image 2' },
+      { src: 'https://picsum.photos/500/900', alt: 'Additional image 4' },
     ],
   }}
 />
