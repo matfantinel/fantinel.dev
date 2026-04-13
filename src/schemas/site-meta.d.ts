@@ -2,6 +2,7 @@ export type SiteMeta = {
   baseUrl: string;
   title: string;
   image: string;
+  posthogId: string;
   author: SiteAuthor;
   keywords: string[];
   description: string;
