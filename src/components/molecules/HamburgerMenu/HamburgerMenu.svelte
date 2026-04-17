@@ -86,7 +86,7 @@
             icon={link.icon}
             active={link.active}
             color={link.color}
-            onclick={handleMenuItemClick}
+            onclick={handleMenuItemClick}            
           >
             {link.label}
           </NavMenuLink>

@@ -33,7 +33,7 @@
   const slug = slugger.slug(title);
 </script>
 
-<div class={classList} style={`view-transition-name: archive-hero-${slug}`}>
+<div class={classList}>
   <div class="o-archive-hero__container">
     <div class="o-archive-hero__main u-container">
       <div class="o-archive-hero__content">
@@ -74,7 +74,6 @@
                     href={tag.url}
                     selected={tag.active}
                     title={`View all posts in category "${tag.name}"`}
-                    style={`view-transition-name: tag-${tag.name.replace('#', '')}`}
                   >
                     {tag.name}
                   </Tag>
@@ -105,6 +104,7 @@
     margin-top: calc(var(--spacing-lg) * -1);
     margin-left: -1px;
     position: relative;
+    isolation: isolate;
     overflow: hidden;
 
     &__container {

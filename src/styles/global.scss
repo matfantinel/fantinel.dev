@@ -12,6 +12,10 @@
 @use '/src/styles/_view-transitions.scss';
 // @use '/src/styles/animations.scss';
 
+@view-transition {
+  navigation: auto; /* enabled! */
+}
+
 html {
 	background: var(--theme--background-base-color);
 }

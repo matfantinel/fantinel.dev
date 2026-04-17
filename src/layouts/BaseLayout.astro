@@ -78,7 +78,7 @@ const pathname = new URL(Astro.request.url).pathname;
     <div class='l-base'>
       <Header client:load {currentSearch} transition:persist hasBackground={hasHeaderBackground} {currentUrl} />
 
-      <main style='view-transition-name: main'>
+      <main>
         <slot />
         <div class='u-noise'></div>
       </main>
