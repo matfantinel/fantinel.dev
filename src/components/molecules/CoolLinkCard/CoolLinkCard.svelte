@@ -29,7 +29,7 @@
   const slugger = new GithubSlugger();
 </script>
 
-<article class={['m-cool-link-card', className]} {...props} style={`view-transition-name: cool-link-${slugger.slug(title)}`}>
+<article class={['m-cool-link-card', className]} {...props}>
   <div class="m-cool-link-card__container">
     <div class="m-cool-link-card__header">
       <p class="m-cool-link-card__title">

@@ -25,6 +25,7 @@
     icon?: Snippet;
     children?: Snippet;
     onclick?: EventListener;
+    [key: string]: any;
   } = $props();
 
   let tag = $derived(href ? 'a' : 'button');
