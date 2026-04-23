@@ -10,6 +10,7 @@
     target,
     rel,
     title,
+    color,
     class: className,
     icon,
     children,
@@ -21,6 +22,7 @@
     target?: string;
     rel?: string;
     title?: string;
+    color?: 'default' | 'inverted';
     class?: string;
     icon?: Snippet;
     children?: Snippet;
@@ -39,6 +41,7 @@
     'a-tag',
     size ? `a-tag--${size}` : undefined,
     selected ? 'a-tag--selected' : undefined,
+    color ? `a-tag--${color}` : undefined,
     className,
   ]);
 </script>
@@ -122,6 +125,11 @@
           @include typography.b3;
         }
       }
+    }
+
+    &--inverted {
+      --tag-color-background: var(--theme--color-tags-background-hover);
+      --tag-color-background-hover: var(--theme--color-tags-background);
     }
 
     &--small {

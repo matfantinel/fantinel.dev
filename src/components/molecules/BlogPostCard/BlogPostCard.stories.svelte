@@ -32,7 +32,7 @@
 <Story
   name="Default"
   args={{
-    image: 'https://placedog.net/600/315',
+    image: 'https://picsum.photos/600/315',
     readingTime: '5 min',
     excerpt: LoremIpsum.paragraph,
     tags: ['Tag 1', 'Tag 2'],
@@ -61,7 +61,7 @@
 <Story
   name="No Excerpt"
   args={{
-    image: 'https://placedog.net/600/315',
+    image: 'https://picsum.photos/600/315',
     readingTime: '5 min',
     tags: ['Tag 1', 'Tag 2'],
   }}
@@ -70,7 +70,7 @@
 <Story
   name="No Tags"
   args={{
-    image: 'https://placedog.net/600/315',
+    image: 'https://picsum.photos/600/315',
     readingTime: '5 min',
     excerpt: LoremIpsum.paragraph,
   }}
