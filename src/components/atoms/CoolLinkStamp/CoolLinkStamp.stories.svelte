@@ -4,7 +4,7 @@
   import CoolLinkStamp from './CoolLinkStamp.svelte';
 
   const { Story } = defineMeta({
-    title: 'Atoms/Cool Link Badge',
+    title: 'Atoms/Cool Link Stamp',
     component: CoolLinkStamp,
     tags: ['autodocs'],
     argTypes: {

@@ -127,7 +127,7 @@
   .m-quick-review-card {
     padding: var(--spacing-sm);
     border-radius: var(--border-radius);
-    box-shadow: var(--theme--shadow-card);
+    box-shadow: var(--t-v6--shadow--base);
     width: min(100%, 780px);
     container-type: inline-size;
     position: relative;

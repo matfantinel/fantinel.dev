@@ -62,7 +62,7 @@
 		font-size: 1rem;
 		line-height: 1.33em;
 		border-radius: 8px;
-		box-shadow: var(--theme--shadow-card);
+		box-shadow: var(--t-v6--shadow--base);
 
 		padding: var(--spacing-lg) var(--spacing-sm) var(--spacing-md);
 		margin: var(--spacing-lg) 0;

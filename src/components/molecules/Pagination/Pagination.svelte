@@ -103,7 +103,7 @@
 
       &--active {
         background-color: var(--theme--background-card-color);
-        box-shadow: var(--theme--shadow-card);
+        box-shadow: var(--t-v6--shadow--base);
         color: var(--theme--color-accent);
       }
     }

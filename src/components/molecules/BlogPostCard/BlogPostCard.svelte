@@ -84,7 +84,7 @@
 
   .m-blog-post-card {
     border-radius: var(--border-radius);
-    box-shadow: var(--theme--shadow-card);
+    box-shadow: var(--t-v6--shadow--base);
     background-color: var(--theme--background-card-color);
     overflow: hidden;
     position: relative;

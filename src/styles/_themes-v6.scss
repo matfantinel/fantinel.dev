@@ -1,0 +1,299 @@
+// v6 theme — parallel system used during the Figma redesign migration.
+//
+// Naming convention (temporary, for the duration of the migration):
+// - Global palette colors:   --palette-v6--<name>
+// - Contextual theme tokens: --t-v6--<name>
+//
+// At cutover, these will be renamed via a single global find/replace:
+//   --palette-v6-- -> --palette--
+//   --t-v6-- -> --t--
+// and this file + its mixins will be deleted.
+//
+// While migrating, a component is either fully on the old system OR fully on
+// v6 — never mixing both — so there's no risk of name collisions.
+
+@use 'sass:list';
+@use './_functions.scss' as functions;
+
+// Mirrors define-color from _mixins.scss, but emits --palette-v6--* variables.
+@mixin define-color-v6($title, $color, $inverted_color) {
+  --palette-v6--#{$title}: #{$color};
+  // --palette-v6--#{$title}--inverted: #{$inverted_color};
+
+  --palette-v6--#{$title}--rgb: #{functions.red($color)}, #{functions.green($color)}, #{functions.blue($color)};
+  // --palette-v6--#{$title}--rgb--inverted:
+  //   #{functions.red($inverted_color)}, #{functions.green($inverted_color)}, #{functions.blue($inverted_color)};
+
+  --palette-v6--#{$title}--contrast: #{if(
+      functions.brightness($color) > 186,
+      var(--t-v6--text--base),
+      var(--t-v6--text--inverse)
+    )};
+
+  --palette-v6--#{$title}--shade: hsl(
+    #{functions.hue($color)},
+    #{functions.saturation($color)},
+    calc(#{functions.lightness($color)} - 10%)
+  );
+
+  --palette-v6--#{$title}--tint: hsl(
+    #{functions.hue($color)},
+    #{functions.saturation($color)},
+    calc(#{functions.lightness($color)} + 10%)
+  );
+
+  --palette-v6--#{$title}--glow: 0 0 40px rgba(var(--palette-v6--#{$title}--rgb), 0.4);
+  --palette-v6--#{$title}--glow-small: 0 0 20px rgba(var(--palette-v6--#{$title}--rgb), 0.4);
+  --palette-v6--#{$title}--glow-tiny: 0 0 3px rgba(var(--palette-v6--#{$title}--rgb), 0.4);
+}
+
+// Points a named contextual color (accent, complementary, post-type, etc.)
+// at a color from the palette OR at another already-defined named color.
+// Emits all variant variables in one go.
+//
+// Usage:
+//   @include set-named-color('accent', 'teal');                      // from palette
+//   @include set-named-color('accent', $from-named: 'quick-review'); // from another named color
+@mixin set-named-color($name, $palette-color: null, $from-named: null) {
+  @if $palette-color == null and $from-named == null {
+    @error "set-named-color('#{$name}'): provide either a palette color or $from-named.";
+  }
+
+  $source: if($from-named != null, --t-v6--#{$from-named}, --palette-v6--#{$palette-color});
+
+  --t-v6--#{$name}: var(#{$source});
+  --t-v6--#{$name}--rgb: var(#{$source}--rgb);
+  --t-v6--#{$name}--contrast: var(#{$source}--contrast);
+  --t-v6--#{$name}--shade: var(#{$source}--shade);
+  --t-v6--#{$name}--tint: var(#{$source}--tint);
+  --t-v6--#{$name}--glow: var(#{$source}--glow);
+  --t-v6--#{$name}--glow-small: var(#{$source}--glow-small);
+  --t-v6--#{$name}--glow-tiny: var(#{$source}--glow-tiny);
+}
+
+// #region Palettes
+
+// Single source of truth for all palette colors.
+// Each entry: (name, light-hex, dark-hex).
+// - In the light palette, the "color" is the light hex and "inverted" is the dark hex.
+// - In the dark palette, these are swapped.
+// Reminder (because I seem to forget this all the time: the dark colors are specifically the "Mocha" palette.
+// prettier-ignore
+$palette-v6-colors: (
+  ('rosewater', #DC8A78, #F5E0DC),
+  ('flamingo',  #DD7878, #F2CDCD),
+  ('pink',      #EA76CB, #F5C2E7),
+  ('mauve',     #8839EF, #CBA6F7),
+  ('red',       #D20F39, #F38BA8),
+  ('maroon',    #E64553, #EBA0AC),
+  ('peach',     #FE640B, #FAB387),
+  ('yellow',    #DF8E1D, #F9E2AF),
+  ('green',     #40A02B, #A6E3A1),
+  ('teal',      #179299, #94E2D5),
+  ('sky',       #04A5E5, #89DCEB),
+  ('sapphire',  #209FB5, #74C7EC),
+  ('blue',      #1E66F5, #89B4FA),
+  ('lavender',  #7287FD, #B4BEFE),
+
+  ('gray-min',  #11111B, #FFFFFF),
+  ('gray-0',    #4C4F69, #cdd6f4),
+  ('gray-50',   #5C5F77, #bac2de),
+  ('gray-100',  #6C6F85, #a6adc8),
+  ('gray-200',  #7C7F93, #9399b2),
+  ('gray-300',  #8C8FA1, #7f849c),
+  ('gray-400',  #9CA0B0, #6c7086),
+  ('gray-500',  #ACB0BE, #585b70),
+  ('gray-600',  #BCC0CC, #45475a),
+  ('gray-700',  #CCD0DA, #313244),
+  ('gray-800',  #DCE0E8, #1e1e2e),
+  ('gray-900',  #E6E9EF, #181825),
+  ('gray-1000', #EFF1F5, #11111b),
+  ('gray-max',  #FFFFFF, #11111B)  
+);
+
+@mixin light-palette-v6 {
+  @each $entry in $palette-v6-colors {
+    @include define-color-v6(list.nth($entry, 1), list.nth($entry, 2), list.nth($entry, 3));
+  }
+}
+
+@mixin dark-palette-v6 {
+  @each $entry in $palette-v6-colors {
+    @include define-color-v6(list.nth($entry, 1), list.nth($entry, 3), list.nth($entry, 2));
+  }
+}
+
+@function palette-light($name) {
+  @each $entry in $palette-v6-colors {
+    @if list.nth($entry, 1) == $name {
+      @return list.nth($entry, 2);
+    }
+  }
+  @error "palette-light: no color named '#{$name}' in $palette-v6-colors.";
+}
+
+@function palette-dark($name) {
+  @each $entry in $palette-v6-colors {
+    @if list.nth($entry, 1) == $name {
+      @return list.nth($entry, 3);
+    }
+  }
+  @error "palette-dark: no color named '#{$name}' in $palette-v6-colors.";
+}
+
+// #endregion
+
+// #region Shared theme tokens (apply to both light and dark)
+
+@mixin theme-base-v6 {
+  // #region Colors — Accent /complementary / post types / context
+  @include set-named-color('accent', 'teal');
+  @include set-named-color('complementary', 'rosewater');
+  @include set-named-color('blog', 'teal');
+  @include set-named-color('quick-review', 'peach');
+  @include set-named-color('cool-link', 'blue');
+  @include set-named-color('photography', 'maroon');
+
+  @include set-named-color('info', 'blue');
+  @include set-named-color('warning', 'yellow');
+  @include set-named-color('success', 'green');
+  // #endregion
+
+  // #region Colors — typography
+  --t-v6--text--base: var(--palette-v6--gray-0);
+  --t-v6--text--inverse: var(--palette-v6--gray-1000);
+  --t-v6--text--medium: var(--palette-v6--gray-50);
+  --t-v6--text--light: var(--palette-v6--gray-500);
+  --t-v6--text--heavy: var(--palette-v6--gray-min);
+  --t-v6--text--accent: var(--t-v6--accent);
+  // #endregion
+
+  // #region Colors — Surfaces / Borders
+  --t-v6--surface--base: var(--palette-v6--gray-1000);
+  --t-v6--surface--root: var(--palette-v6--gray-900);
+  --t-v6--surface--accent: var(--palette-v6--gray-max);
+  --t-v6--surface--card: var(--palette-v6--gray-max);
+
+  --t-v6--border--base: var(--palette-v6--gray-200);
+  --t-v6--border--medium: var(--palette-v6--gray-500);
+  --t-v6--border--light: var(--palette-v6--gray-700);
+  --t-v6--border--heavy: var(--palette-v6--gray-0);
+  // #endregion
+
+  // #region Colors — Components
+
+  // #region Input
+  --t-v6--input--border--empty: var(--t-v6--border--base);
+  --t-v6--input--border--hover: var(--t-v6--border--base);
+  --t-v6--input--border--active: var(--t-v6--accent);
+  --t-v6--input--border--filled: var(--t-v6--border--heavy);
+
+  --t-v6--input--bg--empty: transparent;
+  --t-v6--input--bg--hover: var(--t-v6--surface--root);
+  --t-v6--input--bg--active: var(--t-v6--surface--root);
+  --t-v6--input--bg--filled: transparent;
+
+  --t-v6--input--text--placeholder: var(--t-v6--text--light);
+  --t-v6--input--text--value: var(--t-v6--text--base);
+  // #endregion
+
+  // #region Tag
+  --t-v6--tag--border--base: var(--t-v6--border--light);
+  --t-v6--tag--border--hover: var(--t-v6--border--medium);
+  --t-v6--tag--border--active: var(--t-v6--accent);
+
+  --t-v6--tag--bg--base: var(--t-v6--surface--base);
+  --t-v6--tag--bg--hover: var(--t-v6--surface--accent);
+  --t-v6--tag--bg--active: var(--t-v6--surface--accent);
+  --t-v6--tag--bg--contrast: var(--t-v6--surface--base);
+
+  --t-v6--tag--text--base: var(--t-v6--text--medium);
+  --t-v6--tag--text--hover: var(--t-v6--text--medium);
+  --t-v6--tag--text--active: var(--t-v6--accent);
+  // #endregion
+
+  // #region CodeBlock
+  --t-v6--codeblock--bg: var(--palette-v6--gray-min);
+  --t-v6--codeblock--text: var(--palette-v6--gray-900);
+  // #endregion
+
+  // #endregion
+
+  // #region Shadows
+  --t-v6--shadow--base: 0 4px 10px 0 rgba(0, 0, 0, 0.1);
+  --t-v6--shadow--low: 1px 3px 8px 0 rgba(0, 0, 0, 0.03);
+  --t-v6--shadow--high: 0 0px 20px 4px rgba(0, 0, 0, 0.2);
+  // #endregion
+
+  // #region Gradients
+  --t-v6--gradient--greenish: linear-gradient(to right, var(--palette-v6--teal), var(--palette-v6--sky));
+  --t-v6--gradient--pinkish: linear-gradient(to right, var(--palette-v6--pink), var(--palette-v6--mauve), var(--palette-v6--lavender));
+  
+  // Always the Mocha (dark) palette, regardless of the active theme.
+  --t-v6--gradient--rainbow: linear-gradient(
+    to right,
+    #{palette-dark('pink')},
+    #{palette-dark('mauve')},
+    #{palette-dark('red')},
+    #{palette-dark('maroon')},
+    #{palette-dark('peach')},
+    #{palette-dark('yellow')},
+    #{palette-dark('green')},
+    #{palette-dark('teal')},
+    #{palette-dark('sky')},
+    #{palette-dark('sapphire')},
+    #{palette-dark('blue')},
+    #{palette-dark('lavender')}
+  );
+
+  --t-v6--gradient--rainbow--circle: conic-gradient(
+    from 0deg,
+    #{palette-dark('pink')},
+    #{palette-dark('mauve')},
+    #{palette-dark('red')},
+    #{palette-dark('maroon')},
+    #{palette-dark('peach')},
+    #{palette-dark('yellow')},
+    #{palette-dark('green')},
+    #{palette-dark('teal')},
+    #{palette-dark('sky')},
+    #{palette-dark('sapphire')},
+    #{palette-dark('blue')},
+    #{palette-dark('lavender')}
+  );
+  // #endregion
+}
+
+// #endregion
+
+// #region Theme entry points
+
+@mixin dark-theme-v6 {
+  @include dark-palette-v6;
+  @include theme-base-v6;
+
+  // TODO: dark-only overrides
+}
+
+@mixin light-theme-v6 {
+  @include light-palette-v6;
+  @include theme-base-v6;
+
+  // TODO: light-only overrides
+}
+
+// #endregion
+
+:root {
+  @include light-theme-v6;
+
+  &[data-theme='dark'] {
+    @include dark-theme-v6;
+  }
+
+  &[data-theme='auto'] {
+    @media (prefers-color-scheme: dark) {
+      @include dark-theme-v6;
+    }
+  }
+}

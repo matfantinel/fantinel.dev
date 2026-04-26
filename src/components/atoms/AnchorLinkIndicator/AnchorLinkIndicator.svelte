@@ -34,6 +34,6 @@
 		text-decoration: none;
 		margin-left: var(--spacing-xs);
 		height: 20px;
-		width: 20px; 
+		width: 20px;
   }
 </style>

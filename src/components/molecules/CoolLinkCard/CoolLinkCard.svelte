@@ -66,7 +66,7 @@
       </div>
     {/if}
 
-    <ArrowLink color="blue" class="m-cool-link-card__link" href={url} title={`Open cool link`}>Open</ArrowLink>
+    <ArrowLink class="m-cool-link-card__link" href={url} title={`Open cool link`}>Open</ArrowLink>
   </div>
 </article>
 
@@ -78,7 +78,7 @@
     border: 2px dashed var(--color--blue);
     border-radius: var(--border-radius);
     background: var(--theme--background-card-color);
-    // box-shadow: var(--theme--shadow-card);
+    // box-shadow: var(--t-v6--shadow--base);
     position: relative;
 
     transition: all 0.25s ease-in-out;

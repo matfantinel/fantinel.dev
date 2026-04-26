@@ -144,7 +144,7 @@
           padding: var(--spacing-lg) var(--spacing-xl);
           background-color: var(--theme--background-card-color);
           border-radius: var(--border-radius);
-          box-shadow: var(--theme--shadow-card);
+          box-shadow: var(--t-v6--shadow--base);
         }
       }
     }

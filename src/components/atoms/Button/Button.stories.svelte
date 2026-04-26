@@ -11,7 +11,11 @@
     argTypes: {
       color: {
         control: { type: 'select' },
-        options: ['default', 'green', 'yellow', 'peach', 'red', 'mauve', 'blue', 'teal'],
+        options: ['accent', 'complementary', 'blog', 'quick-review', 'cool-link', 'photography'],
+      },
+      iconPosition: {
+        control: { type: 'select' },
+        options: ['left', 'right'],
       },
       href: { control: 'text' },
       children: { control: 'text', name: 'Button Text' },
@@ -24,18 +28,23 @@
   });
 </script>
 
+{#snippet checkIconSnippet()}<Check />{/snippet}
+
 {#snippet template(args)}
   <Button {...args}>{args.children ?? 'Button'}</Button> <br><br>
-  <Button {...args} color="green">{args.children ?? 'Button'}</Button> <br><br>
-  <Button {...args} color="yellow">{args.children ?? 'Button'}</Button> <br><br>
-  <Button {...args} color="peach">{args.children ?? 'Button'}</Button> <br><br>
-  <Button {...args} color="red">{args.children ?? 'Button'}</Button> <br><br>
-  <Button {...args} color="mauve">{args.children ?? 'Button'}</Button> <br><br>
-  <Button {...args} color="blue">{args.children ?? 'Button'}</Button> <br><br>
-  <Button {...args} color="teal">{args.children ?? 'Button'}</Button>
+  <Button {...args} color="complementary">{args.children ?? 'Button'}</Button>  <br><br>
+  <Button {...args} color="blog">{args.children ?? 'Button'}</Button>  <br><br>
+  <Button {...args} color="quick-review">{args.children ?? 'Button'}</Button>  <br><br>
+  <Button {...args} color="cool-link">{args.children ?? 'Button'}</Button>  <br><br>
+  <Button {...args} color="photography">{args.children ?? 'Button'}</Button>
 {/snippet}
 
 <Story name="Default" />
 
-{#snippet iconSnippet()}<Check />{/snippet}
-<Story name="With Icon" args={{ icon: iconSnippet }} />
+<Story name="With Arrow Icon (Left)" args={{ icon: 'arrow' }} />
+
+<Story name="With Arrow Icon (Right)" args={{ icon: 'arrow', iconPosition: 'right' }} />
+
+<Story name="With Custom Icon" args={{ icon: checkIconSnippet }} />
+
+<Story name="With Custom Icon (Right)" args={{ icon: checkIconSnippet, iconPosition: 'right' }} />

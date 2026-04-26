@@ -1,12 +1,14 @@
 <script lang="ts">
   import { HttpRegex } from '@utils/regex';
   import type { Snippet } from 'svelte';
+  import ChevronRight from '@assets/icons/chevron-right.svelte';
 
   let {
     href,
     target,
     rel,
-    color = 'default',
+    color = 'accent',
+    iconPosition = 'left',
     class: className,
     icon,
     children,
@@ -15,9 +17,10 @@
     href?: string;
     target?: string;
     rel?: string;
-    color?: 'default' | 'complementary' | 'green' | 'yellow' | 'peach' | 'red' | 'mauve' | 'blue' | 'teal' | 'maroon';
+    color?: 'accent' | 'complementary' | 'blog' | 'quick-review' | 'cool-link' | 'photography';
+    iconPosition?: 'left' | 'right';
     class?: string;
-    icon?: Snippet;
+    icon?: Snippet | 'arrow';
     children?: Snippet;
     [key: string]: any;
   } = $props();
@@ -30,7 +33,14 @@
     rel: rel ?? (isExternalLink ? 'noopener' : undefined),
   });
 
-  let classList = $derived(['a-button', `a-button--${color}`, className]);
+  let classList = $derived([
+    'a-button',
+    `a-button--${color}`,
+    `a-button--icon-${iconPosition}`,
+    className,
+  ]);
+
+  let isArrowIcon = $derived(icon === 'arrow');
 </script>
 
 <svelte:element
@@ -41,14 +51,27 @@
   tabindex="0"
   {...props}
 >
-  {#if icon}
-    <div class="a-button__icon">
-      {@render icon()}
+  {#if iconPosition === 'left' && icon}
+    <div class="a-button__icon" class:a-button__icon--arrow={isArrowIcon}>
+      {#if isArrowIcon}
+        <ChevronRight />
+      {:else if typeof icon === 'function'}
+        {@render icon()}
+      {/if}
     </div>
   {/if}
   <span class="a-button__text">
     {@render children?.()}
   </span>
+  {#if iconPosition === 'right' && icon}
+    <div class="a-button__icon" class:a-button__icon--arrow={isArrowIcon}>
+      {#if isArrowIcon}
+        <ChevronRight />
+      {:else if typeof icon === 'function'}
+        {@render icon()}
+      {/if}
+    </div>
+  {/if}
 </svelte:element>
 
 <style lang="scss">
@@ -62,24 +85,32 @@
     padding: var(--spacing-xs) var(--spacing-md);
     border-radius: var(--border-radius);
     text-decoration: none;
-    box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.25), var(--theme--shadow-card);
+    box-shadow: var(--t-v6--shadow--base);
     border: none;
     cursor: pointer;
 
     transition: all 0.25s ease;
 
-    --button-color-background: var(--theme--color-accent);
-    --button-color-background-hover: var(--theme--color-accent-tint);
-    --button-color-text: var(--theme--color-accent-contrast);
-    --button-color-hover-glow: var(--theme--color-accent-glow);
+    --button-color-background: var(--t-v6--accent);
+    --button-color-background-hover: var(--t-v6--accent--tint);
+    --button-color-text: var(--t-v6--accent--contrast);
+    --button-color-hover-glow: var(--t-v6--accent--glow-small);
 
-    background: linear-gradient(180deg, var(--button-color-background-hover) 0%, var(--button-color-background) 100%);
-    color: var(--button-color-text);    
+    background: var(--button-color-background);
+    color: var(--button-color-text);
 
     @media (hover: hover) {
       &:hover {
-        background: linear-gradient(180deg, var(--button-color-background-hover) 100%, var(--button-color-background) 0%);
-        box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.25), var(--button-color-hover-glow);
+        background: var(--button-color-background-hover);
+        box-shadow: var(--button-color-hover-glow);
+
+        .a-button__icon--arrow {
+          transform: translateX(4px);
+
+          &:first-child {
+            transform: rotate(180deg) translateX(4px);
+          }
+        }
       }
     }
 
@@ -88,72 +119,59 @@
     }
 
     &__icon {
-      width: 18px;
-      height: 18px;
+      width: 22px;
+      height: 22px;
       aspect-ratio: 1/1;
+
+      transition: transform 0.25s ease;
+    }
+
+    &--icon-left {
+      .a-button__icon--arrow {
+        transform: rotate(180deg);
+      }
+    }
+
+    &--accent {
+      --button-color-background: var(--t-v6--accent);
+      --button-color-background-hover: var(--t-v6--accent--tint);
+      --button-color-text: var(--t-v6--accent--contrast);
+      --button-color-hover-glow: var(--t-v6--accent--glow-small);
     }
 
     &--complementary {
-      --button-color-background: var(--theme--color-complementary);
-      --button-color-background-hover: var(--theme--color-complementary-tint);
-      --button-color-text: var(--theme--color-complementary-contrast);
-      --button-color-hover-glow: var(--theme--color-complementary-glow);
+      --button-color-background: var(--t-v6--complementary);
+      --button-color-background-hover: var(--t-v6--complementary--tint);
+      --button-color-text: var(--t-v6--complementary--contrast);
+      --button-color-hover-glow: var(--t-v6--complementary--glow-small);
     }
 
-    &--green {
-      --button-color-background: var(--color--green);
-      --button-color-background-hover: var(--color--green-tint);
-      --button-color-text: var(--color--green-contrast);
-      --button-color-hover-glow: var(--theme--glow-green);
+    &--blog {
+      --button-color-background: var(--t-v6--blog);
+      --button-color-background-hover: var(--t-v6--blog--tint);
+      --button-color-text: var(--t-v6--blog--contrast);
+      --button-color-hover-glow: var(--t-v6--blog--glow-small);
     }
 
-    &--yellow {
-      --button-color-background: var(--color--yellow);
-      --button-color-background-hover: var(--color--yellow-tint);
-      --button-color-text: var(--color--yellow-contrast);
-      --button-color-hover-glow: var(--theme--glow-yellow);
+    &--quick-review {
+      --button-color-background: var(--t-v6--quick-review);
+      --button-color-background-hover: var(--t-v6--quick-review--tint);
+      --button-color-text: var(--t-v6--quick-review--contrast);
+      --button-color-hover-glow: var(--t-v6--quick-review--glow-small);
     }
 
-    &--peach {
-      --button-color-background: var(--color--peach);
-      --button-color-background-hover: var(--color--peach-tint);
-      --button-color-text: var(--color--peach-contrast);
-      --button-color-hover-glow: var(--theme--glow-peach);
+    &--cool-link {
+      --button-color-background: var(--t-v6--cool-link);
+      --button-color-background-hover: var(--t-v6--cool-link--tint);
+      --button-color-text: var(--t-v6--cool-link--contrast);
+      --button-color-hover-glow: var(--t-v6--cool-link--glow-small);
     }
 
-    &--red {
-      --button-color-background: var(--color--red);
-      --button-color-background-hover: var(--color--red-tint);
-      --button-color-text: var(--color--red-contrast);
-      --button-color-hover-glow: var(--theme--glow-red);
-    }
-
-    &--mauve {
-      --button-color-background: var(--color--mauve);
-      --button-color-background-hover: var(--color--mauve-tint);
-      --button-color-text: var(--color--mauve-contrast);
-      --button-color-hover-glow: var(--theme--glow-mauve);
-    }
-
-    &--blue {
-      --button-color-background: var(--color--blue);
-      --button-color-background-hover: var(--color--blue-tint);
-      --button-color-text: var(--color--blue-contrast);
-      --button-color-hover-glow: var(--theme--glow-blue);
-    }
-
-    &--teal {
-      --button-color-background: var(--color--teal);
-      --button-color-background-hover: var(--color--teal-tint);
-      --button-color-text: var(--color--teal-contrast);
-      --button-color-hover-glow: var(--theme--glow-teal);
-    }
-
-    &--maroon {
-      --button-color-background: var(--color--maroon);
-      --button-color-background-hover: var(--color--maroon-tint);
-      --button-color-text: var(--color--maroon-contrast);
-      --button-color-hover-glow: var(--theme--glow-maroon);
+    &--photography {
+      --button-color-background: var(--t-v6--photography);
+      --button-color-background-hover: var(--t-v6--photography--tint);
+      --button-color-text: var(--t-v6--photography--contrast);
+      --button-color-hover-glow: var(--t-v6--photography--glow-small);
     }
   }
 </style>

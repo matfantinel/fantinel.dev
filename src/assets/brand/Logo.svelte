@@ -61,7 +61,7 @@
 
     @media (hover: hover) {
       &:hover {
-        filter: drop-shadow(var(--theme--shadow-card));
+        filter: drop-shadow(var(--t-v6--shadow--base));
 
         &:before {
           opacity: 0.7;

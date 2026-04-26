@@ -349,9 +349,9 @@
   --theme--color--logo-1-inverted: var(--color--gray-1000);
   --theme--color--logo-2-inverted: var(--color--gray-700);
 
-  --theme--glow-callouts-info: var(--theme--shadow-card);
-  --theme--glow-callouts-warning: var(--theme--shadow-card);
-  --theme--glow-callouts-success: var(--theme--shadow-card);
+  --theme--glow-callouts-info: var(--t-v6--shadow--base);
+  --theme--glow-callouts-warning: var(--t-v6--shadow--base);
+  --theme--glow-callouts-success: var(--t-v6--shadow--base);
 
   --theme--color-footer--wave-1: rgba(var(--theme--color-accent-rgb), 0.3);
   --theme--color-footer--wave-2: rgba(var(--theme--color-accent-rgb), 0.4);

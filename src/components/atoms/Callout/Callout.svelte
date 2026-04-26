@@ -43,39 +43,39 @@
 <style lang="scss">
   .a-callout {
     position: relative;
-    background-color: var(--theme--background-accent-color);
+    background-color: var(--t-v6--surface--accent);
     padding: var(--spacing-md);
     border-radius: var(--border-radius);
-    box-shadow: var(--theme--shadow-card);
-		border: 2px solid var(--theme--background-base-color);
 
-		--icon-color: var(--theme--color-accent);		
+		--callout-color: var(--t-v6--accent);
+    --callout-glow: var(--t-v6--accent--glow-small);
+
+		box-shadow: var(--callout-glow);
+		background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%23000000' fill-opacity='0.12' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E");
+		border: 2px solid var(--callout-color);
 
 		&__icon {
 			position: absolute;
 			top: 0;
 			left: 0;
 			translate: -50% -50%;
-			color: var(--icon-color);
-			--icon-background-color: var(--theme--background-base-color);
+			color: var(--callout-color);
+			--icon-background-color: var(--t-v6--surface--base);
 		}
 
 		&--info {
-			box-shadow: var(--theme--glow-callouts-info);
-			border-color: var(--theme--color-callouts-info);
-			--icon-color: var(--theme--color-callouts-info);
+			--callout-color: var(--t-v6--info);
+			--callout-glow: var(--t-v6--info--glow-small);
 		}
 
 		&--warning {
-			box-shadow: var(--theme--glow-callouts-warning);
-			border-color: var(--theme--color-callouts-warning);
-			--icon-color: var(--theme--color-callouts-warning);
+			--callout-color: var(--t-v6--warning);
+			--callout-glow: var(--t-v6--warning--glow-small);
 		}
 
 		&--success {
-			box-shadow: var(--theme--glow-callouts-success);
-			border-color: var(--theme--color-callouts-success);
-			--icon-color: var(--theme--color-callouts-success);
+			--callout-color: var(--t-v6--success);
+			--callout-glow: var(--t-v6--success--glow-small);
 		}
   }
 </style>

@@ -7,7 +7,7 @@
     href,
     target,
     rel,
-    color = 'default',
+    color = 'accent',
     arrowPosition = 'right',
     class: className,
     children,
@@ -16,7 +16,7 @@
     href?: string;
     target?: string;
     rel?: string;
-    color?: 'default' | 'green' | 'yellow' | 'peach' | 'red' | 'mauve' | 'blue' | 'teal';
+    color?: 'accent' | 'complementary' | 'blog' | 'quick-review' | 'cool-link' | 'photography';
     arrowPosition?: 'left' | 'right';
     class?: string;
     children?: Snippet;
@@ -31,7 +31,12 @@
     rel: rel ?? (isExternalLink ? 'noopener' : undefined),
   });
 
-  let classList = $derived(['a-arrow-link', `a-arrow-link--${color}`, `a-arrow-link--arrow-${arrowPosition}`, className]);
+  let classList = $derived([
+    'a-arrow-link',
+    `a-arrow-link--${color}`,
+    `a-arrow-link--arrow-${arrowPosition}`,
+    className,
+  ]);
 </script>
 
 <svelte:element
@@ -41,7 +46,7 @@
   role={tag === 'a' ? 'link' : 'button'}
   tabindex="0"
   {...props}
->    
+>
   {#if arrowPosition === 'left'}
     <div class="a-arrow-link__icon">
       <ChevronRight />
@@ -68,9 +73,9 @@
 
     transition: all 0.25s ease;
 
-    --arrow-link-color: var(--theme--color-accent);
-    --arrow-link-color-hover: var(--theme--color-accent-tint);
-    --arrow-link-color-hover-glow: var(--theme--color-accent-glow);
+    --arrow-link-color: var(--t-v6--accent);
+    --arrow-link-color-hover: var(--t-v6--accent--tint);
+    --arrow-link-color-hover-glow: var(--t-v6--accent--glow-tiny);
 
     color: var(--arrow-link-color);
 
@@ -112,46 +117,40 @@
       }
     }
 
-    &--green {
-      --arrow-link-color: var(--color--green);
-      --arrow-link-color-hover: var(--color--green-tint);
-      --arrow-link-color-hover-glow: var(--theme--glow-green);
+    &--accent {
+      --arrow-link-color: var(--t-v6--accent);
+      --arrow-link-color-hover: var(--t-v6--accent--tint);
+      --arrow-link-color-hover-glow: var(--t-v6--accent--glow-tiny);
     }
 
-    &--yellow {
-      --arrow-link-color: var(--color--yellow);
-      --arrow-link-color-hover: var(--color--yellow-tint);
-      --arrow-link-color-hover-glow: var(--theme--glow-yellow);
+    &--complementary {
+      --arrow-link-color: var(--t-v6--complementary);
+      --arrow-link-color-hover: var(--t-v6--complementary--tint);
+      --arrow-link-color-hover-glow: var(--t-v6--complementary--glow-tiny);
     }
 
-    &--peach {
-      --arrow-link-color: var(--color--peach);
-      --arrow-link-color-hover: var(--color--peach-tint);
-      --arrow-link-color-hover-glow: var(--theme--glow-peach);
+    &--blog {
+      --arrow-link-color: var(--t-v6--blog);
+      --arrow-link-color-hover: var(--t-v6--blog--tint);
+      --arrow-link-color-hover-glow: var(--t-v6--blog--glow-tiny);
     }
 
-    &--red {
-      --arrow-link-color: var(--color--red);
-      --arrow-link-color-hover: var(--color--red-tint);
-      --arrow-link-color-hover-glow: var(--theme--glow-red);
+    &--quick-review {
+      --arrow-link-color: var(--t-v6--quick-review);
+      --arrow-link-color-hover: var(--t-v6--quick-review--tint);
+      --arrow-link-color-hover-glow: var(--t-v6--quick-review--glow-tiny);
     }
 
-    &--mauve {
-      --arrow-link-color: var(--color--mauve);
-      --arrow-link-color-hover: var(--color--mauve-tint);
-      --arrow-link-color-hover-glow: var(--theme--glow-mauve);
+    &--cool-link {
+      --arrow-link-color: var(--t-v6--cool-link);
+      --arrow-link-color-hover: var(--t-v6--cool-link--tint);
+      --arrow-link-color-hover-glow: var(--t-v6--cool-link--glow-tiny);
     }
 
-    &--blue {
-      --arrow-link-color: var(--color--blue);
-      --arrow-link-color-hover: var(--color--blue-tint);
-      --arrow-link-color-hover-glow: var(--theme--glow-blue);
-    }
-
-    &--teal {
-      --arrow-link-color: var(--color--teal);
-      --arrow-link-color-hover: var(--color--teal-tint);
-      --arrow-link-color-hover-glow: var(--theme--glow-teal);
+    &--photography {
+      --arrow-link-color: var(--t-v6--photography);
+      --arrow-link-color-hover: var(--t-v6--photography--tint);
+      --arrow-link-color-hover-glow: var(--t-v6--photography--glow-tiny);
     }
   }
 </style>
