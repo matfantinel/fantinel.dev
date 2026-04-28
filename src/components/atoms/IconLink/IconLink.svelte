@@ -1,7 +1,6 @@
 <script lang="ts">
   import { HttpRegex } from '@utils/regex';
   import type { Snippet } from 'svelte';
-  import Check from '@assets/icons/check.svelte';
 
   let {
     href,
@@ -22,6 +21,7 @@
     icon?: Snippet;
     children?: Snippet;
     onclick?: EventListener;
+    [key: string]: any;
   } = $props();
 
   let tag = $derived(href ? 'a' : 'button');
@@ -83,7 +83,7 @@
 
     @media (hover: hover) {
       &:hover {
-        filter: drop-shadow(var(--theme--glow-links));
+        filter: drop-shadow(var(--t-v6--accent--glow-tiny));
       }
     }
   }

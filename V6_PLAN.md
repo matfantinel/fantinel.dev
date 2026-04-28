@@ -22,14 +22,14 @@ Migrate one component at a time, flip it fully to v6, then tick the checkbox.
 - [X] **Button** — **hottest dependency** (nav, heroes, CTAs, renderers). Huge dynamic color matrix: iterates over palette colors plus their `-contrast`, `-tint`, and corresponding `--theme--glow-{name}`. Also uses `--theme--color-accent` + `-complementary` variants with their `-contrast`/`-tint`/`-glow`. Migrate only after v6 palette + glows + complementary are in place.
 - [X] **Callout** — used in `markdown/QuoteCalloutRenderer.svelte`. **Semantic color set**: `--theme--color-callouts-info/warning/success` paired with `--theme--glow-callouts-*`. Requires the semantic callout tokens to exist in v6.
 - [X] **CoolLinkStamp** — used inside CoolLinkCard. Hardcoded to `--color--blue` / `--color--blue-rgb`. If v6 renames blue or changes the "cool link" accent, update here.
-- [ ] **IconLink** — uses `--theme--glow-links` on hover (drop-shadow filter). Trivial migration.
-- [ ] **Image** — no color variables; no changes needed beyond any spacing/radius renames.
-- [ ] **Input** — used in Field. **Input token set**: `--theme--color-input-{empty,hover,filled}-{border,background}`, `-placeholder`, `-value`. Check whether v6 keeps this granular input API or collapses it.
-- [ ] **MarkerHighlight** — rendered by MarkdownRenderer for `==marker==` syntax. Uses `--theme--color-marker-highlight` + `-rgb` + `-contrast`. Specialized token; verify v6 still ships it.
-- [ ] **NavMenuLink** — used in HamburgerMenu. **Dynamic post-type coloring**: builds `--theme--color-{variant}` at runtime (generic, blog-post, cool-link, quick-review, photography, timeline). Depends on v6 keeping post-type tokens.
+- [X] **IconLink** — uses `--theme--glow-links` on hover (drop-shadow filter). Trivial migration.
+- [X] **Image** — no color variables; no changes needed beyond any spacing/radius renames.
+- [X] **Input** — used in Field. **Input token set**: `--theme--color-input-{empty,hover,filled}-{border,background}`, `-placeholder`, `-value`. Check whether v6 keeps this granular input API or collapses it.
+- [X] **MarkerHighlight** — rendered by MarkdownRenderer for `==marker==` syntax. Uses `--theme--color-marker-highlight` + `-rgb` + `-contrast`. Specialized token; verify v6 still ships it.
+- [X] **NavMenuLink** — used in HamburgerMenu. **Dynamic post-type coloring**: builds `--theme--color-{variant}` at runtime (generic, blog-post, cool-link, quick-review, photography, timeline). Depends on v6 keeping post-type tokens.
 - [ ] **QuickReviewTypeTag** — used in QuickReviewCard. **QR subsystem**: `--theme--qr-{movie,tv-show,game,album}-color` + `--theme--qr-base-{dark,light}-color`. These were hardcoded hexes in the legacy file — a natural candidate for locked-palette variables in v6.
-- [ ] **SparklingHighlight** — rendered by MarkdownRenderer for a custom marked extension. Uses `--theme--color-sparkles`. Animation-heavy; verify sparkle animation keyframes still reference the right token after rename.
-- [ ] **Tag** — uses `--theme--color-tags-background` / `-hover` and, when selected, `--theme--glow-green` + `--theme--color-callouts-success`. The hardcoded green/success coupling is worth re-evaluating during v6 (maybe make it a dedicated `--t-v6-tag-selected-*` pair).
+- [X] **SparklingHighlight** — rendered by MarkdownRenderer for a custom marked extension. Uses `--theme--color-sparkles`. Animation-heavy; verify sparkle animation keyframes still reference the right token after rename.
+- [X] **Tag** — uses `--theme--color-tags-background` / `-hover` and, when selected, `--theme--glow-green` + `--theme--color-callouts-success`. The hardcoded green/success coupling is worth re-evaluating during v6 (maybe make it a dedicated `--t-v6-tag-selected-*` pair).
 
 ---
 

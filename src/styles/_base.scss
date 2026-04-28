@@ -87,6 +87,6 @@ a:not([class^='a-']) {
 }
 
 mark {
-	background: var(--theme--color-marker-highlight);
-	color: var(--theme--color-marker-highlight-contrast);
+  background: var(--t-v6--marker-highlight);
+  color: var(--t-v6--marker-highlight--contrast);
 }

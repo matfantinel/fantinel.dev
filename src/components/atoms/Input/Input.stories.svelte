@@ -28,5 +28,3 @@
 <Story name="Placeholder" args={{ placeholder: 'Placeholder' }} />
 
 <Story name="Value" args={{ value: 'Value' }} />
-
-<Story name="Search" args={{ type: 'search', placeholder: 'Search for something...' }} />

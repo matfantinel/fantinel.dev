@@ -8,6 +8,7 @@
     rel,
     title,
     active,
+    isMobile,
     color,
     class: className,
     icon,
@@ -20,6 +21,7 @@
     rel?: string;
     title?: string;
     active?: boolean;
+    isMobile?: boolean;
     color?: string;
     class?: string;
     icon?: Snippet;
@@ -36,11 +38,13 @@
     rel: rel ?? (isExternalLink ? 'noopener' : undefined),
   });
 
-  let classList = $derived(['a-nav-menu-link', className, { 'a-nav-menu-link--active': active }]);
-
-  let customStyles = $derived([
-    color ? `--color: var(--theme--color-${color})` : '',
+  let classList = $derived([
+    'a-nav-menu-link',
+    className,
+    { 'a-nav-menu-link--active': active, 'a-nav-menu-link--mobile': isMobile },
   ]);
+
+  let customStyles = $derived([color ? `--color: var(--t-v6--${color})` : '']);
 </script>
 
 <svelte:element this={tag} {...linkProps} class={classList} {...props} {title} {onclick} style={customStyles.join(';')}>
@@ -64,50 +68,69 @@
     gap: var(--spacing-xs);
 
     text-decoration: none;
-    color: currentColor;
-
     border: none;
     appearance: none;
     background-color: transparent;
     text-align: left;
     cursor: pointer;
-    
+
     padding: var(--spacing-xs);
     border-radius: var(--border-radius--small);
     width: calc(100% + var(--spacing-sm));
     margin-inline: calc(var(--spacing-xs) * -1);
 
+    transition: all 0.25s ease;
+
+    color: var(--t-v6--text--base);
+    background: transparent;
+
     &__icon {
-      width: 20px;
-      height: 20px;
+      width: 24px;
+      height: 24px;
       aspect-ratio: 1/1;
     }
 
     &__text {
       @include typography.b1;
-      font-size: 1.375rem; //22px
       font-weight: 500;
-      line-height: 1.2;
+    }
 
-      @include breakpoints.for-tablet-portrait-up {
-        font-size: 1.125rem; //18px
+    @mixin mobile-styles {
+      gap: var(--spacing-xxs);
+      padding: var(--spacing-xxs) var(--spacing-xs);
+
+      .a-nav-menu-link {
+        &__text {
+          @include typography.icon-label;
+        }
+
+        &__icon {
+          display: none;
+        }
       }
     }
 
     &--active {
-      background-color: var(--theme--background-accent-color);
-      color: var(--theme--color-accent);
+      background: var(--t-v6--surface--accent);
+      color: var(--color, var(--t-v6--accent));
+    }
+
+    @include breakpoints.for-phone-only {
+      @include mobile-styles;
+    }
+
+    &--mobile {
+      @include mobile-styles;
     }
 
     &:hover,
     &:active,
     &:focus {
       filter: none;
-      background-color: var(--theme--background-accent-color);
+      color: var(--color, var(--t-v6--accent));
 
       .a-nav-menu-link {
         &__icon {
-          color: var(--color, var(--theme--color-accent));
           animation: nudge-and-grow 0.5s ease-in;
         }
       }

@@ -27,11 +27,11 @@
     span {
       background: linear-gradient(
           90deg,
-          var(--theme--color-marker-highlight) 50%,
-          rgba(var(--theme--color-marker-highlight-rgb), 0.5) 50%
+          var(--t-v6--marker-highlight) 50%,
+          rgba(var(--t-v6--marker-highlight--rgb), 0.5) 50%
         )
         110% 0 / 200% 100% no-repeat;
-      color: var(--theme--color-marker-highlight-contrast);
+      color: var(--t-v6--marker-highlight--contrast);
       background-position: calc((1 - var(--highlighted)) * 110%) 0;
       transition: background-position 1s;
     }

@@ -198,18 +198,23 @@ $palette-v6-colors: (
   // #endregion
 
   // #region Tag
-  --t-v6--tag--border--base: var(--t-v6--border--light);
+  --t-v6--tag--border--base: transparent;//var(--t-v6--border--light);
   --t-v6--tag--border--hover: var(--t-v6--border--medium);
   --t-v6--tag--border--active: var(--t-v6--accent);
 
-  --t-v6--tag--bg--base: var(--t-v6--surface--base);
+  --t-v6--tag--bg--base: var(--t-v6--surface--root);
   --t-v6--tag--bg--hover: var(--t-v6--surface--accent);
   --t-v6--tag--bg--active: var(--t-v6--surface--accent);
-  --t-v6--tag--bg--contrast: var(--t-v6--surface--base);
+
+  --t-v6--tag--count--base: var(--t-v6--surface--accent);
+  --t-v6--tag--count--hover: var(--t-v6--surface--base);
+  --t-v6--tag--count--active: var(--t-v6--surface--base);
 
   --t-v6--tag--text--base: var(--t-v6--text--medium);
   --t-v6--tag--text--hover: var(--t-v6--text--medium);
   --t-v6--tag--text--active: var(--t-v6--accent);
+
+  --t-v6--tag--glow--active: var(--t-v6--accent--glow-small);
   // #endregion
 
   // #region CodeBlock
@@ -217,18 +222,30 @@ $palette-v6-colors: (
   --t-v6--codeblock--text: var(--palette-v6--gray-900);
   // #endregion
 
+  // #region Highlights
+  --t-v6--sparkles: var(--palette-v6--yellow);
+  --t-v6--marker-highlight: var(--palette-v6--yellow);
+  --t-v6--marker-highlight--rgb: var(--palette-v6--yellow--rgb);
+  --t-v6--marker-highlight--contrast: var(--palette-v6--yellow--contrast);
+  // #endregion
+
   // #endregion
 
   // #region Shadows
   --t-v6--shadow--base: 0 4px 10px 0 rgba(0, 0, 0, 0.1);
-  --t-v6--shadow--low: 1px 3px 8px 0 rgba(0, 0, 0, 0.03);
+  --t-v6--shadow--low: 1px 3px 8px 0 rgba(0, 0, 0, 0.1);
   --t-v6--shadow--high: 0 0px 20px 4px rgba(0, 0, 0, 0.2);
   // #endregion
 
   // #region Gradients
   --t-v6--gradient--greenish: linear-gradient(to right, var(--palette-v6--teal), var(--palette-v6--sky));
-  --t-v6--gradient--pinkish: linear-gradient(to right, var(--palette-v6--pink), var(--palette-v6--mauve), var(--palette-v6--lavender));
-  
+  --t-v6--gradient--pinkish: linear-gradient(
+    to right,
+    var(--palette-v6--pink),
+    var(--palette-v6--mauve),
+    var(--palette-v6--lavender)
+  );
+
   // Always the Mocha (dark) palette, regardless of the active theme.
   --t-v6--gradient--rainbow: linear-gradient(
     to right,

@@ -2,35 +2,36 @@
   import { defineMeta } from '@storybook/addon-svelte-csf';
 
   import Tag from './Tag.svelte';
+  import Cool from '@assets/icons/cool.svelte';
 
   const { Story } = defineMeta({
     title: 'Atoms/Tag',
     component: Tag,
     tags: ['autodocs'],
-    argTypes: {
-      selected: { control: 'boolean' },
-      size: {
-        control: { type: 'select' },
-        options: ['default', 'small', 'responsive'],
-      },
-      href: { control: 'text' },
-      children: { control: 'text', name: 'Tag Text' },
-      target: { control: false },
-      rel: { control: false },
-      class: { control: false },
-    },
     render: template
   });
 </script>
 
+{#snippet coolIconSnippet()}<Cool />{/snippet}
+
 {#snippet template(args)}
   <Tag {...args}>{args.children ?? 'Tag'}</Tag>
+  <br /><br />
+  <Tag {...args} icon={coolIconSnippet}>{args.children ?? 'Tag'}</Tag>
+  <br /><br />
+  <Tag {...args} count={3}>{args.children ?? 'Tag'}</Tag>
+  <br /><br />
+  <Tag {...args} icon={coolIconSnippet} count={3}>{args.children ?? 'Tag'}</Tag>
 {/snippet}
 
 <Story name="Default" />
 
-<Story name="Selected" args={{ selected: true }} />
+<Story name="Active" args={{ active: true }} />
 
 <Story name="Small" args={{ size: 'small' }} />
 
-<Story name="Small, Selected" args={{ size: 'small', selected: true }} />
+<Story name="Responsive" args={{ size: 'responsive' }} />
+
+<Story name="Hyperlinks" args={{ href: '#' }} />
+
+<Story name="Hyperlinks, Active" args={{ href: '#', active: true }} />

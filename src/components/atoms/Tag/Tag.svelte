@@ -1,33 +1,37 @@
 <script lang="ts">
   import { HttpRegex } from '@utils/regex';
   import type { Snippet } from 'svelte';
-  import Check from '@assets/icons/check.svelte';
 
   let {
-    selected,
-    size,
     href,
     target,
     rel,
     title,
+    active,
+    name,
+    size,
+    count,
     class: className,
     icon,
     children,
     ...props
   }: {
-    selected?: boolean;
-    size?: 'default' | 'small' | 'responsive';
     href?: string;
     target?: string;
     rel?: string;
     title?: string;
+    active?: boolean;
+    name?: string;
+    size?: 'default' | 'small' | 'responsive';
+    count?: number;
     class?: string;
     icon?: Snippet;
     children?: Snippet;
     [key: string]: any;
   } = $props();
 
-  let tag = $derived(href ? 'a' : 'div');
+  let isCheckbox = $derived(!href);
+  let tag = $derived(href ? 'a' : 'label');
   let isExternalLink = $derived(!!href && HttpRegex.test(href));
   let linkProps = $derived({
     href,
@@ -38,23 +42,14 @@
   let classList = $derived([
     'a-tag',
     size ? `a-tag--${size}` : undefined,
-    selected ? 'a-tag--selected' : undefined,
+    !isCheckbox && active ? 'a-tag--active' : undefined,
     className,
   ]);
 </script>
 
-<svelte:element
-  this={tag}
-  {...linkProps}
-  class={classList}
-  role={tag === 'a' ? 'link' : undefined}
-  title={title}
-  {...props}  
->
-  {#if selected}
-    <div class="a-tag__icon">
-      <Check />
-    </div>
+<svelte:element this={tag} {...linkProps} class={classList} role={tag === 'a' ? 'link' : undefined} {title} {...props}>
+  {#if isCheckbox}
+    <input class="a-tag__checkbox" type="checkbox" {name} checked={active} />
   {/if}
   {#if icon}
     <div class="a-tag__icon">
@@ -64,6 +59,11 @@
   <span class="a-tag__text">
     {@render children?.()}
   </span>
+  {#if count}
+    <div class="a-tag__count">
+      {count}
+    </div>
+  {/if}
 </svelte:element>
 
 <style lang="scss">
@@ -76,50 +76,70 @@
     justify-content: center;
     gap: var(--spacing-xxs);
 
-    padding: var(--spacing-xs) var(--spacing-md);
+    padding: var(--spacing-xs) var(--spacing-sm);
     border-radius: var(--border-radius);
     text-decoration: none;
-    border: none;
+    cursor: pointer;
+    min-height: 42px;
 
     transition: all 0.25s ease;
 
-    --tag-color-background: var(--theme--color-tags-background);
-    --tag-color-background-hover: var(--theme--color-tags-background-hover);
-    --tag-color-text: var(--theme--text-base-color);
+    border: 2px solid var(--t-v6--tag--border--base);
+    background: var(--t-v6--tag--bg--base);
+    color: var(--t-v6--tag--text--base);    
 
-    background: var(--tag-color-background);
-    color: var(--tag-color-text);
-
-    @media (hover: hover) {
-      &:is(a) {
-        &:hover {
-          background: var(--tag-color-background-hover);
-        }
-      }
+    &__checkbox {
+      appearance: none;
+      position: absolute;
+      width: 0;
+      height: 0;
+      opacity: 0;
+      pointer-events: none;
     }
 
     &__text {
-      @include typography.b1;
+      @include typography.b2;
     }
 
     &__icon {
-      width: 18px;
-      height: 18px;
+      width: 22px;
+      height: 22px;
       aspect-ratio: 1/1;
     }
 
-    &--selected {
-      --tag-color-text: var(--theme--color-callouts-success);
-      box-shadow: inset var(--theme--glow-green);
+    &__count {
+      @include typography.b2;
+      width: 24px;
+      height: 24px;
+      aspect-ratio: 1/1;
+      margin-left: var(--spacing-xxs);
+
+      transition: all 0.25s ease;
+
+      display: grid;
+      place-items: center;
+      text-align: center;
+
+      background: var(--t-v6--tag--count--base);
+      border-radius: var(--border-radius--round);
     }
 
     @mixin small-size {
-      gap: var(--spacing-xxs);
       padding: var(--spacing-xxs) var(--spacing-xs);
+      min-height: 30px;
 
       .a-tag {
         &__text {
           @include typography.b3;
+        }
+        &__icon {
+          width: 16px;
+          height: 16px;
+        }
+        &__count {
+          @include typography.icon-label;
+          width: 18px;
+          height: 18px;
         }
       }
     }
@@ -131,6 +151,36 @@
     &--responsive {
       @include breakpoints.for-phone-only {
         @include small-size;
+      }
+    }
+
+    @media (hover: hover) {
+      &:hover {
+        border-color: var(--t-v6--tag--border--hover);
+        color: var(--t-v6--tag--text--hover);
+        background: var(--t-v6--tag--bg--hover);
+
+        .a-tag__count {
+          background: var(--t-v6--tag--count--hover);
+        }
+      }
+    }
+
+    &.a-tag--active,
+    &:has(input:checked) {
+      border-color: var(--t-v6--tag--border--active);
+      background: var(--t-v6--tag--bg--active);
+      color: var(--t-v6--tag--text--active);
+      box-shadow: var(--t-v6--tag--glow--active);
+
+      .a-tag__count {
+        background: var(--t-v6--tag--count--active);
+      }
+
+      @media (hover: hover) {
+        &:hover {
+          background: var(--t-v6--tag--bg--hover);
+        }
       }
     }
   }
