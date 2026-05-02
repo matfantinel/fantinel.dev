@@ -46,12 +46,12 @@ Migrate one component at a time, flip it fully to v6, then tick the checkbox.
 - [X] **Field** — used in NewsletterCta. Wraps Input + label; uses `--theme--text-base-color`.
 - [X] **HamburgerMenu** — WILL BE REMOVED
 - [X] **MarkdownRenderer** — used in many places (post body, cool-link body, quick-review body, photography layouts, etc.). No direct CSS tokens; delegates styling to its children (CodeBlock, MarkerHighlight, SparklingHighlight, QuoteCalloutRenderer, ImageRenderer). Migration here is mostly a sanity check.
-- [ ] **NewPhotographyCard** — used in TimelineGroup and PhotographyCards. Uses `--theme--color-photography` (post-type accent) + card background + shadow.
 - [ ] **PagefindSearchField** — used in `pages/search.astro`. Uses the input token family + `--theme--text-accent-color`.
 - [ ] **Pagination** — used in every archive layout. Simple: card background + accent + shadow.
+- [X] **PhotographyCard** — used in TimelineGroup and PhotographyCards. Uses `--theme--color-photography` (post-type accent) + card background + shadow.
 - [X] **PhotographyCards** — used in `PhotographyArchiveLayout.astro`. Layout wrapper.
 - [ ] **PhotographySlideshowDialog** — used in PhotographyThumbnail. Uses `--theme--background-base-color-rgb` and `--theme--color-accent-rgb` inside `rgba()` for the backdrop — verify v6 keeps the `-rgb` suffix convention (the new `define-palette-v6` mixin emits `--rgb`).
-- [ ] **PhotographyThumbnail** — used in NewPhotographyCard. Uses `--theme--shadow-card-high`.
+- [ ] **PhotographyThumbnail** — used in PhotographyCard. Uses `--theme--shadow-card-high`.
 - [ ] **QuickReviewCard** — used in TimelineGroup and QuickReviewCards. **QR subsystem + custom prop**: uses `--theme--qr-base-{dark,light}-color`, both shadow tiers, and accepts a `customBg` prop that is injected as an inline CSS variable (the prop must be normalized to include a leading `#` for hex values).
 - [X] **QuickReviewCards** — used in `QuickReviewsArchiveLayout.astro`. Layout wrapper.
 - [ ] **QuickReviewRatings** — used in QuickReviewCard. **QR rating tokens**: `--theme--qr-{loved,liked,decent,not-liked}-color`. Notably `qr-loved-color` is a **gradient** (`gradient-rainbow-circle-dark`), so animating/cutting it into a shape needs the same locked-dark treatment. Also uses `--color--yellow-rgb` and a custom `--glow-color` on the `loved` state.

@@ -30,7 +30,7 @@
     class?: string;
   } = $props();
 
-  let classList = $derived(['m-new-photography-card', immersive ? 'm-new-photography-card--immersive' : '', className]);
+  let classList = $derived(['m-photography-card', immersive ? 'm-photography-card--immersive' : '', className]);
 
   // Feature detect Invoker Commands API support
   // If available, then clicking the thumbnail will open the slideshow dialog
@@ -45,9 +45,9 @@
 </script>
 
 <article class={classList}>
-  <div class="m-new-photography-card__container">
+  <div class="m-photography-card__container">
     <PhotographyThumbnail
-      class="m-new-photography-card__thumbnail"
+      class="m-photography-card__thumbnail"
       {image}
       {imageAlt}
       {additionalImages}
@@ -56,24 +56,24 @@
       {url}
     />
 
-    <div class="m-new-photography-card__content">
-      <p class="m-new-photography-card__title">
+    <div class="m-photography-card__content">
+      <p class="m-photography-card__title">
         {title}
       </p>
       {#if photoDate}
-        <div class="m-new-photography-card__date">
+        <div class="m-photography-card__date">
           Taken on {dateformat(photoDate, 'yyyy-mm-dd', true)}
         </div>
       {/if}
       {#if content}
-        <div class="m-new-photography-card__description u-markdown">
+        <div class="m-photography-card__description u-markdown">
           <MarkdownRenderer {content} />
         </div>
       {/if}
       {#if !supportsInvokerCommands}
-        <div class="m-new-photography-card__footer">
+        <div class="m-photography-card__footer">
           {#if url}
-            <ArrowLink class="m-new-photography-card__link" href={url} title={`View photography`}>View</ArrowLink>
+            <ArrowLink class="m-photography-card__link" color="photography" href={url} title={`View photography`}>View</ArrowLink>
           {/if}
         </div>
       {/if}
@@ -85,10 +85,10 @@
   @use '/src/styles/typography';
   @use '/src/styles/breakpoints';
 
-  .m-new-photography-card {
+  .m-photography-card {
     border-radius: var(--border-radius);
     box-shadow: var(--t-v6--shadow--base);
-    background-color: var(--theme--background-card-color);
+    background-color: var(--t-v6--surface--card);
     overflow: hidden;
     position: relative;
 
@@ -103,7 +103,7 @@
       height: 100%;
     }
 
-    :global(.m-new-photography-card__thumbnail) {
+    :global(.m-photography-card__thumbnail) {
       isolation: isolate;
       position: relative;
       min-height: 214px;
@@ -113,7 +113,7 @@
     &__content {
       padding: var(--spacing-md) var(--spacing-md) var(--spacing-lg);
       flex-grow: 1;
-      background-color: var(--theme--background-card-color);
+      background-color: var(--t-v6--surface--card);
 
       display: flex;
       flex-direction: column;
@@ -123,12 +123,12 @@
     &__title {
       @include typography.h4;
       font-family: var(--font--spicy);
-      color: var(--theme--color-photography);
+      color: var(--t-v6--photography);
     }
 
     &__date {
       @include typography.b3;
-      color: var(--theme--text-accent-color);
+      color: var(--t-v6--text--medium);
     }
 
     &__description {
@@ -141,23 +141,25 @@
       margin-left: auto;
     }
 
-    @container (min-width: 600px) {
-      .m-new-photography-card {
-        &__container {
-          display: grid;
-          grid-template-columns: 50% 50%;
-          grid-template-rows: 1fr;
+    &:not(.m-photography-card--immersive) {
+      @container (min-width: 600px) {
+        .m-photography-card {
+          &__container {
+            display: grid;
+            grid-template-columns: 50% 50%;
+            grid-template-rows: 1fr;
+          }
+        }
+
+        :global(.m-photography-card__thumbnail) {
+          aspect-ratio: unset;
         }
       }
-
-      :global(.m-new-photography-card__thumbnail) {
-        aspect-ratio: unset;
-      }
-    }
+    } 
 
     &--immersive {
       @media (hover: hover) {
-        .m-new-photography-card {
+        .m-photography-card {
           &__container {
             flex-direction: row;
           }
@@ -169,11 +171,11 @@
 
             padding: var(--spacing-sm);
 
-            background: var(--theme--background-card-color);
+            background: var(--t-v6--surface--card);
             translate: 0 100%;
             transition: 0.25s ease-out;
 
-            &:not(:has(.m-new-photography-card__link)) {
+            &:not(:has(.m-photography-card__link)) {
               pointer-events: none;
             }
           }
@@ -188,14 +190,14 @@
           }
         }
 
-        :global(.m-new-photography-card__thumbnail) {
+        :global(.m-photography-card__thumbnail) {
           aspect-ratio: 3/4;
           width: auto;
           height: auto;
         }
 
         &:hover {
-          .m-new-photography-card {
+          .m-photography-card {
             &__content {
               translate: 0 0;
             }

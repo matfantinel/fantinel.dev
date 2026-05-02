@@ -2,7 +2,7 @@
   import { defineMeta } from '@storybook/addon-svelte-csf';
 
   import PhotographyCards from './PhotographyCards.svelte';
-  import NewPhotographyCard from '@components/molecules/NewPhotographyCard';
+  import PhotographyCard from '@components/molecules/PhotographyCard';
   import { LoremIpsum } from '@utils/lorem-ipsum';
 
   const { Story } = defineMeta({
@@ -24,7 +24,7 @@
 
 {#snippet children()}
   {#each Array(6) as _, index}
-    <NewPhotographyCard
+    <PhotographyCard
       title={LoremIpsum.words}
       image="https://placedog.net/1000/1000"
       publishedDate={new Date()}
@@ -38,7 +38,7 @@
 
 {#snippet immersiveChildren()}
   {#each Array(6) as _, index}
-    <NewPhotographyCard
+    <PhotographyCard
       title={LoremIpsum.words}
       image="https://placedog.net/1000/1000"
       publishedDate={new Date()}

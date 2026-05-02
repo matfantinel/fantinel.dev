@@ -1,5 +1,5 @@
 <script lang="ts">
-  import NewPhotographyCard from '@components/molecules/NewPhotographyCard';
+  import PhotographyCard from '@components/molecules/PhotographyCard';
   import type { Photography } from '@schemas/photography';
   import type { Snippet } from 'svelte';
 
@@ -22,7 +22,7 @@
 
   {#if photographies}
     {#each photographies as photography}
-      <NewPhotographyCard
+      <PhotographyCard
         {...photographyToPhotographyCardProps(photography)}
         title={photography.title}
         slug={photography.slug}

@@ -6,7 +6,7 @@
   import AuthorAvatar from '@components/molecules/AuthorAvatar';
   import BlogPostCard from '@components/molecules/BlogPostCard';
   import CoolLinkCard from '@components/molecules/CoolLinkCard';
-  import NewPhotographyCard from '@components/molecules/NewPhotographyCard';
+  import PhotographyCard from '@components/molecules/PhotographyCard';
   import QuickReviewCard from '@components/molecules/QuickReviewCard';
   import metaConfig from '@public/cms/meta.yml';
   import type { BlogPost } from '@schemas/blog';
@@ -83,7 +83,7 @@
     {:else if type === PostType.COOL_LINK}
       <CoolLinkCard class="m-timeline-item__card" {...coolLinkToCoolLinkCardProps(data as CoolLink)} />
     {:else if type === PostType.PHOTOGRAPHY}
-      <NewPhotographyCard class="m-timeline-item__card" {...photographyToPhotographyCardProps(data as Photography)} />
+      <PhotographyCard class="m-timeline-item__card" {...photographyToPhotographyCardProps(data as Photography)} />
     {/if}
   </div>
 </div>
