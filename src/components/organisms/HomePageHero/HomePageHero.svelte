@@ -31,8 +31,7 @@
         src={image}
         alt={title}
         {extraImages}
-        size="164px"
-        theme="rainbow"
+        size="large"
         animated
       />
     </div>

@@ -16,13 +16,10 @@
 @use './_functions.scss' as functions;
 
 // Mirrors define-color from _mixins.scss, but emits --palette-v6--* variables.
-@mixin define-color-v6($title, $color, $inverted_color) {
+@mixin define-color-v6($title, $color) {
   --palette-v6--#{$title}: #{$color};
-  // --palette-v6--#{$title}--inverted: #{$inverted_color};
 
   --palette-v6--#{$title}--rgb: #{functions.red($color)}, #{functions.green($color)}, #{functions.blue($color)};
-  // --palette-v6--#{$title}--rgb--inverted:
-  //   #{functions.red($inverted_color)}, #{functions.green($inverted_color)}, #{functions.blue($inverted_color)};
 
   --palette-v6--#{$title}--contrast: #{if(
       functions.brightness($color) > 186,
@@ -108,18 +105,18 @@ $palette-v6-colors: (
   ('gray-800',  #DCE0E8, #1e1e2e),
   ('gray-900',  #E6E9EF, #181825),
   ('gray-1000', #EFF1F5, #11111b),
-  ('gray-max',  #FFFFFF, #11111B)  
+  ('gray-max',  #FFFFFF, #11111B)
 );
 
 @mixin light-palette-v6 {
   @each $entry in $palette-v6-colors {
-    @include define-color-v6(list.nth($entry, 1), list.nth($entry, 2), list.nth($entry, 3));
+    @include define-color-v6(list.nth($entry, 1), list.nth($entry, 2));
   }
 }
 
 @mixin dark-palette-v6 {
   @each $entry in $palette-v6-colors {
-    @include define-color-v6(list.nth($entry, 1), list.nth($entry, 3), list.nth($entry, 2));
+    @include define-color-v6(list.nth($entry, 1), list.nth($entry, 3));
   }
 }
 
@@ -227,6 +224,13 @@ $palette-v6-colors: (
   --t-v6--marker-highlight: var(--palette-v6--yellow);
   --t-v6--marker-highlight--rgb: var(--palette-v6--yellow--rgb);
   --t-v6--marker-highlight--contrast: var(--palette-v6--yellow--contrast);
+  // #endregion
+
+  // #region BlogPostCard
+  --t-v6--blog-card-placeholder-shadow:
+    0px 4px 4px var(--palette-v6--gray-700),
+    0 0 18px var(--palette-v6--gray-400),
+    0px 4px 4px var(--palette-v6--gray-700);
   // #endregion
 
   // #endregion

@@ -7,16 +7,14 @@
     src,
     alt,
     extraImages,
-    size = '50px',
-    theme = 'greenish',
+    size = 'medium',
     animated = false,
     class: className,
   }: {
     src: string;
     alt: string;
     extraImages?: string[];
-    size?: string;
-    theme?: 'greenish' | 'pinkish' | 'rainbow';
+    size?: 'large' | 'medium' | 'small' | 'tiny';
     animated?: boolean;
     class?: string;
   } = $props();
@@ -36,11 +34,10 @@
   this={tag}
   class={[
     'm-author-avatar',
-    `m-author-avatar--theme--${theme}`,
     animated ? 'm-author-avatar--animated' : '',
+    `m-author-avatar--size--${size}`,
     className,
   ]}
-  style={`--size:${size}`}
   {onclick}
   role="button"
   tabindex="-1"
@@ -57,6 +54,8 @@
 
 <style lang="scss">
   .m-author-avatar {
+    --size: 72px;
+
     margin: 0;
     padding: 0;
     border: none;
@@ -66,7 +65,7 @@
     width: var(--size);
     height: var(--size);
     border-radius: 50%;
-    box-shadow: var(--theme--shadow-image);
+    box-shadow: var(--t-v6--shadow--low);
     background: none;
 
     &:is(button) {
@@ -82,12 +81,29 @@
       left: 0;
       z-index: -1;
 
-      background: var(--theme--gradient-greenish);
+      background: var(--t-v6--gradient--rainbow--circle);
+      filter: blur(4px);
       will-change: transform, opacity;
       transform: rotate(0deg) translate3d(0, 0, 0);
       border-radius: 50%;
       animation: rotate 4s linear infinite;
       animation-play-state: paused;
+    }
+
+    &--size--large {
+      --size: 164px;
+    }
+
+    &--size--medium {
+      --size: 72px;
+    }
+
+    &--size--small {
+      --size: 50px;
+    }
+
+    &--size--tiny {
+      --size: 36px;
     }
 
     &--animated {
@@ -118,25 +134,6 @@
 
       &:hover {
         transform: scale(1.1) rotate(5deg);
-      }
-    }
-
-    &--theme--greenish {
-      &:before {
-        background: var(--theme--color-accent);
-      }
-    }
-
-    &--theme--pinkish {
-      &:before {
-        background: var(--theme--gradient-pinkish);
-      }
-    }
-
-    &--theme--rainbow {
-      &:before {
-        background: var(--theme--gradient-rainbow-circle-dark);
-        filter: blur(4px);
       }
     }
   }

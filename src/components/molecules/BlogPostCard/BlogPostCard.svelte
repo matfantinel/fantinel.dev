@@ -74,7 +74,7 @@
         </Tags>
       {/if}
 
-      <ArrowLink class="m-blog-post-card__link" href={url} title={`Open blog post`}>Read</ArrowLink>
+      <ArrowLink color="blog" class="m-blog-post-card__link" href={url} title={`Open blog post`}>Read</ArrowLink>
     </div>
   </div>
 </article>
@@ -85,7 +85,7 @@
   .m-blog-post-card {
     border-radius: var(--border-radius);
     box-shadow: var(--t-v6--shadow--base);
-    background-color: var(--theme--background-card-color);
+    background-color: var(--t-v6--surface--card);
     overflow: hidden;
     position: relative;
 
@@ -101,7 +101,7 @@
     }
 
     &__image-container {
-      background: var(--theme--background-card-accent-color);
+      background: var(--t-v6--surface--base);
       isolation: isolate;
       position: relative;
       min-height: 214px;
@@ -123,10 +123,7 @@
       font-family: var(--font--headings);
       font-weight: 700;
       color: transparent;
-      text-shadow:
-        0px 4px 4px var(--theme--color-inner-text-shadow-light),
-        0 0 18px var(--theme--color-inner-text-shadow),
-        0px 4px 4px var(--theme--color-inner-text-shadow-light);
+      text-shadow: var(--t-v6--blog-card-placeholder-shadow);
     }
 
     :global(.m-blog-post-card__image) {
@@ -140,7 +137,7 @@
     &__content {
       padding: var(--spacing-md) var(--spacing-md) 0;
       flex-grow: 1;
-      background-color: var(--theme--background-card-color);
+      background-color: var(--t-v6--surface--card);
 
       display: flex;
       flex-direction: column;
@@ -153,7 +150,7 @@
 
     &__reading-time {
       @include typography.b3;
-      color: var(--theme--text-accent-color);
+      color: var(--t-v6--text--medium);
     }
 
     &__excerpt {
@@ -216,7 +213,7 @@
 
   @media (hover: hover) {
     :global(.m-blog-post-card:has(.m-blog-post-card__link:hover)) {
-      box-shadow: var(--theme--shadow-card-high);
+      box-shadow: var(--t-v6--shadow--high);
     }
   }
 </style>

@@ -56,12 +56,12 @@
 	.m-code-block {
 		display: block;
 		position: relative;
-		background-color: var(--theme--color-code-background);
-		color: var(--theme--color-code-text);
+		background-color: var(--t-v6--codeblock--bg);
+		color: var(--t-v6--codeblock--text);
 		font-family: var(--font--mono);
 		font-size: 1rem;
 		line-height: 1.33em;
-		border-radius: 8px;
+		border-radius: var(--border-radius--small);
 		box-shadow: var(--t-v6--shadow--base);
 
 		padding: var(--spacing-lg) var(--spacing-sm) var(--spacing-md);
@@ -70,7 +70,7 @@
 		:global(pre) {
 			font-family: var(--font--mono);
 			overflow-x: auto;
-			scrollbar-color: var(--theme--color-accent) rgba(var(--theme--color-accent-rgb), 0.5);
+			scrollbar-color: var(--t-v6--accent) rgba(var(--t-v6--accent--rgb), 0.5);
 			scrollbar-width: thin;
 			padding-bottom: var(--spacing-xxs);
 
@@ -82,9 +82,9 @@
 				height: 8px;
 			}
 			&::-webkit-scrollbar-thumb {
-				background: var(--theme--color-accent);
+				background: var(--t-v6--accent);
 				&:hover {
-					background: var(--theme--color-accent-tint);
+					background: var(--t-v6--accent--tint);
 				}
 			}
 		}

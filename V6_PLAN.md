@@ -35,16 +35,16 @@ Migrate one component at a time, flip it fully to v6, then tick the checkbox.
 
 ## Molecules
 
-- [ ] **AuthorAvatar** — used in TimelineGroup, HomePageHero, AboutAuthor, PostHero. **Complex gradient case**: uses `--theme--gradient-pinkish`, `--theme--gradient-greenish`, and `--theme--gradient-rainbow-circle-dark` (the motivating example for the locked `--palette-v6--dark-*` flavors). Also `--theme--shadow-image`.
-- [ ] **BlogPostCard** — used in TimelineGroup and PostsSection. Uses `--theme--color-inner-text-shadow` + `-light` (specialized text-shadow tokens) and both `--theme--shadow-card` and `--theme--shadow-card-high`. Verify both shadow tiers exist in v6.
-- [ ] **BlogPostCards** — used in PostsSection and `BlogArchiveLayout.astro`. Layout wrapper; no theme tokens of note.
-- [ ] **CodeBlock** — rendered by `markdown/CodeBlockRenderer.svelte`. Uses `--theme--color-code-background` / `-text` (overridden in light theme to point to fixed dark palette — worth replicating in v6 via locked palette variants) and accent/tint for line-number styling.
-- [ ] **CoolLinkCard** — used in CoolLinkCards and TimelineGroup. Hardcoded `--color--blue` accent, plus card background + border + both shadow tiers.
-- [ ] **CoolLinkCards** — used in `CoolLinksArchiveLayout.astro`. Layout wrapper.
-- [ ] **CoolLinksImage** — used in `components/opengraph/CoolLinksOpengraphImage/CoolLinksOpengraphImage.astro`. **Hardcoded hex palette**: `#11111B`, `#F5C2E7`, `#CBA6F7`, `#F38BA8`, `#EBA0AC`, `#F9E2AF`, `#A6E3A1`, `#94E2D5`, `#89DCEB`, `#74C7EC`, `#89B4FA`, etc. This is intentional — the file is rendered server-side by Satori for OG images, which does **not** resolve CSS custom properties. After the v6 palette is finalized, manually update these hexes to match.
-- [ ] **Field** — used in NewsletterCta. Wraps Input + label; uses `--theme--text-base-color`.
-- [ ] **HamburgerMenu** — used in Header. **Uses the hardcoded dark rainbow gradient** (`--theme--gradient-rainbow-circle-dark`) + `--theme--background-base-color-rgb` for overlay, `--theme--glow-links`, `--theme--shadow-card-high`. Prime candidate for the new locked-dark palette.
-- [ ] **MarkdownRenderer** — used in many places (post body, cool-link body, quick-review body, photography layouts, etc.). No direct CSS tokens; delegates styling to its children (CodeBlock, MarkerHighlight, SparklingHighlight, QuoteCalloutRenderer, ImageRenderer). Migration here is mostly a sanity check.
+- [X] **AuthorAvatar** — used in TimelineGroup, HomePageHero, AboutAuthor, PostHero. **Complex gradient case**: uses `--theme--gradient-pinkish`, `--theme--gradient-greenish`, and `--theme--gradient-rainbow-circle-dark` (the motivating example for the locked `--palette-v6--dark-*` flavors). Also `--theme--shadow-image`.
+- [X] **BlogPostCard** — used in TimelineGroup and PostsSection. Uses `--theme--color-inner-text-shadow` + `-light` (specialized text-shadow tokens) and both `--theme--shadow-card` and `--theme--shadow-card-high`. Verify both shadow tiers exist in v6.
+- [X] **BlogPostCards** — used in PostsSection and `BlogArchiveLayout.astro`. Layout wrapper; no theme tokens of note.
+- [X] **CodeBlock** — rendered by `markdown/CodeBlockRenderer.svelte`. Uses `--theme--color-code-background` / `-text` (overridden in light theme to point to fixed dark palette — worth replicating in v6 via locked palette variants) and accent/tint for line-number styling.
+- [X] **CoolLinkCard** — used in CoolLinkCards and TimelineGroup. Hardcoded `--color--blue` accent, plus card background + border + both shadow tiers.
+- [X] **CoolLinkCards** — used in `CoolLinksArchiveLayout.astro`. Layout wrapper.
+- [X] **CoolLinksImage** — used in `components/opengraph/CoolLinksOpengraphImage/CoolLinksOpengraphImage.astro`. **Hardcoded hex palette**: `#11111B`, `#F5C2E7`, `#CBA6F7`, `#F38BA8`, `#EBA0AC`, `#F9E2AF`, `#A6E3A1`, `#94E2D5`, `#89DCEB`, `#74C7EC`, `#89B4FA`, etc. This is intentional — the file is rendered server-side by Satori for OG images, which does **not** resolve CSS custom properties. After the v6 palette is finalized, manually update these hexes to match.
+- [X] **Field** — used in NewsletterCta. Wraps Input + label; uses `--theme--text-base-color`.
+- [X] **HamburgerMenu** — WILL BE REMOVED
+- [X] **MarkdownRenderer** — used in many places (post body, cool-link body, quick-review body, photography layouts, etc.). No direct CSS tokens; delegates styling to its children (CodeBlock, MarkerHighlight, SparklingHighlight, QuoteCalloutRenderer, ImageRenderer). Migration here is mostly a sanity check.
 - [ ] **NewPhotographyCard** — used in TimelineGroup and PhotographyCards. Uses `--theme--color-photography` (post-type accent) + card background + shadow.
 - [ ] **PagefindSearchField** — used in `pages/search.astro`. Uses the input token family + `--theme--text-accent-color`.
 - [ ] **Pagination** — used in every archive layout. Simple: card background + accent + shadow.
@@ -118,3 +118,4 @@ Based on the audit above, v6 needs to cover at least:
 3. Rename `src/styles/_themes.v6.scss` → `src/styles/_themes.scss` (update its `@use` line).
 4. Remove the `define-color` mixin from `src/styles/_mixins.scss` if nothing else references it.
 5. `rg -- '--theme--|--color--'` should return zero hits inside `src/components/`.
+6. Remove the `HamburgerMenu` component.

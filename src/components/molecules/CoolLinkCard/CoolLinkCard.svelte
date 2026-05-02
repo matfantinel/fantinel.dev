@@ -66,7 +66,7 @@
       </div>
     {/if}
 
-    <ArrowLink class="m-cool-link-card__link" href={url} title={`Open cool link`}>Open</ArrowLink>
+    <ArrowLink class="m-cool-link-card__link" color="cool-link" href={url} title={`Open cool link`}>Open</ArrowLink>
   </div>
 </article>
 
@@ -75,10 +75,9 @@
   @use '/src/styles/breakpoints';
 
   .m-cool-link-card {
-    border: 2px dashed var(--color--blue);
+    border: 2px dashed var(--t-v6--cool-link);
     border-radius: var(--border-radius);
-    background: var(--theme--background-card-color);
-    // box-shadow: var(--t-v6--shadow--base);
+    background: var(--t-v6--surface--card);
     position: relative;
 
     transition: all 0.25s ease-in-out;
@@ -111,9 +110,9 @@
     }
 
     &__title-link {
-      color: var(--color--blue);
+      color: var(--t-v6--cool-link);
       text-decoration: underline;
-      text-decoration-color: var(--color--blue);
+      text-decoration-color: var(--t-v6--cool-link);
 
       text-underline-offset: 0.1em;
       text-decoration-thickness: 2px;
@@ -127,7 +126,7 @@
     &__content {
       :global(blockquote) {
         padding-left: var(--spacing-md);
-        border-left: 4px solid var(--theme--border-base-color);
+        border-left: 4px solid var(--t-v6--border--base);
       }
     }
   }
@@ -159,7 +158,7 @@
   @media (hover: hover) {
     :global(.m-cool-link-card:has(.m-cool-link-card__link:hover)),
     :global(.m-cool-link-card:has(.m-cool-link-card__title-link:hover)) {
-      box-shadow: var(--theme--shadow-card-high);
+      box-shadow: var(--t-v6--shadow--high);
       .m-cool-link-card__title-link {
         text-underline-offset: 0.3em;
         filter: unset;

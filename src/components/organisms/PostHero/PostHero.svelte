@@ -34,7 +34,7 @@
 
     <div class="o-post-hero__meta">
       {#if author?.image}
-        <AuthorAvatar src={author.image} alt={author.name} extraImages={author.extraImages} />
+        <AuthorAvatar src={author.image} alt={author.name} extraImages={author.extraImages} size="small" />
       {/if}
       <div class="o-post-hero__details">
         {#if author?.name}

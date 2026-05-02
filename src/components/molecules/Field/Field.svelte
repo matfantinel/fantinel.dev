@@ -64,7 +64,7 @@
 
     label {
       @include typography.b2;
-      color: var(--theme--text-base-color);
+      color: var(--t-v6--text--base);
     }
 
     &__input-container {

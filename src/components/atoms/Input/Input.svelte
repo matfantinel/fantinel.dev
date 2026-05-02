@@ -31,6 +31,10 @@
 
     transition: all 0.25s ease;
 
+    width: 100%;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+
     border: 1px solid var(--t-v6--input--border--empty);
     background: var(--t-v6--input--bg--empty);
     color: var(--t-v6--input--text--value);
@@ -50,7 +54,7 @@
       border-color: var(--t-v6--input--border--filled);
       background: var(--t-v6--input--bg--filled);
       border-style: solid;
-    } 
+    }
 
     &:focus,
     &:active {

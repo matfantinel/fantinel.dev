@@ -87,7 +87,7 @@
       <div class="m-timeline-group__item-content">
         <div class="m-timeline-group__item-content-header">
           {#if siteMeta.author.image}
-            <AuthorAvatar src={siteMeta.author.image} alt={siteMeta.author.name} theme="rainbow" size="36px" />
+            <AuthorAvatar src={siteMeta.author.image} alt={siteMeta.author.name} size="tiny" />
           {/if}
           <div class="m-timeline-group__item-content-heading">
             {siteMeta.author.shortName} {@html getPostActionLabel(post.type, post.data)}
