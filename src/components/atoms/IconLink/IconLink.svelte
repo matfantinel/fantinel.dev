@@ -64,6 +64,8 @@
     text-decoration: none;
     color: currentColor;
 
+    transition: all 0.25s ease;
+
     border: none;
     appearance: none;
     background-color: transparent;

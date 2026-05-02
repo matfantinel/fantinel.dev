@@ -21,7 +21,7 @@
 
   .m-tags {
 		display: flex;
-		gap: var(--spacing-sm) var(--spacing-xs);
+		gap: var(--spacing-xs);
 		flex-wrap: wrap;
 		align-items: center;
 		justify-content: center;

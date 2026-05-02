@@ -2,7 +2,7 @@
   import Button from '@components/atoms/Button';
   import AuthorAvatar from '@components/molecules/AuthorAvatar';
   import MarkdownRenderer from '@components/molecules/MarkdownRenderer';
-  import SocialLink from '@components/molecules/SocialLink';
+  import SocialLink from '@components/atoms/SocialLink';
   import type { SocialLink as SocialLinkType } from '@schemas/site-meta';
 
   let {

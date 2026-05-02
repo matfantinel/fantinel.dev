@@ -28,6 +28,7 @@ Migrate one component at a time, flip it fully to v6, then tick the checkbox.
 - [X] **MarkerHighlight** — rendered by MarkdownRenderer for `==marker==` syntax. Uses `--theme--color-marker-highlight` + `-rgb` + `-contrast`. Specialized token; verify v6 still ships it.
 - [X] **NavMenuLink** — used in HamburgerMenu. **Dynamic post-type coloring**: builds `--theme--color-{variant}` at runtime (generic, blog-post, cool-link, quick-review, photography, timeline). Depends on v6 keeping post-type tokens.
 - [ ] **QuickReviewTypeTag** — used in QuickReviewCard. **QR subsystem**: `--theme--qr-{movie,tv-show,game,album}-color` + `--theme--qr-base-{dark,light}-color`. These were hardcoded hexes in the legacy file — a natural candidate for locked-palette variables in v6.
+- [X] **SocialLink** — used in Footer and AboutAuthor. No direct tokens; wraps IconLink.
 - [X] **SparklingHighlight** — rendered by MarkdownRenderer for a custom marked extension. Uses `--theme--color-sparkles`. Animation-heavy; verify sparkle animation keyframes still reference the right token after rename.
 - [X] **Tag** — uses `--theme--color-tags-background` / `-hover` and, when selected, `--theme--glow-green` + `--theme--color-callouts-success`. The hardcoded green/success coupling is worth re-evaluating during v6 (maybe make it a dedicated `--t-v6-tag-selected-*` pair).
 
@@ -48,19 +49,18 @@ Migrate one component at a time, flip it fully to v6, then tick the checkbox.
 - [ ] **NewPhotographyCard** — used in TimelineGroup and PhotographyCards. Uses `--theme--color-photography` (post-type accent) + card background + shadow.
 - [ ] **PagefindSearchField** — used in `pages/search.astro`. Uses the input token family + `--theme--text-accent-color`.
 - [ ] **Pagination** — used in every archive layout. Simple: card background + accent + shadow.
-- [ ] **PhotographyCards** — used in `PhotographyArchiveLayout.astro`. Layout wrapper.
+- [X] **PhotographyCards** — used in `PhotographyArchiveLayout.astro`. Layout wrapper.
 - [ ] **PhotographySlideshowDialog** — used in PhotographyThumbnail. Uses `--theme--background-base-color-rgb` and `--theme--color-accent-rgb` inside `rgba()` for the backdrop — verify v6 keeps the `-rgb` suffix convention (the new `define-palette-v6` mixin emits `--rgb`).
 - [ ] **PhotographyThumbnail** — used in NewPhotographyCard. Uses `--theme--shadow-card-high`.
 - [ ] **QuickReviewCard** — used in TimelineGroup and QuickReviewCards. **QR subsystem + custom prop**: uses `--theme--qr-base-{dark,light}-color`, both shadow tiers, and accepts a `customBg` prop that is injected as an inline CSS variable (the prop must be normalized to include a leading `#` for hex values).
-- [ ] **QuickReviewCards** — used in `QuickReviewsArchiveLayout.astro`. Layout wrapper.
+- [X] **QuickReviewCards** — used in `QuickReviewsArchiveLayout.astro`. Layout wrapper.
 - [ ] **QuickReviewRatings** — used in QuickReviewCard. **QR rating tokens**: `--theme--qr-{loved,liked,decent,not-liked}-color`. Notably `qr-loved-color` is a **gradient** (`gradient-rainbow-circle-dark`), so animating/cutting it into a shape needs the same locked-dark treatment. Also uses `--color--yellow-rgb` and a custom `--glow-color` on the `loved` state.
 - [ ] **SearchResult** — used in PagefindSearchResults. Card background, accent rgb, both shadow tiers.
 - [ ] **SectionHeader** — used in PostsSection and PostsTimeline. Uses `--theme--color-accent` only.
-- [ ] **SocialLink** — used in Footer and AboutAuthor. No direct tokens; wraps IconLink.
 - [ ] **TableOfContents** — used in `PostLayout.astro`. Heaviest variable usage in the molecules folder: background-card + `-rgb`, background-accent, color-accent, color-links, text-base + text-accent, both shadow tiers. Migrate near the end.
-- [ ] **Tags** — used in BlogPostCard, CoolLinkCard, PhotographyThumbnail, ArchiveHero, PostHero. Pure layout/flex wrapper around Tag atoms.
-- [ ] **ThemeToggle** — used in Header and Footer. Only uses `--theme--glow-links`.
-- [ ] **TimelineGroup** — used in PostsTimeline. **Dynamic post-type coloring**: same `--theme--color-{variant}` pattern as NavMenuLink. Also uses `--theme--background-base-color-rgb` and `--theme--border-medium-color`.
+- [X] **Tags** — used in BlogPostCard, CoolLinkCard, PhotographyThumbnail, ArchiveHero, PostHero. Pure layout/flex wrapper around Tag atoms.
+- [X] **ThemeToggle** — used in Header and Footer. Only uses `--theme--glow-links`.
+- [X] **TimelineGroup** — used in PostsTimeline. **Dynamic post-type coloring**: same `--theme--color-{variant}` pattern as NavMenuLink. Also uses `--theme--background-base-color-rgb` and `--theme--border-medium-color`.
 
 ---
 

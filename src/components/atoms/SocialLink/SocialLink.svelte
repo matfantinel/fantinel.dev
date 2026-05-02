@@ -12,13 +12,13 @@
     label,
     class: className,
   }: {
-    name: string;
+    name: 'Mastodon' | 'GitHub' | 'LinkedIn' | 'Email' | 'RSS';
     url: string;
     label?: string;
     class?: string;
   } = $props();
 
-  const getIconSnippet = (socialName: string) => {
+  const getIconSnippet = (socialName: 'Mastodon' | 'GitHub' | 'LinkedIn' | 'Email' | 'RSS') => {
     switch (socialName) {
       case 'Mastodon':
         return mastodonIconSnippet;

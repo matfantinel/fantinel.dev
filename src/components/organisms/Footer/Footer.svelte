@@ -4,7 +4,7 @@
   import IconLink from '@components/atoms/IconLink';
   import ThemeToggle from '@components/molecules/ThemeToggle';
 
-  import SocialLink from '@components/molecules/SocialLink';
+  import SocialLink from '@components/atoms/SocialLink';
   import type { SocialLink as SocialLinkType } from '@schemas/site-meta';
 
   let {

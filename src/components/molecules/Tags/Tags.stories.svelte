@@ -12,7 +12,7 @@
       class: { control: false },
       size: {
         control: { type: 'select' },
-        options: ['default', 'small'],
+        options: ['default', 'small', 'responsive'],
       },
     },
     render: template

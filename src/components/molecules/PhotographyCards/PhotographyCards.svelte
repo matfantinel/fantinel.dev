@@ -46,6 +46,5 @@
     display: grid-lanes;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: var(--spacing-md);
-
   }
 </style>
