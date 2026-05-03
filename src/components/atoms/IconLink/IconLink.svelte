@@ -9,6 +9,7 @@
     title,
     class: className,
     icon,
+    iconPosition = 'left',
     children,
     onclick,
     ...props
@@ -19,6 +20,7 @@
     title?: string;
     class?: string;
     icon?: Snippet;
+    iconPosition?: 'left' | 'right';
     children?: Snippet;
     onclick?: EventListener;
     [key: string]: any;
@@ -43,7 +45,7 @@
   title={title}
   {onclick}
 >
-  {#if icon}
+  {#if icon && iconPosition === 'left'}
     <div class="a-icon-link__icon">
       {@render icon()}
     </div>
@@ -51,6 +53,11 @@
   <span class="a-icon-link__text">
     {@render children?.()}
   </span>
+  {#if icon && iconPosition === 'right'}
+    <div class="a-icon-link__icon">
+      {@render icon()}
+    </div>
+  {/if}
 </svelte:element>
 
 <style lang="scss">

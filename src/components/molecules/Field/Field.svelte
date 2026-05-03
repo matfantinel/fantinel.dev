@@ -77,6 +77,7 @@
       left: var(--spacing-sm);
       transform: translateY(-50%);
       pointer-events: none;
+      z-index: 1;
     }
 
     &--search {

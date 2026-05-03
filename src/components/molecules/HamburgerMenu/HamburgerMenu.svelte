@@ -73,7 +73,6 @@
       <li class="m-hamburger-menu__item m-hamburger-menu__search">
         <PagefindSearchField
           class="m-hamburger-menu__search-field"
-          expandable
           value={currentSearch}
           onsubmit={handleMenuItemClick}
         />

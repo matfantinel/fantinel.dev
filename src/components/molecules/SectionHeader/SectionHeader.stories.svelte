@@ -9,6 +9,11 @@
     component: SectionHeader,
     tags: ['autodocs'],
     argTypes: {
+      title: { control: 'text' },
+      body: { control: 'text' },
+      button: { control: 'object' },
+      secondaryButton: { control: 'object' },
+      centered: { control: 'boolean' },
       class: { control: false },
     },
     render: template
@@ -23,10 +28,15 @@
   name="Default"
   args={{
     title: LoremIpsum.words,
+    body: LoremIpsum.sentence,
     button: {
-      text: 'Button',
+      text: 'Primary',
       url: '#'
-    }
+    },
+    secondaryButton: {
+      text: 'Secondary',
+      url: '#'
+    },
   }}
 />
 
@@ -34,10 +44,46 @@
   name="Centered"
   args={{
     title: LoremIpsum.words,
+    body: LoremIpsum.sentence,
     button: {
-      text: 'Button',
+      text: 'Primary',
       url: '#'
     },
-    centered: true
+    secondaryButton: {
+      text: 'Secondary',
+      url: '#'
+    },
+    centered: true,
+  }}
+/>
+
+<Story
+  name="No Body"
+  args={{
+    title: LoremIpsum.words,
+    button: {
+      text: 'Primary',
+      url: '#'
+    },
+  }}
+/>
+
+<Story
+  name="Primary Button Only"
+  args={{
+    title: LoremIpsum.words,
+    body: LoremIpsum.sentence,
+    button: {
+      text: 'Primary',
+      url: '#'
+    },
+  }}
+/>
+
+<Story
+  name="No Buttons"
+  args={{
+    title: LoremIpsum.words,
+    body: LoremIpsum.sentence,
   }}
 />

@@ -80,7 +80,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
+    gap: var(--spacing-xs);
 
     &__item {
       margin: 0;
@@ -97,14 +97,14 @@
 
       @media (hover: hover) {
         &:hover {
-          background-color: var(--theme--background-card-color);
+          background-color: var(--t-v6--surface--accent);
         }
       }
 
       &--active {
-        background-color: var(--theme--background-card-color);
+        background-color: var(--t-v6--surface--accent);
         box-shadow: var(--t-v6--shadow--base);
-        color: var(--theme--color-accent);
+        color: var(--t-v6--accent);
       }
     }
   }

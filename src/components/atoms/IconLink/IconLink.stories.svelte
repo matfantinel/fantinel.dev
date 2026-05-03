@@ -26,3 +26,5 @@
 {/snippet}
 
 <Story name="Default" />
+
+<Story name="Icon on Right" args={{ iconPosition: 'right' }} />

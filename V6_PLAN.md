@@ -46,8 +46,8 @@ Migrate one component at a time, flip it fully to v6, then tick the checkbox.
 - [X] **Field** — used in NewsletterCta. Wraps Input + label; uses `--theme--text-base-color`.
 - [X] **HamburgerMenu** — WILL BE REMOVED
 - [X] **MarkdownRenderer** — used in many places (post body, cool-link body, quick-review body, photography layouts, etc.). No direct CSS tokens; delegates styling to its children (CodeBlock, MarkerHighlight, SparklingHighlight, QuoteCalloutRenderer, ImageRenderer). Migration here is mostly a sanity check.
-- [ ] **PagefindSearchField** — used in `pages/search.astro`. Uses the input token family + `--theme--text-accent-color`.
-- [ ] **Pagination** — used in every archive layout. Simple: card background + accent + shadow.
+- [X] **PagefindSearchField** — used in `pages/search.astro`. Uses the input token family + `--theme--text-accent-color`.
+- [X] **Pagination** — used in every archive layout. Simple: card background + accent + shadow.
 - [X] **PhotographyCard** — used in TimelineGroup and PhotographyCards. Uses `--theme--color-photography` (post-type accent) + card background + shadow.
 - [X] **PhotographyCards** — used in `PhotographyArchiveLayout.astro`. Layout wrapper.
 - [ ] **PhotographySlideshowDialog** — used in PhotographyThumbnail. Uses `--theme--background-base-color-rgb` and `--theme--color-accent-rgb` inside `rgba()` for the backdrop — verify v6 keeps the `-rgb` suffix convention (the new `define-palette-v6` mixin emits `--rgb`).
@@ -56,8 +56,8 @@ Migrate one component at a time, flip it fully to v6, then tick the checkbox.
 - [X] **QuickReviewCards** — used in `QuickReviewsArchiveLayout.astro`. Layout wrapper.
 - [ ] **QuickReviewRatings** — used in QuickReviewCard. **QR rating tokens**: `--theme--qr-{loved,liked,decent,not-liked}-color`. Notably `qr-loved-color` is a **gradient** (`gradient-rainbow-circle-dark`), so animating/cutting it into a shape needs the same locked-dark treatment. Also uses `--color--yellow-rgb` and a custom `--glow-color` on the `loved` state.
 - [ ] **SearchResult** — used in PagefindSearchResults. Card background, accent rgb, both shadow tiers.
-- [ ] **SectionHeader** — used in PostsSection and PostsTimeline. Uses `--theme--color-accent` only.
-- [ ] **TableOfContents** — used in `PostLayout.astro`. Heaviest variable usage in the molecules folder: background-card + `-rgb`, background-accent, color-accent, color-links, text-base + text-accent, both shadow tiers. Migrate near the end.
+- [X] **SectionHeader** — used in PostsSection and PostsTimeline. Uses `--theme--color-accent` only.
+- [X] **TableOfContents** — used in `PostLayout.astro`. Heaviest variable usage in the molecules folder: background-card + `-rgb`, background-accent, color-accent, color-links, text-base + text-accent, both shadow tiers. Migrate near the end.
 - [X] **Tags** — used in BlogPostCard, CoolLinkCard, PhotographyThumbnail, ArchiveHero, PostHero. Pure layout/flex wrapper around Tag atoms.
 - [X] **ThemeToggle** — used in Header and Footer. Only uses `--theme--glow-links`.
 - [X] **TimelineGroup** — used in PostsTimeline. **Dynamic post-type coloring**: same `--theme--color-{variant}` pattern as NavMenuLink. Also uses `--theme--background-base-color-rgb` and `--theme--border-medium-color`.
