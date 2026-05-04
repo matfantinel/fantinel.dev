@@ -70,7 +70,7 @@
       {#if url}
         <div class="m-search-result__footer">
           <ArrowLink class="m-search-result__link" href={url} title={`Open ${type || 'item'}`} color={type as any}>
-            Read
+            View
           </ArrowLink>
         </div>
       {/if}
@@ -130,6 +130,7 @@
 
     :global(.m-search-result__image) {
       object-fit: cover;
+      background-color: var(--t-v6--surface--base);
     }
 
     &__content {

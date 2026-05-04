@@ -25,6 +25,7 @@ export interface PagefindResult {
   meta: {
     title: string;
     image: string;
+    image_alt: string;
   };
   content: string;
   word_count: number;

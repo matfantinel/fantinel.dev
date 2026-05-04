@@ -1,5 +1,6 @@
 <script lang="ts">
   import type { Pagefind, PagefindResult } from '@schemas/pagefind';
+  import { PostType } from '@schemas/post-types';
   import { onMount } from 'svelte';
   import SearchResults from '@components/molecules/SearchResults';
   import Search from '@assets/icons/search.svelte';
@@ -57,11 +58,29 @@
   });
 
   function pagefindResultToSearchResult(result: PagefindResult) {
+    const url = result.url;
+    let type: PostType | undefined;
+
+    if (url.startsWith('/blog')) {
+      type = PostType.BLOG_POST;
+    } else if (url.startsWith('/quick-reviews')) {
+      type = PostType.QUICK_REVIEW;
+    } else if (url.startsWith('/cool-links')) {
+      type = PostType.COOL_LINK;
+    } else if (url.startsWith('/photography')) {
+      type = PostType.PHOTOGRAPHY;
+    } else {
+      type = PostType.PAGE;
+    }
+
     return {
+      type,
       title: result.meta.title,
       url: result.url,
       excerpt: result.excerpt,
       subResults: result.sub_results,
+      image: result.meta.image,
+      imageAlt: result.meta.image_alt,
     };
   }
 </script>

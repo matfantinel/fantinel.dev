@@ -16,30 +16,57 @@ export async function GET({ }: APIContext) {
           id: '1',
           data: () => Promise.resolve({
             meta: {
-              title: 'Result 1',
+              image: '/cms/optimized-media/author/0.png',
+              image_alt: 'Matt Fantinel',
+              title: 'The Quest for a Good Arc Replacement'
             },
-            url: '/result-1',
+            url: '/blog/arc-browser-replacement/',
             excerpt: 'Do ut officia reprehenderit. Aute aliquip <mark>test</mark> qui sit qui pariatur est fugiat velit tempor labore laboris aute. Nisi labore adipisicing adipisicing esse enim. Ipsum consequat laborum cupidatat aliqua cupidatat cupidatat elit incididunt minim tempor do dolor. Excepteur tempor magna deserunt proident incididunt laborum.',
+            sub_results: [
+              {
+                title: 'The Quest for a Good Arc Replacement',
+                url: '/blog/arc-browser-replacement/',
+                weighted_locations: [{ 'weight': 0.041666666666666664, 'balanced_score': 1, 'location': 33 }],
+                locations: [33],
+                excerpt: 'Table of Contents. Why do I need a replacement? Most options are just a no-no. <mark>Vivaldi</mark> (not the composer). Criteria One: The Looks. Criteria Two: The Clacks. Criteria Three: The'
+              }
+            ]
           })
         },
         {
           id: '2',
           data: () => Promise.resolve({
             meta: {
-              title: 'Result 2',
+              image: 'https://fantinel.dev/cms/media/articles/cool-links-cover.png',
+              image_alt: 'Cool Link: Wallpaper Theme Converter',
+              title: 'Cool Link: Wallpaper Theme Converter'
             },
-            url: '/result-2',
-            excerpt: 'Cillum <mark>test</mark> fugiat excepteur non est minim qui sit est officia excepteur ipsum.',
+            url: '/cool-links/wallpaper-theme-converter/',
+            excerpt: 'using that theme on the apps that allow me to, like Obsidian, VS Code and <mark>Vivaldi.</mark> To match all of that, I need some wallpapers that fit the palette too.',
           })
         },
         {
           id: '3',
           data: () => Promise.resolve({
             meta: {
-              title: 'Result 3',
+              image: 'https://m.media-amazon.com/images/M/MV5BZmM3ZDU3ODItZmY5Yi00OTQ2LWE5OTctZTA5NDBhMWJkOGY3XkEyXkFqcGc@._V1_QL75_UX380_CR0,0,380,562_.jpg',
+              image_alt: 'Cover of The Devil Wears Prada 2',
+              title: 'Quick Review: The Devil Wears Prada 2'
             },
-            url: '/result-3',
-            excerpt: 'Do ut officia reprehenderit. Aute <mark>test</mark> aliquip qui sit qui pariatur est fugiat velit tempor labore laboris aute. Nisi labore adipisicing adipisicing esse enim. Ipsum consequat laborum cupidatat aliqua cupidatat cupidatat elit incididunt minim tempor do dolor.',
+            url: '/quick-reviews/the-devil-wears-prada-2/',
+            excerpt: 'Quick Review: The Devil Wears Prada 2. View all Quick Reviews Download Review The Devil Wears <mark>Prada</mark> 2. 2026, David Frankel. Reviewed on May 01, 2026. Didn’t like it. Decent.',
+          })
+        },
+        {
+          id: '4',
+          data: () => Promise.resolve({
+            meta: {
+              image: '/cms/optimized-media/photographies/basilica-sant-andrea-vercelli.png',
+              image_alt: 'A big medieval-looking tower stands tall over the cloister of the basilica, seen through an ornate archway.',
+              title: 'Photography: Basilica di Sant’Andrea'
+            },
+            url: '/photography/basilica-sant-andrea-vercelli/',
+            excerpt: 'Photography This basilica was built in 1227 (though the cloister in the picture was rebuilt in the 1400s), and has largely stayed the same since then. Taken in <mark>Vercelli,</mark> Italy.',
           })
         }
       ]
