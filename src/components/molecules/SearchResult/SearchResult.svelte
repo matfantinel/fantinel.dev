@@ -82,7 +82,7 @@
   @use '/src/styles/typography';
 
   .m-search-result {
-    width: 100%;    
+    width: 100%;
 
     &__container {
       width: 100%;
@@ -91,7 +91,7 @@
       display: flex;
       flex-wrap: wrap;
       gap: var(--spacing-md);
-      padding: var(--spacing-md);      
+      padding: var(--spacing-md);
 
       background: var(--t-v6--surface--accent);
       border-top: 1px solid var(--t-v6--border--medium);
@@ -110,12 +110,7 @@
         z-index: -1;
         transition: all 0.25s ease;
         opacity: 0;
-        background: linear-gradient(
-          to top,
-          rgba(var(--tint), 0.1) 0%,
-          transparent 40%,
-          transparent 100%
-        );
+        background: linear-gradient(to top, rgba(var(--tint), 0.1) 0%, transparent 40%, transparent 100%);
       }
     }
 
@@ -152,6 +147,8 @@
     :global(.m-search-result__image) {
       object-fit: cover;
       background-color: var(--t-v6--surface--base);
+      width: 100%;
+      height: 100%;
     }
 
     &__content {

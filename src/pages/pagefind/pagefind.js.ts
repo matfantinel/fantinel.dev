@@ -16,8 +16,8 @@ export async function GET({ }: APIContext) {
           id: '1',
           data: () => Promise.resolve({
             meta: {
-              image: '/cms/optimized-media/author/0.png',
-              image_alt: 'Matt Fantinel',
+              image: '/cms/optimized-media/articles/arc-browser-replacement-cover.png',
+              image_alt: 'Person holding hands with the Arc icon at a crossroads. To the right, a dark castle in a storm with the major browser logos. To the left, a castle in the sunset with the Vivaldi logo sneaking behind it.',
               title: 'The Quest for a Good Arc Replacement'
             },
             url: '/blog/arc-browser-replacement/',

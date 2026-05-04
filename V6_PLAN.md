@@ -72,7 +72,7 @@ Migrate one component at a time, flip it fully to v6, then tick the checkbox.
 - [ ] **Header** — used in `BaseLayout.astro`. Relatively simple: text-base, text-inverse, background-accent, `--theme--shadow-image` (commented out at a breakpoint, easy to miss).
 - [ ] **HomePageHero** — used in `pages/index.astro`. `typography.gradient-greenish` title, `--theme--glowing-text-animation`, card background + shadow, **inset 400px background glow** (`box-shadow: ..., inset 0 0 400px var(--theme--background-card-color)`), hardcoded `--color--green` reference in a commented line (leftover).
 - [ ] **NewsletterCta** — WILL BE REMOVED
-- [ ] **PagefindSearchResults** — used in `pages/search.astro`. Hardcoded `--color--red` for error/no-results state.
+- [X] **PagefindSearchResults** — used in `pages/search.astro`. Hardcoded `--color--red` for error/no-results state.
 - [ ] **PostHero** — used in `PostLayout.astro`. **Two gradients on one component**: `typography.gradient-pinkish` on title AND `typography.gradient-greenish` on the detail line. Also uses `--theme--background-accent-color`.
 - [ ] **PostsSection** — used in `PostLayout.astro`. Layout wrapper around SectionHeader + BlogPostCards.
 - [ ] **PostsTimeline** — used in `TimelineArchiveLayout.astro` and `pages/index.astro`. Layout wrapper around TimelineGroup entries.

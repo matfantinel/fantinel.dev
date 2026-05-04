@@ -154,6 +154,7 @@ $palette-v6-colors: (
   @include set-named-color('info', 'blue');
   @include set-named-color('warning', 'yellow');
   @include set-named-color('success', 'green');
+  @include set-named-color('error', 'red');
   // #endregion
 
   // #region Colors — typography
