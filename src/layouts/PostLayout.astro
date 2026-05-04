@@ -76,6 +76,7 @@ if (post.data.ogImage) {
               src={handleCmsMediaPath(post.data.coverImage!)}
               alt={post.data.coverImageAlt}
               lazy={false}
+
             />
           )
         }
@@ -88,7 +89,7 @@ if (post.data.ogImage) {
         </div>
       </div>
 
-      <div class='l-post__after-content' data-pagefind-ignore>
+      <div class='l-post__after-content' data-pagefind-ignore="all">
         {
           post.data.author && (
             <AboutAuthor

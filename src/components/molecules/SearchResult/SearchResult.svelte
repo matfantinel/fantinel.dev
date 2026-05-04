@@ -31,7 +31,7 @@
 </script>
 
 <article class={['m-search-result', className]}>
-  <div class="m-search-result__container">
+  <div class="m-search-result__container" style={`--tint: var(--t-v6--${type}--rgb, var(--t-v6--accent--rgb))`}>
     <div class="m-search-result__image-container">
       <div class="m-search-result__image-placeholder">{title.substring(0, 5)}</div>
       {#if image}
@@ -82,7 +82,7 @@
   @use '/src/styles/typography';
 
   .m-search-result {
-    width: 100%;
+    width: 100%;    
 
     &__container {
       width: 100%;
@@ -91,11 +91,32 @@
       display: flex;
       flex-wrap: wrap;
       gap: var(--spacing-md);
-      padding: var(--spacing-md);
+      padding: var(--spacing-md);      
 
       background: var(--t-v6--surface--accent);
       border-top: 1px solid var(--t-v6--border--medium);
       border-bottom: 1px solid var(--t-v6--border--medium);
+
+      isolation: isolate;
+      position: relative;
+
+      &:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        transition: all 0.25s ease;
+        opacity: 0;
+        background: linear-gradient(
+          to top,
+          rgba(var(--tint), 0.1) 0%,
+          transparent 40%,
+          transparent 100%
+        );
+      }
     }
 
     &__image-container {
@@ -165,6 +186,18 @@
       margin-top: auto;
     }
 
+    :global(.m-search-result__link) {
+      &:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+      }
+    }
+
     @container (max-width: 500px) {
       &__image-container {
         height: min(30vw, 160px);
@@ -175,6 +208,14 @@
       }
       &__content {
         flex: 1 0 100%;
+      }
+    }
+  }
+
+  @media (hover: hover) {
+    :global(.m-search-result:has(.m-search-result__link:hover)) {
+      .m-search-result__container:before {
+        opacity: 1;
       }
     }
   }

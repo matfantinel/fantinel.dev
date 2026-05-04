@@ -174,5 +174,9 @@
       gap: var(--spacing-sm);
       color: var(--color--red);
     }
+
+    :global(.o-pagefind-search-results__results) {
+      width: 100%;
+    }
   }
 </style>

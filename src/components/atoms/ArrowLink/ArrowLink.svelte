@@ -75,7 +75,6 @@
 
     --arrow-link-color: var(--t-v6--accent);
     --arrow-link-color-hover: var(--t-v6--accent--tint);
-    --arrow-link-color-hover-glow: var(--t-v6--accent--glow-tiny);
 
     color: var(--arrow-link-color);
 
@@ -89,7 +88,6 @@
     @media (hover: hover) {
       &:hover {
         color: var(--arrow-link-color-hover);
-        filter: drop-shadow(var(--arrow-link-color-hover-glow));
 
         .a-arrow-link__icon {
           transform: translateX(4px);
@@ -120,37 +118,31 @@
     &--accent {
       --arrow-link-color: var(--t-v6--accent);
       --arrow-link-color-hover: var(--t-v6--accent--tint);
-      --arrow-link-color-hover-glow: var(--t-v6--accent--glow-tiny);
     }
 
     &--complementary {
       --arrow-link-color: var(--t-v6--complementary);
       --arrow-link-color-hover: var(--t-v6--complementary--tint);
-      --arrow-link-color-hover-glow: var(--t-v6--complementary--glow-tiny);
     }
 
     &--blog {
       --arrow-link-color: var(--t-v6--blog);
       --arrow-link-color-hover: var(--t-v6--blog--tint);
-      --arrow-link-color-hover-glow: var(--t-v6--blog--glow-tiny);
     }
 
     &--quick-review {
       --arrow-link-color: var(--t-v6--quick-review);
       --arrow-link-color-hover: var(--t-v6--quick-review--tint);
-      --arrow-link-color-hover-glow: var(--t-v6--quick-review--glow-tiny);
     }
 
     &--cool-link {
       --arrow-link-color: var(--t-v6--cool-link);
       --arrow-link-color-hover: var(--t-v6--cool-link--tint);
-      --arrow-link-color-hover-glow: var(--t-v6--cool-link--glow-tiny);
     }
 
     &--photography {
       --arrow-link-color: var(--t-v6--photography);
       --arrow-link-color-hover: var(--t-v6--photography--tint);
-      --arrow-link-color-hover-glow: var(--t-v6--photography--glow-tiny);
     }
   }
 </style>

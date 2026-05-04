@@ -81,7 +81,7 @@ a:not([class^='a-']) {
   @media (hover: hover) {
     &:hover {
       text-underline-offset: 0.3em;
-      filter: drop-shadow(var(--t-v6--accent--glow-tiny));
+      // filter: drop-shadow(var(--t-v6--accent--glow-tiny));
     }
   }
 }

@@ -32,7 +32,7 @@
       {title}
     </h1>
 
-    <div class="o-post-hero__meta" data-pagefind-ignore>
+    <div class="o-post-hero__meta" data-pagefind-ignore="all">
       {#if author?.image}
         <AuthorAvatar src={author.image} alt={author.name} extraImages={author.extraImages} size="small" />
       {/if}
