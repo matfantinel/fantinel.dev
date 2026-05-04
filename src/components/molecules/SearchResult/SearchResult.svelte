@@ -1,16 +1,27 @@
 <script lang="ts">
   import ArrowLink from '@components/atoms/ArrowLink';
+  import { PostType } from '@schemas/post-types';
+  import Image from '@components/atoms/Image';
+  import CoolLinkIcon from '@assets/icons/post-types/cool-link.svelte';
+  import PhotographyIcon from '@assets/icons/post-types/photography.svelte';
+  import BlogPostIcon from '@assets/icons/post-types/post.svelte';
+  import QuickReviewIcon from '@assets/icons/post-types/quick-review.svelte';
 
   let {
+    type,
     title,
     excerpt,
     url,
     subResults,
+    image,
+    imageAlt,
     class: className,
   }: {
+    type?: PostType;
     title: string;
     url: string;
-    readingTime?: string;
+    image?: string;
+    imageAlt?: string;
     excerpt?: string;
     subResults?: {
       excerpt: string;
@@ -20,20 +31,50 @@
 </script>
 
 <article class={['m-search-result', className]}>
-  <div class="m-search-result__content">
-    <p class="m-search-result__title">
-      {title}
-    </p>
-    {#if subResults && subResults.length}
-      {#each subResults.slice(0, 3) as subResult}
-        <p class="m-search-result__excerpt">“(...) {@html subResult.excerpt} (...)”</p>
-      {/each}
-    {:else if excerpt}
-      <p class="m-search-result__excerpt">“(...) {@html excerpt} (...)”</p>
-    {/if}
-  </div>
-  <div class="m-search-result__footer">
-    <ArrowLink class="m-search-result__link" href={url} title={`Open blog post`}>Read</ArrowLink>
+  <div class="m-search-result__container">
+    <div class="m-search-result__image-container">
+      <div class="m-search-result__image-placeholder">{title.substring(0, 5)}</div>
+      {#if image}
+        <Image class="m-search-result__image" src={image} alt={imageAlt || title} />
+      {/if}
+    </div>
+
+    <div class="m-search-result__content">
+      {#if type}
+        <div class="m-search-result__type" style="color: var(--t-v6--{type}, var(--t-v6--text--base))">
+          {#if type === PostType.BLOG_POST}
+            <BlogPostIcon size="16px" /> Blog Post
+          {:else if type === PostType.QUICK_REVIEW}
+            <QuickReviewIcon size="16px" /> Quick Review
+          {:else if type === PostType.COOL_LINK}
+            <CoolLinkIcon size="16px" /> Cool Link
+          {:else if type === PostType.PHOTOGRAPHY}
+            <PhotographyIcon size="16px" /> Photography
+          {:else if type === PostType.PAGE}
+            Page
+          {/if}
+        </div>
+      {/if}
+
+      <p class="m-search-result__title">
+        {title}
+      </p>
+      {#if subResults && subResults.length}
+        {#each subResults.slice(0, 3) as subResult}
+          <p class="m-search-result__excerpt">“(...) {@html subResult.excerpt} (...)”</p>
+        {/each}
+      {:else if excerpt}
+        <p class="m-search-result__excerpt">“(...) {@html excerpt} (...)”</p>
+      {/if}
+
+      {#if url}
+        <div class="m-search-result__footer">
+          <ArrowLink class="m-search-result__link" href={url} title={`Open ${type || 'item'}`} color={type as any}>
+            Read
+          </ArrowLink>
+        </div>
+      {/if}
+    </div>
   </div>
 </article>
 
@@ -41,24 +82,71 @@
   @use '/src/styles/typography';
 
   .m-search-result {
-    border-radius: var(--border-radius);
-    box-shadow: var(--t-v6--shadow--base);
-    background-color: var(--theme--background-card-color);
-    overflow: hidden;
-    position: relative;
+    width: 100%;
 
-    display: flex;
-    flex-direction: column;
-    transition: all .25s ease-in-out;
+    &__container {
+      width: 100%;
+      container-type: inline-size;
+
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--spacing-md);
+      padding: var(--spacing-md);
+
+      background: var(--t-v6--surface--accent);
+      border-top: 1px solid var(--t-v6--border--medium);
+      border-bottom: 1px solid var(--t-v6--border--medium);
+    }
+
+    &__image-container {
+      background: var(--t-v6--surface--base);
+      isolation: isolate;
+      position: relative;
+      height: 160px;
+      aspect-ratio: 1 / 1;
+      border-radius: var(--border-radius--small);
+      overflow: hidden;
+      container-type: inline-size;
+    }
+
+    &__image-placeholder {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      translate: 0 -50%;
+      max-height: 100%;
+      max-width: 100%;
+      overflow: hidden;
+      z-index: -1;
+
+      font-size: 160px;
+      font-size: 100cqw;
+      line-height: 1;
+      font-family: var(--font--headings);
+      font-weight: 700;
+      color: transparent;
+      text-shadow: var(--t-v6--blog-card-placeholder-shadow);
+    }
+
+    :global(.m-search-result__image) {
+      object-fit: cover;
+    }
 
     &__content {
-      padding: var(--spacing-md) var(--spacing-md) 0;
-      flex-grow: 1;
-      background-color: var(--theme--background-card-color);
-
       display: flex;
       flex-direction: column;
       gap: var(--spacing-xs);
+
+      flex: 1 0 220px;
+    }
+
+    &__type {
+      @include typography.b3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--spacing-xxs);
+      width: fit-content;
     }
 
     &__title {
@@ -67,38 +155,26 @@
 
     &__excerpt {
       @include typography.b2;
-      font-style: italic;
     }
 
     &__footer {
-      padding: var(--spacing-md);
-
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      gap: var(--spacing-xs);
+      justify-content: flex-end;
+      margin-top: auto;
     }
 
-    :global(.m-search-result__link) {
-      margin-left: auto;
+    @container (max-width: 500px) {
+      &__image-container {
+        height: min(30vw, 160px);
 
-      &:before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        // background: rgba(var(--theme--color-accent-rgb), 0.2);
-        // backdrop-filter: invert(1);
-        z-index: 1;
+        &:not(:has(img)) {
+          display: none;
+        }
       }
-    }
-  }
-
-  @media (hover: hover) {
-    :global(.m-search-result:has(.m-search-result__link:hover)) {
-      box-shadow: var(--theme--shadow-card-high);
+      &__content {
+        flex: 1 0 100%;
+      }
     }
   }
 </style>

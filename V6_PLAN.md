@@ -16,7 +16,7 @@ Migrate one component at a time, flip it fully to v6, then tick the checkbox.
 
 ## Atoms
 
-- [x] **AnchorLinkIndicator** — used in `markdown/HeadingRenderer.svelte`. Nothing unusual; no theme/palette variables in use.
+- [X] **AnchorLinkIndicator** — used in `markdown/HeadingRenderer.svelte`. Nothing unusual; no theme/palette variables in use.
 - [X] **ArrowLink** — used across cards (BlogPostCard, CoolLinkCard, etc.). **Dynamic color variants**: switches through the full `--color--{name}` / `-tint` palette AND the matching `--theme--glow-{name}` for each variant (blue, green, mauve, peach, red, teal, yellow). Need the full set in v6 before migrating.
 - [X] **Blockquote** — used in `markdown/QuoteCalloutRenderer.svelte`. Uses `--theme--shadow-card` and accent color; straightforward.
 - [X] **Button** — **hottest dependency** (nav, heroes, CTAs, renderers). Huge dynamic color matrix: iterates over palette colors plus their `-contrast`, `-tint`, and corresponding `--theme--glow-{name}`. Also uses `--theme--color-accent` + `-complementary` variants with their `-contrast`/`-tint`/`-glow`. Migrate only after v6 palette + glows + complementary are in place.
@@ -50,12 +50,12 @@ Migrate one component at a time, flip it fully to v6, then tick the checkbox.
 - [X] **Pagination** — used in every archive layout. Simple: card background + accent + shadow.
 - [X] **PhotographyCard** — used in TimelineGroup and PhotographyCards. Uses `--theme--color-photography` (post-type accent) + card background + shadow.
 - [X] **PhotographyCards** — used in `PhotographyArchiveLayout.astro`. Layout wrapper.
-- [ ] **PhotographySlideshowDialog** — used in PhotographyThumbnail. Uses `--theme--background-base-color-rgb` and `--theme--color-accent-rgb` inside `rgba()` for the backdrop — verify v6 keeps the `-rgb` suffix convention (the new `define-palette-v6` mixin emits `--rgb`).
-- [ ] **PhotographyThumbnail** — used in PhotographyCard. Uses `--theme--shadow-card-high`.
+- [X] **PhotographySlideshowDialog** — used in PhotographyThumbnail. Uses `--theme--background-base-color-rgb` and `--theme--color-accent-rgb` inside `rgba()` for the backdrop — verify v6 keeps the `-rgb` suffix convention (the new `define-palette-v6` mixin emits `--rgb`).
+- [X] **PhotographyThumbnail** — used in PhotographyCard. Uses `--theme--shadow-card-high`.
 - [ ] **QuickReviewCard** — used in TimelineGroup and QuickReviewCards. **QR subsystem + custom prop**: uses `--theme--qr-base-{dark,light}-color`, both shadow tiers, and accepts a `customBg` prop that is injected as an inline CSS variable (the prop must be normalized to include a leading `#` for hex values).
 - [X] **QuickReviewCards** — used in `QuickReviewsArchiveLayout.astro`. Layout wrapper.
 - [ ] **QuickReviewRatings** — used in QuickReviewCard. **QR rating tokens**: `--theme--qr-{loved,liked,decent,not-liked}-color`. Notably `qr-loved-color` is a **gradient** (`gradient-rainbow-circle-dark`), so animating/cutting it into a shape needs the same locked-dark treatment. Also uses `--color--yellow-rgb` and a custom `--glow-color` on the `loved` state.
-- [ ] **SearchResult** — used in PagefindSearchResults. Card background, accent rgb, both shadow tiers.
+- [X] **SearchResult** — used in PagefindSearchResults. Card background, accent rgb, both shadow tiers.
 - [X] **SectionHeader** — used in PostsSection and PostsTimeline. Uses `--theme--color-accent` only.
 - [X] **TableOfContents** — used in `PostLayout.astro`. Heaviest variable usage in the molecules folder: background-card + `-rgb`, background-accent, color-accent, color-links, text-base + text-accent, both shadow tiers. Migrate near the end.
 - [X] **Tags** — used in BlogPostCard, CoolLinkCard, PhotographyThumbnail, ArchiveHero, PostHero. Pure layout/flex wrapper around Tag atoms.
@@ -71,13 +71,13 @@ Migrate one component at a time, flip it fully to v6, then tick the checkbox.
 - [ ] **Footer** — used in `BaseLayout.astro`. **Hardcoded accent**: `--color--teal` / `--color--teal-contrast` for its accent (independent of the active theme accent). Worth deciding in v6 whether to keep the footer locked to teal or pull from `--t-v6-color-accent`.
 - [ ] **Header** — used in `BaseLayout.astro`. Relatively simple: text-base, text-inverse, background-accent, `--theme--shadow-image` (commented out at a breakpoint, easy to miss).
 - [ ] **HomePageHero** — used in `pages/index.astro`. `typography.gradient-greenish` title, `--theme--glowing-text-animation`, card background + shadow, **inset 400px background glow** (`box-shadow: ..., inset 0 0 400px var(--theme--background-card-color)`), hardcoded `--color--green` reference in a commented line (leftover).
-- [ ] **NewsletterCta** — used in `BlogArchiveLayout.astro` and `PostLayout.astro`. `typography.gradient-pinkish` heading, **dashed border** using `--theme--color-complementary`, card background + shadow.
+- [ ] **NewsletterCta** — WILL BE REMOVED
 - [ ] **PagefindSearchResults** — used in `pages/search.astro`. Hardcoded `--color--red` for error/no-results state.
 - [ ] **PostHero** — used in `PostLayout.astro`. **Two gradients on one component**: `typography.gradient-pinkish` on title AND `typography.gradient-greenish` on the detail line. Also uses `--theme--background-accent-color`.
 - [ ] **PostsSection** — used in `PostLayout.astro`. Layout wrapper around SectionHeader + BlogPostCards.
 - [ ] **PostsTimeline** — used in `TimelineArchiveLayout.astro` and `pages/index.astro`. Layout wrapper around TimelineGroup entries.
 - [ ] **SimpleHero** — used in `pages/search.astro`. Accent color + glowing-text-animation.
-- [ ] **UnderConstructionDisclaimer** — used in `pages/index.astro`. `typography.gradient-yellowish` heading, **dashed border hardcoded to `--color--yellow`**, card background + shadow.
+- [ ] **UnderConstructionDisclaimer** — WILL BE REMOVED
 
 ---
 
@@ -119,3 +119,5 @@ Based on the audit above, v6 needs to cover at least:
 4. Remove the `define-color` mixin from `src/styles/_mixins.scss` if nothing else references it.
 5. `rg -- '--theme--|--color--'` should return zero hits inside `src/components/`.
 6. Remove the `HamburgerMenu` component.
+7. Remove the `NewsletterCta` component.
+8. Remove the `UnderConstructionDisclaimer` component.

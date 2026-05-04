@@ -7,21 +7,21 @@
   let {
     class: className,
     slug,
+    title,
     image,
     imageAlt,
     additionalImages,
     photoDate,
     content,
-    url,
   }: {
     class?: string;
     slug?: string;
+    title?: string;
     image: string;
     imageAlt?: string;
     additionalImages?: Array<{ src: string; alt: string }>;
     photoDate?: Date;
     content?: string;
-    url?: string;
   } = $props();
 
   // If slug is null, set a random id to it
@@ -57,6 +57,7 @@
 
 <PhotographySlideshowDialog
   {slug}
+  {title}
   {image}
   {imageAlt}
   {additionalImages}
@@ -118,7 +119,7 @@
       right: var(--spacing-md);
       bottom: var(--spacing-md);
 
-      box-shadow: var(--theme--shadow-card-high);
+      box-shadow: var(--t-v6--shadow--high);
       z-index: 3;
     }
   }

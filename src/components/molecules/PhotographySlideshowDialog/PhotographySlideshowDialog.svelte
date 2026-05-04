@@ -1,7 +1,6 @@
 <script lang="ts">
-  import CloseIcon from '@assets/icons/close.svelte';
   import ArrowLink from '@components/atoms/ArrowLink';
-  import Button from '@components/atoms/Button';
+  import CloseButton from '@components/atoms/CloseButton';
   import Image from '@components/atoms/Image';
   import MarkdownRenderer from '@components/molecules/MarkdownRenderer';
   import dateformat from 'dateformat';
@@ -9,6 +8,7 @@
   let {
     class: className,
     slug,
+    title,
     image,
     imageAlt,
     additionalImages,
@@ -17,6 +17,7 @@
   }: {
     class?: string;
     slug?: string;
+    title?: string;
     image: string;
     imageAlt?: string;
     additionalImages?: Array<{ src: string; alt: string }>;
@@ -35,11 +36,14 @@
   });
 </script>
 
-{#snippet closeIconSnippet()}<CloseIcon size="18px" />{/snippet}
 <dialog class={['m-photography-slideshow-dialog', className]} id={slug}>
   <div class="m-photography-slideshow-dialog__container">
-    <Button color="complementary" commandfor={slug} command="close" icon={closeIconSnippet}>Close</Button>
+    <CloseButton {slug} />
+
     <div class="m-photography-slideshow-dialog__about">
+      <p class="m-photography-slideshow-dialog__title">
+        {title}
+      </p>
       {#if photoDate}
         <div class="m-photography-slideshow-dialog__date">
           Taken on {dateformat(photoDate, 'yyyy-mm-dd', true)}
@@ -51,7 +55,8 @@
         </div>
       {/if}
     </div>
-    <enhanced-css-slider>
+
+    <enhanced-css-slider centered>
       <div class="m-photography-slideshow-dialog__list" data-slider-slot="list">
         <Image class="m-photography-slideshow-dialog__image" src={image} alt={imageAlt || ''} />
         {#each additionalImages as additionalImage}
@@ -61,16 +66,23 @@
 
       <div class="m-photography-slideshow-dialog__nav">
         {#if additionalImages && additionalImages.length > 0}
-          <ArrowLink class="m-photography-slideshow-dialog__nav-button" data-slider-slot="prev" arrowPosition="left">
+          <ArrowLink
+            class="m-photography-slideshow-dialog__nav-button"
+            color="photography"
+            data-slider-slot="prev"
+            arrowPosition="left"
+          >
             Previous
           </ArrowLink>
           <div class="m-photography-slideshow-dialog__dots">
             <div class="m-photography-slideshow-dialog__dot" data-slider-slot="dot"></div>
-            {#each additionalImages as additionalImage}
+            {#each additionalImages as _}
               <div class="m-photography-slideshow-dialog__dot" data-slider-slot="dot"></div>
             {/each}
           </div>
-          <ArrowLink class="m-photography-slideshow-dialog__nav-button" data-slider-slot="next">Next</ArrowLink>
+          <ArrowLink class="m-photography-slideshow-dialog__nav-button" color="photography" data-slider-slot="next">
+            Next
+          </ArrowLink>
         {/if}
       </div>
 
@@ -121,7 +133,11 @@
     // Animate dialog opening
     opacity: 1;
     transform: scale(1);
-    transition: opacity 0.3s ease, transform 0.3s ease, overlay 0.3s ease allow-discrete, display 0.3s ease allow-discrete;
+    transition:
+      opacity 0.3s ease,
+      transform 0.3s ease,
+      overlay 0.3s ease allow-discrete,
+      display 0.3s ease allow-discrete;
 
     // Starting state for opening animation
     @starting-style {
@@ -136,18 +152,22 @@
     }
 
     &::backdrop {
-      background: rgba(var(--theme--background-base-color-rgb), 0.9);
-      backdrop-filter: blur(10px);
-      transition: background 0.3s ease, backdrop-filter 0.3s ease, overlay 0.3s ease allow-discrete, display 0.3s ease allow-discrete;
+      background: rgba(var(--t-v6--surface--base--rgb), 0.9);
+      backdrop-filter: blur(20px);
+      transition:
+        background 0.3s ease,
+        backdrop-filter 0.3s ease,
+        overlay 0.3s ease allow-discrete,
+        display 0.3s ease allow-discrete;
 
       @starting-style {
-        background: rgba(var(--theme--background-base-color-rgb), 0);
+        background: rgba(var(--t-v6--surface--base--rgb), 0);
         backdrop-filter: blur(0px);
       }
     }
 
     &:not([open])::backdrop {
-      background: rgba(var(--theme--background-base-color-rgb), 0);
+      background: rgba(var(--t-v6--surface--base--rgb), 0);
       backdrop-filter: blur(0px);
     }
 
@@ -167,16 +187,27 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: var(--spacing-sm);
+      gap: var(--spacing-xs);
+
+      padding: var(--spacing-md) var(--spacing-md) var(--spacing-lg);
+    }
+
+    &__title {
+      @include typography.h4;
+      font-family: var(--font--spicy);
+      color: var(--t-v6--photography);
+      text-align: center;
     }
 
     &__date {
       @include typography.b3;
-      color: var(--theme--text-accent-color);
+      color: var(--t-v6--text--medium);
+      text-align: center;
     }
 
     &__description {
       @include typography.b2;
+      color: var(--t-v6--text--base);
       text-align: center;
       gap: 1rem;
     }

@@ -53,7 +53,7 @@
       {additionalImages}
       {photoDate}
       {content}
-      {url}
+      {title}
     />
 
     <div class="m-photography-card__content">

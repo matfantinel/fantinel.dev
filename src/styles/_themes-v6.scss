@@ -167,6 +167,7 @@ $palette-v6-colors: (
 
   // #region Colors — Surfaces / Borders
   --t-v6--surface--base: var(--palette-v6--gray-1000);
+  --t-v6--surface--base--rgb: var(--palette-v6--gray-1000--rgb);
   --t-v6--surface--root: var(--palette-v6--gray-900);
   --t-v6--surface--accent: var(--palette-v6--gray-max);
   --t-v6--surface--card: var(--palette-v6--gray-max);

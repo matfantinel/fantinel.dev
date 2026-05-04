@@ -1,7 +1,7 @@
 <script lang="ts">
   import type { Pagefind, PagefindResult } from '@schemas/pagefind';
   import { onMount } from 'svelte';
-  import SearchResult from '@components/molecules/SearchResult';
+  import SearchResults from '@components/molecules/SearchResults';
   import Search from '@assets/icons/search.svelte';
   import ArrowLink from '@components/atoms/ArrowLink';
 
@@ -51,8 +51,19 @@
 
     results = await Promise.all(search.results.map(async (result) => await result.data()));
 
+    console.log(JSON.stringify(results));
+
     isLoading = false;
   });
+
+  function pagefindResultToSearchResult(result: PagefindResult) {
+    return {
+      title: result.meta.title,
+      url: result.url,
+      excerpt: result.excerpt,
+      subResults: result.sub_results,
+    };
+  }
 </script>
 
 <section class={['o-pagefind-search-results', className]}>
@@ -86,18 +97,12 @@
           </span>
         </div>
       {/if}
-      <ul class="o-pagefind-search-results__list">
-        {#each results as result}
-          <li class="o-pagefind-search-results__item">
-            <SearchResult
-              title={result.meta.title}
-              url={result.url}
-              excerpt={result.excerpt}
-              subResults={result.sub_results}
-            />
-          </li>
-        {/each}
-      </ul>
+      {#if results && results.length > 0}
+        <SearchResults
+          class="o-pagefind-search-results__results"
+          results={results.map(pagefindResultToSearchResult)}
+        />
+      {/if}
     {/if}
   </div>
 </section>
@@ -149,18 +154,6 @@
       align-items: center;
       gap: var(--spacing-sm);
       color: var(--color--red);
-    }
-    
-    &__list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: var(--spacing-sm);
-      margin: 0;
-    }
-    
-    &__item {
-      
     }
   }
 </style>
