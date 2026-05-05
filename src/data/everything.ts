@@ -128,8 +128,25 @@ export async function getAllPosts(postTypes?: PostType[]) {
       if (item.type === PostType.PHOTOGRAPHY) return (item.data as Photography).publishedDate;
       return (item.data as BlogPost | QuickReview).date;
     };
-    
-    return getDate(b).getTime() - getDate(a).getTime();
+
+    const dateA = getDate(a);
+    const dateB = getDate(b);
+
+    // Check if dates are on the same day
+    const isSameDay = dateA.toDateString() === dateB.toDateString();
+
+    if (isSameDay) {
+      // If same day, blog posts come first
+      if (a.type === PostType.BLOG_POST && b.type !== PostType.BLOG_POST) {
+        return -1;
+      }
+      if (b.type === PostType.BLOG_POST && a.type !== PostType.BLOG_POST) {
+        return 1;
+      }
+    }
+
+    // Otherwise sort by date descending
+    return dateB.getTime() - dateA.getTime();
   });
   
   return posts;
