@@ -1,5 +1,4 @@
 <script lang="ts">
-  import FooterWaves from '@assets/brand/FooterWaves.svelte';
   import Rss from '@assets/icons/rss.svelte';
   import IconLink from '@components/atoms/IconLink';
   import ThemeToggle from '@components/molecules/ThemeToggle';
@@ -20,14 +19,11 @@
 
 <footer class={['o-footer', className]} style="view-transition-name: footer">
   <div class="o-footer__wrapper">
-    <div class="o-footer__waves-container" aria-hidden="true">
-      <FooterWaves class="o-footer__waves" />
-    </div>
-
     <div class="o-footer__container u-container">
       <div class="o-footer__copyright">
         © {currentYear} Matheus Fantinel
       </div>
+
       <div class="o-footer__links">
         {#if socials}
           {#each socials as social}
@@ -35,56 +31,26 @@
           {/each}
         {/if}
 
-        {#snippet rssIconSnippet()}<Rss />{/snippet}
-        <IconLink
-          class="o-footer__link"
-          icon={rssIconSnippet}
-          href="/rss.xml"
-          target="_blank"
-          rel="noopener"
-          title="Subscribe to my RSS Feed"
-        >
-          RSS
-        </IconLink>
-
+        <SocialLink name="RSS" url="/rss.xml" label="RSS" class="o-footer__link" />
         <ThemeToggle class="o-footer__theme-toggle" />
       </div>
-      <!-- <div class="o-footer__badges">
-        <div class="o-footer__badge">
-          <a href="https://astro.build">
-            <img
-              src="https://astro.badg.es/v2/built-with-astro/tiny.svg"
-              alt="Built with Astro"
-              width="120"
-              height="20"
-            />
-          </a>
-        </div>
-      </div> -->
+
       <div class="o-footer__badges">
         <div class="o-footer__badge">
           <img src="/badges/MadeInBrazil.svg" alt="Made in Brazil" />
         </div>
 
         <div class="o-footer__badge">
+          <img src="/badges/MadeInSerraGaucha.svg" alt="Made in Serra Gaúcha" />
+        </div>
+
+        <div class="o-footer__badge">
           <img src="/badges/NowInItaly.svg" alt="Now in Italy" />
         </div>
 
-        <!-- <div class="o-footer__badge">
-          <img src="/badges/CoffeePowered.svg" alt="Coffee Powered" />
-        </div> -->
-
         <div class="o-footer__badge">
-          <img src="/badges/MadeByAHuman.svg" alt="Made by a human" />
+          <img src="/badges/PoweredByAutism.svg" alt="Powered by Autism" />
         </div>
-
-        <div class="o-footer__badge">
-          <img src="/badges/PoweredByAutism.svg" alt="Powered by autism" />
-        </div>
-
-        <!-- <div class="o-footer__badge">
-          <img src="/badges/RssIsAwesome.svg" alt="RSS is awesome" />
-        </div> -->
 
         <div class="o-footer__badge">
           <img src="/badges/TransRights.svg" alt="Trans Rights are Human Rights" />
@@ -92,96 +58,78 @@
       </div>
     </div>
   </div>
-  <div class="u-noise"></div>
 </footer>
 
 <style lang="scss">
   @use '/src/styles/typography';
 
   .o-footer {
-    color: var(--theme--text-base-color);
     position: relative;
     z-index: 8;
 
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
+    &__wrapper {
+      background-color: var(--t-v6--surface--accent);
+      position: relative;
+      margin-top: 100px;
 
-    &__waves-container {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-
-      :global(.o-footer__waves) {
+      &:before {
+        content: '';
+        position: absolute;
+        bottom: 100%;
+        left: 0;
         width: 100%;
-        height: 100%;
-        display: block;
+        height: 100px;
+        z-index: -1;
+
+        background: var(--t-v6--gradient--rainbow);
+        mask-image: linear-gradient(to top, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.2) 50%, transparent 100%);
+        mask-repeat: no-repeat;
+        mask-position: bottom;
+
+        @media (prefers-reduced-motion: no-preference) {
+          animation: rainbow-breathe 6s cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite alternate;
+        }
       }
     }
 
-    &__wrapper {
-      margin-top: var(--spacing-xxl);
-      position: relative;
-    }
-
     &__container {
-      padding-top: calc(var(--spacing-xxxl) * 2);
-      padding-bottom: var(--spacing-xl);
-
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: var(--spacing-sm);
+      justify-content: center;
+      gap: var(--spacing-md);
+
+      padding: var(--spacing-xl) var(--spacing-lg) var(--spacing-xxl);
     }
 
-    &__copyright,
-    &__credits {
+    &__copyright {
       @include typography.b1;
       text-align: center;
       text-wrap: balance;
     }
 
-    &__links {
-      display: flex;
-      gap: var(--spacing-md) var(--spacing-sm);
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: center;
-
-      margin-top: var(--spacing-sm);
-    }
-
+    &__links,
     &__badges {
       display: flex;
       gap: var(--spacing-md) var(--spacing-sm);
       flex-wrap: wrap;
       align-items: center;
       justify-content: center;
-
-      margin-top: var(--spacing-sm);
     }
 
     &__badge {
       display: flex;
       align-items: center;
       justify-content: center;
+    }
+  }
 
-      #wcb.carbonbadge {
-        --b2: var(--color--teal);
-        --b1: var(--color--teal-contrast);
-
-        :global(#wcb_g) {
-          background: var(--theme--background-base-color);
-          color: var(--theme--text-base-color);
-        }
-
-        :global(#wcb_2) {
-          color: var(--theme--text-base-color);
-        }
-      }
+  @keyframes rainbow-breathe {
+    0% {
+      mask-size: 100% 30%;
+    }
+    100% {
+      mask-size: 100% 100%;
     }
   }
 </style>

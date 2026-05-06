@@ -1,16 +1,18 @@
 <script lang="ts">
   let {
-    size = '100%',
-    color = 'default',
+    size = '80px',
     class: className,
-  }: { size?: string; color?: 'default' | 'inverted'; class?: string } = $props();
+  }: { 
+    size?: string; 
+    class?: string 
+  } = $props();
 
-  const logoColor1 = color === 'default' ? 'var(--theme--color--logo-1)' : 'var(--theme--color--logo-1-inverted)';
-  const logoColor2 = color === 'default' ? 'var(--theme--color--logo-2)' : 'var(--theme--color--logo-2-inverted)';
+  const logoColor1 = 'var(--palette-v6--gray-min)';
+  const logoColor2 = 'var(--palette-v6--gray-0)';
 </script>
 
-<div class={['logo', className]}>
-  <svg width={size} height={size} viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+<div class={['logo', className]} style={`width: ${size}; height: ${size};`}>
+  <svg width="100%" height="100%" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path
       d="M46.4742 60.9505C50.099 62.457 54.1746 62.4639 57.8045 60.9697C61.4345 59.4754 64.3213 56.6023 65.83 52.9825L79.9872 19.0141C76.3624 17.5075 72.2868 17.5006 68.6569 18.9949C65.027 20.4891 62.1402 23.3622 60.6316 26.9821L46.4742 60.9505Z"
       fill={logoColor2}
@@ -45,7 +47,7 @@
       width: 100%;
       height: 100%;
       border-radius: 50%;
-      background: var(--theme--gradient-rainbow-circle);
+      background: var(--t-v6--gradient--rainbow--circle);
 
       filter: blur(20px);
       transition: all 0.25s ease-out;
@@ -61,8 +63,6 @@
 
     @media (hover: hover) {
       &:hover {
-        filter: drop-shadow(var(--t-v6--shadow--base));
-
         &:before {
           opacity: 0.7;
           scale: 1;

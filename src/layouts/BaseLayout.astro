@@ -76,7 +76,7 @@ const pathname = new URL(Astro.request.url).pathname;
   </head>
   <body>
     <div class='l-base'>
-      <Header client:load {currentSearch} transition:persist hasBackground={hasHeaderBackground} {currentUrl} />
+      <Header {currentSearch} socials={siteMeta.author?.socials} {currentUrl} client:load transition:persist />
 
       <main>
         <slot />
@@ -133,11 +133,6 @@ const pathname = new URL(Astro.request.url).pathname;
     width: 100%;
     height: auto;
 
-    main .u-noise {
-      height: calc(100% + var(--header-height));
-      top: calc(var(--header-height) * -1);
-    }
-
     :global(main) {
       position: relative;
       z-index: 2;
@@ -146,8 +141,16 @@ const pathname = new URL(Astro.request.url).pathname;
   }
 
   .l-base {
+    @include breakpoints.for-phone-only {
+      :global(header) {
+        position: sticky;
+        top: 0;
+        background: var(--t-v6--surface--base);
+        box-shadow: var(--t-v6--shadow--low);
+      }
+    }
+
     @include breakpoints.for-tablet-portrait-up {
-      --header-height: 100vh;
       background: var(--color--gray-1000);
       display: grid;
       grid-template-columns: clamp(220px, 20%, 300px) 1fr;
@@ -159,6 +162,7 @@ const pathname = new URL(Astro.request.url).pathname;
         grid-area: header;
         position: sticky;
         top: 0;
+        height: 100dvh;
       }
 
       :global(main) {

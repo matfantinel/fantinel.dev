@@ -107,6 +107,10 @@
     isolation: isolate;
     overflow: hidden;
 
+    @include breakpoints.for-phone-only {
+      margin-top: unset;
+    }
+
     &__container {
       display: flex;
       flex-direction: column;

@@ -111,7 +111,7 @@
 
     @media (hover: hover) {
       &:hover {
-        filter: drop-shadow(var(--t-v6--accent--glow-tiny));
+        color: var(--t-v6--accent);
       }
     }
 

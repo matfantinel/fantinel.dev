@@ -160,12 +160,11 @@
 
     @include breakpoints.for-phone-only {
       padding-inline: 0;
-      margin-top: calc(var(--header-height) * -1);
 
       &__container {
         @include mixins.padded-container;
         
-        padding-top: calc(var(--header-height) + var(--spacing-lg));
+        padding-top: var(--spacing-lg);
         padding-bottom: 0;
         text-align: center;
 

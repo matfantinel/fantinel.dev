@@ -68,8 +68,8 @@ Migrate one component at a time, flip it fully to v6, then tick the checkbox.
 
 - [ ] **AboutAuthor** — used in `PostLayout.astro`. Uses `typography.gradient-greenish` on the name, `--theme--glowing-text-animation`, card background + shadow.
 - [ ] **ArchiveHero** — used in every archive layout (blog, photography, timeline, cool-links, quick-reviews) **and** in `CoolLinkLayout.astro`, `PhotographyLayout.astro`, `QuickReviewLayout.astro` as a hero for individual items. **Glowing animated title**: sets `--glow-color` locally, uses `--theme--glowing-text-animation`, color-accent + `-rgb`, plus `--theme--color-footer--wave-1` (wave treatment).
-- [ ] **Footer** — used in `BaseLayout.astro`. **Hardcoded accent**: `--color--teal` / `--color--teal-contrast` for its accent (independent of the active theme accent). Worth deciding in v6 whether to keep the footer locked to teal or pull from `--t-v6-color-accent`.
-- [ ] **Header** — used in `BaseLayout.astro`. Relatively simple: text-base, text-inverse, background-accent, `--theme--shadow-image` (commented out at a breakpoint, easy to miss).
+- [X] **Footer** — used in `BaseLayout.astro`. **Hardcoded accent**: `--color--teal` / `--color--teal-contrast` for its accent (independent of the active theme accent). Worth deciding in v6 whether to keep the footer locked to teal or pull from `--t-v6-color-accent`.
+- [X] **Header** — used in `BaseLayout.astro`. Relatively simple: text-base, text-inverse, background-accent, `--theme--shadow-image` (commented out at a breakpoint, easy to miss).
 - [ ] **HomePageHero** — used in `pages/index.astro`. `typography.gradient-greenish` title, `--theme--glowing-text-animation`, card background + shadow, **inset 400px background glow** (`box-shadow: ..., inset 0 0 400px var(--theme--background-card-color)`), hardcoded `--color--green` reference in a commented line (leftover).
 - [ ] **NewsletterCta** — WILL BE REMOVED
 - [X] **PagefindSearchResults** — used in `pages/search.astro`. Hardcoded `--color--red` for error/no-results state.
@@ -78,6 +78,23 @@ Migrate one component at a time, flip it fully to v6, then tick the checkbox.
 - [ ] **PostsTimeline** — used in `TimelineArchiveLayout.astro` and `pages/index.astro`. Layout wrapper around TimelineGroup entries.
 - [ ] **SimpleHero** — used in `pages/search.astro`. Accent color + glowing-text-animation.
 - [ ] **UnderConstructionDisclaimer** — WILL BE REMOVED
+
+## Layouts
+
+- [ ] **BaseLayout** - used everywhere. Do this one first.
+- [ ] **PostArchiveLayout** - will be used for /archive, /blog, /quick-reviews, /cool-links pages
+- [ ] **BlogArchiveLayout** - will become PostArchiveLayout. Remove.
+- [ ] **QuickReviewsArchiveLayout** - will become PostArchiveLayout. Remove.
+- [ ] **CoolLinksArchiveLayout** - will become PostArchiveLayout. Remove.
+- [ ] **TimelineArchiveLayout** - will become PostArchiveLayout. Remove.
+- [ ] **PhotographyArchiveLayout** - slightly altered version of PostArchiveLayout.
+
+- [ ] **CoolLinkLayout** - individual cool-links, pretty basic
+- [ ] **PhotographyLayout** - individual photography item, pretty basic
+- [ ] **QuickReviewLayout** - individual quick-review, pretty basic
+- [ ] **PostLayout** - rename to **ArticleLayout**. Will be used for both blog posts and individual pages (/about, /now, etc).
+
+- [ ] **HomePageLayout** - doesn't exist, but might? Depends on what strategy I use for Home Page content.
 
 ---
 
@@ -121,3 +138,5 @@ Based on the audit above, v6 needs to cover at least:
 6. Remove the `HamburgerMenu` component.
 7. Remove the `NewsletterCta` component.
 8. Remove the `UnderConstructionDisclaimer` component.
+9. Probably remove `FooterWaves` component.
+10. Remove `u-noise` references

@@ -99,6 +99,10 @@
       gap: var(--spacing-xxs);
       padding: var(--spacing-xxs) var(--spacing-xs);
 
+      width: unset;
+      margin-inline: 0;
+      text-wrap: nowrap;
+
       .a-nav-menu-link {
         &__text {
           @include typography.icon-label;

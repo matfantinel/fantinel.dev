@@ -27,7 +27,7 @@ export type SiteAuthor = {
 }
 
 export type SocialLink = {
-  name: string;
+  name: 'Mastodon' | 'GitHub' | 'LinkedIn' | 'Email' | 'RSS';
   url: string;
   label?: string;
 }

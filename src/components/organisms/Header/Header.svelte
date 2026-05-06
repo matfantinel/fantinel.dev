@@ -10,18 +10,20 @@
   import HomeIcon from '@assets/icons/home.svelte';
   import TimelineIcon from '@assets/icons/timeline.svelte';
   import { PostType } from '@schemas/post-types';
+  import NavMenuLink from '@components/atoms/NavMenuLink';
+  import SocialLink from '@components/atoms/SocialLink';
+  import type { SocialLink as SocialLinkType } from '@schemas/site-meta';
+  import PagefindSearchField from '@components/molecules/PagefindSearchField';
 
   let {
-    color = 'default',
-    hasBackground = false,
     currentSearch,
     currentUrl,
+    socials,
     class: className,
   }: {
-    color?: 'default' | 'inverted';
-    hasBackground?: boolean;
     currentSearch?: string;
     currentUrl?: string;
+    socials?: SocialLinkType[];
     class?: string;
   } = $props();
 
@@ -34,12 +36,25 @@
 
   // Update pathname on client-side navigation
   $effect(() => {
+    const scrollToActiveLink = () => {
+      const nav = document.querySelector('.o-header__navigation');
+      const activeLink = nav?.querySelector('[aria-current="page"], .a-nav-menu-link--active');
+      if (nav && activeLink) {
+        activeLink.scrollIntoView({ behavior: 'instant', inline: 'center' });
+      }
+    };
+    
     const updatePathname = () => {
       pathname = window.location.pathname;
+
+      setTimeout(() => {
+        scrollToActiveLink();
+      }, 0);
     };
 
     // Listen for Astro view transition navigation
-    document.addEventListener('astro:page-load', updatePathname);
+    document.addEventListener('astro:page-load', updatePathname);    
+    scrollToActiveLink();
 
     return () => {
       document.removeEventListener('astro:page-load', updatePathname);
@@ -47,9 +62,21 @@
   });
 
   const links = $derived([
-    { label: 'Home', href: '/', icon: homeIconSnippet, active: pathname === '/', color: 'generic' },
-    { label: 'Feed', href: '/timeline', icon: timelineIconSnippet, active: pathname === '/timeline', color: 'timeline' },
-    { label: 'Blog', href: '/blog', icon: postIconSnippet, active: pathname.startsWith('/blog'), color: PostType.BLOG_POST },
+    { label: 'Home', href: '/', icon: homeIconSnippet, active: pathname === '/', color: 'accent' },
+    {
+      label: 'Archive',
+      href: '/timeline',
+      icon: timelineIconSnippet,
+      active: pathname === '/timeline',
+      color: 'accent',
+    },
+    {
+      label: 'Blog',
+      href: '/blog',
+      icon: postIconSnippet,
+      active: pathname.startsWith('/blog'),
+      color: PostType.BLOG_POST,
+    },
     {
       label: 'Quick Reviews',
       href: '/quick-reviews',
@@ -75,29 +102,38 @@
   ]);
 </script>
 
-{#snippet rssIconSnippet()}<Rss size="20px" />{/snippet}
-{#snippet postIconSnippet()}<PostIcon size="20px" />{/snippet}
-{#snippet quickReviewIconSnippet()}<QuickReviewIcon size="20px" />{/snippet}
-{#snippet coolLinkIconSnippet()}<CoolLinkIcon size="20px" />{/snippet}
-{#snippet photographyIconSnippet()}<PhotographyIcon size="20px" />{/snippet}
-{#snippet homeIconSnippet()}<HomeIcon size="20px" />{/snippet}
-{#snippet timelineIconSnippet()}<TimelineIcon size="20px" />{/snippet}
+{#snippet rssIconSnippet()}<Rss size="24px" />{/snippet}
+{#snippet postIconSnippet()}<PostIcon size="24px" />{/snippet}
+{#snippet quickReviewIconSnippet()}<QuickReviewIcon size="24px" />{/snippet}
+{#snippet coolLinkIconSnippet()}<CoolLinkIcon size="24px" />{/snippet}
+{#snippet photographyIconSnippet()}<PhotographyIcon size="24px" />{/snippet}
+{#snippet homeIconSnippet()}<HomeIcon size="24px" />{/snippet}
+{#snippet timelineIconSnippet()}<TimelineIcon size="24px" />{/snippet}
 
-<header
-  class={['o-header', className]}
-  class:o-header--inverted={color === 'inverted'}
-  class:o-header--has-background={hasBackground}
-  style="view-transition-name: header"
->
-  <div class="o-header__container u-container">
+<header class={['o-header', className]} style="view-transition-name: header">
+  <div class="o-header__container">
     <a href="/" aria-label="Home" class="o-header__logo">
-      <Logo size="80px" {color} />
+      <Logo size="80px" />
     </a>
 
-    <div class="o-header__links">
-      <HamburgerMenu class="o-header__hamburger-menu" {links} {currentSearch} />
+    <nav class="o-header__navigation">
+      {#each links as link}
+        <NavMenuLink href={link.href} icon={link.icon} active={link.active} color={link.color}>
+          {link.label}
+        </NavMenuLink>
+      {/each}
+    </nav>
 
-      <ThemeToggle class="o-header__theme-toggle" />
+    {#if socials}
+      <div class="o-header__contact">
+        {#each socials as social}
+          <SocialLink name={social.name} url={social.url} label={social.label} />
+        {/each}
+      </div>
+    {/if}
+
+    <div class="o-header__actions">
+      <PagefindSearchField class="o-header__search-field" value={currentSearch} />
     </div>
   </div>
 </header>
@@ -106,93 +142,114 @@
   @use '/src/styles/breakpoints';
 
   .o-header {
-    color: var(--theme--text-base-color);
     position: relative;
     z-index: 9;
-    height: var(--header-height);
-
     container-type: inline-size;
+    width: 100%;
+    overflow: auto;
 
     &__container {
       display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: var(--spacing-lg);
-      padding-block: var(--spacing-lg);
+      flex-direction: column;
+      gap: var(--spacing-md);
 
-      @include breakpoints.for-phone-only {
-        gap: var(--spacing-sm);
-        padding-block: var(--spacing-sm);
-      }
+      width: 100%;
+      padding: var(--spacing-lg) var(--spacing-md);
     }
 
     &__logo {
-      height: 80px;
-      z-index: 98;
-
-      &:is(a):hover {
-        filter: none;
-      }
+      width: fit-content;
     }
 
-    &__links {
+    &__navigation {
       display: flex;
-      align-items: center;
-      gap: var(--spacing-md) var(--spacing-lg);
+      flex-direction: column;
+      gap: var(--spacing-sm);
+      width: 100%;
     }
 
-    :global(.o-header__hamburger-menu) {
-      order: 3;
+    &__contact,
+    &__actions {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-sm);
+      width: 100%;
+
+      padding-top: var(--spacing-md);
+      border-top: 1px solid var(--t-v6--border--medium);
     }
 
-    :global(.o-header__theme-toggle) {
-      order: 1;
-      z-index: 98;
-    }
-
-    @include breakpoints.for-tablet-portrait-up {
-      :global(.o-header__hamburger-menu) {
-        order: 2;
-      }
-
-      :global(.o-header__theme-toggle) {
-        order: 3;
-      }
-      
-      .o-header {
-        &__container {
-          flex-direction: column;
-          align-items: flex-start;
-          height: 100dvh;
-          justify-content: flex-start;
-
-          padding-inline: clamp(12px, (100vw - 320px) / 580 * 30, 22px);
-        }
-        &__links {
-          flex-direction: column;
-          width: 100%;
-          align-items: flex-start;
-        }
-      }
-      :global(.o-header__hamburger-menu) {
+    @include breakpoints.for-phone-only {
+      &__container {
+        flex-direction: row;
+        padding: var(--spacing-sm);
+        gap: var(--spacing-sm);
+        align-items: center;
         width: 100%;
-      }
-    }
-
-    &--inverted {
-      color: var(--theme--text-inverse-color);
-    }
-
-    &--has-background {
-      @include breakpoints.for-phone-only {
-        background-color: var(--theme--background-accent-color);
+        overflow: hidden;
       }
 
-      // @include breakpoints.for-tablet-portrait-up {
-      //   box-shadow: var(--theme--shadow-image);
-      //   border-top-right-radius: var(--border-radius--small);
-      //   border-bottom-right-radius: var(--border-radius--small);
-      // }
+      &__logo {
+        :global(.logo) {
+          width: 32px !important;
+          height: 32px !important;
+        }
+      }
+
+      &__navigation {
+        flex-direction: row;
+        align-items: center;
+        gap: var(--spacing-xs);
+
+        width: fit-content;
+        overflow: auto;
+        padding-bottom: var(--spacing-sm);
+        margin-bottom: calc(var(--spacing-sm) * -1);
+
+        // Add dynamic fade effects to the start/end of the nav bar to indicate
+        // the user can scroll horizontally
+        // From https://css-tricks.com/modern-scroll-shadows-using-scroll-driven-animations/
+
+        @property --left-fade {
+          syntax: '<length>';
+          inherits: false;
+          initial-value: 0;
+        }
+
+        @property --right-fade {
+          syntax: '<length>';
+          inherits: false;
+          initial-value: 0;
+        }
+
+        @keyframes scrollfade {
+          0% {
+            --left-fade: 0px;
+            --right-fade: var(--spacing-lg);
+          }
+          10% {
+            --left-fade: var(--spacing-lg);
+          }
+          90% {
+            --left-fade: var(--spacing-lg);
+            --right-fade: var(--spacing-lg);
+          }
+          100% {
+            --left-fade: var(--spacing-lg);
+            --right-fade: 0px;
+          }
+        }
+
+        mask: linear-gradient(to right, transparent, #000 var(--left-fade) calc(100% - var(--right-fade)), transparent);
+        animation: scrollfade;
+        animation-timeline: --scrollfade;
+        scroll-timeline: --scrollfade x;
+      }
+
+      &__contact,
+      &__actions {
+        display: none;
+      }
     }
   }
 </style>
