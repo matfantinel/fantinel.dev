@@ -24,7 +24,7 @@
 {#snippet template(args)}
   <NewPhotographyCard
     title={args.title || LoremIpsum.words}
-    image={args.image || 'https://placedog.net/1000/1000'}
+    image={args.image || 'https://picsum.photos/1000/1000'}
     {...args}
   />
 {/snippet}
@@ -33,7 +33,7 @@
   name="Default"
   args={{
     title: LoremIpsum.words,
-    image: 'https://placedog.net/1000/1000',
+    image: 'https://picsum.photos/1000/1000',
     publishedDate: new Date(),
     photoDate: new Date(),
     content: LoremIpsum.words,
@@ -44,13 +44,13 @@
   name="With Additional Images"
   args={{
     title: LoremIpsum.words,
-    image: 'https://placedog.net/1000/1000',
+    image: 'https://picsum.photos/1000/1000',
     publishedDate: new Date(),
     photoDate: new Date(),
     content: LoremIpsum.words,
     additionalImages: [
-      { src: 'https://placedog.net/800/450', alt: 'Additional image 1' },
-      { src: 'https://placedog.net/450/800', alt: 'Additional image 2' },
+      { src: 'https://picsum.photos/800/450', alt: 'Additional image 1' },
+      { src: 'https://picsum.photos/450/800', alt: 'Additional image 2' },
     ],
   }}
 />

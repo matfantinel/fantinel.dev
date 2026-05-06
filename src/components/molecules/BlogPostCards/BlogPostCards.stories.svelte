@@ -27,7 +27,7 @@
     <BlogPostCard
       title={LoremIpsum.paragraph.split(' ').slice(0, index + 4).join(' ')}
       url={`#blog-post-${index + 1}`}
-      image={[2,5,6].includes(index) ? `https://placedog.net/600/315?id=${index + 1}` : undefined}
+      image={[2,5,6].includes(index) ? `https://picsum.photos/600/315?id=${index + 1}` : undefined}
       readingTime={[0,2,4,6,7].includes(index) ? '5 min' : undefined}
       excerpt={[0,1,2,5,9].includes(index) ? LoremIpsum.paragraph : undefined}
       tags={[3,5,6,7].includes(index) ? ['Tag 1', 'Tag 2'] : undefined}
@@ -41,7 +41,7 @@
     <BlogPostCard
       title={LoremIpsum.paragraph.split(' ').slice(0, index + 4).join(' ')}
       url={`#blog-post-${index + 1}`}
-      image={[2,5,6].includes(index) ? `https://placedog.net/600/315?id=${index + 1}` : undefined}
+      image={[2,5,6].includes(index) ? `https://picsum.photos/600/315?id=${index + 1}` : undefined}
       readingTime={[0,2,4,6,7].includes(index) ? '5 min' : undefined}
       excerpt={[0,1,2,5,9].includes(index) ? LoremIpsum.paragraph : undefined}
       tags={[3,5,6,7].includes(index) ? ['Tag 1', 'Tag 2'] : undefined}

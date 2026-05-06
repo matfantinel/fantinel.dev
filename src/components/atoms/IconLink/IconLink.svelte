@@ -22,6 +22,7 @@
     icon?: Snippet;
     children?: Snippet;
     onclick?: EventListener;
+    [key: string]: any;
   } = $props();
 
   let tag = $derived(href ? 'a' : 'button');
@@ -42,6 +43,7 @@
   {...props}
   title={title}
   {onclick}
+  {...props}
 >
   {#if icon}
     <div class="a-icon-link__icon">

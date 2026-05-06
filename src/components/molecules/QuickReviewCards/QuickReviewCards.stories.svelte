@@ -28,7 +28,7 @@
       title="Title of movie, tv show, game or music album"
       slug="slug-of-the-review"
       metadata="2025 - Director, Artist, Publisher, Developer"
-      image="https://placedog.net/220/330"
+      image="https://picsum.photos/220/330"
       date="2025-01-01"
       type="Movie"
       rating="Loved it!"
