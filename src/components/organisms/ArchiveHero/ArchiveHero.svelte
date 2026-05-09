@@ -204,7 +204,7 @@
         height: 100%;
         display: block;
 
-        --theme--color-footer--wave-1: var(--theme--background-base-color) !important;
+        --theme--color-footer--wave-1: var(--t-v6--surface--base) !important;
       }
     }
 

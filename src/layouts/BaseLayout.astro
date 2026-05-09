@@ -136,7 +136,7 @@ const pathname = new URL(Astro.request.url).pathname;
     :global(main) {
       position: relative;
       z-index: 2;
-      background: var(--theme--background-base-color);
+      background: var(--t-v6--surface--base);
     }
   }
 
@@ -151,7 +151,7 @@ const pathname = new URL(Astro.request.url).pathname;
     }
 
     @include breakpoints.for-tablet-portrait-up {
-      background: var(--color--gray-1000);
+      background: var(--t-v6--surface--root);
       display: grid;
       grid-template-columns: clamp(220px, 20%, 300px) 1fr;
       grid-template-areas:
@@ -180,7 +180,7 @@ const pathname = new URL(Astro.request.url).pathname;
       :global(footer) {
         grid-area: footer;
         border-bottom-left-radius: var(--border-radius);
-        background: var(--theme--background-base-color);
+        background: var(--t-v6--surface--base);
         margin-bottom: var(--spacing-xs);
         overflow: hidden;
       }

@@ -18,11 +18,11 @@
 }
 
 html {
-	background: var(--theme--background-base-color);
+	background: var(--t-v6--surface--base);
 }
 
 body {
-  background: var(--theme--background-root-color, var(--theme--background-base-color));
+  background: var(--theme--background-root-color, var(--t-v6--surface--base));
   color: var(--theme--text-base-color);
   fill: var(--theme--text-base-color);
   

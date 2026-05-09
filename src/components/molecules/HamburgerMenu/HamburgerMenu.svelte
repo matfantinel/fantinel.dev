@@ -160,7 +160,7 @@
       justify-content: flex-end;
       gap: var(--spacing-sm) var(--spacing-lg);
 
-      background: var(--theme--background-base-color);
+      background: var(--t-v6--surface--base);
       list-style-type: none;
       -webkit-font-smoothing: antialiased;
 

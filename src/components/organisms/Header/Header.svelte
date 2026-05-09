@@ -5,7 +5,6 @@
   import QuickReviewIcon from '@assets/icons/post-types/quick-review.svelte';
   import CoolLinkIcon from '@assets/icons/post-types/cool-link.svelte';
   import PhotographyIcon from '@assets/icons/post-types/photography.svelte';
-  import HamburgerMenu from '@components/molecules/HamburgerMenu';
   import ThemeToggle from '@components/molecules/ThemeToggle';
   import HomeIcon from '@assets/icons/home.svelte';
   import TimelineIcon from '@assets/icons/timeline.svelte';
@@ -37,6 +36,11 @@
   // Update pathname on client-side navigation
   $effect(() => {
     const scrollToActiveLink = () => {
+      // if window width >= 768, return
+      if (window.innerWidth >= 768) {
+        return;
+      }
+
       const nav = document.querySelector('.o-header__navigation');
       const activeLink = nav?.querySelector('[aria-current="page"], .a-nav-menu-link--active');
       if (nav && activeLink) {
@@ -134,6 +138,8 @@
 
     <div class="o-header__actions">
       <PagefindSearchField class="o-header__search-field" value={currentSearch} />
+
+      <ThemeToggle class="o-header__theme-toggle" />
     </div>
   </div>
 </header>
@@ -177,6 +183,10 @@
 
       padding-top: var(--spacing-md);
       border-top: 1px solid var(--t-v6--border--medium);
+    }
+
+    :global(.o-header__theme-toggle) {
+      align-self: center;
     }
 
     @include breakpoints.for-phone-only {

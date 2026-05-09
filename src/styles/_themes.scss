@@ -316,7 +316,7 @@
   @include theme-base;
 
   --background-noise-opacity: 0;
-  --theme--background-root-color: var(--theme--background-base-color);
+  --theme--background-root-color: var(--t-v6--surface--base);
 }
 
 @mixin light-theme {
