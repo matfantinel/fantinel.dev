@@ -4,6 +4,7 @@
 @use '/src/styles/_themes-v6.scss';
 @use '/src/styles/_keyframes.scss';
 @use '/src/styles/breakpoints';
+@use '/src/styles/_containers.scss';
 @use '/src/styles/_functions.scss';
 @use '/src/styles/_mixins.scss';
 @use '/src/styles/_base.scss';
@@ -18,134 +19,62 @@
 }
 
 html {
-	background: var(--t-v6--surface--base);
+  background: var(--t-v6--surface--root);
+  margin: 0;
+  width: 100%;
+  height: auto;
+
+  &.smooth-scroll {
+    scroll-behavior: smooth;
+    body {
+      scroll-behavior: smooth;
+    }
+  }
 }
 
 body {
-  background: var(--theme--background-root-color, var(--t-v6--surface--base));
-  color: var(--theme--text-base-color);
-  fill: var(--theme--text-base-color);
-  
+  background: var(--t-v6--surface--root);
+  color: var(--t-v6--text--base);
+  fill: var(--t-v6--text--base);
+
   height: 100%;
   min-height: 100vh;
   /* safari viewport bug fix */
-	min-height: -webkit-fill-available;
-  
-	width: 100%;
-	overflow-x: hidden;
+  min-height: -webkit-fill-available;
+
+  width: 100%;
+  overflow-x: hidden;
   transition: all 0.4s ease;
-
-	// Prevents scroll from happening when hamburger menu is open
-	&:has(.m-hamburger-menu__checkbox:checked) {
-		overflow: hidden;
-	}
-}
-
-html {
-	width: 100%;
-
-	&.smooth-scroll {
-		scroll-behavior: smooth;
-		body {
-			scroll-behavior: smooth;
-		}
-	}
 }
 
 ::selection {
-	background-color: rgba(var(--theme--color-accent-rgb), 0.3);
-	text-shadow: none;
-}
-
-.u-image-dialog {
-  background: none;
-  border: none;
-  width: 100vw;
-	max-width: 100vw;
-  height: 100%;
-
-  transition: all 0.25s ease-out allow-discrete;
-  opacity: 0;
-
-  overscroll-behavior: contain;
-
-  &[open] {
-    opacity: 1;
-  }
-
-  @starting-style {
-    &[open] {
-      opacity: 0;
-    }
-  }
-
-  &::backdrop {
-    transition: all 0.25s ease-out allow-discrete;
-    background: rgba(0,0,0,0.7);
-    backdrop-filter: blur(10px);
-  }  
-
-  form {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    display: grid;
-    place-items: center;
-  }
-
-  img {
-    max-width: 90vw;
-    max-height: 80vh;
-  }
-
-  &__close-button {
-    position: absolute;
-    top: 0;
-    right: 0;
-    background: transparent;
-    border: none;
-    font-size: 2.5rem;
-    line-height: 1;
-    color: var(--theme--color-close-button-color);
-    border-radius: 50%;
-    height: 42px;
-    width: 42px;
-    cursor: pointer;
-
-		transition: .25s ease-in-out;
-
-		@media (hover: hover) {
-			&:hover {
-				background: var(--theme--color-close-button-color-hover);
-			}
-		}
-  }
+  background-color: rgba(var(--t-v6--accent--rgb), 0.2);
+  text-shadow: none;
 }
 
 * {
-	scroll-margin-top: var(--spacing-lg);
+  scroll-margin-top: var(--spacing-lg);
 
-	&:focus-visible {
-		outline: none;
-	}
+  &:focus-visible {
+    outline: none;
+  }
 
-	.keyboard-in-use &:focus {
-		outline: 2px dashed var(--theme--color-accent);
-		outline-offset: 4px;
-	}
+  .keyboard-in-use &:focus {
+    outline: 2px dashed var(--t-v6--accent);
+    outline-offset: 4px;
+  }
 }
 
 // If prefers-reduced-motion is set, disable all animations and transitions globally
 @media (prefers-reduced-motion: reduce) {
-	* {
-		animation: none !important;
-		transition: none !important;
+  * {
+    animation: none !important;
+    transition: none !important;
 
-		&:before,
-		&:after {
-			animation: none !important;
-			transition: none !important;
-		}
-	}
+    &:before,
+    &:after {
+      animation: none !important;
+      transition: none !important;
+    }
+  }
 }
-	

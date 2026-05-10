@@ -89,7 +89,6 @@
   <div class="o-archive-hero__waves-container" aria-hidden="true">
     <FooterWaves class="o-archive-hero__waves" opacity={1} forceGray invertWaveColors />
   </div>
-  <div class="u-noise"></div>
 </div>
 
 <style lang="scss">
@@ -153,7 +152,7 @@
       @include typography.h1;
       text-align: center;
       text-wrap: balance;
-      animation: var(--theme--glowing-text-animation);
+      animation: var(--t-v6--glowing-text-animation);
 
       color: var(--theme--color-accent);
       --glow-color: var(--theme--color-accent-rgb);

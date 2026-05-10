@@ -1,0 +1,152 @@
+---
+import Image from '@components/atoms/Image';
+import MarkdownRenderer from '@components/molecules/MarkdownRenderer';
+import TableOfContents from '@components/molecules/TableOfContents';
+import AboutAuthor from '@components/organisms/AboutAuthor';
+import PostHero from '@components/organisms/PostHero';
+import FeaturedPosts from '@components/organisms/FeaturedPosts';
+import metaConfig from '@public/cms/meta.yml';
+import type { BlogPost } from '@schemas/blog';
+import type { SiteMeta } from '@schemas/site-meta';
+import { handleCmsMediaPath } from '@utils/functions';
+import BaseLayout from './BaseLayout.astro';
+
+interface Props {
+  post: {
+    body?: string;
+    data: BlogPost;
+  };
+}
+
+const { post }: Props = Astro.props;
+
+const showToc = post.data.showToc && post.data.toc && post.data.toc.length > 0;
+
+const siteMeta: SiteMeta = metaConfig;
+let coverImage;
+if (post.data.ogImage) {
+  if (post.data.ogImage.includes(siteMeta.baseUrl)) {
+    coverImage = post.data.ogImage;
+  } else {
+    coverImage = `${siteMeta.baseUrl}${handleCmsMediaPath(post.data.ogImage)}`;
+  }
+}
+---
+
+<BaseLayout
+  title={post.data.title}
+  keywords={post.data.categories}
+  description={post.data.excerpt}
+  image={coverImage}
+  autoGenerateImage={!post.data.ogImage}
+  slug={`blog/${post.data.slug}`}
+  publishedDate={post.data.date}
+  modifiedDate={post.data.updated}
+  noindex={post.data.hidden}
+>
+  <div class='l-article'>
+    <div class='l-article__container u-content-grid' data-pagefind-body>
+      <div class='l-article__hero full-width'>
+        <PostHero
+          title={post.data.title}
+          slug={post.data.slug}
+          author={post.data.author}
+          date={post.data.date}
+          updated={post.data.updated}
+          readingTime={post.data.readingTime}
+          tags={post.data.categories}
+          client:load
+        />
+      </div>
+
+      <div class={`l-article__content full-width ${showToc ? 'u-content-grid--with-sidebar' : 'u-content-grid'}`}>
+        {
+          showToc && (
+            <div class='l-article__toc on-sidebar'>
+              <TableOfContents headings={post.data.toc} client:load />
+            </div>
+          )
+        }
+
+        <div id='post-content' class='l-article__post-content u-markdown'>
+          {
+            post.data.coverImage && (
+              <Image
+                class='l-article__cover-image'
+                src={handleCmsMediaPath(post.data.coverImage!)}
+                alt={post.data.coverImageAlt}
+                lazy={false}
+              />
+            )
+          }
+
+          <MarkdownRenderer content={post.body} client:load />
+        </div>
+      </div>
+
+      <div class='l-article__after-content full-width u-content-grid' data-pagefind-ignore='all'>
+        <div class='l-article__after-content-container'>
+          {
+            post.data.author && (
+              <AboutAuthor
+                kicker='Written by'
+                name={post.data.author.name}
+                bio={post.data.author.shortBio}
+                image={post.data.author.image}
+                extraImages={post.data.author.extraImages}
+                socials={post.data.author.socials}
+                button={{ text: 'About', url: '/about' }}
+                client:load
+              />
+            )
+          }
+
+          {
+            post.data.relatedPosts && post.data.relatedPosts.length > 0 && (
+              <FeaturedPosts
+                title='You might also like'
+                button={{
+                  text: 'View blog',
+                  url: '/blog',
+                }}
+                posts={post.data.relatedPosts}
+              />
+            )
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<style lang='scss'>
+  @use '/src/styles/breakpoints';
+  @use '/src/styles/mixins';
+  @use '/src/styles/typography';
+
+  .l-article {
+    &__toc {
+      position: sticky;
+      top: var(--spacing-lg);
+
+      @include breakpoints.for-tablet-portrait-down {
+        position: unset;
+      }
+    }
+
+    &__content {
+      --content-max-width: 68ch;
+    }
+
+    &__after-content {
+      padding-top: var(--spacing-xxl);
+      border-top: 1px dotted var(--t-v6--border--medium);
+    }
+    
+    &__after-content-container {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-xxxl);
+    }
+  }
+</style>

@@ -65,7 +65,7 @@
       color: var(--theme--color-accent);
       text-align: center;
       text-wrap: balance;
-      animation: var(--theme--glowing-text-animation);
+      animation: var(--t-v6--glowing-text-animation);
     }
 
     &__body {

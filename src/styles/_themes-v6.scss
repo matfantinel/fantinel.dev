@@ -107,7 +107,7 @@ $palette-v6-colors: (
   ('gray-800',  #DCE0E8, #1e1e2e),
   ('gray-900',  #E6E9EF, #181825),
   ('gray-1000', #EFF1F5, #11111b),
-  ('gray-max',  #FFFFFF, #11111B)
+  ('gray-max',  #FFFFFF, #000000)
 );
 
 @mixin light-palette-v6 {
@@ -287,6 +287,8 @@ $palette-v6-colors: (
     #{palette-dark('blue')},
     #{palette-dark('lavender')}
   );
+
+  --t-v6--glowing-text-animation: text-glow 3.5s cubic-bezier(0.66, 0, 0.34, 1) infinite alternate;
   // #endregion
 }
 
@@ -299,6 +301,12 @@ $palette-v6-colors: (
   @include theme-base-v6;
 
   // TODO: dark-only overrides
+  --t-v6--surface--base: var(--palette-v6--gray-900--mixed, var(--palette-v6--gray-900));
+  --t-v6--surface--base--rgb: var(--palette-v6--gray-900--rgb);
+  --t-v6--surface--root: var(--palette-v6--gray-800--mixed, var(--palette-v6--gray-800));
+  --t-v6--surface--accent: var(--palette-v6--gray-1000--mixed, var(--palette-v6--gray-1000));
+  --t-v6--surface--card: var(--palette-v6--gray-1000--mixed, var(--palette-v6--gray-1000));
+  --t-v6--surface--card--rgb: var(--palette-v6--gray-1000--rgb);
 }
 
 @mixin light-theme-v6 {
@@ -306,6 +314,7 @@ $palette-v6-colors: (
   @include theme-base-v6;
 
   // TODO: light-only overrides
+  --t-v6--glowing-text-animation: unset;
 }
 
 // #endregion

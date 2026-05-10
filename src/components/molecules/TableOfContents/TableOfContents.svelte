@@ -145,11 +145,11 @@
   @use '/src/styles/breakpoints';
 
   .m-table-of-contents {
-    background: var(--t-v6--surface--card);
-    padding: var(--spacing-md);
-    border-radius: var(--border-radius--small);
+    // background: var(--t-v6--surface--card);
+    // padding: var(--spacing-md);
+    // border-radius: var(--border-radius--small);
 
-    @include breakpoints.for-tablet-portrait-up {
+    @include breakpoints.for-tablet-landscape-up {
       overflow: hidden;
       background-color: var(--t-v6--surface--card);
       border-radius: var(--border-radius);
@@ -192,7 +192,7 @@
       }
 
       &--active {
-        @include breakpoints.for-tablet-portrait-up {
+        @include breakpoints.for-tablet-landscape-up {
           color: var(--t-v6--accent);
           scale: 1.05;
         }

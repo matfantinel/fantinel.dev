@@ -1,8 +1,8 @@
 ---
 import { sanitizeBlogPostData } from '@data/blogPosts';
-import PostLayout from '@layouts/PostLayout.astro';
-import { getCollection } from 'astro:content';
+import ArticleLayout from '@layouts/ArticleLayout.astro';
 import type { BlogPost } from '@schemas/blog';
+import { getCollection } from 'astro:content';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
@@ -24,4 +24,4 @@ export async function getStaticPaths() {
 const { post } = Astro.props;
 ---
 
-<PostLayout post={{ body: post.body, data: post.data }} />
+<ArticleLayout post={{ body: post.body, data: post.data }} />

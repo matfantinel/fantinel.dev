@@ -114,7 +114,7 @@
       @include typography.h1;
       @include typography.gradient-greenish;
       // color: var(--color--green);
-      animation: var(--theme--glowing-text-animation);
+      animation: var(--t-v6--glowing-text-animation);
     }
 
     &__body {

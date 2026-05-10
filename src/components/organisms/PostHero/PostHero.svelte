@@ -1,13 +1,13 @@
 <script lang="ts">
   import Tag from '@components/atoms/Tag';
   import AuthorAvatar from '@components/molecules/AuthorAvatar';
+  import HeroWaves from '@components/molecules/HeroWaves';
   import Tags from '@components/molecules/Tags';
   import type { SiteAuthor } from '@schemas/site-meta';
   import dateformat from 'dateformat';
 
   let {
     title,
-    slug,
     author,
     date,
     updated,
@@ -16,7 +16,6 @@
     class: className,
   }: {
     title: string;
-    slug?: string;
     author?: SiteAuthor;
     date?: Date;
     updated?: Date;
@@ -26,8 +25,8 @@
   } = $props();
 </script>
 
-<div class={['o-post-hero', className]}>
-  <div class="o-post-hero__container u-container-small">
+<div class={['o-post-hero u-content-grid', className]}>
+  <div class="o-post-hero__container">
     <h1 class="o-post-hero__title">
       {title}
     </h1>
@@ -67,6 +66,8 @@
       </div>
     {/if}
   </div>
+
+  <HeroWaves />
 </div>
 
 <style lang="scss">
@@ -74,10 +75,11 @@
   @use '/src/styles/breakpoints';
 
   .o-post-hero {
-    background-color: var(--theme--background-accent-color);
-    border-bottom-left-radius: var(--border-radius);
-    border-bottom-right-radius: var(--border-radius);
-    margin-top: calc(var(--spacing-lg) * -1);
+    --content-max-width: 790px;
+    background-color: var(--t-v6--surface--accent);
+    
+    position: relative;
+    margin-bottom: 64px;
     
     &__container {
       display: flex;
@@ -89,7 +91,7 @@
       padding-block: var(--spacing-xxxl) var(--spacing-xxl);
 
       @include breakpoints.for-phone-only {
-        padding-block: var(--spacing-xl);
+        padding-block: var(--spacing-xl) var(--spacing-md);
       }
     }
 
@@ -98,6 +100,8 @@
       @include typography.gradient-pinkish;
       text-align: center;
       text-wrap: balance;
+      --glow-color: var(--palette-v6--pink--rgb);
+      animation: var(--t-v6--glowing-text-animation);
     }
 
     &__meta {

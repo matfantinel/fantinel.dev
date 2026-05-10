@@ -18,17 +18,17 @@
   } = $props();
 </script>
 
-<div class={['o-posts-section', className]}>
-  <div class="o-posts-section__container u-container">
+<div class={['o-featured-posts', className]}>
+  <div class="o-featured-posts__container">
     <SectionHeader 
-      class="o-posts-section__header"
+      class="o-featured-posts__header"
       title={title}
       button={button} 
     />
-    <BlogPostCards class='l-posts-section__grid' maxPerRow={2}>
+    <BlogPostCards class='o-featured-posts__grid' maxPerRow={2}>
       {#each posts as post}
         <BlogPostCard
-          class="l-posts-section__card"
+          class="o-featured-posts__card"
           {...blogPostToBlogPostCardProps(post)}
           hideImage
         />
@@ -41,7 +41,7 @@
   @use '/src/styles/typography';
   @use '/src/styles/breakpoints';
 
-  .o-posts-section {
+  .o-featured-posts {
     &__container {
       display: flex;
       flex-direction: column;

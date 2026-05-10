@@ -4,15 +4,10 @@
 @mixin padded-container {
 	max-width: 1080px;
 	width: 100%;
-	padding-left: clamp(15px, calc((100vw - 320px) / 580 * 30), 30px);
-	padding-right: clamp(15px, calc((100vw - 320px) / 580 * 30), 30px);
+	padding-left: var(--container-padding);
+	padding-right: var(--container-padding);
 	margin-right: auto;
 	margin-left: auto;
-
-	@include breakpoints.for-iphone-se {
-		padding-left: 0;
-		padding-right: 0;
-	}
 }
 
 @mixin padded-container-small {

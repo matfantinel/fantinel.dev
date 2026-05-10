@@ -1,6 +1,4 @@
 <script lang="ts">
-  import Rss from '@assets/icons/rss.svelte';
-  import IconLink from '@components/atoms/IconLink';
   import ThemeToggle from '@components/molecules/ThemeToggle';
 
   import SocialLink from '@components/atoms/SocialLink';

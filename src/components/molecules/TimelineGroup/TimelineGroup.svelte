@@ -26,7 +26,6 @@
 
 <div class={['m-timeline-group', className]}>
   <div class="m-timeline-group__header">
-    <div class="u-noise"></div>
     <h2 class="m-timeline-group__heading">{dateformat(date, 'UTC:dd mmm yyyy')}</h2>
     {#if isToday}
       <span class="m-timeline-group__header-note">Today</span>

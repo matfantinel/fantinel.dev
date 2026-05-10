@@ -16,7 +16,6 @@ const {
   publishedDate,
   modifiedDate,
   disableClientRouter,
-  hasHeaderBackground,
   noindex,
 }: {
   title?: string;
@@ -27,7 +26,6 @@ const {
   publishedDate?: string;
   modifiedDate?: string;
   disableClientRouter?: boolean;
-  hasHeaderBackground?: boolean;
   noindex?: boolean;
 } = Astro.props;
 
@@ -80,7 +78,6 @@ const pathname = new URL(Astro.request.url).pathname;
 
       <main>
         <slot />
-        <div class='u-noise'></div>
       </main>
 
       <Footer socials={siteMeta.author?.socials} client:load transition:persist />
@@ -116,7 +113,7 @@ const pathname = new URL(Astro.request.url).pathname;
     <noscript>
       <style>
         *:focus-visible {
-          outline: 2px dashed var(--theme--color-accent);
+          outline: 2px dashed var(--t-v6--accent);
           outline-offset: 4px;
         }
       </style>
@@ -127,31 +124,51 @@ const pathname = new URL(Astro.request.url).pathname;
 <style lang='scss'>
   @use '/src/styles/breakpoints';
 
-  html,
-  body {
-    margin: 0;
-    width: 100%;
-    height: auto;
+  .l-base {
+    display: grid;
+    grid-template-columns: 1fr;
 
-    :global(main) {
+    main {
       position: relative;
       z-index: 2;
       background: var(--t-v6--surface--base);
     }
-  }
 
-  .l-base {
+    :global(footer) {
+      background: var(--t-v6--surface--base);
+    }
+
     @include breakpoints.for-phone-only {
       :global(header) {
         position: sticky;
         top: 0;
-        background: var(--t-v6--surface--base);
-        box-shadow: var(--t-v6--shadow--low);
+        background: var(--t-v6--surface--root);
+
+        animation: scroll-shadow linear both;
+        animation-timeline: scroll();
+        animation-range: 0px 64px;
+
+        @keyframes scroll-shadow {
+          from {
+            box-shadow: none;
+            border-radius: 0;
+          }
+
+          to {
+            box-shadow: var(--t-v6--shadow--low);
+            border-radius: 0 0 var(--border-radius--small) var(--border-radius--small);
+          }
+        }
+      }
+
+      main {
+        border-top-left-radius: var(--border-radius);
+        border-top-right-radius: var(--border-radius);
+        overflow: clip;
       }
     }
 
     @include breakpoints.for-tablet-portrait-up {
-      background: var(--t-v6--surface--root);
       display: grid;
       grid-template-columns: clamp(220px, 20%, 300px) 1fr;
       grid-template-areas:
@@ -165,22 +182,17 @@ const pathname = new URL(Astro.request.url).pathname;
         height: 100dvh;
       }
 
-      :global(main) {
+      main {
         grid-area: main;
-        padding-top: var(--spacing-lg);
         border-top-left-radius: var(--border-radius);
-        padding-block: var(--spacing-lg);
         margin-top: var(--spacing-xs);
+        padding-bottom: var(--spacing-xl);
         overflow: clip;
-
-        .u-noise {
-        }
       }
 
       :global(footer) {
         grid-area: footer;
         border-bottom-left-radius: var(--border-radius);
-        background: var(--t-v6--surface--base);
         margin-bottom: var(--spacing-xs);
         overflow: hidden;
       }
