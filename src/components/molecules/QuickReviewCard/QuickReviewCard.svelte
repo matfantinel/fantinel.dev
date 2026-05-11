@@ -169,7 +169,7 @@
     :global(.m-quick-review-card__image) {
       object-fit: cover;
       border-radius: var(--border-radius);
-      box-shadow: var(--theme--shadow-image);
+      box-shadow: var(--t-v6--shadow--base);
     }
 
     &__title {

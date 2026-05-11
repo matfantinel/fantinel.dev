@@ -61,6 +61,20 @@ if (post.data.ogImage) {
 
       <div class={`l-article__content full-width ${showToc ? 'u-content-grid--with-sidebar' : 'u-content-grid'}`}>
         {
+          // I always forget, so, for posteriority:
+          // Why is the cover image outside of #post-content?
+          // Because, on mobile, it should show up before the ToC
+          post.data.coverImage && (
+            <Image
+              class='l-article__cover-image'
+              src={handleCmsMediaPath(post.data.coverImage!)}
+              alt={post.data.coverImageAlt}
+              lazy={false}
+            />
+          )
+        }
+
+        {
           showToc && (
             <div class='l-article__toc on-sidebar'>
               <TableOfContents headings={post.data.toc} client:load />
@@ -69,17 +83,6 @@ if (post.data.ogImage) {
         }
 
         <div id='post-content' class='l-article__post-content u-markdown'>
-          {
-            post.data.coverImage && (
-              <Image
-                class='l-article__cover-image'
-                src={handleCmsMediaPath(post.data.coverImage!)}
-                alt={post.data.coverImageAlt}
-                lazy={false}
-              />
-            )
-          }
-
           <MarkdownRenderer content={post.body} client:load />
         </div>
       </div>
@@ -125,9 +128,24 @@ if (post.data.ogImage) {
   @use '/src/styles/typography';
 
   .l-article {
+    :global(.l-article__cover-image) {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+
+      max-width: 100%;
+      width: 100%;
+      height: auto;
+
+      box-shadow: var(--t-v6--shadow--base);
+      border-radius: var(--border-radius--small);
+    }
+
     &__toc {
       position: sticky;
       top: var(--spacing-lg);
+      // Needs to occupy both cover-image + content rows
+      grid-row: span 2;
 
       @include breakpoints.for-tablet-portrait-down {
         position: unset;
@@ -142,7 +160,7 @@ if (post.data.ogImage) {
       padding-top: var(--spacing-xxl);
       border-top: 1px dotted var(--t-v6--border--medium);
     }
-    
+
     &__after-content-container {
       display: flex;
       flex-direction: column;

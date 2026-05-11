@@ -16,27 +16,25 @@
     class?: string;
   } = $props();
 
-  let currentHeading = $state<string | undefined>(undefined);  
+  let currentHeading = $state<string | undefined>(undefined);
 
   onMount(() => {
     const items = Array.from(document.querySelectorAll('.m-table-of-contents__item'));
     const footer = document.querySelector('.o-footer') as HTMLElement;
     const toc = document.querySelector('.m-table-of-contents') as HTMLElement;
 
-    const headingsObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const slug = entry.target.id;
-            items.forEach((item) => {
-              const isActive = item.getAttribute('data-slug') === slug;
-              item.classList.toggle('m-table-of-contents__item--active', isActive);
-              currentHeading = headings.find((heading) => heading.slug === slug)?.text;
-            });
-          }
-        });
-      }
-    );
+    const headingsObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const slug = entry.target.id;
+          items.forEach((item) => {
+            const isActive = item.getAttribute('data-slug') === slug;
+            item.classList.toggle('m-table-of-contents__item--active', isActive);
+            currentHeading = headings.find((heading) => heading.slug === slug)?.text;
+          });
+        }
+      });
+    });
 
     const tocObserver = new IntersectionObserver(
       (entries) => {
@@ -56,24 +54,22 @@
       },
       {
         threshold: [1],
-      }
+      },
     );
 
-    const footerObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            // If footer is in the viewport, let's remove the off-screen class from toc
-            toc?.classList.remove('m-table-of-contents--off-screen');
-          } else {
-            if (!isInViewport(toc)) {
-              toc?.classList.add('m-table-of-contents--off-screen');
-            }
+    const footerObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          // If footer is in the viewport, let's remove the off-screen class from toc
+          toc?.classList.remove('m-table-of-contents--off-screen');
+        } else {
+          if (!isInViewport(toc)) {
+            toc?.classList.add('m-table-of-contents--off-screen');
           }
-        });
-      }
-    );
-    
+        }
+      });
+    });
+
     if (toc) {
       // If JS is enabled, remove the off-screen class so we can toggle it intelligently
       toc.classList.remove('m-table-of-contents--off-screen');
@@ -84,7 +80,7 @@
         const el = document.getElementById(heading.slug);
         if (el) headingsObserver.observe(el);
       });
-      
+
       if (toc) {
         tocObserver.observe(toc);
       }
@@ -122,7 +118,12 @@
     <summary class="m-table-of-contents__accordion-header">
       <div class="m-table-of-contents__heading">Table of Contents</div>
       {#key currentHeading}
-        <div class={['m-table-of-contents__current', currentHeading ? 'm-table-of-contents__current--active' : '']} in:fade>{currentHeading ?? 'Tap to open'}</div>
+        <div
+          class={['m-table-of-contents__current', currentHeading ? 'm-table-of-contents__current--active' : '']}
+          in:fade
+        >
+          {currentHeading ?? 'Tap to open'}
+        </div>
       {/key}
     </summary>
     <ol class="m-table-of-contents__list">
@@ -145,9 +146,11 @@
   @use '/src/styles/breakpoints';
 
   .m-table-of-contents {
-    // background: var(--t-v6--surface--card);
-    // padding: var(--spacing-md);
-    // border-radius: var(--border-radius--small);
+    @include breakpoints.for-tablet-portrait-down {
+      padding-block: var(--spacing-sm);
+      border-top: 1px dotted var(--t-v6--border--medium);
+      border-bottom: 1px dotted var(--t-v6--border--medium);
+    }
 
     @include breakpoints.for-tablet-landscape-up {
       overflow: hidden;
@@ -165,7 +168,7 @@
     &__heading {
       @include typography.b1;
       color: var(--t-v6--accent);
-    }    
+    }
 
     &__list {
       list-style: none;
@@ -217,7 +220,7 @@
       overflow: hidden;
       transition: all 0.25s ease;
       opacity: 0;
-      translate: -50% 200%;      
+      translate: -50% 200%;
 
       background-color: rgba(var(--t-v6--surface--card--rgb), 0.8);
       backdrop-filter: blur(10px);

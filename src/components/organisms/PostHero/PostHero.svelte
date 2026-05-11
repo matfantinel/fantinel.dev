@@ -33,7 +33,7 @@
 
     <div class="o-post-hero__meta" data-pagefind-ignore="all">
       {#if author?.image}
-        <AuthorAvatar src={author.image} alt={author.name} extraImages={author.extraImages} size="small" />
+        <AuthorAvatar class="o-post-hero__author-avatar" src={author.image} alt={author.name} extraImages={author.extraImages} size="small" />
       {/if}
       <div class="o-post-hero__details">
         {#if author?.name}
@@ -89,10 +89,6 @@
       gap: var(--spacing-lg);
 
       padding-block: var(--spacing-xxxl) var(--spacing-xxl);
-
-      @include breakpoints.for-phone-only {
-        padding-block: var(--spacing-xl) var(--spacing-md);
-      }
     }
 
     &__title {
@@ -119,6 +115,24 @@
     &__detail {
       @include typography.b1;
       @include typography.gradient-greenish;
+    }
+
+    @include breakpoints.for-phone-only {
+      &__container {
+        padding-block: var(--spacing-xxl) var(--spacing-md);
+      }
+      &__details {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-xxs);
+      }
+      &__detail {
+        @include typography.b3;
+        font-weight: 700;
+      }
+      :global(.o-post-hero__author-avatar) {
+        --size: 40px;
+      }
     }
   }
 </style>
