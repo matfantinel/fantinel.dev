@@ -1,9 +1,10 @@
 ---
-import { getAllCategories, getPaginatedBlogPosts } from "@data/blogPosts";
+import { getCategoryFilters, getDateFilters, getPaginatedBlogPosts } from "@data/blogPosts";
 import BlogArchiveLayout from "@layouts/BlogArchiveLayout.astro";
 
 const { posts, currentPage, totalPages, totalPosts } = await getPaginatedBlogPosts(1);
-const allCategories = await getAllCategories();
+const categoryFilters = await getCategoryFilters();
+const dateFilters = await getDateFilters();
 ---
 
 <BlogArchiveLayout
@@ -11,5 +12,6 @@ const allCategories = await getAllCategories();
   currentPage={currentPage}
   totalPages={totalPages}
   totalPosts={totalPosts}
-  allCategories={allCategories}
+  categoryFilters={categoryFilters}
+  dateFilters={dateFilters}
 />

@@ -1,26 +1,21 @@
 ---
 import BlogArchiveLayout from "@layouts/BlogArchiveLayout.astro";
-import { getAllCategories, getPaginatedBlogPosts } from "@data/blogPosts";
+import { getAllCategories, getCategoryFilters, getDateFilters, getPaginatedBlogPosts } from "@data/blogPosts";
 
 export async function getStaticPaths() {
   const categories = await getAllCategories();
-  
-  const paths = await Promise.all(
-    categories.map(async (category) => {
-      const { totalPages } = await getPaginatedBlogPosts(1, category.slug);
-      return Array.from({ length: totalPages }).map((_, i) => ({
-        params: { category: category.slug, page: String(i + 2) }, // start at page 2
-      }));
-    })
-  );
 
-  return paths.flat();
+  return categories.map((category) => ({
+    params: { category: category.slug },
+  }));
 }
 
-const { category, page } = Astro.params;
-const { posts, currentPage, totalPages, totalPosts } = await getPaginatedBlogPosts(Number(page), category);
+const { category } = Astro.params;
+const { posts, currentPage, totalPages, totalPosts } = await getPaginatedBlogPosts(1, category);
 
 const allCategories = await getAllCategories();
+const categoryFilters = await getCategoryFilters(category);
+const dateFilters = await getDateFilters();
 const currentCategory = allCategories.find((c) => c.slug === category);
 ---
 
@@ -30,5 +25,6 @@ const currentCategory = allCategories.find((c) => c.slug === category);
   totalPages={totalPages}
   totalPosts={totalPosts}
   currentCategory={currentCategory}
-  allCategories={allCategories}
+  categoryFilters={categoryFilters}
+  dateFilters={dateFilters}
 />

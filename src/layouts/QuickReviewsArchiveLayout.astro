@@ -1,14 +1,9 @@
 ---
-import Pagination from '@components/molecules/Pagination';
 import QuickReviewCards from '@components/molecules/QuickReviewCards';
-import ArchiveHero from '@components/organisms/ArchiveHero';
-import metaConfig from '@public/cms/meta.yml';
 import type { QuickReview } from '@schemas/quick-review';
 import { QuickReviewType, QuickReviewRating } from '@schemas/quick-review-types';
-import type { SiteMeta } from '@schemas/site-meta';
 import { getTypeFromLowercaseKey, getRatingFromLowercaseKey } from '@schemas/quick-review-types';
-import BaseLayout from './BaseLayout.astro';
-const siteMeta: SiteMeta = metaConfig;
+import BaseArchiveLayout from './BaseArchiveLayout.astro';
 
 interface Props {
   reviews: QuickReview[];
@@ -60,118 +55,53 @@ let paginationBaseUrl = '/quick-reviews';
 if (currentType) paginationBaseUrl += `/type/${currentType.toLowerCase()}`;
 if (currentRating) paginationBaseUrl += `/rating/${currentRating.toLowerCase()}`;
 
+let summaryText = '';
+if (totalReviews) {
+  summaryText = `${totalReviews} reviews`;
+  if (currentType) summaryText += ` for "${currentType}"`;
+  if (currentRating) summaryText += ` rated "${currentRating}"`;
+}
+
 ---
 
-<BaseLayout
+<BaseArchiveLayout
+  className='l-quick-reviews-archive'
   title='Quick Reviews'
-  image={siteMeta.baseUrl + '/cms/media/articles/quick-reviews-preview.png'}
-  description="A special place to dump my unsolicited opinions of pieces of media!"
+  heroTitle='Quick Reviews'
+  heroBody="Since June 2024, I started writing quick reviews of movies, TV shows and games I've watched or played. Here's every one of them."
+  baseUrl='/quick-reviews'
+  basePaginationUrl={paginationBaseUrl}
+  currentPage={currentPage}
+  totalPages={totalPages}
+  summaryText={summaryText}
 >
-  <div class='l-quick-reviews-archive'>
-    <div class='l-quick-reviews-archive__container'>
-      <ArchiveHero
-        class='l-quick-reviews-archive__hero'
-        title='Quick Reviews'
-        body="Since June 2024, I started writing quick reviews of movies, TV shows and games I’ve watched or played. Here’s every one of them."
-        tagGroups={tagGroups}
-      />
-
-      <div class='l-quick-reviews-archive__content-wrapper u-container'>
-        <div class='u-container-small u-markdown'>
-          <p>
-            This idea and overall review layout were totally stolen from Matt Birchler and his <a
-              href='https://quickreviews.app'
-              target='_blank'
-            >
-              Quick Reviews
-            </a> web app. Check it out if you want to create yours!
-          </p>
-        </div>
-
-        {!reviews.length && <p class='u-h4'>No reviews found</p>}
-
-        {
-          totalReviews && (
-            <p class='l-quick-reviews-archive__summary'>
-              {totalReviews} reviews
-              {currentType && ` for "${currentType}"`}
-              {currentRating && ` rated "${currentRating}"`}
-            </p>
-          )
-        }
-
-        {
-          // I'm passing reviews as a prop here to avoid having multiple
-          // Elements with client:load. Having multiple islands like that
-          // can cause issues.
-          reviews && (            
-            <QuickReviewCards reviews={reviews} client:load />
-          )
-        }
-
-        {
-          totalPages > 1 && (
-            <Pagination
-              class='l-quick-reviews-archive__pagination'
-              currentPage={currentPage}
-              totalPages={totalPages}
-              baseUrl={paginationBaseUrl}
-            />
-          )
-        }
-      </div>
-    </div>
+  <div class='u-container-small u-markdown'>
+    <p>
+      This idea and overall review layout were totally stolen from Matt Birchler and his <a
+        href='https://quickreviews.app'
+        target='_blank'
+      >
+        Quick Reviews
+      </a> web app. Check it out if you want to create yours!
+    </p>
   </div>
-</BaseLayout>
+
+  {!reviews.length && <p class='u-h4'>No reviews found</p>}
+
+  {
+    // I'm passing reviews as a prop here to avoid having multiple
+    // Elements with client:load. Having multiple islands like that
+    // can cause issues.
+    reviews && (
+      <QuickReviewCards reviews={reviews} client:load />
+    )
+  }
+</BaseArchiveLayout>
 
 <style lang='scss'>
-  @use '/src/styles/breakpoints';
-  @use '/src/styles/typography';
+  @use '/src/styles/mixins';
 
-  :root {
-    &:has(.l-quick-reviews-archive) {
-      --theme--color-accent: var(--theme--color-quick-review);
-      --theme--color-accent-rgb: var(--theme--color-quick-review-rgb);
-      --theme--color-accent-contrast: var(--theme--color-quick-review-contrast);
-      --theme--color-accent-shade: var(--theme--color-quick-review-shade);
-      --theme--color-accent-tint: var(--theme--color-quick-review-tint);
-      --theme--color-accent-glow: var(--theme--color-quick-review-glow);
-    }
-
-    &[data-theme='dark'],
-    &[data-theme='auto'] {
-      &:has(.l-quick-reviews-archive) {
-        --theme--color-accent: var(--theme--color-quick-review);
-        --theme--color-accent-rgb: var(--theme--color-quick-review-rgb);
-        --theme--color-accent-contrast: var(--theme--color-quick-review-contrast);
-        --theme--color-accent-shade: var(--theme--color-quick-review-shade);
-        --theme--color-accent-tint: var(--theme--color-quick-review-tint);
-        --theme--color-accent-glow: var(--theme--color-quick-review-glow);
-      }
-    }
-  }
-
-  .l-quick-reviews-archive {
-    &__container {
-      display: flex;
-      flex-direction: column;
-      gap: var(--spacing-xxl);
-
-      @include breakpoints.for-phone-only {
-        gap: var(--spacing-xl);
-      }
-    }
-
-    &__content-wrapper {
-      display: flex;
-      flex-direction: column;
-      gap: var(--spacing-lg);
-    }
-
-    &__summary {
-      @include typography.h2;
-      text-align: center;
-      color: var(--theme--color-accent);
-    }
+  :root:has(.l-quick-reviews-archive) {
+    @include mixins.set-accent-color('quick-review');
   }
 </style>

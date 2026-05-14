@@ -51,3 +51,65 @@
 		calc(#{functions.lightness($color)} + 10%)
 	);
 }
+
+// v6 new mixins
+
+@mixin define-color-v6($title, $color) {
+  --palette-v6--#{$title}: #{$color};
+
+  --palette-v6--#{$title}--rgb: #{functions.red($color)}, #{functions.green($color)}, #{functions.blue($color)};
+
+  --palette-v6--#{$title}--contrast: #{if(
+      functions.brightness($color) > 186,
+      var(--t-v6--text--base),
+      var(--t-v6--text--inverse)
+    )};
+
+  --palette-v6--#{$title}--shade: hsl(
+    #{functions.hue($color)},
+    #{functions.saturation($color)},
+    calc(#{functions.lightness($color)} - 10%)
+  );
+
+  --palette-v6--#{$title}--tint: hsl(
+    #{functions.hue($color)},
+    #{functions.saturation($color)},
+    calc(#{functions.lightness($color)} + 10%)
+  );
+
+  --palette-v6--#{$title}--glow: 0 0 40px rgba(var(--palette-v6--#{$title}--rgb), 0.4);
+  --palette-v6--#{$title}--glow-small: 0 0 20px rgba(var(--palette-v6--#{$title}--rgb), 0.4);
+  --palette-v6--#{$title}--glow-tiny: 0 0 3px rgba(var(--palette-v6--#{$title}--rgb), 0.7);
+
+  --palette-v6--#{$title}--mixed: color-mix(in oklch, var(--palette-v6--#{$title}) 100%, var(--t-v6--accent) 0%);
+}
+
+// Points a named contextual color (accent, complementary, post-type, etc.)
+// at a color from the palette OR at another already-defined named color.
+// Emits all variant variables in one go.
+//
+// Usage:
+//   @include set-named-color('accent', 'teal');                      // from palette
+//   @include set-named-color('accent', $from-named: 'quick-review'); // from another named color
+@mixin set-named-color($name, $palette-color: null, $from-named: null) {
+  @if $palette-color == null and $from-named == null {
+    @error "set-named-color('#{$name}'): provide either a palette color or $from-named.";
+  }
+
+  $source: if($from-named != null, --t-v6--#{$from-named}, --palette-v6--#{$palette-color});
+
+  --t-v6--#{$name}: var(#{$source});
+  --t-v6--#{$name}--rgb: var(#{$source}--rgb);
+  --t-v6--#{$name}--contrast: var(#{$source}--contrast);
+  --t-v6--#{$name}--shade: var(#{$source}--shade);
+  --t-v6--#{$name}--tint: var(#{$source}--tint);
+  --t-v6--#{$name}--glow: var(#{$source}--glow);
+  --t-v6--#{$name}--glow-small: var(#{$source}--glow-small);
+  --t-v6--#{$name}--glow-tiny: var(#{$source}--glow-tiny);
+}
+
+// Helper to set the accent color with another named color
+
+@mixin set-accent-color($from-named) {
+  @include set-named-color('accent', $from-named: $from-named);
+}

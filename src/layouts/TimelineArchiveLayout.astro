@@ -1,12 +1,10 @@
 ---
-import Pagination from '@components/molecules/Pagination';
-import ArchiveHero from '@components/organisms/ArchiveHero';
 import PostsTimeline from '@components/organisms/PostsTimeline/PostsTimeline.svelte';
 import type { BlogPost } from '@schemas/blog';
 import type { CoolLink } from '@schemas/cool-link';
 import type { Photography } from '@schemas/photography';
 import type { QuickReview } from '@schemas/quick-review';
-import BaseLayout from './BaseLayout.astro';
+import BaseArchiveLayout from './BaseArchiveLayout.astro';
 
 interface Props {
   groups: { date: string, posts: { type: string, data: BlogPost | QuickReview | CoolLink | Photography }[] }[];
@@ -21,94 +19,19 @@ const {
   totalPages,
   totalPosts,
 }: Props = Astro.props;
-
 ---
 
-<BaseLayout
+<BaseArchiveLayout
+  className='l-timeline-archive'
   title='Timeline'
+  heroTitle='Chronological Feed'
+  heroBody="A chronological view of *everything* I've posted here, since the beginning of time (or the blog's inception, whichever comes first)."
+  baseUrl='/timeline'
+  currentPage={currentPage}
+  totalPages={totalPages}
 >
-  <div class='l-timeline-archive'>
-    <div class='l-timeline-archive__container'>
-      <ArchiveHero
-        class='l-timeline-archive__hero'
-        title='Chronological Feed'
-        body="A chronological view of *everything* I've posted here, since the beginning of time (or the blog's inception, whichever comes first)."
-      />
-
-      <div class='l-timeline-archive__content-wrapper'>
-        {
-          totalPages > 1 && (
-            <Pagination
-              class='l-timeline-archive__pagination'
-              currentPage={currentPage}
-              totalPages={totalPages}
-              baseUrl='/timeline'
-            />
-          )
-        }
-        
-        <PostsTimeline
-          postGroups={groups}
-          client:load
-        />
-
-        {
-          totalPages > 1 && (
-            <Pagination
-              class='l-timeline-archive__pagination'
-              currentPage={currentPage}
-              totalPages={totalPages}
-              baseUrl='/timeline'
-            />
-          )
-        }
-      </div>
-    </div>
-  </div>
-</BaseLayout>
-
-<style lang='scss'>
-  @use '/src/styles/breakpoints';
-  @use '/src/styles/typography';
-
-  :root {
-    &:has(.l-timeline-archive) {
-      --theme--color-accent: var(--theme--color-timeline);
-      --theme--color-accent-rgb: var(--theme--color-timeline-rgb);
-      --theme--color-accent-contrast: var(--theme--color-timeline-contrast);
-      --theme--color-accent-shade: var(--theme--color-timeline-shade);
-      --theme--color-accent-tint: var(--theme--color-timeline-tint);
-      --theme--color-accent-glow: var(--theme--color-timeline-glow);
-    }
-
-    &[data-theme='dark'],
-    &[data-theme='auto'] {
-      &:has(.l-timeline-archive) {
-        --theme--color-accent: var(--theme--color-timeline);
-        --theme--color-accent-rgb: var(--theme--color-timeline-rgb);
-        --theme--color-accent-contrast: var(--theme--color-timeline-contrast);
-        --theme--color-accent-shade: var(--theme--color-timeline-shade);
-        --theme--color-accent-tint: var(--theme--color-timeline-tint);
-        --theme--color-accent-glow: var(--theme--color-timeline-glow);
-      }
-    }
-  }
-
-  .l-timeline-archive {
-    &__container {
-      display: flex;
-      flex-direction: column;
-      gap: var(--spacing-xxl);
-
-      @include breakpoints.for-phone-only {
-        gap: var(--spacing-xl);
-      }
-    }
-
-    &__content-wrapper {
-      display: flex;
-      flex-direction: column;
-      gap: var(--spacing-lg);
-    }
-  }
-</style>
+  <PostsTimeline
+    postGroups={groups}
+    client:load
+  />
+</BaseArchiveLayout>

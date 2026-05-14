@@ -8,7 +8,7 @@
   }
 }
 
-@mixin content-grid-base {
+.u-content-grid {
   --content-max-width: 1080px;
 
   display: grid;
@@ -36,24 +36,17 @@
   @include breakpoints.for-tablet-portrait-down {
     row-gap: var(--spacing-md);
   }
-}
 
-.u-content-grid {
-  @include content-grid-base;
-}
+  &:has(> .on-sidebar) {
+    @include breakpoints.for-tablet-landscape-up {
+      --sidebar-width: 240px;
+      --sidebar-gap: var(--spacing-lg);
+      --content-max-width: calc(1080px - var(--sidebar-width) - var(--sidebar-gap));
 
-.u-content-grid--with-sidebar {
-  @include content-grid-base;
+      grid-auto-flow: dense;
 
-  @include breakpoints.for-tablet-landscape-up {
-    --sidebar-width: 240px;
-    --sidebar-gap: var(--spacing-lg);
-    --content-max-width: calc(1080px - var(--sidebar-width) - var(--sidebar-gap));
-
-    grid-auto-flow: dense;
-
-    // prettier-ignore
-    grid-template-columns: 
+      // prettier-ignore
+      grid-template-columns: 
       [full-width-start] 
       minmax(var(--container-padding), 1fr) 
       [content-start] 
@@ -64,12 +57,9 @@
       var(--sidebar-width) 
       [sidebar-end] 
       minmax(var(--container-padding), 1fr) 
-      [full-width-end];    
+      [full-width-end];
 
-    > * {
-      grid-column: content;
-
-      &.on-sidebar {
+      > .on-sidebar {
         grid-column: sidebar;
       }
     }

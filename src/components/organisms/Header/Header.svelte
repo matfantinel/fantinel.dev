@@ -47,7 +47,7 @@
         activeLink.scrollIntoView({ behavior: 'instant', inline: 'center' });
       }
     };
-    
+
     const updatePathname = () => {
       pathname = window.location.pathname;
 
@@ -57,7 +57,7 @@
     };
 
     // Listen for Astro view transition navigation
-    document.addEventListener('astro:page-load', updatePathname);    
+    document.addEventListener('astro:page-load', updatePathname);
     scrollToActiveLink();
 
     return () => {
@@ -66,13 +66,13 @@
   });
 
   const links = $derived([
-    { label: 'Home', href: '/', icon: homeIconSnippet, active: pathname === '/', color: 'accent' },
+    { label: 'Home', href: '/', icon: homeIconSnippet, active: pathname === '/', color: 'og-accent' },
     {
       label: 'Archive',
       href: '/timeline',
       icon: timelineIconSnippet,
       active: pathname === '/timeline',
-      color: 'accent',
+      color: 'og-accent',
     },
     {
       label: 'Blog',

@@ -78,16 +78,17 @@ Migrate one component at a time, flip it fully to v6, then tick the checkbox.
 - [ ] **PostsTimeline** — used in `TimelineArchiveLayout.astro` and `pages/index.astro`. Layout wrapper around TimelineGroup entries.
 - [ ] **SimpleHero** — used in `pages/search.astro`. Accent color + glowing-text-animation.
 - [ ] **UnderConstructionDisclaimer** — WILL BE REMOVED
+- [ ] **Filters**. For the Archive Layouts.
 
 ## Layouts
 
 - [X] **BaseLayout** - used everywhere. Do this one first.
-- [ ] **PostArchiveLayout** - will be used for /archive, /blog, /quick-reviews, /cool-links pages
-- [ ] **BlogArchiveLayout** - will become PostArchiveLayout. Remove.
-- [ ] **QuickReviewsArchiveLayout** - will become PostArchiveLayout. Remove.
-- [ ] **CoolLinksArchiveLayout** - will become PostArchiveLayout. Remove.
-- [ ] **TimelineArchiveLayout** - will become PostArchiveLayout. Remove.
-- [ ] **PhotographyArchiveLayout** - slightly altered version of PostArchiveLayout.
+- [X] **BaseArchiveLayout** - will be used for /archive, /blog, /quick-reviews, /cool-links pages
+- [X] **BlogArchiveLayout** - will use BaseArchiveLayout
+- [X] **QuickReviewsArchiveLayout** - will use BaseArchiveLayout
+- [X] **CoolLinksArchiveLayout** - will use BaseArchiveLayout
+- [X] **TimelineArchiveLayout** - will use BaseArchiveLayout
+- [X] **PhotographyArchiveLayout** - will use BaseArchiveLayout
 
 - [ ] **CoolLinkLayout** - individual cool-links, pretty basic
 - [ ] **PhotographyLayout** - individual photography item, pretty basic

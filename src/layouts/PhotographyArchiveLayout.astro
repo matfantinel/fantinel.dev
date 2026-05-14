@@ -1,12 +1,7 @@
 ---
-import Pagination from '@components/molecules/Pagination';
 import PhotographyCards from '@components/molecules/PhotographyCards';
-import ArchiveHero from '@components/organisms/ArchiveHero';
-import metaConfig from '@public/cms/meta.yml';
 import type { Photography } from '@schemas/photography';
-import type { SiteMeta } from '@schemas/site-meta';
-import BaseLayout from './BaseLayout.astro';
-const siteMeta: SiteMeta = metaConfig;
+import BaseArchiveLayout from './BaseArchiveLayout.astro';
 
 interface Props {
   photographies: Photography[];
@@ -15,89 +10,28 @@ interface Props {
 }
 
 const { photographies, currentPage, totalPages }: Props = Astro.props;
-
-const paginationBaseUrl = '/photography';
 ---
 
-<BaseLayout
+<BaseArchiveLayout
+  className='l-photography-archive'
   title='Photography'
-  image={siteMeta.baseUrl + '/cms/media/articles/photography-preview.png'}
-  description="I'm no professional, but sometimes I like to capture the world around me. Sometimes, the photos turn out pretty nice."
+  heroTitle='Photography'
+  heroBody="I'm no professional, but sometimes I like to capture the world around me. Sometimes, the photos turn out pretty nice. All pictures taken with an iPhone 15 Pro."
+  baseUrl='/photography'
+  currentPage={currentPage}
+  totalPages={totalPages}
 >
-  <div class='l-photography-archive'>
-    <div class='l-photography-archive__container'>
-      <ArchiveHero
-        class='l-photography-archive__hero'
-        title='Photography'
-        body="I'm no professional, but sometimes I like to capture the world around me. Sometimes, the photos turn out pretty nice. All pictures taken with an iPhone 15 Pro."
-      />
+  {!photographies.length && <p class='u-h4'>No photography posts found</p>}
 
-      <div class='l-photography-archive__content-wrapper u-container'>
-        {!photographies.length && <p class='u-h4'>No photography posts found</p>}
-
-        {photographies.length > 0 && (
-          <PhotographyCards {photographies} client:load />
-        )}
-
-        {
-          totalPages > 1 && (
-            <Pagination
-              class='l-photography-archive__pagination'
-              currentPage={currentPage}
-              totalPages={totalPages}
-              baseUrl={paginationBaseUrl}
-            />
-          )
-        }
-      </div>
-    </div>
-  </div>
-</BaseLayout>
+  {photographies.length > 0 && (
+    <PhotographyCards {photographies} client:load />
+  )}
+</BaseArchiveLayout>
 
 <style lang='scss'>
-  @use '/src/styles/breakpoints';
+  @use '/src/styles/mixins';
 
-  :root {
-    &:has(.l-photography-archive) {
-      --theme--color-accent: var(--theme--color-photography);
-      --theme--color-accent-rgb: var(--theme--color-photography-rgb);
-      --theme--color-accent-contrast: var(--theme--color-photography-contrast);
-      --theme--color-accent-shade: var(--theme--color-photography-shade);
-      --theme--color-accent-tint: var(--theme--color-photography-tint);
-      --theme--color-accent-glow: var(--theme--color-photography-glow);
-
-      --t-v6--accent: var(--theme--color-photography);
-    }
-
-    &[data-theme='dark'],
-    &[data-theme='auto'] {
-      &:has(.l-photography-archive) {
-        --theme--color-accent: var(--theme--color-photography);
-        --theme--color-accent-rgb: var(--theme--color-photography-rgb);
-        --theme--color-accent-contrast: var(--theme--color-photography-contrast);
-        --theme--color-accent-shade: var(--theme--color-photography-shade);
-        --theme--color-accent-tint: var(--theme--color-photography-tint);
-        --theme--color-accent-glow: var(--theme--color-photography-glow);
-      }
-    }
-  }
-
-  .l-photography-archive {
-    &__container {
-      display: flex;
-      flex-direction: column;
-      gap: var(--spacing-xxl);
-
-      @include breakpoints.for-phone-only {
-        gap: var(--spacing-xl);
-      }
-    }
-
-    &__content-wrapper {
-      display: flex;
-      flex-direction: column;
-      gap: var(--spacing-lg);
-      max-width: 2160px;
-    }
+  :root:has(.l-photography-archive) {
+    @include mixins.set-accent-color('photography');
   }
 </style>

@@ -14,61 +14,7 @@
 
 @use 'sass:list';
 @use './_functions.scss' as functions;
-
-// Mirrors define-color from _mixins.scss, but emits --palette-v6--* variables.
-@mixin define-color-v6($title, $color) {
-  --palette-v6--#{$title}: #{$color};
-
-  --palette-v6--#{$title}--rgb: #{functions.red($color)}, #{functions.green($color)}, #{functions.blue($color)};
-
-  --palette-v6--#{$title}--contrast: #{if(
-      functions.brightness($color) > 186,
-      var(--t-v6--text--base),
-      var(--t-v6--text--inverse)
-    )};
-
-  --palette-v6--#{$title}--shade: hsl(
-    #{functions.hue($color)},
-    #{functions.saturation($color)},
-    calc(#{functions.lightness($color)} - 10%)
-  );
-
-  --palette-v6--#{$title}--tint: hsl(
-    #{functions.hue($color)},
-    #{functions.saturation($color)},
-    calc(#{functions.lightness($color)} + 10%)
-  );
-
-  --palette-v6--#{$title}--glow: 0 0 40px rgba(var(--palette-v6--#{$title}--rgb), 0.4);
-  --palette-v6--#{$title}--glow-small: 0 0 20px rgba(var(--palette-v6--#{$title}--rgb), 0.4);
-  --palette-v6--#{$title}--glow-tiny: 0 0 3px rgba(var(--palette-v6--#{$title}--rgb), 0.7);
-
-  --palette-v6--#{$title}--mixed: color-mix(in oklch, var(--palette-v6--#{$title}) 100%, var(--t-v6--accent) 0%);
-}
-
-// Points a named contextual color (accent, complementary, post-type, etc.)
-// at a color from the palette OR at another already-defined named color.
-// Emits all variant variables in one go.
-//
-// Usage:
-//   @include set-named-color('accent', 'teal');                      // from palette
-//   @include set-named-color('accent', $from-named: 'quick-review'); // from another named color
-@mixin set-named-color($name, $palette-color: null, $from-named: null) {
-  @if $palette-color == null and $from-named == null {
-    @error "set-named-color('#{$name}'): provide either a palette color or $from-named.";
-  }
-
-  $source: if($from-named != null, --t-v6--#{$from-named}, --palette-v6--#{$palette-color});
-
-  --t-v6--#{$name}: var(#{$source});
-  --t-v6--#{$name}--rgb: var(#{$source}--rgb);
-  --t-v6--#{$name}--contrast: var(#{$source}--contrast);
-  --t-v6--#{$name}--shade: var(#{$source}--shade);
-  --t-v6--#{$name}--tint: var(#{$source}--tint);
-  --t-v6--#{$name}--glow: var(#{$source}--glow);
-  --t-v6--#{$name}--glow-small: var(#{$source}--glow-small);
-  --t-v6--#{$name}--glow-tiny: var(#{$source}--glow-tiny);
-}
+@use './_mixins.scss' as mixins;
 
 // #region Palettes
 
@@ -112,13 +58,13 @@ $palette-v6-colors: (
 
 @mixin light-palette-v6 {
   @each $entry in $palette-v6-colors {
-    @include define-color-v6(list.nth($entry, 1), list.nth($entry, 2));
+    @include mixins.define-color-v6(list.nth($entry, 1), list.nth($entry, 2));
   }
 }
 
 @mixin dark-palette-v6 {
   @each $entry in $palette-v6-colors {
-    @include define-color-v6(list.nth($entry, 1), list.nth($entry, 3));
+    @include mixins.define-color-v6(list.nth($entry, 1), list.nth($entry, 3));
   }
 }
 
@@ -146,17 +92,18 @@ $palette-v6-colors: (
 
 @mixin theme-base-v6 {
   // #region Colors — Accent /complementary / post types / context
-  @include set-named-color('accent', 'teal');
-  @include set-named-color('complementary', 'rosewater');
-  @include set-named-color('blog', 'teal');
-  @include set-named-color('quick-review', 'peach');
-  @include set-named-color('cool-link', 'blue');
-  @include set-named-color('photography', 'maroon');
+  @include mixins.set-named-color('accent', 'teal');
+  @include mixins.set-named-color('og-accent', 'teal');
+  @include mixins.set-named-color('complementary', 'rosewater');
+  @include mixins.set-named-color('blog', 'mauve');
+  @include mixins.set-named-color('quick-review', 'peach');
+  @include mixins.set-named-color('cool-link', 'blue');
+  @include mixins.set-named-color('photography', 'maroon');
 
-  @include set-named-color('info', 'blue');
-  @include set-named-color('warning', 'yellow');
-  @include set-named-color('success', 'green');
-  @include set-named-color('error', 'red');
+  @include mixins.set-named-color('info', 'blue');
+  @include mixins.set-named-color('warning', 'yellow');
+  @include mixins.set-named-color('success', 'green');
+  @include mixins.set-named-color('error', 'red');
   // #endregion
 
   // #region Colors — typography
