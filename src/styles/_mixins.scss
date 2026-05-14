@@ -81,7 +81,10 @@
   --palette-v6--#{$title}--glow-small: 0 0 20px rgba(var(--palette-v6--#{$title}--rgb), 0.4);
   --palette-v6--#{$title}--glow-tiny: 0 0 3px rgba(var(--palette-v6--#{$title}--rgb), 0.7);
 
-  --palette-v6--#{$title}--mixed: color-mix(in oklch, var(--palette-v6--#{$title}) 100%, var(--t-v6--accent) 0%);
+  // TODO: color-mix sucks ass in Safari. How can I make them consistent?
+  --palette-v6--#{$title}--mixed: color-mix(in oklch, var(--palette-v6--#{$title}) 100%, var(--t-v6--accent) 1%);
+  // if safari,
+  // --palette-v6--#{$title}--mixed: color-mix(in oklab, var(--palette-v6--#{$title}) 100%, var(--t-v6--accent) 3%);
 }
 
 // Points a named contextual color (accent, complementary, post-type, etc.)

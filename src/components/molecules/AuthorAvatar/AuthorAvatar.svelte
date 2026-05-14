@@ -43,6 +43,7 @@
   tabindex="-1"
 >
   {#key currentImage}
+  <!-- TODO: this animation seems broken -->
     <div
       in:fly={{ delay: 700, duration: 500, y: parseInt(size), opacity: 1 }}
       out:fly={{ duration: 500, y: parseInt(size), opacity: 1 }}

@@ -4,14 +4,21 @@ import { getAllCategories, getCategoryFilters, getDateFilters, getPaginatedBlogP
 
 export async function getStaticPaths() {
   const categories = await getAllCategories();
+  
+  const paths = await Promise.all(
+    categories.map(async (category) => {
+      const { totalPages } = await getPaginatedBlogPosts(1, category.slug);
+      return Array.from({ length: totalPages }).map((_, i) => ({
+        params: { category: category.slug, page: String(i + 2) }, // start at page 2
+      }));
+    })
+  );
 
-  return categories.map((category) => ({
-    params: { category: category.slug },
-  }));
+  return paths.flat();
 }
 
-const { category } = Astro.params;
-const { posts, currentPage, totalPages, totalPosts } = await getPaginatedBlogPosts(1, category);
+const { category, page } = Astro.params;
+const { posts, currentPage, totalPages, totalPosts } = await getPaginatedBlogPosts(Number(page), category);
 
 const allCategories = await getAllCategories();
 const categoryFilters = await getCategoryFilters(category);
