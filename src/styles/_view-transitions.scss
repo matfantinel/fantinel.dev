@@ -25,12 +25,28 @@
   }
 }
 
-@keyframes fade-out {
+@keyframes slide-out-to-bottom {
   from {
+    transform: translateY(0);
     opacity: 1;
   }
-  to {
+  75% {
     opacity: 0;
+  }
+  to {
+    transform: translateY(50%);
+    opacity: 0;
+  }
+}
+ 
+@keyframes slide-in-from-bottom {
+  from {
+    transform: translateY(50%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
   }
 }
 
@@ -43,12 +59,16 @@ html[data-transition="slide"] {
     animation: slide-out-to-right .5s cubic-bezier(0.4, 0, 0.2, 1) both;
 
     @include breakpoints.for-phone-only {
-      animation: fade-out .25s cubic-bezier(0.4, 0, 0.2, 1) both;
+      animation: slide-out-to-bottom .75s cubic-bezier(0.4, 0, 0.2, 1) both;
     }
   }
 
   &::view-transition-new(main-content) {
     animation: slide-in-from-right .5s cubic-bezier(0.4, 0, 0.2, 1) both;
+
+    @include breakpoints.for-phone-only {
+      animation: slide-in-from-bottom .75s cubic-bezier(0.4, 0, 0.2, 1) both;
+    }
   }
 }
 
