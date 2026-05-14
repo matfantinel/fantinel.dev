@@ -159,6 +159,8 @@
 
     &--immersive {
       @media (hover: hover) {
+        aspect-ratio: 3/4;
+        
         .m-photography-card {
           &__container {
             flex-direction: row;
