@@ -74,13 +74,13 @@ const pathname = new URL(Astro.request.url).pathname;
   </head>
   <body>
     <div class='l-base'>
-      <Header {currentSearch} socials={siteMeta.author?.socials} {currentUrl} client:load transition:persist />
+      <Header {currentSearch} socials={siteMeta.author?.socials} {currentUrl} client:load transition:name="header" transition:persist />
 
       <main class="u-content-grid" style="view-transition-name: main-content;">
         <slot />
       </main>
 
-      <Footer socials={siteMeta.author?.socials} client:load transition:persist />
+      <Footer socials={siteMeta.author?.socials} client:load transition:name="footer" transition:persist />
     </div>
     <script>
       import(/* @vite-ignore */ '@stefanjudis/sparkly-text');
