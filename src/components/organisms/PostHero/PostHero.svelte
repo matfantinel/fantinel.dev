@@ -9,6 +9,7 @@
   let {
     title,
     author,
+    slug,
     date,
     updated,
     readingTime,
@@ -16,6 +17,7 @@
     class: className,
   }: {
     title: string;
+    slug?: string;
     author?: SiteAuthor;
     date?: Date;
     updated?: Date;

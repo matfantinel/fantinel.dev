@@ -120,7 +120,7 @@
       <Logo size="80px" />
     </a>
 
-    <nav class="o-header__navigation">
+    <nav class="o-header__navigation" data-nav>
       {#each links as link}
         <NavMenuLink href={link.href} icon={link.icon} active={link.active} color={link.color}>
           {link.label}

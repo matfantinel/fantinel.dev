@@ -76,7 +76,7 @@ const pathname = new URL(Astro.request.url).pathname;
     <div class='l-base'>
       <Header {currentSearch} socials={siteMeta.author?.socials} {currentUrl} client:load transition:persist />
 
-      <main class="u-content-grid">
+      <main class="u-content-grid" style="view-transition-name: main-content;">
         <slot />
       </main>
 

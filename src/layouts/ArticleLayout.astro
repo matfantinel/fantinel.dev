@@ -48,12 +48,12 @@ if (post.data.ogImage) {
     <div class='l-article__hero full-width'>
       <PostHero
         title={post.data.title}
+        slug={post.data.slug}
         author={post.data.author}
         date={post.data.date}
         updated={post.data.updated}
         readingTime={post.data.readingTime}
         tags={post.data.categories}
-        client:load
       />
     </div>
 

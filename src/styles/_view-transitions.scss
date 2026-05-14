@@ -1,5 +1,55 @@
+@use '/src/styles/breakpoints';
+
+@keyframes slide-out-to-right {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  75% {
+    opacity: 0;
+  }
+  to {
+    transform: translateX(50%);
+    opacity: 0;
+  }
+}
+
+@keyframes slide-in-from-right {
+  from {
+    transform: translateX(50%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
 ::view-transition-group(root) {
-  animation-duration: .35s;
+  animation-duration: .5s;
+}
+
+html[data-transition="slide"] {
+  &::view-transition-old(main-content) {
+    animation: slide-out-to-right .5s cubic-bezier(0.4, 0, 0.2, 1) both;
+
+    @include breakpoints.for-phone-only {
+      animation: fade-out .25s cubic-bezier(0.4, 0, 0.2, 1) both;
+    }
+  }
+
+  &::view-transition-new(main-content) {
+    animation: slide-in-from-right .5s cubic-bezier(0.4, 0, 0.2, 1) both;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

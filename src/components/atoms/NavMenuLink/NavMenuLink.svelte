@@ -32,6 +32,7 @@
 
   let tag = $derived(href ? 'a' : 'button');
   let isExternalLink = $derived(!!href && HttpRegex.test(href));
+
   let linkProps = $derived({
     href,
     target: target ?? (isExternalLink ? '_blank' : undefined),
