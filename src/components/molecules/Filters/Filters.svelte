@@ -11,7 +11,6 @@
     heading,
     filterGroups,
     size = 'responsive',
-    tagColor,
     collapseInnerGroups = false,
     onFilterChange,
     class: className,
@@ -19,7 +18,6 @@
     heading?: string;
     filterGroups: FilterGroup[];
     size?: 'default' | 'small' | 'responsive';
-    tagColor?: 'default' | 'inverted';
     collapseInnerGroups?: boolean;
     onFilterChange?: (name: string, value: boolean) => void;
     class?: string;
@@ -72,7 +70,15 @@
         {#if normalized.hasTags}
           <Tags {size} class="m-filters__tags">
             {#each normalized.group.tags as tag}
-              <Tag {size} href={tag.url} active={tag.active} color={tagColor} count={tag.count} name={tag.name} onchange={handleFilterChange}>
+              <Tag
+                {size}
+                href={tag.url}
+                active={tag.active}
+                count={tag.count}
+                name={tag.name}
+                icon={tag.icon}
+                onchange={handleFilterChange}
+              >
                 {tag.label}
               </Tag>
             {/each}
@@ -85,7 +91,11 @@
               {@const nestedNormalized = normalizeFilterGroup(nestedGroup, normalized.depth + 1)}
               {@const hasActiveTag = nestedNormalized.hasTags && nestedNormalized.group.tags?.some((tag) => tag.active)}
               {#if collapseInnerGroups}
-                <details class="m-filters__details" open={hasActiveTag || nestedNormalized.group.defaultOpen} use:animatedDetails={{ duration: 250 }}>
+                <details
+                  class="m-filters__details"
+                  open={hasActiveTag || nestedNormalized.group.defaultOpen}
+                  use:animatedDetails={{ duration: 250 }}
+                >
                   <summary class="m-filters__group-label m-filters__group-label--nested m-filters__summary">
                     {nestedNormalized.group.label}
                   </summary>
@@ -93,7 +103,15 @@
                     {#if nestedNormalized.hasTags}
                       <Tags {size} class="m-filters__tags">
                         {#each nestedNormalized.group.tags as tag}
-                          <Tag {size} href={tag.url} active={tag.active} color={tagColor} count={tag.count} name={tag.name} onchange={handleFilterChange}>
+                          <Tag
+                            {size}
+                            href={tag.url}
+                            active={tag.active}
+                            count={tag.count}
+                            name={tag.name}
+                            icon={tag.icon}
+                            onchange={handleFilterChange}
+                          >
                             {tag.label}
                           </Tag>
                         {/each}
@@ -108,7 +126,15 @@
                   {#if nestedNormalized.hasTags}
                     <Tags {size} class="m-filters__tags">
                       {#each nestedNormalized.group.tags as tag}
-                        <Tag {size} href={tag.url} active={tag.active} color={tagColor} count={tag.count} name={tag.name} onchange={handleFilterChange}>
+                        <Tag
+                          {size}
+                          href={tag.url}
+                          active={tag.active}
+                          count={tag.count}
+                          name={tag.name}
+                          icon={tag.icon}
+                          onchange={handleFilterChange}
+                        >
                           {tag.label}
                         </Tag>
                       {/each}
@@ -244,7 +270,7 @@
     &__desktop {
       display: flex;
       flex-direction: column;
-      gap: var(--spacing-sm);      
+      gap: var(--spacing-sm);
     }
 
     @include breakpoints.for-tablet-portrait-down {

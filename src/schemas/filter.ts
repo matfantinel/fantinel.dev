@@ -3,7 +3,8 @@ export interface FilterTag {
   name?: string;
   url?: string;
   active?: boolean;
-  count: number;
+  count?: number;
+  icon?: any;
 }
 
 export interface FilterGroup {

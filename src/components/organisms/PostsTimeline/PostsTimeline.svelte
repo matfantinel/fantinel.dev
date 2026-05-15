@@ -1,5 +1,8 @@
 <script lang="ts">
-  import { onMount } from 'svelte';
+  import CoolLinkIcon from '@assets/icons/post-types/cool-link.svelte';
+  import PhotographyIcon from '@assets/icons/post-types/photography.svelte';
+  import PostIcon from '@assets/icons/post-types/post.svelte';
+  import QuickReviewIcon from '@assets/icons/post-types/quick-review.svelte';
   import Button from '@components/atoms/Button';
   import Filters from '@components/molecules/Filters';
   import SectionHeader from '@components/molecules/SectionHeader';
@@ -10,6 +13,7 @@
   import type { Photography } from '@schemas/photography';
   import type { QuickReview } from '@schemas/quick-review';
   import { setActiveFilterGroups } from '@utils/filters';
+  import { onMount } from 'svelte';
   import { fly } from 'svelte/transition';
 
   let {
@@ -49,7 +53,17 @@
           label: typeLabels[type],
           name: type,
           active: true,
-          count: postGroups.reduce((acc, group) => acc + group.posts.filter((p) => p.type === type).length, 0),
+          icon:
+            type === 'blog'
+              ? postIconSnippet
+              : type === 'quick-review'
+                ? quickReviewIconSnippet
+                : type === 'cool-link'
+                  ? coolLinkIconSnippet
+                  : type === 'photography'
+                    ? photographyIconSnippet
+                    : undefined,
+          // count: postGroups.reduce((acc, group) => acc + group.posts.filter((p) => p.type === type).length, 0),
         })),
       };
 
@@ -81,13 +95,17 @@
   const processedFilterGroups = $derived(setActiveFilterGroups(allFilterGroups, baseUrl));
 </script>
 
+{#snippet postIconSnippet()}<PostIcon />{/snippet}
+{#snippet quickReviewIconSnippet()}<QuickReviewIcon />{/snippet}
+{#snippet coolLinkIconSnippet()}<CoolLinkIcon />{/snippet}
+{#snippet photographyIconSnippet()}<PhotographyIcon />{/snippet}
+
 <div class={['o-posts-timeline u-content-grid', className]}>
   {#if processedFilterGroups && processedFilterGroups.length > 0}
     <div class="l-base-archive__filters on-sidebar">
       <Filters
         filterGroups={processedFilterGroups}
         size="small"
-        tagColor="inverted"
         collapseInnerGroups
         onFilterChange={handleFilterChange}
       />
@@ -109,6 +127,21 @@
           <TimelineGroup date={group.date} posts={group.posts} />
         </div>
       {/each}
+
+      {#if filteredGroups.length === 0}
+        <div class="o-posts-timeline__no-results u-b2" in:fly={{ delay: 100, duration: 1500, y: '1000%', opacity: 0 }}>
+          Congratulations.
+        </div>
+        <div class="o-posts-timeline__no-results u-b2" in:fly={{ delay: 1500, duration: 1500, y: '1000%', opacity: 0 }}>
+          You have chosen the absence of content.
+        </div>
+        <div class="o-posts-timeline__no-results u-b2" in:fly={{ delay: 3000, duration: 1500, y: '1000%', opacity: 0 }}>
+          You found <sparkly-text number-of-sparkles="2">the void</sparkly-text>, and it stares back at you.
+        </div>
+        <div class="o-posts-timeline__no-results u-b2" in:fly={{ delay: 4500, duration: 1500, y: '1000%', opacity: 0 }}>
+          Select a post type in the filters to unfind it.
+        </div>
+      {/if}
     </div>
 
     {#if bottomButton}
@@ -141,6 +174,22 @@
 
       width: 100%;
       max-width: 828px;
+    }
+
+    &__no-results {
+      text-align: center;
+      max-width: 400px;
+      margin-inline: auto;
+      text-wrap: balance;
+      font-size: 18px;
+
+      sparkly-text {
+        --sparkly-text-color: var(--palette-v6--mauve);
+        --sparkly-text-size: 1.25rem;
+
+        font-family: var(--font--spicy);
+        font-weight: 700;
+      }
     }
 
     :global(.o-posts-timeline__header) {
