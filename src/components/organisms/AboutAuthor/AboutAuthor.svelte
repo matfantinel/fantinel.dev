@@ -82,7 +82,7 @@
       place-items: center;
 
       :global(.m-author-avatar) {
-        --size: 100%;
+        --size: 100%;        
       }
     }
 

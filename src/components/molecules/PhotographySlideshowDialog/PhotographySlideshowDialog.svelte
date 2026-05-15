@@ -252,10 +252,10 @@
       width: 6px;
       height: 6px;
       border-radius: 50%;
-      background-color: rgba(var(--theme--color-accent-rgb), 0.3);
+      background-color: rgba(var(--t-v6--accent--rgb), 0.3);
 
       &.active {
-        background-color: rgba(var(--theme--color-accent-rgb), 1);
+        background-color: rgba(var(--t-v6--accent--rgb), 1);
       }
     }
     :global(.m-photography-slideshow-dialog__image) {

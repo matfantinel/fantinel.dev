@@ -9,14 +9,14 @@
     opacity: 0;
   }
   to {
-    transform: translateX(50%);
+    transform: translateX(35%);
     opacity: 0;
   }
 }
 
 @keyframes slide-in-from-right {
   from {
-    transform: translateX(50%);
+    transform: translateX(35%);
     opacity: 0;
   }
   to {
@@ -34,14 +34,14 @@
     opacity: 0;
   }
   to {
-    transform: translateY(50%);
+    transform: translateY(35%);
     opacity: 0;
   }
 }
  
 @keyframes slide-in-from-bottom {
   from {
-    transform: translateY(50%);
+    transform: translateY(35%);
     opacity: 0;
   }
   to {

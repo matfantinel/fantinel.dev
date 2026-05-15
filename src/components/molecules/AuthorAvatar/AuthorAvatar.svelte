@@ -23,6 +23,7 @@
   let images = $derived(
     extraImages ? [handleCmsMediaPath(src), ...extraImages.map(handleCmsMediaPath)] : [handleCmsMediaPath(src)]
   );
+
   let currentImage = $state(0);
 
   function onclick() {
@@ -43,10 +44,9 @@
   tabindex="-1"
 >
   {#key currentImage}
-  <!-- TODO: this animation seems broken -->
     <div
-      in:fly={{ delay: 700, duration: 500, y: parseInt(size), opacity: 1 }}
-      out:fly={{ duration: 500, y: parseInt(size), opacity: 1 }}
+      in:fly={{ delay: 700, duration: 500, y: '100%', opacity: 0 }}
+      out:fly={{ duration: 500, y: '100%', opacity: 0 }}
     >
       <Image class="m-author-avatar__image" src={images[currentImage]} {alt} height={size} width={size} lazy={false} />
     </div>
@@ -65,6 +65,7 @@
     isolation: isolate;
     width: var(--size);
     height: var(--size);
+    aspect-ratio: 1/1;
     border-radius: 50%;
     box-shadow: var(--t-v6--shadow--low);
     background: none;
@@ -133,8 +134,10 @@
         display: none;
       }
 
-      &:hover {
-        transform: scale(1.1) rotate(5deg);
+      @media (hover: hover) {
+        &:hover {
+          transform: scale(1.1) rotate(5deg);
+        }
       }
     }
   }
