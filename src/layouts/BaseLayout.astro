@@ -80,7 +80,7 @@ const pathname = new URL(Astro.request.url).pathname;
         <slot />
       </main>
 
-      <Footer socials={siteMeta.author?.socials} client:load transition:name="footer" transition:persist />
+      <Footer socials={siteMeta.author?.socials} client:load transition:name="footer" transition:persist />      
     </div>
     <script>
       import(/* @vite-ignore */ '@stefanjudis/sparkly-text');
@@ -122,8 +122,7 @@ const pathname = new URL(Astro.request.url).pathname;
 </html>
 
 <style lang='scss'>
-  @use '/src/styles/breakpoints';
-
+  @use '/src/styles/breakpoints';  
   .l-base {
     display: grid;
     grid-template-columns: 1fr;

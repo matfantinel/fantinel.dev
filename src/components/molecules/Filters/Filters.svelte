@@ -5,6 +5,7 @@
   import Button from '@components/atoms/Button';
   import FilterIcon from '@assets/icons/filter.svelte';
   import { animatedDetails } from 'svelte-animated-details';
+  import BottomSheetDialog from '@components/molecules/BottomSheetDialog';
 
   let {
     heading,
@@ -117,7 +118,7 @@
   </div>
 {/snippet}
 
-{#snippet filtersIconSnippet()}<FilterIcon size="18px" />{/snippet}
+{#snippet filtersIconSnippet()}<FilterIcon size="22px" />{/snippet}
 
 <div class={classList}>
   <div class="m-filters__mobile">
@@ -131,12 +132,17 @@
     >
       Filters
     </Button>
-    <dialog class={['m-filters__mobile-dialog', className]} id="filters-modal">
+    <!-- <dialog class={['m-filters__mobile-dialog', className]} id="filters-modal">
       <div class="m-filters__mobile-dialog__container">
         <Button color="complementary" commandfor="filters-modal" command="close">Close</Button>
         {@render filtersContent()}
       </div>
-    </dialog>
+    </dialog> -->
+    <BottomSheetDialog slug="filters-modal">
+      <div class="m-filters__mobile-dialog__container">
+        {@render filtersContent()}
+      </div>
+    </BottomSheetDialog>
   </div>
 
   <div class="m-filters__desktop">

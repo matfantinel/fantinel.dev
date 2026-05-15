@@ -74,3 +74,16 @@ mark {
   background: var(--t-v6--marker-highlight);
   color: var(--t-v6--marker-highlight--contrast);
 }
+
+// Ensures that the iOS 26 Safari toolbar will remain transparent 
+// regardless of what content is near the bottom of the screen.
+// Took the idea from a comment here: https://www.reddit.com/r/webdev/comments/1savcsm/ios_26_safari_liquid_glass_toolbar_tinting_how_to/
+// Doesn't work when a <dialog> is open, but recovers the transparency as soon as the <dialog> is closed.
+.safari-liquid-glass-toolbar-fixer {
+  background-color: transparent;
+  height: 64px;
+  width: 100%;
+  position: fixed;
+  left: 0;
+  bottom: -58px;
+}
