@@ -5,7 +5,7 @@ import QuickReviewsArchiveLayout from '@layouts/QuickReviewsArchiveLayout.astro'
 export async function getStaticPaths() {
   const yearFilters = await getYearFilters();
   return yearFilters.map((filter) => ({
-    params: { year: filter.name },
+    params: { year: filter.label },
   }));
 }
 
