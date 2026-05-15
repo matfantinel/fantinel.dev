@@ -7,9 +7,9 @@ import BaseLayout from '@layouts/BaseLayout.astro';
     <sparkly-text
       class='p-404__void'
       number-of-sparkles='10'
-      style='--sparkly-text-color: var(--theme--text-base-color); --sparkly-text-size: 1.25rem'
+      style='--sparkly-text-color: var(--t-v6--text--base); --sparkly-text-size: 1.25rem'
     >
-      <div class='p-404__container u-container'>
+      <div class='p-404__container'>
         <img class='p-404__image' src='/images/404.png' alt='Astronaut floating in space' />
         <h1 class='p-404__title'><strong>404</strong>This page drifted into the stars.</h1>
         <p class='p-404__subtitle'>
@@ -27,11 +27,19 @@ import BaseLayout from '@layouts/BaseLayout.astro';
 <style lang='scss'>
   @use '/src/styles/breakpoints';
   @use '/src/styles/typography';
+  @use '/src/styles/mixins';
+
+  :root:has(.p-404) {
+    @include mixins.set-named-color('accent', 'pink');
+  }
 
   .p-404 {
-    min-height: calc(100dvh - 164px - 506px);
+    min-height: calc(100dvh - 410px);
     position: relative;
     overflow: hidden;
+
+    display: flex;
+    align-items: center;
 
     &__container {
       display: grid;

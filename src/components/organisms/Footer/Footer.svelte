@@ -65,6 +65,10 @@
     position: relative;
     z-index: 8;
 
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+
     &__wrapper {
       background-color: var(--t-v6--surface--accent);
       position: relative;
