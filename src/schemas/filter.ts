@@ -1,6 +1,7 @@
 export interface FilterTag {
-  name: string;
-  url: string;
+  label: string;
+  name?: string;
+  url?: string;
   active?: boolean;
   count: number;
 }

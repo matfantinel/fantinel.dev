@@ -185,7 +185,7 @@ export async function getDateFilters(activeSlug?: string): Promise<FilterGroup[]
   const monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
                       'July', 'August', 'September', 'October', 'November', 'December'];
 
-  const yearGroups = new Map<number, { name: string; url: string; active: boolean; count: number }[]>();
+  const yearGroups = new Map<number, { label: string; url: string; active: boolean; count: number }[]>();
 
   dateMap.forEach(({ year, month }, key) => {
     if (!yearGroups.has(year)) {
@@ -193,7 +193,7 @@ export async function getDateFilters(activeSlug?: string): Promise<FilterGroup[]
     }
 
     yearGroups.get(year)!.push({
-      name: monthNames[month],
+      label: monthNames[month],
       url: `/archive/date/${key}`,
       active: key === activeSlug,
       count: dateCount.get(key) || 0,

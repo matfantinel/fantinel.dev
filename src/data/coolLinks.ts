@@ -152,7 +152,7 @@ export async function getTagFilters(activeSlug?: string): Promise<FilterTag[]> {
   });
 
   const filterTags: FilterTag[] = Array.from(tagMap.entries()).map(([tagSlug, tag]) => ({
-    name: `#${tag.name}`,
+    label: `#${tag.name}`,
     url: `/cool-links/tag/${tagSlug}`,
     active: tagSlug === activeSlug,
     count: tagCount.get(tagSlug) || 0,
@@ -199,7 +199,7 @@ export async function getDateFilters(activeSlug?: string): Promise<FilterGroup[]
     }
 
     yearGroups.get(year)!.push({
-      name: monthNames[month],
+      label: monthNames[month],
       url: `/cool-links/date/${key}`,
       active: key === activeSlug,
       count: dateCount.get(key) || 0,

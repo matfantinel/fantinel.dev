@@ -13,6 +13,7 @@
     size = 'responsive',
     tagColor,
     collapseInnerGroups = false,
+    onFilterChange,
     class: className,
   }: {
     heading?: string;
@@ -20,6 +21,7 @@
     size?: 'default' | 'small' | 'responsive';
     tagColor?: 'default' | 'inverted';
     collapseInnerGroups?: boolean;
+    onFilterChange?: (name: string, value: boolean) => void;
     class?: string;
   } = $props();
 
@@ -49,6 +51,10 @@
     }
   }
 
+  function handleFilterChange(event: Event) {
+    onFilterChange?.((event.target as HTMLInputElement).name, (event.target as HTMLInputElement).checked);
+  }
+
   let classList = $derived(['m-filters', className]);
 </script>
 
@@ -66,8 +72,8 @@
         {#if normalized.hasTags}
           <Tags {size} class="m-filters__tags">
             {#each normalized.group.tags as tag}
-              <Tag {size} href={tag.url} active={tag.active} color={tagColor} count={tag.count}>
-                {tag.name}
+              <Tag {size} href={tag.url} active={tag.active} color={tagColor} count={tag.count} name={tag.name} onchange={handleFilterChange}>
+                {tag.label}
               </Tag>
             {/each}
           </Tags>
@@ -87,8 +93,8 @@
                     {#if nestedNormalized.hasTags}
                       <Tags {size} class="m-filters__tags">
                         {#each nestedNormalized.group.tags as tag}
-                          <Tag {size} href={tag.url} active={tag.active} color={tagColor} count={tag.count}>
-                            {tag.name}
+                          <Tag {size} href={tag.url} active={tag.active} color={tagColor} count={tag.count} name={tag.name} onchange={handleFilterChange}>
+                            {tag.label}
                           </Tag>
                         {/each}
                       </Tags>
@@ -102,8 +108,8 @@
                   {#if nestedNormalized.hasTags}
                     <Tags {size} class="m-filters__tags">
                       {#each nestedNormalized.group.tags as tag}
-                        <Tag {size} href={tag.url} active={tag.active} color={tagColor} count={tag.count}>
-                          {tag.name}
+                        <Tag {size} href={tag.url} active={tag.active} color={tagColor} count={tag.count} name={tag.name} onchange={handleFilterChange}>
+                          {tag.label}
                         </Tag>
                       {/each}
                     </Tags>
@@ -132,12 +138,7 @@
     >
       Filters
     </Button>
-    <!-- <dialog class={['m-filters__mobile-dialog', className]} id="filters-modal">
-      <div class="m-filters__mobile-dialog__container">
-        <Button color="complementary" commandfor="filters-modal" command="close">Close</Button>
-        {@render filtersContent()}
-      </div>
-    </dialog> -->
+
     <BottomSheetDialog slug="filters-modal">
       <div class="m-filters__mobile-dialog__container">
         {@render filtersContent()}

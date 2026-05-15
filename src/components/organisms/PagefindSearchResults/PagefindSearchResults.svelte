@@ -52,8 +52,6 @@
 
     results = await Promise.all(search.results.map(async (result) => await result.data()));
 
-    console.log(JSON.stringify(results));
-
     isLoading = false;
   });
 
@@ -86,7 +84,7 @@
 </script>
 
 <section class={['o-pagefind-search-results', className]}>
-  <div class="o-pagefind-search-results__container u-container">
+  <div class="o-pagefind-search-results__container">
     {#if isLoading}
       <div class="o-pagefind-search-results__loading">
         <Search size="24px" /> Searching...

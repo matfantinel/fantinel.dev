@@ -242,7 +242,7 @@ export async function getCategoryFilters(activeSlug?: string): Promise<FilterTag
 
   // Convert to array of filter tags
   const filterTags: FilterTag[] = Array.from(categoryMap.entries()).map(([slug, category]) => ({
-    name: category.name,
+    label: category.name,
     url: category.url,
     active: slug === activeSlug,
     count: categoryCount.get(slug) || 0
@@ -343,7 +343,7 @@ export async function getDateFilters(activeSlug?: string): Promise<FilterGroup[]
     }
 
     yearGroups.get(year)!.push({
-      name: monthNames[month],
+      label: monthNames[month],
       url: `/blog/date/${key}`,
       active: key === activeSlug,
       count: dateCount.get(key) || 0

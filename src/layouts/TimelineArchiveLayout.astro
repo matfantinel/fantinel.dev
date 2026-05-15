@@ -45,11 +45,12 @@ if (totalPosts && currentDate) {
   baseUrl='/archive'
   currentPage={currentPage}
   totalPages={totalPages}
-  filterGroups={filterGroups}
   summaryText={summaryText}
 >
   <PostsTimeline
     postGroups={groups}
+    baseUrl='/archive'
+    filterGroups={filterGroups}
     client:load
   />
 </BaseArchiveLayout>

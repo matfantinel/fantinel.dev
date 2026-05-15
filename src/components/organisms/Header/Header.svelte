@@ -71,7 +71,7 @@
       label: 'Archive',
       href: '/archive',
       icon: archiveIconSnippet,
-      active: pathname === '/archive',
+      active: pathname.startsWith('/archive'),
       color: 'og-accent',
     },
     {

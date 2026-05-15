@@ -114,7 +114,7 @@ export async function getTypeFilters(activeType?: string): Promise<FilterTag[]> 
   return Object.keys(QuickReviewType).map((key) => {
     const typeValue = QuickReviewType[key as keyof typeof QuickReviewType];
     return {
-      name: typeValue + 's',
+      label: typeValue + 's',
       url: `/quick-reviews/type/${key.toLowerCase()}`,
       active: key === activeType,
       count: typeCount.get(typeValue) || 0,
@@ -142,7 +142,7 @@ export async function getRatingFilters(activeRating?: string): Promise<FilterTag
   return Object.keys(QuickReviewRating).reverse().map((key) => {
     const ratingValue = QuickReviewRating[key as keyof typeof QuickReviewRating];
     return {
-      name: ratingValue,
+      label: ratingValue,
       url: `/quick-reviews/rating/${key.toLowerCase()}`,
       active: key === activeRating,
       count: ratingCount.get(ratingValue) || 0,
@@ -168,13 +168,13 @@ export async function getYearFilters(activeYear?: string): Promise<FilterTag[]> 
   });
 
   const filterTags: FilterTag[] = Array.from(yearCount.entries()).map(([year, count]) => ({
-    name: year,
+    label: year,
     url: `/quick-reviews/year/${year}`,
     active: year === activeYear,
     count,
   }));
 
-  filterTags.sort((a, b) => Number(b.name) - Number(a.name));
+  filterTags.sort((a, b) => Number(b.label) - Number(a.label));
 
   return filterTags;
 }

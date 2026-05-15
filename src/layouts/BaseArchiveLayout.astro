@@ -4,6 +4,7 @@ import Pagination from '@components/molecules/Pagination';
 import GenericHero from '@components/organisms/GenericHero';
 import type { FilterGroup } from '@schemas/filter';
 import BaseLayout from './BaseLayout.astro';
+import { setActiveFilterGroups } from '@utils/filters';
 
 interface Props {
   title: string;
@@ -39,31 +40,7 @@ const {
   className,
 }: Props = Astro.props;
 
-// Update active filter URLs to point to base URL (deselect filter)
-const processedFilterGroups = filterGroups?.map((group) => {
-  if (group.tags) {
-    return {
-      ...group,
-      tags: group.tags.map((tag) => ({
-        ...tag,
-        url: tag.active ? baseUrl : tag.url,
-      })),
-    };
-  }
-  if (group.groups) {
-    return {
-      ...group,
-      groups: group.groups.map((nestedGroup) => ({
-        ...nestedGroup,
-        tags: nestedGroup.tags?.map((tag) => ({
-          ...tag,
-          url: tag.active ? baseUrl : tag.url,
-        })),
-      })),
-    };
-  }
-  return group;
-});
+const processedFilterGroups = setActiveFilterGroups(filterGroups, baseUrl);
 ---
 
 <BaseLayout {title} {description} {image} autoGenerateImage>
