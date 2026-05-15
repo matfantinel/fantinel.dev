@@ -1,6 +1,6 @@
 ---
 import CoolLinksArchiveLayout from "@layouts/CoolLinksArchiveLayout.astro";
-import { getAllTags, getPaginatedCoolLinks } from "@data/coolLinks";
+import { getAllTags, getPaginatedCoolLinks, getTagFilters, getDateFilters } from "@data/coolLinks";
 
 export async function getStaticPaths() {
   const tags = await getAllTags();
@@ -15,6 +15,10 @@ const { links, currentPage, totalPages, totalLinks } = await getPaginatedCoolLin
 
 const allTags = await getAllTags();
 const currentTag = allTags.find((t) => t.slug === tag);
+const [tagFilters, dateFilters] = await Promise.all([
+  getTagFilters(tag),
+  getDateFilters(),
+]);
 ---
 
 <CoolLinksArchiveLayout
@@ -23,5 +27,6 @@ const currentTag = allTags.find((t) => t.slug === tag);
   totalPages={totalPages}
   totalLinks={totalLinks}
   currentTag={currentTag}
-  allTags={allTags}
+  tagFilters={tagFilters}
+  dateFilters={dateFilters}
 />

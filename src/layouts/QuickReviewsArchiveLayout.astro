@@ -3,6 +3,7 @@ import QuickReviewCards from '@components/molecules/QuickReviewCards';
 import type { QuickReview } from '@schemas/quick-review';
 import { QuickReviewType, QuickReviewRating } from '@schemas/quick-review-types';
 import { getTypeFromLowercaseKey, getRatingFromLowercaseKey } from '@schemas/quick-review-types';
+import type { FilterTag, FilterGroup } from '@schemas/filter';
 import BaseArchiveLayout from './BaseArchiveLayout.astro';
 
 interface Props {
@@ -12,44 +13,39 @@ interface Props {
   totalReviews: number;
   currentType?: string;
   currentRating?: string;
+  currentYear?: string;
+  typeFilters?: FilterTag[];
+  ratingFilters?: FilterTag[];
+  yearFilters?: FilterTag[];
 }
 
-const { reviews, currentPage, totalPages, totalReviews, currentType: currentTypeParam, currentRating: currentRatingParam }: Props = Astro.props;
+const {
+  reviews,
+  currentPage,
+  totalPages,
+  totalReviews,
+  currentType: currentTypeParam,
+  currentRating: currentRatingParam,
+  currentYear,
+  typeFilters,
+  ratingFilters,
+  yearFilters,
+}: Props = Astro.props;
 
 // Convert lowercase params to proper enum values
 const currentType = currentTypeParam ? getTypeFromLowercaseKey(currentTypeParam) : undefined;
 const currentRating = currentRatingParam ? getRatingFromLowercaseKey(currentRatingParam) : undefined;
 
-const allTypes = Object.keys(QuickReviewType).map((key) => key);
-const allRatings = Object.keys(QuickReviewRating).map((key) => key).reverse();
-
-// { name: string; slug: string; url: string; active?: boolean }
-const typeTags = allTypes.map((type) => {
-  const typeValue = QuickReviewType[type as keyof typeof QuickReviewType];
-  const isActive = typeValue === currentType;
-  return {
-    name: typeValue + 's',
-    slug: type.toLowerCase(),
-    url: isActive ? `/quick-reviews` : `/quick-reviews/type/${type.toLowerCase()}`,
-    active: isActive,
-  };
-});
-
-const ratingTags = allRatings.map((rating) => {
-  const ratingValue = QuickReviewRating[rating as keyof typeof QuickReviewRating];
-  const isActive = ratingValue === currentRating;
-  return {
-    name: ratingValue,
-    slug: rating.toLowerCase(),
-    url: isActive ? `/quick-reviews` : `/quick-reviews/rating/${rating.toLowerCase()}`,
-    active: isActive,
-  }
-});
-
-const tagGroups = [
-  typeTags ? { label: 'Filter by media type:', tags: typeTags } : null,
-  ratingTags ? { label: 'or filter by rating:', tags: ratingTags } : null,
-].filter(a => a);
+const filterGroups: FilterGroup[] = [];
+if (typeFilters) {
+  filterGroups.push({ label: 'Filter by media', tags: typeFilters });
+}
+if (ratingFilters) {
+  filterGroups.push({ label: 'Filter by rating', tags: ratingFilters });
+}
+if (yearFilters) {
+  filterGroups.push({ label: 'Filter by year (of review)', tags: yearFilters });
+}
 
 let paginationBaseUrl = '/quick-reviews';
 if (currentType) paginationBaseUrl += `/type/${currentType.toLowerCase()}`;
@@ -60,8 +56,8 @@ if (totalReviews) {
   summaryText = `${totalReviews} reviews`;
   if (currentType) summaryText += ` for "${currentType}"`;
   if (currentRating) summaryText += ` rated "${currentRating}"`;
+  if (currentYear) summaryText += ` from ${currentYear}`;
 }
-
 ---
 
 <BaseArchiveLayout
@@ -73,9 +69,10 @@ if (totalReviews) {
   basePaginationUrl={paginationBaseUrl}
   currentPage={currentPage}
   totalPages={totalPages}
+  filterGroups={filterGroups}
   summaryText={summaryText}
 >
-  <div class='u-container-small u-markdown'>
+  <div class='l-quick-reviews-archive__explainer u-markdown'>
     <p>
       This idea and overall review layout were totally stolen from Matt Birchler and his <a
         href='https://quickreviews.app'
@@ -92,9 +89,7 @@ if (totalReviews) {
     // I'm passing reviews as a prop here to avoid having multiple
     // Elements with client:load. Having multiple islands like that
     // can cause issues.
-    reviews && (
-      <QuickReviewCards reviews={reviews} client:load />
-    )
+    reviews && <QuickReviewCards reviews={reviews} client:load />
   }
 </BaseArchiveLayout>
 
@@ -103,5 +98,15 @@ if (totalReviews) {
 
   :root:has(.l-quick-reviews-archive) {
     @include mixins.set-accent-color('quick-review');
+  }
+
+  :global(.l-base-archive.l-quick-reviews-archive) {
+    --content-max-width: 780px;
+  }
+
+  .l-quick-reviews-archive {
+    &__explainer {
+      text-align: center;
+    }
   }
 </style>

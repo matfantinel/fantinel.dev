@@ -9,4 +9,5 @@ export interface FilterGroup {
   label: string;
   tags?: FilterTag[];
   groups?: FilterGroup[];
+  defaultOpen?: boolean;
 }

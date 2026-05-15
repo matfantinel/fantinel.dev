@@ -1,8 +1,14 @@
 ---
-import { getPaginatedReviews } from '@data/quickReviews';
+import { getPaginatedReviews, getTypeFilters, getRatingFilters, getYearFilters } from '@data/quickReviews';
 import QuickReviewsArchiveLayout from '@layouts/QuickReviewsArchiveLayout.astro';
 
 const { reviews, currentPage, totalPages, totalReviews } = await getPaginatedReviews(1);
+
+const [typeFilters, ratingFilters, yearFilters] = await Promise.all([
+  getTypeFilters(),
+  getRatingFilters(),
+  getYearFilters(),
+]);
 ---
 
 <QuickReviewsArchiveLayout
@@ -10,4 +16,7 @@ const { reviews, currentPage, totalPages, totalReviews } = await getPaginatedRev
   currentPage={currentPage}
   totalPages={totalPages}
   totalReviews={totalReviews}
+  typeFilters={typeFilters}
+  ratingFilters={ratingFilters}
+  yearFilters={yearFilters}
 />

@@ -134,5 +134,9 @@
         }
       }
     }
+
+    :global(.m-timeline-item__card) {
+      width: 100%;
+    }
   }
 </style>

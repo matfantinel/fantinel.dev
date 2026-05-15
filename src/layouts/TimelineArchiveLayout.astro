@@ -4,6 +4,7 @@ import type { BlogPost } from '@schemas/blog';
 import type { CoolLink } from '@schemas/cool-link';
 import type { Photography } from '@schemas/photography';
 import type { QuickReview } from '@schemas/quick-review';
+import type { FilterGroup } from '@schemas/filter';
 import BaseArchiveLayout from './BaseArchiveLayout.astro';
 
 interface Props {
@@ -11,6 +12,8 @@ interface Props {
   currentPage: number;
   totalPages: number;
   totalPosts: number;
+  currentDate?: string;
+  dateFilters?: FilterGroup[];
 }
 
 const {
@@ -18,7 +21,20 @@ const {
   currentPage,
   totalPages,
   totalPosts,
+  currentDate,
+  dateFilters,
 }: Props = Astro.props;
+
+const filterGroups: FilterGroup[] = [];
+if (dateFilters) {
+  filterGroups.push({ label: 'Filter by month', groups: dateFilters });
+}
+
+let summaryText = '';
+if (totalPosts && currentDate) {
+  summaryText = `${totalPosts} posts`;
+  summaryText += ` from ${currentDate}`;
+}
 ---
 
 <BaseArchiveLayout
@@ -29,6 +45,8 @@ const {
   baseUrl='/archive'
   currentPage={currentPage}
   totalPages={totalPages}
+  filterGroups={filterGroups}
+  summaryText={summaryText}
 >
   <PostsTimeline
     postGroups={groups}

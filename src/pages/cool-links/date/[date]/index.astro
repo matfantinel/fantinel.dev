@@ -1,0 +1,41 @@
+---
+import { getLinksByDate, getTagFilters, getDateFilters } from '@data/coolLinks';
+import CoolLinksArchiveLayout from '@layouts/CoolLinksArchiveLayout.astro';
+
+export async function getStaticPaths() {
+  const dateFilters = await getDateFilters();
+
+  const dates: string[] = [];
+  dateFilters.forEach((yearGroup) => {
+    yearGroup.tags?.forEach((tag) => {
+      const dateSlug = tag.url.split('/').pop();
+      if (dateSlug) dates.push(dateSlug);
+    });
+  });
+
+  return dates.map((date) => ({ params: { date } }));
+}
+
+const { date } = Astro.params;
+const links = await getLinksByDate(date);
+
+const [year, month] = date.split('-');
+const monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
+                    'July', 'August', 'September', 'October', 'November', 'December'];
+const dateDisplay = `${monthNames[parseInt(month) - 1]} ${year}`;
+
+const [tagFilters, dateFilters] = await Promise.all([
+  getTagFilters(),
+  getDateFilters(date),
+]);
+---
+
+<CoolLinksArchiveLayout
+  links={links}
+  currentPage={1}
+  totalPages={1}
+  totalLinks={links.length}
+  currentDate={dateDisplay}
+  tagFilters={tagFilters}
+  dateFilters={dateFilters}
+/>

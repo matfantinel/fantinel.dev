@@ -1,9 +1,12 @@
 ---
-import { getAllTags, getPaginatedCoolLinks } from '@data/coolLinks';
+import { getPaginatedCoolLinks, getTagFilters, getDateFilters } from '@data/coolLinks';
 import CoolLinksArchiveLayout from '@layouts/CoolLinksArchiveLayout.astro';
 
 const { links, currentPage, totalPages, totalLinks } = await getPaginatedCoolLinks(1);
-const allTags = await getAllTags();
+const [tagFilters, dateFilters] = await Promise.all([
+  getTagFilters(),
+  getDateFilters(),
+]);
 ---
 
 <CoolLinksArchiveLayout
@@ -11,5 +14,6 @@ const allTags = await getAllTags();
   currentPage={currentPage}
   totalPages={totalPages}
   totalLinks={totalLinks}
-  allTags={allTags}
+  tagFilters={tagFilters}
+  dateFilters={dateFilters}
 />

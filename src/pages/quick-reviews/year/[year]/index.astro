@@ -1,0 +1,31 @@
+---
+import { getReviewsByYear, getTypeFilters, getRatingFilters, getYearFilters } from '@data/quickReviews';
+import QuickReviewsArchiveLayout from '@layouts/QuickReviewsArchiveLayout.astro';
+
+export async function getStaticPaths() {
+  const yearFilters = await getYearFilters();
+  return yearFilters.map((filter) => ({
+    params: { year: filter.name },
+  }));
+}
+
+const { year } = Astro.params;
+const reviews = await getReviewsByYear(year);
+
+const [typeFilters, ratingFilters, yearFilters] = await Promise.all([
+  getTypeFilters(),
+  getRatingFilters(),
+  getYearFilters(year),
+]);
+---
+
+<QuickReviewsArchiveLayout
+  reviews={reviews}
+  currentPage={1}
+  totalPages={1}
+  totalReviews={reviews.length}
+  currentYear={year}
+  typeFilters={typeFilters}
+  ratingFilters={ratingFilters}
+  yearFilters={yearFilters}
+/>

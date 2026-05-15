@@ -3,6 +3,7 @@ import type { CoolLink } from '@schemas/cool-link';
 import type { Photography } from '@schemas/photography';
 import { PostType } from '@schemas/post-types';
 import type { QuickReview } from '@schemas/quick-review';
+import type { FilterGroup } from '@schemas/filter';
 import { getAllBlogPosts } from "./blogPosts";
 import { getAllCoolLinks } from "./coolLinks";
 import { getAllPhotographyPosts } from "./photographies";
@@ -150,4 +151,100 @@ export async function getAllPosts(postTypes?: PostType[]) {
   });
   
   return posts;
+}
+
+/**
+ * Gets date filters for the archive, grouped by year with months as tags.
+ * @param activeSlug - The currently active date slug in YYYY-MM format (optional).
+ * @returns Array of filter groups with months grouped by year.
+ */
+export async function getDateFilters(activeSlug?: string): Promise<FilterGroup[]> {
+  const allPosts = await getAllPosts();
+
+  const getPostDate = (item: typeof allPosts[0]): Date => {
+    if (item.type === PostType.COOL_LINK) return (item.data as CoolLink).savedOn;
+    if (item.type === PostType.PHOTOGRAPHY) return (item.data as Photography).publishedDate;
+    return (item.data as BlogPost | QuickReview).date;
+  };
+
+  const dateCount = new Map<string, number>();
+  const dateMap = new Map<string, { year: number; month: number }>();
+
+  allPosts.forEach((post) => {
+    const date = getPostDate(post);
+    const year = date.getFullYear();
+    const month = date.getMonth();
+    const key = `${year}-${String(month + 1).padStart(2, '0')}`;
+
+    dateCount.set(key, (dateCount.get(key) || 0) + 1);
+    if (!dateMap.has(key)) {
+      dateMap.set(key, { year, month });
+    }
+  });
+
+  const monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
+                      'July', 'August', 'September', 'October', 'November', 'December'];
+
+  const yearGroups = new Map<number, { name: string; url: string; active: boolean; count: number }[]>();
+
+  dateMap.forEach(({ year, month }, key) => {
+    if (!yearGroups.has(year)) {
+      yearGroups.set(year, []);
+    }
+
+    yearGroups.get(year)!.push({
+      name: monthNames[month],
+      url: `/archive/date/${key}`,
+      active: key === activeSlug,
+      count: dateCount.get(key) || 0,
+    });
+  });
+
+  const filterGroups: FilterGroup[] = Array.from(yearGroups.entries()).map(([year, tags]) => {
+    tags.sort((a, b) => b.url.localeCompare(a.url));
+    return { label: String(year), tags };
+  });
+
+  filterGroups.sort((a, b) => Number(b.label) - Number(a.label));
+
+  if (filterGroups.length > 0 && !filterGroups.some((g) => g.tags?.some((t) => t.active))) {
+    filterGroups[0].defaultOpen = true;
+  }
+
+  return filterGroups;
+}
+
+/**
+ * Gets all timeline entries for a given YYYY-MM date slug, grouped by day.
+ * @param dateSlug - The date slug in YYYY-MM format.
+ * @returns Posts grouped by day for that month.
+ */
+export async function getEntriesByDate(dateSlug: string): Promise<{ date: string; posts: Awaited<ReturnType<typeof getAllPosts>> }[]> {
+  const allPosts = await getAllPosts();
+
+  const getPostDate = (item: typeof allPosts[0]): Date => {
+    if (item.type === PostType.COOL_LINK) return (item.data as CoolLink).savedOn;
+    if (item.type === PostType.PHOTOGRAPHY) return (item.data as Photography).publishedDate;
+    return (item.data as BlogPost | QuickReview).date;
+  };
+
+  const filtered = allPosts.filter((post) => {
+    const date = getPostDate(post);
+    const key = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}`;
+    return key === dateSlug;
+  });
+
+  const groupedByDay = new Map<string, typeof allPosts>();
+
+  filtered.forEach((post) => {
+    const day = getPostDate(post).toISOString().split('T')[0];
+    if (!groupedByDay.has(day)) {
+      groupedByDay.set(day, []);
+    }
+    groupedByDay.get(day)!.push(post);
+  });
+
+  return Array.from(groupedByDay.entries())
+    .map(([date, posts]) => ({ date, posts }))
+    .sort((a, b) => b.date.localeCompare(a.date));
 }

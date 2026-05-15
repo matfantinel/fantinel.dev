@@ -1,5 +1,5 @@
 ---
-import { getPaginatedTimelineEntries } from '@data/everything';
+import { getPaginatedTimelineEntries, getDateFilters } from '@data/everything';
 import TimelineArchiveLayout from '@layouts/TimelineArchiveLayout.astro';
 
 export async function getStaticPaths() {
@@ -12,6 +12,7 @@ export async function getStaticPaths() {
 
 const { page } = Astro.params;
 const { posts, currentPage, totalPages, totalPosts } = await getPaginatedTimelineEntries(Number(page));
+const dateFilters = await getDateFilters();
 ---
 
 <TimelineArchiveLayout
@@ -19,4 +20,5 @@ const { posts, currentPage, totalPages, totalPosts } = await getPaginatedTimelin
   currentPage={currentPage}
   totalPages={totalPages}
   totalPosts={totalPosts}
+  dateFilters={dateFilters}
 />

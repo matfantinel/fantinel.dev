@@ -79,7 +79,7 @@
               {@const nestedNormalized = normalizeFilterGroup(nestedGroup, normalized.depth + 1)}
               {@const hasActiveTag = nestedNormalized.hasTags && nestedNormalized.group.tags?.some((tag) => tag.active)}
               {#if collapseInnerGroups}
-                <details class="m-filters__details" open={hasActiveTag} use:animatedDetails={{ duration: 250 }}>
+                <details class="m-filters__details" open={hasActiveTag || nestedNormalized.group.defaultOpen} use:animatedDetails={{ duration: 250 }}>
                   <summary class="m-filters__group-label m-filters__group-label--nested m-filters__summary">
                     {nestedNormalized.group.label}
                   </summary>

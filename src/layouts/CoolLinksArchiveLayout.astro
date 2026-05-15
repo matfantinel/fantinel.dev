@@ -1,6 +1,7 @@
 ---
 import CoolLinkCards from '@components/molecules/CoolLinkCards';
 import type { CoolLink, CoolLinkTag } from '@schemas/cool-link';
+import type { FilterTag, FilterGroup } from '@schemas/filter';
 import BaseArchiveLayout from './BaseArchiveLayout.astro';
 import type { SiteMeta } from '@schemas/site-meta';
 import metaConfig from '@public/cms/meta.yml';
@@ -12,12 +13,36 @@ interface Props {
   totalPages: number;
   totalLinks: number;
   currentTag?: CoolLinkTag;
-  allTags?: CoolLinkTag[];
+  currentDate?: string;
+  tagFilters?: FilterTag[];
+  dateFilters?: FilterGroup[];
 }
 
-const { links, currentPage, totalPages, totalLinks, currentTag, allTags }: Props = Astro.props;
+const {
+  links,
+  currentPage,
+  totalPages,
+  totalLinks,
+  currentTag,
+  currentDate,
+  tagFilters,
+  dateFilters,
+}: Props = Astro.props;
 
-const summaryText = totalLinks ? `${totalLinks} links${currentTag ? ` tagged "${currentTag.name}"` : ''}` : '';
+const filterGroups: FilterGroup[] = [];
+if (tagFilters) {
+  filterGroups.push({ label: 'Filter by tag', tags: tagFilters });
+}
+if (dateFilters) {
+  filterGroups.push({ label: 'Filter by month', groups: dateFilters });
+}
+
+let summaryText = '';
+if (totalLinks) {
+  summaryText = `${totalLinks} links`;
+  if (currentTag) summaryText += ` tagged "${currentTag.name}"`;
+  if (currentDate) summaryText += ` from ${currentDate}`;
+}
 const basePaginationUrl = `/cool-links${currentTag ? `/tag/${currentTag.slug}` : ''}`;
 ---
 
@@ -34,6 +59,7 @@ const basePaginationUrl = `/cool-links${currentTag ? `/tag/${currentTag.slug}` :
   basePaginationUrl={basePaginationUrl}
   currentPage={currentPage}
   totalPages={totalPages}
+  filterGroups={filterGroups}
   summaryText={summaryText}
 >
   {!links.length && <p class='u-h4'>No links found</p>}
