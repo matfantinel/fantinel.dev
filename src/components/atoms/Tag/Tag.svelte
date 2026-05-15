@@ -84,7 +84,7 @@
 
     transition: all 0.25s ease;
 
-    border: 2px solid var(--t-v6--tag--border--base);
+    border: 1px solid var(--t-v6--tag--border--base);
     background: var(--t-v6--tag--bg--base);
     color: var(--t-v6--tag--text--base);    
 

@@ -2,6 +2,9 @@
 import CoolLinkCards from '@components/molecules/CoolLinkCards';
 import type { CoolLink, CoolLinkTag } from '@schemas/cool-link';
 import BaseArchiveLayout from './BaseArchiveLayout.astro';
+import type { SiteMeta } from '@schemas/site-meta';
+import metaConfig from '@public/cms/meta.yml';
+const siteMeta: SiteMeta = metaConfig;
 
 interface Props {
   links: CoolLink[];
@@ -21,8 +24,12 @@ const basePaginationUrl = `/cool-links${currentTag ? `/tag/${currentTag.slug}` :
 <BaseArchiveLayout
   className='l-cool-links-archive'
   title='Cool Links'
+  image={siteMeta.baseUrl + '/cms/media/articles/cool-links-preview.png'}
+  description="A collection of links to interesting things I've come across."
   heroTitle='Cool Links'
   heroBody="Here's a collection of interesting links I've found around the web. The feed updates frequently, and I compile everything into a blog post on the last day of each month."
+  heroImage={siteMeta.baseUrl + '/cms/media/articles/cool-links-cover.png'}
+  heroImageAlt='Illustration of Cool Links in a laptop screen, with a hand pointing at them in a cool way.'
   baseUrl='/cool-links'
   basePaginationUrl={basePaginationUrl}
   currentPage={currentPage}

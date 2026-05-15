@@ -7,7 +7,7 @@
   import PhotographyIcon from '@assets/icons/post-types/photography.svelte';
   import ThemeToggle from '@components/molecules/ThemeToggle';
   import HomeIcon from '@assets/icons/home.svelte';
-  import TimelineIcon from '@assets/icons/timeline.svelte';
+  import ArchiveIcon from '@assets/icons/archive.svelte';
   import { PostType } from '@schemas/post-types';
   import NavMenuLink from '@components/atoms/NavMenuLink';
   import SocialLink from '@components/atoms/SocialLink';
@@ -69,9 +69,9 @@
     { label: 'Home', href: '/', icon: homeIconSnippet, active: pathname === '/', color: 'og-accent' },
     {
       label: 'Archive',
-      href: '/timeline',
-      icon: timelineIconSnippet,
-      active: pathname === '/timeline',
+      href: '/archive',
+      icon: archiveIconSnippet,
+      active: pathname === '/archive',
       color: 'og-accent',
     },
     {
@@ -112,7 +112,7 @@
 {#snippet coolLinkIconSnippet()}<CoolLinkIcon size="24px" />{/snippet}
 {#snippet photographyIconSnippet()}<PhotographyIcon size="24px" />{/snippet}
 {#snippet homeIconSnippet()}<HomeIcon size="24px" />{/snippet}
-{#snippet timelineIconSnippet()}<TimelineIcon size="24px" />{/snippet}
+{#snippet archiveIconSnippet()}<ArchiveIcon size="24px" />{/snippet}
 
 <header class={['o-header', className]} style="view-transition-name: header">
   <div class="o-header__container">

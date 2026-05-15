@@ -1,4 +1,5 @@
 ---
+import Filters from '@components/molecules/Filters';
 import Pagination from '@components/molecules/Pagination';
 import GenericHero from '@components/organisms/GenericHero';
 import type { FilterGroup } from '@schemas/filter';
@@ -6,6 +7,8 @@ import BaseLayout from './BaseLayout.astro';
 
 interface Props {
   title: string;
+  image?: string;
+  description?: string;
   heroTitle: string;
   heroBody: string;
   heroImage?: string;
@@ -21,6 +24,8 @@ interface Props {
 
 const {
   title,
+  image,
+  description,
   heroTitle,
   heroBody,
   heroImage,
@@ -61,7 +66,7 @@ const processedFilterGroups = filterGroups?.map((group) => {
 });
 ---
 
-<BaseLayout {title} autoGenerateImage>
+<BaseLayout {title} {description} {image} autoGenerateImage>
   <div class={`l-base-archive full-width ${className || ''} u-content-grid`}>
     <GenericHero
       class='l-base-archive__hero full-width'
@@ -73,7 +78,15 @@ const processedFilterGroups = filterGroups?.map((group) => {
 
     {
       processedFilterGroups && processedFilterGroups.length > 0 && (
-        <div class='l-base-archive__filters on-sidebar'>{/* TODO: Filters molecule */} TODO: Filters molecule</div>
+        <div class='l-base-archive__filters on-sidebar'>
+          <Filters
+            filterGroups={processedFilterGroups}
+            size='small'
+            tagColor='inverted'
+            collapseInnerGroups
+            client:load
+          />
+        </div>
       )
     }
 
