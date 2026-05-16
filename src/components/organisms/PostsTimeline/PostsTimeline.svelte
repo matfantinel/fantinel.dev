@@ -120,6 +120,15 @@
       <SectionHeader class="o-posts-timeline__header" {title} {button} centered />
     {/if}
 
+    {#if prevNext}
+      <PrevNextNavigation
+        class="o-posts-timeline__prev-next"
+        prev={prevNext.prev}
+        next={prevNext.next}
+        order="reverse"
+      />
+    {/if}
+
     <div class="o-posts-timeline__posts-container">
       {#each filteredGroups as group (group.date)}
         <div
@@ -149,9 +158,10 @@
 
     {#if prevNext}
       <PrevNextNavigation
+        class="o-posts-timeline__prev-next"
         prev={prevNext.prev}
         next={prevNext.next}
-        class="o-posts-timeline__prev-next"
+        order="reverse"
       />
     {/if}
 
@@ -206,6 +216,10 @@
 
     :global(.o-posts-timeline__header) {
       width: 100%;
+    }
+
+    :global(.o-posts-timeline__prev-next) {
+      justify-content: center;
     }
 
     :global(.a-tag:has(input[name="blog"])) {

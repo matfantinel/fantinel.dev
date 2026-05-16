@@ -1,15 +1,18 @@
 ---
 import QuickReviewCard from '@components/molecules/QuickReviewCard';
-import ArchiveHero from '@components/organisms/ArchiveHero';
+import PostsTimeline from '@components/organisms/PostsTimeline';
 import type { QuickReview } from '@schemas/quick-review';
-import BaseLayout from './BaseLayout.astro';
+import { quickReviewToQuickReviewCardProps } from '@utils/prop-mapping';
 import striptags from 'striptags';
+import BaseLayout from './BaseLayout.astro';
+import Button from '@components/atoms/Button';
 
 interface Props {
   review: QuickReview;
+  latestTimelineEntries?: any[];
 }
 
-const { review }: Props = Astro.props;
+const { review, latestTimelineEntries }: Props = Astro.props;
 ---
 
 <BaseLayout
@@ -21,78 +24,73 @@ const { review }: Props = Astro.props;
   slug={`quick-reviews/${review.slug}`}
   publishedDate={review.date}
 >
-  <div class='l-quick-review'>
+  <div class='l-quick-review u-content-grid'>
     <div class='l-quick-review__container' data-pagefind-body>
-      <ArchiveHero
-        class='l-quick-review__hero'
-        title={'Quick Review: ' + review.title}
-        button={{ label: 'View all Quick Reviews', href: '/quick-reviews' }}
-      />
+      <h1 class='l-quick-review__title'>Quick Review: {review.title}</h1>
 
-      <div class='l-quick-review__inner-container u-container'>
-        <QuickReviewCard
-          title={review.title}
-          metadata={review.metadata}
-          slug={review.slug}
-          image={review.image}
-          rating={review.rating}
-          theme={review.theme}
-          customBg={review.customBg}
-          content={review.content}
-          type={review.type}
-          date={review.date}
-          client:load
-        />
+      <QuickReviewCard class='l-quick-review__review' {...quickReviewToQuickReviewCardProps(review)} client:load />
+
+      <div class="l-quick-review__about u-markdown">
+        <h2 class="u-h4">About Quick Reviews</h2>
+        <p>Since June 2024, I started writing quick reviews of movies, TV shows and games I've watched or played.</p>
+        <Button href="/quick-reviews">View all quick reviews</Button>
+        {latestTimelineEntries?.length > 0 && (
+          <p>Or check out other stuff I've posted recently:</p>
+          <hr />
+        )}
       </div>
+
+      {
+        latestTimelineEntries?.length > 0 && (
+          <PostsTimeline
+            bottomButton={{
+              text: 'View more',
+              url: '/archive',
+            }}
+            postGroups={latestTimelineEntries}
+            client:load
+          />
+        )
+      }
     </div>
   </div>
 </BaseLayout>
 
 <style lang='scss'>
-  @use '/src/styles/breakpoints';
   @use '/src/styles/mixins';
-  @use '/src/styles/typography';
 
-  :root {
-    &:has(.l-quick-review) {
-      --theme--color-accent: var(--theme--color-quick-review);
-      --theme--color-accent-rgb: var(--theme--color-quick-review-rgb);
-      --theme--color-accent-contrast: var(--theme--color-quick-review-contrast);
-      --theme--color-accent-shade: var(--theme--color-quick-review-shade);
-      --theme--color-accent-tint: var(--theme--color-quick-review-tint);
-      --theme--color-accent-glow: var(--theme--color-quick-review-glow);
-    }
-
-    &[data-theme='dark'],
-    &[data-theme='auto'] {
-      &:has(.l-quick-review) {
-        --theme--color-accent: var(--theme--color-quick-review);
-        --theme--color-accent-rgb: var(--theme--color-quick-review-rgb);
-        --theme--color-accent-contrast: var(--theme--color-quick-review-contrast);
-        --theme--color-accent-shade: var(--theme--color-quick-review-shade);
-        --theme--color-accent-tint: var(--theme--color-quick-review-tint);
-        --theme--color-accent-glow: var(--theme--color-quick-review-glow);
-      }
-    }
+  :root:has(.l-quick-review) {
+    @include mixins.set-accent-color('quick-review');
   }
 
   .l-quick-review {
     &__container {
       display: flex;
       flex-direction: column;
-      gap: var(--spacing-xxl);
-
-      @include breakpoints.for-phone-only {
-        gap: var(--spacing-xl);
-      }
-    }
-
-    &__inner-container {
-      display: flex;
-      flex-direction: column;
-      gap: var(--spacing-lg);
       align-items: center;
       justify-content: center;
+      gap: var(--spacing-xl);
+
+      padding-block: var(--spacing-xl);
+    }
+
+    &__title {
+      text-align: center;
+      text-wrap: balance;
+    }
+
+    &__about {
+      max-width: 580px;
+      align-items: flex-start;
+
+      hr {
+        width: 100%;
+        border-top-style: dashed;
+      }
+
+      :global(.a-button) {
+        align-self: center;
+      }
     }
   }
 </style>

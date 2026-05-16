@@ -32,12 +32,6 @@ if (dateFilters) {
   filterGroups.push({ label: 'Filter by month', groups: dateFilters });
 }
 
-let summaryText = '';
-if (totalPosts && currentDate) {
-  summaryText = `${totalPosts} posts`;
-  summaryText += ` from ${currentDate}`;
-}
-
 const monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
                     'July', 'August', 'September', 'October', 'November', 'December'];
 
@@ -66,7 +60,6 @@ if (currentSlug && dateFilters) {
   baseUrl='/archive'
   currentPage={currentPage}
   totalPages={totalPages ?? 1}
-  summaryText={summaryText}
 >
   <PostsTimeline
     postGroups={groups}

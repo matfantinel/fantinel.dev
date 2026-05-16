@@ -55,15 +55,7 @@
   </button>
 </div>
 
-<PhotographySlideshowDialog
-  {slug}
-  {title}
-  {image}
-  {imageAlt}
-  {additionalImages}
-  {photoDate}
-  {content}
-/>
+<PhotographySlideshowDialog {slug} {title} {image} {imageAlt} {additionalImages} {photoDate} {content} />
 
 <style lang="scss">
   @use '/src/styles/breakpoints';
@@ -76,6 +68,7 @@
     &__container {
       display: grid;
       grid-template-columns: 60% 40%;
+      grid-template-rows: 50% 50%;
       width: 100%;
       height: 100%;
 
@@ -85,6 +78,7 @@
     &__additional-images {
       display: grid;
       position: relative;
+      grid-row: span 2;
     }
 
     :global(.m-photography-thumbnail__image) {
@@ -92,7 +86,7 @@
       transition: all 0.2s ease-in-out;
     }
 
-    &__zoom-button {      
+    &__zoom-button {
       -webkit-appearance: none;
       appearance: none;
       border: none;
@@ -107,6 +101,7 @@
     }
 
     :global(.m-photography-thumbnail__main-image) {
+      grid-row: span 2;
       &:last-child {
         grid-column: span 2;
       }
