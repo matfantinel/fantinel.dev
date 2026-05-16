@@ -16,8 +16,8 @@ interface Props {
   heroImageAlt?: string;
   baseUrl: string;
   basePaginationUrl?: string;
-  currentPage: number;
-  totalPages: number;
+  currentPage?: number;
+  totalPages?: number;
   filterGroups?: FilterGroup[];
   summaryText?: string;
   className?: string;
@@ -72,7 +72,7 @@ const processedFilterGroups = setActiveFilterGroups(filterGroups, baseUrl);
       <slot />
 
       {
-        totalPages > 1 && (
+        totalPages && totalPages > 1 && (
           <Pagination
             class='l-base-archive__pagination'
             currentPage={currentPage}

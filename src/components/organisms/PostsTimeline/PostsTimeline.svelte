@@ -5,6 +5,7 @@
   import QuickReviewIcon from '@assets/icons/post-types/quick-review.svelte';
   import Button from '@components/atoms/Button';
   import Filters from '@components/molecules/Filters';
+  import PrevNextNavigation from '@components/molecules/PrevNextNavigation';
   import SectionHeader from '@components/molecules/SectionHeader';
   import TimelineGroup from '@components/molecules/TimelineGroup';
   import type { BlogPost } from '@schemas/blog';
@@ -23,6 +24,7 @@
     postGroups,
     filterGroups,
     baseUrl,
+    prevNext,
     class: className,
   }: {
     title?: string;
@@ -31,6 +33,7 @@
     postGroups: { date: string; posts: { type: string; data: BlogPost | QuickReview | CoolLink | Photography }[] }[];
     filterGroups?: FilterGroup[];
     baseUrl?: string;
+    prevNext?: { prev?: { label: string; url: string }; next?: { label: string; url: string } };
     class?: string;
   } = $props();
 
@@ -129,20 +132,28 @@
       {/each}
 
       {#if filteredGroups.length === 0}
-        <div class="o-posts-timeline__no-results u-b2" in:fly={{ delay: 100, duration: 1500, y: '1000%', opacity: 0 }}>
+        <div class="o-posts-timeline__no-results u-b2" in:fly={{ delay: 1000, duration: 1500, y: '1000%', opacity: 0 }}>
           Congratulations.
         </div>
-        <div class="o-posts-timeline__no-results u-b2" in:fly={{ delay: 1500, duration: 1500, y: '1000%', opacity: 0 }}>
+        <div class="o-posts-timeline__no-results u-b2" in:fly={{ delay: 2500, duration: 1500, y: '1000%', opacity: 0 }}>
           You have chosen the absence of content.
         </div>
-        <div class="o-posts-timeline__no-results u-b2" in:fly={{ delay: 3000, duration: 1500, y: '1000%', opacity: 0 }}>
+        <div class="o-posts-timeline__no-results u-b2" in:fly={{ delay: 4000, duration: 1500, y: '1000%', opacity: 0 }}>
           You found <sparkly-text number-of-sparkles="2">the void</sparkly-text>, and it stares back at you.
         </div>
-        <div class="o-posts-timeline__no-results u-b2" in:fly={{ delay: 4500, duration: 1500, y: '1000%', opacity: 0 }}>
+        <div class="o-posts-timeline__no-results u-b2" in:fly={{ delay: 6000, duration: 1500, y: '1000%', opacity: 0 }}>
           Select a post type in the filters to unfind it.
         </div>
       {/if}
     </div>
+
+    {#if prevNext}
+      <PrevNextNavigation
+        prev={prevNext.prev}
+        next={prevNext.next}
+        class="o-posts-timeline__prev-next"
+      />
+    {/if}
 
     {#if bottomButton}
       <Button href={bottomButton.url} class="o-posts-timeline__bottom-button">
@@ -155,6 +166,7 @@
 <style lang="scss">
   @use '/src/styles/typography';
   @use '/src/styles/breakpoints';
+  @use '/src/styles/mixins';
 
   .o-posts-timeline {
     --content-max-width: 1100px;
@@ -194,6 +206,27 @@
 
     :global(.o-posts-timeline__header) {
       width: 100%;
+    }
+
+    :global(.a-tag:has(input[name="blog"])) {
+      --t-v6--tag--border--active: var(--t-v6--blog);
+      --t-v6--tag--text--active: var(--t-v6--blog);
+      --t-v6--tag--glow--active: var(--t-v6--blog--glow-tiny);
+    }
+    :global(.a-tag:has(input[name="quick-review"])) {
+      --t-v6--tag--border--active: var(--t-v6--quick-review);
+      --t-v6--tag--text--active: var(--t-v6--quick-review);
+      --t-v6--tag--glow--active: var(--t-v6--quick-review--glow-tiny);
+    }
+    :global(.a-tag:has(input[name="cool-link"])) {
+      --t-v6--tag--border--active: var(--t-v6--cool-link);
+      --t-v6--tag--text--active: var(--t-v6--cool-link);
+      --t-v6--tag--glow--active: var(--t-v6--cool-link--glow-tiny);
+    }
+    :global(.a-tag:has(input[name="photography"])) {
+      --t-v6--tag--border--active: var(--t-v6--photography);
+      --t-v6--tag--text--active: var(--t-v6--photography);
+      --t-v6--tag--glow--active: var(--t-v6--photography--glow-tiny);
     }
   }
 </style>

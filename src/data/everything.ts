@@ -215,6 +215,15 @@ export async function getDateFilters(activeSlug?: string): Promise<FilterGroup[]
 }
 
 /**
+ * Gets the most recent YYYY-MM date slug that has posts.
+ * @returns The latest date slug, e.g. "2026-05".
+ */
+export async function getLatestDateSlug(): Promise<string> {
+  const filters = await getDateFilters();
+  return filters[0].tags![0].url.split('/').pop()!;
+}
+
+/**
  * Gets all timeline entries for a given YYYY-MM date slug, grouped by day.
  * @param dateSlug - The date slug in YYYY-MM format.
  * @returns Posts grouped by day for that month.

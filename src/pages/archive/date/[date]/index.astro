@@ -30,9 +30,8 @@ const dateFilters = await getDateFilters(date);
 
 <TimelineArchiveLayout
   groups={groups}
-  currentPage={1}
-  totalPages={1}
   totalPosts={totalPosts}
   currentDate={dateDisplay}
+  currentSlug={date}
   dateFilters={dateFilters}
 />

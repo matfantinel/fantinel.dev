@@ -27,23 +27,12 @@ const latestTimelineEntries = (await getPaginatedTimelineEntries(1)).posts;
 
     <UnderConstructionDisclaimer />
 
-    <!-- {recentPosts?.length > 0 && (
-      <FeaturedPosts
-        title="Latest on the blog"
-        button={{
-          text: 'See all posts',
-          url: '/blog'
-        }}
-        posts={recentPosts}
-      />
-    )} -->
-
     {latestTimelineEntries?.length > 0 && (
       <PostsTimeline
         title="Latest posts"
         bottomButton={{
           text: 'View more',
-          url: '/archive/page/2'
+          url: '/archive'
         }}
         postGroups={latestTimelineEntries}
         client:load

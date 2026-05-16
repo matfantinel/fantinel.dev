@@ -9,10 +9,11 @@ import BaseArchiveLayout from './BaseArchiveLayout.astro';
 
 interface Props {
   groups: { date: string, posts: { type: string, data: BlogPost | QuickReview | CoolLink | Photography }[] }[];
-  currentPage: number;
-  totalPages: number;
+  currentPage?: number;
+  totalPages?: number;
   totalPosts: number;
   currentDate?: string;
+  currentSlug?: string;
   dateFilters?: FilterGroup[];
 }
 
@@ -22,6 +23,7 @@ const {
   totalPages,
   totalPosts,
   currentDate,
+  currentSlug,
   dateFilters,
 }: Props = Astro.props;
 
@@ -35,6 +37,25 @@ if (totalPosts && currentDate) {
   summaryText = `${totalPosts} posts`;
   summaryText += ` from ${currentDate}`;
 }
+
+const monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
+                    'July', 'August', 'September', 'October', 'November', 'December'];
+
+function slugToLabel(slug: string) {
+  const [year, month] = slug.split('-');
+  return `${monthNames[parseInt(month) - 1]} ${year}`;
+}
+
+let prevNext: { prev?: { label: string; url: string }; next?: { label: string; url: string } } | undefined;
+
+if (currentSlug && dateFilters) {
+  const allSlugs = dateFilters.flatMap(g => g.tags ?? []).map(t => t.url.split('/').pop()!);
+  const idx = allSlugs.indexOf(currentSlug);
+  prevNext = {
+    next: idx > 0 ? { label: slugToLabel(allSlugs[idx - 1]), url: `/archive/date/${allSlugs[idx - 1]}` } : undefined,
+    prev: idx < allSlugs.length - 1 ? { label: slugToLabel(allSlugs[idx + 1]), url: `/archive/date/${allSlugs[idx + 1]}` } : undefined,
+  };
+}
 ---
 
 <BaseArchiveLayout
@@ -44,13 +65,14 @@ if (totalPosts && currentDate) {
   heroBody="A chronological view of *everything* I've posted here, since the beginning of time (or the blog's inception, whichever comes first)."
   baseUrl='/archive'
   currentPage={currentPage}
-  totalPages={totalPages}
+  totalPages={totalPages ?? 1}
   summaryText={summaryText}
 >
   <PostsTimeline
     postGroups={groups}
     baseUrl='/archive'
     filterGroups={filterGroups}
+    prevNext={prevNext}
     client:load
   />
 </BaseArchiveLayout>

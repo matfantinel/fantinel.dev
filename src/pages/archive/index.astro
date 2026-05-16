@@ -1,15 +1,23 @@
 ---
-import { getPaginatedTimelineEntries, getDateFilters } from '@data/everything';
+import { getEntriesByDate, getDateFilters, getLatestDateSlug } from '@data/everything';
 import TimelineArchiveLayout from '@layouts/TimelineArchiveLayout.astro';
 
-const { posts, currentPage, totalPages, totalPosts } = await getPaginatedTimelineEntries(1);
-const dateFilters = await getDateFilters();
+const date = await getLatestDateSlug();
+const groups = await getEntriesByDate(date);
+const totalPosts = groups.reduce((sum, group) => sum + group.posts.length, 0);
+
+const [year, month] = date.split('-');
+const monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
+                    'July', 'August', 'September', 'October', 'November', 'December'];
+const dateDisplay = `${monthNames[parseInt(month) - 1]} ${year}`;
+
+const dateFilters = await getDateFilters(date);
 ---
 
 <TimelineArchiveLayout
-  groups={posts}
-  currentPage={currentPage}
-  totalPages={totalPages}
+  groups={groups}
   totalPosts={totalPosts}
+  currentDate={dateDisplay}
+  currentSlug={date}
   dateFilters={dateFilters}
 />
