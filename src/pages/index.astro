@@ -1,7 +1,6 @@
 ---
 import HomePageHero from '@components/organisms/HomePageHero';
 import PostsTimeline from '@components/organisms/PostsTimeline';
-import UnderConstructionDisclaimer from '@components/organisms/UnderConstructionDisclaimer';
 import { getPaginatedTimelineEntries } from '@data/everything';
 import BaseLayout from '@layouts/BaseLayout.astro';
 import metaConfig from '@public/cms/meta.yml';
@@ -23,9 +22,7 @@ const latestTimelineEntries = (await getPaginatedTimelineEntries(1)).posts;
       image={siteMeta.author.image}
       extraImages={siteMeta.author.extraImages}
       client:load
-    />    
-
-    <UnderConstructionDisclaimer />
+    />
 
     {latestTimelineEntries?.length > 0 && (
       <PostsTimeline

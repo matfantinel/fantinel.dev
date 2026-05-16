@@ -10,6 +10,7 @@
     secondaryButton,
     image,
     imageAlt,
+    children,
     class: className,
   }: {
     title: string;
@@ -24,6 +25,7 @@
     };
     image?: string;
     imageAlt?: string;
+    children?: any;
     class?: string;
   } = $props();
 
@@ -41,6 +43,10 @@
         <p class="o-generic-hero__body">
           {body}
         </p>
+      {/if}
+
+      {#if children}
+        {@render children()}
       {/if}
 
       {#if button || secondaryButton}
@@ -61,7 +67,7 @@
     </div>
 
     {#if image}
-      <Image class="o-generic-hero__image" src={image} alt={title} />
+      <Image class="o-generic-hero__image" src={image} alt={imageAlt || title} />
     {/if}
   </div>
 

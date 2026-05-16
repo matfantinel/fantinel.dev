@@ -61,13 +61,14 @@ Migrate one component at a time, flip it fully to v6, then tick the checkbox.
 - [X] **Tags** — used in BlogPostCard, CoolLinkCard, PhotographyThumbnail, ArchiveHero, PostHero. Pure layout/flex wrapper around Tag atoms.
 - [X] **ThemeToggle** — used in Header and Footer. Only uses `--theme--glow-links`.
 - [X] **TimelineGroup** — used in PostsTimeline. **Dynamic post-type coloring**: same `--theme--color-{variant}` pattern as NavMenuLink. Also uses `--theme--background-base-color-rgb` and `--theme--border-medium-color`.
+- [X] **Filters**. For the Archive Layouts.
 
 ---
 
 ## Organisms
 
 - [X] **AboutAuthor** — used in `PostLayout.astro`. Uses `typography.gradient-greenish` on the name, `--theme--glowing-text-animation`, card background + shadow.
-- [ ] **ArchiveHero** — used in every archive layout (blog, photography, timeline, cool-links, quick-reviews) **and** in `CoolLinkLayout.astro`, `PhotographyLayout.astro`, `QuickReviewLayout.astro` as a hero for individual items. **Glowing animated title**: sets `--glow-color` locally, uses `--theme--glowing-text-animation`, color-accent + `-rgb`, plus `--theme--color-footer--wave-1` (wave treatment).
+- [X] **ArchiveHero (REMOVED)** — used in every archive layout (blog, photography, timeline, cool-links, quick-reviews) **and** in `CoolLinkLayout.astro`, `PhotographyLayout.astro`, `QuickReviewLayout.astro` as a hero for individual items. **Glowing animated title**: sets `--glow-color` locally, uses `--theme--glowing-text-animation`, color-accent + `-rgb`, plus `--theme--color-footer--wave-1` (wave treatment).
 - [X] **Footer** — used in `BaseLayout.astro`. **Hardcoded accent**: `--color--teal` / `--color--teal-contrast` for its accent (independent of the active theme accent). Worth deciding in v6 whether to keep the footer locked to teal or pull from `--t-v6-color-accent`.
 - [X] **Header** — used in `BaseLayout.astro`. Relatively simple: text-base, text-inverse, background-accent, `--theme--shadow-image` (commented out at a breakpoint, easy to miss).
 - [ ] **HomePageHero** — used in `pages/index.astro`. `typography.gradient-greenish` title, `--theme--glowing-text-animation`, card background + shadow, **inset 400px background glow** (`box-shadow: ..., inset 0 0 400px var(--theme--background-card-color)`), hardcoded `--color--green` reference in a commented line (leftover).
@@ -76,9 +77,8 @@ Migrate one component at a time, flip it fully to v6, then tick the checkbox.
 - [X] **PostHero** — used in `PostLayout.astro`. **Two gradients on one component**: `typography.gradient-pinkish` on title AND `typography.gradient-greenish` on the detail line. Also uses `--theme--background-accent-color`.
 - [X] **PostsSection** — used in `PostLayout.astro`. Layout wrapper around SectionHeader + BlogPostCards. Rename to **FeaturedPosts**.
 - [ ] **PostsTimeline** — used in `TimelineArchiveLayout.astro` and `pages/index.astro`. Layout wrapper around TimelineGroup entries.
-- [ ] **SimpleHero** — used in `pages/search.astro`. Accent color + glowing-text-animation.
-- [ ] **UnderConstructionDisclaimer** — WILL BE REMOVED
-- [ ] **Filters**. For the Archive Layouts.
+- [X] **SimpleHero (replaced by GenericHero)** — used in `pages/search.astro`. Accent color + glowing-text-animation.
+- [X] **UnderConstructionDisclaimer** — WILL BE REMOVED
 
 ## Layouts
 
@@ -90,9 +90,9 @@ Migrate one component at a time, flip it fully to v6, then tick the checkbox.
 - [X] **TimelineArchiveLayout** - will use BaseArchiveLayout
 - [X] **PhotographyArchiveLayout** - will use BaseArchiveLayout
 
-- [ ] **CoolLinkLayout** - individual cool-links, pretty basic
-- [ ] **PhotographyLayout** - individual photography item, pretty basic
-- [ ] **QuickReviewLayout** - individual quick-review, pretty basic
+- [X] **CoolLinkLayout** - individual cool-links, pretty basic
+- [X] **PhotographyLayout** - individual photography item, pretty basic
+- [X] **QuickReviewLayout** - individual quick-review, pretty basic
 - [X] **PostLayout** - rename to **ArticleLayout**. Will be used for both blog posts and individual pages (/about, /now, etc).
 
 - [ ] **HomePageLayout** - doesn't exist, but might? Depends on what strategy I use for Home Page content.

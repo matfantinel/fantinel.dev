@@ -27,13 +27,6 @@ const { photography, latestTimelineEntries }: Props = Astro.props;
 >
   <div class='l-photography y-content-grid'>
     <div class='l-photography__container' data-pagefind-body>
-      <!-- <ArchiveHero
-        class='l-photography__hero'
-        title={'Photography: ' + photography.title}
-        body={photography.photoDate ? 'Taken on ' + dateformat(photography.publishedDate, 'yyyy-mm-dd', true) : ''}
-        button={{ label: 'View all Photography', href: '/photography' }}
-      /> -->
-
       <h1 class='l-photography__title'>Photography: {photography.title}</h1>
 
       <div class='l-photography__about u-markdown'>
@@ -107,6 +100,7 @@ const { photography, latestTimelineEntries }: Props = Astro.props;
       &__title {
         text-align: center;
         text-wrap: balance;
+        color: var(--t-v6--accent);
       }
 
       &__about {
