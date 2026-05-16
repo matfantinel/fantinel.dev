@@ -46,6 +46,31 @@
 
   const allTypes = Object.keys(typeLabels);
 
+  const emptyStateMessages = [
+    'Congratulations. You have encountered *the void*, and *the void* is staring back at you. Play around with the filters to hide from its gaze.',
+    'You have chosen the absence of content. You are alone with your thoughts. Bold choice! If that’s too scary, try playing around with the filters to find something.',
+    'This space is reserved for content that does not exist in this dimension. Try getting into a wormhole and coming back. Or, you know, just play around with the filters if interdimensional travel is not your thing.',
+  ];
+
+  function typewriter(node: HTMLElement, { speed = 1 }: { speed?: number }) {
+    const valid = node.childNodes.length === 1 && node.childNodes[0].nodeType === Node.TEXT_NODE;
+
+    if (!valid) {
+      throw new Error(`This transition only works on elements with a single text node child`);
+    }
+
+    const text = node.textContent;
+    const duration = text.length / (speed * 0.01);
+
+    return {
+      duration,
+      tick: (t) => {
+        const i = ~~(text.length * t);
+        node.textContent = text.slice(0, i);
+      },
+    };
+  }
+
   let allFilterGroups = $derived(filterGroups);
 
   onMount(() => {
@@ -72,7 +97,11 @@
 
       allFilterGroups = [typeFilterGroup, ...(filterGroups ?? [])];
     }
+
+    emptyStateMessage = emptyStateMessages[Math.floor(Math.random() * emptyStateMessages.length)];
   });
+
+  let emptyStateMessage = $state(emptyStateMessages[Math.floor(Math.random() * emptyStateMessages.length)]);
 
   let enabledTypes = $state(new Set<string>(allTypes));
 
@@ -141,22 +170,13 @@
       {/each}
 
       {#if filteredGroups.length === 0}
-        <div class="o-posts-timeline__no-results u-b2" in:fly={{ delay: 1000, duration: 1500, y: '1000%', opacity: 0 }}>
-          Congratulations.
-        </div>
-        <div class="o-posts-timeline__no-results u-b2" in:fly={{ delay: 2500, duration: 1500, y: '1000%', opacity: 0 }}>
-          You have chosen the absence of content.
-        </div>
-        <div class="o-posts-timeline__no-results u-b2" in:fly={{ delay: 4000, duration: 1500, y: '1000%', opacity: 0 }}>
-          You found <sparkly-text number-of-sparkles="2">the void</sparkly-text>, and it stares back at you.
-        </div>
-        <div class="o-posts-timeline__no-results u-b2" in:fly={{ delay: 6000, duration: 1500, y: '1000%', opacity: 0 }}>
-          Select a post type in the filters to unfind it.
+        <div class="o-posts-timeline__no-results" in:typewriter={{ speed: 2 }}>
+          {emptyStateMessage}
         </div>
       {/if}
     </div>
 
-    {#if prevNext}
+    {#if prevNext && filteredGroups.length > 0}
       <PrevNextNavigation
         class="o-posts-timeline__prev-next"
         prev={prevNext.prev}
@@ -199,19 +219,12 @@
     }
 
     &__no-results {
-      text-align: center;
-      max-width: 400px;
-      margin-inline: auto;
-      text-wrap: balance;
       font-size: 18px;
-
-      sparkly-text {
-        --sparkly-text-color: var(--palette-v6--mauve);
-        --sparkly-text-size: 1.25rem;
-
-        font-family: var(--font--spicy);
-        font-weight: 700;
-      }
+      font-family: var(--font--mono);
+      color: var(--t-v6--text--medium);
+      font-weight: 700;
+      width: min(400px, 100%);
+      margin-inline: auto;
     }
 
     :global(.o-posts-timeline__header) {
@@ -222,22 +235,22 @@
       justify-content: center;
     }
 
-    :global(.a-tag:has(input[name="blog"])) {
+    :global(.a-tag:has(input[name='blog'])) {
       --t-v6--tag--border--active: var(--t-v6--blog);
       --t-v6--tag--text--active: var(--t-v6--blog);
       --t-v6--tag--glow--active: var(--t-v6--blog--glow-tiny);
     }
-    :global(.a-tag:has(input[name="quick-review"])) {
+    :global(.a-tag:has(input[name='quick-review'])) {
       --t-v6--tag--border--active: var(--t-v6--quick-review);
       --t-v6--tag--text--active: var(--t-v6--quick-review);
       --t-v6--tag--glow--active: var(--t-v6--quick-review--glow-tiny);
     }
-    :global(.a-tag:has(input[name="cool-link"])) {
+    :global(.a-tag:has(input[name='cool-link'])) {
       --t-v6--tag--border--active: var(--t-v6--cool-link);
       --t-v6--tag--text--active: var(--t-v6--cool-link);
       --t-v6--tag--glow--active: var(--t-v6--cool-link--glow-tiny);
     }
-    :global(.a-tag:has(input[name="photography"])) {
+    :global(.a-tag:has(input[name='photography'])) {
       --t-v6--tag--border--active: var(--t-v6--photography);
       --t-v6--tag--text--active: var(--t-v6--photography);
       --t-v6--tag--glow--active: var(--t-v6--photography--glow-tiny);
