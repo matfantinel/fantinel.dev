@@ -54,6 +54,16 @@
       gap: var(--spacing-sm);
       padding-block: var(--spacing-sm);
       width: 100%;
+
+      @include breakpoints.for-phone-only {
+        position: sticky;
+        top: 64px;
+        z-index: 2;
+        width: 100vw;
+        margin-left: calc(var(--container-padding) * -2);
+        padding-inline: var(--container-padding);
+        background: linear-gradient(to bottom, var(--t-v6--surface--base) 60%, transparent);
+      }
     }
 
     &:not(:first-child) {
@@ -73,6 +83,5 @@
     &__header-note {
       @include typography.h4;
     }
-
   }
 </style>

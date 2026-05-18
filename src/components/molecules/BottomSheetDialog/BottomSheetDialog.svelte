@@ -94,7 +94,7 @@
 
     &::backdrop {
       background: rgba(0,0,0, 0.4);
-      backdrop-filter: blur(10px);
+      backdrop-filter: blur(20px);
       transition:
         background 0.3s ease,
         backdrop-filter 0.3s ease,

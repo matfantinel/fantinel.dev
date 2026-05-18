@@ -22,7 +22,7 @@
     quickReviewToQuickReviewCardProps,
   } from '@utils/prop-mapping';
 
-	const siteMeta: SiteMeta = metaConfig;
+  const siteMeta: SiteMeta = metaConfig;
 
   let {
     type,
@@ -73,7 +73,8 @@
         <AuthorAvatar src={siteMeta.author.image} alt={siteMeta.author.name} size="tiny" />
       {/if}
       <div class="m-timeline-item__content-heading">
-        {siteMeta.author.shortName} {@html getPostActionLabel(type, data)}
+        {siteMeta.author.shortName}
+        {@html getPostActionLabel(type, data)}
       </div>
     </div>
     {#if type === PostType.BLOG_POST}
@@ -90,6 +91,7 @@
 
 <style lang="scss">
   @use '/src/styles/typography';
+  @use '/src/styles/breakpoints';
 
   .m-timeline-item {
     display: flex;
@@ -137,6 +139,31 @@
 
     :global(.m-timeline-item__card) {
       width: 100%;
+    }
+
+    @include breakpoints.for-phone-only {
+      position: relative;
+
+      &__icon {
+        display: none;
+        // position: absolute;
+        // top: 4px;
+        // right: 0;
+
+        // :global(svg) {
+        //   width: 18px;
+        //   height: 18px;
+        // }
+      }
+
+      // &__icon-line {
+      //   display: none;
+      // }
+
+      // &__content-header {
+      //   // Icon width + gap
+      //   width: calc(100% - 18px - var(--spacing-sm));
+      // }
     }
   }
 </style>

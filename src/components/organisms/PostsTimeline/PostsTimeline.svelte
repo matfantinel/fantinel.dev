@@ -134,7 +134,7 @@
 
 <div class={['o-posts-timeline u-content-grid', className]}>
   {#if processedFilterGroups && processedFilterGroups.length > 0}
-    <div class="l-base-archive__filters on-sidebar">
+    <div class="o-posts-timeline__filters on-sidebar">
       <Filters
         filterGroups={processedFilterGroups}
         size="small"
@@ -147,15 +147,6 @@
   <div class="o-posts-timeline__container">
     {#if title}
       <SectionHeader class="o-posts-timeline__header" {title} {button} centered />
-    {/if}
-
-    {#if prevNext}
-      <PrevNextNavigation
-        class="o-posts-timeline__prev-next"
-        prev={prevNext.prev}
-        next={prevNext.next}
-        order="reverse"
-      />
     {/if}
 
     <div class="o-posts-timeline__posts-container">
@@ -207,6 +198,11 @@
       gap: var(--spacing-lg);
 
       align-items: center;
+    }
+
+    &__filters {
+      position: sticky;
+      top: var(--spacing-lg);
     }
 
     &__posts-container {

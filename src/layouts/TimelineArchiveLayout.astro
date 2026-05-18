@@ -8,7 +8,7 @@ import type { FilterGroup } from '@schemas/filter';
 import BaseArchiveLayout from './BaseArchiveLayout.astro';
 
 interface Props {
-  groups: { date: string, posts: { type: string, data: BlogPost | QuickReview | CoolLink | Photography }[] }[];
+  groups: { date: string; posts: { type: string; data: BlogPost | QuickReview | CoolLink | Photography }[] }[];
   currentPage?: number;
   totalPages?: number;
   totalPosts: number;
@@ -17,23 +17,27 @@ interface Props {
   dateFilters?: FilterGroup[];
 }
 
-const {
-  groups,
-  currentPage,
-  totalPages,
-  totalPosts,
-  currentDate,
-  currentSlug,
-  dateFilters,
-}: Props = Astro.props;
+const { groups, currentPage, totalPages, totalPosts, currentDate, currentSlug, dateFilters }: Props = Astro.props;
 
 const filterGroups: FilterGroup[] = [];
 if (dateFilters) {
   filterGroups.push({ label: 'Filter by month', groups: dateFilters });
 }
 
-const monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
-                    'July', 'August', 'September', 'October', 'November', 'December'];
+const monthNames = [
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December',
+];
 
 function slugToLabel(slug: string) {
   const [year, month] = slug.split('-');
@@ -43,11 +47,14 @@ function slugToLabel(slug: string) {
 let prevNext: { prev?: { label: string; url: string }; next?: { label: string; url: string } } | undefined;
 
 if (currentSlug && dateFilters) {
-  const allSlugs = dateFilters.flatMap(g => g.tags ?? []).map(t => t.url.split('/').pop()!);
+  const allSlugs = dateFilters.flatMap((g) => g.tags ?? []).map((t) => t.url.split('/').pop()!);
   const idx = allSlugs.indexOf(currentSlug);
   prevNext = {
     next: idx > 0 ? { label: slugToLabel(allSlugs[idx - 1]), url: `/archive/date/${allSlugs[idx - 1]}` } : undefined,
-    prev: idx < allSlugs.length - 1 ? { label: slugToLabel(allSlugs[idx + 1]), url: `/archive/date/${allSlugs[idx + 1]}` } : undefined,
+    prev:
+      idx < allSlugs.length - 1
+        ? { label: slugToLabel(allSlugs[idx + 1]), url: `/archive/date/${allSlugs[idx + 1]}` }
+        : undefined,
   };
 }
 ---
@@ -61,11 +68,7 @@ if (currentSlug && dateFilters) {
   currentPage={currentPage}
   totalPages={totalPages ?? 1}
 >
-  <PostsTimeline
-    postGroups={groups}
-    baseUrl='/archive'
-    filterGroups={filterGroups}
-    prevNext={prevNext}
-    client:load
-  />
+  <div class='l-timeline-archive__content full-width'>
+    <PostsTimeline postGroups={groups} baseUrl='/archive' filterGroups={filterGroups} prevNext={prevNext} client:load />
+  </div>
 </BaseArchiveLayout>

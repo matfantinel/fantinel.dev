@@ -98,6 +98,13 @@ const processedFilterGroups = setActiveFilterGroups(filterGroups, baseUrl);
       gap: var(--spacing-lg);
     }
 
+    &__filters {
+      @include breakpoints.for-tablet-landscape-up {
+        position: sticky;
+        top: var(--spacing-lg);
+      }
+    }
+
     &__summary {
       @include typography.h4;
       text-align: center;

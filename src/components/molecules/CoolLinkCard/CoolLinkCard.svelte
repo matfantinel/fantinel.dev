@@ -107,6 +107,10 @@
 
     &__title {
       @include typography.h4;
+
+      @include breakpoints.for-phone-only {
+        grid-column: span 2;
+      }
     }
 
     &__title-link {
@@ -137,7 +141,8 @@
     rotate: 7deg;
 
     @include breakpoints.for-phone-only {
-      scale: 0.8;
+      // scale: 0.8;
+      display: none !important;
     }
   }
 
