@@ -168,27 +168,19 @@ h5, .u-h5 {
 }
 
 @mixin gradient-greenish {
-  @include gradient(var(--theme--gradient-greenish));
+  @include gradient(var(--t-v6--gradient--greenish));
 }
 
 @mixin gradient-pinkish {
-  @include gradient(var(--theme--gradient-pinkish));
-}
-
-@mixin gradient-yellowish {
-  @include gradient(var(--theme--gradient-yellowish));
+  @include gradient(var(--t-v6--gradient--pinkish));
 }
 
 @mixin gradient-rainbow {
-  @include gradient(var(--theme--gradient-rainbow));
+  @include gradient(var(--t-v6--gradient--rainbow));
 }
 
 @mixin gradient-rainbow-circle {
-  @include gradient(var(--theme--gradient-rainbow-circle));
-}
-
-@mixin gradient-rainbow-circle-dark {
-  @include gradient(var(--theme--gradient-rainbow-circle-dark));
+  @include gradient(var(--t-v6--gradient--rainbow-circle));
 }
 
 // #endregion

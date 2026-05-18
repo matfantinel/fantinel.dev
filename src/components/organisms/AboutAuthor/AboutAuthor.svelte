@@ -98,7 +98,7 @@
 
     &__name {
       @include typography.h1;
-      @include typography.gradient-greenish;
+      @include typography.gradient-pinkish;
       font-size: clamp(1.35rem, 1.6vw + 1rem, 2.25rem); //36px
       animation: var(--t-v6--glowing-text-animation);
     }

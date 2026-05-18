@@ -94,7 +94,7 @@ $palette-v6-colors: (
   // #region Colors — Accent /complementary / post types / context
   @include mixins.set-named-color('accent', 'teal');
   @include mixins.set-named-color('og-accent', 'teal');
-  @include mixins.set-named-color('complementary', 'rosewater');
+  @include mixins.set-named-color('complementary', 'flamingo');
   @include mixins.set-named-color('blog', 'mauve');
   @include mixins.set-named-color('quick-review', 'peach');
   @include mixins.set-named-color('cool-link', 'blue');

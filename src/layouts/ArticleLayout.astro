@@ -10,6 +10,7 @@ import type { BlogPost } from '@schemas/blog';
 import type { SiteMeta } from '@schemas/site-meta';
 import { handleCmsMediaPath } from '@utils/functions';
 import BaseLayout from './BaseLayout.astro';
+import CommentCta from '@components/organisms/CommentCta';
 
 interface Props {
   post: {
@@ -57,7 +58,7 @@ if (post.data.ogImage) {
       />
     </div>
 
-    <div class="l-article__content full-width u-content-grid">
+    <div class='l-article__content full-width u-content-grid'>
       {
         // I always forget, so, for posteriority:
         // Why is the cover image outside of #post-content?
@@ -83,6 +84,16 @@ if (post.data.ogImage) {
       <div id='post-content' class='l-article__post-content u-markdown'>
         <MarkdownRenderer content={post.body} client:load />
       </div>
+
+      {
+        post.data.author?.socials?.find((s) => s.name === 'Email')?.url && (
+          <CommentCta
+            email={post.data.author.socials.find((s) => s.name === 'Email')!.url.replace('mailto:', '')}
+            emailSubject={`I read "${post.data.title}" and have thoughts`}
+            content="Did this blog post change your life? Or maybe I made a mistake that ruined your day? You can always send me an email to tell me about it."
+          />
+        )
+      }
     </div>
 
     <div class='l-article__after-content full-width u-content-grid' data-pagefind-ignore='all'>
