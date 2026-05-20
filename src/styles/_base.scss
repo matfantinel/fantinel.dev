@@ -80,11 +80,18 @@ mark {
 // Took the idea from a comment here: https://www.reddit.com/r/webdev/comments/1savcsm/ios_26_safari_liquid_glass_toolbar_tinting_how_to/
 // Doesn't work when a <dialog> is open, but recovers the transparency as soon as the <dialog> is closed.
 .safari-liquid-glass-toolbar-fixer {
-  background-color: transparent;
-  height: 64px;
-  width: 100%;
   position: sticky;
   left: 0;
-  bottom: -58px;
+  bottom: -2px;
+  width: 100%;
+  height: 6px;
+  background-color: transparent;
   z-index: 999;
+
+  display: none;
+
+  // Make it apply only to iOS Safari
+  @supports (-webkit-touch-callout: none) {
+    display: block;
+  }
 }

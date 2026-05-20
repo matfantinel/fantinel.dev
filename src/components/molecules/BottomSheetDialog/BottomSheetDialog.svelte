@@ -48,7 +48,6 @@
       {@render children?.()}
     </div>
   </div>
-  <div class="safari-liquid-glass-toolbar-fixer" aria-hidden="true"></div>
 </dialog>
 
 <style lang="scss">
