@@ -78,6 +78,8 @@ const pathname = new URL(Astro.request.url).pathname;
 
       <main class="u-content-grid" style="view-transition-name: main-content;">
         <slot />
+
+        <div class="safari-liquid-glass-toolbar-fixer" aria-hidden="true"></div>
       </main>
 
       <Footer socials={siteMeta.author?.socials} client:load transition:name="footer" transition:persist />      

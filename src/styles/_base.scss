@@ -83,7 +83,8 @@ mark {
   background-color: transparent;
   height: 64px;
   width: 100%;
-  position: fixed;
+  position: sticky;
   left: 0;
   bottom: -58px;
+  z-index: 999;
 }

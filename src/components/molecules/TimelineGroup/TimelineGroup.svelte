@@ -59,9 +59,7 @@
         position: sticky;
         top: 64px;
         z-index: 2;
-        width: 100vw;
-        margin-left: calc(var(--container-padding) * -2);
-        padding-inline: var(--container-padding);
+        width: 100%;
         background: linear-gradient(to bottom, var(--t-v6--surface--base) 60%, transparent);
       }
     }
