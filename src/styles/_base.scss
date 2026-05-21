@@ -11,12 +11,6 @@
   @include mixins.padded-container-small;
 }
 
-.u-spaced-content {
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-xxl);
-}
-
 ul,
 ol {
   margin: var(--spacing-xs) 0 var(--spacing-xs) var(--spacing-lg);

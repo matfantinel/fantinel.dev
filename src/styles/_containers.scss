@@ -9,7 +9,12 @@
 }
 
 .u-content-grid {
+  --smol-max-width: 908px;
   --content-max-width: 1080px;
+
+  --smol-size: min(var(--smol-max-width), (100% - var(--container-padding) * 2));
+  // --content-size: min(var(--content-max-width), (100% - var(--container-padding) * 2));
+  --content-size: minmax(0, calc((var(--content-max-width) - var(--smol-max-width)) / 2));
 
   display: grid;
   align-items: start;
@@ -17,9 +22,13 @@
   grid-template-columns: 
     [full-width-start] 
     minmax(var(--container-padding), 1fr) 
-    [content-start] 
-    min(var(--content-max-width), (100% - var(--container-padding) * 2)) 
-    [content-end] 
+    [content-start]
+    var(--content-size)
+    [smol-start]
+    var(--smol-size)
+    [smol-end]
+    var(--content-size)
+    [content-end]
     minmax(var(--container-padding), 1fr) 
     [full-width-end];
 
@@ -30,6 +39,10 @@
 
     &.full-width {
       grid-column: full-width;
+    }
+
+    &.smol {
+      grid-column: smol;
     }
   }
 

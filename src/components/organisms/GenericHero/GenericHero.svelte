@@ -85,10 +85,6 @@
     position: relative;
     margin-bottom: 64px;
 
-    @include breakpoints.for-phone-only {
-      margin-top: unset;
-    }
-
     &__container {
       display: flex;
       align-items: center;

@@ -19,6 +19,8 @@
 
   let {
     title,
+    headerBody,
+    headerCentered = true,
     button,
     bottomButton,
     postGroups,
@@ -28,8 +30,10 @@
     class: className,
   }: {
     title?: string;
-    button?: { text: string; url: string };
-    bottomButton?: { text: string; url: string };
+    headerBody?: string;
+    headerCentered?: boolean;
+    button?: { text: string; url: string; icon?: any; iconPosition?: 'left' | 'right' };
+    bottomButton?: { text: string; url: string; icon?: any; iconPosition?: 'left' | 'right' };
     postGroups: { date: string; posts: { type: string; data: BlogPost | QuickReview | CoolLink | Photography }[] }[];
     filterGroups?: FilterGroup[];
     baseUrl?: string;
@@ -146,7 +150,7 @@
 
   <div class="o-posts-timeline__container">
     {#if title}
-      <SectionHeader class="o-posts-timeline__header" {title} {button} centered />
+      <SectionHeader class="o-posts-timeline__header" {title} body={headerBody} centered={headerCentered} {button} />
     {/if}
 
     <div class="o-posts-timeline__posts-container">
@@ -211,7 +215,7 @@
       gap: var(--spacing-lg);
 
       width: 100%;
-      max-width: 828px;
+      max-width: 848px;
     }
 
     &__no-results {

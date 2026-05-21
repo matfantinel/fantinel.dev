@@ -6,7 +6,6 @@ import BaseLayout from '@layouts/BaseLayout.astro';
 import metaConfig from '@public/cms/meta.yml';
 import type { SiteMeta } from '@schemas/site-meta';
 
-
 const siteMeta: SiteMeta = metaConfig;
 
 // const recentPosts = await getRecentBlogPosts();
@@ -14,27 +13,42 @@ const latestTimelineEntries = (await getPaginatedTimelineEntries(1)).posts;
 ---
 
 <BaseLayout>
-  <div class="u-spaced-content">
+  <div class='p-home__hero full-width'>
     <HomePageHero
-      kicker='Hey, I’m'
-      title={`${siteMeta.author.name}.`}
-      body={siteMeta.author.bio}
+      kicker='Hey there, I’m'
+      title={siteMeta.author.name}
+      bio={siteMeta.author.bio}
       image={siteMeta.author.image}
       extraImages={siteMeta.author.extraImages}
+      socials={siteMeta.author.socials}
       client:load
     />
+  </div>
 
-    {latestTimelineEntries?.length > 0 && (
-      <PostsTimeline
-        title="Latest posts"
-        bottomButton={{
-          text: 'View more',
-          url: '/archive'
-        }}
-        postGroups={latestTimelineEntries}
-        client:load
-      />
-    )}
-    
+  <div class='p-home__content full-width u-content-grid'>
+    {
+      latestTimelineEntries?.length > 0 && (
+        <div class='p-home__archive smol'>
+          <PostsTimeline
+            title='The Latest'
+            headerBody='Just want to see everything I’ve posted? There’s an archive page just for that. Otherwise you can catch up below.'
+            headerCentered={false}
+            button={{
+              text: 'To the Archives',
+              url: '/archive',
+              icon: 'arrow',
+              iconPosition: 'right',
+            }}
+            postGroups={latestTimelineEntries}
+            client:load
+          />
+        </div>
+      )
+    }
   </div>
 </BaseLayout>
+
+<style lang='scss'>
+  .p-home {
+  }
+</style>

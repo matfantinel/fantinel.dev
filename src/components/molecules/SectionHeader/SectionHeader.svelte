@@ -15,10 +15,14 @@
     button?: {
       text: string;
       url: string;
+      icon?: any;
+      iconPosition?: 'left' | 'right';
     };
     secondaryButton?: {
       text: string;
       url: string;
+      icon?: any;
+      iconPosition?: 'left' | 'right';
     };
     centered?: boolean;
     class?: string;
@@ -37,12 +41,23 @@
   {#if button || secondaryButton}
     <div class="m-section-header__buttons">
       {#if button}
-        <Button href={button.url} class="m-section-header__button">
+        <Button
+          href={button.url}
+          icon={button.icon}
+          iconPosition={button.iconPosition}
+          class="m-section-header__button"
+        >
           {button.text}
         </Button>
       {/if}
       {#if secondaryButton}
-        <Button href={secondaryButton.url} color="complementary" class="m-section-header__button">
+        <Button
+          href={secondaryButton.url}
+          color="complementary"
+          icon={secondaryButton.icon}
+          iconPosition={secondaryButton.iconPosition}
+          class="m-section-header__button"
+        >
           {secondaryButton.text}
         </Button>
       {/if}
