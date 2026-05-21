@@ -73,7 +73,7 @@
   @use '/src/styles/breakpoints';
   @use '/src/styles/mixins';
 
-  .o-home-page-hero {   
+  .o-home-page-hero {
     background-color: var(--t-v6--surface--accent);
 
     position: relative;
@@ -86,12 +86,12 @@
       top: 0;
       left: 0;
       width: 100%;
-      height: 100px;
+      height: 80px;
 
       background: var(--t-v6--gradient--rainbow);
       mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.2) 50%, transparent 100%);
       mask-repeat: no-repeat;
-      mask-position: bottom;
+      mask-position: top;
 
       @media (prefers-reduced-motion: no-preference) {
         animation: rainbow-breathe 6s cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite alternate;
@@ -99,7 +99,7 @@
     }
 
     &__container {
-      padding-block: var(--spacing-xxl) var(--spacing-lg);
+      padding-block: 80px var(--spacing-lg);
 
       display: grid;
       grid-template-columns: 164px 1fr;
@@ -179,11 +179,20 @@
       &__image-container {
         width: 80px;
       }
-      &__bio {        
+      &__bio {
         width: 100%;
       }
       &__socials {
         display: none;
+      }
+    }
+
+    @keyframes rainbow-breathe {
+      0% {
+        mask-size: 100% 30%;
+      }
+      100% {
+        mask-size: 100% 100%;
       }
     }
   }
