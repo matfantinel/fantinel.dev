@@ -13,13 +13,17 @@
 	import MarkerHighlight from '@components/atoms/MarkerHighlight';
 	import SparklingHighlight from '@components/atoms/SparklingHighlight';
 
+  import type { BaseProps } from '@utils/types';
+
+  export type MarkdownRendererProps = BaseProps & {
+    content: string;
+    isInline?: boolean;
+  };
+
 	let { 
 		content, 
 		isInline = false
-	} : {
-		content: string;
-		isInline?: boolean;
-	} = $props();
+	} : MarkdownRendererProps = $props();
 
 	marked.use({
 		extensions: [SparklesHighlightTokenizerExtension, MarkerHighlightTokenizerExtension]

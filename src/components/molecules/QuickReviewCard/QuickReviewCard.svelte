@@ -6,8 +6,22 @@
   import type { QuickReviewRating, QuickReviewType } from '@schemas/quick-review-types';
   import dateformat from 'dateformat';
   import IconLink from '@components/atoms/IconLink';
+  import type { BaseProps } from '@utils/types';
 
   import * as htmlToImage from 'html-to-image';
+
+  export type QuickReviewCardProps = BaseProps & {
+    title: string;
+    slug?: string;
+    metadata?: string;
+    date?: string;
+    image?: string;
+    rating: QuickReviewRating;
+    theme?: string;
+    customBg?: string;
+    type: QuickReviewType;
+    content: string;
+  };
 
   let {
     title,
@@ -21,19 +35,7 @@
     type,
     content,
     class: className,
-  }: {
-    title: string;
-    slug?: string;
-    metadata?: string;
-    date?: string;
-    image?: string;
-    rating: QuickReviewRating;
-    theme?: string;
-    customBg?: string;
-    type: QuickReviewType;
-    content: string;
-    class?: string;
-  } = $props();
+  }: QuickReviewCardProps = $props();
 
   let classList = $derived(['m-quick-review-card', theme ? `m-quick-review-card--${theme}` : null, className]);
 

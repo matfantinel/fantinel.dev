@@ -2,6 +2,16 @@
   import { HttpRegex } from '@utils/regex';
   import type { Snippet } from 'svelte';
   import ChevronRight from '@assets/icons/chevron-right.svelte';
+  import type { BaseProps } from '@utils/types';
+
+  export type ArrowLinkProps = BaseProps & {
+    href?: string;
+    target?: string;
+    rel?: string;
+    color?: 'accent' | 'complementary' | 'blog' | 'quick-review' | 'cool-link' | 'photography';
+    arrowPosition?: 'left' | 'right';
+    text?: string;
+  };
 
   let {
     href,
@@ -12,16 +22,7 @@
     class: className,
     children,
     ...props
-  }: {
-    href?: string;
-    target?: string;
-    rel?: string;
-    color?: 'accent' | 'complementary' | 'blog' | 'quick-review' | 'cool-link' | 'photography';
-    arrowPosition?: 'left' | 'right';
-    class?: string;
-    children?: Snippet;
-    [key: string]: any;
-  } = $props();
+  }: ArrowLinkProps & { children?: Snippet } = $props();
 
   let tag = $derived(href ? 'a' : 'button');
   let isExternalLink = $derived(!!href && HttpRegex.test(href));

@@ -1,8 +1,7 @@
 ---
 import { ClientRouter } from "astro:transitions";
-import metaConfig from "@public/cms/meta.yml";
-import type { SiteMeta } from "@schemas/site-meta";
-const siteMeta: SiteMeta = metaConfig;
+import { getSiteMeta } from '@data/yaml';
+const siteMeta = getSiteMeta();
 
 const disableClientRouter = Astro.props.disableClientRouter;
 ---

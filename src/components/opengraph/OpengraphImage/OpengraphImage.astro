@@ -1,7 +1,6 @@
 ---
-import metaConfig from "@public/cms/meta.yml";
-import type { SiteMeta } from "@schemas/site-meta";
-const siteMeta: SiteMeta = metaConfig;
+import { getSiteMeta } from '@data/yaml';
+const siteMeta = getSiteMeta();
 const isDev = import.meta.env.DEV;
 
 const baseUrl = isDev ? 'http://localhost:4321' : siteMeta.baseUrl;

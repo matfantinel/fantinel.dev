@@ -1,5 +1,13 @@
 <script lang="ts">
   import dateformat from 'dateformat';
+  import type { BaseProps } from '@utils/types';
+
+  export type CoolLinksImageProps = BaseProps & {
+    title: string;
+    date?: Date;
+    background?: string;
+    willRenderWithSatori?: boolean;
+  };
 
   let {
     title,
@@ -7,13 +15,7 @@
     background,
     willRenderWithSatori,
     class: className,
-  }: {
-    title: string;
-    date?: Date;
-    background?: string;
-    willRenderWithSatori?: boolean;
-    class?: string;
-  } = $props();
+  }: CoolLinksImageProps = $props();
 
   const currentMonth = date ? date.getMonth() + 1 : 7;
 

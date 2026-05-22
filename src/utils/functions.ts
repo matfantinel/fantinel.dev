@@ -69,3 +69,25 @@ export const generateOgPathFromCoolLinksPost = (post: BlogPost) => {
 
   return result;
 }
+
+/**
+ * Recursively walks an object, array, or primitive and applies a transform
+ * function to every string value found, preserving the original structure and type.
+ * @param data The value to walk. Can be a string, array, object, or any primitive.
+ * @param transform A function applied to each string value encountered.
+ * @returns The same structure as `data`, with all strings transformed.
+ */
+export function transformStrings<T>(data: T, transform: (value: string) => string): T {
+  if (typeof data === 'string') {
+    return transform(data) as T;
+  }
+  if (Array.isArray(data)) {
+    return data.map((item) => transformStrings(item, transform)) as T;
+  }
+  if (data !== null && typeof data === 'object') {
+    return Object.fromEntries(
+      Object.entries(data).map(([key, value]) => [key, transformStrings(value, transform)])
+    ) as T;
+  }
+  return data;
+}

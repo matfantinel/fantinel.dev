@@ -41,7 +41,7 @@
     title: LoremIpsum.words, 
     button: {
       text: 'Button',
-      url: '#'
+      href: '#'
     },
     posts: generateMockPosts(6),
   }} 

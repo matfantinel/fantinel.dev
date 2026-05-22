@@ -1,15 +1,16 @@
 <script lang="ts">
   import CloseButton from '@components/atoms/CloseButton';
+  import type { BaseProps } from '@utils/types';
+
+  export type BottomSheetDialogProps = BaseProps & {
+    slug?: string;
+  };
 
   let {
     class: className,
     slug,
     children,
-  }: {
-    class?: string;
-    slug?: string;
-    children?: () => any;
-  } = $props();
+  }: BottomSheetDialogProps & { children?: () => any } = $props();
 
   let dialogEl = $state<HTMLDialogElement | null>(null);
   let containerEl = $state<HTMLDivElement | null>(null);

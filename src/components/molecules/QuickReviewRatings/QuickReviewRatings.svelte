@@ -1,17 +1,19 @@
 <script lang="ts">
   import { QuickReviewRating } from '@schemas/quick-review-types';
+  import type { BaseProps } from '@utils/types';
+
+  export type QuickReviewRatingsProps = BaseProps & {
+    rating: QuickReviewRating;
+    theme?: string;
+    monochrome?: boolean;
+  };
 
   let {
     rating,
     theme,
     monochrome,
     class: className,
-  }: {
-    rating: QuickReviewRating;
-    theme?: string;
-    monochrome?: boolean;
-    class?: string;
-  } = $props();
+  }: QuickReviewRatingsProps = $props();
 
   let ratings = $derived(
     Object.values(QuickReviewRating).map((value) => {

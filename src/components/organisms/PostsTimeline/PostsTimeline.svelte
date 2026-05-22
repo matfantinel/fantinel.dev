@@ -4,6 +4,7 @@
   import PostIcon from '@assets/icons/post-types/post.svelte';
   import QuickReviewIcon from '@assets/icons/post-types/quick-review.svelte';
   import Button from '@components/atoms/Button';
+  import type { ButtonProps } from '@components/atoms/Button';
   import Filters from '@components/molecules/Filters';
   import PrevNextNavigation from '@components/molecules/PrevNextNavigation';
   import SectionHeader from '@components/molecules/SectionHeader';
@@ -16,6 +17,19 @@
   import { setActiveFilterGroups } from '@utils/filters';
   import { onMount } from 'svelte';
   import { fly } from 'svelte/transition';
+  import type { BaseProps } from '@utils/types';
+
+  export type PostsTimelineProps = BaseProps & {
+    title?: string;
+    headerBody?: string;
+    headerCentered?: boolean;
+    button?: ButtonProps & { icon?: any };
+    bottomButton?: ButtonProps & { icon?: any };
+    postGroups: { date: string; posts: { type: string; data: BlogPost | QuickReview | CoolLink | Photography }[] }[];
+    filterGroups?: FilterGroup[];
+    baseUrl?: string;
+    prevNext?: { prev?: { label: string; url: string }; next?: { label: string; url: string } };
+  };
 
   let {
     title,
@@ -28,18 +42,7 @@
     baseUrl,
     prevNext,
     class: className,
-  }: {
-    title?: string;
-    headerBody?: string;
-    headerCentered?: boolean;
-    button?: { text: string; url: string; icon?: any; iconPosition?: 'left' | 'right' };
-    bottomButton?: { text: string; url: string; icon?: any; iconPosition?: 'left' | 'right' };
-    postGroups: { date: string; posts: { type: string; data: BlogPost | QuickReview | CoolLink | Photography }[] }[];
-    filterGroups?: FilterGroup[];
-    baseUrl?: string;
-    prevNext?: { prev?: { label: string; url: string }; next?: { label: string; url: string } };
-    class?: string;
-  } = $props();
+  }: PostsTimelineProps = $props();
 
   const typeLabels: Record<string, string> = {
     blog: 'Blog',
@@ -181,7 +184,7 @@
     {/if}
 
     {#if bottomButton}
-      <Button href={bottomButton.url} class="o-posts-timeline__bottom-button" icon={bottomButton.icon} iconPosition={bottomButton.iconPosition}>
+      <Button href={bottomButton.href} class="o-posts-timeline__bottom-button" icon={bottomButton.icon} iconPosition={bottomButton.iconPosition}>
         {bottomButton.text}
       </Button>
     {/if}

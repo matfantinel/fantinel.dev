@@ -4,6 +4,17 @@
   import Image from '@components/atoms/Image';
   import MarkdownRenderer from '@components/molecules/MarkdownRenderer';
   import dateformat from 'dateformat';
+  import type { BaseProps } from '@utils/types';
+
+  export type PhotographySlideshowDialogProps = BaseProps & {
+    slug?: string;
+    title?: string;
+    image: string;
+    imageAlt?: string;
+    additionalImages?: Array<{ src: string; alt: string }>;
+    photoDate?: Date;
+    content?: string;
+  };
 
   let {
     class: className,
@@ -14,16 +25,7 @@
     additionalImages,
     photoDate,
     content,
-  }: {
-    class?: string;
-    slug?: string;
-    title?: string;
-    image: string;
-    imageAlt?: string;
-    additionalImages?: Array<{ src: string; alt: string }>;
-    photoDate?: Date;
-    content?: string;
-  } = $props();
+  }: PhotographySlideshowDialogProps = $props();
 
   let isBrowser = $state(false);
 

@@ -1,15 +1,16 @@
 <script lang="ts">
   import type { Snippet } from 'svelte';
+  import type { BaseProps } from '@utils/types';
+
+  export type TagsProps = BaseProps & {
+    size?: 'default' | 'small' | 'responsive';
+  };
 
   let {
     size,
     class: className,
     children,
-  }: {
-    size?: 'default' | 'small' | 'responsive';
-    class?: string;
-    children?: Snippet;
-  } = $props();
+  }: TagsProps & { children?: Snippet } = $props();
 </script>
 
 <div class={['m-tags', size ? `m-tags--${size}` : undefined, className]}>

@@ -6,16 +6,18 @@
   import type { QuickReview } from '@schemas/quick-review';
   import dateformat from 'dateformat';
   import { onMount } from 'svelte';
+  import type { BaseProps } from '@utils/types';
+
+  export type TimelineGroupProps = BaseProps & {
+    date: string;
+    posts: { type: string; data: BlogPost | QuickReview | CoolLink | Photography }[];
+  };
 
   let {
     date,
     posts,
     class: className,
-  }: {
-    date: string;
-    posts: { type: string; data: BlogPost | QuickReview | CoolLink | Photography }[];
-    class?: string;
-  } = $props();
+  }: TimelineGroupProps = $props();
 
   let isToday = $state(false);
 

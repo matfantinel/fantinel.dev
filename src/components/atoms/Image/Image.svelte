@@ -1,6 +1,17 @@
 <script lang="ts">
 	import { HttpRegex } from '@utils/regex';
+	import type { BaseProps } from '@utils/types';
 	const isDev = import.meta.env.DEV;
+
+	export type ImageProps = BaseProps & {
+		src: string;
+		alt: string;
+		figcaption?: string;
+		lazy?: boolean;
+		skipSrcset?: boolean;
+		formats?: string[];
+		widths?: string[];
+	};
 
 	let {
 		src,
@@ -12,17 +23,7 @@
 		widths,
 		class: className,
 		...props
-	} : {
-		src: string;
-		alt: string;
-		figcaption?: string;
-		lazy?: boolean;
-		skipSrcset?: boolean;
-		formats?: string[];
-		widths?: string[];
-		class?: string;
-		[key: string]: any;
-	} = $props();
+	} : ImageProps = $props();
 
 	let fileName = src ? src.split('.')[0] : '';
 	let srcSet = buildSrcset();

@@ -4,16 +4,17 @@
   import type { Snippet } from 'svelte';
 
   import { photographyToPhotographyCardProps } from '@utils/prop-mapping';
+  import type { BaseProps } from '@utils/types';
+
+  export type PhotographyCardsProps = BaseProps & {
+    photographies?: Photography[];
+  };
 
   let {
     class: className,
     photographies,
     children,
-  }: {
-    class?: string;
-    photographies?: Photography[];
-    children?: Snippet;
-  } = $props();
+  }: PhotographyCardsProps & { children?: Snippet } = $props();
 
 </script>
 

@@ -1,13 +1,15 @@
 <script lang="ts">
   import type { Snippet } from 'svelte';
+  import type { BaseProps } from '@utils/types';
+
+  export type MarkerHighlightProps = BaseProps & {
+    text?: string;
+  };
 
   let {
     text,
     children,
-  }: {
-    text?: string;
-    children?: Snippet;
-  } = $props();
+  }: MarkerHighlightProps & { children?: Snippet } = $props();
 </script>
 
 <mark class="m-marker-highlight">

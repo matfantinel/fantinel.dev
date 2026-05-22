@@ -1,7 +1,22 @@
 <script lang="ts">
   import Button from '@components/atoms/Button';
+  import type { ButtonProps } from '@components/atoms/Button';
   import Image from '@components/atoms/Image';
   import MarkdownRenderer from '@components/molecules/MarkdownRenderer';
+  import type { BaseProps } from '@utils/types';
+
+  export type ContentWithImageProps = BaseProps & {
+    heading: string;
+    body?: string;
+    button?: ButtonProps & { icon?: any };
+    secondaryButton?: ButtonProps & { icon?: any };
+    image: string;
+    imageAlt: string;
+    imageBehavior?: 'cover' | 'contain';
+    imagePosition?: 'before' | 'after';
+    background?: 'clear' | 'card';
+    animateOnEntry?: boolean;
+  };
 
   let {
     heading,
@@ -15,19 +30,7 @@
     background = 'clear',
     animateOnEntry = false,
     class: className,
-  }: {
-    heading: string;
-    body?: string;
-    button?: { text: string; url: string; icon?: any; iconPosition?: 'left' | 'right'; color?: any };
-    secondaryButton?: { text: string; url: string; icon?: any; iconPosition?: 'left' | 'right'; color?: any };
-    image: string;
-    imageAlt: string;
-    imageBehavior?: 'cover' | 'contain';
-    imagePosition?: 'before' | 'after';
-    background?: 'clear' | 'card';
-    animateOnEntry?: boolean;
-    class?: string;
-  } = $props();
+  }: ContentWithImageProps = $props();
 
   let classList = $derived([
     'o-content-with-image',
@@ -42,7 +45,7 @@
 <div class={classList}>
   <div class="o-content-with-image__container">
     <div class="o-content-with-image__content">
-      <h2 class="o-content-with-image__heading u-h3">{heading}</h2>
+      <h2 class="o-content-with-image__heading u-h2">{heading}</h2>
 
       {#if body}
         <div class="o-content-with-image__body u-markdown u-b2">
@@ -53,14 +56,14 @@
       {#if button || secondaryButton}
         <div class="o-content-with-image__buttons">
           {#if button}
-            <Button href={button.url} color={button.color} icon={button.icon} iconPosition={button.iconPosition}>
+            <Button href={button.href} color={button.color} icon={button.icon} iconPosition={button.iconPosition}>
               {button.text}
             </Button>
           {/if}
 
           {#if secondaryButton}
             <Button
-              href={secondaryButton.url}
+              href={secondaryButton.href}
               color={secondaryButton.color ?? 'complementary'}
               icon={secondaryButton.icon}
               iconPosition={secondaryButton.iconPosition}
@@ -222,22 +225,29 @@
       .o-content-with-image {
         &__content {
           @supports (animation-timeline: view()) {
-            animation: content-slide cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            animation: content-slide linear;
             animation-fill-mode: both;
             animation-timeline: view();
             animation-range-start: cover 0%;
             animation-range-end: cover 15%;
+
+            @include breakpoints.for-phone-only {
+              animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            }
           }
         }
       }
 
       :global(.o-content-with-image__image) {
         @supports (animation-timeline: view()) {
-          animation: content-slide cubic-bezier(0.175, 0.885, 0.32, 1.275);
+          animation: content-slide linear;
           animation-fill-mode: both;
           animation-timeline: view();
           animation-range-start: cover 0%;
           animation-range-end: cover 15%;
+          @include breakpoints.for-phone-only {
+            animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+          }
         }
       }
       @keyframes content-slide {

@@ -3,11 +3,12 @@ import ContentWithImage from '@components/organisms/ContentWithImage';
 import HomePageHero from '@components/organisms/HomePageHero';
 import PostsTimeline from '@components/organisms/PostsTimeline';
 import { getPaginatedTimelineEntries } from '@data/everything';
+import { getHomeConfig, getSiteMeta } from '@data/yaml';
 import BaseLayout from '@layouts/BaseLayout.astro';
-import metaConfig from '@public/cms/meta.yml';
-import type { SiteMeta } from '@schemas/site-meta';
 
-const siteMeta: SiteMeta = metaConfig;
+const siteMeta = getSiteMeta();
+
+const data = getHomeConfig();
 
 // const recentPosts = await getRecentBlogPosts();
 const latestTimelineEntries = (await getPaginatedTimelineEntries(1)).posts;
@@ -16,9 +17,7 @@ const latestTimelineEntries = (await getPaginatedTimelineEntries(1)).posts;
 <BaseLayout>
   <div class='p-home__hero full-width'>
     <HomePageHero
-      kicker='Hey there, I’m'
-      title={siteMeta.author.name}
-      bio={siteMeta.author.bio}
+      {...data.hero}
       image={siteMeta.author.image}
       extraImages={siteMeta.author.extraImages}
       socials={siteMeta.author.socials}
@@ -27,71 +26,47 @@ const latestTimelineEntries = (await getPaginatedTimelineEntries(1)).posts;
   </div>
 
   <div class='p-home__content full-width u-content-grid'>
-    <ContentWithImage
-      heading='The blog'
-      body='What started in 2019 as a place to document things I was learning as a web developer has since grown into a journal of sorts. It is, after all, a personal blog.'
-      image='/images/home/blog.png'
-      imageAlt='A polaroid of younger me working on my laptop, with label: Me in 2019'
-      imageBehavior='contain'
-      animateOnEntry={true}
-      button={{
-        text: 'Go to Blog',
-        url: '/blog',
-        icon: 'arrow',
-        iconPosition: 'right',
-        color: 'blog',
-      }}
-    />
+    {
+      data.blogSection && (
+        <ContentWithImage
+          {...data.blogSection}
+          imageBehavior={data.blogSection.imageBehavior || 'contain'}
+          animateOnEntry={data.blogSection.animateOnEntry || true}
+        />
+      )
+    }
 
-    <ContentWithImage
-      heading='Cool Links'
-      body='I regularly gather the coolest links I come across on the web and post them here. If you like cool things, you’ll like Cool Links.'
-      image='/images/home/cool-links.png'
-      imageAlt='Illustration of Cool Links in a laptop screen, with a hand pointing at them in a cool way.'
-      imageBehavior='contain'
-      imagePosition='before'
-      animateOnEntry={true}
-      button={{
-        text: 'Go to Cool Links',
-        url: '/cool-links',
-        icon: 'arrow',
-        iconPosition: 'right',
-        color: 'cool-link',
-      }}
-    />
+    {
+      data.coolLinksSection && (
+        <ContentWithImage
+          {...data.coolLinksSection}
+          imageBehavior={data.coolLinksSection.imageBehavior || 'contain'}
+          imagePosition={data.coolLinksSection.imagePosition || 'before'}
+          animateOnEntry={data.coolLinksSection.animateOnEntry || true}
+        />
+      )
+    }
 
-    <ContentWithImage
-      heading='Quick Reviews'
-      body='Since June 2024, I started writing quick reviews of movies, TV shows and games I’ve watched or played.'
-      image='/images/home/quick-reviews.png'
-      imageAlt='A stack of quick reviews I‘ve written in the past. They‘re colorful cards with the movie or show‘s poster and some words.'
-      imageBehavior='contain'
-      animateOnEntry={true}
-      button={{
-        text: 'Go to Quick Reviews',
-        url: '/quick-reviews',
-        icon: 'arrow',
-        iconPosition: 'right',
-        color: 'quick-review',
-      }}
-    />
+    {
+      data.quickReviewsSection && (
+        <ContentWithImage
+          {...data.quickReviewsSection}
+          imageBehavior={data.quickReviewsSection.imageBehavior || 'contain'}
+          animateOnEntry={data.quickReviewsSection.animateOnEntry || true}
+        />
+      )
+    }
 
-    <ContentWithImage
-      heading='Photography'
-      body="I'm no professional, but sometimes I like to capture the world around me. Sometimes, the photos turn out pretty nice."
-      image='/images/home/photography.png'
-      imageAlt='A stack of polaroids with some pictures I took.'
-      imageBehavior='contain'
-      imagePosition='before'
-      animateOnEntry={true}
-      button={{
-        text: 'Go to Photography',
-        url: '/photography',
-        icon: 'arrow',
-        iconPosition: 'right',
-        color: 'photography',
-      }}
-    />
+    {
+      data.photographySection && (
+        <ContentWithImage
+          {...data.photographySection}
+          imageBehavior={data.photographySection.imageBehavior || 'contain'}
+          imagePosition={data.photographySection.imagePosition || 'before'}
+          animateOnEntry={data.photographySection.animateOnEntry || true}
+        />
+      )
+    }
 
     <hr class='p-home__divider smol' />
 
@@ -104,13 +79,13 @@ const latestTimelineEntries = (await getPaginatedTimelineEntries(1)).posts;
             headerCentered={false}
             button={{
               text: 'To the Archives',
-              url: '/archive',
+              href: '/archive',
               icon: 'arrow',
               iconPosition: 'right',
             }}
             bottomButton={{
               text: 'To the Archives',
-              url: '/archive',
+              href: '/archive',
               icon: 'arrow',
               iconPosition: 'right',
             }}

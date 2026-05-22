@@ -3,6 +3,20 @@
   import PhotographyThumbnail from '@components/molecules/PhotographyThumbnail';
   import dateformat from 'dateformat';
   import ArrowLink from '@components/atoms/ArrowLink';
+  import type { BaseProps } from '@utils/types';
+
+  export type PhotographyCardProps = BaseProps & {
+    title: string;
+    slug?: string;
+    content: string;
+    photoDate?: Date;
+    publishedDate?: Date;
+    image: string;
+    imageAlt?: string;
+    additionalImages?: Array<{ src: string; alt: string }>;
+    url?: string;
+    immersive?: boolean;
+  };
 
   let {
     title,
@@ -16,19 +30,7 @@
     url,
     immersive,
     class: className,
-  }: {
-    title: string;
-    slug?: string;
-    content: string;
-    photoDate?: Date;
-    publishedDate?: Date;
-    image: string;
-    imageAlt?: string;
-    additionalImages?: Array<{ src: string; alt: string }>;
-    url?: string;
-    immersive?: boolean;
-    class?: string;
-  } = $props();
+  }: PhotographyCardProps = $props();
 
   let classList = $derived(['m-photography-card', immersive ? 'm-photography-card--immersive' : '', className]);
 

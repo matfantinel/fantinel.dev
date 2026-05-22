@@ -1,6 +1,12 @@
 <script lang="ts">
   import type { Snippet } from 'svelte';
   import Quotes from '@assets/icons/quotes.svelte';
+  import type { BaseProps } from '@utils/types';
+
+  export type BlockquoteProps = BaseProps & {
+    cite?: string;
+    text?: string;
+  };
 
   let { 
     cite,
@@ -8,12 +14,7 @@
     class: className,
     children,
     ...props
-  } : {
-    cite?: string;
-    text?: string;
-    class?: string;
-    children?: Snippet;
-  } = $props();
+  } : BlockquoteProps & { children?: Snippet } = $props();
 </script>
 
 <blockquote

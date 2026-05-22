@@ -1,7 +1,6 @@
-import metaConfig from "@public/cms/meta.yml";
-import type { SiteMeta } from "@schemas/site-meta";
+import { getSiteMeta } from "@data/yaml";
 
-const siteMeta: SiteMeta = metaConfig;
+const siteMeta = getSiteMeta();
 
 export function escapeXml(str: string): string {
   return str

@@ -3,6 +3,17 @@
   import Image from '@components/atoms/Image';
   import Tag from '@components/atoms/Tag';
   import PhotographySlideshowDialog from '@components/molecules/PhotographySlideshowDialog';
+  import type { BaseProps } from '@utils/types';
+
+  export type PhotographyThumbnailProps = BaseProps & {
+    slug?: string;
+    title?: string;
+    image: string;
+    imageAlt?: string;
+    additionalImages?: Array<{ src: string; alt: string }>;
+    photoDate?: Date;
+    content?: string;
+  };
 
   let {
     class: className,
@@ -13,16 +24,7 @@
     additionalImages,
     photoDate,
     content,
-  }: {
-    class?: string;
-    slug?: string;
-    title?: string;
-    image: string;
-    imageAlt?: string;
-    additionalImages?: Array<{ src: string; alt: string }>;
-    photoDate?: Date;
-    content?: string;
-  } = $props();
+  }: PhotographyThumbnailProps = $props();
 
   // If slug is null, set a random id to it
   if (!slug) {

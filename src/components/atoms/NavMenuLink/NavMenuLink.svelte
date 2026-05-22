@@ -1,6 +1,19 @@
 <script lang="ts">
   import { HttpRegex } from '@utils/regex';
   import type { Snippet } from 'svelte';
+  import type { BaseProps } from '@utils/types';
+
+  export type NavMenuLinkProps = BaseProps & {
+    href?: string;
+    target?: string;
+    rel?: string;
+    title?: string;
+    active?: boolean;
+    isMobile?: boolean;
+    color?: string;
+    text?: string;
+    onclick?: EventListener;
+  };
 
   let {
     href,
@@ -15,20 +28,7 @@
     children,
     onclick,
     ...props
-  }: {
-    href?: string;
-    target?: string;
-    rel?: string;
-    title?: string;
-    active?: boolean;
-    isMobile?: boolean;
-    color?: string;
-    class?: string;
-    icon?: Snippet;
-    children?: Snippet;
-    onclick?: EventListener;
-    [key: string]: any;
-  } = $props();
+  }: NavMenuLinkProps & { icon?: Snippet; children?: Snippet } = $props();
 
   let tag = $derived(href ? 'a' : 'button');
   let isExternalLink = $derived(!!href && HttpRegex.test(href));

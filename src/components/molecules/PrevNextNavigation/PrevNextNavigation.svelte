@@ -1,17 +1,19 @@
 <script lang="ts">
   import ArrowLink from '@components/atoms/ArrowLink';
+  import type { BaseProps } from '@utils/types';
+
+  export type PrevNextNavigationProps = BaseProps & {
+    prev?: { label: string; url: string };
+    next?: { label: string; url: string };
+    order?: 'regular' | 'reverse';
+  };
 
   let {
     prev,
     next,
     order = 'regular',
     class: className,
-  }: {
-    prev?: { label: string; url: string };
-    next?: { label: string; url: string };
-    order?: 'regular' | 'reverse';
-    class?: string;
-  } = $props();
+  }: PrevNextNavigationProps = $props();
 </script>
 
 <nav class={['m-prev-next-navigation', order === 'reverse' ? 'm-prev-next-navigation--reverse' : '', className]}>

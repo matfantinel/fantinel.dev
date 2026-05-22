@@ -6,6 +6,15 @@
   import FilterIcon from '@assets/icons/filter.svelte';
   import { animatedDetails } from 'svelte-animated-details';
   import BottomSheetDialog from '@components/molecules/BottomSheetDialog';
+  import type { BaseProps } from '@utils/types';
+
+  export type FiltersProps = BaseProps & {
+    heading?: string;
+    filterGroups: FilterGroup[];
+    size?: 'default' | 'small' | 'responsive';
+    collapseInnerGroups?: boolean;
+    onFilterChange?: (name: string, value: boolean) => void;
+  };
 
   let {
     heading,
@@ -14,14 +23,7 @@
     collapseInnerGroups = false,
     onFilterChange,
     class: className,
-  }: {
-    heading?: string;
-    filterGroups: FilterGroup[];
-    size?: 'default' | 'small' | 'responsive';
-    collapseInnerGroups?: boolean;
-    onFilterChange?: (name: string, value: boolean) => void;
-    class?: string;
-  } = $props();
+  }: FiltersProps = $props();
 
   function normalizeFilterGroup(group: FilterGroup, depth: number = 0) {
     const hasNestedGroups = group.groups && group.groups.length > 0;

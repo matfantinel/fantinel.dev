@@ -1,6 +1,16 @@
 <script lang="ts">
   import Button from '@components/atoms/Button';
+  import type { ButtonProps } from '@components/atoms/Button';
   import MarkdownRenderer from '@components/molecules/MarkdownRenderer';
+  import type { BaseProps } from '@utils/types';
+
+  export type SectionHeaderProps = BaseProps & {
+    title: string;
+    body?: string;
+    button?: ButtonProps & { icon?: any };
+    secondaryButton?: ButtonProps & { icon?: any };
+    centered?: boolean;
+  };
 
   let {
     title,
@@ -9,24 +19,7 @@
     secondaryButton,
     centered,
     class: className,
-  }: {
-    title: string;
-    body?: string;
-    button?: {
-      text: string;
-      url: string;
-      icon?: any;
-      iconPosition?: 'left' | 'right';
-    };
-    secondaryButton?: {
-      text: string;
-      url: string;
-      icon?: any;
-      iconPosition?: 'left' | 'right';
-    };
-    centered?: boolean;
-    class?: string;
-  } = $props();
+  }: SectionHeaderProps = $props();
 </script>
 
 <div class={['m-section-header', centered ? 'm-section-header--centered' : '', className]}>
@@ -42,7 +35,7 @@
     <div class="m-section-header__buttons">
       {#if button}
         <Button
-          href={button.url}
+          href={button.href}
           icon={button.icon}
           iconPosition={button.iconPosition}
           class="m-section-header__button"
@@ -52,7 +45,7 @@
       {/if}
       {#if secondaryButton}
         <Button
-          href={secondaryButton.url}
+          href={secondaryButton.href}
           color="complementary"
           icon={secondaryButton.icon}
           iconPosition={secondaryButton.iconPosition}

@@ -1,8 +1,20 @@
 <script lang="ts">
   import Button from '@components/atoms/Button';
+  import type { ButtonProps } from '@components/atoms/Button';
   import Image from '@components/atoms/Image';
   import HeroWaves from '@components/molecules/HeroWaves';
   import MarkdownRenderer from '@components/molecules/MarkdownRenderer';
+  import type { Snippet } from 'svelte';
+  import type { BaseProps } from '@utils/types';
+
+  export type GenericHeroProps = BaseProps & {
+    title: string;
+    body?: string;
+    button?: ButtonProps & { icon?: any };
+    secondaryButton?: ButtonProps & { icon?: any };
+    image?: string;
+    imageAlt?: string;
+  };
 
   let {
     title,
@@ -13,22 +25,7 @@
     imageAlt,
     children,
     class: className,
-  }: {
-    title: string;
-    body?: string;
-    button?: {
-      text: string;
-      url: string;
-    };
-    secondaryButton?: {
-      text: string;
-      url: string;
-    };
-    image?: string;
-    imageAlt?: string;
-    children?: any;
-    class?: string;
-  } = $props();
+  }: GenericHeroProps & { children?: Snippet } = $props();
 
   let classList = $derived(['o-generic-hero u-content-grid', image ? 'o-generic-hero--has-image' : '', className]);
 </script>
@@ -53,13 +50,13 @@
       {#if button || secondaryButton}
         <div class="o-generic-hero__buttons">
           {#if button}
-            <Button class="o-generic-hero__button" href={button.url}>
+            <Button class="o-generic-hero__button" href={button.href}>
               {button.text}
             </Button>
           {/if}
 
           {#if secondaryButton}
-            <Button class="o-generic-hero__button" href={secondaryButton.url} color="complementary">
+            <Button class="o-generic-hero__button" href={secondaryButton.href} color="complementary">
               {secondaryButton.text}
             </Button>
           {/if}

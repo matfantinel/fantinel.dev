@@ -1,8 +1,7 @@
 ---
 import '@styles/global.scss';
 import dateformat from 'dateformat';
-import metaConfig from '@public/cms/meta.yml';
-import type { SiteMeta } from '@schemas/site-meta';
+import { getSiteMeta } from '@data/yaml';
 import Head from '@layouts/Head.astro';
 import Header from '@components/organisms/Header';
 import Footer from '@components/organisms/Footer';
@@ -29,7 +28,7 @@ const {
   noindex?: boolean;
 } = Astro.props;
 
-const siteMeta: SiteMeta = metaConfig;
+const siteMeta = getSiteMeta();
 
 const pageTitle = title ? `${title} - ${siteMeta.title}` : siteMeta.title;
 const pageDescription = description || siteMeta.description;

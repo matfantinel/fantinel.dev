@@ -6,13 +6,16 @@
   import Search from '@assets/icons/search.svelte';
   import ArrowLink from '@components/atoms/ArrowLink';
 
+  import type { BaseProps } from '@utils/types';
+
+  export type PagefindSearchResultsProps = BaseProps & {
+    query?: string;
+  };
+
   let {
     query,
     class: className,
-  }: {
-    query?: string;
-    class?: string;
-  } = $props();
+  }: PagefindSearchResultsProps = $props();
 
   let results = $state<PagefindResult[]>([]);
   let isLoading = $state<boolean>(true);

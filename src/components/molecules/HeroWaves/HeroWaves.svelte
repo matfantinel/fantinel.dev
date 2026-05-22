@@ -1,5 +1,11 @@
 <script lang="ts">
-  let { class: className, height = 64 }: { class?: string; height?: number } = $props();
+  import type { BaseProps } from '@utils/types';
+
+  export type HeroWavesProps = BaseProps & {
+    height?: number;
+  };
+
+  let { class: className, height = 64 }: HeroWavesProps = $props();
 
   let classList = $derived(['m-hero-waves', className]);
 </script>

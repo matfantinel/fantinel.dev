@@ -3,18 +3,19 @@
 	import CheckCircle from '@icons/check-circle.svelte';
 	import Info from '@icons/info.svelte';
   import type { Snippet } from 'svelte';
+  import type { BaseProps } from '@utils/types';
+
+  export type CalloutProps = BaseProps & {
+    type?: 'info' | 'warning' | 'success';
+    text?: string;
+  };
 
 	let { 
     type = 'info',
 		text,
     class: className,
     children,
-  } : {
-    type?: 'info' | 'warning' | 'success';
-    text?: string;
-    class?: string;
-    children?: Snippet;
-  } = $props();
+  } : CalloutProps & { children?: Snippet } = $props();
 </script>
 
 <div class={[

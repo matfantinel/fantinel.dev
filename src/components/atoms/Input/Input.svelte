@@ -1,4 +1,13 @@
 <script lang="ts">
+  import type { BaseProps } from '@utils/types';
+
+  export type InputProps = BaseProps & {
+    value?: string;
+    placeholder?: string;
+    required?: boolean;
+    type?: string;
+  };
+
   let {
     value = $bindable(),
     placeholder,
@@ -6,14 +15,7 @@
     type,
     class: className,
     ...props
-  }: {
-    value?: string;
-    placeholder?: string;
-    required?: boolean;
-    type?: string;
-    class?: string;
-    [key: string]: any;
-  } = $props();
+  }: InputProps = $props();
 
   let classList = $derived(['a-input', className]);
 </script>

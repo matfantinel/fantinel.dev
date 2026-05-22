@@ -43,7 +43,7 @@ const { link, latestTimelineEntries }: Props = Astro.props;
           <PostsTimeline
             bottomButton={{
               text: 'View more',
-              url: '/archive',
+              href: '/archive',
             }}
             postGroups={latestTimelineEntries}
             client:load

@@ -1,6 +1,19 @@
 <script lang="ts">
   import { HttpRegex } from '@utils/regex';
   import type { Snippet } from 'svelte';
+  import type { BaseProps } from '@utils/types';
+
+  export type TagProps = BaseProps & {
+    href?: string;
+    target?: string;
+    rel?: string;
+    title?: string;
+    active?: boolean;
+    name?: string;
+    size?: 'default' | 'small' | 'responsive';
+    count?: number;
+    text?: string;
+  };
 
   let {
     href,
@@ -15,20 +28,7 @@
     icon,
     children,
     ...props
-  }: {
-    href?: string;
-    target?: string;
-    rel?: string;
-    title?: string;
-    active?: boolean;
-    name?: string;
-    size?: 'default' | 'small' | 'responsive';
-    count?: number;
-    class?: string;
-    icon?: Snippet;
-    children?: Snippet;
-    [key: string]: any;
-  } = $props();
+  }: TagProps & { icon?: Snippet; children?: Snippet } = $props();
 
   let isCheckbox = $derived(!href);
   let tag = $derived(href ? 'a' : 'label');

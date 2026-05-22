@@ -12,8 +12,15 @@
 	import 'prismjs/components/prism-scss';
 	import 'prism-svelte';
   import type { Snippet } from 'svelte';
+  import type { BaseProps } from '@utils/types';
 	Prism.manual = true;
 	const prism = Prism as any;
+
+  export type CodeBlockProps = BaseProps & {
+    filename?: string;
+    lang?: string;
+    code?: string;
+  };
 
 	let {
 		filename,
@@ -21,13 +28,7 @@
 		code,
 		class: className,
 		children
-	} : {
-		filename?: string;
-		lang?: string;
-		code?: string;
-		class?: string;
-		children?: Snippet;
-	} = $props();
+	} : CodeBlockProps & { children?: Snippet } = $props();
 </script>
 
 <div class={['m-code-block', className]}>

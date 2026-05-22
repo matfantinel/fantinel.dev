@@ -6,6 +6,19 @@
   import type { SocialLink as SocialLinkType } from '@schemas/site-meta';
   import HeroWaves from '@components/molecules/HeroWaves';
 
+  import type { ButtonProps } from '@components/atoms/Button';
+  import type { BaseProps } from '@utils/types';
+
+  export type HomePageHeroProps = BaseProps & {
+    kicker?: string;
+    title: string;
+    bio: string;
+    image: string;
+    extraImages?: string[];
+    socials?: SocialLinkType[];
+    button?: ButtonProps & { icon?: any };
+  };
+
   let {
     kicker,
     title,
@@ -15,19 +28,7 @@
     socials,
     button,
     class: className,
-  }: {
-    kicker?: string;
-    title: string;
-    bio: string;
-    image: string;
-    extraImages?: string[];
-    socials?: SocialLinkType[];
-    button?: {
-      text: string;
-      url: string;
-    };
-    class?: string;
-  } = $props();
+  }: HomePageHeroProps = $props();
 
   let classList = $derived(['o-home-page-hero u-content-grid', className]);
 </script>
@@ -50,7 +51,7 @@
 
       {#if button}
         <div class="o-home-page-hero__buttons">
-          <Button href={button.url} class="o-home-page-hero__button">
+          <Button href={button.href} class="o-home-page-hero__button">
             {button.text}
           </Button>
         </div>

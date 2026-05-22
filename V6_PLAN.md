@@ -71,12 +71,12 @@ Migrate one component at a time, flip it fully to v6, then tick the checkbox.
 - [X] **ArchiveHero (REMOVED)** — used in every archive layout (blog, photography, timeline, cool-links, quick-reviews) **and** in `CoolLinkLayout.astro`, `PhotographyLayout.astro`, `QuickReviewLayout.astro` as a hero for individual items. **Glowing animated title**: sets `--glow-color` locally, uses `--theme--glowing-text-animation`, color-accent + `-rgb`, plus `--theme--color-footer--wave-1` (wave treatment).
 - [X] **Footer** — used in `BaseLayout.astro`. **Hardcoded accent**: `--color--teal` / `--color--teal-contrast` for its accent (independent of the active theme accent). Worth deciding in v6 whether to keep the footer locked to teal or pull from `--t-v6-color-accent`.
 - [X] **Header** — used in `BaseLayout.astro`. Relatively simple: text-base, text-inverse, background-accent, `--theme--shadow-image` (commented out at a breakpoint, easy to miss).
-- [ ] **HomePageHero** — used in `pages/index.astro`. `typography.gradient-greenish` title, `--theme--glowing-text-animation`, card background + shadow, **inset 400px background glow** (`box-shadow: ..., inset 0 0 400px var(--theme--background-card-color)`), hardcoded `--color--green` reference in a commented line (leftover).
-- [ ] **NewsletterCta** — not in the new design yet, but don't wanna remove it
+- [X] **HomePageHero** — used in `pages/index.astro`. `typography.gradient-greenish` title, `--theme--glowing-text-animation`, card background + shadow, **inset 400px background glow** (`box-shadow: ..., inset 0 0 400px var(--theme--background-card-color)`), hardcoded `--color--green` reference in a commented line (leftover).
+- [X] **NewsletterCta** — not in the new design yet, but don't wanna remove it
 - [X] **PagefindSearchResults** — used in `pages/search.astro`. Hardcoded `--color--red` for error/no-results state.
 - [X] **PostHero** — used in `PostLayout.astro`. **Two gradients on one component**: `typography.gradient-pinkish` on title AND `typography.gradient-greenish` on the detail line. Also uses `--theme--background-accent-color`.
 - [X] **PostsSection** — used in `PostLayout.astro`. Layout wrapper around SectionHeader + BlogPostCards. Rename to **FeaturedPosts**.
-- [ ] **PostsTimeline** — used in `TimelineArchiveLayout.astro` and `pages/index.astro`. Layout wrapper around TimelineGroup entries.
+- [X] **PostsTimeline** — used in `TimelineArchiveLayout.astro` and `pages/index.astro`. Layout wrapper around TimelineGroup entries.
 - [X] **SimpleHero (replaced by GenericHero)** — used in `pages/search.astro`. Accent color + glowing-text-animation.
 - [X] **UnderConstructionDisclaimer** — WILL BE REMOVED
 
@@ -95,7 +95,7 @@ Migrate one component at a time, flip it fully to v6, then tick the checkbox.
 - [X] **QuickReviewLayout** - individual quick-review, pretty basic
 - [X] **PostLayout** - rename to **ArticleLayout**. Will be used for both blog posts and individual pages (/about, /now, etc).
 
-- [ ] **HomePageLayout** - doesn't exist, but might? Depends on what strategy I use for Home Page content.
+- [X] **HomePageLayout** - doesn't exist, but might? Depends on what strategy I use for Home Page content.
 
 ---
 

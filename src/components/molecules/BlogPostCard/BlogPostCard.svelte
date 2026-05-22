@@ -3,6 +3,20 @@
   import Image from '@components/atoms/Image';
   import Tag from '@components/atoms/Tag';
   import Tags from '@components/molecules/Tags';
+  import type { BaseProps } from '@utils/types';
+
+  export type BlogPostCardProps = BaseProps & {
+    title: string;
+    slug?: string;
+    url: string;
+    image?: string;
+    imageAlt?: string;
+    readingTime?: string;
+    excerpt?: string;
+    tags?: (string | { name: string; slug: string; url: string })[];
+    hideImage?: boolean;
+    goesWide?: boolean;
+  };
 
   let {
     image,
@@ -16,19 +30,7 @@
     hideImage,
     goesWide = true,
     class: className,
-  }: {
-    title: string;
-    slug?: string;
-    url: string;
-    image?: string;
-    imageAlt?: string;
-    readingTime?: string;
-    excerpt?: string;
-    tags?: (string | { name: string; slug: string; url: string })[];
-    hideImage?: boolean;
-    goesWide?: boolean;
-    class?: string;
-  } = $props();
+  }: BlogPostCardProps = $props();
 
   const cardGoesWide = $derived(goesWide && !hideImage);
 </script>

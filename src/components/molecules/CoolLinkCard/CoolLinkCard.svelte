@@ -5,6 +5,16 @@
   import MarkdownRenderer from '@components/molecules/MarkdownRenderer';
   import CoolLinkStamp from '@components/atoms/CoolLinkStamp';
   import GithubSlugger from 'github-slugger'
+  import type { BaseProps } from '@utils/types';
+
+  export type CoolLinkCardProps = BaseProps & {
+    title: string;
+    author?: string;
+    url: string;
+    date?: string;
+    tags?: (string | { name: string; slug: string; url: string })[];
+    content?: string;
+  };
 
   let {
     title,
@@ -15,16 +25,7 @@
     content,
     class: className,
     ...props
-  }: {
-    title: string;
-    author?: string;
-    url: string;
-    date?: string;
-    tags?: (string | { name: string; slug: string; url: string })[];
-    content?: string;
-    class?: string;
-    [key: string]: any;
-  } = $props();
+  }: CoolLinkCardProps = $props();
 
   const slugger = new GithubSlugger();
 </script>

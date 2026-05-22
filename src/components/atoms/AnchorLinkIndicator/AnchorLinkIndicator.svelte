@@ -1,14 +1,17 @@
 <script lang="ts">
   import LinkIcon from '@icons/link.svelte';
   import { copyToClipboard } from '@svelte-put/copy';
+  import type { BaseProps } from '@utils/types';
+
+  export type AnchorLinkIndicatorProps = BaseProps & {
+    anchor: string;
+    title: string;
+  };
 
   let {
     anchor,
     title
-  } : {
-    anchor: string;
-    title: string;
-  } = $props();
+  } : AnchorLinkIndicatorProps = $props();
 
   function onclick(event: MouseEvent) {
     event.preventDefault();

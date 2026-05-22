@@ -2,6 +2,15 @@
   import Image from '@components/atoms/Image';
   import { handleCmsMediaPath } from '@utils/functions';
   import { fly } from 'svelte/transition';
+  import type { BaseProps } from '@utils/types';
+
+  export type AuthorAvatarProps = BaseProps & {
+    src: string;
+    alt: string;
+    extraImages?: string[];
+    size?: 'large' | 'medium' | 'small' | 'tiny';
+    animated?: boolean;
+  };
 
   let {
     src,
@@ -10,14 +19,7 @@
     size = 'medium',
     animated = false,
     class: className,
-  }: {
-    src: string;
-    alt: string;
-    extraImages?: string[];
-    size?: 'large' | 'medium' | 'small' | 'tiny';
-    animated?: boolean;
-    class?: string;
-  } = $props();
+  }: AuthorAvatarProps = $props();
 
   let tag = $derived(extraImages ? 'button' : 'div');
   let images = $derived(

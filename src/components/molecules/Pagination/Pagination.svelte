@@ -1,15 +1,18 @@
 <script lang="ts">
+  import type { BaseProps } from '@utils/types';
+
+  export type PaginationProps = BaseProps & {
+    totalPages: number;
+    currentPage: number;
+    baseUrl: string;
+  };
+
   let {
     totalPages,
     currentPage,
     baseUrl,
     class: className,
-  }: {
-    totalPages: number;
-    currentPage: number;
-    baseUrl: string;
-    class?: string;
-  } = $props();
+  }: PaginationProps = $props();
 
   function range(start: number, end: number) {
     const length = end - start + 1;

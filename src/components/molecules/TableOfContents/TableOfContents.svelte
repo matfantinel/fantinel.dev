@@ -3,18 +3,20 @@
   import { fade } from 'svelte/transition';
   import { animatedDetails } from 'svelte-animated-details';
   import { isInViewport } from '@utils/functions';
+  import type { BaseProps } from '@utils/types';
 
-  let {
-    headings,
-    class: className,
-  }: {
+  export type TableOfContentsProps = BaseProps & {
     headings: {
       slug: string;
       text: string;
       depth: number;
     }[];
-    class?: string;
-  } = $props();
+  };
+
+  let {
+    headings,
+    class: className,
+  }: TableOfContentsProps = $props();
 
   let currentHeading = $state<string | undefined>(undefined);
 

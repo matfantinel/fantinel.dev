@@ -1,6 +1,13 @@
 <script lang="ts">
   import ChevronRight from '@assets/icons/chevron-right.svelte';
   import Field from '../Field/Field.svelte';
+  import type { BaseProps } from '@utils/types';
+
+  export type PagefindSearchFieldProps = BaseProps & {
+    id?: string;
+    value?: string;
+    onsubmit?: (event: Event) => void;
+  };
 
   let {
     id,
@@ -8,13 +15,7 @@
     onsubmit,
     class: className,
     ...props
-  }: {
-    id?: string;
-    value?: string;
-    onsubmit?: (event: Event) => void;
-    class?: string;
-    [key: string]: any;
-  } = $props();
+  }: PagefindSearchFieldProps = $props();
 
   let hasValue = $state(value);
   let classList = ['m-pagefind-search-field', className];

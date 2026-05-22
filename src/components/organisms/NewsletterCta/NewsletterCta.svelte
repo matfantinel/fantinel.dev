@@ -4,19 +4,22 @@
   import Field from '@components/molecules/Field';
   import MarkdownRenderer from '@components/molecules/MarkdownRenderer';
 
+  import type { BaseProps } from '@utils/types';
+
+  export type NewsletterCtaProps = BaseProps & {
+    heading: string;
+    body: string;
+    formUrl: string;
+    tag?: string;
+  };
+
   let {
     heading,
     body,
     formUrl,
     tag = 'website',
     class: className,
-  }: {
-    heading: string;
-    body: string;
-    formUrl: string;
-    tag?: string;
-    class?: string;
-  } = $props();
+  }: NewsletterCtaProps = $props();
 </script>
 
 <div class={['o-newsletter-cta', 'u-container', className]}>
@@ -54,10 +57,10 @@
       gap: var(--spacing-lg) var(--spacing-xl);
 
       padding: var(--spacing-lg) var(--spacing-xl);
-      background-color: var(--theme--background-card-color);
+      background-color: var(--t-v6--surface--card);
       border-radius: var(--border-radius);
       box-shadow: var(--t-v6--shadow--base);
-      border: 1px dashed var(--theme--color-complementary);
+      border: 1px dashed var(--t-v6--complementary);
     }
 
     &__content {

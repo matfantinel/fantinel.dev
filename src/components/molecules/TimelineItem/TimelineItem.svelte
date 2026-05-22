@@ -8,13 +8,12 @@
   import CoolLinkCard from '@components/molecules/CoolLinkCard';
   import PhotographyCard from '@components/molecules/PhotographyCard';
   import QuickReviewCard from '@components/molecules/QuickReviewCard';
-  import metaConfig from '@public/cms/meta.yml';
+  import { getSiteMeta } from '@data/yaml';
   import type { BlogPost } from '@schemas/blog';
   import type { CoolLink } from '@schemas/cool-link';
   import type { Photography } from '@schemas/photography';
   import { PostType } from '@schemas/post-types';
   import type { QuickReview } from '@schemas/quick-review';
-  import type { SiteMeta } from '@schemas/site-meta';
   import {
     blogPostToBlogPostCardProps,
     coolLinkToCoolLinkCardProps,
@@ -22,17 +21,20 @@
     quickReviewToQuickReviewCardProps,
   } from '@utils/prop-mapping';
 
-  const siteMeta: SiteMeta = metaConfig;
+  import type { BaseProps } from '@utils/types';
+
+  const siteMeta = getSiteMeta();
+
+  export type TimelineItemProps = BaseProps & {
+    type: string;
+    data: BlogPost | QuickReview | CoolLink | Photography;
+  };
 
   let {
     type,
     data,
     class: className,
-  }: {
-    type: string;
-    data: BlogPost | QuickReview | CoolLink | Photography;
-    class?: string;
-  } = $props();
+  }: TimelineItemProps = $props();
 
   function getPostActionLabel(postType: string, postData: BlogPost | QuickReview | CoolLink | Photography) {
     if (postType === PostType.BLOG_POST) {

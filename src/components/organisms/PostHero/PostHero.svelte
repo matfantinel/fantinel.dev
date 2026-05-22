@@ -5,6 +5,17 @@
   import Tags from '@components/molecules/Tags';
   import type { SiteAuthor } from '@schemas/site-meta';
   import dateformat from 'dateformat';
+  import type { BaseProps } from '@utils/types';
+
+  export type PostHeroProps = BaseProps & {
+    title: string;
+    slug?: string;
+    author?: SiteAuthor;
+    date?: Date;
+    updated?: Date;
+    readingTime?: string;
+    tags?: (string | { name: string; slug: string; url: string })[];
+  };
 
   let {
     title,
@@ -15,16 +26,7 @@
     readingTime,
     tags,
     class: className,
-  }: {
-    title: string;
-    slug?: string;
-    author?: SiteAuthor;
-    date?: Date;
-    updated?: Date;
-    readingTime?: string;
-    tags?: (string | { name: string; slug: string; url: string })[];
-    class?: string;
-  } = $props();
+  }: PostHeroProps = $props();
 </script>
 
 <div class={['o-post-hero u-content-grid', className]}>

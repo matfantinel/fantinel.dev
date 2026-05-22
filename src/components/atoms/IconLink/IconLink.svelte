@@ -1,6 +1,17 @@
 <script lang="ts">
   import { HttpRegex } from '@utils/regex';
   import type { Snippet } from 'svelte';
+  import type { BaseProps } from '@utils/types';
+
+  export type IconLinkProps = BaseProps & {
+    href?: string;
+    target?: string;
+    rel?: string;
+    title?: string;
+    iconPosition?: 'left' | 'right';
+    text?: string;
+    onclick?: EventListener;
+  };
 
   let {
     href,
@@ -13,18 +24,7 @@
     children,
     onclick,
     ...props
-  }: {
-    href?: string;
-    target?: string;
-    rel?: string;
-    title?: string;
-    class?: string;
-    icon?: Snippet;
-    iconPosition?: 'left' | 'right';
-    children?: Snippet;
-    onclick?: EventListener;
-    [key: string]: any;
-  } = $props();
+  }: IconLinkProps & { icon?: Snippet; children?: Snippet } = $props();
 
   let tag = $derived(href ? 'a' : 'button');
   let isExternalLink = $derived(!!href && HttpRegex.test(href));

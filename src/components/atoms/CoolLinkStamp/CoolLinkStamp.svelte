@@ -1,14 +1,16 @@
 <script lang="ts">
   import CoolIcon from '@assets/icons/cool.svelte';
   import dateformat from 'dateformat';
+  import type { BaseProps } from '@utils/types';
+
+  export type CoolLinkStampProps = BaseProps & {
+    date?: string;
+  };
 
   let {
     date,
     class: className,
-  }: {
-    date?: string;
-    class?: string;
-  } = $props();
+  }: CoolLinkStampProps = $props();
 
   let classList = $derived(['a-cool-link-stamp', className]);
   let randomOpacity = $derived(0.7 + Math.random() * 0.2); // Random between 0.7 and 0.9

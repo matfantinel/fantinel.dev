@@ -5,9 +5,8 @@ import TableOfContents from '@components/molecules/TableOfContents';
 import AboutAuthor from '@components/organisms/AboutAuthor';
 import PostHero from '@components/organisms/PostHero';
 import FeaturedPosts from '@components/organisms/FeaturedPosts';
-import metaConfig from '@public/cms/meta.yml';
+import { getSiteMeta } from '@data/yaml';
 import type { BlogPost } from '@schemas/blog';
-import type { SiteMeta } from '@schemas/site-meta';
 import { handleCmsMediaPath } from '@utils/functions';
 import BaseLayout from './BaseLayout.astro';
 import CommentCta from '@components/organisms/CommentCta';
@@ -23,7 +22,7 @@ const { post }: Props = Astro.props;
 
 const showToc = post.data.showToc && post.data.toc && post.data.toc.length > 0;
 
-const siteMeta: SiteMeta = metaConfig;
+const siteMeta = getSiteMeta();
 let coverImage;
 if (post.data.ogImage) {
   if (post.data.ogImage.includes(siteMeta.baseUrl)) {
@@ -107,7 +106,7 @@ if (post.data.ogImage) {
               image={post.data.author.image}
               extraImages={post.data.author.extraImages}
               socials={post.data.author.socials}
-              button={{ text: 'About', url: '/about' }}
+              button={{ text: 'About', href: '/about' }}
               client:load
             />
           )
@@ -119,7 +118,7 @@ if (post.data.ogImage) {
               title='You might also like'
               button={{
                 text: 'View blog',
-                url: '/blog',
+                href: '/blog',
               }}
               posts={post.data.relatedPosts}
             />

@@ -1,6 +1,17 @@
 <script lang="ts">
   import Input from '@components/atoms/Input';
   import SearchIcon from '@assets/icons/search.svelte';
+  import type { BaseProps } from '@utils/types';
+
+  export type FieldProps = BaseProps & {
+    id?: string;
+    label?: string;
+    value?: string;
+    placeholder?: string;
+    required?: boolean;
+    type?: string;
+    name?: string;
+  };
 
   let {
     id,
@@ -12,17 +23,7 @@
     name,
     class: className,
     ...props
-  }: {
-    id?: string;
-    label?: string;
-    value?: string;
-    placeholder?: string;
-    required?: boolean;
-    type?: string;
-    name?: string;
-    class?: string;
-    [key: string]: any;
-  } = $props();
+  }: FieldProps = $props();
 
   let classList = $derived(['m-field', type === 'search' ? 'm-field--search' : '', className]);
 

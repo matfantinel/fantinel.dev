@@ -1,3 +1,4 @@
-import Tag from './NavMenuLink.svelte';
+import NavMenuLink from './NavMenuLink.svelte';
 
-export default Tag;
+export default NavMenuLink;
+export type { NavMenuLinkProps } from './NavMenuLink.svelte';

@@ -14,17 +14,20 @@
   import type { SocialLink as SocialLinkType } from '@schemas/site-meta';
   import PagefindSearchField from '@components/molecules/PagefindSearchField';
 
+  import type { BaseProps } from '@utils/types';
+
+  export type HeaderProps = BaseProps & {
+    currentSearch?: string;
+    currentUrl?: string;
+    socials?: SocialLinkType[];
+  };
+
   let {
     currentSearch,
     currentUrl,
     socials,
     class: className,
-  }: {
-    currentSearch?: string;
-    currentUrl?: string;
-    socials?: SocialLinkType[];
-    class?: string;
-  } = $props();
+  }: HeaderProps = $props();
 
   let pathname = $state('/');
 
@@ -126,6 +129,10 @@
           {link.label}
         </NavMenuLink>
       {/each}
+
+      <ThemeToggle class="o-header__theme-toggle mobile-only" />
+
+      <PagefindSearchField class="o-header__search-field mobile-only" value={currentSearch} />
     </nav>
 
     {#if socials}
@@ -189,6 +196,16 @@
       align-self: center;
     }
 
+    :global(.o-header__theme-toggle.mobile-only) {
+      display: none;
+    }
+
+    :global(.o-header__search-field.mobile-only) {
+      flex-shrink: 0;
+      width: min(200px, 100%);
+      display: none;
+    }
+
     @include breakpoints.for-phone-only {
       &__container {
         flex-direction: row;
@@ -197,6 +214,7 @@
         align-items: center;
         width: 100%;
         overflow: hidden;
+        height: 64px;
       }
 
       &__logo {
@@ -204,6 +222,14 @@
           width: 32px !important;
           height: 32px !important;
         }
+      }
+
+      :global(.o-header__theme-toggle.mobile-only) {
+        display: flex;
+      }
+
+      :global(.o-header__search-field.mobile-only) {
+        display: block;
       }
 
       &__navigation {

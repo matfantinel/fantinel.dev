@@ -3,9 +3,8 @@ import CoolLinkCards from '@components/molecules/CoolLinkCards';
 import type { CoolLink, CoolLinkTag } from '@schemas/cool-link';
 import type { FilterTag, FilterGroup } from '@schemas/filter';
 import BaseArchiveLayout from './BaseArchiveLayout.astro';
-import type { SiteMeta } from '@schemas/site-meta';
-import metaConfig from '@public/cms/meta.yml';
-const siteMeta: SiteMeta = metaConfig;
+import { getSiteMeta } from '@data/yaml';
+const siteMeta = getSiteMeta();
 
 interface Props {
   links: CoolLink[];
@@ -77,5 +76,9 @@ const basePaginationUrl = `/cool-links${currentTag ? `/tag/${currentTag.slug}` :
 
   :root:has(.l-cool-links-archive) {
     @include mixins.set-accent-color('cool-link');
+  }
+
+  :global(.l-base-archive.l-cool-links-archive) {
+    --content-max-width: 780px;
   }
 </style>

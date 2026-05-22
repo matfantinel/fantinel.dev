@@ -3,16 +3,17 @@
   import type { QuickReview } from '@schemas/quick-review';
   import QuickReviewCard from '@components/molecules/QuickReviewCard';
   import { quickReviewToQuickReviewCardProps } from '@utils/prop-mapping';
+  import type { BaseProps } from '@utils/types';
+
+  export type QuickReviewCardsProps = BaseProps & {
+    reviews?: QuickReview[];
+  };
 
   let {
     class: className,
     reviews,
     children,
-  }: {
-    class?: string;
-    reviews?: QuickReview[];
-    children?: Snippet;
-  } = $props();
+  }: QuickReviewCardsProps & { children?: Snippet } = $props();
 </script>
 
 <div class={['m-quick-review-cards', className]}>

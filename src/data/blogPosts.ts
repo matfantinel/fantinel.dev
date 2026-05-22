@@ -1,5 +1,4 @@
-import metaConfig from "@public/cms/meta.yml";
-import type { SiteMeta } from "@schemas/site-meta";
+import { getSiteMeta } from "@data/yaml";
 import { handleCmsMediaPath } from "@utils/functions";
 import type { RenderedContent } from "astro:content";
 import { getCollection } from "astro:content";
@@ -12,7 +11,7 @@ import { generateOgPathFromPost, generateOgPathFromCoolLinksPost } from "@utils/
 import { escapeXml, siteMeta as rssSiteMeta } from "@utils/rss";
 import dateformat from "dateformat";
 
-const siteMeta: SiteMeta = metaConfig;
+const siteMeta = getSiteMeta();
 
 /**
  * Sanitizes a blog post to make it ready for using it in the UI.

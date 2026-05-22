@@ -4,18 +4,21 @@
   import BlogPostCard from '@components/molecules/BlogPostCard';
   import type { BlogPost } from '@schemas/blog';
   import { blogPostToBlogPostCardProps } from '@utils/prop-mapping';
+  import type { ButtonProps } from '@components/atoms/Button';
+  import type { BaseProps } from '@utils/types';
+
+  export type FeaturedPostsProps = BaseProps & {
+    title: string;
+    button?: ButtonProps & { icon?: any };
+    posts: BlogPost[];
+  };
 
   let {
     title,
     button,
     posts,
     class: className,
-  }: {
-    title: string;
-    button?: { text: string; url: string };
-    posts: BlogPost[];
-    class?: string;
-  } = $props();
+  }: FeaturedPostsProps = $props();
 </script>
 
 <div class={['o-featured-posts', className]}>

@@ -1,10 +1,9 @@
 ---
 import BlogPostCard from '@components/molecules/BlogPostCard';
 import BlogPostCards from '@components/molecules/BlogPostCards';
-import metaConfig from '@public/cms/meta.yml';
+import { getSiteMeta } from '@data/yaml';
 import type { BlogPost, BlogPostCategory } from '@schemas/blog';
 import type { FilterTag, FilterGroup } from '@schemas/filter';
-import type { SiteMeta } from '@schemas/site-meta';
 import BaseArchiveLayout from './BaseArchiveLayout.astro';
 import { blogPostToBlogPostCardProps } from '@utils/prop-mapping';
 
@@ -30,7 +29,7 @@ const {
   dateFilters,
 }: Props = Astro.props;
 
-const siteMeta: SiteMeta = metaConfig;
+const siteMeta = getSiteMeta();
 
 const filterGroups: FilterGroup[] = [];
 if (categoryFilters) {

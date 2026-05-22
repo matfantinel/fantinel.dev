@@ -3,18 +3,20 @@
   import Button from '@components/atoms/Button';
   import MarkdownRenderer from '@components/molecules/MarkdownRenderer';
   import type { Snippet } from 'svelte';
+  import type { BaseProps } from '@utils/types';
+
+  export type CommentCtaProps = BaseProps & {
+    content?: string;
+    email: string;
+    emailSubject?: string;
+  };
 
   let {
     content,
     email,
     emailSubject,
     class: className,
-  }: {
-    content?: string;
-    email: string;
-    emailSubject?: string;
-    class?: string;
-  } = $props();
+  }: CommentCtaProps = $props();
 </script>
 
 {#snippet emailIconSnippet()}<Email />{/snippet}

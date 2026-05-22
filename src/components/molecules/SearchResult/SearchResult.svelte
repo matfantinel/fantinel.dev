@@ -6,6 +6,17 @@
   import PhotographyIcon from '@assets/icons/post-types/photography.svelte';
   import BlogPostIcon from '@assets/icons/post-types/post.svelte';
   import QuickReviewIcon from '@assets/icons/post-types/quick-review.svelte';
+  import type { BaseProps } from '@utils/types';
+
+  export type SearchResultProps = BaseProps & {
+    type?: PostType;
+    title: string;
+    url: string;
+    image?: string;
+    imageAlt?: string;
+    excerpt?: string;
+    subResults?: { excerpt: string }[];
+  };
 
   let {
     type,
@@ -16,18 +27,7 @@
     image,
     imageAlt,
     class: className,
-  }: {
-    type?: PostType;
-    title: string;
-    url: string;
-    image?: string;
-    imageAlt?: string;
-    excerpt?: string;
-    subResults?: {
-      excerpt: string;
-    }[];
-    class?: string;
-  } = $props();
+  }: SearchResultProps = $props();
 </script>
 
 <article class={['m-search-result', className]}>

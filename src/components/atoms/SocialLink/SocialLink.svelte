@@ -5,18 +5,20 @@
   import LinkedIn from '@assets/icons/socials/linkedin.svelte';
   import Email from '@assets/icons/socials/email.svelte';
   import Rss from '@assets/icons/rss.svelte';
+  import type { BaseProps } from '@utils/types';
+
+  export type SocialLinkProps = BaseProps & {
+    name: 'Mastodon' | 'GitHub' | 'LinkedIn' | 'Email' | 'RSS';
+    url: string;
+    label?: string;
+  };
 
   let {
     name,
     url,
     label,
     class: className,
-  }: {
-    name: 'Mastodon' | 'GitHub' | 'LinkedIn' | 'Email' | 'RSS';
-    url: string;
-    label?: string;
-    class?: string;
-  } = $props();
+  }: SocialLinkProps = $props();
 
   const getIconSnippet = (socialName: 'Mastodon' | 'GitHub' | 'LinkedIn' | 'Email' | 'RSS') => {
     switch (socialName) {

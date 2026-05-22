@@ -4,14 +4,16 @@
   import TvIcon from '@assets/icons/tv.svelte';
   import GameIcon from '@assets/icons/game.svelte';
   import AlbumIcon from '@assets/icons/album.svelte';
+  import type { BaseProps } from '@utils/types';
+
+  export type QuickReviewTypeTagProps = BaseProps & {
+    type: QuickReviewType;
+  };
 
   let {
     type,
     class: className,
-  }: {
-    type: QuickReviewType;
-    class?: string;
-  } = $props();
+  }: QuickReviewTypeTagProps = $props();
 
   let classList = $derived([
     'a-quick-review-type-tag',

@@ -1,9 +1,21 @@
 <script lang="ts">
   import Button from '@components/atoms/Button';
+  import type { ButtonProps } from '@components/atoms/Button';
   import AuthorAvatar from '@components/molecules/AuthorAvatar';
   import MarkdownRenderer from '@components/molecules/MarkdownRenderer';
   import SocialLink from '@components/atoms/SocialLink';
   import type { SocialLink as SocialLinkType } from '@schemas/site-meta';
+  import type { BaseProps } from '@utils/types';
+
+  export type AboutAuthorProps = BaseProps & {
+    kicker?: string;
+    name: string;
+    bio: string;
+    image: string;
+    extraImages?: string[];
+    socials?: SocialLinkType[];
+    button?: ButtonProps & { icon?: any };
+  };
 
   let {
     kicker,
@@ -14,19 +26,7 @@
     socials,
     button,
     class: className,
-  }: {
-    kicker?: string;
-    name: string;
-    bio: string;
-    image: string;
-    extraImages?: string[];
-    socials?: SocialLinkType[];
-    button?: {
-      text: string;
-      url: string;
-    };
-    class?: string;
-  } = $props();
+  }: AboutAuthorProps = $props();
 </script>
 
 <div class={['o-about-author', className]}>
@@ -44,7 +44,7 @@
       <MarkdownRenderer content={bio} />
     </div>
     {#if button}
-      <Button href={button.url} class="o-about-author__button">
+      <Button href={button.href} class="o-about-author__button">
         {button.text}
       </Button>
     {/if}

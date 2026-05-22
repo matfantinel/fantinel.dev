@@ -3,14 +3,16 @@
 
   import SocialLink from '@components/atoms/SocialLink';
   import type { SocialLink as SocialLinkType } from '@schemas/site-meta';
+  import type { BaseProps } from '@utils/types';
+
+  export type FooterProps = BaseProps & {
+    socials?: SocialLinkType[];
+  };
 
   let {
     socials,
     class: className,
-  }: {
-    socials?: SocialLinkType[];
-    class?: string;
-  } = $props();
+  }: FooterProps = $props();
 
   const currentYear = new Date().getFullYear();
 </script>
