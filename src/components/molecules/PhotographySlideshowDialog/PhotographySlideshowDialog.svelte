@@ -31,7 +31,7 @@
     isBrowser = typeof window !== 'undefined';
     if (isBrowser) {
       // @ts-ignore
-      import('enhanced-css-slider/src/enhanced-css-slider.js');
+      import('carousel-pilot');
     }
   });
 </script>
@@ -56,9 +56,9 @@
       {/if}
     </div>
 
-    <enhanced-css-slider centered>
-      <div class="m-photography-slideshow-dialog__list" data-slider-slot="list">
-        <Image class="m-photography-slideshow-dialog__image" src={image} alt={imageAlt || ''} />
+    <carousel-pilot centered>
+      <div class="m-photography-slideshow-dialog__list" data-carousel-track>
+        <Image class="m-photography-slideshow-dialog__image" src={image} alt={imageAlt} />
         {#each additionalImages as additionalImage}
           <Image class="m-photography-slideshow-dialog__image" src={additionalImage.src} alt={additionalImage.alt} />
         {/each}
@@ -69,18 +69,18 @@
           <ArrowLink
             class="m-photography-slideshow-dialog__nav-button"
             color="photography"
-            data-slider-slot="prev"
+            data-carousel-prev
             arrowPosition="left"
           >
             Previous
           </ArrowLink>
           <div class="m-photography-slideshow-dialog__dots">
-            <div class="m-photography-slideshow-dialog__dot" data-slider-slot="dot"></div>
+            <div class="m-photography-slideshow-dialog__dot" data-carousel-indicator></div>
             {#each additionalImages as _}
-              <div class="m-photography-slideshow-dialog__dot" data-slider-slot="dot"></div>
+              <div class="m-photography-slideshow-dialog__dot" data-carousel-indicator></div>
             {/each}
           </div>
-          <ArrowLink class="m-photography-slideshow-dialog__nav-button" color="photography" data-slider-slot="next">
+          <ArrowLink class="m-photography-slideshow-dialog__nav-button" color="photography" data-carousel-next>
             Next
           </ArrowLink>
         {/if}
@@ -110,7 +110,7 @@
           }
         </style>
       </noscript>
-    </enhanced-css-slider>
+    </carousel-pilot>
   </div>
 </dialog>
 
@@ -217,7 +217,8 @@
       display: flex;
       overflow-x: auto;
       scroll-snap-type: x mandatory;
-      overscroll-behavior: contain;
+      overscroll-behavior-x: contain;
+      width: 100%;
 
       //hide scrollbar
       scrollbar-width: none; /* Firefox */
@@ -273,7 +274,7 @@
       opacity: 0;
     }
 
-    :global(enhanced-css-slider) {
+    :global(carousel-pilot) {
       display: contents;
     }
   }
