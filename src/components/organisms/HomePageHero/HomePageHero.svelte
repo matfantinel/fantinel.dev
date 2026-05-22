@@ -175,6 +175,8 @@
         justify-content: flex-start;
         align-items: center;
         gap: var(--spacing-xl) var(--spacing-md);
+
+        padding-block: var(--spacing-xl) var(--spacing-lg);
       }
       &__image-container {
         width: 80px;
