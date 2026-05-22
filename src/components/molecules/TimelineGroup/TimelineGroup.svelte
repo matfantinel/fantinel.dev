@@ -55,12 +55,15 @@
       padding-block: var(--spacing-sm);
       width: 100%;
 
+      position: sticky;
+      top: 0;
+      z-index: 2;
+      width: calc(100% + 20px);
+      margin-left: -10px;
+      padding-left: 10px;
+      background: linear-gradient(to bottom, var(--t-v6--surface--base) 60%, transparent);
       @include breakpoints.for-phone-only {
-        position: sticky;
         top: 64px;
-        z-index: 2;
-        width: 100%;
-        background: linear-gradient(to bottom, var(--t-v6--surface--base) 60%, transparent);
       }
     }
 

@@ -181,7 +181,7 @@
     {/if}
 
     {#if bottomButton}
-      <Button href={bottomButton.url} class="o-posts-timeline__bottom-button">
+      <Button href={bottomButton.url} class="o-posts-timeline__bottom-button" icon={bottomButton.icon} iconPosition={bottomButton.iconPosition}>
         {bottomButton.text}
       </Button>
     {/if}

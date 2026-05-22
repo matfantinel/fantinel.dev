@@ -169,6 +169,9 @@
     }
 
     @container (max-width: 520px) {
+      &:before {
+        height: 160px;
+      }
       &__container {
         display: flex;
         flex-wrap: wrap;
@@ -179,7 +182,16 @@
         padding-block: var(--spacing-xl) var(--spacing-lg);
       }
       &__image-container {
-        width: 80px;
+        width: 100px;
+        margin-inline: auto;
+      }
+      &__title-container {
+        align-items: center;
+        width: 100%;
+        margin-inline: auto;
+        text-align: center;
+        margin-bottom: calc(var(--spacing-lg) * -1);
+        order: -1;
       }
       &__bio {
         width: 100%;

@@ -1,7 +1,8 @@
 <script lang="ts">
-  import HeroWaves from '@components/molecules/HeroWaves';
-  import Image from '@components/atoms/Image';
   import Button from '@components/atoms/Button';
+  import Image from '@components/atoms/Image';
+  import HeroWaves from '@components/molecules/HeroWaves';
+  import MarkdownRenderer from '@components/molecules/MarkdownRenderer';
 
   let {
     title,
@@ -40,9 +41,9 @@
       </h1>
 
       {#if body}
-        <p class="o-generic-hero__body">
-          {body}
-        </p>
+        <div class="o-generic-hero__body u-markdown">
+          <MarkdownRenderer content={body} />
+        </div>
       {/if}
 
       {#if children}
