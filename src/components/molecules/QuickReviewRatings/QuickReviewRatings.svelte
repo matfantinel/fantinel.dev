@@ -87,7 +87,7 @@
     justify-content: space-between;
 
     --text-color: var(--t-v6--qr-base-light-color);
-    --rating-color: var(--theme--color-accent);
+    --rating-color: var(--t-v6--accent);
 
     border: 1px solid var(--text-color);
     color: var(--text-color);
@@ -112,7 +112,7 @@
 
       &--active {
         background: var(--rating-color);
-        box-shadow: var(--theme--shadow-card-high);
+        box-shadow: var(--t-v6--shadow--high);
 
         &:first-child {
           margin-left: calc(var(--spacing-md) * -1);
