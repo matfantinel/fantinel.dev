@@ -43,11 +43,11 @@
     <div class="o-about-author__bio u-markdown">
       <MarkdownRenderer content={bio} />
     </div>
-    {#if button}
+    <!-- {#if button}
       <Button href={button.href} class="o-about-author__button">
         {button.text}
       </Button>
-    {/if}
+    {/if} -->
     {#if socials}
       <div class="o-about-author__socials">
         {#each socials as social}

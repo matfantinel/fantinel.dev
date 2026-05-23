@@ -5,8 +5,8 @@ import type { Photography } from '@schemas/photography';
 import dateformat from 'dateformat';
 import BaseLayout from './BaseLayout.astro';
 import striptags from 'striptags';
-import Button from '@components/atoms/Button';
 import PostsTimeline from '@components/organisms/PostsTimeline';
+import { getPhotographySingleConfig } from '@data/yaml';
 
 interface Props {
   photography: Photography;
@@ -14,6 +14,7 @@ interface Props {
 }
 
 const { photography, latestTimelineEntries }: Props = Astro.props;
+const pageData = getPhotographySingleConfig();
 ---
 
 <BaseLayout
@@ -30,7 +31,7 @@ const { photography, latestTimelineEntries }: Props = Astro.props;
       <h1 class='l-photography__title'>Photography: {photography.title}</h1>
 
       <div class='l-photography__about u-markdown'>
-        {photography.photoDate && <p>Taken on {dateformat(photography.photoDate, 'yyyy-mm-dd', true)}</p>}
+        {photography.photoDate && <p class="md-center">Taken on {dateformat(photography.photoDate, 'yyyy-mm-dd', true)}</p>}
 
         <MarkdownRenderer content={photography.content} />
       </div>
@@ -54,15 +55,18 @@ const { photography, latestTimelineEntries }: Props = Astro.props;
         }
       </div>
 
-      <div class="l-photography__about u-markdown" data-pagefind-ignore>
-        <h2 class="u-h4">About my Photography</h2>
-        <p>I'm no professional, but sometimes I like to capture the world around me. Sometimes, the photos turn out pretty nice. All pictures taken with an iPhone 15 Pro.</p>
-        <Button href="/photography">View all photography</Button>
-        {latestTimelineEntries?.length > 0 && (
-          <p>Or check out other stuff I've posted recently:</p>
-          <hr />
-        )}
-      </div>
+      {
+        pageData?.about && (
+          <div class="l-photography__about u-markdown" data-pagefind-ignore>
+            <MarkdownRenderer content={pageData.about} />
+
+            {latestTimelineEntries?.length > 0 && pageData.timelineIntro && (
+              <MarkdownRenderer content={pageData.timelineIntro} />
+              <hr />
+            )}
+          </div>
+        )
+      }
 
       {
         latestTimelineEntries?.length > 0 && (
@@ -107,15 +111,10 @@ const { photography, latestTimelineEntries }: Props = Astro.props;
 
       &__about {
         max-width: 580px;
-        align-items: flex-start;
 
         hr {
           width: 100%;
           border-top-style: dashed;
-        }
-
-        :global(.a-button) {
-          align-self: center;
         }
       }
 

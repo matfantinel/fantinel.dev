@@ -5,7 +5,8 @@ import type { QuickReview } from '@schemas/quick-review';
 import { quickReviewToQuickReviewCardProps } from '@utils/prop-mapping';
 import striptags from 'striptags';
 import BaseLayout from './BaseLayout.astro';
-import Button from '@components/atoms/Button';
+import MarkdownRenderer from '@components/molecules/MarkdownRenderer';
+import { getQuickReviewSingleConfig } from '@data/yaml';
 
 interface Props {
   review: QuickReview;
@@ -13,6 +14,7 @@ interface Props {
 }
 
 const { review, latestTimelineEntries }: Props = Astro.props;
+const pageData = getQuickReviewSingleConfig();
 ---
 
 <BaseLayout
@@ -30,15 +32,18 @@ const { review, latestTimelineEntries }: Props = Astro.props;
 
       <QuickReviewCard class='l-quick-review__review' {...quickReviewToQuickReviewCardProps(review)} client:load />
 
-      <div class="l-quick-review__about u-markdown" data-pagefind-ignore>
-        <h2 class="u-h4">About Quick Reviews</h2>
-        <p>Since June 2024, I started writing quick reviews of movies, TV shows and games I've watched or played.</p>
-        <Button href="/quick-reviews">View all quick reviews</Button>
-        {latestTimelineEntries?.length > 0 && (
-          <p>Or check out other stuff I've posted recently:</p>
-          <hr />
-        )}
-      </div>
+      {
+        pageData?.about && (
+          <div class="l-quick-review__about u-markdown" data-pagefind-ignore>
+            <MarkdownRenderer content={pageData.about} />
+
+            {latestTimelineEntries?.length > 0 && pageData.timelineIntro && (
+              <MarkdownRenderer content={pageData.timelineIntro} />
+              <hr />
+            )}
+          </div>
+        )
+      }
 
       {
         latestTimelineEntries?.length > 0 && (
@@ -84,15 +89,10 @@ const { review, latestTimelineEntries }: Props = Astro.props;
 
     &__about {
       max-width: 580px;
-      align-items: flex-start;
 
       hr {
         width: 100%;
         border-top-style: dashed;
-      }
-
-      :global(.a-button) {
-        align-self: center;
       }
     }
   }

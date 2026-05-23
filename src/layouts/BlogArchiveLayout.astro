@@ -1,7 +1,7 @@
 ---
 import BlogPostCard from '@components/molecules/BlogPostCard';
 import BlogPostCards from '@components/molecules/BlogPostCards';
-import { getSiteMeta } from '@data/yaml';
+import { getSiteMeta, getBlogArchiveConfig } from '@data/yaml';
 import type { BlogPost, BlogPostCategory } from '@schemas/blog';
 import type { FilterTag, FilterGroup } from '@schemas/filter';
 import BaseArchiveLayout from './BaseArchiveLayout.astro';
@@ -30,6 +30,7 @@ const {
 }: Props = Astro.props;
 
 const siteMeta = getSiteMeta();
+const pageData = getBlogArchiveConfig();
 
 const filterGroups: FilterGroup[] = [];
 if (categoryFilters) {
@@ -52,9 +53,11 @@ const basePaginationUrl = `/blog${currentCategory ? `/category/${currentCategory
 
 <BaseArchiveLayout
   className='l-blog-archive'
-  title={`${siteMeta.author?.name}'s Blog`}
-  heroTitle='Blog'
-  heroBody='What started in 2019 as a place to document things I was learning as a web developer has since grown into a journal of sorts. It is, after all, a personal blog. Use the filters to find whatever brought you here.'
+  title={pageData.pageTitle}
+  image={pageData.pagePreviewImage ? siteMeta.baseUrl + pageData.pagePreviewImage : undefined}
+  description={pageData.pageDescription}
+  heroTitle={pageData.hero?.title}
+  heroBody={pageData.hero?.body}
   baseUrl={baseUrl}
   basePaginationUrl={basePaginationUrl}
   currentPage={currentPage}

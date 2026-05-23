@@ -3,8 +3,9 @@ import CoolLinkCards from '@components/molecules/CoolLinkCards';
 import type { CoolLink, CoolLinkTag } from '@schemas/cool-link';
 import type { FilterTag, FilterGroup } from '@schemas/filter';
 import BaseArchiveLayout from './BaseArchiveLayout.astro';
-import { getSiteMeta } from '@data/yaml';
+import { getSiteMeta, getCoolLinkArchiveConfig } from '@data/yaml';
 const siteMeta = getSiteMeta();
+const pageData = getCoolLinkArchiveConfig();
 
 interface Props {
   links: CoolLink[];
@@ -47,13 +48,13 @@ const basePaginationUrl = `/cool-links${currentTag ? `/tag/${currentTag.slug}` :
 
 <BaseArchiveLayout
   className='l-cool-links-archive'
-  title='Cool Links'
-  image={siteMeta.baseUrl + '/cms/media/articles/cool-links-preview.png'}
-  description="A collection of links to interesting things I've come across."
-  heroTitle='Cool Links'
-  heroBody="Cool links are a collection of interesting things I find around the web. They can range from fun dumb websites to deep thought-provoking essays, or more commonly something in between. The feed here updates frequently, and I compile everything into a blog post on the last day of each month."
-  heroImage={siteMeta.baseUrl + '/cms/media/articles/cool-links-cover.png'}
-  heroImageAlt='Illustration of Cool Links in a laptop screen, with a hand pointing at them in a cool way.'
+  title={pageData.pageTitle}
+  image={pageData.pagePreviewImage ? siteMeta.baseUrl + pageData.pagePreviewImage : undefined}
+  description={pageData.pageDescription}
+  heroTitle={pageData.hero?.title}
+  heroBody={pageData.hero?.body}
+  heroImage={pageData.hero?.image}
+  heroImageAlt={pageData.hero?.imageAlt}
   baseUrl='/cool-links'
   basePaginationUrl={basePaginationUrl}
   currentPage={currentPage}

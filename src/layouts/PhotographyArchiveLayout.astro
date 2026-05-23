@@ -2,6 +2,9 @@
 import PhotographyCards from '@components/molecules/PhotographyCards';
 import type { Photography } from '@schemas/photography';
 import BaseArchiveLayout from './BaseArchiveLayout.astro';
+import { getSiteMeta, getPhotographyArchiveConfig } from '@data/yaml';
+const siteMeta = getSiteMeta();
+const pageData = getPhotographyArchiveConfig();
 
 interface Props {
   photographies: Photography[];
@@ -14,9 +17,10 @@ const { photographies, currentPage, totalPages }: Props = Astro.props;
 
 <BaseArchiveLayout
   className='l-photography-archive'
-  title='Photography'
-  heroTitle='Photography'
-  heroBody="I'm no professional, but sometimes I like to capture the world around me. Sometimes, the photos turn out pretty nice. All pictures taken with an iPhone 15 Pro."
+  title={pageData.pageTitle}
+  image={pageData.pagePreviewImage ? siteMeta.baseUrl + pageData.pagePreviewImage : undefined}
+  heroTitle={pageData.hero?.title}
+  heroBody={pageData.hero?.body}
   baseUrl='/photography'
   currentPage={currentPage}
   totalPages={totalPages}

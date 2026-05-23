@@ -2,7 +2,6 @@
   import Email from '@assets/icons/socials/email.svelte';
   import Button from '@components/atoms/Button';
   import MarkdownRenderer from '@components/molecules/MarkdownRenderer';
-  import type { Snippet } from 'svelte';
   import type { BaseProps } from '@utils/types';
 
   export type CommentCtaProps = BaseProps & {

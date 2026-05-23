@@ -4,8 +4,9 @@ import type { CoolLink } from '@schemas/cool-link';
 import striptags from 'striptags';
 import BaseLayout from './BaseLayout.astro';
 import { coolLinkToCoolLinkCardProps } from '@utils/prop-mapping';
-import Button from '@components/atoms/Button';
 import PostsTimeline from '@components/organisms/PostsTimeline';
+import { getCoolLinkSingleConfig } from '@data/yaml';
+import MarkdownRenderer from '@components/molecules/MarkdownRenderer';
 
 interface Props {
   link: CoolLink;
@@ -13,6 +14,7 @@ interface Props {
 }
 
 const { link, latestTimelineEntries }: Props = Astro.props;
+const pageData = getCoolLinkSingleConfig();
 ---
 
 <BaseLayout
@@ -28,15 +30,18 @@ const { link, latestTimelineEntries }: Props = Astro.props;
 
       <CoolLinkCard class='l-cool-link__link' {...coolLinkToCoolLinkCardProps(link)} />
 
-      <div class="l-cool-link__about u-markdown" data-pagefind-ignore>
-        <h2 class="u-h4">About Cool Links</h2>
-        <p>Cool links are a collection of interesting things I find around the web. They can range from fun dumb websites to deep thought-provoking essays, or more commonly something in between. The feed here updates frequently, and I compile everything into a blog post on the last day of each month.</p>
-        <Button href="/cool-links">View all cool links</Button>
-        {latestTimelineEntries?.length > 0 && (
-          <p>Or check out other stuff I've posted recently:</p>
-          <hr />
-        )}
-      </div>
+      {
+        pageData?.about && (
+          <div class="l-cool-link__about u-markdown" data-pagefind-ignore>
+            <MarkdownRenderer content={pageData.about} />
+
+            {latestTimelineEntries?.length > 0 && pageData.timelineIntro && (
+              <MarkdownRenderer content={pageData.timelineIntro} />
+              <hr />
+            )}
+          </div>
+        )
+      }
 
       {
         latestTimelineEntries?.length > 0 && (
@@ -82,15 +87,10 @@ const { link, latestTimelineEntries }: Props = Astro.props;
 
     &__about {
       max-width: 580px;
-      align-items: flex-start;
 
       hr {
         width: 100%;
         border-top-style: dashed;
-      }
-
-      :global(.a-button) {
-        align-self: center;
       }
     }
   }

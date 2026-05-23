@@ -5,6 +5,9 @@ import { QuickReviewType, QuickReviewRating } from '@schemas/quick-review-types'
 import { getTypeFromLowercaseKey, getRatingFromLowercaseKey } from '@schemas/quick-review-types';
 import type { FilterTag, FilterGroup } from '@schemas/filter';
 import BaseArchiveLayout from './BaseArchiveLayout.astro';
+import { getSiteMeta, getQuickReviewArchiveConfig } from '@data/yaml';
+const siteMeta = getSiteMeta();
+const pageData = getQuickReviewArchiveConfig();
 
 interface Props {
   reviews: QuickReview[];
@@ -62,9 +65,10 @@ if (totalReviews) {
 
 <BaseArchiveLayout
   className='l-quick-reviews-archive'
-  title='Quick Reviews'
-  heroTitle='Quick Reviews'
-  heroBody="Since June 2024, I started writing quick reviews of movies, TV shows and games I've watched or played. Here's every one of them."
+  title={pageData.pageTitle}
+  image={pageData.pagePreviewImage ? siteMeta.baseUrl + pageData.pagePreviewImage : undefined}
+  heroTitle={pageData.hero?.title}
+  heroBody={pageData.hero?.body}
   baseUrl='/quick-reviews'
   basePaginationUrl={paginationBaseUrl}
   currentPage={currentPage}

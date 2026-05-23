@@ -5,7 +5,7 @@ import TableOfContents from '@components/molecules/TableOfContents';
 import AboutAuthor from '@components/organisms/AboutAuthor';
 import PostHero from '@components/organisms/PostHero';
 import FeaturedPosts from '@components/organisms/FeaturedPosts';
-import { getSiteMeta } from '@data/yaml';
+import { getSiteMeta, getBlogSingleConfig } from '@data/yaml';
 import type { BlogPost } from '@schemas/blog';
 import { handleCmsMediaPath } from '@utils/functions';
 import BaseLayout from './BaseLayout.astro';
@@ -23,6 +23,7 @@ const { post }: Props = Astro.props;
 const showToc = post.data.showToc && post.data.toc && post.data.toc.length > 0;
 
 const siteMeta = getSiteMeta();
+const pageData = getBlogSingleConfig();
 let coverImage;
 if (post.data.ogImage) {
   if (post.data.ogImage.includes(siteMeta.baseUrl)) {
@@ -89,7 +90,7 @@ if (post.data.ogImage) {
           <CommentCta
             email={post.data.author.socials.find((s) => s.name === 'Email')!.url.replace('mailto:', '')}
             emailSubject={`I read "${post.data.title}" and have thoughts`}
-            content="Did this blog post change your life? Or maybe I made a mistake that ruined your day? You can always send me an email to tell me about it."
+            content={pageData.commentCta?.content}
           />
         )
       }
@@ -115,10 +116,10 @@ if (post.data.ogImage) {
         {
           post.data.relatedPosts && post.data.relatedPosts.length > 0 && (
             <FeaturedPosts
-              title='You might also like'
+              title={pageData.relatedPosts?.heading ?? 'You might also like'}
               button={{
-                text: 'View blog',
-                href: '/blog',
+                text: pageData.relatedPosts?.button?.text ?? 'View blog',
+                href: pageData.relatedPosts?.button?.href ?? '/blog',
               }}
               posts={post.data.relatedPosts}
             />
