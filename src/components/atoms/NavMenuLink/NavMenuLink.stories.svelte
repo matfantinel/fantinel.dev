@@ -2,7 +2,6 @@
   import { defineMeta } from '@storybook/addon-svelte-csf';
 
   import NavMenuLink from './NavMenuLink.svelte';
-  import Home from '@assets/icons/home.svelte';
 
   const { Story } = defineMeta({
     title: 'Atoms/Nav Menu Link',
@@ -15,7 +14,7 @@
       href: { control: 'text', required: true },
       children: { control: 'text', name: 'Example' },
       color: { control: 'text' },
-      icon: { control: false },
+      icon: { control: 'text' },
       target: { control: false },
       rel: { control: false },
       class: { control: false },
@@ -24,11 +23,10 @@
   });
 </script>
 
-{#snippet iconSnippet()}<Home />{/snippet}
 {#snippet template(args)}
-  <NavMenuLink {...args} href="#" icon={iconSnippet}>{args.children ?? 'Example'}</NavMenuLink>
+  <NavMenuLink {...args} href="#" icon="home">{args.children ?? 'Example'}</NavMenuLink>
   <br>
-  <NavMenuLink {...args} href="#" icon={iconSnippet} active>{args.children ?? 'Example'}</NavMenuLink>
+  <NavMenuLink {...args} href="#" icon="home" active>{args.children ?? 'Example'}</NavMenuLink>
 {/snippet}
 
 <Story name="Default" />

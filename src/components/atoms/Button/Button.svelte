@@ -3,12 +3,14 @@
   import type { Snippet } from 'svelte';
   import ChevronRight from '@assets/icons/chevron-right.svelte';
   import type { BaseProps } from '@utils/types';
+  import { getIcon } from '@utils/icons';
 
   export type ButtonProps = BaseProps & {
     href?: string;
     target?: string;
     rel?: string;
     color?: 'accent' | 'complementary' | 'blog' | 'quick-review' | 'cool-link' | 'photography';
+    icon?: string | 'arrow';
     iconPosition?: 'left' | 'right';
     text?: string;
   };
@@ -18,12 +20,12 @@
     target,
     rel,
     color = 'accent',
-    iconPosition = 'left',
-    class: className,
     icon,
+    iconPosition = 'left',
     children,
+    class: className,
     ...props
-  }: ButtonProps & { icon?: Snippet | 'arrow'; children?: Snippet } = $props();
+  }: ButtonProps & { children?: Snippet } = $props();
 
   let tag = $derived(href ? 'a' : 'button');
   let isExternalLink = $derived(!!href && HttpRegex.test(href));
@@ -41,6 +43,7 @@
   ]);
 
   let isArrowIcon = $derived(icon === 'arrow');
+  let IconComponent = $derived(!isArrowIcon && icon ? getIcon(icon) : undefined);
 </script>
 
 <svelte:element
@@ -54,9 +57,9 @@
   {#if iconPosition === 'left' && icon}
     <div class="a-button__icon" class:a-button__icon--arrow={isArrowIcon}>
       {#if isArrowIcon}
-        <ChevronRight />
-      {:else if typeof icon === 'function'}
-        {@render icon()}
+        <ChevronRight size="22px" />
+      {:else if IconComponent}
+        <IconComponent size="22px" />
       {/if}
     </div>
   {/if}
@@ -66,9 +69,9 @@
   {#if iconPosition === 'right' && icon}
     <div class="a-button__icon" class:a-button__icon--arrow={isArrowIcon}>
       {#if isArrowIcon}
-        <ChevronRight />
-      {:else if typeof icon === 'function'}
-        {@render icon()}
+        <ChevronRight size="22px" />
+      {:else if IconComponent}
+        <IconComponent size="22px" />
       {/if}
     </div>
   {/if}

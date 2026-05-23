@@ -3,7 +3,6 @@
   import Tag from '@components/atoms/Tag';
   import Tags from '@components/molecules/Tags';
   import Button from '@components/atoms/Button';
-  import FilterIcon from '@assets/icons/filter.svelte';
   import { animatedDetails } from 'svelte-animated-details';
   import BottomSheetDialog from '@components/molecules/BottomSheetDialog';
   import type { BaseProps } from '@utils/types';
@@ -152,13 +151,11 @@
   </div>
 {/snippet}
 
-{#snippet filtersIconSnippet()}<FilterIcon size="22px" />{/snippet}
-
 <div class={classList}>
   <div class="m-filters__mobile">
     <Button
       class="m-filters__mobile-button"
-      icon={filtersIconSnippet}
+      icon="filter"
       aria-label="Show filters"
       commandfor="filters-modal"
       command="show-modal"

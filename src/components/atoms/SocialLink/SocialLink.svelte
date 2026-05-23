@@ -1,10 +1,5 @@
 <script lang="ts">
   import IconLink from '@components/atoms/IconLink';
-  import Mastodon from '@assets/icons/socials/mastodon.svelte';
-  import GitHub from '@assets/icons/socials/github.svelte';
-  import LinkedIn from '@assets/icons/socials/linkedin.svelte';
-  import Email from '@assets/icons/socials/email.svelte';
-  import Rss from '@assets/icons/rss.svelte';
   import type { BaseProps } from '@utils/types';
 
   export type SocialLinkProps = BaseProps & {
@@ -20,33 +15,27 @@
     class: className,
   }: SocialLinkProps = $props();
 
-  const getIconSnippet = (socialName: 'Mastodon' | 'GitHub' | 'LinkedIn' | 'Email' | 'RSS') => {
+  const getIconName = (socialName: 'Mastodon' | 'GitHub' | 'LinkedIn' | 'Email' | 'RSS') => {
     switch (socialName) {
       case 'Mastodon':
-        return mastodonIconSnippet;
+        return 'socials/mastodon';
       case 'GitHub':
-        return githubIconSnippet;
+        return 'socials/github';
       case 'LinkedIn':
-        return linkedinIconSnippet;
+        return 'socials/linkedin';
       case 'Email':
-        return emailIconSnippet;
+        return 'socials/email';
       case 'RSS':
-        return rssIconSnippet;
+        return 'rss';
       default:
-        return emailIconSnippet;
+        return 'socials/email';
     }
   };
 </script>
 
-{#snippet mastodonIconSnippet()}<Mastodon />{/snippet}
-{#snippet githubIconSnippet()}<GitHub />{/snippet}
-{#snippet linkedinIconSnippet()}<LinkedIn />{/snippet}
-{#snippet emailIconSnippet()}<Email />{/snippet}
-{#snippet rssIconSnippet()}<Rss />{/snippet}
-
 <div class={['m-social-link', className]}>
   <IconLink
-    icon={getIconSnippet(name)}
+    icon={getIconName(name)}
     href={url}
     target="_blank"
     rel="me noopener"

@@ -1,7 +1,9 @@
 <script lang="ts">
   import { HttpRegex } from '@utils/regex';
-  import type { Snippet } from 'svelte';
+  import type { Snippet, Component } from 'svelte';
+  import type { SVGAttributes } from 'svelte/elements';
   import type { BaseProps } from '@utils/types';
+  import { getIcon } from '@utils/icons';
 
   export type NavMenuLinkProps = BaseProps & {
     href?: string;
@@ -11,6 +13,7 @@
     active?: boolean;
     isMobile?: boolean;
     color?: string;
+    icon?: string;
     text?: string;
     onclick?: EventListener;
   };
@@ -23,13 +26,14 @@
     active,
     isMobile,
     color,
-    class: className,
     icon,
     children,
     onclick,
+    class: className,
     ...props
-  }: NavMenuLinkProps & { icon?: Snippet; children?: Snippet } = $props();
+  }: NavMenuLinkProps & { children?: Snippet } = $props();
 
+  let IconComponent = $derived(icon ? getIcon(icon) : undefined);
   let tag = $derived(href ? 'a' : 'button');
   let isExternalLink = $derived(!!href && HttpRegex.test(href));
 
@@ -49,9 +53,9 @@
 </script>
 
 <svelte:element this={tag} {...linkProps} class={classList} {...props} {title} {onclick} style={customStyles.join(';')}>
-  {#if icon}
+  {#if IconComponent}
     <div class="a-nav-menu-link__icon">
-      {@render icon()}
+      <IconComponent size="24px" />
     </div>
   {/if}
   <span class="a-nav-menu-link__text">

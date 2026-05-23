@@ -1,9 +1,7 @@
 <script lang="ts">
-  import EmailIcon from '@assets/icons/socials/email.svelte';
   import Button from '@components/atoms/Button';
   import Field from '@components/molecules/Field';
   import MarkdownRenderer from '@components/molecules/MarkdownRenderer';
-
   import type { BaseProps } from '@utils/types';
 
   export type NewsletterCtaProps = BaseProps & {
@@ -38,8 +36,7 @@
     >
       <Field label="Your Email" type="email" name="email" required placeholder="you@example.com" />
       <input type="hidden" name="tag" value={tag} />
-      {#snippet emailIconSnippet()}<EmailIcon />{/snippet}
-      <Button type="submit" icon={emailIconSnippet} color="complementary">Subscribe</Button>
+      <Button type="submit" icon="socials/email" color="complementary">Subscribe</Button>
     </form>
   </div>
 </div>

@@ -1,5 +1,4 @@
 <script lang="ts">
-  import Email from '@assets/icons/socials/email.svelte';
   import Button from '@components/atoms/Button';
   import MarkdownRenderer from '@components/molecules/MarkdownRenderer';
   import type { BaseProps } from '@utils/types';
@@ -18,8 +17,6 @@
   }: CommentCtaProps = $props();
 </script>
 
-{#snippet emailIconSnippet()}<Email />{/snippet}
-
 <div class={['o-comment-cta', className]}>
   {#if content}
     <div class="o-comment-cta__content u-markdown">
@@ -29,7 +26,7 @@
 
   <Button
     color="complementary"
-    icon={emailIconSnippet}
+    icon="socials/email"
     href={`mailto:${email}${emailSubject ? `?subject=${emailSubject}` : ''}`}
   >
     {email}

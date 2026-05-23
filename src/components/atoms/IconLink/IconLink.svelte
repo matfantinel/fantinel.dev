@@ -2,12 +2,14 @@
   import { HttpRegex } from '@utils/regex';
   import type { Snippet } from 'svelte';
   import type { BaseProps } from '@utils/types';
+  import { getIcon } from '@utils/icons';
 
   export type IconLinkProps = BaseProps & {
     href?: string;
     target?: string;
     rel?: string;
     title?: string;
+    icon?: string;
     iconPosition?: 'left' | 'right';
     text?: string;
     onclick?: EventListener;
@@ -18,14 +20,15 @@
     target,
     rel,
     title,
-    class: className,
     icon,
     iconPosition = 'left',
     children,
     onclick,
+    class: className,
     ...props
-  }: IconLinkProps & { icon?: Snippet; children?: Snippet } = $props();
+  }: IconLinkProps & { children?: Snippet } = $props();
 
+  let IconComponent = $derived(icon ? getIcon(icon) : undefined);
   let tag = $derived(href ? 'a' : 'button');
   let isExternalLink = $derived(!!href && HttpRegex.test(href));
   let linkProps = $derived({
@@ -45,17 +48,17 @@
   title={title}
   {onclick}
 >
-  {#if icon && iconPosition === 'left'}
+  {#if IconComponent && iconPosition === 'left'}
     <div class="a-icon-link__icon">
-      {@render icon()}
+      <IconComponent size="24px" />
     </div>
   {/if}
   <span class="a-icon-link__text">
     {@render children?.()}
   </span>
-  {#if icon && iconPosition === 'right'}
+  {#if IconComponent && iconPosition === 'right'}
     <div class="a-icon-link__icon">
-      {@render icon()}
+      <IconComponent size="24px" />
     </div>
   {/if}
 </svelte:element>

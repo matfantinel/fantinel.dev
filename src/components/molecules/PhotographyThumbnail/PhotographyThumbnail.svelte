@@ -1,5 +1,4 @@
 <script lang="ts">
-  import PhotographyIcon from '@assets/icons/post-types/photography.svelte';
   import Image from '@components/atoms/Image';
   import Tag from '@components/atoms/Tag';
   import PhotographySlideshowDialog from '@components/molecules/PhotographySlideshowDialog';
@@ -32,8 +31,6 @@
   }
 </script>
 
-{#snippet photographyIconSnippet()}<PhotographyIcon size="18px" />{/snippet}
-
 <div class={['m-photography-thumbnail', className]}>
   <button class="m-photography-thumbnail__zoom-button" aria-label="Zoom image" commandfor={slug} command="show-modal">
     <div class="m-photography-thumbnail__container">
@@ -48,7 +45,7 @@
             <Image class="m-photography-thumbnail__image" src={additionalImage.src} alt={additionalImage.alt} />
           {/each}
 
-          <Tag class="m-photography-thumbnail__total" icon={photographyIconSnippet}>
+          <Tag class="m-photography-thumbnail__total" icon="post-types/photography">
             {additionalImages.length + 1} photos
           </Tag>
         </div>

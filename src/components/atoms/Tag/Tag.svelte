@@ -2,6 +2,7 @@
   import { HttpRegex } from '@utils/regex';
   import type { Snippet } from 'svelte';
   import type { BaseProps } from '@utils/types';
+  import { getIcon } from '@utils/icons';
 
   export type TagProps = BaseProps & {
     href?: string;
@@ -12,6 +13,7 @@
     name?: string;
     size?: 'default' | 'small' | 'responsive';
     count?: number;
+    icon?: string;
     text?: string;
   };
 
@@ -24,12 +26,13 @@
     name,
     size,
     count,
-    class: className,
     icon,
     children,
+    class: className,
     ...props
-  }: TagProps & { icon?: Snippet; children?: Snippet } = $props();
+  }: TagProps & { children?: Snippet } = $props();
 
+  let IconComponent = $derived(icon ? getIcon(icon) : undefined);
   let isCheckbox = $derived(!href);
   let tag = $derived(href ? 'a' : 'label');
   let isExternalLink = $derived(!!href && HttpRegex.test(href));
@@ -51,9 +54,9 @@
   {#if isCheckbox}
     <input class="a-tag__checkbox" type="checkbox" {name} checked={active} />
   {/if}
-  {#if icon}
+  {#if IconComponent}
     <div class="a-tag__icon">
-      {@render icon()}
+      <IconComponent size="22px" />
     </div>
   {/if}
   <span class="a-tag__text">

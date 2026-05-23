@@ -2,7 +2,6 @@
   import { defineMeta } from '@storybook/addon-svelte-csf';
 
   import Button from './Button.svelte';
-  import Check from '@assets/icons/check.svelte';
 
   const { Story } = defineMeta({
     title: 'Atoms/Button',
@@ -22,13 +21,11 @@
       target: { control: false },
       rel: { control: false },
       class: { control: false },
-      icon: { control: false }
+      icon: { control: 'text' }
     },
     render: template
   });
 </script>
-
-{#snippet checkIconSnippet()}<Check />{/snippet}
 
 {#snippet template(args)}
   <Button {...args}>{args.children ?? 'Button'}</Button> <br><br>
@@ -45,6 +42,6 @@
 
 <Story name="With Arrow Icon (Right)" args={{ icon: 'arrow', iconPosition: 'right' }} />
 
-<Story name="With Custom Icon" args={{ icon: checkIconSnippet }} />
+<Story name="With Custom Icon" args={{ icon: 'check' }} />
 
-<Story name="With Custom Icon (Right)" args={{ icon: checkIconSnippet, iconPosition: 'right' }} />
+<Story name="With Custom Icon (Right)" args={{ icon: 'check', iconPosition: 'right' }} />

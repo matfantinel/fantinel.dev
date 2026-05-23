@@ -1,8 +1,4 @@
 <script lang="ts">
-  import CoolLinkIcon from '@assets/icons/post-types/cool-link.svelte';
-  import PhotographyIcon from '@assets/icons/post-types/photography.svelte';
-  import PostIcon from '@assets/icons/post-types/post.svelte';
-  import QuickReviewIcon from '@assets/icons/post-types/quick-review.svelte';
   import Button from '@components/atoms/Button';
   import type { ButtonProps } from '@components/atoms/Button';
   import Filters from '@components/molecules/Filters';
@@ -23,8 +19,8 @@
     title?: string;
     headerBody?: string;
     headerCentered?: boolean;
-    button?: ButtonProps & { icon?: any };
-    bottomButton?: ButtonProps & { icon?: any };
+    button?: ButtonProps;
+    bottomButton?: ButtonProps;
     postGroups: { date: string; posts: { type: string; data: BlogPost | QuickReview | CoolLink | Photography }[] }[];
     filterGroups?: FilterGroup[];
     baseUrl?: string;
@@ -71,7 +67,7 @@
 
     return {
       duration,
-      tick: (t) => {
+      tick: (t: number) => {
         const i = ~~(text.length * t);
         node.textContent = text.slice(0, i);
       },
@@ -79,6 +75,13 @@
   }
 
   let allFilterGroups = $derived(filterGroups);
+
+  const typeIcons: Record<string, string> = {
+    'blog': 'post-types/post',
+    'quick-review': 'post-types/quick-review',
+    'cool-link': 'post-types/cool-link',
+    'photography': 'post-types/photography',
+  };
 
   onMount(() => {
     if (filterGroups && filterGroups.length > 0) {
@@ -88,16 +91,7 @@
           label: typeLabels[type],
           name: type,
           active: true,
-          icon:
-            type === 'blog'
-              ? postIconSnippet
-              : type === 'quick-review'
-                ? quickReviewIconSnippet
-                : type === 'cool-link'
-                  ? coolLinkIconSnippet
-                  : type === 'photography'
-                    ? photographyIconSnippet
-                    : undefined,
+          icon: typeIcons[type],
           // count: postGroups.reduce((acc, group) => acc + group.posts.filter((p) => p.type === type).length, 0),
         })),
       };
@@ -133,11 +127,6 @@
 
   const processedFilterGroups = $derived(setActiveFilterGroups(allFilterGroups, baseUrl));
 </script>
-
-{#snippet postIconSnippet()}<PostIcon />{/snippet}
-{#snippet quickReviewIconSnippet()}<QuickReviewIcon />{/snippet}
-{#snippet coolLinkIconSnippet()}<CoolLinkIcon />{/snippet}
-{#snippet photographyIconSnippet()}<PhotographyIcon />{/snippet}
 
 <div class={['o-posts-timeline u-content-grid', className]}>
   {#if processedFilterGroups && processedFilterGroups.length > 0}

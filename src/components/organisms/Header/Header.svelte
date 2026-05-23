@@ -1,13 +1,6 @@
 <script lang="ts">
   import Logo from '@assets/brand/Logo.svelte';
-  import Rss from '@assets/icons/rss.svelte';
-  import PostIcon from '@assets/icons/post-types/post.svelte';
-  import QuickReviewIcon from '@assets/icons/post-types/quick-review.svelte';
-  import CoolLinkIcon from '@assets/icons/post-types/cool-link.svelte';
-  import PhotographyIcon from '@assets/icons/post-types/photography.svelte';
   import ThemeToggle from '@components/molecules/ThemeToggle';
-  import HomeIcon from '@assets/icons/home.svelte';
-  import ArchiveIcon from '@assets/icons/archive.svelte';
   import { PostType } from '@schemas/post-types';
   import NavMenuLink from '@components/atoms/NavMenuLink';
   import SocialLink from '@components/atoms/SocialLink';
@@ -69,53 +62,45 @@
   });
 
   const links = $derived([
-    { label: 'Home', href: '/', icon: homeIconSnippet, active: pathname === '/', color: 'og-accent' },
+    { label: 'Home', href: '/', icon: 'home', active: pathname === '/', color: 'og-accent' },
     {
       label: 'Archive',
       href: '/archive',
-      icon: archiveIconSnippet,
+      icon: 'archive',
       active: pathname.startsWith('/archive'),
       color: 'og-accent',
     },
     {
       label: 'Blog',
       href: '/blog',
-      icon: postIconSnippet,
+      icon: 'post-types/post',
       active: pathname.startsWith('/blog'),
       color: PostType.BLOG_POST,
     },
     {
       label: 'Quick Reviews',
       href: '/quick-reviews',
-      icon: quickReviewIconSnippet,
+      icon: 'post-types/quick-review',
       active: pathname.startsWith('/quick-reviews'),
       color: PostType.QUICK_REVIEW,
     },
     {
       label: 'Cool Links',
       href: '/cool-links',
-      icon: coolLinkIconSnippet,
+      icon: 'post-types/cool-link',
       active: pathname.startsWith('/cool-links'),
       color: PostType.COOL_LINK,
     },
     {
       label: 'Photography',
       href: '/photography',
-      icon: photographyIconSnippet,
+      icon: 'post-types/photography',
       active: pathname.startsWith('/photography'),
       color: PostType.PHOTOGRAPHY,
     },
-    { label: 'RSS', href: '/rss.xml', icon: rssIconSnippet, title: 'Subscribe to my RSS Feed', color: 'generic' },
+    { label: 'RSS', href: '/rss.xml', icon: 'rss', title: 'Subscribe to my RSS Feed', color: 'generic' },
   ]);
 </script>
-
-{#snippet rssIconSnippet()}<Rss size="24px" />{/snippet}
-{#snippet postIconSnippet()}<PostIcon size="24px" />{/snippet}
-{#snippet quickReviewIconSnippet()}<QuickReviewIcon size="24px" />{/snippet}
-{#snippet coolLinkIconSnippet()}<CoolLinkIcon size="24px" />{/snippet}
-{#snippet photographyIconSnippet()}<PhotographyIcon size="24px" />{/snippet}
-{#snippet homeIconSnippet()}<HomeIcon size="24px" />{/snippet}
-{#snippet archiveIconSnippet()}<ArchiveIcon size="24px" />{/snippet}
 
 <header class={['o-header', className]} style="view-transition-name: header">
   <div class="o-header__container">
@@ -198,6 +183,7 @@
 
     :global(.o-header__theme-toggle.mobile-only) {
       display: none;
+      flex-shrink: 0;
     }
 
     :global(.o-header__search-field.mobile-only) {
