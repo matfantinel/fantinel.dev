@@ -54,7 +54,7 @@ const { photography, latestTimelineEntries }: Props = Astro.props;
         }
       </div>
 
-      <div class="l-photography__about u-markdown">
+      <div class="l-photography__about u-markdown" data-pagefind-ignore>
         <h2 class="u-h4">About my Photography</h2>
         <p>I'm no professional, but sometimes I like to capture the world around me. Sometimes, the photos turn out pretty nice. All pictures taken with an iPhone 15 Pro.</p>
         <Button href="/photography">View all photography</Button>
@@ -66,14 +66,16 @@ const { photography, latestTimelineEntries }: Props = Astro.props;
 
       {
         latestTimelineEntries?.length > 0 && (
-          <PostsTimeline
-            bottomButton={{
-              text: 'View more',
-              href: '/archive',
-            }}
-            postGroups={latestTimelineEntries}
-            client:load
-          />
+          <aside data-pagefind-ignore>
+            <PostsTimeline
+              bottomButton={{
+                text: 'View more',
+                href: '/archive',
+              }}
+              postGroups={latestTimelineEntries}
+              client:load
+            />
+          </aside>
         )
       }
     </div>

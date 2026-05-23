@@ -28,7 +28,7 @@ const { link, latestTimelineEntries }: Props = Astro.props;
 
       <CoolLinkCard class='l-cool-link__link' {...coolLinkToCoolLinkCardProps(link)} />
 
-      <div class="l-cool-link__about u-markdown">
+      <div class="l-cool-link__about u-markdown" data-pagefind-ignore>
         <h2 class="u-h4">About Cool Links</h2>
         <p>Cool links are a collection of interesting things I find around the web. They can range from fun dumb websites to deep thought-provoking essays, or more commonly something in between. The feed here updates frequently, and I compile everything into a blog post on the last day of each month.</p>
         <Button href="/cool-links">View all cool links</Button>
@@ -40,16 +40,18 @@ const { link, latestTimelineEntries }: Props = Astro.props;
 
       {
         latestTimelineEntries?.length > 0 && (
-          <PostsTimeline
-            bottomButton={{
-              text: 'View more',
-              href: '/archive',
-            }}
-            postGroups={latestTimelineEntries}
-            client:load
-          />
-        )
-      }
+          <aside data-pagefind-ignore>
+            <PostsTimeline
+              bottomButton={{
+                text: 'View more',
+                href: '/archive',
+              }}
+              postGroups={latestTimelineEntries}
+              client:load
+            />
+          </aside>
+          )
+        }
     </div>
   </div>
 </BaseLayout>

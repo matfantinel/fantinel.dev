@@ -44,8 +44,8 @@ if (post.data.ogImage) {
   modifiedDate={post.data.updated}
   noindex={post.data.hidden}
 >
-  <div class='l-article full-width u-content-grid' data-pagefind-body>
-    <div class='l-article__hero full-width'>
+  <div class='l-article full-width u-content-grid'>
+    <div class='l-article__hero full-width' data-pagefind-body>
       <PostHero
         title={post.data.title}
         slug={post.data.slug}
@@ -74,13 +74,13 @@ if (post.data.ogImage) {
 
       {
         showToc && (
-          <div class='l-article__toc on-sidebar'>
+          <div class='l-article__toc on-sidebar' data-pagefind-body>
             <TableOfContents headings={post.data.toc} client:load />
           </div>
         )
       }
 
-      <div id='post-content' class='l-article__post-content u-markdown'>
+      <div id='post-content' class='l-article__post-content u-markdown' data-pagefind-body>
         <MarkdownRenderer content={post.body} client:load />
       </div>
 

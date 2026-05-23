@@ -30,7 +30,7 @@ const { review, latestTimelineEntries }: Props = Astro.props;
 
       <QuickReviewCard class='l-quick-review__review' {...quickReviewToQuickReviewCardProps(review)} client:load />
 
-      <div class="l-quick-review__about u-markdown">
+      <div class="l-quick-review__about u-markdown" data-pagefind-ignore>
         <h2 class="u-h4">About Quick Reviews</h2>
         <p>Since June 2024, I started writing quick reviews of movies, TV shows and games I've watched or played.</p>
         <Button href="/quick-reviews">View all quick reviews</Button>
@@ -42,14 +42,16 @@ const { review, latestTimelineEntries }: Props = Astro.props;
 
       {
         latestTimelineEntries?.length > 0 && (
-          <PostsTimeline
-            bottomButton={{
-              text: 'View more',
-              href: '/archive',
-            }}
-            postGroups={latestTimelineEntries}
-            client:load
-          />
+          <aside data-pagefind-ignore>
+            <PostsTimeline
+              bottomButton={{
+                text: 'View more',
+                href: '/archive',
+              }}
+              postGroups={latestTimelineEntries}
+              client:load
+            />
+          </aside>
         )
       }
     </div>
