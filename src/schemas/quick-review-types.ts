@@ -27,3 +27,10 @@ export function getRatingFromLowercaseKey(lowercaseKey: string) {
 
   return enumKey ? QuickReviewRating[enumKey as keyof typeof QuickReviewRating] : undefined;
 }
+
+export function getRatingSlug(rating: QuickReviewRating): string {
+  const enumKey = Object.keys(QuickReviewRating).find(
+    key => QuickReviewRating[key as keyof typeof QuickReviewRating] === rating
+  );
+  return enumKey ? enumKey.toLowerCase() : '';
+}

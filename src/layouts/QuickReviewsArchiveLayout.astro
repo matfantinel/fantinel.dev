@@ -1,8 +1,7 @@
 ---
 import QuickReviewCards from '@components/molecules/QuickReviewCards';
 import type { QuickReview } from '@schemas/quick-review';
-import { QuickReviewType, QuickReviewRating } from '@schemas/quick-review-types';
-import { getTypeFromLowercaseKey, getRatingFromLowercaseKey } from '@schemas/quick-review-types';
+import { getTypeFromLowercaseKey, getRatingFromLowercaseKey, getRatingSlug } from '@schemas/quick-review-types';
 import type { FilterTag, FilterGroup } from '@schemas/filter';
 import BaseArchiveLayout from './BaseArchiveLayout.astro';
 import { getSiteMeta, getQuickReviewArchiveConfig } from '@data/yaml';
@@ -52,7 +51,7 @@ if (yearFilters) {
 
 let paginationBaseUrl = '/quick-reviews';
 if (currentType) paginationBaseUrl += `/type/${currentType.toLowerCase()}`;
-if (currentRating) paginationBaseUrl += `/rating/${currentRating.toLowerCase()}`;
+if (currentRating) paginationBaseUrl += `/rating/${getRatingSlug(currentRating)}`;
 
 let summaryText = '';
 if (totalReviews) {
