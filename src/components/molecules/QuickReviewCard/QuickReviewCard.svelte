@@ -135,15 +135,15 @@
     position: relative;
     isolation: isolate;
 
-    --background-color: var(--theme--qr-base-dark-color);
-    --text-color: var(--theme--qr-base-light-color);
+    --background-color: var(--t-v6--qr-base-dark-color);
+    --text-color: var(--t-v6--qr-base-light-color);
 
     color: var(--text-color);
     background-color: var(--background-color);
 
     &--light {
-      --background-color: var(--theme--qr-base-light-color);
-      --text-color: var(--theme--qr-base-dark-color);
+      --background-color: var(--t-v6--qr-base-light-color);
+      --text-color: var(--t-v6--qr-base-dark-color);
     }
 
     &__container {

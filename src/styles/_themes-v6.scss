@@ -237,6 +237,31 @@ $palette-v6-colors: (
 
   --t-v6--glowing-text-animation: text-glow 3.5s cubic-bezier(0.66, 0, 0.34, 1) infinite alternate;
   // #endregion
+
+  // #region Quick Reviews
+
+  --t-v6--qr-base-dark-color: #11111b;
+  --t-v6--qr-base-light-color: #ffffff;
+
+  --t-v6--qr-movie-color: #fe640b;
+  --t-v6--qr-movie-color-rgb: 254, 100, 11;
+
+  --t-v6--qr-tv-show-color: #d20f39;
+  --t-v6--qr-tv-show-color-rgb: 210, 15, 57;
+
+  --t-v6--qr-game-color: #40a02b;
+  --t-v6--qr-game-color-rgb: 64, 160, 43;
+
+  --t-v6--qr-album-color: #ea76cb;
+  --t-v6--qr-album-color-rgb: 234, 118, 203;
+
+  --t-v6--qr-loved-color: #CCF5AC;
+  --t-v6--qr-loved-color-rgb: 204, 245, 172;
+  --t-v6--qr-liked-color: #89b4fa;
+  --t-v6--qr-decent-color: #fab387;
+  --t-v6--qr-not-liked-color: #f38ba8;
+
+  // #endregion
 }
 
 // #endregion

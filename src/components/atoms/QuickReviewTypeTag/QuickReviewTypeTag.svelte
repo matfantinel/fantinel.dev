@@ -58,10 +58,10 @@
     height: 24px;
     width: fit-content;
 
-    background-color: var(--theme--qr-base-light-color);
-    color: var(--theme--qr-base-dark-color);
+    background-color: var(--t-v6--qr-base-light-color);
+    color: var(--t-v6--qr-base-dark-color);
 
-    --icon-color: var(--theme--qr-base-dark-color);
+    --icon-color: var(--t-v6--qr-base-dark-color);
 
     &__icon {
       width: 16px;
@@ -85,19 +85,19 @@
     }
 
     &--movie {
-      --icon-color: var(--theme--qr-movie-color);
+      --icon-color: var(--t-v6--qr-movie-color);
     }
 
     &--tv-show {
-      --icon-color: var(--theme--qr-tv-show-color);
+      --icon-color: var(--t-v6--qr-tv-show-color);
     }
 
     &--game {
-      --icon-color: var(--theme--qr-game-color);
+      --icon-color: var(--t-v6--qr-game-color);
     }
 
     &--album {
-      --icon-color: var(--theme--qr-album-color);
+      --icon-color: var(--t-v6--qr-album-color);
     }
   }
 </style>

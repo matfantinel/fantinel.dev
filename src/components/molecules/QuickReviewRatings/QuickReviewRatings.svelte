@@ -11,9 +11,10 @@
   let {
     rating,
     theme,
-    monochrome,
+    // monochrome,
     class: className,
   }: QuickReviewRatingsProps = $props();
+  let monochrome = false;
 
   let ratings = $derived(
     Object.values(QuickReviewRating).map((value) => {
@@ -21,16 +22,16 @@
       if (!monochrome || value === QuickReviewRating.LovedIt) {
         switch (value) {
           case QuickReviewRating.LovedIt:
-            color = 'var(--theme--qr-loved-color)';
+            color = 'var(--t-v6--qr-loved-color)';
             break;
           case QuickReviewRating.LikeIt:
-            color = 'var(--theme--qr-liked-color)';
+            color = 'var(--t-v6--qr-liked-color)';
             break;
           case QuickReviewRating.Decent:
-            color = 'var(--theme--qr-decent-color)';
+            color = 'var(--t-v6--qr-decent-color)';
             break;
           case QuickReviewRating.DidntLikeIt:
-            color = 'var(--theme--qr-not-liked-color)';
+            color = 'var(--t-v6--qr-not-liked-color)';
             break;
           default:
             break;
@@ -85,21 +86,21 @@
     align-items: center;
     justify-content: space-between;
 
-    --text-color: var(--theme--qr-base-light-color);
+    --text-color: var(--t-v6--qr-base-light-color);
     --rating-color: var(--theme--color-accent);
 
     border: 1px solid var(--text-color);
     color: var(--text-color);
 
     &--monochrome {
-      --rating-color: var(--theme--qr-base-dark-color);
+      --rating-color: var(--t-v6--qr-base-dark-color);
     }
 
     &--light {
-      --text-color: var(--theme--qr-base-dark-color);
+      --text-color: var(--t-v6--qr-base-dark-color);
 
       &.m-quick-review-ratings--monochrome {
-        --rating-color: var(--theme--qr-base-light-color);
+        --rating-color: var(--t-v6--qr-base-light-color);
       }
     }
 
@@ -121,13 +122,13 @@
         }
 
         &:not(.m-quick-review-ratings__rating--monochrome) {
-          color: var(--theme--qr-base-dark-color);
+          color: var(--t-v6--qr-base-dark-color);
         }
 
         &.m-quick-review-ratings__rating--loved {
-          color: var(--theme--qr-base-dark-color);
+          color: var(--t-v6--qr-base-dark-color);
 
-          --glow-color: var(--color--yellow-rgb);
+          --glow-color: var(--t-v6--qr-loved-color-rgb);
           animation: text-glow 3.5s cubic-bezier(0.66, 0, 0.34, 1) infinite alternate;
         }
       }
