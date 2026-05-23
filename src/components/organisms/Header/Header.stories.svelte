@@ -25,5 +25,14 @@
     { name: 'LinkedIn', url: '#' },
     { name: 'Email', url: '#' },
     { name: 'RSS', url: '#' }
+  ],
+  navigation: [
+    { label: 'Home', href: '/', icon: 'home', color: 'og-accent' },
+    { label: 'Archive', href: '/archive', icon: 'archive', color: 'og-accent' },
+    { label: 'Blog', href: '/blog', icon: 'post-types/post', color: 'blog' },
+    { label: 'Quick Reviews', href: '/quick-reviews', icon: 'post-types/quick-review', color: 'quick-review' },
+    { label: 'Cool Links', href: '/cool-links', icon: 'post-types/cool-link', color: 'cool-link' },
+    { label: 'Photography', href: '/photography', icon: 'post-types/photography', color: 'photography' },
+    { label: 'RSS', href: '/rss.xml', icon: 'rss', color: 'og-accent', title: 'Subscribe to my RSS Feed' }
   ]
 }} />

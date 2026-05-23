@@ -1,7 +1,8 @@
 // Glob import all icons at build time
 // Vite will discover and bundle all .svelte files in the icons folder
+// Using relative path for compatibility with Storybook
 const iconModules = import.meta.glob(
-  ['@assets/icons/*.svelte', '@assets/icons/**/*.svelte'],
+  ['../assets/icons/*.svelte', '../assets/icons/**/*.svelte'],
   { eager: true }
 );
 
