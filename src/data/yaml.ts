@@ -1,7 +1,7 @@
 // This file gets the YAML settings, types them and exports them
 // And also does some handling of the images
 
-import type { CoolLinkSingleConfig, HomeConfig, QuickReviewSingleConfig, PhotographySingleConfig, CoolLinkArchiveConfig, QuickReviewArchiveConfig, PhotographyArchiveConfig, BlogArchiveConfig, BlogSingleConfig } from '@schemas/pages-config';
+import type { CoolLinkSingleConfig, HomeConfig, QuickReviewSingleConfig, PhotographySingleConfig, CoolLinkArchiveConfig, QuickReviewArchiveConfig, PhotographyArchiveConfig, BlogArchiveConfig, BlogSingleConfig, TimelineArchiveConfig } from '@schemas/pages-config';
 import type { SiteMeta } from '@schemas/site-meta';
 import homeConfig from '@public/cms/home.yml';
 import metaConfig from '@public/cms/meta.yml';
@@ -10,6 +10,7 @@ import coolLinkArchiveConfig from '@public/cms/page-configs/cool-links/archive.y
 import quickReviewArchiveConfig from '@public/cms/page-configs/quick-reviews/archive.yaml';
 import photographyArchiveConfig from '@public/cms/page-configs/photography/archive.yaml';
 import blogArchiveConfig from '@public/cms/page-configs/blog/archive.yaml';
+import timelineArchiveConfig from '@public/cms/page-configs/timeline/archive.yaml';
 import blogSingleConfig from '@public/cms/page-configs/blog/single.yaml';
 import quickReviewSingleConfig from '@public/cms/page-configs/quick-reviews/single.yaml';
 import photographySingleConfig from '@public/cms/page-configs/photography/single.yaml';
@@ -53,6 +54,12 @@ export function getPhotographyArchiveConfig(): PhotographyArchiveConfig {
 
 export function getBlogArchiveConfig(): BlogArchiveConfig {
   return transformStrings(blogArchiveConfig as BlogArchiveConfig, (value: string) =>
+    value.startsWith('/media/') ? handleCmsMediaPath(value) : value
+  );
+}
+
+export function getTimelineArchiveConfig(): TimelineArchiveConfig {
+  return transformStrings(timelineArchiveConfig as TimelineArchiveConfig, (value: string) =>
     value.startsWith('/media/') ? handleCmsMediaPath(value) : value
   );
 }

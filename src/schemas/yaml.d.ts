@@ -40,6 +40,12 @@ declare module '@public/cms/page-configs/blog/archive.yaml' {
   export default value;
 }
 
+declare module '@public/cms/page-configs/timeline/archive.yaml' {
+  import type { TimelineArchiveConfig } from '@schemas/pages-config';
+  const value: TimelineArchiveConfig;
+  export default value;
+}
+
 declare module '@public/cms/page-configs/quick-reviews/single.yaml' {
   import type { QuickReviewSingleConfig } from '@schemas/pages-config';
   const value: QuickReviewSingleConfig;

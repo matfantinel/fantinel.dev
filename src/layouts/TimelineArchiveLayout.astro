@@ -6,6 +6,9 @@ import type { Photography } from '@schemas/photography';
 import type { QuickReview } from '@schemas/quick-review';
 import type { FilterGroup } from '@schemas/filter';
 import BaseArchiveLayout from './BaseArchiveLayout.astro';
+import { getSiteMeta, getTimelineArchiveConfig } from '@data/yaml';
+const siteMeta = getSiteMeta();
+const pageData = getTimelineArchiveConfig();
 
 interface Props {
   groups: { date: string; posts: { type: string; data: BlogPost | QuickReview | CoolLink | Photography }[] }[];
@@ -61,9 +64,11 @@ if (currentSlug && dateFilters) {
 
 <BaseArchiveLayout
   className='l-timeline-archive'
-  title='Archive'
-  heroTitle='Archive'
-  heroBody="A chronological view of *everything* I've posted here, since the beginning of time (or the blog's inception, whichever comes first)."
+  title={pageData.pageTitle}
+  image={pageData.pagePreviewImage ? siteMeta.baseUrl + pageData.pagePreviewImage : undefined}
+  description={pageData.pageDescription}
+  heroTitle={pageData.hero?.title}
+  heroBody={pageData.hero?.body}
   baseUrl='/archive'
   currentPage={currentPage}
   totalPages={totalPages ?? 1}

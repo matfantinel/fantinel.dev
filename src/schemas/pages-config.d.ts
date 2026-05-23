@@ -1,3 +1,4 @@
+import type { ButtonProps } from "@components/atoms/Button";
 import type { ContentWithImageProps } from "@components/organisms/ContentWithImage";
 import type { GenericHeroProps } from "@components/organisms/GenericHero";
 import type { HomePageHeroProps } from "@components/organisms/HomePageHero";
@@ -8,6 +9,11 @@ export type HomeConfig = {
   coolLinksSection: ContentWithImageProps;
   quickReviewsSection: ContentWithImageProps;
   photographySection: ContentWithImageProps;
+  latestSection?: {
+    title?: string;
+    headerBody?: string;
+    button?: ButtonProps;
+  };
 };
 
 export type CoolLinkSingleConfig = {
@@ -37,6 +43,13 @@ export type PhotographyArchiveConfig = {
 };
 
 export type BlogArchiveConfig = {
+  pageTitle: string;
+  pageDescription: string;
+  pagePreviewImage?: string;
+  hero: GenericHeroProps;
+};
+
+export type TimelineArchiveConfig = {
   pageTitle: string;
   pageDescription: string;
   pagePreviewImage?: string;
