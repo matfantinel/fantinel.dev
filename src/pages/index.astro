@@ -7,7 +7,6 @@ import { getHomeConfig, getSiteMeta } from '@data/yaml';
 import BaseLayout from '@layouts/BaseLayout.astro';
 
 const siteMeta = getSiteMeta();
-
 const data = getHomeConfig();
 
 // const recentPosts = await getRecentBlogPosts();
@@ -15,19 +14,23 @@ const latestTimelineEntries = (await getPaginatedTimelineEntries(1)).posts;
 ---
 
 <BaseLayout>
-  <div class='p-home__hero full-width'>
-    <HomePageHero
-      {...data.hero}
-      image={siteMeta.author.image}
-      extraImages={siteMeta.author.extraImages}
-      socials={siteMeta.author.socials}
-      client:load
-    />
-  </div>
+  {
+    data?.hero && (
+      <div class='p-home__hero full-width'>
+        <HomePageHero
+          {...data.hero}
+          image={siteMeta.author.image}
+          extraImages={siteMeta.author.extraImages}
+          socials={siteMeta.author.socials}
+          client:load
+        />
+      </div>
+    )
+  }
 
   <div class='p-home__content full-width u-content-grid'>
     {
-      data.blogSection && (
+      data?.blogSection && (
         <ContentWithImage
           {...data.blogSection}
           imageBehavior={data.blogSection.imageBehavior || 'contain'}
@@ -37,7 +40,7 @@ const latestTimelineEntries = (await getPaginatedTimelineEntries(1)).posts;
     }
 
     {
-      data.coolLinksSection && (
+      data?.coolLinksSection && (
         <ContentWithImage
           {...data.coolLinksSection}
           imageBehavior={data.coolLinksSection.imageBehavior || 'contain'}
@@ -48,7 +51,7 @@ const latestTimelineEntries = (await getPaginatedTimelineEntries(1)).posts;
     }
 
     {
-      data.quickReviewsSection && (
+      data?.quickReviewsSection && (
         <ContentWithImage
           {...data.quickReviewsSection}
           imageBehavior={data.quickReviewsSection.imageBehavior || 'contain'}
@@ -58,7 +61,7 @@ const latestTimelineEntries = (await getPaginatedTimelineEntries(1)).posts;
     }
 
     {
-      data.photographySection && (
+      data?.photographySection && (
         <ContentWithImage
           {...data.photographySection}
           imageBehavior={data.photographySection.imageBehavior || 'contain'}

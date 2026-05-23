@@ -16,6 +16,7 @@
     imagePosition?: 'before' | 'after';
     background?: 'clear' | 'card';
     animateOnEntry?: boolean;
+    headingColor?: string;
   };
 
   let {
@@ -29,6 +30,7 @@
     imagePosition = 'after',
     background = 'clear',
     animateOnEntry = false,
+    headingColor,
     class: className,
   }: ContentWithImageProps = $props();
 
@@ -37,6 +39,7 @@
     `o-content-with-image--image-behavior-${imageBehavior}`,
     `o-content-with-image--image-position-${imagePosition}`,
     `o-content-with-image--background-${background}`,
+    headingColor ? `o-content-with-image--heading-glow` : '',
     animateOnEntry ? 'o-content-with-image--animate-on-entry' : '',
     className,
   ]);
@@ -45,7 +48,7 @@
 <div class={classList}>
   <div class="o-content-with-image__container">
     <div class="o-content-with-image__content">
-      <h2 class="o-content-with-image__heading u-h2">{heading}</h2>
+      <h2 class="o-content-with-image__heading u-h2" style={headingColor ? `color: var(--t-v6--${headingColor}); --glow-color: var(--t-v6--${headingColor}--rgb)` : ''}>{heading}</h2>
 
       {#if body}
         <div class="o-content-with-image__body u-markdown u-b2">
@@ -106,6 +109,12 @@
 
     &__heading {
       text-wrap: pretty;
+    }
+
+    &--heading-glow {
+      .o-content-with-image__heading {
+        animation: var(--t-v6--glowing-text-animation);
+      }
     }
 
     &__body {
