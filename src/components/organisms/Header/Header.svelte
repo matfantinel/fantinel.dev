@@ -1,10 +1,9 @@
 <script lang="ts">
   import Logo from '@assets/brand/Logo.svelte';
   import ThemeToggle from '@components/molecules/ThemeToggle';
-  import { PostType } from '@schemas/post-types';
   import NavMenuLink from '@components/atoms/NavMenuLink';
   import SocialLink from '@components/atoms/SocialLink';
-  import type { SocialLink as SocialLinkType } from '@schemas/site-meta';
+  import type { SocialLink as SocialLinkType, NavigationLink } from '@schemas/site-meta';
   import PagefindSearchField from '@components/molecules/PagefindSearchField';
 
   import type { BaseProps } from '@utils/types';
@@ -13,12 +12,14 @@
     currentSearch?: string;
     currentUrl?: string;
     socials?: SocialLinkType[];
+    navigation?: NavigationLink[];
   };
 
   let {
     currentSearch,
     currentUrl,
     socials,
+    navigation,
     class: className,
   }: HeaderProps = $props();
 
@@ -61,45 +62,12 @@
     };
   });
 
-  const links = $derived([
-    { label: 'Home', href: '/', icon: 'home', active: pathname === '/', color: 'og-accent' },
-    {
-      label: 'Archive',
-      href: '/archive',
-      icon: 'archive',
-      active: pathname.startsWith('/archive'),
-      color: 'og-accent',
-    },
-    {
-      label: 'Blog',
-      href: '/blog',
-      icon: 'post-types/post',
-      active: pathname.startsWith('/blog'),
-      color: PostType.BLOG_POST,
-    },
-    {
-      label: 'Quick Reviews',
-      href: '/quick-reviews',
-      icon: 'post-types/quick-review',
-      active: pathname.startsWith('/quick-reviews'),
-      color: PostType.QUICK_REVIEW,
-    },
-    {
-      label: 'Cool Links',
-      href: '/cool-links',
-      icon: 'post-types/cool-link',
-      active: pathname.startsWith('/cool-links'),
-      color: PostType.COOL_LINK,
-    },
-    {
-      label: 'Photography',
-      href: '/photography',
-      icon: 'post-types/photography',
-      active: pathname.startsWith('/photography'),
-      color: PostType.PHOTOGRAPHY,
-    },
-    { label: 'RSS', href: '/rss.xml', icon: 'rss', title: 'Subscribe to my RSS Feed', color: 'generic' },
-  ]);
+  const links = $derived(
+    (navigation ?? []).map((link) => ({
+      ...link,
+      active: link.href === '/' ? pathname === '/' : pathname.startsWith(link.href),
+    }))
+  );
 </script>
 
 <header class={['o-header', className]} style="view-transition-name: header">
@@ -110,7 +78,7 @@
 
     <nav class="o-header__navigation" data-nav>
       {#each links as link}
-        <NavMenuLink href={link.href} icon={link.icon} active={link.active} color={link.color}>
+        <NavMenuLink href={link.href} icon={link.icon} active={link.active} color={link.color} title={link.title}>
           {link.label}
         </NavMenuLink>
       {/each}

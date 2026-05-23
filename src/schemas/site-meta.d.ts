@@ -14,6 +14,15 @@ export type SiteMeta = {
     body: string;
     formUrl: string;
   };
+  navigation?: NavigationLink[];
+};
+
+export type NavigationLink = {
+  label: string;
+  href: string;
+  icon?: string;
+  color?: string;
+  title?: string;
 };
 
 export type SiteAuthor = {
@@ -30,4 +39,4 @@ export type SocialLink = {
   name: 'Mastodon' | 'GitHub' | 'LinkedIn' | 'Email' | 'RSS';
   url: string;
   label?: string;
-}
+};
