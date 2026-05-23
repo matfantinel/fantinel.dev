@@ -81,7 +81,7 @@ if (post.data.ogImage) {
       }
 
       <div id='post-content' class='l-article__post-content u-markdown' data-pagefind-body>
-        <MarkdownRenderer content={post.body} client:load />
+        <MarkdownRenderer content={post.body} addAnchorToHeadings={true} client:load />
       </div>
 
       {

@@ -60,6 +60,14 @@
     &:has(> strong > a) {
       margin-bottom: -1.5rem;
     }
+
+    > .md-button {
+      // Single buttons should be centered
+      &:first-of-type:last-of-type {
+        display: flex;
+        margin-inline: auto;
+      }
+    }
   }
 
   blockquote {

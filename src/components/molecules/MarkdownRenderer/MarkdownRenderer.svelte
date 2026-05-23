@@ -18,11 +18,13 @@
   export type MarkdownRendererProps = BaseProps & {
     content: string;
     isInline?: boolean;
+    addAnchorToHeadings?: boolean;
   };
 
 	let { 
 		content, 
-		isInline = false
+		isInline = false,
+		addAnchorToHeadings = false
 	} : MarkdownRendererProps = $props();
 
 	marked.use({
@@ -41,4 +43,4 @@
 	} as any;
 </script>
 
-<SvelteMarkdown source={content} {renderers} {options} {isInline} />
+<SvelteMarkdown source={content} {renderers} {options} {isInline} {addAnchorToHeadings} />
