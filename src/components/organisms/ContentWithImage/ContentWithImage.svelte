@@ -3,6 +3,9 @@
   import type { ButtonProps } from '@components/atoms/Button';
   import Image from '@components/atoms/Image';
   import MarkdownRenderer from '@components/molecules/MarkdownRenderer';
+  import PolaroidCard from '@components/molecules/PolaroidCard';
+  import type { PolaroidCardProps } from '@components/molecules/PolaroidCard';
+  import type { Snippet } from 'svelte';
   import type { BaseProps } from '@utils/types';
 
   export type ContentWithImageProps = BaseProps & {
@@ -10,13 +13,14 @@
     body?: string;
     button?: ButtonProps & { icon?: any };
     secondaryButton?: ButtonProps & { icon?: any };
-    image: string;
-    imageAlt: string;
+    image?: string;
+    imageAlt?: string;
     imageBehavior?: 'cover' | 'contain';
     imagePosition?: 'before' | 'after';
     background?: 'clear' | 'card';
     animateOnEntry?: boolean;
     headingColor?: string;
+    polaroidProps?: Omit<PolaroidCardProps, 'class'>;
   };
 
   let {
@@ -31,12 +35,17 @@
     background = 'clear',
     animateOnEntry = false,
     headingColor,
+    polaroidProps,
+    imageSlot,
     class: className,
-  }: ContentWithImageProps = $props();
+  }: ContentWithImageProps & { imageSlot?: Snippet } = $props();
+
+  let hasSlotContent = $derived(!!(imageSlot || polaroidProps));
+  let resolvedImageBehavior = $derived(hasSlotContent ? 'contain' : imageBehavior);
 
   let classList = $derived([
     'o-content-with-image',
-    `o-content-with-image--image-behavior-${imageBehavior}`,
+    `o-content-with-image--image-behavior-${resolvedImageBehavior}`,
     `o-content-with-image--image-position-${imagePosition}`,
     `o-content-with-image--background-${background}`,
     headingColor ? `o-content-with-image--heading-glow` : '',
@@ -78,7 +87,17 @@
       {/if}
     </div>
 
-    <Image class="o-content-with-image__image" src={image} alt={imageAlt} />
+    {#if imageSlot}
+      <div class="o-content-with-image__image o-content-with-image__image--slot">
+        {@render imageSlot()}
+      </div>
+    {:else if polaroidProps}
+      <div class="o-content-with-image__image o-content-with-image__image--slot">
+        <PolaroidCard {...polaroidProps!} />
+      </div>
+    {:else if image}
+      <Image class="o-content-with-image__image" src={image} alt={imageAlt ?? ''} />
+    {/if}
   </div>
 </div>
 
@@ -109,6 +128,12 @@
 
     &__heading {
       text-wrap: pretty;
+    }
+
+    &__image--slot {
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     &--heading-glow {
@@ -159,15 +184,19 @@
     }
 
     &--image-behavior-contain {
-      .o-content-with-image {
-        &__container {
-          grid-template-columns: auto auto;
-        }
-      }
+      // .o-content-with-image {
+      //   &__container {
+      //     grid-template-columns: auto auto;
+      //   }
+      // }
       :global(.o-content-with-image__image) {
         // padding-block: var(--spacing-md);
         width: auto;
         height: auto;
+      }
+      :global(.o-content-with-image__image--slot) {
+        width: 100%;
+        height: 100%;
       }
     }
 
@@ -216,6 +245,10 @@
       &.o-content-with-image--image-behavior-contain {
         :global(.o-content-with-image__image) {
           max-height: 200px;
+        }
+        :global(.o-content-with-image__image--slot) {
+          height: 200px;
+          width: 100%;
         }
       }
 

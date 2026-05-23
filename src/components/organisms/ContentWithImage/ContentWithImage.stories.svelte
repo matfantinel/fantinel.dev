@@ -3,6 +3,7 @@
   import { LoremIpsum } from '@utils/lorem-ipsum';
 
   import ContentWithImage from './ContentWithImage.svelte';
+  import PolaroidCard from '@components/molecules/PolaroidCard';
 
   const { Story } = defineMeta({
     title: 'Organisms/Content With Image',
@@ -30,16 +31,22 @@
     body={args.body ?? LoremIpsum.paragraph}
     image={args.image ?? 'https://placedog.net/600/600'}
     imageAlt={args.imageAlt ?? 'A placeholder dog'}
-    button={args.button ?? { text: 'Primary', url: '#' }}
-    secondaryButton={args.secondaryButton ?? { text: 'Secondary', url: '#' }}
+    button={args.button ?? { text: 'Primary', href: '#' }}
+    secondaryButton={args.secondaryButton ?? { text: 'Secondary', href: '#' }}
     {...args}
   />
 {/snippet}
 
+{#snippet polaroidSnippet()}
+  <PolaroidCard
+    title="A cute dog"
+    image="https://placedog.net/600/600"
+    rotation={3}
+  />
+{/snippet}
+
 <!-- Cover, After, Clear (defaults) -->
-<Story
-  name="Default"
-/>
+<Story name="Default" />
 
 <!-- Cover, Before, Clear -->
 <Story
@@ -89,5 +96,39 @@
   args={{
     imageBehavior: 'contain',
     imagePosition: 'before',
+  }}
+/>
+
+<!-- polaroidProps prop -->
+<Story
+  name="With Polaroid Props"
+  args={{
+    polaroidProps: { title: 'A cute dog', image: 'https://placedog.net/600/600', rotation: 3 },
+  }}
+/>
+
+<!-- polaroidProps prop, image before -->
+<Story
+  name="With Polaroid Props + Before"
+  args={{
+    imagePosition: 'before',
+    polaroidProps: { title: 'A cute dog', image: 'https://placedog.net/600/600', rotation: -3 },
+  }}
+/>
+
+<!-- Snippet (PolaroidCard) -->
+<Story
+  name="With Snippet (Polaroid)"
+  args={{
+    imageSlot: polaroidSnippet,
+  }}
+/>
+
+<!-- Snippet (PolaroidCard), image before -->
+<Story
+  name="With Snippet (Polaroid) + Before"
+  args={{
+    imagePosition: 'before',
+    imageSlot: polaroidSnippet,
   }}
 />

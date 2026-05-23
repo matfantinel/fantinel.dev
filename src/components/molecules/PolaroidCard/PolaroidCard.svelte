@@ -13,15 +13,7 @@
     rotation?: number;
   };
 
-  let {
-    title,
-    image,
-    imageAlt,
-    content,
-    photoDate,
-    rotation = 0,
-    class: className,
-  }: PolaroidCardProps = $props();
+  let { title, image, imageAlt, content, photoDate, rotation = 0, class: className }: PolaroidCardProps = $props();
 
   let classList = $derived(['m-polaroid-card', photoDate || content ? 'm-polaroid-card--has-back' : '', className]);
 
@@ -37,48 +29,63 @@
   });
 </script>
 
-<article class={classList} style="--polaroid-rotation: {rotation}deg">
-  <div class="m-polaroid-card__quadrant one" aria-hidden="true"></div>
-  <div class="m-polaroid-card__quadrant two" aria-hidden="true"></div>
-  <div class="m-polaroid-card__quadrant three" aria-hidden="true"></div>
-  <div class="m-polaroid-card__quadrant four" aria-hidden="true"></div>
-  <div class="m-polaroid-card__container">
-    <div class="m-polaroid-card__front">
-      <div class="m-polaroid-card__image-area">
-        <Image class="m-polaroid-thumbnail__image" src={image} alt={imageAlt || title} />
+<div class="m-polaroid-card__scale-container">
+  <article class={classList} style="--polaroid-rotation: {rotation}deg">
+    <div class="m-polaroid-card__quadrant left" aria-hidden="true"></div>
+    <div class="m-polaroid-card__quadrant right" aria-hidden="true"></div>
+    <div class="m-polaroid-card__container">
+      <div class="m-polaroid-card__front">
+        <div class="m-polaroid-card__image-area">
+          <Image class="m-polaroid-thumbnail__image" src={image} alt={imageAlt || title} />
+        </div>
+        <div class="m-polaroid-card__label-area">
+          {#if title}
+            <span class="m-polaroid-card__title">{title}</span>
+          {/if}
+        </div>
       </div>
-      <div class="m-polaroid-card__label-area">
-        {#if title}
-          <span class="m-polaroid-card__title">{title}</span>
-        {/if}
-      </div>
+
+      {#if photoDate || content}
+        <div class="m-polaroid-card__back">
+          {#if content}
+            <div class="m-polaroid-card__description u-markdown">
+              <MarkdownRenderer {content} />
+            </div>
+          {/if}
+
+          {#if photoDate}
+            <div class="m-polaroid-card__date">
+              {dateformat(photoDate, 'yyyy-mm-dd', true)}
+            </div>
+          {/if}
+        </div>
+      {/if}
     </div>
-
-    {#if photoDate || content}
-      <div class="m-polaroid-card__back">        
-        {#if content}
-          <div class="m-polaroid-card__description u-markdown">
-            <MarkdownRenderer {content} />
-          </div>
-        {/if}
-
-        {#if photoDate}
-          <div class="m-polaroid-card__date">
-            {dateformat(photoDate, 'yyyy-mm-dd', true)}
-          </div>
-        {/if}
-      </div>
-    {/if}
-  </div>
-</article>
+  </article>
+</div>
 
 <style lang="scss">
   @use '/src/styles/typography';
   @use '/src/styles/breakpoints';
 
+  .m-polaroid-card__scale-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    container-type: size;
+    width: min(350px, 100%);
+    max-width: 350px;
+    height: min(420px, 100%);
+    max-height: 420px;
+    --polaroid-scale: min(calc(100cqw / 350px), calc(100cqh / 420px));
+  }
+
   .m-polaroid-card {
     width: 350px;
     height: 420px;
+    transform-origin: center;
+    scale: var(--polaroid-scale, 1);
     aspect-ratio: 350 / 420;
 
     rotate: var(--polaroid-rotation, 0deg);
@@ -87,13 +94,12 @@
 
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
 
     &__container {
       grid-column: 1 / 3;
-      grid-row: 1 / 3;
+      grid-row: 1;
       padding: var(--spacing-sm);
-      background: var(--t-v6--surface--card);
+      background: #ffffff;
       box-shadow: var(--t-v6--shadow--base);
 
       width: 100%;
@@ -107,6 +113,20 @@
 
       > * {
         grid-column: 1;
+        grid-row: 1;
+      }
+    }
+
+    &__quadrant {
+      z-index: 9;
+
+      &.left {
+        grid-column: 1;
+        grid-row: 1;
+      }
+      
+      &.right {
+        grid-column: 2;
         grid-row: 1;
       }
     }
@@ -144,7 +164,7 @@
 
     &__title {
       font-family: var(--font--spicy);
-      color: var(--t-v6--text--base);
+      color: #4C4F69;
       font-size: 24px;
     }
 
@@ -164,17 +184,18 @@
     &__date {
       @include typography.b2;
       font-family: var(--font--spicy);
-      color: var(--t-v6--text--medium);
+      color: #5C5F77;
     }
 
     &__description {
-      @include typography.b2;
+      @include typography.b1;
+      font-weight: 500;
       font-family: var(--font--spicy);
       text-align: left;
+      color: #4C4F69;
     }
 
     @mixin turned-around-card {
-      
       .m-polaroid-card {
         &__container {
           transform: scaleX(-1);
@@ -194,6 +215,15 @@
     &--has-back {
       &:hover {
         @include turned-around-card;
+      }
+    }
+
+    &:not(.m-polaroid-card--has-back) {
+      &:has(.m-polaroid-card__quadrant.left:hover) {
+        transform: rotateX(15deg) rotateY(-10deg);
+      }
+      &:has(.m-polaroid-card__quadrant.right:hover) {
+        transform: rotateX(15deg) rotateY(10deg);
       }
     }
 
