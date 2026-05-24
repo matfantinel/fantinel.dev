@@ -5,6 +5,7 @@
   import MarkdownRenderer from '@components/molecules/MarkdownRenderer';
   import PolaroidCard from '@components/molecules/PolaroidCard';
   import type { PolaroidCardProps } from '@components/molecules/PolaroidCard';
+  import Stack from '@components/molecules/Stack';
   import type { Snippet } from 'svelte';
   import type { BaseProps } from '@utils/types';
 
@@ -21,6 +22,7 @@
     animateOnEntry?: boolean;
     headingColor?: string;
     polaroidProps?: Omit<PolaroidCardProps, 'class'>;
+    polaroids?: Omit<PolaroidCardProps, 'class'>[];
   };
 
   let {
@@ -36,11 +38,12 @@
     animateOnEntry = false,
     headingColor,
     polaroidProps,
+    polaroids,
     imageSlot,
     class: className,
   }: ContentWithImageProps & { imageSlot?: Snippet } = $props();
 
-  let hasSlotContent = $derived(!!(imageSlot || polaroidProps));
+  let hasSlotContent = $derived(!!(imageSlot || polaroidProps || (polaroids && polaroids.length > 0)));
   let resolvedImageBehavior = $derived(hasSlotContent ? 'contain' : imageBehavior);
 
   let classList = $derived([
@@ -95,6 +98,14 @@
     {#if imageSlot}
       <div class="o-content-with-image__image o-content-with-image__image--slot">
         {@render imageSlot()}
+      </div>
+    {:else if polaroids && polaroids.length > 0}
+      <div class="o-content-with-image__image o-content-with-image__image--slot">
+        <Stack itemCount={polaroids.length}>
+          {#each polaroids as polaroid}
+            <PolaroidCard {...polaroid as PolaroidCardProps} />
+          {/each}
+        </Stack>
       </div>
     {:else if polaroidProps}
       <div class="o-content-with-image__image o-content-with-image__image--slot">
