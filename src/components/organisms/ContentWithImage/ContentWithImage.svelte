@@ -57,7 +57,12 @@
 <div class={classList}>
   <div class="o-content-with-image__container">
     <div class="o-content-with-image__content">
-      <h2 class="o-content-with-image__heading u-h2" style={headingColor ? `color: var(--t--${headingColor}); --glow-color: var(--t--${headingColor}--rgb)` : ''}>{heading}</h2>
+      <h2
+        class="o-content-with-image__heading u-h2"
+        style={headingColor ? `color: var(--t--${headingColor}); --glow-color: var(--t--${headingColor}--rgb)` : ''}
+      >
+        {heading}
+      </h2>
 
       {#if body}
         <div class="o-content-with-image__body u-markdown u-b2">
@@ -93,7 +98,7 @@
       </div>
     {:else if polaroidProps}
       <div class="o-content-with-image__image o-content-with-image__image--slot">
-        <PolaroidCard {...polaroidProps!} />
+        <PolaroidCard {...polaroidProps as PolaroidCardProps} />
       </div>
     {:else if image}
       <Image class="o-content-with-image__image" src={image} alt={imageAlt ?? ''} />
@@ -264,17 +269,18 @@
     }
 
     &--animate-on-entry {
+      // @include breakpoints.for-phone-only {
       .o-content-with-image {
         &__content {
           @supports (animation-timeline: view()) {
-            animation: content-slide linear;
+            animation: content-slide cubic-bezier(0.175, 0.885, 0.32, 1);
             animation-fill-mode: both;
             animation-timeline: view();
             animation-range-start: cover 0%;
-            animation-range-end: cover 15%;
+            animation-range-end: cover 50%;
 
             @include breakpoints.for-phone-only {
-              animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+              animation-range-end: cover 90%;
             }
           }
         }
@@ -282,13 +288,14 @@
 
       :global(.o-content-with-image__image) {
         @supports (animation-timeline: view()) {
-          animation: content-slide linear;
+          animation: content-slide cubic-bezier(0.175, 0.885, 0.32, 1);
           animation-fill-mode: both;
           animation-timeline: view();
           animation-range-start: cover 0%;
-          animation-range-end: cover 15%;
+          animation-range-end: cover 50%;
+
           @include breakpoints.for-phone-only {
-            animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            animation-range-end: cover 90%;
           }
         }
       }
@@ -302,6 +309,7 @@
           translate: 0 0;
         }
       }
+      // }
     }
   }
 </style>
