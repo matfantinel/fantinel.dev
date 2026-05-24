@@ -291,7 +291,7 @@
             animation-range-end: cover 50%;
 
             @include breakpoints.for-phone-only {
-              animation-range-end: cover 90%;
+              animation-range-end: cover 60%;
             }
           }
         }
@@ -306,7 +306,7 @@
           animation-range-end: cover 50%;
 
           @include breakpoints.for-phone-only {
-            animation-range-end: cover 90%;
+            animation-range-end: cover 60%;
           }
         }
       }
