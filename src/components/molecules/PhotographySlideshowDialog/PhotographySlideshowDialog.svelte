@@ -154,7 +154,7 @@
     }
 
     &::backdrop {
-      background: rgba(var(--t-v6--surface--base--rgb), 0.9);
+      background: rgba(var(--t--surface--base--rgb), 0.9);
       backdrop-filter: blur(20px);
       transition:
         background 0.3s ease,
@@ -163,13 +163,13 @@
         display 0.3s ease allow-discrete;
 
       @starting-style {
-        background: rgba(var(--t-v6--surface--base--rgb), 0);
+        background: rgba(var(--t--surface--base--rgb), 0);
         backdrop-filter: blur(0px);
       }
     }
 
     &:not([open])::backdrop {
-      background: rgba(var(--t-v6--surface--base--rgb), 0);
+      background: rgba(var(--t--surface--base--rgb), 0);
       backdrop-filter: blur(0px);
     }
 
@@ -197,19 +197,19 @@
     &__title {
       @include typography.h4;
       font-family: var(--font--spicy);
-      color: var(--t-v6--photography);
+      color: var(--t--photography);
       text-align: center;
     }
 
     &__date {
       @include typography.b3;
-      color: var(--t-v6--text--medium);
+      color: var(--t--text--medium);
       text-align: center;
     }
 
     &__description {
       @include typography.b2;
-      color: var(--t-v6--text--base);
+      color: var(--t--text--base);
       text-align: center;
       gap: 1rem;
     }
@@ -255,10 +255,10 @@
       width: 6px;
       height: 6px;
       border-radius: 50%;
-      background-color: rgba(var(--t-v6--accent--rgb), 0.3);
+      background-color: rgba(var(--t--accent--rgb), 0.3);
 
       &.active {
-        background-color: rgba(var(--t-v6--accent--rgb), 1);
+        background-color: rgba(var(--t--accent--rgb), 1);
       }
     }
     :global(.m-photography-slideshow-dialog__image) {

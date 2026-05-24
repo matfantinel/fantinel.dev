@@ -37,31 +37,31 @@
     -webkit-tap-highlight-color: transparent;
     touch-action: manipulation;
 
-    border: 1px solid var(--t-v6--input--border--empty);
-    background: var(--t-v6--input--bg--empty);
-    color: var(--t-v6--input--text--value);
+    border: 1px solid var(--t--input--border--empty);
+    background: var(--t--input--bg--empty);
+    color: var(--t--input--text--value);
 
     &::placeholder {
-      color: var(--t-v6--input--text--placeholder);
+      color: var(--t--input--text--placeholder);
     }
 
     @media (hover: hover) {
       &:hover {
-        border-color: var(--t-v6--input--border--hover);
+        border-color: var(--t--input--border--hover);
         border-style: solid;
       }
     }
 
     &:not(:placeholder-shown) {
-      border-color: var(--t-v6--input--border--filled);
-      background: var(--t-v6--input--bg--filled);
+      border-color: var(--t--input--border--filled);
+      background: var(--t--input--bg--filled);
       border-style: solid;
     }
 
     &:focus,
     &:active {
-      border-color: var(--t-v6--input--border--active);
-      background: var(--t-v6--input--bg--active);
+      border-color: var(--t--input--border--active);
+      background: var(--t--input--bg--active);
       border-style: dashed;
     }
 
@@ -69,7 +69,7 @@
       &:hover {
         // Hover background has preference over other styles,
         // so it's declared last
-        background: var(--t-v6--input--bg--hover);
+        background: var(--t--input--bg--hover);
       }
     }
   }

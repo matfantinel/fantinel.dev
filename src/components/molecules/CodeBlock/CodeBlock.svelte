@@ -57,13 +57,13 @@
 	.m-code-block {
 		display: block;
 		position: relative;
-		background-color: var(--t-v6--codeblock--bg);
-		color: var(--t-v6--codeblock--text);
+		background-color: var(--t--codeblock--bg);
+		color: var(--t--codeblock--text);
 		font-family: var(--font--mono);
 		font-size: 1rem;
 		line-height: 1.33em;
 		border-radius: var(--border-radius--small);
-		box-shadow: var(--t-v6--shadow--base);
+		box-shadow: var(--t--shadow--base);
 
 		padding: var(--spacing-lg) var(--spacing-sm) var(--spacing-md);
 		margin: var(--spacing-lg) 0;
@@ -71,7 +71,7 @@
 		:global(pre) {
 			font-family: var(--font--mono);
 			overflow-x: auto;
-			scrollbar-color: var(--t-v6--accent) rgba(var(--t-v6--accent--rgb), 0.5);
+			scrollbar-color: var(--t--accent) rgba(var(--t--accent--rgb), 0.5);
 			scrollbar-width: thin;
 			padding-bottom: var(--spacing-xxs);
 
@@ -83,9 +83,9 @@
 				height: 8px;
 			}
 			&::-webkit-scrollbar-thumb {
-				background: var(--t-v6--accent);
+				background: var(--t--accent);
 				&:hover {
-					background: var(--t-v6--accent--tint);
+					background: var(--t--accent--tint);
 				}
 			}
 		}

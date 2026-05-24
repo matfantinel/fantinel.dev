@@ -93,14 +93,14 @@
     &__kicker {
       @include typography.h5;
       text-transform: lowercase;
-      color: var(--t-v6--text--medium);
+      color: var(--t--text--medium);
     }
 
     &__name {
       @include typography.h1;
       @include typography.gradient-pinkish;
       font-size: clamp(1.35rem, 1.6vw + 1rem, 2.25rem); //36px
-      animation: var(--t-v6--glowing-text-animation);
+      animation: var(--t--glowing-text-animation);
     }
 
     &__bio {

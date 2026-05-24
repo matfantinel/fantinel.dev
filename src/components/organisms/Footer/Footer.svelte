@@ -72,7 +72,7 @@
     justify-content: flex-end;
 
     &__wrapper {
-      background-color: var(--t-v6--surface--accent);
+      background-color: var(--t--surface--accent);
       position: relative;
       margin-top: 100px;
 
@@ -85,7 +85,7 @@
         height: 100px;
         z-index: -1;
 
-        background: var(--t-v6--gradient--rainbow);
+        background: var(--t--gradient--rainbow);
         mask-image: linear-gradient(to top, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.2) 50%, transparent 100%);
         mask-repeat: no-repeat;
         mask-position: bottom;

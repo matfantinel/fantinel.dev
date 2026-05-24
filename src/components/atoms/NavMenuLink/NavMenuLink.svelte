@@ -49,7 +49,7 @@
     { 'a-nav-menu-link--active': active, 'a-nav-menu-link--mobile': isMobile },
   ]);
 
-  let customStyles = $derived([color ? `--color: var(--t-v6--${color})` : '']);
+  let customStyles = $derived([color ? `--color: var(--t--${color})` : '']);
 </script>
 
 <svelte:element this={tag} {...linkProps} class={classList} {...props} {title} {onclick} style={customStyles.join(';')}>
@@ -86,7 +86,7 @@
 
     transition: all 0.25s ease;
 
-    color: var(--t-v6--text--base);
+    color: var(--t--text--base);
     background: transparent;
 
     &__icon {
@@ -120,8 +120,8 @@
     }
 
     &--active {
-      background: var(--t-v6--surface--accent);
-      color: var(--color, var(--t-v6--accent));
+      background: var(--t--surface--accent);
+      color: var(--color, var(--t--accent));
     }
 
     @include breakpoints.for-phone-only {
@@ -136,7 +136,7 @@
     &:active,
     &:focus {
       filter: none;
-      color: var(--color, var(--t-v6--accent));
+      color: var(--color, var(--t--accent));
 
       .a-nav-menu-link {
         &__icon {

@@ -113,11 +113,11 @@
       border-radius: var(--border-radius--small);
       transition: all 0.15s ease;
       padding: var(--spacing-xxs);
-      color: var(--t-v6--text--medium);
+      color: var(--t--text--medium);
 
       &:hover {
-        box-shadow: inset var(--t-v6--accent--glow);
-        color: var(--t-v6--input--text--value);
+        box-shadow: inset var(--t--accent--glow);
+        color: var(--t--input--text--value);
       }
     }
 

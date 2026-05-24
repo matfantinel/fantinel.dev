@@ -76,9 +76,9 @@
   @use '/src/styles/breakpoints';
 
   .m-cool-link-card {
-    border: 2px dashed var(--t-v6--cool-link);
+    border: 2px dashed var(--t--cool-link);
     border-radius: var(--border-radius);
-    background: var(--t-v6--surface--card);
+    background: var(--t--surface--card);
     position: relative;
 
     transition: all 0.25s ease-in-out;
@@ -115,9 +115,9 @@
     }
 
     &__title-link {
-      color: var(--t-v6--cool-link);
+      color: var(--t--cool-link);
       text-decoration: underline;
-      text-decoration-color: var(--t-v6--cool-link);
+      text-decoration-color: var(--t--cool-link);
 
       text-underline-offset: 0.1em;
       text-decoration-thickness: 2px;
@@ -131,7 +131,7 @@
     &__content {
       :global(blockquote) {
         padding-left: var(--spacing-md);
-        border-left: 4px solid var(--t-v6--border--base);
+        border-left: 4px solid var(--t--border--base);
       }
     }
   }
@@ -164,7 +164,7 @@
   @media (hover: hover) {
     :global(.m-cool-link-card:has(.m-cool-link-card__link:hover)),
     :global(.m-cool-link-card:has(.m-cool-link-card__title-link:hover)) {
-      box-shadow: var(--t-v6--shadow--high);
+      box-shadow: var(--t--shadow--high);
       .m-cool-link-card__title-link {
         text-underline-offset: 0.3em;
         filter: unset;

@@ -38,7 +38,7 @@
 <style lang="scss">
   .a-blockquote {
     position: relative;
-    background-color: var(--t-v6--surface--accent);
+    background-color: var(--t--surface--accent);
     padding: var(--spacing-md);
     padding-left: var(--spacing-xl);
     border-radius: var(--border-radius);
@@ -57,7 +57,7 @@
     }
 
     :global(.a-blockquote__quote) {
-      color: var(--t-v6--accent);
+      color: var(--t--accent);
       &:first-child {
         transform: scale(-1, 1);
       }

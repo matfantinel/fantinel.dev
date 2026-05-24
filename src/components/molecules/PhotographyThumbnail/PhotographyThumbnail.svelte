@@ -113,7 +113,7 @@
       right: var(--spacing-md);
       bottom: var(--spacing-md);
 
-      box-shadow: var(--t-v6--shadow--high);
+      box-shadow: var(--t--shadow--high);
       z-index: 3;
     }
   }

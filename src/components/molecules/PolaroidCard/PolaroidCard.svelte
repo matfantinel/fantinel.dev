@@ -100,7 +100,7 @@
       grid-row: 1;
       padding: var(--spacing-sm);
       background: #ffffff;
-      box-shadow: var(--t-v6--shadow--base);
+      box-shadow: var(--t--shadow--base);
 
       width: 100%;
       height: 100%;

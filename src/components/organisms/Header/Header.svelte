@@ -142,7 +142,7 @@
       width: 100%;
 
       padding-top: var(--spacing-md);
-      border-top: 1px solid var(--t-v6--border--medium);
+      border-top: 1px solid var(--t--border--medium);
     }
 
     :global(.o-header__theme-toggle) {

@@ -168,19 +168,19 @@ h5, .u-h5 {
 }
 
 @mixin gradient-greenish {
-  @include gradient(var(--t-v6--gradient--greenish));
+  @include gradient(var(--t--gradient--greenish));
 }
 
 @mixin gradient-pinkish {
-  @include gradient(var(--t-v6--gradient--pinkish));
+  @include gradient(var(--t--gradient--pinkish));
 }
 
 @mixin gradient-rainbow {
-  @include gradient(var(--t-v6--gradient--rainbow));
+  @include gradient(var(--t--gradient--rainbow));
 }
 
 @mixin gradient-rainbow-circle {
-  @include gradient(var(--t-v6--gradient--rainbow-circle));
+  @include gradient(var(--t--gradient--rainbow-circle));
 }
 
 // #endregion
@@ -188,11 +188,11 @@ h5, .u-h5 {
 // #region Colors
 
 .u-text-medium {
-  color: var(--t-v6--text--medium);
+  color: var(--t--text--medium);
 }
 
 .u-text-light {
-  color: var(--t-v6--text--light);
+  color: var(--t--text--light);
 }
 
 // #endregion

@@ -69,7 +69,7 @@
     height: var(--size);
     aspect-ratio: 1/1;
     border-radius: 50%;
-    box-shadow: var(--t-v6--shadow--low);
+    box-shadow: var(--t--shadow--low);
     background: none;
 
     &:is(button) {
@@ -85,7 +85,7 @@
       left: 0;
       z-index: -1;
 
-      background: var(--t-v6--gradient--rainbow--circle);
+      background: var(--t--gradient--rainbow--circle);
       filter: blur(4px);
       will-change: transform, opacity;
       transform: rotate(0deg) translate3d(0, 0, 0);

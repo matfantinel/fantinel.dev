@@ -75,7 +75,7 @@
   @use '/src/styles/mixins';
 
   .o-home-page-hero {
-    background-color: var(--t-v6--surface--accent);
+    background-color: var(--t--surface--accent);
 
     position: relative;
     container-type: inline-size;
@@ -89,7 +89,7 @@
       width: 100%;
       height: 80px;
 
-      background: var(--t-v6--gradient--rainbow);
+      background: var(--t--gradient--rainbow);
       mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.2) 50%, transparent 100%);
       mask-repeat: no-repeat;
       mask-position: top;
@@ -133,13 +133,13 @@
 
     &__kicker {
       @include typography.h5;
-      color: var(--t-v6--text--medium);
+      color: var(--t--text--medium);
     }
 
     &__title {
       @include typography.h1;
       @include typography.gradient-greenish;
-      animation: var(--t-v6--glowing-text-animation);
+      animation: var(--t--glowing-text-animation);
     }
 
     &__bio {

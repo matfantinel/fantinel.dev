@@ -150,16 +150,16 @@
   .m-table-of-contents {
     @include breakpoints.for-tablet-portrait-down {
       padding-block: var(--spacing-sm);
-      border-top: 1px dotted var(--t-v6--border--medium);
-      border-bottom: 1px dotted var(--t-v6--border--medium);
+      border-top: 1px dotted var(--t--border--medium);
+      border-bottom: 1px dotted var(--t--border--medium);
     }
 
     @include breakpoints.for-tablet-landscape-up {
       overflow: hidden;
-      background-color: var(--t-v6--surface--card);
+      background-color: var(--t--surface--card);
       border-radius: var(--border-radius);
       padding: var(--spacing-sm);
-      box-shadow: var(--t-v6--shadow--base);
+      box-shadow: var(--t--shadow--base);
     }
 
     &__main {
@@ -169,7 +169,7 @@
 
     &__heading {
       @include typography.b1;
-      color: var(--t-v6--accent);
+      color: var(--t--accent);
     }
 
     &__list {
@@ -184,7 +184,7 @@
 
     &__item {
       @include typography.b2;
-      color: var(--t-v6--text--base);
+      color: var(--t--text--base);
       transition: scale 0.15s ease;
 
       margin: 0;
@@ -198,7 +198,7 @@
 
       &--active {
         @include breakpoints.for-tablet-landscape-up {
-          color: var(--t-v6--accent);
+          color: var(--t--accent);
           scale: 1.05;
         }
       }
@@ -224,11 +224,11 @@
       opacity: 0;
       translate: -50% 200%;
 
-      background-color: rgba(var(--t-v6--surface--card--rgb), 0.8);
+      background-color: rgba(var(--t--surface--card--rgb), 0.8);
       backdrop-filter: blur(10px);
       border-radius: var(--border-radius);
       padding: var(--spacing-xxs) var(--spacing-sm);
-      box-shadow: var(--t-v6--shadow--high);
+      box-shadow: var(--t--shadow--high);
 
       &:-webkit-details-marker {
         display: none;
@@ -237,7 +237,7 @@
       .m-table-of-contents {
         &__item {
           &--active {
-            color: var(--t-v6--accent);
+            color: var(--t--accent);
             scale: 1.05;
           }
         }
@@ -288,7 +288,7 @@
 
         border-left: 5px solid transparent;
         border-right: 5px solid transparent;
-        border-top: 5px solid var(--t-v6--text--base);
+        border-top: 5px solid var(--t--text--base);
       }
 
       .m-table-of-contents {
@@ -300,14 +300,14 @@
 
     &__current {
       @include typography.b3;
-      color: var(--t-v6--accent);
+      color: var(--t--accent);
 
       text-wrap: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
 
       &--active {
-        color: var(--t-v6--text--medium);
+        color: var(--t--text--medium);
       }
     }
 

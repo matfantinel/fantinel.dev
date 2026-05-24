@@ -78,7 +78,7 @@
   @use '/src/styles/breakpoints';
 
   .o-generic-hero {
-    background-color: var(--t-v6--surface--accent);
+    background-color: var(--t--surface--accent);
 
     position: relative;
     margin-bottom: 64px;
@@ -112,8 +112,8 @@
       text-align: center;
       text-wrap: balance;
 
-      color: var(--t-v6--accent);
-      animation: var(--t-v6--glowing-text-animation);
+      color: var(--t--accent);
+      animation: var(--t--glowing-text-animation);
     }
 
     &__body {

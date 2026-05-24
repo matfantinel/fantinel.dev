@@ -100,14 +100,14 @@
 
       @media (hover: hover) {
         &:hover {
-          background-color: var(--t-v6--surface--accent);
+          background-color: var(--t--surface--accent);
         }
       }
 
       &--active {
-        background-color: var(--t-v6--surface--accent);
-        box-shadow: var(--t-v6--shadow--base);
-        color: var(--t-v6--accent);
+        background-color: var(--t--surface--accent);
+        box-shadow: var(--t--shadow--base);
+        color: var(--t--accent);
       }
     }
   }

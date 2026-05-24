@@ -22,16 +22,16 @@
       if (!monochrome || value === QuickReviewRating.LovedIt) {
         switch (value) {
           case QuickReviewRating.LovedIt:
-            color = 'var(--t-v6--qr-loved-color)';
+            color = 'var(--t--qr-loved-color)';
             break;
           case QuickReviewRating.LikeIt:
-            color = 'var(--t-v6--qr-liked-color)';
+            color = 'var(--t--qr-liked-color)';
             break;
           case QuickReviewRating.Decent:
-            color = 'var(--t-v6--qr-decent-color)';
+            color = 'var(--t--qr-decent-color)';
             break;
           case QuickReviewRating.DidntLikeIt:
-            color = 'var(--t-v6--qr-not-liked-color)';
+            color = 'var(--t--qr-not-liked-color)';
             break;
           default:
             break;
@@ -86,21 +86,21 @@
     align-items: center;
     justify-content: space-between;
 
-    --text-color: var(--t-v6--qr-base-light-color);
-    --rating-color: var(--t-v6--accent);
+    --text-color: var(--t--qr-base-light-color);
+    --rating-color: var(--t--accent);
 
     border: 1px solid var(--text-color);
     color: var(--text-color);
 
     &--monochrome {
-      --rating-color: var(--t-v6--qr-base-dark-color);
+      --rating-color: var(--t--qr-base-dark-color);
     }
 
     &--light {
-      --text-color: var(--t-v6--qr-base-dark-color);
+      --text-color: var(--t--qr-base-dark-color);
 
       &.m-quick-review-ratings--monochrome {
-        --rating-color: var(--t-v6--qr-base-light-color);
+        --rating-color: var(--t--qr-base-light-color);
       }
     }
 
@@ -112,7 +112,7 @@
 
       &--active {
         background: var(--rating-color);
-        box-shadow: var(--t-v6--shadow--high);
+        box-shadow: var(--t--shadow--high);
 
         &:first-child {
           margin-left: calc(var(--spacing-md) * -1);
@@ -122,13 +122,13 @@
         }
 
         &:not(.m-quick-review-ratings__rating--monochrome) {
-          color: var(--t-v6--qr-base-dark-color);
+          color: var(--t--qr-base-dark-color);
         }
 
         &.m-quick-review-ratings__rating--loved {
-          color: var(--t-v6--qr-base-dark-color);
+          color: var(--t--qr-base-dark-color);
 
-          --glow-color: var(--t-v6--qr-loved-color-rgb);
+          --glow-color: var(--t--qr-loved-color-rgb);
           animation: text-glow 3.5s cubic-bezier(0.66, 0, 0.34, 1) infinite alternate;
         }
       }

@@ -88,16 +88,16 @@
     padding: var(--spacing-xs) var(--spacing-md);
     border-radius: var(--border-radius);
     text-decoration: none;
-    box-shadow: var(--t-v6--shadow--base);
+    box-shadow: var(--t--shadow--base);
     border: none;
     cursor: pointer;
 
     transition: all 0.25s ease;
 
-    --button-color-background: var(--t-v6--accent);
-    --button-color-background-hover: var(--t-v6--accent--tint);
-    --button-color-text: var(--t-v6--accent--contrast);
-    --button-color-hover-glow: var(--t-v6--accent--glow-small);
+    --button-color-background: var(--t--accent);
+    --button-color-background-hover: var(--t--accent--tint);
+    --button-color-text: var(--t--accent--contrast);
+    --button-color-hover-glow: var(--t--accent--glow-small);
 
     background: var(--button-color-background);
     color: var(--button-color-text);
@@ -136,45 +136,45 @@
     }
 
     &--accent {
-      --button-color-background: var(--t-v6--accent);
-      --button-color-background-hover: var(--t-v6--accent--tint);
-      --button-color-text: var(--t-v6--accent--contrast);
-      --button-color-hover-glow: var(--t-v6--accent--glow-small);
+      --button-color-background: var(--t--accent);
+      --button-color-background-hover: var(--t--accent--tint);
+      --button-color-text: var(--t--accent--contrast);
+      --button-color-hover-glow: var(--t--accent--glow-small);
     }
 
     &--complementary {
-      --button-color-background: var(--t-v6--complementary);
-      --button-color-background-hover: var(--t-v6--complementary--tint);
-      --button-color-text: var(--t-v6--complementary--contrast);
-      --button-color-hover-glow: var(--t-v6--complementary--glow-small);
+      --button-color-background: var(--t--complementary);
+      --button-color-background-hover: var(--t--complementary--tint);
+      --button-color-text: var(--t--complementary--contrast);
+      --button-color-hover-glow: var(--t--complementary--glow-small);
     }
 
     &--blog {
-      --button-color-background: var(--t-v6--blog);
-      --button-color-background-hover: var(--t-v6--blog--tint);
-      --button-color-text: var(--t-v6--blog--contrast);
-      --button-color-hover-glow: var(--t-v6--blog--glow-small);
+      --button-color-background: var(--t--blog);
+      --button-color-background-hover: var(--t--blog--tint);
+      --button-color-text: var(--t--blog--contrast);
+      --button-color-hover-glow: var(--t--blog--glow-small);
     }
 
     &--quick-review {
-      --button-color-background: var(--t-v6--quick-review);
-      --button-color-background-hover: var(--t-v6--quick-review--tint);
-      --button-color-text: var(--t-v6--quick-review--contrast);
-      --button-color-hover-glow: var(--t-v6--quick-review--glow-small);
+      --button-color-background: var(--t--quick-review);
+      --button-color-background-hover: var(--t--quick-review--tint);
+      --button-color-text: var(--t--quick-review--contrast);
+      --button-color-hover-glow: var(--t--quick-review--glow-small);
     }
 
     &--cool-link {
-      --button-color-background: var(--t-v6--cool-link);
-      --button-color-background-hover: var(--t-v6--cool-link--tint);
-      --button-color-text: var(--t-v6--cool-link--contrast);
-      --button-color-hover-glow: var(--t-v6--cool-link--glow-small);
+      --button-color-background: var(--t--cool-link);
+      --button-color-background-hover: var(--t--cool-link--tint);
+      --button-color-text: var(--t--cool-link--contrast);
+      --button-color-hover-glow: var(--t--cool-link--glow-small);
     }
 
     &--photography {
-      --button-color-background: var(--t-v6--photography);
-      --button-color-background-hover: var(--t-v6--photography--tint);
-      --button-color-text: var(--t-v6--photography--contrast);
-      --button-color-hover-glow: var(--t-v6--photography--glow-small);
+      --button-color-background: var(--t--photography);
+      --button-color-background-hover: var(--t--photography--tint);
+      --button-color-text: var(--t--photography--contrast);
+      --button-color-hover-glow: var(--t--photography--glow-small);
     }
   }
 </style>

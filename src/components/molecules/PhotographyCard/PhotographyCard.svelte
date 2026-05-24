@@ -89,8 +89,8 @@
 
   .m-photography-card {
     border-radius: var(--border-radius);
-    box-shadow: var(--t-v6--shadow--base);
-    background-color: var(--t-v6--surface--card);
+    box-shadow: var(--t--shadow--base);
+    background-color: var(--t--surface--card);
     overflow: hidden;
     position: relative;
 
@@ -115,7 +115,7 @@
     &__content {
       padding: var(--spacing-md) var(--spacing-md) var(--spacing-lg);
       flex-grow: 1;
-      background-color: var(--t-v6--surface--card);
+      background-color: var(--t--surface--card);
 
       display: flex;
       flex-direction: column;
@@ -125,12 +125,12 @@
     &__title {
       @include typography.h4;
       font-family: var(--font--spicy);
-      color: var(--t-v6--photography);
+      color: var(--t--photography);
     }
 
     &__date {
       @include typography.b3;
-      color: var(--t-v6--text--medium);
+      color: var(--t--text--medium);
     }
 
     &__description {
@@ -175,7 +175,7 @@
 
             padding: var(--spacing-sm);
 
-            background: var(--t-v6--surface--card);
+            background: var(--t--surface--card);
             translate: 0 100%;
             transition: 0.25s ease-out;
 

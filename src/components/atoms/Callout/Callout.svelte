@@ -44,12 +44,12 @@
 <style lang="scss">
   .a-callout {
     position: relative;
-    background-color: var(--t-v6--surface--accent);
+    background-color: var(--t--surface--accent);
     padding: var(--spacing-md);
     border-radius: var(--border-radius);
 
-		--callout-color: var(--t-v6--accent);
-    --callout-glow: var(--t-v6--accent--glow-small);
+		--callout-color: var(--t--accent);
+    --callout-glow: var(--t--accent--glow-small);
 
 		box-shadow: var(--callout-glow);
 		background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%23000000' fill-opacity='0.12' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E");
@@ -61,22 +61,22 @@
 			left: 0;
 			translate: -50% -50%;
 			color: var(--callout-color);
-			--icon-background-color: var(--t-v6--surface--base);
+			--icon-background-color: var(--t--surface--base);
 		}
 
 		&--info {
-			--callout-color: var(--t-v6--info);
-			--callout-glow: var(--t-v6--info--glow-small);
+			--callout-color: var(--t--info);
+			--callout-glow: var(--t--info--glow-small);
 		}
 
 		&--warning {
-			--callout-color: var(--t-v6--warning);
-			--callout-glow: var(--t-v6--warning--glow-small);
+			--callout-color: var(--t--warning);
+			--callout-glow: var(--t--warning--glow-small);
 		}
 
 		&--success {
-			--callout-color: var(--t-v6--success);
-			--callout-glow: var(--t-v6--success--glow-small);
+			--callout-color: var(--t--success);
+			--callout-glow: var(--t--success--glow-small);
 		}
   }
 </style>

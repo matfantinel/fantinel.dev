@@ -74,8 +74,8 @@
 
     transition: all 0.25s ease;
 
-    --arrow-link-color: var(--t-v6--accent);
-    --arrow-link-color-hover: var(--t-v6--accent--tint);
+    --arrow-link-color: var(--t--accent);
+    --arrow-link-color-hover: var(--t--accent--tint);
 
     color: var(--arrow-link-color);
 
@@ -117,33 +117,33 @@
     }
 
     &--accent {
-      --arrow-link-color: var(--t-v6--accent);
-      --arrow-link-color-hover: var(--t-v6--accent--tint);
+      --arrow-link-color: var(--t--accent);
+      --arrow-link-color-hover: var(--t--accent--tint);
     }
 
     &--complementary {
-      --arrow-link-color: var(--t-v6--complementary);
-      --arrow-link-color-hover: var(--t-v6--complementary--tint);
+      --arrow-link-color: var(--t--complementary);
+      --arrow-link-color-hover: var(--t--complementary--tint);
     }
 
     &--blog {
-      --arrow-link-color: var(--t-v6--blog);
-      --arrow-link-color-hover: var(--t-v6--blog--tint);
+      --arrow-link-color: var(--t--blog);
+      --arrow-link-color-hover: var(--t--blog--tint);
     }
 
     &--quick-review {
-      --arrow-link-color: var(--t-v6--quick-review);
-      --arrow-link-color-hover: var(--t-v6--quick-review--tint);
+      --arrow-link-color: var(--t--quick-review);
+      --arrow-link-color-hover: var(--t--quick-review--tint);
     }
 
     &--cool-link {
-      --arrow-link-color: var(--t-v6--cool-link);
-      --arrow-link-color-hover: var(--t-v6--cool-link--tint);
+      --arrow-link-color: var(--t--cool-link);
+      --arrow-link-color-hover: var(--t--cool-link--tint);
     }
 
     &--photography {
-      --arrow-link-color: var(--t-v6--photography);
-      --arrow-link-color-hover: var(--t-v6--photography--tint);
+      --arrow-link-color: var(--t--photography);
+      --arrow-link-color-hover: var(--t--photography--tint);
     }
   }
 </style>

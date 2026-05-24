@@ -213,7 +213,7 @@
     &__no-results {
       font-size: 18px;
       font-family: var(--font--mono);
-      color: var(--t-v6--text--medium);
+      color: var(--t--text--medium);
       font-weight: 700;
       width: min(400px, 100%);
       margin-inline: auto;
@@ -228,24 +228,24 @@
     }
 
     :global(.a-tag:has(input[name='blog'])) {
-      --t-v6--tag--border--active: var(--t-v6--blog);
-      --t-v6--tag--text--active: var(--t-v6--blog);
-      --t-v6--tag--glow--active: var(--t-v6--blog--glow-tiny);
+      --t--tag--border--active: var(--t--blog);
+      --t--tag--text--active: var(--t--blog);
+      --t--tag--glow--active: var(--t--blog--glow-tiny);
     }
     :global(.a-tag:has(input[name='quick-review'])) {
-      --t-v6--tag--border--active: var(--t-v6--quick-review);
-      --t-v6--tag--text--active: var(--t-v6--quick-review);
-      --t-v6--tag--glow--active: var(--t-v6--quick-review--glow-tiny);
+      --t--tag--border--active: var(--t--quick-review);
+      --t--tag--text--active: var(--t--quick-review);
+      --t--tag--glow--active: var(--t--quick-review--glow-tiny);
     }
     :global(.a-tag:has(input[name='cool-link'])) {
-      --t-v6--tag--border--active: var(--t-v6--cool-link);
-      --t-v6--tag--text--active: var(--t-v6--cool-link);
-      --t-v6--tag--glow--active: var(--t-v6--cool-link--glow-tiny);
+      --t--tag--border--active: var(--t--cool-link);
+      --t--tag--text--active: var(--t--cool-link);
+      --t--tag--glow--active: var(--t--cool-link--glow-tiny);
     }
     :global(.a-tag:has(input[name='photography'])) {
-      --t-v6--tag--border--active: var(--t-v6--photography);
-      --t-v6--tag--text--active: var(--t-v6--photography);
-      --t-v6--tag--glow--active: var(--t-v6--photography--glow-tiny);
+      --t--tag--border--active: var(--t--photography);
+      --t--tag--text--active: var(--t--photography);
+      --t--tag--glow--active: var(--t--photography--glow-tiny);
     }
   }
 </style>

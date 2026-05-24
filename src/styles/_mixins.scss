@@ -17,73 +17,36 @@
 	}
 }
 
-/**
- * Defines a bunch of CSS variables for a given color:
- * - HEX (--color--example)
- * - RGB (--color--example-rgb)
- * - Contrast (--color--example-contrast)
- * - Shade (--color--example-shade)
- * - Tint (--color--example-tint)
- * 
- * @param {string} $title - The name of the color
- * @param {string} $color - The color in HEX format
- */
 @mixin define-color($title, $color) {
-	--color--#{$title}: #{$color};
+  --palette--#{$title}: #{$color};
 
-	--color--#{$title}-rgb: #{functions.red($color)}, #{functions.green($color)}, #{functions.blue($color)};
+  --palette--#{$title}--rgb: #{functions.red($color)}, #{functions.green($color)}, #{functions.blue($color)};
 
-	--color--#{$title}-contrast: #{if(
-		functions.brightness($color) > 186,
-		var(--theme--text-base-color),
-		var(--theme--text-inverse-color)
-	)};
-
-	--color--#{$title}-shade: hsl(
-		#{functions.hue($color)},
-		#{functions.saturation($color)},
-		calc(#{functions.lightness($color)} - 10%)
-	);
-
-	--color--#{$title}-tint: hsl(
-		#{functions.hue($color)},
-		#{functions.saturation($color)},
-		calc(#{functions.lightness($color)} + 10%)
-	);
-}
-
-// v6 new mixins
-
-@mixin define-color-v6($title, $color) {
-  --palette-v6--#{$title}: #{$color};
-
-  --palette-v6--#{$title}--rgb: #{functions.red($color)}, #{functions.green($color)}, #{functions.blue($color)};
-
-  --palette-v6--#{$title}--contrast: #{if(
+  --palette--#{$title}--contrast: #{if(
       functions.brightness($color) > 186,
-      var(--t-v6--text--base),
-      var(--t-v6--text--inverse)
+      var(--t--text--base),
+      var(--t--text--inverse)
     )};
 
-  --palette-v6--#{$title}--shade: hsl(
+  --palette--#{$title}--shade: hsl(
     #{functions.hue($color)},
     #{functions.saturation($color)},
     calc(#{functions.lightness($color)} - 10%)
   );
 
-  --palette-v6--#{$title}--tint: hsl(
+  --palette--#{$title}--tint: hsl(
     #{functions.hue($color)},
     #{functions.saturation($color)},
     calc(#{functions.lightness($color)} + 10%)
   );
 
-  --palette-v6--#{$title}--glow: 0 0 40px rgba(var(--palette-v6--#{$title}--rgb), 0.4);
-  --palette-v6--#{$title}--glow-small: 0 0 20px rgba(var(--palette-v6--#{$title}--rgb), 0.4);
-  --palette-v6--#{$title}--glow-tiny: 0 0 3px rgba(var(--palette-v6--#{$title}--rgb), 0.7);
+  --palette--#{$title}--glow: 0 0 40px rgba(var(--palette--#{$title}--rgb), 0.4);
+  --palette--#{$title}--glow-small: 0 0 20px rgba(var(--palette--#{$title}--rgb), 0.4);
+  --palette--#{$title}--glow-tiny: 0 0 3px rgba(var(--palette--#{$title}--rgb), 0.7);
 
-  // --palette-v6--#{$title}--mixed: color-mix(in oklch, var(--palette-v6--#{$title}) 100%, var(--t-v6--accent) 1%);
+  // --palette--#{$title}--mixed: color-mix(in oklch, var(--palette--#{$title}) 100%, var(--t--accent) 1%);
   // // if safari,
-  --palette-v6--#{$title}--mixed: color-mix(in oklab, var(--palette-v6--#{$title}) 95%, var(--t-v6--accent) 4%);
+  --palette--#{$title}--mixed: color-mix(in oklab, var(--palette--#{$title}) 95%, var(--t--accent) 4%);
 }
 
 // Points a named contextual color (accent, complementary, post-type, etc.)
@@ -98,16 +61,16 @@
     @error "set-named-color('#{$name}'): provide either a palette color or $from-named.";
   }
 
-  $source: if($from-named != null, --t-v6--#{$from-named}, --palette-v6--#{$palette-color});
+  $source: if($from-named != null, --t--#{$from-named}, --palette--#{$palette-color});
 
-  --t-v6--#{$name}: var(#{$source});
-  --t-v6--#{$name}--rgb: var(#{$source}--rgb);
-  --t-v6--#{$name}--contrast: var(#{$source}--contrast);
-  --t-v6--#{$name}--shade: var(#{$source}--shade);
-  --t-v6--#{$name}--tint: var(#{$source}--tint);
-  --t-v6--#{$name}--glow: var(#{$source}--glow);
-  --t-v6--#{$name}--glow-small: var(#{$source}--glow-small);
-  --t-v6--#{$name}--glow-tiny: var(#{$source}--glow-tiny);
+  --t--#{$name}: var(#{$source});
+  --t--#{$name}--rgb: var(#{$source}--rgb);
+  --t--#{$name}--contrast: var(#{$source}--contrast);
+  --t--#{$name}--shade: var(#{$source}--shade);
+  --t--#{$name}--tint: var(#{$source}--tint);
+  --t--#{$name}--glow: var(#{$source}--glow);
+  --t--#{$name}--glow-small: var(#{$source}--glow-small);
+  --t--#{$name}--glow-tiny: var(#{$source}--glow-tiny);
 }
 
 // Helper to set the accent color with another named color

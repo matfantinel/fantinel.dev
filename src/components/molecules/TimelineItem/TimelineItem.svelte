@@ -55,7 +55,7 @@
   }
 </script>
 
-<div class={['m-timeline-item', className]} style="--color: var(--t-v6--{type});">
+<div class={['m-timeline-item', className]} style="--color: var(--t--{type});">
   <div class="m-timeline-item__icon">
     {#if type === PostType.BLOG_POST}
       <BlogPostIcon size="32px" />
@@ -110,7 +110,7 @@
 
       &-line {
         width: 2px;
-        background: var(--t-v6--border--medium);
+        background: var(--t--border--medium);
         flex: 1;
       }
     }

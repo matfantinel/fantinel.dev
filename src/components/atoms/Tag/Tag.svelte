@@ -87,9 +87,9 @@
 
     transition: all 0.25s ease;
 
-    border: 1px solid var(--t-v6--tag--border--base);
-    background: var(--t-v6--tag--bg--base);
-    color: var(--t-v6--tag--text--base);    
+    border: 1px solid var(--t--tag--border--base);
+    background: var(--t--tag--bg--base);
+    color: var(--t--tag--text--base);    
 
     &__checkbox {
       appearance: none;
@@ -123,7 +123,7 @@
       place-items: center;
       text-align: center;
 
-      background: var(--t-v6--tag--count--base);
+      background: var(--t--tag--count--base);
       border-radius: var(--border-radius--round);
     }
 
@@ -159,30 +159,30 @@
 
     @media (hover: hover) {
       &:hover {
-        border-color: var(--t-v6--tag--border--hover);
-        color: var(--t-v6--tag--text--hover);
-        background: var(--t-v6--tag--bg--hover);
+        border-color: var(--t--tag--border--hover);
+        color: var(--t--tag--text--hover);
+        background: var(--t--tag--bg--hover);
 
         .a-tag__count {
-          background: var(--t-v6--tag--count--hover);
+          background: var(--t--tag--count--hover);
         }
       }
     }
 
     &.a-tag--active,
     &:has(input:checked) {
-      border-color: var(--t-v6--tag--border--active);
-      background: var(--t-v6--tag--bg--active);
-      color: var(--t-v6--tag--text--active);
-      box-shadow: var(--t-v6--tag--glow--active);
+      border-color: var(--t--tag--border--active);
+      background: var(--t--tag--bg--active);
+      color: var(--t--tag--text--active);
+      box-shadow: var(--t--tag--glow--active);
 
       .a-tag__count {
-        background: var(--t-v6--tag--count--active);
+        background: var(--t--tag--count--active);
       }
 
       @media (hover: hover) {
         &:hover {
-          background: var(--t-v6--tag--bg--hover);
+          background: var(--t--tag--bg--hover);
         }
       }
     }

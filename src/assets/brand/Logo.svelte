@@ -7,8 +7,8 @@
     class?: string 
   } = $props();
 
-  const logoColor1 = 'var(--palette-v6--gray-min)';
-  const logoColor2 = 'var(--palette-v6--gray-0)';
+  const logoColor1 = 'var(--palette--gray-min)';
+  const logoColor2 = 'var(--palette--gray-0)';
 </script>
 
 <div class={['logo', className]} style={`width: ${size}; height: ${size};`}>
@@ -47,7 +47,7 @@
       width: 100%;
       height: 100%;
       border-radius: 50%;
-      background: var(--t-v6--gradient--rainbow--circle);
+      background: var(--t--gradient--rainbow--circle);
 
       filter: blur(20px);
       transition: all 0.25s ease-out;

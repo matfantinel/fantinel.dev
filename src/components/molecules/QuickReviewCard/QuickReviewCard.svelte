@@ -129,21 +129,21 @@
   .m-quick-review-card {
     padding: var(--spacing-sm);
     border-radius: var(--border-radius);
-    box-shadow: var(--t-v6--shadow--base);
+    box-shadow: var(--t--shadow--base);
     width: min(100%, 780px);
     container-type: inline-size;
     position: relative;
     isolation: isolate;
 
-    --background-color: var(--t-v6--qr-base-dark-color);
-    --text-color: var(--t-v6--qr-base-light-color);
+    --background-color: var(--t--qr-base-dark-color);
+    --text-color: var(--t--qr-base-light-color);
 
     color: var(--text-color);
     background-color: var(--background-color);
 
     &--light {
-      --background-color: var(--t-v6--qr-base-light-color);
-      --text-color: var(--t-v6--qr-base-dark-color);
+      --background-color: var(--t--qr-base-light-color);
+      --text-color: var(--t--qr-base-dark-color);
     }
 
     &__container {
@@ -171,7 +171,7 @@
     :global(.m-quick-review-card__image) {
       object-fit: cover;
       border-radius: var(--border-radius);
-      box-shadow: var(--t-v6--shadow--base);
+      box-shadow: var(--t--shadow--base);
     }
 
     &__title {

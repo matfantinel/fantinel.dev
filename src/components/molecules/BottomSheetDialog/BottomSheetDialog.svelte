@@ -124,8 +124,8 @@
       height: 100%;
       padding: var(--spacing-sm) var(--spacing-sm) var(--spacing-lg);
 
-      background: rgba(var(--t-v6--surface--card--rgb), 0.9);
-      box-shadow: var(--t-v6--shadow--high);
+      background: rgba(var(--t--surface--card--rgb), 0.9);
+      box-shadow: var(--t--shadow--high);
       border-top-left-radius: var(--border-radius);
       border-top-right-radius: var(--border-radius);
     }

@@ -8,7 +8,7 @@
     component: NavMenuLink,
     tags: ['autodocs'],
     globals: {
-      backgrounds: { value: 'var(--t-v6--surface--base)' },
+      backgrounds: { value: 'var(--t--surface--base)' },
     },
     argTypes: {
       href: { control: 'text', required: true },

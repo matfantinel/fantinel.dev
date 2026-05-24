@@ -173,7 +173,7 @@
       flex-direction: column;
       align-items: center;
       gap: var(--spacing-sm);
-      color: var(--t-v6--error);
+      color: var(--t--error);
     }
 
     :global(.o-pagefind-search-results__results) {

@@ -63,7 +63,7 @@
       width: calc(100% + 20px);
       margin-left: -10px;
       padding-left: 10px;
-      background: linear-gradient(to bottom, var(--t-v6--surface--base) 60%, transparent);
+      background: linear-gradient(to bottom, var(--t--surface--base) 60%, transparent);
       @include breakpoints.for-phone-only {
         top: 64px;
       }
@@ -73,7 +73,7 @@
       .m-timeline-group {
         &__header {
           padding-top: var(--spacing-md);
-          border-top: 2px solid var(--t-v6--border--medium);
+          border-top: 2px solid var(--t--border--medium);
         }
       }
     }

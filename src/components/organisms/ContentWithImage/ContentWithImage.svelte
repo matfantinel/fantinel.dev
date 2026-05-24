@@ -57,7 +57,7 @@
 <div class={classList}>
   <div class="o-content-with-image__container">
     <div class="o-content-with-image__content">
-      <h2 class="o-content-with-image__heading u-h2" style={headingColor ? `color: var(--t-v6--${headingColor}); --glow-color: var(--t-v6--${headingColor}--rgb)` : ''}>{heading}</h2>
+      <h2 class="o-content-with-image__heading u-h2" style={headingColor ? `color: var(--t--${headingColor}); --glow-color: var(--t--${headingColor}--rgb)` : ''}>{heading}</h2>
 
       {#if body}
         <div class="o-content-with-image__body u-markdown u-b2">
@@ -138,7 +138,7 @@
 
     &--heading-glow {
       .o-content-with-image__heading {
-        animation: var(--t-v6--glowing-text-animation);
+        animation: var(--t--glowing-text-animation);
       }
     }
 
@@ -201,8 +201,8 @@
     }
 
     &--background-card {
-      background: var(--t-v6--surface--card);
-      box-shadow: var(--t-v6--shadow--base);
+      background: var(--t--surface--card);
+      box-shadow: var(--t--shadow--base);
       border-radius: var(--border-radius);
       overflow: hidden;
 

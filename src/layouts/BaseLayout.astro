@@ -114,7 +114,7 @@ const pathname = new URL(Astro.request.url).pathname;
     <noscript>
       <style>
         *:focus-visible {
-          outline: 2px dashed var(--t-v6--accent);
+          outline: 2px dashed var(--t--accent);
           outline-offset: 4px;
         }
       </style>
@@ -131,18 +131,18 @@ const pathname = new URL(Astro.request.url).pathname;
     main {
       position: relative;
       z-index: 2;
-      background: var(--t-v6--surface--base);
+      background: var(--t--surface--base);
     }
 
     :global(footer) {
-      background: var(--t-v6--surface--base);
+      background: var(--t--surface--base);
     }
 
     @include breakpoints.for-phone-only {
       :global(header) {
         position: sticky;
         top: 0;
-        background: var(--t-v6--surface--root);
+        background: var(--t--surface--root);
 
         animation: scroll-shadow linear both;
         animation-timeline: scroll();
@@ -155,7 +155,7 @@ const pathname = new URL(Astro.request.url).pathname;
           }
 
           to {
-            box-shadow: var(--t-v6--shadow--low);
+            box-shadow: var(--t--shadow--low);
             border-radius: 0 0 var(--border-radius--small) var(--border-radius--small);
           }
         }

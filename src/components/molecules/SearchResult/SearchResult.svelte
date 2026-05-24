@@ -31,7 +31,7 @@
 </script>
 
 <article class={['m-search-result', className]}>
-  <div class="m-search-result__container" style={`--tint: var(--t-v6--${type}--rgb, var(--t-v6--accent--rgb))`}>
+  <div class="m-search-result__container" style={`--tint: var(--t--${type}--rgb, var(--t--accent--rgb))`}>
     <div class="m-search-result__image-container">
       <div class="m-search-result__image-placeholder">{title.substring(0, 5)}</div>
       {#if image}
@@ -41,7 +41,7 @@
 
     <div class="m-search-result__content">
       {#if type}
-        <div class="m-search-result__type" style="color: var(--t-v6--{type}, var(--t-v6--text--base))">
+        <div class="m-search-result__type" style="color: var(--t--{type}, var(--t--text--base))">
           {#if type === PostType.BLOG_POST}
             <BlogPostIcon size="16px" /> Blog Post
           {:else if type === PostType.QUICK_REVIEW}
@@ -93,9 +93,9 @@
       gap: var(--spacing-md);
       padding: var(--spacing-md);
 
-      background: var(--t-v6--surface--accent);
-      border-top: 1px solid var(--t-v6--border--medium);
-      border-bottom: 1px solid var(--t-v6--border--medium);
+      background: var(--t--surface--accent);
+      border-top: 1px solid var(--t--border--medium);
+      border-bottom: 1px solid var(--t--border--medium);
 
       isolation: isolate;
       position: relative;
@@ -115,7 +115,7 @@
     }
 
     &__image-container {
-      background: var(--t-v6--surface--base);
+      background: var(--t--surface--base);
       isolation: isolate;
       position: relative;
       height: 160px;
@@ -141,12 +141,12 @@
       font-family: var(--font--headings);
       font-weight: 700;
       color: transparent;
-      text-shadow: var(--t-v6--blog-card-placeholder-shadow);
+      text-shadow: var(--t--blog-card-placeholder-shadow);
     }
 
     :global(.m-search-result__image) {
       object-fit: cover;
-      background-color: var(--t-v6--surface--base);
+      background-color: var(--t--surface--base);
       width: 100%;
       height: 100%;
     }

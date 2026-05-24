@@ -80,7 +80,7 @@
 
   .o-post-hero {
     --content-max-width: 790px;
-    background-color: var(--t-v6--surface--accent);
+    background-color: var(--t--surface--accent);
     
     position: relative;
     margin-bottom: 64px;
@@ -100,8 +100,8 @@
       @include typography.gradient-pinkish;
       text-align: center;
       text-wrap: balance;
-      --glow-color: var(--palette-v6--pink--rgb);
-      animation: var(--t-v6--glowing-text-animation);
+      --glow-color: var(--palette--pink--rgb);
+      animation: var(--t--glowing-text-animation);
     }
 
     &__meta {

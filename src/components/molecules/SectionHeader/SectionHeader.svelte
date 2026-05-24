@@ -79,7 +79,7 @@
 
     &__title {
       @include typography.h2;
-      color: var(--t-v6--accent);
+      color: var(--t--accent);
     }
 
     &__body {
