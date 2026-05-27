@@ -12,8 +12,15 @@
 	import 'prismjs/components/prism-scss';
 	import 'prism-svelte';
   import type { Snippet } from 'svelte';
+  import type { BaseProps } from '@utils/types';
 	Prism.manual = true;
 	const prism = Prism as any;
+
+  export type CodeBlockProps = BaseProps & {
+    filename?: string;
+    lang?: string;
+    code?: string;
+  };
 
 	let {
 		filename,
@@ -21,13 +28,7 @@
 		code,
 		class: className,
 		children
-	} : {
-		filename?: string;
-		lang?: string;
-		code?: string;
-		class?: string;
-		children?: Snippet;
-	} = $props();
+	} : CodeBlockProps & { children?: Snippet } = $props();
 </script>
 
 <div class={['m-code-block', className]}>
@@ -56,13 +57,13 @@
 	.m-code-block {
 		display: block;
 		position: relative;
-		background-color: var(--theme--color-code-background);
-		color: var(--theme--color-code-text);
+		background-color: var(--t--codeblock--bg);
+		color: var(--t--codeblock--text);
 		font-family: var(--font--mono);
 		font-size: 1rem;
 		line-height: 1.33em;
-		border-radius: 8px;
-		box-shadow: var(--theme--shadow-card);
+		border-radius: var(--border-radius--small);
+		box-shadow: var(--t--shadow--base);
 
 		padding: var(--spacing-lg) var(--spacing-sm) var(--spacing-md);
 		margin: var(--spacing-lg) 0;
@@ -70,7 +71,7 @@
 		:global(pre) {
 			font-family: var(--font--mono);
 			overflow-x: auto;
-			scrollbar-color: var(--theme--color-accent) rgba(var(--theme--color-accent-rgb), 0.5);
+			scrollbar-color: var(--t--accent) rgba(var(--t--accent--rgb), 0.5);
 			scrollbar-width: thin;
 			padding-bottom: var(--spacing-xxs);
 
@@ -82,9 +83,9 @@
 				height: 8px;
 			}
 			&::-webkit-scrollbar-thumb {
-				background: var(--theme--color-accent);
+				background: var(--t--accent);
 				&:hover {
-					background: var(--theme--color-accent-tint);
+					background: var(--t--accent--tint);
 				}
 			}
 		}

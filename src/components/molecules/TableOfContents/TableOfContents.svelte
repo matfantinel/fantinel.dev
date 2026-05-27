@@ -3,40 +3,40 @@
   import { fade } from 'svelte/transition';
   import { animatedDetails } from 'svelte-animated-details';
   import { isInViewport } from '@utils/functions';
+  import type { BaseProps } from '@utils/types';
 
-  let {
-    headings,
-    class: className,
-  }: {
+  export type TableOfContentsProps = BaseProps & {
     headings: {
       slug: string;
       text: string;
       depth: number;
     }[];
-    class?: string;
-  } = $props();
+  };
 
-  let currentHeading = $state<string | undefined>(undefined);  
+  let {
+    headings,
+    class: className,
+  }: TableOfContentsProps = $props();
+
+  let currentHeading = $state<string | undefined>(undefined);
 
   onMount(() => {
     const items = Array.from(document.querySelectorAll('.m-table-of-contents__item'));
     const footer = document.querySelector('.o-footer') as HTMLElement;
     const toc = document.querySelector('.m-table-of-contents') as HTMLElement;
 
-    const headingsObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const slug = entry.target.id;
-            items.forEach((item) => {
-              const isActive = item.getAttribute('data-slug') === slug;
-              item.classList.toggle('m-table-of-contents__item--active', isActive);
-              currentHeading = headings.find((heading) => heading.slug === slug)?.text;
-            });
-          }
-        });
-      }
-    );
+    const headingsObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const slug = entry.target.id;
+          items.forEach((item) => {
+            const isActive = item.getAttribute('data-slug') === slug;
+            item.classList.toggle('m-table-of-contents__item--active', isActive);
+            currentHeading = headings.find((heading) => heading.slug === slug)?.text;
+          });
+        }
+      });
+    });
 
     const tocObserver = new IntersectionObserver(
       (entries) => {
@@ -56,24 +56,22 @@
       },
       {
         threshold: [1],
-      }
+      },
     );
 
-    const footerObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            // If footer is in the viewport, let's remove the off-screen class from toc
-            toc?.classList.remove('m-table-of-contents--off-screen');
-          } else {
-            if (!isInViewport(toc)) {
-              toc?.classList.add('m-table-of-contents--off-screen');
-            }
+    const footerObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          // If footer is in the viewport, let's remove the off-screen class from toc
+          toc?.classList.remove('m-table-of-contents--off-screen');
+        } else {
+          if (!isInViewport(toc)) {
+            toc?.classList.add('m-table-of-contents--off-screen');
           }
-        });
-      }
-    );
-    
+        }
+      });
+    });
+
     if (toc) {
       // If JS is enabled, remove the off-screen class so we can toggle it intelligently
       toc.classList.remove('m-table-of-contents--off-screen');
@@ -84,7 +82,7 @@
         const el = document.getElementById(heading.slug);
         if (el) headingsObserver.observe(el);
       });
-      
+
       if (toc) {
         tocObserver.observe(toc);
       }
@@ -122,7 +120,12 @@
     <summary class="m-table-of-contents__accordion-header">
       <div class="m-table-of-contents__heading">Table of Contents</div>
       {#key currentHeading}
-        <div class={['m-table-of-contents__current', currentHeading ? 'm-table-of-contents__current--active' : '']} in:fade>{currentHeading ?? 'Tap to open'}</div>
+        <div
+          class={['m-table-of-contents__current', currentHeading ? 'm-table-of-contents__current--active' : '']}
+          in:fade
+        >
+          {currentHeading ?? 'Tap to open'}
+        </div>
       {/key}
     </summary>
     <ol class="m-table-of-contents__list">
@@ -145,16 +148,18 @@
   @use '/src/styles/breakpoints';
 
   .m-table-of-contents {
-    background: var(--theme--background-accent-color);
-    padding: var(--spacing-md);
-    border-radius: var(--border-radius--small);
+    @include breakpoints.for-tablet-portrait-down {
+      padding-block: var(--spacing-sm);
+      border-top: 1px dotted var(--t--border--medium);
+      border-bottom: 1px dotted var(--t--border--medium);
+    }
 
-    @include breakpoints.for-tablet-portrait-up {
+    @include breakpoints.for-tablet-landscape-up {
       overflow: hidden;
-      background-color: var(--theme--background-card-color);
+      background-color: var(--t--surface--card);
       border-radius: var(--border-radius);
       padding: var(--spacing-sm);
-      box-shadow: var(--theme--shadow-card);
+      box-shadow: var(--t--shadow--base);
     }
 
     &__main {
@@ -164,8 +169,8 @@
 
     &__heading {
       @include typography.b1;
-      color: var(--theme--text-accent-color);
-    }    
+      color: var(--t--accent);
+    }
 
     &__list {
       list-style: none;
@@ -179,7 +184,7 @@
 
     &__item {
       @include typography.b2;
-      color: var(--theme--text-base-color);
+      color: var(--t--text--base);
       transition: scale 0.15s ease;
 
       margin: 0;
@@ -192,8 +197,8 @@
       }
 
       &--active {
-        @include breakpoints.for-tablet-portrait-up {
-          color: var(--theme--color-links);
+        @include breakpoints.for-tablet-landscape-up {
+          color: var(--t--accent);
           scale: 1.05;
         }
       }
@@ -217,13 +222,13 @@
       overflow: hidden;
       transition: all 0.25s ease;
       opacity: 0;
-      translate: -50% 200%;      
+      translate: -50% 200%;
 
-      background-color: rgba(var(--theme--background-card-color-rgb), 0.8);
+      background-color: rgba(var(--t--surface--card--rgb), 0.8);
       backdrop-filter: blur(10px);
       border-radius: var(--border-radius);
       padding: var(--spacing-xxs) var(--spacing-sm);
-      box-shadow: var(--theme--shadow-card-high);
+      box-shadow: var(--t--shadow--high);
 
       &:-webkit-details-marker {
         display: none;
@@ -232,7 +237,7 @@
       .m-table-of-contents {
         &__item {
           &--active {
-            color: var(--theme--color-links);
+            color: var(--t--accent);
             scale: 1.05;
           }
         }
@@ -283,7 +288,7 @@
 
         border-left: 5px solid transparent;
         border-right: 5px solid transparent;
-        border-top: 5px solid var(--theme--text-base-color);
+        border-top: 5px solid var(--t--text--base);
       }
 
       .m-table-of-contents {
@@ -295,14 +300,14 @@
 
     &__current {
       @include typography.b3;
-      color: var(--theme--text-accent-color);
+      color: var(--t--accent);
 
       text-wrap: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
 
       &--active {
-        color: var(--theme--color-accent);
+        color: var(--t--text--medium);
       }
     }
 

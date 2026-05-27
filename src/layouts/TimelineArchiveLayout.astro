@@ -1,115 +1,79 @@
 ---
-import Pagination from '@components/molecules/Pagination';
-import ArchiveHero from '@components/organisms/ArchiveHero';
 import PostsTimeline from '@components/organisms/PostsTimeline/PostsTimeline.svelte';
 import type { BlogPost } from '@schemas/blog';
 import type { CoolLink } from '@schemas/cool-link';
 import type { Photography } from '@schemas/photography';
 import type { QuickReview } from '@schemas/quick-review';
-import BaseLayout from './BaseLayout.astro';
+import type { FilterGroup } from '@schemas/filter';
+import BaseArchiveLayout from './BaseArchiveLayout.astro';
+import { getSiteMeta, getTimelineArchiveConfig } from '@data/yaml';
+const siteMeta = getSiteMeta();
+const pageData = getTimelineArchiveConfig();
 
 interface Props {
-  groups: { date: string, posts: { type: string, data: BlogPost | QuickReview | CoolLink | Photography }[] }[];
-  currentPage: number;
-  totalPages: number;
+  groups: { date: string; posts: { type: string; data: BlogPost | QuickReview | CoolLink | Photography }[] }[];
+  currentPage?: number;
+  totalPages?: number;
   totalPosts: number;
+  currentDate?: string;
+  currentSlug?: string;
+  dateFilters?: FilterGroup[];
 }
 
-const {
-  groups,
-  currentPage,
-  totalPages,
-  totalPosts,
-}: Props = Astro.props;
+const { groups, currentPage, totalPages, totalPosts, currentDate, currentSlug, dateFilters }: Props = Astro.props;
 
+const filterGroups: FilterGroup[] = [];
+if (dateFilters) {
+  filterGroups.push({ label: 'Filter by month', groups: dateFilters });
+}
+
+const monthNames = [
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December',
+];
+
+function slugToLabel(slug: string) {
+  const [year, month] = slug.split('-');
+  return `${monthNames[parseInt(month) - 1]} ${year}`;
+}
+
+let prevNext: { prev?: { label: string; url: string }; next?: { label: string; url: string } } | undefined;
+
+if (currentSlug && dateFilters) {
+  const allSlugs = dateFilters.flatMap((g) => g.tags ?? []).map((t) => t.url.split('/').pop()!);
+  const idx = allSlugs.indexOf(currentSlug);
+  prevNext = {
+    next: idx > 0 ? { label: slugToLabel(allSlugs[idx - 1]), url: `/archive/date/${allSlugs[idx - 1]}` } : undefined,
+    prev:
+      idx < allSlugs.length - 1
+        ? { label: slugToLabel(allSlugs[idx + 1]), url: `/archive/date/${allSlugs[idx + 1]}` }
+        : undefined,
+  };
+}
 ---
 
-<BaseLayout
-  title='Timeline'
-  hasHeaderBackground
+<BaseArchiveLayout
+  className='l-timeline-archive'
+  title={pageData.pageTitle}
+  image={pageData.pagePreviewImage ? siteMeta.baseUrl + pageData.pagePreviewImage : undefined}
+  description={pageData.pageDescription}
+  heroTitle={pageData.hero?.title}
+  heroBody={pageData.hero?.body}
+  baseUrl='/archive'
+  currentPage={currentPage}
+  totalPages={totalPages ?? 1}
 >
-  <div class='l-timeline-archive'>
-    <div class='l-timeline-archive__container'>
-      <ArchiveHero
-        class='l-timeline-archive__hero'
-        title='Chronological Feed'
-        body="A chronological view of *everything* I've posted here, since the beginning of time (or the blog's inception, whichever comes first)."
-      />
-
-      <div class='l-timeline-archive__content-wrapper'>
-        {
-          totalPages > 1 && (
-            <Pagination
-              class='l-timeline-archive__pagination'
-              currentPage={currentPage}
-              totalPages={totalPages}
-              baseUrl='/timeline'
-            />
-          )
-        }
-        
-        <PostsTimeline
-          postGroups={groups}
-          client:load
-        />
-
-        {
-          totalPages > 1 && (
-            <Pagination
-              class='l-timeline-archive__pagination'
-              currentPage={currentPage}
-              totalPages={totalPages}
-              baseUrl='/timeline'
-            />
-          )
-        }
-      </div>
-    </div>
+  <div class='l-timeline-archive__content full-width'>
+    <PostsTimeline postGroups={groups} baseUrl='/archive' filterGroups={filterGroups} prevNext={prevNext} client:load />
   </div>
-</BaseLayout>
-
-<style lang='scss'>
-  @use '/src/styles/breakpoints';
-  @use '/src/styles/typography';
-
-  :root {
-    &:has(.l-timeline-archive) {
-      --theme--color-accent: var(--theme--color-timeline);
-      --theme--color-accent-rgb: var(--theme--color-timeline-rgb);
-      --theme--color-accent-contrast: var(--theme--color-timeline-contrast);
-      --theme--color-accent-shade: var(--theme--color-timeline-shade);
-      --theme--color-accent-tint: var(--theme--color-timeline-tint);
-      --theme--color-accent-glow: var(--theme--color-timeline-glow);
-    }
-
-    &[data-theme='dark'],
-    &[data-theme='auto'] {
-      &:has(.l-timeline-archive) {
-        --theme--color-accent: var(--theme--color-timeline);
-        --theme--color-accent-rgb: var(--theme--color-timeline-rgb);
-        --theme--color-accent-contrast: var(--theme--color-timeline-contrast);
-        --theme--color-accent-shade: var(--theme--color-timeline-shade);
-        --theme--color-accent-tint: var(--theme--color-timeline-tint);
-        --theme--color-accent-glow: var(--theme--color-timeline-glow);
-      }
-    }
-  }
-
-  .l-timeline-archive {
-    &__container {
-      display: flex;
-      flex-direction: column;
-      gap: var(--spacing-xxl);
-
-      @include breakpoints.for-phone-only {
-        gap: var(--spacing-xl);
-      }
-    }
-
-    &__content-wrapper {
-      display: flex;
-      flex-direction: column;
-      gap: var(--spacing-lg);
-    }
-  }
-</style>
+</BaseArchiveLayout>

@@ -1,12 +1,13 @@
 <script lang="ts">
   import { theme } from '@stores/theme';
   import { cubicOut } from 'svelte/easing';
+  import type { BaseProps } from '@utils/types';
+
+  export type ThemeToggleProps = BaseProps;
 
   let {
     class: className,
-  }: {
-    class?: string;
-  } = $props();
+  }: ThemeToggleProps = $props();
 
   const themes = {
     auto: 'Auto',
@@ -111,7 +112,7 @@
 
     @media (hover: hover) {
       &:hover {
-        filter: drop-shadow(var(--theme--glow-links));
+        color: var(--t--accent);
       }
     }
 
@@ -120,6 +121,10 @@
       transition: all 0.5s cubic-bezier(0.25, 0, 0.2, 1);
       color: currentColor;
       width: 5ch;
+    }
+
+    &__icon {
+      flex-shrink: 0;
     }
 
     &__moon,

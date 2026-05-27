@@ -1,6 +1,12 @@
 <script lang="ts">
   import type { Snippet } from 'svelte';
   import Quotes from '@assets/icons/quotes.svelte';
+  import type { BaseProps } from '@utils/types';
+
+  export type BlockquoteProps = BaseProps & {
+    cite?: string;
+    text?: string;
+  };
 
   let { 
     cite,
@@ -8,12 +14,7 @@
     class: className,
     children,
     ...props
-  } : {
-    cite?: string;
-    text?: string;
-    class?: string;
-    children?: Snippet;
-  } = $props();
+  } : BlockquoteProps & { children?: Snippet } = $props();
 </script>
 
 <blockquote
@@ -37,11 +38,11 @@
 <style lang="scss">
   .a-blockquote {
     position: relative;
-    background-color: var(--theme--background-accent-color);
+    background-color: var(--t--surface--accent);
     padding: var(--spacing-md);
     padding-left: var(--spacing-xl);
     border-radius: var(--border-radius);
-    box-shadow: var(--theme--shadow-card);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%23000000' fill-opacity='0.12' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E");
     word-wrap: break-word;
 
     &__quotes {
@@ -56,7 +57,7 @@
     }
 
     :global(.a-blockquote__quote) {
-      color: var(--theme--color-accent);
+      color: var(--t--accent);
       &:first-child {
         transform: scale(-1, 1);
       }

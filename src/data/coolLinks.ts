@@ -3,6 +3,7 @@ import { getCollection } from "astro:content";
 import { slug } from 'github-slugger';
 import { escapeXml } from "@utils/rss";
 import dateformat from "dateformat";
+import type { FilterTag, FilterGroup } from "@schemas/filter";
 
 /**
  * Sanitizes a cool link to make it ready for using it in the UI.
@@ -127,6 +128,111 @@ export async function getAllTags(): Promise<CoolLinkTag[]> {
   });
 
   return uniqueTags;
+}
+
+/**
+ * Gets tag filters for the cool links archive.
+ * @param activeSlug - The currently active tag slug (optional).
+ * @returns Array of filter tags with counts.
+ */
+export async function getTagFilters(activeSlug?: string): Promise<FilterTag[]> {
+  const links = await getCollection("coolLinks");
+  const sanitizedLinks = links.map((link) => sanitizeCoolLink(link.data as unknown as CoolLink, link.filePath ?? "", link.rendered?.html));
+
+  const tagCount = new Map<string, number>();
+  const tagMap = new Map<string, CoolLinkTag>();
+
+  sanitizedLinks.forEach((link) => {
+    link.tags?.forEach((tag) => {
+      tagCount.set(tag.slug, (tagCount.get(tag.slug) || 0) + 1);
+      if (!tagMap.has(tag.slug)) {
+        tagMap.set(tag.slug, tag);
+      }
+    });
+  });
+
+  const filterTags: FilterTag[] = Array.from(tagMap.entries()).map(([tagSlug, tag]) => ({
+    label: `#${tag.name}`,
+    url: `/cool-links/tag/${tagSlug}`,
+    active: tagSlug === activeSlug,
+    count: tagCount.get(tagSlug) || 0,
+  }));
+
+  filterTags.sort((a, b) => b.count - a.count);
+
+  return filterTags;
+}
+
+/**
+ * Gets date filters for the cool links archive, grouped by year with months as tags.
+ * @param activeSlug - The currently active date slug in YYYY-MM format (optional).
+ * @returns Array of filter groups with months grouped by year.
+ */
+export async function getDateFilters(activeSlug?: string): Promise<FilterGroup[]> {
+  const links = await getCollection("coolLinks");
+  const sanitizedLinks = links.map((link) => sanitizeCoolLink(link.data as unknown as CoolLink, link.filePath ?? "", link.rendered?.html));
+
+  const dateCount = new Map<string, number>();
+  const dateMap = new Map<string, { year: number; month: number }>();
+
+  sanitizedLinks.forEach((link) => {
+    const date = new Date(link.savedOn);
+    const year = date.getFullYear();
+    const month = date.getMonth();
+    const key = `${year}-${String(month + 1).padStart(2, '0')}`;
+
+    dateCount.set(key, (dateCount.get(key) || 0) + 1);
+
+    if (!dateMap.has(key)) {
+      dateMap.set(key, { year, month });
+    }
+  });
+
+  const monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
+                      'July', 'August', 'September', 'October', 'November', 'December'];
+
+  const yearGroups = new Map<number, FilterTag[]>();
+
+  dateMap.forEach(({ year, month }, key) => {
+    if (!yearGroups.has(year)) {
+      yearGroups.set(year, []);
+    }
+
+    yearGroups.get(year)!.push({
+      label: monthNames[month],
+      url: `/cool-links/date/${key}`,
+      active: key === activeSlug,
+      count: dateCount.get(key) || 0,
+    });
+  });
+
+  const filterGroups: FilterGroup[] = Array.from(yearGroups.entries()).map(([year, tags]) => {
+    tags.sort((a, b) => b.url.localeCompare(a.url));
+    return { label: String(year), tags };
+  });
+
+  filterGroups.sort((a, b) => Number(b.label) - Number(a.label));
+
+  return filterGroups;
+}
+
+/**
+ * Gets all cool links for a given YYYY-MM date slug.
+ * @param dateSlug - The date slug in YYYY-MM format.
+ * @returns All links for that month, sorted most recent first.
+ */
+export async function getLinksByDate(dateSlug: string): Promise<CoolLink[]> {
+  const links = await getCollection("coolLinks");
+  const sanitizedLinks = links
+    .map((link) => sanitizeCoolLink(link.data as unknown as CoolLink, link.filePath ?? "", link.rendered?.html))
+    .filter((link) => {
+      const date = new Date(link.savedOn);
+      const key = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}`;
+      return key === dateSlug;
+    })
+    .sort((a, b) => b.savedOn.getTime() - a.savedOn.getTime());
+
+  return sanitizedLinks;
 }
 
 /**

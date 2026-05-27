@@ -1,8 +1,7 @@
 ---
 import '@styles/global.scss';
 import dateformat from 'dateformat';
-import metaConfig from '@public/cms/meta.yml';
-import type { SiteMeta } from '@schemas/site-meta';
+import { getSiteMeta } from '@data/yaml';
 import Head from '@layouts/Head.astro';
 import Header from '@components/organisms/Header';
 import Footer from '@components/organisms/Footer';
@@ -16,7 +15,6 @@ const {
   publishedDate,
   modifiedDate,
   disableClientRouter,
-  hasHeaderBackground,
   noindex,
 }: {
   title?: string;
@@ -27,11 +25,10 @@ const {
   publishedDate?: string;
   modifiedDate?: string;
   disableClientRouter?: boolean;
-  hasHeaderBackground?: boolean;
   noindex?: boolean;
 } = Astro.props;
 
-const siteMeta: SiteMeta = metaConfig;
+const siteMeta = getSiteMeta();
 
 const pageTitle = title ? `${title} - ${siteMeta.title}` : siteMeta.title;
 const pageDescription = description || siteMeta.description;
@@ -76,14 +73,15 @@ const pathname = new URL(Astro.request.url).pathname;
   </head>
   <body>
     <div class='l-base'>
-      <Header client:load {currentSearch} transition:persist hasBackground={hasHeaderBackground} {currentUrl} />
+      <Header {currentSearch} socials={siteMeta.author?.socials} navigation={siteMeta.navigation} {currentUrl} client:load transition:name="header" transition:persist />
 
-      <main>
+      <main class="u-content-grid" style="view-transition-name: main-content;">
         <slot />
-        <div class='u-noise'></div>
+
+        <div class="safari-liquid-glass-toolbar-fixer" aria-hidden="true"></div>
       </main>
 
-      <Footer socials={siteMeta.author?.socials} client:load transition:persist />
+      <Footer socials={siteMeta.author?.socials} client:load transition:name="footer" transition:persist />      
     </div>
     <script>
       import(/* @vite-ignore */ '@stefanjudis/sparkly-text');
@@ -116,7 +114,7 @@ const pathname = new URL(Astro.request.url).pathname;
     <noscript>
       <style>
         *:focus-visible {
-          outline: 2px dashed var(--theme--color-accent);
+          outline: 2px dashed var(--t--accent);
           outline-offset: 4px;
         }
       </style>
@@ -125,30 +123,52 @@ const pathname = new URL(Astro.request.url).pathname;
 </html>
 
 <style lang='scss'>
-  @use '/src/styles/breakpoints';
+  @use '/src/styles/breakpoints';  
+  .l-base {
+    display: grid;
+    grid-template-columns: 1fr;
 
-  html,
-  body {
-    margin: 0;
-    width: 100%;
-    height: auto;
-
-    main .u-noise {
-      height: calc(100% + var(--header-height));
-      top: calc(var(--header-height) * -1);
-    }
-
-    :global(main) {
+    main {
       position: relative;
       z-index: 2;
-      background: var(--theme--background-base-color);
+      background: var(--t--surface--base);
     }
-  }
 
-  .l-base {
+    :global(footer) {
+      background: var(--t--surface--base);
+    }
+
+    @include breakpoints.for-phone-only {
+      :global(header) {
+        position: sticky;
+        top: 0;
+        background: var(--t--surface--root);
+
+        animation: scroll-shadow linear both;
+        animation-timeline: scroll();
+        animation-range: 0px 64px;
+
+        @keyframes scroll-shadow {
+          from {
+            box-shadow: none;
+            border-radius: 0;
+          }
+
+          to {
+            box-shadow: var(--t--shadow--low);
+            border-radius: 0 0 var(--border-radius--small) var(--border-radius--small);
+          }
+        }
+      }
+
+      main {
+        border-top-left-radius: var(--border-radius);
+        border-top-right-radius: var(--border-radius);
+        overflow: clip;
+      }
+    }
+
     @include breakpoints.for-tablet-portrait-up {
-      --header-height: 100vh;
-      background: var(--color--gray-1000);
       display: grid;
       grid-template-columns: clamp(220px, 20%, 300px) 1fr;
       grid-template-areas:
@@ -159,24 +179,20 @@ const pathname = new URL(Astro.request.url).pathname;
         grid-area: header;
         position: sticky;
         top: 0;
+        height: 100dvh;
       }
 
-      :global(main) {
+      main {
         grid-area: main;
-        padding-top: var(--spacing-lg);
         border-top-left-radius: var(--border-radius);
-        padding-block: var(--spacing-lg);
         margin-top: var(--spacing-xs);
+        padding-bottom: var(--spacing-xl);
         overflow: clip;
-
-        .u-noise {
-        }
       }
 
       :global(footer) {
         grid-area: footer;
         border-bottom-left-radius: var(--border-radius);
-        background: var(--theme--background-base-color);
         margin-bottom: var(--spacing-xs);
         overflow: hidden;
       }

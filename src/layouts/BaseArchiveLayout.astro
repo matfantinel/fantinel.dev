@@ -1,0 +1,114 @@
+---
+import Filters from '@components/molecules/Filters';
+import Pagination from '@components/molecules/Pagination';
+import GenericHero from '@components/organisms/GenericHero';
+import type { FilterGroup } from '@schemas/filter';
+import BaseLayout from './BaseLayout.astro';
+import { setActiveFilterGroups } from '@utils/filters';
+
+interface Props {
+  title: string;
+  image?: string;
+  description?: string;
+  heroTitle: string;
+  heroBody: string;
+  heroImage?: string;
+  heroImageAlt?: string;
+  baseUrl: string;
+  basePaginationUrl?: string;
+  currentPage?: number;
+  totalPages?: number;
+  filterGroups?: FilterGroup[];
+  summaryText?: string;
+  className?: string;
+}
+
+const {
+  title,
+  image,
+  description,
+  heroTitle,
+  heroBody,
+  heroImage,
+  heroImageAlt,
+  baseUrl,
+  basePaginationUrl,
+  currentPage,
+  totalPages,
+  filterGroups,
+  summaryText,
+  className,
+}: Props = Astro.props;
+
+const processedFilterGroups = setActiveFilterGroups(filterGroups, baseUrl);
+---
+
+<BaseLayout {title} {description} {image} autoGenerateImage>
+  <div class={`l-base-archive full-width ${className || ''} u-content-grid`}>
+    <GenericHero
+      class='l-base-archive__hero full-width'
+      title={heroTitle}
+      body={heroBody}
+      image={heroImage}
+      imageAlt={heroImageAlt}
+    />
+
+    {
+      processedFilterGroups && processedFilterGroups.length > 0 && (
+        <div class='l-base-archive__filters on-sidebar'>
+          <Filters
+            filterGroups={processedFilterGroups}
+            size='small'
+            collapseInnerGroups
+            client:load
+          />
+        </div>
+      )
+    }
+
+    <div class='l-base-archive__content'>
+      {summaryText && <p class='l-base-archive__summary'>{summaryText}</p>}
+
+      <slot />
+
+      {
+        totalPages && totalPages > 1 && (
+          <Pagination
+            class='l-base-archive__pagination'
+            currentPage={currentPage}
+            totalPages={totalPages}
+            baseUrl={basePaginationUrl || baseUrl}
+          />
+        )
+      }
+    </div>
+  </div>
+</BaseLayout>
+
+<style lang='scss'>
+  @use '/src/styles/breakpoints';
+  @use '/src/styles/typography';
+
+  .l-base-archive {
+    --content-max-width: 1100px;
+
+    &__content {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-lg);
+    }
+
+    &__filters {
+      @include breakpoints.for-tablet-landscape-up {
+        position: sticky;
+        top: var(--spacing-lg);
+      }
+    }
+
+    &__summary {
+      @include typography.h4;
+      text-align: center;
+      color: var(--t--accent);
+    }
+  }
+</style>

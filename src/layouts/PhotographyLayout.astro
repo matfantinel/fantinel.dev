@@ -1,119 +1,127 @@
 ---
-import Button from '@components/atoms/Button';
-import type { Photography } from '@schemas/photography';
-import BaseLayout from './BaseLayout.astro';
 import Image from '@components/atoms/Image';
 import MarkdownRenderer from '@components/molecules/MarkdownRenderer';
+import type { Photography } from '@schemas/photography';
 import dateformat from 'dateformat';
-import ArchiveHero from '@components/organisms/ArchiveHero';
+import BaseLayout from './BaseLayout.astro';
+import striptags from 'striptags';
+import PostsTimeline from '@components/organisms/PostsTimeline';
+import { getPhotographySingleConfig } from '@data/yaml';
 
 interface Props {
   photography: Photography;
+  latestTimelineEntries?: any[];
 }
 
-const { photography }: Props = Astro.props;
+const { photography, latestTimelineEntries }: Props = Astro.props;
+const pageData = getPhotographySingleConfig();
 ---
 
 <BaseLayout
   title={photography.title}
   keywords={photography.title}
-  description={photography.content}
+  description={striptags(photography.content || '')}
   image={photography.image}
   autoGenerateImage={!photography.image}
   slug={`photography/${photography.slug}`}
   publishedDate={photography.publishedDate}
-  hasHeaderBackground
 >
-  <div class='l-photography'>
+  <div class='l-photography y-content-grid'>
     <div class='l-photography__container' data-pagefind-body>
-      <ArchiveHero
-        class='l-photography__hero'
-        title={'Photography: ' + photography.title}
-        body={photography.photoDate ? 'Taken on ' + dateformat(photography.publishedDate, 'yyyy-mm-dd', true) : ''}
-        button={{ label: 'View all Photography', href: '/photography' }}
-      />
+      <h1 class='l-photography__title'>Photography: {photography.title}</h1>
 
-      <div class='l-photography__inner-container u-container'>
-        <div class='l-photography__content-wrapper'>
-          {
-            photography.content && (
-              <div class='l-photography__content u-markdown'>
-                <MarkdownRenderer content={photography.content} />
-              </div>
-            )
-          }
-        </div>
+      <div class='l-photography__about u-markdown'>
+        {photography.photoDate && <p class="md-center">Taken on {dateformat(photography.photoDate, 'yyyy-mm-dd', true)}</p>}
 
+        <MarkdownRenderer content={photography.content} />
+      </div>
+
+      <div class='l-photography__images'>
         <Image
           class='m-photography-card__image'
           src={photography.image}
           alt={photography.imageAlt || photography.content || ''}
         />
-        
+
         {
-          photography.additionalImages && photography.additionalImages.map((additionalImage) => (
-            <Image
-              class='m-photography-card__image'
-              src={additionalImage.src}
-              alt={additionalImage.alt || photography.content || ''}
-            />
-          ))
+          photography.additionalImages &&
+            photography.additionalImages.map((additionalImage) => (
+              <Image
+                class='m-photography-card__image'
+                src={additionalImage.src}
+                alt={additionalImage.alt || photography.content || ''}
+              />
+            ))
         }
       </div>
+
+      {
+        pageData?.about && (
+          <div class="l-photography__about u-markdown" data-pagefind-ignore>
+            <MarkdownRenderer content={pageData.about} />
+
+            {latestTimelineEntries?.length > 0 && pageData.timelineIntro && (
+              <MarkdownRenderer content={pageData.timelineIntro} />
+              <hr />
+            )}
+          </div>
+        )
+      }
+
+      {
+        latestTimelineEntries?.length > 0 && (
+          <aside data-pagefind-ignore>
+            <PostsTimeline
+              bottomButton={{
+                text: 'View more',
+                href: '/archive',
+              }}
+              postGroups={latestTimelineEntries}
+              client:load
+            />
+          </aside>
+        )
+      }
     </div>
   </div>
 
   <style lang='scss'>
-    @use '/src/styles/breakpoints';
     @use '/src/styles/mixins';
-    @use '/src/styles/typography';
 
-    :root {
-      &:has(.l-photography) {
-        --theme--color-accent: var(--theme--color-photography);
-        --theme--color-accent-rgb: var(--theme--color-photography-rgb);
-        --theme--color-accent-contrast: var(--theme--color-photography-contrast);
-        --theme--color-accent-shade: var(--theme--color-photography-shade);
-        --theme--color-accent-tint: var(--theme--color-photography-tint);
-        --theme--color-accent-glow: var(--theme--color-photography-glow);
-      }
-
-      &[data-theme='dark'],
-      &[data-theme='auto'] {
-        &:has(.l-photography) {
-          --theme--color-accent: var(--theme--color-photography);
-          --theme--color-accent-rgb: var(--theme--color-photography-rgb);
-          --theme--color-accent-contrast: var(--theme--color-photography-contrast);
-          --theme--color-accent-shade: var(--theme--color-photography-shade);
-          --theme--color-accent-tint: var(--theme--color-photography-tint);
-          --theme--color-accent-glow: var(--theme--color-photography-glow);
-        }
-      }
+    :root:has(.l-photography) {
+      @include mixins.set-accent-color('photography');
     }
 
     .l-photography {
       &__container {
         display: flex;
         flex-direction: column;
-        gap: var(--spacing-xxl);
+        align-items: center;
+        justify-content: center;
+        gap: var(--spacing-xl);
 
-        @include breakpoints.for-phone-only {
-          gap: var(--spacing-xl);
+        padding-block: var(--spacing-xl);
+      }
+
+      &__title {
+        text-align: center;
+        text-wrap: balance;
+        color: var(--t--accent);
+      }
+
+      &__about {
+        max-width: 580px;
+
+        hr {
+          width: 100%;
+          border-top-style: dashed;
         }
       }
 
-      &__inner-container {
+      &__images {
         display: flex;
         flex-direction: column;
         gap: var(--spacing-lg);
-        align-items: center;
-        justify-content: center;
-      }
-
-      &__content-wrapper {
-        @include typography.b2;
-        font-family: var(--font--article);
-        width: 100%;
       }
     }
   </style>

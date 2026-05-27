@@ -1,36 +1,35 @@
 <script lang="ts">
-  import PhotographyIcon from '@assets/icons/post-types/photography.svelte';
   import Image from '@components/atoms/Image';
   import Tag from '@components/atoms/Tag';
   import PhotographySlideshowDialog from '@components/molecules/PhotographySlideshowDialog';
+  import type { BaseProps } from '@utils/types';
 
-  let {
-    class: className,
-    slug,
-    image,
-    imageAlt,
-    additionalImages,
-    photoDate,
-    content,
-    url,
-  }: {
-    class?: string;
+  export type PhotographyThumbnailProps = BaseProps & {
     slug?: string;
+    title?: string;
     image: string;
     imageAlt?: string;
     additionalImages?: Array<{ src: string; alt: string }>;
     photoDate?: Date;
     content?: string;
-    url?: string;
-  } = $props();
+  };
+
+  let {
+    class: className,
+    slug,
+    title,
+    image,
+    imageAlt,
+    additionalImages,
+    photoDate,
+    content,
+  }: PhotographyThumbnailProps = $props();
 
   // If slug is null, set a random id to it
   if (!slug) {
     slug = `photography-thumbnail-${Math.random()}`;
   }
 </script>
-
-{#snippet photographyIconSnippet()}<PhotographyIcon size="18px" />{/snippet}
 
 <div class={['m-photography-thumbnail', className]}>
   <button class="m-photography-thumbnail__zoom-button" aria-label="Zoom image" commandfor={slug} command="show-modal">
@@ -46,7 +45,7 @@
             <Image class="m-photography-thumbnail__image" src={additionalImage.src} alt={additionalImage.alt} />
           {/each}
 
-          <Tag class="m-photography-thumbnail__total" icon={photographyIconSnippet}>
+          <Tag class="m-photography-thumbnail__total" icon="post-types/photography">
             {additionalImages.length + 1} photos
           </Tag>
         </div>
@@ -55,14 +54,7 @@
   </button>
 </div>
 
-<PhotographySlideshowDialog
-  {slug}
-  {image}
-  {imageAlt}
-  {additionalImages}
-  {photoDate}
-  {content}
-/>
+<PhotographySlideshowDialog {slug} {title} {image} {imageAlt} {additionalImages} {photoDate} {content} />
 
 <style lang="scss">
   @use '/src/styles/breakpoints';
@@ -75,6 +67,7 @@
     &__container {
       display: grid;
       grid-template-columns: 60% 40%;
+      grid-template-rows: 50% 50%;
       width: 100%;
       height: 100%;
 
@@ -84,6 +77,7 @@
     &__additional-images {
       display: grid;
       position: relative;
+      grid-row: span 2;
     }
 
     :global(.m-photography-thumbnail__image) {
@@ -91,7 +85,7 @@
       transition: all 0.2s ease-in-out;
     }
 
-    &__zoom-button {      
+    &__zoom-button {
       -webkit-appearance: none;
       appearance: none;
       border: none;
@@ -106,6 +100,7 @@
     }
 
     :global(.m-photography-thumbnail__main-image) {
+      grid-row: span 2;
       &:last-child {
         grid-column: span 2;
       }
@@ -118,7 +113,7 @@
       right: var(--spacing-md);
       bottom: var(--spacing-md);
 
-      box-shadow: var(--theme--shadow-card-high);
+      box-shadow: var(--t--shadow--high);
       z-index: 3;
     }
   }

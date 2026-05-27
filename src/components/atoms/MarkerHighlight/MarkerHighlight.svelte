@@ -1,13 +1,15 @@
 <script lang="ts">
   import type { Snippet } from 'svelte';
+  import type { BaseProps } from '@utils/types';
+
+  export type MarkerHighlightProps = BaseProps & {
+    text?: string;
+  };
 
   let {
     text,
     children,
-  }: {
-    text?: string;
-    children?: Snippet;
-  } = $props();
+  }: MarkerHighlightProps & { children?: Snippet } = $props();
 </script>
 
 <mark class="m-marker-highlight">
@@ -27,11 +29,11 @@
     span {
       background: linear-gradient(
           90deg,
-          var(--theme--color-marker-highlight) 50%,
-          rgba(var(--theme--color-marker-highlight-rgb), 0.5) 50%
+          var(--t--marker-highlight) 50%,
+          rgba(var(--t--marker-highlight--rgb), 0.5) 50%
         )
         110% 0 / 200% 100% no-repeat;
-      color: var(--theme--color-marker-highlight-contrast);
+      color: var(--t--marker-highlight--contrast);
       background-position: calc((1 - var(--highlighted)) * 110%) 0;
       transition: background-position 1s;
     }

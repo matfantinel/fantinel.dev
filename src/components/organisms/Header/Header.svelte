@@ -1,29 +1,27 @@
 <script lang="ts">
   import Logo from '@assets/brand/Logo.svelte';
-  import Rss from '@assets/icons/rss.svelte';
-  import PostIcon from '@assets/icons/post-types/post.svelte';
-  import QuickReviewIcon from '@assets/icons/post-types/quick-review.svelte';
-  import CoolLinkIcon from '@assets/icons/post-types/cool-link.svelte';
-  import PhotographyIcon from '@assets/icons/post-types/photography.svelte';
-  import HamburgerMenu from '@components/molecules/HamburgerMenu';
   import ThemeToggle from '@components/molecules/ThemeToggle';
-  import HomeIcon from '@assets/icons/home.svelte';
-  import TimelineIcon from '@assets/icons/timeline.svelte';
-  import { PostType } from '@schemas/post-types';
+  import NavMenuLink from '@components/atoms/NavMenuLink';
+  import SocialLink from '@components/atoms/SocialLink';
+  import type { SocialLink as SocialLinkType, NavigationLink } from '@schemas/site-meta';
+  import PagefindSearchField from '@components/molecules/PagefindSearchField';
 
-  let {
-    color = 'default',
-    hasBackground = false,
-    currentSearch,
-    currentUrl,
-    class: className,
-  }: {
-    color?: 'default' | 'inverted';
-    hasBackground?: boolean;
+  import type { BaseProps } from '@utils/types';
+
+  export type HeaderProps = BaseProps & {
     currentSearch?: string;
     currentUrl?: string;
-    class?: string;
-  } = $props();
+    socials?: SocialLinkType[];
+    navigation?: NavigationLink[];
+  };
+
+  let {
+    currentSearch,
+    currentUrl,
+    socials,
+    navigation,
+    class: className,
+  }: HeaderProps = $props();
 
   let pathname = $state('/');
 
@@ -34,68 +32,72 @@
 
   // Update pathname on client-side navigation
   $effect(() => {
+    const scrollToActiveLink = () => {
+      // if window width >= 768, return
+      if (window.innerWidth >= 768) {
+        return;
+      }
+
+      const nav = document.querySelector('.o-header__navigation');
+      const activeLink = nav?.querySelector('[aria-current="page"], .a-nav-menu-link--active');
+      if (nav && activeLink) {
+        activeLink.scrollIntoView({ behavior: 'instant', inline: 'center' });
+      }
+    };
+
     const updatePathname = () => {
       pathname = window.location.pathname;
+
+      setTimeout(() => {
+        scrollToActiveLink();
+      }, 0);
     };
 
     // Listen for Astro view transition navigation
     document.addEventListener('astro:page-load', updatePathname);
+    scrollToActiveLink();
 
     return () => {
       document.removeEventListener('astro:page-load', updatePathname);
     };
   });
 
-  const links = $derived([
-    { label: 'Home', href: '/', icon: homeIconSnippet, active: pathname === '/', color: 'generic' },
-    { label: 'Feed', href: '/timeline', icon: timelineIconSnippet, active: pathname === '/timeline', color: 'timeline' },
-    { label: 'Blog', href: '/blog', icon: postIconSnippet, active: pathname.startsWith('/blog'), color: PostType.BLOG_POST },
-    {
-      label: 'Quick Reviews',
-      href: '/quick-reviews',
-      icon: quickReviewIconSnippet,
-      active: pathname.startsWith('/quick-reviews'),
-      color: PostType.QUICK_REVIEW,
-    },
-    {
-      label: 'Cool Links',
-      href: '/cool-links',
-      icon: coolLinkIconSnippet,
-      active: pathname.startsWith('/cool-links'),
-      color: PostType.COOL_LINK,
-    },
-    {
-      label: 'Photography',
-      href: '/photography',
-      icon: photographyIconSnippet,
-      active: pathname.startsWith('/photography'),
-      color: PostType.PHOTOGRAPHY,
-    },
-    { label: 'RSS', href: '/rss.xml', icon: rssIconSnippet, title: 'Subscribe to my RSS Feed', color: 'generic' },
-  ]);
+  const links = $derived(
+    (navigation ?? []).map((link) => ({
+      ...link,
+      active: link.href === '/' ? pathname === '/' : pathname.startsWith(link.href),
+    }))
+  );
 </script>
 
-{#snippet rssIconSnippet()}<Rss size="20px" />{/snippet}
-{#snippet postIconSnippet()}<PostIcon size="20px" />{/snippet}
-{#snippet quickReviewIconSnippet()}<QuickReviewIcon size="20px" />{/snippet}
-{#snippet coolLinkIconSnippet()}<CoolLinkIcon size="20px" />{/snippet}
-{#snippet photographyIconSnippet()}<PhotographyIcon size="20px" />{/snippet}
-{#snippet homeIconSnippet()}<HomeIcon size="20px" />{/snippet}
-{#snippet timelineIconSnippet()}<TimelineIcon size="20px" />{/snippet}
-
-<header
-  class={['o-header', className]}
-  class:o-header--inverted={color === 'inverted'}
-  class:o-header--has-background={hasBackground}
-  style="view-transition-name: header"
->
-  <div class="o-header__container u-container">
+<header class={['o-header', className]} style="view-transition-name: header">
+  <div class="o-header__container">
     <a href="/" aria-label="Home" class="o-header__logo">
-      <Logo size="80px" {color} />
+      <Logo size="80px" />
     </a>
 
-    <div class="o-header__links">
-      <HamburgerMenu class="o-header__hamburger-menu" {links} {currentSearch} />
+    <nav class="o-header__navigation" data-nav>
+      {#each links as link}
+        <NavMenuLink href={link.href} icon={link.icon} active={link.active} color={link.color} title={link.title}>
+          {link.label}
+        </NavMenuLink>
+      {/each}
+
+      <ThemeToggle class="o-header__theme-toggle mobile-only" />
+
+      <PagefindSearchField class="o-header__search-field mobile-only" value={currentSearch} />
+    </nav>
+
+    {#if socials}
+      <div class="o-header__contact">
+        {#each socials as social}
+          <SocialLink name={social.name} url={social.url} label={social.label} />
+        {/each}
+      </div>
+    {/if}
+
+    <div class="o-header__actions">
+      <PagefindSearchField class="o-header__search-field" value={currentSearch} />
 
       <ThemeToggle class="o-header__theme-toggle" />
     </div>
@@ -106,93 +108,138 @@
   @use '/src/styles/breakpoints';
 
   .o-header {
-    color: var(--theme--text-base-color);
     position: relative;
     z-index: 9;
-    height: var(--header-height);
-
     container-type: inline-size;
+    width: 100%;
+    overflow: auto;
 
     &__container {
       display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: var(--spacing-lg);
-      padding-block: var(--spacing-lg);
+      flex-direction: column;
+      gap: var(--spacing-md);
 
-      @include breakpoints.for-phone-only {
-        gap: var(--spacing-sm);
-        padding-block: var(--spacing-sm);
-      }
+      width: 100%;
+      padding: var(--spacing-lg) var(--spacing-md);
     }
 
     &__logo {
-      height: 80px;
-      z-index: 98;
-
-      &:is(a):hover {
-        filter: none;
-      }
+      width: fit-content;
     }
 
-    &__links {
+    &__navigation {
       display: flex;
-      align-items: center;
-      gap: var(--spacing-md) var(--spacing-lg);
+      flex-direction: column;
+      gap: var(--spacing-sm);
+      width: 100%;
     }
 
-    :global(.o-header__hamburger-menu) {
-      order: 3;
+    &__contact,
+    &__actions {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-sm);
+      width: 100%;
+
+      padding-top: var(--spacing-md);
+      border-top: 1px solid var(--t--border--medium);
     }
 
     :global(.o-header__theme-toggle) {
-      order: 1;
-      z-index: 98;
+      align-self: center;
     }
 
-    @include breakpoints.for-tablet-portrait-up {
-      :global(.o-header__hamburger-menu) {
-        order: 2;
-      }
+    :global(.o-header__theme-toggle.mobile-only) {
+      display: none;
+      flex-shrink: 0;
+    }
 
-      :global(.o-header__theme-toggle) {
-        order: 3;
-      }
-      
-      .o-header {
-        &__container {
-          flex-direction: column;
-          align-items: flex-start;
-          height: 100dvh;
-          justify-content: flex-start;
+    :global(.o-header__search-field.mobile-only) {
+      flex-shrink: 0;
+      width: min(200px, 100%);
+      display: none;
+    }
 
-          padding-inline: clamp(12px, (100vw - 320px) / 580 * 30, 22px);
-        }
-        &__links {
-          flex-direction: column;
-          width: 100%;
-          align-items: flex-start;
-        }
-      }
-      :global(.o-header__hamburger-menu) {
+    @include breakpoints.for-phone-only {
+      &__container {
+        flex-direction: row;
+        padding: var(--spacing-sm);
+        gap: var(--spacing-sm);
+        align-items: center;
         width: 100%;
-      }
-    }
-
-    &--inverted {
-      color: var(--theme--text-inverse-color);
-    }
-
-    &--has-background {
-      @include breakpoints.for-phone-only {
-        background-color: var(--theme--background-accent-color);
+        overflow: hidden;
+        height: 64px;
       }
 
-      // @include breakpoints.for-tablet-portrait-up {
-      //   box-shadow: var(--theme--shadow-image);
-      //   border-top-right-radius: var(--border-radius--small);
-      //   border-bottom-right-radius: var(--border-radius--small);
-      // }
+      &__logo {
+        :global(.logo) {
+          width: 32px !important;
+          height: 32px !important;
+        }
+      }
+
+      :global(.o-header__theme-toggle.mobile-only) {
+        display: flex;
+      }
+
+      :global(.o-header__search-field.mobile-only) {
+        display: block;
+      }
+
+      &__navigation {
+        flex-direction: row;
+        align-items: center;
+        gap: var(--spacing-xs);
+
+        width: fit-content;
+        overflow: auto;
+        padding-bottom: var(--spacing-sm);
+        margin-bottom: calc(var(--spacing-sm) * -1);
+
+        // Add dynamic fade effects to the start/end of the nav bar to indicate
+        // the user can scroll horizontally
+        // From https://css-tricks.com/modern-scroll-shadows-using-scroll-driven-animations/
+
+        @property --left-fade {
+          syntax: '<length>';
+          inherits: false;
+          initial-value: 0;
+        }
+
+        @property --right-fade {
+          syntax: '<length>';
+          inherits: false;
+          initial-value: 0;
+        }
+
+        @keyframes scrollfade {
+          0% {
+            --left-fade: 0px;
+            --right-fade: var(--spacing-lg);
+          }
+          10% {
+            --left-fade: var(--spacing-lg);
+          }
+          90% {
+            --left-fade: var(--spacing-lg);
+            --right-fade: var(--spacing-lg);
+          }
+          100% {
+            --left-fade: var(--spacing-lg);
+            --right-fade: 0px;
+          }
+        }
+
+        mask: linear-gradient(to right, transparent, #000 var(--left-fade) calc(100% - var(--right-fade)), transparent);
+        animation: scrollfade;
+        animation-timeline: --scrollfade;
+        scroll-timeline: --scrollfade x;
+      }
+
+      &__contact,
+      &__actions {
+        display: none;
+      }
     }
   }
 </style>

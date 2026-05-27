@@ -1,44 +1,40 @@
 <script lang="ts">
   import { QuickReviewType } from '@schemas/quick-review-types';
-  import MovieIcon from '@assets/icons/movie.svelte';
-  import TvIcon from '@assets/icons/tv.svelte';
-  import GameIcon from '@assets/icons/game.svelte';
-  import AlbumIcon from '@assets/icons/album.svelte';
+  import type { BaseProps } from '@utils/types';
+  import { getIcon } from '@utils/icons';
+
+  export type QuickReviewTypeTagProps = BaseProps & {
+    type: QuickReviewType;
+  };
 
   let {
     type,
     class: className,
-  }: {
-    type: QuickReviewType;
-    class?: string;
-  } = $props();
+  }: QuickReviewTypeTagProps = $props();
 
   let classList = $derived([
     'a-quick-review-type-tag',
     type ? `a-quick-review-type-tag--${type.toLowerCase().replace(' ', '-')}` : undefined,
     className,
   ]);
-</script>
 
-{#snippet icon()}
-  {#if type === QuickReviewType.Movie}
-    <MovieIcon size="16px" />
-  {/if}
-  {#if type === QuickReviewType.TvShow}
-    <TvIcon size="16px" />
-  {/if}
-  {#if type === QuickReviewType.Game}
-    <GameIcon size="16px" />
-  {/if}
-  {#if type === QuickReviewType.Album}
-    <AlbumIcon size="16px" />
-  {/if}
-{/snippet}
+  const iconName = $derived(
+    type === QuickReviewType.Movie ? 'movie' :
+    type === QuickReviewType.TvShow ? 'tv' :
+    type === QuickReviewType.Game ? 'game' :
+    type === QuickReviewType.Album ? 'album' :
+    undefined
+  );
+
+  let IconComponent = $derived(iconName ? getIcon(iconName) : undefined);
+</script>
 
 <div class={classList}>
   <div class="a-quick-review-type-tag__bg" aria-hidden="true"></div>
   <div class="a-quick-review-type-tag__icon">
-    {@render icon()}
+    {#if IconComponent}
+      <IconComponent size="16px" />
+    {/if}
   </div>
   <span class="a-quick-review-type-tag__text">
     {type}
@@ -62,10 +58,10 @@
     height: 24px;
     width: fit-content;
 
-    background-color: var(--theme--qr-base-light-color);
-    color: var(--theme--qr-base-dark-color);
+    background-color: var(--t--qr-base-light-color);
+    color: var(--t--qr-base-dark-color);
 
-    --icon-color: var(--theme--qr-base-dark-color);
+    --icon-color: var(--t--qr-base-dark-color);
 
     &__icon {
       width: 16px;
@@ -89,19 +85,19 @@
     }
 
     &--movie {
-      --icon-color: var(--theme--qr-movie-color);
+      --icon-color: var(--t--qr-movie-color);
     }
 
     &--tv-show {
-      --icon-color: var(--theme--qr-tv-show-color);
+      --icon-color: var(--t--qr-tv-show-color);
     }
 
     &--game {
-      --icon-color: var(--theme--qr-game-color);
+      --icon-color: var(--t--qr-game-color);
     }
 
     &--album {
-      --icon-color: var(--theme--qr-album-color);
+      --icon-color: var(--t--qr-album-color);
     }
   }
 </style>

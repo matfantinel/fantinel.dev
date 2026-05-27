@@ -1,4 +1,5 @@
 ---
+import { getPaginatedTimelineEntries } from '@data/everything';
 import { getPaginatedReviews } from '@data/quickReviews';
 import QuickReviewLayout from '@layouts/QuickReviewLayout.astro';
 
@@ -13,7 +14,8 @@ export async function getStaticPaths() {
   return paths;
 }
 
+const latestTimelineEntries = (await getPaginatedTimelineEntries(1)).posts;
 const { review } = Astro.props;
 ---
 
-<QuickReviewLayout review={review} />
+<QuickReviewLayout review={review} latestTimelineEntries={latestTimelineEntries} />

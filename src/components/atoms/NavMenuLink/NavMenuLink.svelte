@@ -1,6 +1,22 @@
 <script lang="ts">
   import { HttpRegex } from '@utils/regex';
-  import type { Snippet } from 'svelte';
+  import type { Snippet, Component } from 'svelte';
+  import type { SVGAttributes } from 'svelte/elements';
+  import type { BaseProps } from '@utils/types';
+  import { getIcon } from '@utils/icons';
+
+  export type NavMenuLinkProps = BaseProps & {
+    href?: string;
+    target?: string;
+    rel?: string;
+    title?: string;
+    active?: boolean;
+    isMobile?: boolean;
+    color?: string;
+    icon?: string;
+    text?: string;
+    onclick?: EventListener;
+  };
 
   let {
     href,
@@ -8,45 +24,38 @@
     rel,
     title,
     active,
+    isMobile,
     color,
-    class: className,
     icon,
     children,
     onclick,
+    class: className,
     ...props
-  }: {
-    href?: string;
-    target?: string;
-    rel?: string;
-    title?: string;
-    active?: boolean;
-    color?: string;
-    class?: string;
-    icon?: Snippet;
-    children?: Snippet;
-    onclick?: EventListener;
-    [key: string]: any;
-  } = $props();
+  }: NavMenuLinkProps & { children?: Snippet } = $props();
 
+  let IconComponent = $derived(icon ? getIcon(icon) : undefined);
   let tag = $derived(href ? 'a' : 'button');
   let isExternalLink = $derived(!!href && HttpRegex.test(href));
+
   let linkProps = $derived({
     href,
     target: target ?? (isExternalLink ? '_blank' : undefined),
     rel: rel ?? (isExternalLink ? 'noopener' : undefined),
   });
 
-  let classList = $derived(['a-nav-menu-link', className, { 'a-nav-menu-link--active': active }]);
-
-  let customStyles = $derived([
-    color ? `--color: var(--theme--color-${color})` : '',
+  let classList = $derived([
+    'a-nav-menu-link',
+    className,
+    { 'a-nav-menu-link--active': active, 'a-nav-menu-link--mobile': isMobile },
   ]);
+
+  let customStyles = $derived([color ? `--color: var(--t--${color})` : '']);
 </script>
 
 <svelte:element this={tag} {...linkProps} class={classList} {...props} {title} {onclick} style={customStyles.join(';')}>
-  {#if icon}
+  {#if IconComponent}
     <div class="a-nav-menu-link__icon">
-      {@render icon()}
+      <IconComponent size="24px" />
     </div>
   {/if}
   <span class="a-nav-menu-link__text">
@@ -64,50 +73,73 @@
     gap: var(--spacing-xs);
 
     text-decoration: none;
-    color: currentColor;
-
     border: none;
     appearance: none;
     background-color: transparent;
     text-align: left;
     cursor: pointer;
-    
+
     padding: var(--spacing-xs);
     border-radius: var(--border-radius--small);
     width: calc(100% + var(--spacing-sm));
     margin-inline: calc(var(--spacing-xs) * -1);
 
+    transition: all 0.25s ease;
+
+    color: var(--t--text--base);
+    background: transparent;
+
     &__icon {
-      width: 20px;
-      height: 20px;
+      width: 24px;
+      height: 24px;
       aspect-ratio: 1/1;
     }
 
     &__text {
       @include typography.b1;
-      font-size: 1.375rem; //22px
       font-weight: 500;
-      line-height: 1.2;
+    }
 
-      @include breakpoints.for-tablet-portrait-up {
-        font-size: 1.125rem; //18px
+    @mixin mobile-styles {
+      gap: var(--spacing-xxs);
+      padding: var(--spacing-xxs) var(--spacing-xs);
+
+      width: unset;
+      margin-inline: 0;
+      text-wrap: nowrap;
+
+      .a-nav-menu-link {
+        &__text {
+          @include typography.icon-label;
+        }
+
+        &__icon {
+          display: none;
+        }
       }
     }
 
     &--active {
-      background-color: var(--theme--background-accent-color);
-      color: var(--theme--color-accent);
+      background: var(--t--surface--accent);
+      color: var(--color, var(--t--accent));
+    }
+
+    @include breakpoints.for-phone-only {
+      @include mobile-styles;
+    }
+
+    &--mobile {
+      @include mobile-styles;
     }
 
     &:hover,
     &:active,
     &:focus {
       filter: none;
-      background-color: var(--theme--background-accent-color);
+      color: var(--color, var(--t--accent));
 
       .a-nav-menu-link {
         &__icon {
-          color: var(--color, var(--theme--color-accent));
           animation: nudge-and-grow 0.5s ease-in;
         }
       }

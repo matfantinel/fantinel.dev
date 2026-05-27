@@ -2,7 +2,6 @@
   import { defineMeta } from '@storybook/addon-svelte-csf';
 
   import IconLink from './IconLink.svelte';
-  import Rss from '@assets/icons/rss.svelte';
 
   const { Story } = defineMeta({
     title: 'Atoms/Icon Link',
@@ -11,7 +10,7 @@
     argTypes: {
       href: { control: 'text', required: true },
       children: { control: 'text', name: 'Example' },
-      icon: { control: false },
+      icon: { control: 'text' },
       target: { control: false },
       rel: { control: false },
       class: { control: false },
@@ -20,9 +19,10 @@
   });
 </script>
 
-{#snippet iconSnippet()}<Rss />{/snippet}
 {#snippet template(args)}
-  <IconLink {...args} href="#" icon={iconSnippet}>{args.children ?? 'Example'}</IconLink>
+  <IconLink {...args} href="#" icon="rss">{args.children ?? 'Example'}</IconLink>
 {/snippet}
 
 <Story name="Default" />
+
+<Story name="Icon on Right" args={{ iconPosition: 'right' }} />

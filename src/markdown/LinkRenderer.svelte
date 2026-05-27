@@ -2,9 +2,8 @@
   import ExternalLink from '@assets/icons/external-link.svelte';
 	import Button from '@components/atoms/Button';
   import { HttpRegex } from '@utils/regex';
-	import metaConfig from "@public/cms/meta.yml";
-	import type { SiteMeta } from "@schemas/site-meta";
-	const siteMeta: SiteMeta = metaConfig;
+	import { getSiteMeta } from '@data/yaml';
+	const siteMeta = getSiteMeta();
 
 	let {
 		text,

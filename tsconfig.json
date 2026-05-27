@@ -16,6 +16,8 @@
       "@public/*": ["public/*"],
       "@stores/*": ["src/stores/*"],
       "@data/*": ["src/data/*"]
-    }
+    },
+    "exactOptionalPropertyTypes": false,
+    "strictNullChecks": false
   }
 }

@@ -8,9 +8,10 @@ import { readFileSync } from 'fs';
 import { resolve } from 'path';
 
 const rootDir = process.cwd();
-const monaspaceKryptonPath = resolve(
+
+const mapleMonoPath = resolve(
 	rootDir,
-	'public/og/monaspace-krypton-latin-600-normal.woff'
+	'public/og/maple-mono-latin-800-italic.woff'
 );
 
 const monaSansPath = resolve(
@@ -18,7 +19,7 @@ const monaSansPath = resolve(
 	'public/og/MonaSans-ExtraBold.otf'
 );
 
-const monaspaceKryptonBuffer = readFileSync(monaspaceKryptonPath);
+const mapleMonoBuffer = readFileSync(mapleMonoPath);
 const monaSansBuffer = readFileSync(monaSansPath);
 
 export async function componentToPng(component: any, props: any) {
@@ -32,9 +33,9 @@ export async function componentToPng(component: any, props: any) {
 		const svg = await satori(markup, {
 			fonts: [
 				{
-					name: 'Monaspace Krypton',
-					data: monaspaceKryptonBuffer,
-					style: 'normal'
+					name: 'Maple Mono',
+					data: mapleMonoBuffer,
+					style: 'italic'
 				},
 				{
 					name: 'Mona Sans',

@@ -1,6 +1,6 @@
 ---
 import PagefindSearchResults from "@components/organisms/PagefindSearchResults";
-import SimpleHero from "@components/organisms/SimpleHero";
+import GenericHero from "@components/organisms/GenericHero";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import PagefindSearchField from "@components/molecules/PagefindSearchField";
 
@@ -11,9 +11,15 @@ const search = searchParams.get('search');
 ---
 
 <BaseLayout title="Search" disableClientRouter>
-  <SimpleHero title={`Searching for ${search ? `“${search}”...` : '... nothing?'}`} client:load transition:persist>
-    <PagefindSearchField value={search} client:load style="width: 280px;" transition:persist transition:name="test" />
-  </SimpleHero>
+  <div class="p-search full-width u-content-grid">
+    <div class="p-search__hero full-width">
+      <GenericHero title={`Searching for ${search ? `“${search}”...` : '... nothing?'}`} client:load transition:persist transition:name="search-hero">
+        <PagefindSearchField value={search} client:load style="width: 280px;" />
+      </GenericHero>
+    </div>
 
-  <PagefindSearchResults client:load query={search} />
+    <div class="p-search__results">
+      <PagefindSearchResults client:load query={search} />
+    </div>
+  </div>
 </BaseLayout>

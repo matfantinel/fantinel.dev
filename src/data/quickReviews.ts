@@ -5,6 +5,7 @@ import { slug } from 'github-slugger';
 import { QuickReviewType, QuickReviewRating, getTypeFromLowercaseKey, getRatingFromLowercaseKey } from "@schemas/quick-review-types";
 import { escapeXml, siteMeta } from "@utils/rss";
 import dateformat from "dateformat";
+import type { FilterTag } from "@schemas/filter";
 
 /**
  * Sanitizes a quick review to make it ready for using it in the UI.
@@ -91,6 +92,106 @@ export async function getRecentReviews(limit: number = 4): Promise<QuickReview[]
 export async function getAllQuickReviews(): Promise<QuickReview[]> {
   const { reviews } = await getPaginatedReviews(1, undefined, undefined, { postsPerPage: 1000 });
   return reviews;
+}
+
+/**
+ * Gets type filters for the quick reviews archive.
+ * @param activeType - The currently active type (optional).
+ * @returns Array of filter tags, one per type.
+ */
+export async function getTypeFilters(activeType?: string): Promise<FilterTag[]> {
+  const reviews = await getCollection("quickReviews");
+  const sanitizedReviews = reviews
+    .map((review) => sanitizeQuickReview(review.data as unknown as QuickReview, review.filePath ?? "", review.rendered?.html));
+
+  const typeCount = new Map<string, number>();
+
+  sanitizedReviews.forEach((review) => {
+    const key = review.type;
+    typeCount.set(key, (typeCount.get(key) || 0) + 1);
+  });
+
+  return Object.keys(QuickReviewType).map((key) => {
+    const typeValue = QuickReviewType[key as keyof typeof QuickReviewType];
+    return {
+      label: typeValue + 's',
+      url: `/quick-reviews/type/${key.toLowerCase()}`,
+      active: key === activeType,
+      count: typeCount.get(typeValue) || 0,
+    };
+  });
+}
+
+/**
+ * Gets rating filters for the quick reviews archive.
+ * @param activeRating - The currently active rating (optional).
+ * @returns Array of filter tags, one per rating.
+ */
+export async function getRatingFilters(activeRating?: string): Promise<FilterTag[]> {
+  const reviews = await getCollection("quickReviews");
+  const sanitizedReviews = reviews
+    .map((review) => sanitizeQuickReview(review.data as unknown as QuickReview, review.filePath ?? "", review.rendered?.html));
+
+  const ratingCount = new Map<string, number>();
+
+  sanitizedReviews.forEach((review) => {
+    const key = review.rating;
+    ratingCount.set(key, (ratingCount.get(key) || 0) + 1);
+  });
+
+  return Object.keys(QuickReviewRating).reverse().map((key) => {
+    const ratingValue = QuickReviewRating[key as keyof typeof QuickReviewRating];
+    return {
+      label: ratingValue,
+      url: `/quick-reviews/rating/${key.toLowerCase()}`,
+      active: key === activeRating,
+      count: ratingCount.get(ratingValue) || 0,
+    };
+  });
+}
+
+/**
+ * Gets year filters for the quick reviews archive.
+ * @param activeYear - The currently active year string (optional).
+ * @returns Array of filter tags, one per year.
+ */
+export async function getYearFilters(activeYear?: string): Promise<FilterTag[]> {
+  const reviews = await getCollection("quickReviews");
+  const sanitizedReviews = reviews
+    .map((review) => sanitizeQuickReview(review.data as unknown as QuickReview, review.filePath ?? "", review.rendered?.html));
+
+  const yearCount = new Map<string, number>();
+
+  sanitizedReviews.forEach((review) => {
+    const year = String(new Date(review.date).getFullYear());
+    yearCount.set(year, (yearCount.get(year) || 0) + 1);
+  });
+
+  const filterTags: FilterTag[] = Array.from(yearCount.entries()).map(([year, count]) => ({
+    label: year,
+    url: `/quick-reviews/year/${year}`,
+    active: year === activeYear,
+    count,
+  }));
+
+  filterTags.sort((a, b) => Number(b.label) - Number(a.label));
+
+  return filterTags;
+}
+
+/**
+ * Gets all quick reviews for a given year.
+ * @param year - The year string (e.g. "2024").
+ * @returns All reviews for that year, sorted most recent first.
+ */
+export async function getReviewsByYear(year: string): Promise<QuickReview[]> {
+  const reviews = await getCollection("quickReviews");
+  const sanitizedReviews = reviews
+    .map((review) => sanitizeQuickReview(review.data as unknown as QuickReview, review.filePath ?? "", review.rendered?.html))
+    .filter((review) => String(new Date(review.date).getFullYear()) === year)
+    .sort((a, b) => b.date.getTime() - a.date.getTime());
+
+  return sanitizedReviews;
 }
 
 /**

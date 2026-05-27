@@ -1,3 +1,4 @@
-import Tag from './IconLink.svelte';
+import IconLink from './IconLink.svelte';
 
-export default Tag;
+export default IconLink;
+export type { IconLinkProps } from './IconLink.svelte';

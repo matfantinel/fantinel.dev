@@ -1,5 +1,6 @@
 ---
 import { getPaginatedPhotographies } from '@data/photographies';
+import { getPaginatedTimelineEntries } from '@data/everything';
 import PhotographyLayout from '@layouts/PhotographyLayout.astro';
 
 export async function getStaticPaths() {
@@ -13,7 +14,8 @@ export async function getStaticPaths() {
   return paths;
 }
 
+const latestTimelineEntries = (await getPaginatedTimelineEntries(1)).posts;
 const { photography } = Astro.props;
 ---
 
-<PhotographyLayout photography={photography} />
+<PhotographyLayout photography={photography} latestTimelineEntries={latestTimelineEntries} />

@@ -1,5 +1,13 @@
 <script lang="ts">
   import dateformat from 'dateformat';
+  import type { BaseProps } from '@utils/types';
+
+  export type CoolLinksImageProps = BaseProps & {
+    title: string;
+    date?: Date;
+    background?: string;
+    willRenderWithSatori?: boolean;
+  };
 
   let {
     title,
@@ -7,13 +15,7 @@
     background,
     willRenderWithSatori,
     class: className,
-  }: {
-    title: string;
-    date?: Date;
-    background?: string;
-    willRenderWithSatori?: boolean;
-    class?: string;
-  } = $props();
+  }: CoolLinksImageProps = $props();
 
   const currentMonth = date ? date.getMonth() + 1 : 7;
 
@@ -43,7 +45,7 @@
   height: 100%;
   background: ${backgroundColor};
   position: relative;
-  font-family: 'Monaspace Krypton', sans-serif;
+  font-family: 'Maple Mono', sans-serif;
 	display: flex;
 `}
 >
@@ -335,7 +337,7 @@
             fill="#45475A"
             xml:space="preserve"
             style="white-space: pre"
-            font-family="Monaspace Krypton"
+            font-family="Maple Mono"
             font-size="20"
             font-weight="800"
             letter-spacing="0em"
@@ -409,7 +411,7 @@
       </span>
       {#if date}
         <span
-          style="color: #45475A; white-space: pre; font-family: 'Monaspace Krypton', monospace; font-size: 20px; font-weight: 800; letter-spacing: 0em;"
+          style="color: #45475A; white-space: pre; font-family: 'Maple Mono', monospace; font-size: 20px; font-weight: 800; letter-spacing: 0em;"
         >
           {dateformat(date, 'mmmm, yyyy')}
         </span>

@@ -1,17 +1,21 @@
 <script lang="ts">
   import type { Pagefind, PagefindResult } from '@schemas/pagefind';
+  import { PostType } from '@schemas/post-types';
   import { onMount } from 'svelte';
-  import SearchResult from '@components/molecules/SearchResult';
+  import SearchResults from '@components/molecules/SearchResults';
   import Search from '@assets/icons/search.svelte';
   import ArrowLink from '@components/atoms/ArrowLink';
+
+  import type { BaseProps } from '@utils/types';
+
+  export type PagefindSearchResultsProps = BaseProps & {
+    query?: string;
+  };
 
   let {
     query,
     class: className,
-  }: {
-    query?: string;
-    class?: string;
-  } = $props();
+  }: PagefindSearchResultsProps = $props();
 
   let results = $state<PagefindResult[]>([]);
   let isLoading = $state<boolean>(true);
@@ -53,10 +57,37 @@
 
     isLoading = false;
   });
+
+  function pagefindResultToSearchResult(result: PagefindResult) {
+    const url = result.url;
+    let type: PostType | undefined;
+
+    if (url.startsWith('/blog')) {
+      type = PostType.BLOG_POST;
+    } else if (url.startsWith('/quick-reviews')) {
+      type = PostType.QUICK_REVIEW;
+    } else if (url.startsWith('/cool-links')) {
+      type = PostType.COOL_LINK;
+    } else if (url.startsWith('/photography')) {
+      type = PostType.PHOTOGRAPHY;
+    } else {
+      type = PostType.PAGE;
+    }
+
+    return {
+      type,
+      title: result.meta.title,
+      url: result.url,
+      excerpt: result.excerpt,
+      subResults: result.sub_results,
+      image: result.meta.image,
+      imageAlt: result.meta.image_alt,
+    };
+  }
 </script>
 
 <section class={['o-pagefind-search-results', className]}>
-  <div class="o-pagefind-search-results__container u-container">
+  <div class="o-pagefind-search-results__container">
     {#if isLoading}
       <div class="o-pagefind-search-results__loading">
         <Search size="24px" /> Searching...
@@ -86,18 +117,12 @@
           </span>
         </div>
       {/if}
-      <ul class="o-pagefind-search-results__list">
-        {#each results as result}
-          <li class="o-pagefind-search-results__item">
-            <SearchResult
-              title={result.meta.title}
-              url={result.url}
-              excerpt={result.excerpt}
-              subResults={result.sub_results}
-            />
-          </li>
-        {/each}
-      </ul>
+      {#if results && results.length > 0}
+        <SearchResults
+          class="o-pagefind-search-results__results"
+          results={results.map(pagefindResultToSearchResult)}
+        />
+      {/if}
     {/if}
   </div>
 </section>
@@ -148,19 +173,11 @@
       flex-direction: column;
       align-items: center;
       gap: var(--spacing-sm);
-      color: var(--color--red);
+      color: var(--t--error);
     }
-    
-    &__list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: var(--spacing-sm);
-      margin: 0;
-    }
-    
-    &__item {
-      
+
+    :global(.o-pagefind-search-results__results) {
+      width: 100%;
     }
   }
 </style>

@@ -1,0 +1,37 @@
+---
+import { getEntriesByDate, getDateFilters } from '@data/everything';
+import TimelineArchiveLayout from '@layouts/TimelineArchiveLayout.astro';
+
+export async function getStaticPaths() {
+  const dateFilters = await getDateFilters();
+
+  const dates: string[] = [];
+  dateFilters.forEach((yearGroup) => {
+    yearGroup.tags?.forEach((tag) => {
+      const dateSlug = tag.url.split('/').pop();
+      if (dateSlug) dates.push(dateSlug);
+    });
+  });
+
+  return dates.map((date) => ({ params: { date } }));
+}
+
+const { date } = Astro.params;
+const groups = await getEntriesByDate(date);
+const totalPosts = groups.reduce((sum, group) => sum + group.posts.length, 0);
+
+const [year, month] = date.split('-');
+const monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
+                    'July', 'August', 'September', 'October', 'November', 'December'];
+const dateDisplay = `${monthNames[parseInt(month) - 1]} ${year}`;
+
+const dateFilters = await getDateFilters(date);
+---
+
+<TimelineArchiveLayout
+  groups={groups}
+  totalPosts={totalPosts}
+  currentDate={dateDisplay}
+  currentSlug={date}
+  dateFilters={dateFilters}
+/>

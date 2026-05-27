@@ -18,4 +18,12 @@
   <Footer {...args} />
 {/snippet}
 
-<Story name="Default" />
+<Story name="Default" args={{
+  socials: [
+    { name: 'Mastodon', url: '#' },
+    { name: 'GitHub', url: '#' },
+    { name: 'LinkedIn', url: '#' },
+    { name: 'Email', url: '#' },
+    { name: 'RSS', url: '#' }
+  ]
+}} />

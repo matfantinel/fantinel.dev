@@ -3,16 +3,17 @@
   import type { QuickReview } from '@schemas/quick-review';
   import QuickReviewCard from '@components/molecules/QuickReviewCard';
   import { quickReviewToQuickReviewCardProps } from '@utils/prop-mapping';
+  import type { BaseProps } from '@utils/types';
+
+  export type QuickReviewCardsProps = BaseProps & {
+    reviews?: QuickReview[];
+  };
 
   let {
     class: className,
     reviews,
     children,
-  }: {
-    class?: string;
-    reviews?: QuickReview[];
-    children?: Snippet;
-  } = $props();
+  }: QuickReviewCardsProps & { children?: Snippet } = $props();
 </script>
 
 <div class={['m-quick-review-cards', className]}>
@@ -34,30 +35,5 @@
     gap: var(--spacing-md);
     align-items: flex-start;
     justify-content: center;
-
-    // :global(> article) {
-    //   flex: 0 1 780px;
-    //   --direction: 1;
-
-    //   @supports (animation-timeline: view()) {
-    //     animation: card-slide auto linear;
-    //     animation-timeline: view();
-    //     animation-range: entry;
-    //   }
-    //   &:nth-child(odd) {
-    //     --direction: -1;
-    //   }
-    // }
   }
-
-  // @keyframes card-slide {
-  //   0% {
-  //     opacity: 0.5;
-  //     translate: calc(50px * var(--direction)) 5px;
-  //   }
-  //   75% {
-  //     opacity: 1;
-  //     translate: 0 0;
-  //   }
-  // }
 </style>

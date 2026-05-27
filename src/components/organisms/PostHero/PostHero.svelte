@@ -1,20 +1,13 @@
 <script lang="ts">
   import Tag from '@components/atoms/Tag';
   import AuthorAvatar from '@components/molecules/AuthorAvatar';
+  import HeroWaves from '@components/molecules/HeroWaves';
   import Tags from '@components/molecules/Tags';
   import type { SiteAuthor } from '@schemas/site-meta';
   import dateformat from 'dateformat';
+  import type { BaseProps } from '@utils/types';
 
-  let {
-    title,
-    slug,
-    author,
-    date,
-    updated,
-    readingTime,
-    tags,
-    class: className,
-  }: {
+  export type PostHeroProps = BaseProps & {
     title: string;
     slug?: string;
     author?: SiteAuthor;
@@ -22,19 +15,29 @@
     updated?: Date;
     readingTime?: string;
     tags?: (string | { name: string; slug: string; url: string })[];
-    class?: string;
-  } = $props();
+  };
+
+  let {
+    title,
+    author,
+    slug,
+    date,
+    updated,
+    readingTime,
+    tags,
+    class: className,
+  }: PostHeroProps = $props();
 </script>
 
-<div class={['o-post-hero', className]}>
-  <div class="o-post-hero__container u-container-small">
+<div class={['o-post-hero u-content-grid', className]}>
+  <div class="o-post-hero__container">
     <h1 class="o-post-hero__title">
       {title}
     </h1>
 
-    <div class="o-post-hero__meta">
+    <div class="o-post-hero__meta" data-pagefind-ignore="all">
       {#if author?.image}
-        <AuthorAvatar src={author.image} alt={author.name} extraImages={author.extraImages} />
+        <AuthorAvatar class="o-post-hero__author-avatar" src={author.image} alt={author.name} extraImages={author.extraImages} size="small" />
       {/if}
       <div class="o-post-hero__details">
         {#if author?.name}
@@ -67,6 +70,8 @@
       </div>
     {/if}
   </div>
+
+  <HeroWaves />
 </div>
 
 <style lang="scss">
@@ -74,10 +79,11 @@
   @use '/src/styles/breakpoints';
 
   .o-post-hero {
-    background-color: var(--theme--background-accent-color);
-    border-bottom-left-radius: var(--border-radius);
-    border-bottom-right-radius: var(--border-radius);
-    margin-top: calc(var(--spacing-lg) * -1);
+    --content-max-width: 790px;
+    background-color: var(--t--surface--accent);
+    
+    position: relative;
+    margin-bottom: 64px;
     
     &__container {
       display: flex;
@@ -87,10 +93,6 @@
       gap: var(--spacing-lg);
 
       padding-block: var(--spacing-xxxl) var(--spacing-xxl);
-
-      @include breakpoints.for-phone-only {
-        padding-block: var(--spacing-xl);
-      }
     }
 
     &__title {
@@ -98,6 +100,8 @@
       @include typography.gradient-pinkish;
       text-align: center;
       text-wrap: balance;
+      --glow-color: var(--palette--pink--rgb);
+      animation: var(--t--glowing-text-animation);
     }
 
     &__meta {
@@ -115,6 +119,24 @@
     &__detail {
       @include typography.b1;
       @include typography.gradient-greenish;
+    }
+
+    @include breakpoints.for-phone-only {
+      &__container {
+        padding-block: var(--spacing-xxl) var(--spacing-md);
+      }
+      &__details {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-xxs);
+      }
+      &__detail {
+        @include typography.b3;
+        font-weight: 700;
+      }
+      :global(.o-post-hero__author-avatar) {
+        --size: 40px;
+      }
     }
   }
 </style>

@@ -18,7 +18,6 @@
       extraImages: { control: 'object' },
       socials: { control: 'object' },
       button: { control: 'object' },
-      isCard: { control: 'boolean' }
     },
     render: template
   });
@@ -32,6 +31,10 @@
       "https://placedog.net/501/501",
       "https://placedog.net/502/502",
     ],
+    button: {
+      text: 'About',
+      url: '#'
+    },
     socials: [
       {
         name: "Mastodon",
@@ -67,32 +70,17 @@
 />
 
 <Story
-  name="With Button"
+  name="No Button"
   args={{
     ...defaultArgs,
-    button: {
-      text: 'About',
-      url: '#'
-    }
+    button: undefined
   }}
 />
 
 <Story
-  name="Card"
+  name="No Socials"
   args={{
     ...defaultArgs,
-    isCard: true
-  }}
-/>
-
-<Story
-  name="Card with Button"
-  args={{
-    ...defaultArgs,
-    isCard: true,
-    button: {
-      text: 'About',
-      url: '#'
-    }
+    socials: undefined
   }}
 />

@@ -3,18 +3,19 @@
 	import CheckCircle from '@icons/check-circle.svelte';
 	import Info from '@icons/info.svelte';
   import type { Snippet } from 'svelte';
+  import type { BaseProps } from '@utils/types';
+
+  export type CalloutProps = BaseProps & {
+    type?: 'info' | 'warning' | 'success';
+    text?: string;
+  };
 
 	let { 
     type = 'info',
 		text,
     class: className,
     children,
-  } : {
-    type?: 'info' | 'warning' | 'success';
-    text?: string;
-    class?: string;
-    children?: Snippet;
-  } = $props();
+  } : CalloutProps & { children?: Snippet } = $props();
 </script>
 
 <div class={[
@@ -43,39 +44,39 @@
 <style lang="scss">
   .a-callout {
     position: relative;
-    background-color: var(--theme--background-accent-color);
+    background-color: var(--t--surface--accent);
     padding: var(--spacing-md);
     border-radius: var(--border-radius);
-    box-shadow: var(--theme--shadow-card);
-		border: 2px solid var(--theme--background-base-color);
 
-		--icon-color: var(--theme--color-accent);		
+		--callout-color: var(--t--accent);
+    --callout-glow: var(--t--accent--glow-small);
+
+		box-shadow: var(--callout-glow);
+		background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%23000000' fill-opacity='0.12' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E");
+		border: 2px solid var(--callout-color);
 
 		&__icon {
 			position: absolute;
 			top: 0;
 			left: 0;
 			translate: -50% -50%;
-			color: var(--icon-color);
-			--icon-background-color: var(--theme--background-base-color);
+			color: var(--callout-color);
+			--icon-background-color: var(--t--surface--base);
 		}
 
 		&--info {
-			box-shadow: var(--theme--glow-callouts-info);
-			border-color: var(--theme--color-callouts-info);
-			--icon-color: var(--theme--color-callouts-info);
+			--callout-color: var(--t--info);
+			--callout-glow: var(--t--info--glow-small);
 		}
 
 		&--warning {
-			box-shadow: var(--theme--glow-callouts-warning);
-			border-color: var(--theme--color-callouts-warning);
-			--icon-color: var(--theme--color-callouts-warning);
+			--callout-color: var(--t--warning);
+			--callout-glow: var(--t--warning--glow-small);
 		}
 
 		&--success {
-			box-shadow: var(--theme--glow-callouts-success);
-			border-color: var(--theme--color-callouts-success);
-			--icon-color: var(--theme--color-callouts-success);
+			--callout-color: var(--t--success);
+			--callout-glow: var(--t--success--glow-small);
 		}
   }
 </style>

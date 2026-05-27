@@ -4,15 +4,10 @@
 @mixin padded-container {
 	max-width: 1080px;
 	width: 100%;
-	padding-left: clamp(15px, calc((100vw - 320px) / 580 * 30), 30px);
-	padding-right: clamp(15px, calc((100vw - 320px) / 580 * 30), 30px);
+	padding-left: var(--container-padding);
+	padding-right: var(--container-padding);
 	margin-right: auto;
 	margin-left: auto;
-
-	@include breakpoints.for-iphone-se {
-		padding-left: 0;
-		padding-right: 0;
-	}
 }
 
 @mixin padded-container-small {
@@ -22,37 +17,64 @@
 	}
 }
 
-/**
- * Defines a bunch of CSS variables for a given color:
- * - HEX (--color--example)
- * - RGB (--color--example-rgb)
- * - Contrast (--color--example-contrast)
- * - Shade (--color--example-shade)
- * - Tint (--color--example-tint)
- * 
- * @param {string} $title - The name of the color
- * @param {string} $color - The color in HEX format
- */
 @mixin define-color($title, $color) {
-	--color--#{$title}: #{$color};
+  --palette--#{$title}: #{$color};
 
-	--color--#{$title}-rgb: #{functions.red($color)}, #{functions.green($color)}, #{functions.blue($color)};
+  --palette--#{$title}--rgb: #{functions.red($color)}, #{functions.green($color)}, #{functions.blue($color)};
 
-	--color--#{$title}-contrast: #{if(
-		functions.brightness($color) > 186,
-		var(--theme--text-base-color),
-		var(--theme--text-inverse-color)
-	)};
+  --palette--#{$title}--contrast: #{if(
+      functions.brightness($color) > 186,
+      var(--t--text--base),
+      var(--t--text--inverse)
+    )};
 
-	--color--#{$title}-shade: hsl(
-		#{functions.hue($color)},
-		#{functions.saturation($color)},
-		calc(#{functions.lightness($color)} - 10%)
-	);
+  --palette--#{$title}--shade: hsl(
+    #{functions.hue($color)},
+    #{functions.saturation($color)},
+    calc(#{functions.lightness($color)} - 10%)
+  );
 
-	--color--#{$title}-tint: hsl(
-		#{functions.hue($color)},
-		#{functions.saturation($color)},
-		calc(#{functions.lightness($color)} + 10%)
-	);
+  --palette--#{$title}--tint: hsl(
+    #{functions.hue($color)},
+    #{functions.saturation($color)},
+    calc(#{functions.lightness($color)} + 10%)
+  );
+
+  --palette--#{$title}--glow: 0 0 40px rgba(var(--palette--#{$title}--rgb), 0.4);
+  --palette--#{$title}--glow-small: 0 0 20px rgba(var(--palette--#{$title}--rgb), 0.4);
+  --palette--#{$title}--glow-tiny: 0 0 3px rgba(var(--palette--#{$title}--rgb), 0.7);
+
+  // --palette--#{$title}--mixed: color-mix(in oklch, var(--palette--#{$title}) 100%, var(--t--accent) 1%);
+  // // if safari,
+  --palette--#{$title}--mixed: color-mix(in oklab, var(--palette--#{$title}) 95%, var(--t--accent) 4%);
+}
+
+// Points a named contextual color (accent, complementary, post-type, etc.)
+// at a color from the palette OR at another already-defined named color.
+// Emits all variant variables in one go.
+//
+// Usage:
+//   @include set-named-color('accent', 'teal');                      // from palette
+//   @include set-named-color('accent', $from-named: 'quick-review'); // from another named color
+@mixin set-named-color($name, $palette-color: null, $from-named: null) {
+  @if $palette-color == null and $from-named == null {
+    @error "set-named-color('#{$name}'): provide either a palette color or $from-named.";
+  }
+
+  $source: if($from-named != null, --t--#{$from-named}, --palette--#{$palette-color});
+
+  --t--#{$name}: var(#{$source});
+  --t--#{$name}--rgb: var(#{$source}--rgb);
+  --t--#{$name}--contrast: var(#{$source}--contrast);
+  --t--#{$name}--shade: var(#{$source}--shade);
+  --t--#{$name}--tint: var(#{$source}--tint);
+  --t--#{$name}--glow: var(#{$source}--glow);
+  --t--#{$name}--glow-small: var(#{$source}--glow-small);
+  --t--#{$name}--glow-tiny: var(#{$source}--glow-tiny);
+}
+
+// Helper to set the accent color with another named color
+
+@mixin set-accent-color($from-named) {
+  @include set-named-color('accent', $from-named: $from-named);
 }

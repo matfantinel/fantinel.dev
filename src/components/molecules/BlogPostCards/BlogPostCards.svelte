@@ -1,15 +1,16 @@
 <script lang="ts">
   import type { Snippet } from 'svelte';
+  import type { BaseProps } from '@utils/types';
+
+  export type BlogPostCardsProps = BaseProps & {
+    maxPerRow?: number;
+  };
 
   let {
     class: className,
     maxPerRow,
     children,
-  }: {
-    class?: string;
-    maxPerRow?: number;
-    children?: Snippet;
-  } = $props();
+  }: BlogPostCardsProps & { children?: Snippet } = $props();
 </script>
 
 <div class={['m-blog-post-cards', maxPerRow ? `m-blog-post-cards--max-per-row-${maxPerRow}` : undefined, className]}>

@@ -1,0 +1,80 @@
+@use '/src/styles/breakpoints';
+
+:root {
+  --container-padding: clamp(15px, calc((100vw - 320px) / 580 * 30), 30px);
+
+  @include breakpoints.for-iphone-se {
+    --container-padding: 0;
+  }
+}
+
+.u-content-grid {
+  --smol-max-width: 908px;
+  --content-max-width: 1080px;
+
+  --smol-size: min(var(--smol-max-width), (100% - var(--container-padding) * 2));
+  // --content-size: min(var(--content-max-width), (100% - var(--container-padding) * 2));
+  --content-size: minmax(0, calc((var(--content-max-width) - var(--smol-max-width)) / 2));
+
+  display: grid;
+  align-items: start;
+  // prettier-ignore
+  grid-template-columns: 
+    [full-width-start] 
+    minmax(var(--container-padding), 1fr) 
+    [content-start]
+    var(--content-size)
+    [smol-start]
+    var(--smol-size)
+    [smol-end]
+    var(--content-size)
+    [content-end]
+    minmax(var(--container-padding), 1fr) 
+    [full-width-end];
+
+  row-gap: var(--spacing-xl);
+
+  > * {
+    grid-column: content;
+
+    &.full-width {
+      grid-column: full-width;
+    }
+
+    &.smol {
+      grid-column: smol;
+    }
+  }
+
+  @include breakpoints.for-tablet-portrait-down {
+    row-gap: var(--spacing-md);
+  }
+
+  &:has(> .on-sidebar) {
+    @include breakpoints.for-tablet-landscape-up {
+      --sidebar-width: 240px;
+      --sidebar-gap: var(--spacing-lg);
+      --content-max-width: calc(1080px - var(--sidebar-width) - var(--sidebar-gap));
+
+      grid-auto-flow: dense;
+
+      // prettier-ignore
+      grid-template-columns: 
+      [full-width-start] 
+      minmax(var(--container-padding), 1fr) 
+      [content-start] 
+      min(var(--content-max-width), (100% - var(--container-padding) * 2 - var(--sidebar-gap) - var(--sidebar-width))) 
+      [content-end] 
+      var(--sidebar-gap) 
+      [sidebar-start] 
+      var(--sidebar-width) 
+      [sidebar-end] 
+      minmax(var(--container-padding), 1fr) 
+      [full-width-end];
+
+      > .on-sidebar {
+        grid-column: sidebar;
+      }
+    }
+  }
+}

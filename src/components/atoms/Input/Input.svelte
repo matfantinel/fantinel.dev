@@ -1,4 +1,13 @@
 <script lang="ts">
+  import type { BaseProps } from '@utils/types';
+
+  export type InputProps = BaseProps & {
+    value?: string;
+    placeholder?: string;
+    required?: boolean;
+    type?: string;
+  };
+
   let {
     value = $bindable(),
     placeholder,
@@ -6,64 +15,62 @@
     type,
     class: className,
     ...props
-  }: {
-    value?: string;
-    placeholder?: string;
-    required?: boolean;
-    type?: string;
-    class?: string;
-    [key: string]: any;
-  } = $props();
+  }: InputProps = $props();
 
   let classList = $derived(['a-input', className]);
 </script>
 
-<input
-  class={classList}
-  bind:value={value}
-  placeholder={placeholder ?? ''}
-  required={required}
-  type={type}
-  {...props}
-/>
+<input class={classList} bind:value placeholder={placeholder ?? ''} {required} {type} {...props} />
 
 <style lang="scss">
   @use '/src/styles/typography';
 
   .a-input {
     @include typography.b2;
-    background-color: transparent;
-    border-radius: var(--border-radius);
+
     padding: var(--spacing-xs) var(--spacing-md);
+    border-radius: var(--border-radius);
+
+    transition: all 0.25s ease;
+
     width: 100%;
     -webkit-tap-highlight-color: transparent;
     touch-action: manipulation;
-    background-origin: border-box;
-    background-repeat: no-repeat;
 
-    background-color: var(--theme--color-input-empty-background);
-    border: 1px solid var(--theme--color-input-empty-border);
-    color: var(--theme--color-input-value);
-    accent-color: var(--theme--color-accent);
+    border: 1px solid var(--t--input--border--empty);
+    background: var(--t--input--bg--empty);
+    color: var(--t--input--text--value);
 
-    transition: all .15s ease;
-    
     &::placeholder {
-      color: var(--theme--color-input-placeholder);
+      color: var(--t--input--text--placeholder);
+    }
+
+    @media (hover: hover) {
+      &:hover {
+        border-color: var(--t--input--border--hover);
+        border-style: solid;
+      }
+    }
+
+    &:not(:placeholder-shown) {
+      border-color: var(--t--input--border--filled);
+      background: var(--t--input--bg--filled);
+      border-style: solid;
     }
 
     &:focus,
-    &:active,
-    &:not(:placeholder-shown) {
-      border-color: var(--theme--color-input-filled-border);
-      background-color: var(--theme--color-input-filled-background);
+    &:active {
+      border-color: var(--t--input--border--active);
+      background: var(--t--input--bg--active);
+      border-style: dashed;
     }
 
-    @media(hover: hover) {
+    @media (hover: hover) {
       &:hover {
-        border-color: var(--theme--color-input-hover-border);
-        background-color: var(--theme--color-input-hover-background);
+        // Hover background has preference over other styles,
+        // so it's declared last
+        background: var(--t--input--bg--hover);
       }
-    }    
+    }
   }
 </style>

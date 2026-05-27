@@ -13,13 +13,19 @@
 	import MarkerHighlight from '@components/atoms/MarkerHighlight';
 	import SparklingHighlight from '@components/atoms/SparklingHighlight';
 
+  import type { BaseProps } from '@utils/types';
+
+  export type MarkdownRendererProps = BaseProps & {
+    content: string;
+    isInline?: boolean;
+    addAnchorToHeadings?: boolean;
+  };
+
 	let { 
 		content, 
-		isInline = false
-	} : {
-		content: string;
-		isInline?: boolean;
-	} = $props();
+		isInline = false,
+		addAnchorToHeadings = false
+	} : MarkdownRendererProps = $props();
 
 	marked.use({
 		extensions: [SparklesHighlightTokenizerExtension, MarkerHighlightTokenizerExtension]
@@ -37,4 +43,4 @@
 	} as any;
 </script>
 
-<SvelteMarkdown source={content} {renderers} {options} {isInline} />
+<SvelteMarkdown source={content} {renderers} {options} {isInline} {addAnchorToHeadings} />

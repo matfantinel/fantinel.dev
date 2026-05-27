@@ -1,15 +1,18 @@
 <script lang="ts">
+  import type { BaseProps } from '@utils/types';
+
+  export type PaginationProps = BaseProps & {
+    totalPages: number;
+    currentPage: number;
+    baseUrl: string;
+  };
+
   let {
     totalPages,
     currentPage,
     baseUrl,
     class: className,
-  }: {
-    totalPages: number;
-    currentPage: number;
-    baseUrl: string;
-    class?: string;
-  } = $props();
+  }: PaginationProps = $props();
 
   function range(start: number, end: number) {
     const length = end - start + 1;
@@ -80,7 +83,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
+    gap: var(--spacing-xs);
 
     &__item {
       margin: 0;
@@ -97,14 +100,14 @@
 
       @media (hover: hover) {
         &:hover {
-          background-color: var(--theme--background-card-color);
+          background-color: var(--t--surface--accent);
         }
       }
 
       &--active {
-        background-color: var(--theme--background-card-color);
-        box-shadow: var(--theme--shadow-card);
-        color: var(--theme--color-accent);
+        background-color: var(--t--surface--accent);
+        box-shadow: var(--t--shadow--base);
+        color: var(--t--accent);
       }
     }
   }

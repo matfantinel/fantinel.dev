@@ -3,6 +3,20 @@
   import Image from '@components/atoms/Image';
   import Tag from '@components/atoms/Tag';
   import Tags from '@components/molecules/Tags';
+  import type { BaseProps } from '@utils/types';
+
+  export type BlogPostCardProps = BaseProps & {
+    title: string;
+    slug?: string;
+    url: string;
+    image?: string;
+    imageAlt?: string;
+    readingTime?: string;
+    excerpt?: string;
+    tags?: (string | { name: string; slug: string; url: string })[];
+    hideImage?: boolean;
+    goesWide?: boolean;
+  };
 
   let {
     image,
@@ -16,19 +30,7 @@
     hideImage,
     goesWide = true,
     class: className,
-  }: {
-    title: string;
-    slug?: string;
-    url: string;
-    image?: string;
-    imageAlt?: string;
-    readingTime?: string;
-    excerpt?: string;
-    tags?: (string | { name: string; slug: string; url: string })[];
-    hideImage?: boolean;
-    goesWide?: boolean;
-    class?: string;
-  } = $props();
+  }: BlogPostCardProps = $props();
 
   const cardGoesWide = $derived(goesWide && !hideImage);
 </script>
@@ -74,7 +76,7 @@
         </Tags>
       {/if}
 
-      <ArrowLink class="m-blog-post-card__link" href={url} title={`Open blog post`}>Read</ArrowLink>
+      <ArrowLink color="blog" class="m-blog-post-card__link" href={url} title={`Open blog post`}>Read</ArrowLink>
     </div>
   </div>
 </article>
@@ -84,8 +86,8 @@
 
   .m-blog-post-card {
     border-radius: var(--border-radius);
-    box-shadow: var(--theme--shadow-card);
-    background-color: var(--theme--background-card-color);
+    box-shadow: var(--t--shadow--base);
+    background-color: var(--t--surface--card);
     overflow: hidden;
     position: relative;
 
@@ -101,7 +103,7 @@
     }
 
     &__image-container {
-      background: var(--theme--background-card-accent-color);
+      background: var(--t--surface--base);
       isolation: isolate;
       position: relative;
       min-height: 214px;
@@ -123,10 +125,7 @@
       font-family: var(--font--headings);
       font-weight: 700;
       color: transparent;
-      text-shadow:
-        0px 4px 4px var(--theme--color-inner-text-shadow-light),
-        0 0 18px var(--theme--color-inner-text-shadow),
-        0px 4px 4px var(--theme--color-inner-text-shadow-light);
+      text-shadow: var(--t--blog-card-placeholder-shadow);
     }
 
     :global(.m-blog-post-card__image) {
@@ -140,7 +139,7 @@
     &__content {
       padding: var(--spacing-md) var(--spacing-md) 0;
       flex-grow: 1;
-      background-color: var(--theme--background-card-color);
+      background-color: var(--t--surface--card);
 
       display: flex;
       flex-direction: column;
@@ -153,7 +152,7 @@
 
     &__reading-time {
       @include typography.b3;
-      color: var(--theme--text-accent-color);
+      color: var(--t--text--medium);
     }
 
     &__excerpt {
@@ -216,7 +215,7 @@
 
   @media (hover: hover) {
     :global(.m-blog-post-card:has(.m-blog-post-card__link:hover)) {
-      box-shadow: var(--theme--shadow-card-high);
+      box-shadow: var(--t--shadow--high);
     }
   }
 </style>

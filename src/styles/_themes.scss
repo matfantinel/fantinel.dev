@@ -1,380 +1,280 @@
-// We need to have two types of variables:
-// 1. Global variables that set the colors independently from their context;
-//    Example: --color--yellow
-// 2. Contextual variables that use the global color ones to build a specific theme;
-//    Example: --color--highlight-background, that uses --color--yellow
-//    these can change between light/dark themes and in general should not be taken for granted,
-//    while in general it's okay to assume what the global color ones are.
-//    In addition to light/dark themes, I'm also considering being able to swap accent (primary/secondary/tertiary) colors too.
 
+@use 'sass:list';
+@use './_functions.scss' as functions;
 @use './_mixins.scss' as mixins;
 
-@mixin dark-color-palette {
-  @include mixins.define-color('rosewater', #f5e0dc);
-  @include mixins.define-color('flamingo', #f2cdcd);
-  @include mixins.define-color('pink', #f5c2e7);
-  @include mixins.define-color('mauve', #cba6f7);
-  @include mixins.define-color('red', #f38ba8);
-  @include mixins.define-color('maroon', #eba0ac);
-  @include mixins.define-color('peach', #fab387);
-  @include mixins.define-color('yellow', #f9e2af);
-  @include mixins.define-color('green', #a6e3a1);
-  @include mixins.define-color('teal', #94e2d5);
-  @include mixins.define-color('sky', #89dceb);
-  @include mixins.define-color('sapphire', #74c7ec);
-  @include mixins.define-color('blue', #89b4fa);
-  @include mixins.define-color('lavender', #b4befe);
+// #region Palettes
 
-  @include mixins.define-color('gray-0', #cdd6f4);
-  @include mixins.define-color('gray-50', #bac2de);
-  @include mixins.define-color('gray-100', #a6adc8);
-  @include mixins.define-color('gray-200', #9399b2);
-  @include mixins.define-color('gray-300', #7f849c);
-  @include mixins.define-color('gray-400', #6c7086);
-  @include mixins.define-color('gray-500', #585b70);
-  @include mixins.define-color('gray-600', #45475a);
-  @include mixins.define-color('gray-700', #313244);
-  @include mixins.define-color('gray-800', #1e1e2e);
-  @include mixins.define-color('gray-900', #181825);
-  @include mixins.define-color('gray-1000', #11111b);
+// Single source of truth for all palette colors.
+// Each entry: (name, light-hex, dark-hex).
+// - In the light palette, the "color" is the light hex and "inverted" is the dark hex.
+// - In the dark palette, these are swapped.
+// Reminder (because I seem to forget this all the time: the dark colors are specifically the "Mocha" palette.
+// prettier-ignore
+$palette-colors: (
+  ('rosewater', #DC8A78, #F5E0DC),
+  ('flamingo',  #DD7878, #F2CDCD),
+  ('pink',      #EA76CB, #F5C2E7),
+  ('mauve',     #8839EF, #CBA6F7),
+  ('red',       #D20F39, #F38BA8),
+  ('maroon',    #E64553, #EBA0AC),
+  ('peach',     #FE640B, #FAB387),
+  ('yellow',    #DF8E1D, #F9E2AF),
+  ('green',     #40A02B, #A6E3A1),
+  ('teal',      #179299, #94E2D5),
+  ('sky',       #04A5E5, #89DCEB),
+  ('sapphire',  #209FB5, #74C7EC),
+  ('blue',      #1E66F5, #89B4FA),
+  ('lavender',  #7287FD, #B4BEFE),
+
+  ('gray-min',  #11111B, #FFFFFF),
+  ('gray-0',    #4C4F69, #cdd6f4),
+  ('gray-50',   #5C5F77, #bac2de),
+  ('gray-100',  #6C6F85, #a6adc8),
+  ('gray-200',  #7C7F93, #9399b2),
+  ('gray-300',  #8C8FA1, #7f849c),
+  ('gray-400',  #9CA0B0, #6c7086),
+  ('gray-500',  #ACB0BE, #585b70),
+  ('gray-600',  #BCC0CC, #45475a),
+  ('gray-700',  #CCD0DA, #313244),
+  ('gray-800',  #DCE0E8, #1e1e2e),
+  ('gray-900',  #E6E9EF, #181825),
+  ('gray-1000', #EFF1F5, #11111b),
+  ('gray-max',  #FFFFFF, #000000)
+);
+
+@mixin light-palette {
+  @each $entry in $palette-colors {
+    @include mixins.define-color(list.nth($entry, 1), list.nth($entry, 2));
+  }
 }
 
-@mixin light-color-palette {
-  @include mixins.define-color('rosewater', #dc8a78);
-  @include mixins.define-color('flamingo', #dd7878);
-  @include mixins.define-color('pink', #ea76cb);
-  @include mixins.define-color('mauve', #8839ef);
-  @include mixins.define-color('red', #d20f39);
-  @include mixins.define-color('maroon', #e64553);
-  @include mixins.define-color('peach', #fe640b);
-  @include mixins.define-color('yellow', #df8e1d);
-  @include mixins.define-color('green', #40a02b);
-  @include mixins.define-color('teal', #179299);
-  @include mixins.define-color('sky', #04a5e5);
-  @include mixins.define-color('sapphire', #209fb5);
-  @include mixins.define-color('blue', #1e66f5);
-  @include mixins.define-color('lavender', #7287fd);
-
-  @include mixins.define-color('gray-0', #4c4f69);
-  @include mixins.define-color('gray-50', #5c5f77);
-  @include mixins.define-color('gray-100', #6c6f85);
-  @include mixins.define-color('gray-200', #7c7f93);
-  @include mixins.define-color('gray-300', #8c8fa1);
-  @include mixins.define-color('gray-400', #9ca0b0);
-  @include mixins.define-color('gray-500', #acb0be);
-  @include mixins.define-color('gray-600', #bcc0cc);
-  @include mixins.define-color('gray-700', #ccd0da);
-  @include mixins.define-color('gray-800', #eff1f5);
-  @include mixins.define-color('gray-900', #e6e9ef);
-  @include mixins.define-color('gray-1000', #dce0e8);
-
-  @include mixins.define-color('gray-1100', #ffffff);
-  @include mixins.define-color('code-background', #11111b);
-  @include mixins.define-color('code-text', #cdd6f4);
+@mixin dark-palette {
+  @each $entry in $palette-colors {
+    @include mixins.define-color(list.nth($entry, 1), list.nth($entry, 3));
+  }
 }
+
+@function palette-light($name) {
+  @each $entry in $palette-colors {
+    @if list.nth($entry, 1) == $name {
+      @return list.nth($entry, 2);
+    }
+  }
+  @error "palette-light: no color named '#{$name}' in $palette-colors.";
+}
+
+@function palette-dark($name) {
+  @each $entry in $palette-colors {
+    @if list.nth($entry, 1) == $name {
+      @return list.nth($entry, 3);
+    }
+  }
+  @error "palette-dark: no color named '#{$name}' in $palette-colors.";
+}
+
+// #endregion
+
+// #region Shared theme tokens (apply to both light and dark)
 
 @mixin theme-base {
-  --theme--text-base-color: var(--color--gray-0);
-  --theme--text-accent-color: var(--color--gray-50);
-  --theme--text-heading-color: var(--color--gray-0);
-  --theme--text-inverse-color: var(--color--gray-1000);
-  --theme--text-medium-color: var(--color--gray-500);
+  // #region Colors — Accent /complementary / post types / context
+  @include mixins.set-named-color('accent', 'teal');
+  @include mixins.set-named-color('og-accent', 'teal');
+  @include mixins.set-named-color('complementary', 'flamingo');
+  @include mixins.set-named-color('blog', 'mauve');
+  @include mixins.set-named-color('quick-review', 'peach');
+  @include mixins.set-named-color('cool-link', 'blue');
+  @include mixins.set-named-color('photography', 'maroon');
 
-  --theme--background-base-color: var(--color--gray-800);
-  --theme--background-base-color-rgb: var(--color--gray-800-rgb);
-  --theme--background-accent-color: var(--color--gray-700);
-  --theme--background-card-color: var(--color--gray-700);
-  --theme--background-card-color-rgb: var(--color--gray-700-rgb);
-  --theme--background-card-accent-color: var(--color--gray-600);
-  --theme--background-card-accent-color-rgb: var(--color--gray-600-rgb);
+  @include mixins.set-named-color('info', 'blue');
+  @include mixins.set-named-color('warning', 'yellow');
+  @include mixins.set-named-color('success', 'green');
+  @include mixins.set-named-color('error', 'red');
+  // #endregion
 
-  --theme--border-base-color: var(--color--gray-200);
-  --theme--border-medium-color: var(--color--gray-500);
+  // #region Colors — typography
+  --t--text--base: var(--palette--gray-0);
+  --t--text--inverse: var(--palette--gray-1000);
+  --t--text--medium: var(--palette--gray-50);
+  --t--text--light: var(--palette--gray-500);
+  --t--text--heavy: var(--palette--gray-min);
+  --t--text--accent: var(--t--accent);
+  // #endregion
 
-  // Accent color is used in buttons, links, etc.
-  // But it's not the only color used in the theme.
-  // Colors might vary by purpose or subject.
-  --theme--color-accent: var(--color--teal);
-  --theme--color-accent-rgb: var(--color--teal-rgb);
-  --theme--color-accent-contrast: var(--color--teal-contrast);
-  --theme--color-accent-shade: var(--color--teal-shade);
-  --theme--color-accent-tint: var(--color--teal-tint);
-  --theme--color-accent-glow: var(--theme--glow-teal);
+  // #region Colors — Surfaces / Borders
+  --t--surface--base: var(--palette--gray-1000--mixed, var(--palette--gray-1000));
+  --t--surface--base--rgb: var(--palette--gray-1000--rgb);
+  --t--surface--root: var(--palette--gray-900--mixed, var(--palette--gray-900));
+  --t--surface--accent: var(--palette--gray-max);
+  --t--surface--card: var(--palette--gray-max);
+  --t--surface--card--rgb: var(--palette--gray-max--rgb);
 
-  --theme--color-complementary: var(--color--mauve);
-  --theme--color-complementary-rgb: var(--color--mauve-rgb);
-  --theme--color-complementary-contrast: var(--color--mauve-contrast);
-  --theme--color-complementary-shade: var(--color--mauve-shade);
-  --theme--color-complementary-tint: var(--color--mauve-tint);
-  --theme--color-complementary-glow: var(--theme--glow-mauve);
+  --t--border--base: var(--palette--gray-200--mixed, var(--palette--gray-200));
+  --t--border--medium: var(--palette--gray-500--mixed, var(--palette--gray-500));
+  --t--border--light: var(--palette--gray-700--mixed, var(--palette--gray-700));
+  --t--border--heavy: var(--palette--gray-0--mixed, var(--palette--gray-0));
+  // #endregion
 
-  // #region Colors for common elements
+  // #region Colors — Components
 
-  --theme--color-input-empty-border: var(--color--gray-100);
-  --theme--color-input-hover-border: var(--theme--text-base-color);
-  --theme--color-input-filled-border: var(--theme--text-base-color);
+  // #region Input
+  --t--input--border--empty: var(--t--border--base);
+  --t--input--border--hover: var(--t--border--base);
+  --t--input--border--active: var(--t--accent);
+  --t--input--border--filled: var(--t--border--heavy);
 
-  --theme--color-input-empty-background: transparent;
-  --theme--color-input-hover-background: rgba(var(--color--gray-500-rgb), 0.3);
-  --theme--color-input-filled-background: transparent;
+  --t--input--bg--empty: transparent;
+  --t--input--bg--hover: var(--t--surface--root);
+  --t--input--bg--active: var(--t--surface--root);
+  --t--input--bg--filled: transparent;
 
-  --theme--color-input-placeholder: var(--theme--text-medium-color);
-  --theme--color-input-value: var(--theme--text-base-color);
+  --t--input--text--placeholder: var(--t--text--light);
+  --t--input--text--value: var(--t--text--base);
+  // #endregion
 
-  --theme--color-links: var(--theme--color-accent);
-  --theme--color-callouts-info: var(--color--blue);
-  --theme--color-callouts-warning: var(--color--yellow);
-  --theme--color-callouts-success: var(--color--green);
-  --theme--color-tags-background: var(--color--gray-600);
-  --theme--color-tags-background-hover: var(--color--gray-700);
+  // #region Tag
+  --t--tag--border--base: transparent;//var(--t--border--light);
+  --t--tag--border--hover: var(--t--border--medium);
+  --t--tag--border--active: var(--t--accent);
 
-  --theme--color-sparkles: var(--color--yellow);
-  --theme--color-marker-highlight: var(--color--yellow);
-  --theme--color-marker-highlight-rgb: var(--color--yellow-rgb);
-  --theme--color-marker-highlight-contrast: var(--color--yellow-contrast);
+  --t--tag--bg--base: var(--t--surface--root);
+  --t--tag--bg--hover: var(--t--surface--accent);
+  --t--tag--bg--active: var(--t--surface--accent);
 
-  --theme--color-code-background: var(--color--gray-1000);
-  --theme--color-code-text: var(--color--gray-0);
+  --t--tag--count--base: var(--t--surface--accent);
+  --t--tag--count--hover: var(--t--surface--base);
+  --t--tag--count--active: var(--t--surface--base);
 
-  --theme--color-close-button-color: var(--color--gray-0);
-  --theme--color-close-button-color-hover: var(--color--gray-500);
+  --t--tag--text--base: var(--t--text--medium);
+  --t--tag--text--hover: var(--t--text--medium);
+  --t--tag--text--active: var(--t--accent);
 
-  --theme--color--logo-1: var(--color--gray-0);
-  --theme--color--logo-2: var(--color--gray-100);
+  --t--tag--glow--active: var(--t--accent--glow-small);
+  // #endregion
 
-  --theme--color--logo-1-inverted: var(--color--gray-1000);
-  --theme--color--logo-2-inverted: var(--color--gray-700);
+  // #region CodeBlock
+  --t--codeblock--bg: var(--palette--gray-min);
+  --t--codeblock--text: var(--palette--gray-900);
+  // #endregion
 
-  --theme--color-footer--wave-1: var(--color--gray-300);
-  --theme--color-footer--wave-2: var(--color--gray-400);
-  --theme--color-footer--wave-3: var(--color--gray-500);
-  --theme--color-footer--wave-4: var(--color--gray-600);
+  // #region Highlights
+  --t--sparkles: var(--palette--yellow);
+  --t--marker-highlight: var(--palette--yellow);
+  --t--marker-highlight--rgb: var(--palette--yellow--rgb);
+  --t--marker-highlight--contrast: var(--palette--yellow--contrast);
+  // #endregion
 
-  .footer-waves--force-gray {
-    --theme--color-footer--wave-1: var(--color--gray-300);
-    --theme--color-footer--wave-2: var(--color--gray-400);
-    --theme--color-footer--wave-3: var(--color--gray-500);
-    --theme--color-footer--wave-4: var(--color--gray-600);
-  }
-
-  --theme--color-inner-text-shadow: var(--color--gray-400);
-  --theme--color-inner-text-shadow-rgb: var(--color--gray-400-rgb);
-  --theme--color-inner-text-shadow-light: var(--color--gray-500);
-  --theme--color-inner-text-shadow-light-rgb: var(--color--gray-500-rgb);
-
-  --theme--glowing-text-animation: text-glow 3.5s cubic-bezier(0.66, 0, 0.34, 1) infinite alternate;
+  // #region BlogPostCard
+  --t--blog-card-placeholder-shadow:
+    0px 4px 4px var(--palette--gray-700),
+    0 0 18px var(--palette--gray-400),
+    0px 4px 4px var(--palette--gray-700);
+  // #endregion
 
   // #endregion
 
-  // #region Shadows / Glows
+  // #region Shadows
+  --t--shadow--base: 0 4px 10px 0 rgba(0, 0, 0, 0.1);
+  --t--shadow--low: 1px 3px 8px 0 rgba(0, 0, 0, 0.1);
+  --t--shadow--high: 0 0px 20px 4px rgba(0, 0, 0, 0.2);
+  // #endregion
 
-  --theme--shadow-card: 0 4px 10px 0 rgba(0, 0, 0, 0.1);
-  --theme--shadow-card-high: 0 4px 20px 4px rgba(0, 0, 0, 0.2);
-  --theme--shadow-image: 1px 3px 8px 0 rgba(39, 44, 49, 0.03), 1px 3px 8px 0 rgba(39, 44, 49, 0.06);
-
-  --theme--glow-blue: 0 0 40px 0 rgba(var(--color--blue-rgb), 0.4);
-  --theme--glow-sapphire: 0 0 40px 0 rgba(var(--color--sapphire-rgb), 0.4);
-  --theme--glow-yellow: 0 0 40px 0 rgba(var(--color--yellow-rgb), 0.4);
-  --theme--glow-green: 0 0 40px 0 rgba(var(--color--green-rgb), 0.4);
-  --theme--glow-teal: 0 0 40px 0 rgba(var(--color--teal-rgb), 0.4);
-  --theme--glow-lavender: 0 0 40px 0 rgba(var(--color--lavender-rgb), 0.4);
-  --theme--glow-mauve: 0 0 40px 0 rgba(var(--color--mauve-rgb), 0.4);
-  --theme--glow-peach: 0 0 40px 0 rgba(var(--color--peach-rgb), 0.4);
-  --theme--glow-red: 0 0 40px 0 rgba(var(--color--red-rgb), 0.4);
-  --theme--glow-maroon: 0 0 40px 0 rgba(var(--color--maroon-rgb), 0.4);
-
-  --theme--glow-callouts-info: var(--theme--glow-blue);
-  --theme--glow-callouts-warning: var(--theme--glow-yellow);
-  --theme--glow-callouts-success: var(--theme--glow-green);
-  --theme--glow-links: 0px 0px 3px rgba(var(--theme--color-accent-rgb), 0.7);
-
-  // Gradients
-
-  --theme--gradient-greenish: linear-gradient(to right, var(--color--teal), var(--color--sky));
-  --theme--gradient-pinkish: linear-gradient(to right, var(--color--pink), var(--color--mauve), var(--color--lavender));
-  --theme--gradient-yellowish: linear-gradient(to right, var(--color--yellow), var(--color--peach));
-  --theme--gradient-rainbow: linear-gradient(
+  // #region Gradients
+  --t--gradient--greenish: linear-gradient(to right, var(--palette--teal), var(--palette--sky));
+  --t--gradient--pinkish: linear-gradient(
     to right,
-    var(--color--pink),
-    var(--color--mauve),
-    var(--color--red),
-    var(--color--maroon),
-    var(--color--peach),
-    var(--color--yellow),
-    var(--color--green),
-    var(--color--teal),
-    var(--color--sky),
-    var(--color--sapphire),
-    var(--color--blue),
-    var(--color--lavender)
+    var(--palette--pink),
+    var(--palette--mauve),
+    var(--palette--lavender)
   );
-  --theme--gradient-rainbow-circle: conic-gradient(
+
+  // Always the Mocha (dark) palette, regardless of the active theme.
+  --t--gradient--rainbow: linear-gradient(
+    to right,
+    #{palette-dark('pink')},
+    #{palette-dark('mauve')},
+    #{palette-dark('red')},
+    #{palette-dark('maroon')},
+    #{palette-dark('peach')},
+    #{palette-dark('yellow')},
+    #{palette-dark('green')},
+    #{palette-dark('teal')},
+    #{palette-dark('sky')},
+    #{palette-dark('sapphire')},
+    #{palette-dark('blue')},
+    #{palette-dark('lavender')}
+  );
+
+  --t--gradient--rainbow--circle: conic-gradient(
     from 0deg,
-    var(--color--pink),
-    var(--color--mauve),
-    var(--color--red),
-    var(--color--maroon),
-    var(--color--peach),
-    var(--color--yellow),
-    var(--color--green),
-    var(--color--teal),
-    var(--color--sky),
-    var(--color--sapphire),
-    var(--color--blue),
-    var(--color--lavender)
+    #{palette-dark('pink')},
+    #{palette-dark('mauve')},
+    #{palette-dark('red')},
+    #{palette-dark('maroon')},
+    #{palette-dark('peach')},
+    #{palette-dark('yellow')},
+    #{palette-dark('green')},
+    #{palette-dark('teal')},
+    #{palette-dark('sky')},
+    #{palette-dark('sapphire')},
+    #{palette-dark('blue')},
+    #{palette-dark('lavender')}
   );
-  --theme--gradient-rainbow-circle-dark: conic-gradient(
-    from 0deg,
-    #f5c2e7,
-    /* dark pink */ #cba6f7,
-    /* dark mauve */ #f38ba8,
-    /* dark red */ #eba0ac,
-    /* dark maroon */ #fab387,
-    /* dark peach */ #f9e2af,
-    /* dark yellow */ #a6e3a1,
-    /* dark green */ #94e2d5,
-    /* dark teal */ #89dceb,
-    /* dark sky */ #74c7ec,
-    /* dark sapphire */ #89b4fa,
-    /* dark blue */ #b4befe /* dark lavender */
-  );
+
+  --t--glowing-text-animation: text-glow 3.5s cubic-bezier(0.66, 0, 0.34, 1) infinite alternate;
   // #endregion
 
   // #region Quick Reviews
 
-  --theme--qr-base-dark-color: #11111b;
-  --theme--qr-base-light-color: #ffffff;
+  --t--qr-base-dark-color: #11111b;
+  --t--qr-base-light-color: #ffffff;
 
-  --theme--qr-movie-color: #fe640b;
-  --theme--qr-movie-color-rgb: 254, 100, 11;
+  --t--qr-movie-color: #fe640b;
+  --t--qr-movie-color-rgb: 254, 100, 11;
 
-  --theme--qr-tv-show-color: #d20f39;
-  --theme--qr-tv-show-color-rgb: 210, 15, 57;
+  --t--qr-tv-show-color: #d20f39;
+  --t--qr-tv-show-color-rgb: 210, 15, 57;
 
-  --theme--qr-game-color: #40a02b;
-  --theme--qr-game-color-rgb: 64, 160, 43;
+  --t--qr-game-color: #40a02b;
+  --t--qr-game-color-rgb: 64, 160, 43;
 
-  --theme--qr-album-color: #ea76cb;
-  --theme--qr-album-color-rgb: 234, 118, 203;
+  --t--qr-album-color: #ea76cb;
+  --t--qr-album-color-rgb: 234, 118, 203;
 
-  --theme--qr-loved-color: var(--theme--gradient-rainbow-circle-dark);
-  --theme--qr-liked-color: #89b4fa;
-  --theme--qr-decent-color: #fab387;
-  --theme--qr-not-liked-color: #f38ba8;
-
-  // #endregion
-
-  // #region Post Types
-
-  --theme--color-generic: var(--color--teal);
-  --theme--color-generic-rgb: var(--color--teal-rgb);
-  --theme--color-generic-contrast: var(--color--teal-contrast);
-  --theme--color-generic-shade: var(--color--teal-shade);
-  --theme--color-generic-tint: var(--color--teal-tint);
-  --theme--color-generic-glow: var(--theme--glow-teal);
-
-  --theme--color-blog-post: var(--color--teal);
-  --theme--color-blog-post-rgb: var(--color--teal-rgb);
-  --theme--color-blog-post-contrast: var(--color--teal-contrast);
-  --theme--color-blog-post-shade: var(--color--teal-shade);
-  --theme--color-blog-post-tint: var(--color--teal-tint);
-  --theme--color-blog-post-glow: var(--theme--glow-teal);
-
-  --theme--color-cool-link: var(--color--blue);
-  --theme--color-cool-link-rgb: var(--color--blue-rgb);
-  --theme--color-cool-link-contrast: var(--color--blue-contrast);
-  --theme--color-cool-link-shade: var(--color--blue-shade);
-  --theme--color-cool-link-tint: var(--color--blue-tint);
-  --theme--color-cool-link-glow: var(--theme--glow-blue);
-
-  --theme--color-quick-review: var(--color--peach);
-  --theme--color-quick-review-rgb: var(--color--peach-rgb);
-  --theme--color-quick-review-contrast: var(--color--peach-contrast);
-  --theme--color-quick-review-shade: var(--color--peach-shade);
-  --theme--color-quick-review-tint: var(--color--peach-tint);
-  --theme--color-quick-review-glow: var(--theme--glow-peach);
-
-  --theme--color-photography: var(--color--maroon);
-  --theme--color-photography-rgb: var(--color--maroon-rgb);
-  --theme--color-photography-contrast: var(--color--maroon-contrast);
-  --theme--color-photography-shade: var(--color--maroon-shade);
-  --theme--color-photography-tint: var(--color--maroon-tint);
-  --theme--color-photography-glow: var(--theme--glow-maroon);
-
-  --theme--color-timeline: var(--color--mauve);
-  --theme--color-timeline-rgb: var(--color--mauve-rgb);
-  --theme--color-timeline-contrast: var(--color--mauve-contrast);
-  --theme--color-timeline-shade: var(--color--mauve-shade);
-  --theme--color-timeline-tint: var(--color--mauve-tint);
-  --theme--color-timeline-glow: var(--theme--glow-mauve);
+  --t--qr-loved-color: #CCF5AC;
+  --t--qr-loved-color-rgb: 204, 245, 172;
+  --t--qr-liked-color: #89b4fa;
+  --t--qr-decent-color: #fab387;
+  --t--qr-not-liked-color: #f38ba8;
 
   // #endregion
 }
 
+// #endregion
+
+// #region Theme entry points
+
 @mixin dark-theme {
-  @include dark-color-palette;
+  @include dark-palette;
   @include theme-base;
 
-  --background-noise-opacity: 0;
-  --theme--background-root-color: var(--theme--background-base-color);
+  --t--surface--base: var(--palette--gray-900);
+  --t--surface--base--rgb: var(--palette--gray-900--rgb);
+  --t--surface--root: var(--palette--gray-800);
+  --t--surface--accent: var(--palette--gray-1000);
+  --t--surface--card: var(--palette--gray-1000);
+  --t--surface--card--rgb: var(--palette--gray-1000--rgb);
 }
 
 @mixin light-theme {
-  @include light-color-palette;
+  @include light-palette;
   @include theme-base;
 
-  --theme--background-root-color: linear-gradient(-45deg, rgba(242, 205, 205, 0.05), rgba(249, 226, 175, 0.08));
-  --background-noise-opacity: 0;
-
-  --theme--text-inverse-color: var(--color--gray-1100);
-
-  --theme--background-accent-color: var(--color--gray-1100);
-  --theme--background-accent-color-rgb: var(--color--gray-1100-rgb);
-  --theme--background-card-color: var(--color--gray-1100);
-  --theme--background-card-color-rgb: var(--color--gray-1100-rgb);
-  --theme--background-card-accent-color: var(--color--gray-800);
-  --theme--background-card-accent-color-rgb: var(--color--gray-800-rgb);
-
-  --theme--border-medium-color: var(--color--gray-700);
-
-  --theme--color-code-background: var(--color--code-background);
-  --theme--color-code-text: var(--color--code-text);
-
-  --theme--color-tags-background: var(--color--gray-800);
-  --theme--color-tags-background-hover: var(--color--gray-700);
-
-  --theme--color--logo-1: var(--color--gray-0);
-  --theme--color--logo-2: var(--color--gray-100);
-
-  --theme--color--logo-1-inverted: var(--color--gray-1000);
-  --theme--color--logo-2-inverted: var(--color--gray-700);
-
-  --theme--glow-callouts-info: var(--theme--shadow-card);
-  --theme--glow-callouts-warning: var(--theme--shadow-card);
-  --theme--glow-callouts-success: var(--theme--shadow-card);
-
-  --theme--color-footer--wave-1: rgba(var(--theme--color-accent-rgb), 0.3);
-  --theme--color-footer--wave-2: rgba(var(--theme--color-accent-rgb), 0.4);
-  --theme--color-footer--wave-3: rgba(var(--theme--color-accent-rgb), 0.5);
-  --theme--color-footer--wave-4: var(--color--gray-1100);
-
-  .footer-waves--force-gray {
-    --theme--color-footer--wave-1: rgba(var(--color--gray-700-rgb), 0.3);
-    --theme--color-footer--wave-2: rgba(var(--color--gray-700-rgb), 0.4);
-    --theme--color-footer--wave-3: rgba(var(--color--gray-700-rgb), 0.5);
-    --theme--color-footer--wave-4: var(--color--gray-1100);
-  }
-
-  --theme--color-close-button-color: var(--color--gray-900);
-  --theme--color-close-button-color-hover: var(--color--gray-200);
-
-  --theme--color-inner-text-shadow: var(--color--gray-400);
-  --theme--color-inner-text-shadow-rgb: var(--color--gray-400-rgb);
-  --theme--color-inner-text-shadow-light: var(--color--gray-700);
-  --theme--color-inner-text-shadow-light-rgb: var(--color--gray-700-rgb);
-
-  --theme--glowing-text-animation: unset;
+  --t--glowing-text-animation: unset;
 }
+
+// #endregion
 
 :root {
   @include light-theme;

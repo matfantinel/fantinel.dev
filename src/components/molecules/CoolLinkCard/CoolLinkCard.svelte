@@ -5,6 +5,16 @@
   import MarkdownRenderer from '@components/molecules/MarkdownRenderer';
   import CoolLinkStamp from '@components/atoms/CoolLinkStamp';
   import GithubSlugger from 'github-slugger'
+  import type { BaseProps } from '@utils/types';
+
+  export type CoolLinkCardProps = BaseProps & {
+    title: string;
+    author?: string;
+    url: string;
+    date?: string;
+    tags?: (string | { name: string; slug: string; url: string })[];
+    content?: string;
+  };
 
   let {
     title,
@@ -15,16 +25,7 @@
     content,
     class: className,
     ...props
-  }: {
-    title: string;
-    author?: string;
-    url: string;
-    date?: string;
-    tags?: (string | { name: string; slug: string; url: string })[];
-    content?: string;
-    class?: string;
-    [key: string]: any;
-  } = $props();
+  }: CoolLinkCardProps = $props();
 
   const slugger = new GithubSlugger();
 </script>
@@ -66,7 +67,7 @@
       </div>
     {/if}
 
-    <ArrowLink color="blue" class="m-cool-link-card__link" href={url} title={`Open cool link`}>Open</ArrowLink>
+    <ArrowLink class="m-cool-link-card__link" color="cool-link" href={url} title={`Open cool link`}>Open</ArrowLink>
   </div>
 </article>
 
@@ -75,10 +76,9 @@
   @use '/src/styles/breakpoints';
 
   .m-cool-link-card {
-    border: 2px dashed var(--color--blue);
+    border: 2px dashed var(--t--cool-link);
     border-radius: var(--border-radius);
-    background: var(--theme--background-card-color);
-    // box-shadow: var(--theme--shadow-card);
+    background: var(--t--surface--card);
     position: relative;
 
     transition: all 0.25s ease-in-out;
@@ -108,12 +108,16 @@
 
     &__title {
       @include typography.h4;
+
+      @include breakpoints.for-phone-only {
+        grid-column: span 2;
+      }
     }
 
     &__title-link {
-      color: var(--color--blue);
+      color: var(--t--cool-link);
       text-decoration: underline;
-      text-decoration-color: var(--color--blue);
+      text-decoration-color: var(--t--cool-link);
 
       text-underline-offset: 0.1em;
       text-decoration-thickness: 2px;
@@ -127,7 +131,7 @@
     &__content {
       :global(blockquote) {
         padding-left: var(--spacing-md);
-        border-left: 4px solid var(--theme--border-base-color);
+        border-left: 4px solid var(--t--border--base);
       }
     }
   }
@@ -138,7 +142,8 @@
     rotate: 7deg;
 
     @include breakpoints.for-phone-only {
-      scale: 0.8;
+      // scale: 0.8;
+      display: none !important;
     }
   }
 
@@ -159,7 +164,7 @@
   @media (hover: hover) {
     :global(.m-cool-link-card:has(.m-cool-link-card__link:hover)),
     :global(.m-cool-link-card:has(.m-cool-link-card__title-link:hover)) {
-      box-shadow: var(--theme--shadow-card-high);
+      box-shadow: var(--t--shadow--high);
       .m-cool-link-card__title-link {
         text-underline-offset: 0.3em;
         filter: unset;

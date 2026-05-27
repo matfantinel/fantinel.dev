@@ -6,8 +6,22 @@
   import type { QuickReviewRating, QuickReviewType } from '@schemas/quick-review-types';
   import dateformat from 'dateformat';
   import IconLink from '@components/atoms/IconLink';
+  import type { BaseProps } from '@utils/types';
 
   import * as htmlToImage from 'html-to-image';
+
+  export type QuickReviewCardProps = BaseProps & {
+    title: string;
+    slug?: string;
+    metadata?: string;
+    date?: string;
+    image?: string;
+    rating: QuickReviewRating;
+    theme?: string;
+    customBg?: string;
+    type: QuickReviewType;
+    content: string;
+  };
 
   let {
     title,
@@ -21,19 +35,7 @@
     type,
     content,
     class: className,
-  }: {
-    title: string;
-    slug?: string;
-    metadata?: string;
-    date?: string;
-    image?: string;
-    rating: QuickReviewRating;
-    theme?: string;
-    customBg?: string;
-    type: QuickReviewType;
-    content: string;
-    class?: string;
-  } = $props();
+  }: QuickReviewCardProps = $props();
 
   let classList = $derived(['m-quick-review-card', theme ? `m-quick-review-card--${theme}` : null, className]);
 
@@ -127,21 +129,21 @@
   .m-quick-review-card {
     padding: var(--spacing-sm);
     border-radius: var(--border-radius);
-    box-shadow: var(--theme--shadow-card);
+    box-shadow: var(--t--shadow--base);
     width: min(100%, 780px);
     container-type: inline-size;
     position: relative;
     isolation: isolate;
 
-    --background-color: var(--theme--qr-base-dark-color);
-    --text-color: var(--theme--qr-base-light-color);
+    --background-color: var(--t--qr-base-dark-color);
+    --text-color: var(--t--qr-base-light-color);
 
     color: var(--text-color);
     background-color: var(--background-color);
 
     &--light {
-      --background-color: var(--theme--qr-base-light-color);
-      --text-color: var(--theme--qr-base-dark-color);
+      --background-color: var(--t--qr-base-light-color);
+      --text-color: var(--t--qr-base-dark-color);
     }
 
     &__container {
@@ -169,7 +171,7 @@
     :global(.m-quick-review-card__image) {
       object-fit: cover;
       border-radius: var(--border-radius);
-      box-shadow: var(--theme--shadow-image);
+      box-shadow: var(--t--shadow--base);
     }
 
     &__title {

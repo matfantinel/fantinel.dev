@@ -1,66 +1,72 @@
 <script lang="ts">
-  import FooterWaves from '@assets/brand/FooterWaves.svelte';
   import Button from '@components/atoms/Button';
   import AuthorAvatar from '@components/molecules/AuthorAvatar';
   import MarkdownRenderer from '@components/molecules/MarkdownRenderer';
+  import SocialLink from '@components/atoms/SocialLink';
+  import type { SocialLink as SocialLinkType } from '@schemas/site-meta';
+  import HeroWaves from '@components/molecules/HeroWaves';
+
+  import type { ButtonProps } from '@components/atoms/Button';
+  import type { BaseProps } from '@utils/types';
+
+  export type HomePageHeroProps = BaseProps & {
+    kicker?: string;
+    title: string;
+    bio: string;
+    image: string;
+    extraImages?: string[];
+    socials?: SocialLinkType[];
+    button?: ButtonProps & { icon?: any };
+  };
 
   let {
     kicker,
     title,
-    body,
+    bio,
     image,
     extraImages,
-    buttons,
+    socials,
+    button,
     class: className,
-  }: {
-    kicker?: string;
-    title: string;
-    body?: string;
-    image: string;
-    extraImages?: string[];
-    buttons?: { text: string; url: string; color?: string }[];
-    class?: string;
-  } = $props();
+  }: HomePageHeroProps = $props();
+
+  let classList = $derived(['o-home-page-hero u-content-grid', className]);
 </script>
 
-<div class={['o-home-page-hero', 'u-container', className]}>
-  <div class="o-home-page-hero__container">
+<div class={classList}>
+  <div class="o-home-page-hero__container smol">
     <div class="o-home-page-hero__image-container">
-      <AuthorAvatar
-        class="o-home-page-hero__image"
-        src={image}
-        alt={title}
-        {extraImages}
-        size="164px"
-        theme="rainbow"
-        animated
-      />
+      <AuthorAvatar class="o-home-page-hero__image" src={image} alt={title} {extraImages} size="large" animated />
     </div>
-    <div class="o-home-page-hero__title-container">
+
+    <h1 class="o-home-page-hero__title-container">
       {#if kicker}
-        <p class="o-home-page-hero__kicker">{kicker}</p>
+        <span class="o-home-page-hero__kicker">{kicker}</span>
       {/if}
-      <h1 class="o-home-page-hero__title">{title}</h1>
-    </div>
-    {#if body}
-      <div class="o-home-page-hero__body u-markdown">
-        <MarkdownRenderer content={body} />
-      </div>
-    {/if}
-    {#if buttons}
-      <div class="o-home-page-hero__buttons">
-        {#each buttons as button}
-          <Button href={button.url} class="o-home-page-hero__button" color={button.color as any}>
+      <span class="o-home-page-hero__title">{title}</span>
+    </h1>
+
+    <div class="o-home-page-hero__bio u-markdown">
+      <MarkdownRenderer content={bio} />
+
+      {#if button}
+        <div class="o-home-page-hero__buttons">
+          <Button href={button.href} class="o-home-page-hero__button">
             {button.text}
           </Button>
+        </div>
+      {/if}
+    </div>
+    {#if socials}
+      <div class="o-home-page-hero__socials">
+        {#each socials as social}
+          <SocialLink name={social.name} url={social.url} label={social.label} class="o-home-page-hero__social" />
         {/each}
       </div>
     {/if}
-
-    <div class="o-home-page-hero__waves-container" aria-hidden="true">
-      <FooterWaves forceGray class="o-home-page-hero__waves" />
-    </div>
   </div>
+
+  <HeroWaves />
 </div>
 
 <style lang="scss">
@@ -69,137 +75,139 @@
   @use '/src/styles/mixins';
 
   .o-home-page-hero {
-    &__container {
-      position: relative;
-      isolation: isolate;
-      overflow: hidden;
+    background-color: var(--t--surface--accent);
 
-      padding: var(--spacing-xxl);
-      background-color: var(--theme--background-card-color);
-      border-radius: var(--border-radius);
-      box-shadow: var(--theme--shadow-card), inset 0 0 400px var(--theme--background-card-color);
+    position: relative;
+    container-type: inline-size;
+    margin-bottom: 64px;
+
+    &:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 80px;
+
+      background: var(--t--gradient--rainbow);
+      mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.2) 50%, transparent 100%);
+      mask-repeat: no-repeat;
+      mask-position: top;
+
+      @media (prefers-reduced-motion: no-preference) {
+        animation: rainbow-breathe 6s cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite alternate;
+      }
+    }
+
+    &__container {
+      padding-block: 80px var(--spacing-lg);
 
       display: grid;
       grid-template-columns: 164px 1fr;
+      gap: var(--spacing-md) var(--spacing-xl);
       grid-template-areas:
         'image title'
-        'image body'
-        'image buttons';
-      align-items: flex-start;
-      justify-items: start;
-      gap: var(--spacing-md) var(--spacing-xl);
+        'image bio'
+        'socials bio'
+        '. bio';
     }
 
     &__image-container {
       grid-area: image;
       display: grid;
       place-items: center;
-      width: 100%;
-    }
+      aspect-ratio: 1/1;
 
-    :global(.o-home-page-hero__image) {
-      width: 100%;
-      aspect-ratio: 1 / 1;
-      height: auto;
+      :global(.m-author-avatar) {
+        --size: 100%;
+      }
     }
 
     &__title-container {
       grid-area: title;
+
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
     }
 
     &__kicker {
-      @include typography.h2;
+      @include typography.h5;
+      color: var(--t--text--medium);
     }
 
     &__title {
       @include typography.h1;
       @include typography.gradient-greenish;
-      // color: var(--color--green);
-      animation: var(--theme--glowing-text-animation);
+      animation: var(--t--glowing-text-animation);
     }
 
-    &__body {
+    &__bio {
       @include typography.b2;
-      grid-area: body;
+      grid-area: bio;
       gap: 1rem;
       text-align: left;
+      text-wrap: pretty;
     }
 
-    &__buttons {
-      grid-area: buttons;
+    &__socials {
+      grid-area: socials;
 
       display: flex;
-      gap: var(--spacing-md) var(--spacing-sm);
+      flex-direction: column;
+      gap: var(--spacing-sm);
       flex-wrap: wrap;
-      align-items: center;
+      align-items: flex-start;
+
+      width: fit-content;
+      margin-inline: auto;
     }
 
-    &__waves-container {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 40%;
-      z-index: -1;
-
-      :global(.o-home-page-hero__waves) {
-        width: 100%;
-        height: 100%;
-        display: block;
-      }
-    }
-
-    @include breakpoints.for-tablet-portrait-down {
+    @container (max-width: 768px) {
       &__container {
-        grid-template-columns: 1fr 164px;
-        grid-template-areas:
-          'title image'
-          'body body'
-          'buttons buttons';
+        gap: var(--spacing-md);
       }
     }
 
-    @include breakpoints.for-phone-only {
-      padding-inline: 0;
-      margin-top: calc(var(--header-height) * -1);
-
-      &__container {
-        @include mixins.padded-container;
-        
-        padding-top: calc(var(--header-height) + var(--spacing-lg));
-        padding-bottom: 0;
-        text-align: center;
-
-        background-color: unset;
-        border-radius: unset;
-        box-shadow: unset;
-
-        justify-items: center;
-        grid-template-columns: 1fr;
-        grid-template-areas:
-          'title'
-          'image'
-          'buttons'
-          'body';
+    @container (max-width: 520px) {
+      &:before {
+        height: 160px;
       }
+      &__container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        align-items: center;
+        gap: var(--spacing-xl) var(--spacing-md);
 
+        padding-block: var(--spacing-xl) var(--spacing-lg);
+      }
       &__image-container {
-        width: 164px;
+        width: 100px;
+        margin-inline: auto;
       }
-
-      &__waves-container {
-        top: 0;
-        rotate: 180deg;
-        height: calc(var(--header-height) + var(--spacing-lg) + 200px);        
-      }
-
-      &__kicker,
-      &__title {
+      &__title-container {
+        align-items: center;
+        width: 100%;
+        margin-inline: auto;
         text-align: center;
+        margin-bottom: calc(var(--spacing-lg) * -1);
+        order: -1;
       }
+      &__bio {
+        width: 100%;
+      }
+      &__socials {
+        display: none;
+      }
+    }
 
-      &__body {
-        text-align: justify;
+    @keyframes rainbow-breathe {
+      0% {
+        mask-size: 100% 30%;
+      }
+      100% {
+        mask-size: 100% 100%;
       }
     }
   }

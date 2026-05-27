@@ -10,8 +10,7 @@
     argTypes: {
       src: { control: 'text' },
       alt: { control: 'text' },
-      size: { control: 'text' },
-      theme: { control: 'radio', options: ['greenish', 'pinkish', 'rainbow'], defaultValue: 'greenish' },
+      size: { control: 'radio', options: ['large', 'medium', 'small', 'tiny'] },
       class: { control: false },
     },
     render: template
@@ -25,8 +24,8 @@
 <Story
   name="Default"
   args={{
-    src: 'https://placedog.net/100/100',
-    alt: 'Doggy Dogginton',
+    src: 'https://api.dicebear.com/9.x/avataaars/svg?seed=Avatar1&backgroundColor=transparent',
+    alt: 'Avatar 1',
     size: '50px',
   }}
 />
@@ -34,9 +33,9 @@
 <Story
   name="Multiple Images"
   args={{
-    src: 'https://placedog.net/100/100',
-    extraImages: ['https://placedog.net/200/200', 'https://placedog.net/300/300'],
-    alt: 'Doggy Dogginton',
+    src: 'https://api.dicebear.com/9.x/avataaars/svg?seed=Avatar1&backgroundColor=transparent',
+    extraImages: ['https://api.dicebear.com/9.x/avataaars/svg?seed=Avatar2&backgroundColor=transparent', 'https://api.dicebear.com/9.x/avataaars/svg?seed=Avatar3&backgroundColor=transparent'],
+    alt: 'Avatar 1',
     size: '100px',
   }}
 />

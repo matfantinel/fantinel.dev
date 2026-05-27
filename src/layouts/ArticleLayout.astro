@@ -1,0 +1,182 @@
+---
+import Image from '@components/atoms/Image';
+import MarkdownRenderer from '@components/molecules/MarkdownRenderer';
+import TableOfContents from '@components/molecules/TableOfContents';
+import AboutAuthor from '@components/organisms/AboutAuthor';
+import PostHero from '@components/organisms/PostHero';
+import FeaturedPosts from '@components/organisms/FeaturedPosts';
+import { getSiteMeta, getBlogSingleConfig } from '@data/yaml';
+import type { BlogPost } from '@schemas/blog';
+import { handleCmsMediaPath } from '@utils/functions';
+import BaseLayout from './BaseLayout.astro';
+import CommentCta from '@components/organisms/CommentCta';
+
+interface Props {
+  post: {
+    body?: string;
+    data: BlogPost;
+  };
+}
+
+const { post }: Props = Astro.props;
+
+const showToc = post.data.showToc && post.data.toc && post.data.toc.length > 0;
+
+const siteMeta = getSiteMeta();
+const pageData = getBlogSingleConfig();
+let coverImage;
+if (post.data.ogImage) {
+  if (post.data.ogImage.includes(siteMeta.baseUrl)) {
+    coverImage = post.data.ogImage;
+  } else {
+    coverImage = `${siteMeta.baseUrl}${handleCmsMediaPath(post.data.ogImage)}`;
+  }
+}
+---
+
+<BaseLayout
+  title={post.data.title}
+  keywords={post.data.categories}
+  description={post.data.excerpt}
+  image={coverImage}
+  autoGenerateImage={!post.data.ogImage}
+  slug={`blog/${post.data.slug}`}
+  publishedDate={post.data.date}
+  modifiedDate={post.data.updated}
+  noindex={post.data.hidden}
+>
+  <div class='l-article full-width u-content-grid'>
+    <div class='l-article__hero full-width' data-pagefind-body>
+      <PostHero
+        title={post.data.title}
+        slug={post.data.slug}
+        author={post.data.author}
+        date={post.data.date}
+        updated={post.data.updated}
+        readingTime={post.data.readingTime}
+        tags={post.data.categories}
+      />
+    </div>
+
+    <div class='l-article__content full-width u-content-grid'>
+      {
+        // I always forget, so, for posteriority:
+        // Why is the cover image outside of #post-content?
+        // Because, on mobile, it should show up before the ToC
+        post.data.coverImage && (
+          <Image
+            class='l-article__cover-image'
+            src={handleCmsMediaPath(post.data.coverImage!)}
+            alt={post.data.coverImageAlt}
+            lazy={false}
+          />
+        )
+      }
+
+      {
+        showToc && (
+          <div class='l-article__toc on-sidebar' data-pagefind-body>
+            <TableOfContents headings={post.data.toc} client:load />
+          </div>
+        )
+      }
+
+      <div id='post-content' class='l-article__post-content u-markdown' data-pagefind-body>
+        <MarkdownRenderer content={post.body} addAnchorToHeadings={true} client:load />
+      </div>
+
+      {
+        post.data.author?.socials?.find((s) => s.name === 'Email')?.url && (
+          <CommentCta
+            email={post.data.author.socials.find((s) => s.name === 'Email')!.url.replace('mailto:', '')}
+            emailSubject={`I read "${post.data.title}" and have thoughts`}
+            content={pageData.commentCta?.content}
+          />
+        )
+      }
+    </div>
+
+    <div class='l-article__after-content full-width u-content-grid' data-pagefind-ignore='all'>
+      <div class='l-article__after-content-container'>
+        {
+          post.data.author && (
+            <AboutAuthor
+              kicker='Written by'
+              name={post.data.author.name}
+              bio={post.data.author.shortBio}
+              image={post.data.author.image}
+              extraImages={post.data.author.extraImages}
+              socials={post.data.author.socials}
+              button={{ text: 'About', href: '/about' }}
+              client:load
+            />
+          )
+        }
+
+        {
+          post.data.relatedPosts && post.data.relatedPosts.length > 0 && (
+            <FeaturedPosts
+              title={pageData.relatedPosts?.heading ?? 'You might also like'}
+              button={{
+                text: pageData.relatedPosts?.button?.text ?? 'View blog',
+                href: pageData.relatedPosts?.button?.href ?? '/blog',
+              }}
+              posts={post.data.relatedPosts}
+            />
+          )
+        }
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<style lang='scss'>
+  @use '/src/styles/breakpoints';
+  @use '/src/styles/mixins';
+  @use '/src/styles/typography';
+
+  :root:has(.l-article) {
+    @include mixins.set-accent-color('blog');
+  }
+
+  .l-article {
+    :global(.l-article__cover-image) {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+
+      max-width: 100%;
+      width: 100%;
+      height: auto;
+
+      box-shadow: var(--t--shadow--base);
+      border-radius: var(--border-radius--small);
+    }
+
+    &__toc {
+      position: sticky;
+      top: var(--spacing-lg);
+      // Needs to occupy both cover-image + content rows
+      grid-row: span 2;
+
+      @include breakpoints.for-tablet-portrait-down {
+        position: unset;
+      }
+    }
+
+    &__content {
+      --content-max-width: 68ch;
+    }
+
+    &__after-content {
+      padding-top: var(--spacing-xxl);
+      border-top: 1px dotted var(--t--border--medium);
+    }
+
+    &__after-content-container {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-xxxl);
+    }
+  }
+</style>

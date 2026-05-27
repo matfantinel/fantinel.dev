@@ -10,7 +10,7 @@
     argTypes: {
       color: {
         control: { type: 'select' },
-        options: ['default', 'green', 'yellow', 'peach', 'red', 'mauve', 'blue', 'teal'],
+        options: ['accent', 'complementary', 'blog', 'quick-review', 'cool-link', 'photography'],
       },
       href: { control: 'text' },
       children: { control: 'text', name: 'Arrow Link' },
@@ -23,7 +23,12 @@
 </script>
 
 {#snippet template(args)}
-  <ArrowLink {...args}>{args.children ?? 'Arrow Link'}</ArrowLink>
+  <ArrowLink {...args}>{args.children ?? 'Arrow Link'}</ArrowLink> <br><br>
+  <ArrowLink {...args} color="complementary">{args.children ?? 'Arrow Link'}</ArrowLink> <br><br>
+  <ArrowLink {...args} color="blog">{args.children ?? 'Arrow Link'}</ArrowLink> <br><br>
+  <ArrowLink {...args} color="quick-review">{args.children ?? 'Arrow Link'}</ArrowLink> <br><br>
+  <ArrowLink {...args} color="cool-link">{args.children ?? 'Arrow Link'}</ArrowLink> <br><br>
+  <ArrowLink {...args} color="photography">{args.children ?? 'Arrow Link'}</ArrowLink>
 {/snippet}
 
 <Story name="Default" />

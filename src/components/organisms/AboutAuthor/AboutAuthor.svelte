@@ -1,9 +1,21 @@
 <script lang="ts">
   import Button from '@components/atoms/Button';
+  import type { ButtonProps } from '@components/atoms/Button';
   import AuthorAvatar from '@components/molecules/AuthorAvatar';
   import MarkdownRenderer from '@components/molecules/MarkdownRenderer';
-  import SocialLink from '@components/molecules/SocialLink';
+  import SocialLink from '@components/atoms/SocialLink';
   import type { SocialLink as SocialLinkType } from '@schemas/site-meta';
+  import type { BaseProps } from '@utils/types';
+
+  export type AboutAuthorProps = BaseProps & {
+    kicker?: string;
+    name: string;
+    bio: string;
+    image: string;
+    extraImages?: string[];
+    socials?: SocialLinkType[];
+    button?: ButtonProps & { icon?: any };
+  };
 
   let {
     kicker,
@@ -13,45 +25,14 @@
     extraImages,
     socials,
     button,
-    isCard,
     class: className,
-  }: {
-    kicker?: string;
-    name: string;
-    bio: string;
-    image: string;
-    extraImages?: string[];
-    socials?: SocialLinkType[];
-    button?: {
-      text: string;
-      url: string;
-    };
-    isCard?: boolean;
-    class?: string;
-  } = $props();
+  }: AboutAuthorProps = $props();
 </script>
 
-<div
-  class={[
-    'o-about-author',
-    isCard ? 'o-about-author--is-card' : '',
-    button ? 'o-about-author--has-button' : '',
-    socials ? 'o-about-author--has-socials' : '',
-    'u-container',
-    className,
-  ]}
->
+<div class={['o-about-author', className]}>
   <div class="o-about-author__container">
     <div class="o-about-author__image-container">
-      <AuthorAvatar
-        class="o-about-author__image"
-        src={image}
-        alt={name}
-        {extraImages}
-        size="164px"
-        theme="rainbow"
-        animated
-      />
+      <AuthorAvatar class="o-about-author__image" src={image} alt={name} {extraImages} size="large" animated />
     </div>
     <div class="o-about-author__name-container">
       {#if kicker}
@@ -62,11 +43,11 @@
     <div class="o-about-author__bio u-markdown">
       <MarkdownRenderer content={bio} />
     </div>
-    {#if button}
-      <Button href={button.url} class="o-about-author__button">
+    <!-- {#if button}
+      <Button href={button.href} class="o-about-author__button">
         {button.text}
       </Button>
-    {/if}
+    {/if} -->
     {#if socials}
       <div class="o-about-author__socials">
         {#each socials as social}
@@ -85,20 +66,24 @@
 
     &__container {
       display: grid;
-      grid-template-columns: 164px 1fr;
-      grid-template-areas:
-        'image name'
-        'image bio'
-        'image socials';
-      align-items: flex-start;
-      justify-items: start;
+      grid-template-columns: 164px 1fr 120px;
       gap: var(--spacing-md) var(--spacing-xl);
+      justify-items: start;
+      align-items: start;
+      grid-template-areas:
+        'image name socials'
+        'image bio socials'
+        'image button socials';
     }
 
     &__image-container {
       grid-area: image;
       display: grid;
       place-items: center;
+
+      :global(.m-author-avatar) {
+        --size: 100%;        
+      }
     }
 
     &__name-container {
@@ -108,14 +93,14 @@
     &__kicker {
       @include typography.h5;
       text-transform: lowercase;
-      color: var(--theme--text-accent-color);
+      color: var(--t--text--medium);
     }
 
     &__name {
       @include typography.h1;
-      @include typography.gradient-greenish;
+      @include typography.gradient-pinkish;
       font-size: clamp(1.35rem, 1.6vw + 1rem, 2.25rem); //36px
-      animation: var(--theme--glowing-text-animation);
+      animation: var(--t--glowing-text-animation);
     }
 
     &__bio {
@@ -138,115 +123,38 @@
       grid-area: button;
     }
 
-    &--is-card {
-      .o-about-author {
-        &__container {
-          padding: var(--spacing-lg) var(--spacing-xl);
-          background-color: var(--theme--background-card-color);
-          border-radius: var(--border-radius);
-          box-shadow: var(--theme--shadow-card);
-        }
+    @container (max-width: 768px) {
+      &__container {
+        grid-template-columns: 164px 1fr;
+        grid-template-areas:
+          'image name'
+          'image bio'
+          'image socials'
+          'image button';
+        gap: var(--spacing-md);
       }
     }
 
-    &--has-button {
-      .o-about-author {
-        &__container {
-          grid-template-columns: 164px 1fr;
-          grid-template-areas:
-            'image name'
-            'image bio'
-            'image button';
-        }
+    @container (max-width: 520px) {
+      &__container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
       }
-    }
-
-    &--has-socials {
-      .o-about-author {
-        &__container {
-          grid-template-areas:
-            'image name'
-            'image bio'
-            'image socials';
-        }
+      &__image-container {
+        width: 64px;
       }
-    }
-
-    &--has-button {
-      &.o-about-author--has-socials {
-        .o-about-author {
-          &__container {
-            grid-template-columns: 164px 1fr 120px;
-            grid-template-areas:
-              'image name socials'
-              'image bio socials'
-              'image button socials';
-          }
-        }
+      &__bio {
+        text-align: justify;
+        width: 100%;
       }
-    }
-
-    @supports (container-type: inline-size) {
-      @container (max-width: 688px) {
-        &--is-card {
-          .o-about-author {
-            &__container {
-              padding: var(--spacing-lg);
-            }
-          }
-        }
-
-        .o-about-author {
-          &__container {
-            align-items: center;
-            grid-template-columns: 120px 1fr;
-            grid-template-areas:
-              'image name'
-              'bio bio'
-              'socials socials';
-            gap: var(--spacing-md);
-          }
-          &__socials {
-            justify-content: center;
-          }
-        }
-
-        &--has-button {
-          .o-about-author {
-            &__container {
-              grid-template-areas:
-                'image name'
-                'bio bio'
-                'socials socials'
-                'button button';
-            }
-          }
-        }
-
-        :global(.o-about-author__image) {
-          width: 100%;
-          aspect-ratio: 1 / 1;
-          height: auto;
-        }
+      &__socials {
+        justify-content: center;
+        width: 100%;
       }
-
-      @container (max-width: 380px) {
-        .o-about-author {
-          &__container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-          }
-          &__image-container {
-            width: 64px;
-          }
-          &__bio {
-            text-align: justify;
-          }
-        }
-        :global(.o-about-author__button) {
-          order: 4;
-        }
+      :global(.o-about-author__button) {
+        order: 4;
       }
     }
   }

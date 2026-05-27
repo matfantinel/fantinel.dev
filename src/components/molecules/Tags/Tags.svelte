@@ -1,15 +1,16 @@
 <script lang="ts">
   import type { Snippet } from 'svelte';
+  import type { BaseProps } from '@utils/types';
+
+  export type TagsProps = BaseProps & {
+    size?: 'default' | 'small' | 'responsive';
+  };
 
   let {
     size,
     class: className,
     children,
-  }: {
-    size?: 'default' | 'small' | 'responsive';
-    class?: string;
-    children?: Snippet;
-  } = $props();
+  }: TagsProps & { children?: Snippet } = $props();
 </script>
 
 <div class={['m-tags', size ? `m-tags--${size}` : undefined, className]}>
@@ -21,7 +22,7 @@
 
   .m-tags {
 		display: flex;
-		gap: var(--spacing-sm) var(--spacing-xs);
+		gap: var(--spacing-xs);
 		flex-wrap: wrap;
 		align-items: center;
 		justify-content: center;

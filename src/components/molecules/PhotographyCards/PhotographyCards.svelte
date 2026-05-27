@@ -1,19 +1,20 @@
 <script lang="ts">
-  import NewPhotographyCard from '@components/molecules/NewPhotographyCard';
+  import PhotographyCard from '@components/molecules/PhotographyCard';
   import type { Photography } from '@schemas/photography';
   import type { Snippet } from 'svelte';
 
   import { photographyToPhotographyCardProps } from '@utils/prop-mapping';
+  import type { BaseProps } from '@utils/types';
+
+  export type PhotographyCardsProps = BaseProps & {
+    photographies?: Photography[];
+  };
 
   let {
     class: className,
     photographies,
     children,
-  }: {
-    class?: string;
-    photographies?: Photography[];
-    children?: Snippet;
-  } = $props();
+  }: PhotographyCardsProps & { children?: Snippet } = $props();
 
 </script>
 
@@ -22,7 +23,7 @@
 
   {#if photographies}
     {#each photographies as photography}
-      <NewPhotographyCard
+      <PhotographyCard
         {...photographyToPhotographyCardProps(photography)}
         title={photography.title}
         slug={photography.slug}
@@ -46,6 +47,5 @@
     display: grid-lanes;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: var(--spacing-md);
-
   }
 </style>

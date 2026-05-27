@@ -1,5 +1,10 @@
 export type NoUndefinedField<T> = { [P in keyof T]-?: NoUndefinedField<NonNullable<T[P]>> };
 
+export type BaseProps = {
+  class?: string;
+  [key: string]: any;
+};
+
 export type SparkleType = {
   id: string,
   createdAt: number,

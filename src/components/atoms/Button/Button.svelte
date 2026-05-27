@@ -1,26 +1,31 @@
 <script lang="ts">
   import { HttpRegex } from '@utils/regex';
   import type { Snippet } from 'svelte';
+  import ChevronRight from '@assets/icons/chevron-right.svelte';
+  import type { BaseProps } from '@utils/types';
+  import { getIcon } from '@utils/icons';
+
+  export type ButtonProps = BaseProps & {
+    href?: string;
+    target?: string;
+    rel?: string;
+    color?: 'accent' | 'complementary' | 'blog' | 'quick-review' | 'cool-link' | 'photography';
+    icon?: string | 'arrow';
+    iconPosition?: 'left' | 'right';
+    text?: string;
+  };
 
   let {
     href,
     target,
     rel,
-    color = 'default',
-    class: className,
+    color = 'accent',
     icon,
+    iconPosition = 'left',
     children,
+    class: className,
     ...props
-  }: {
-    href?: string;
-    target?: string;
-    rel?: string;
-    color?: 'default' | 'complementary' | 'green' | 'yellow' | 'peach' | 'red' | 'mauve' | 'blue' | 'teal' | 'maroon';
-    class?: string;
-    icon?: Snippet;
-    children?: Snippet;
-    [key: string]: any;
-  } = $props();
+  }: ButtonProps & { children?: Snippet } = $props();
 
   let tag = $derived(href ? 'a' : 'button');
   let isExternalLink = $derived(!!href && HttpRegex.test(href));
@@ -30,7 +35,15 @@
     rel: rel ?? (isExternalLink ? 'noopener' : undefined),
   });
 
-  let classList = $derived(['a-button', `a-button--${color}`, className]);
+  let classList = $derived([
+    'a-button',
+    `a-button--${color}`,
+    `a-button--icon-${iconPosition}`,
+    className,
+  ]);
+
+  let isArrowIcon = $derived(icon === 'arrow');
+  let IconComponent = $derived(!isArrowIcon && icon ? getIcon(icon) : undefined);
 </script>
 
 <svelte:element
@@ -41,14 +54,27 @@
   tabindex="0"
   {...props}
 >
-  {#if icon}
-    <div class="a-button__icon">
-      {@render icon()}
+  {#if iconPosition === 'left' && icon}
+    <div class="a-button__icon" class:a-button__icon--arrow={isArrowIcon}>
+      {#if isArrowIcon}
+        <ChevronRight size="22px" />
+      {:else if IconComponent}
+        <IconComponent size="22px" />
+      {/if}
     </div>
   {/if}
   <span class="a-button__text">
     {@render children?.()}
   </span>
+  {#if iconPosition === 'right' && icon}
+    <div class="a-button__icon" class:a-button__icon--arrow={isArrowIcon}>
+      {#if isArrowIcon}
+        <ChevronRight size="22px" />
+      {:else if IconComponent}
+        <IconComponent size="22px" />
+      {/if}
+    </div>
+  {/if}
 </svelte:element>
 
 <style lang="scss">
@@ -62,24 +88,32 @@
     padding: var(--spacing-xs) var(--spacing-md);
     border-radius: var(--border-radius);
     text-decoration: none;
-    box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.25), var(--theme--shadow-card);
+    box-shadow: var(--t--shadow--base);
     border: none;
     cursor: pointer;
 
     transition: all 0.25s ease;
 
-    --button-color-background: var(--theme--color-accent);
-    --button-color-background-hover: var(--theme--color-accent-tint);
-    --button-color-text: var(--theme--color-accent-contrast);
-    --button-color-hover-glow: var(--theme--color-accent-glow);
+    --button-color-background: var(--t--accent);
+    --button-color-background-hover: var(--t--accent--tint);
+    --button-color-text: var(--t--accent--contrast);
+    --button-color-hover-glow: var(--t--accent--glow-small);
 
-    background: linear-gradient(180deg, var(--button-color-background-hover) 0%, var(--button-color-background) 100%);
-    color: var(--button-color-text);    
+    background: var(--button-color-background);
+    color: var(--button-color-text);
 
     @media (hover: hover) {
       &:hover {
-        background: linear-gradient(180deg, var(--button-color-background-hover) 100%, var(--button-color-background) 0%);
-        box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.25), var(--button-color-hover-glow);
+        background: var(--button-color-background-hover);
+        box-shadow: var(--button-color-hover-glow);
+
+        .a-button__icon--arrow {
+          transform: translateX(4px);
+
+          &:first-child {
+            transform: rotate(180deg) translateX(4px);
+          }
+        }
       }
     }
 
@@ -88,72 +122,59 @@
     }
 
     &__icon {
-      width: 18px;
-      height: 18px;
+      width: 22px;
+      height: 22px;
       aspect-ratio: 1/1;
+
+      transition: transform 0.25s ease;
+    }
+
+    &--icon-left {
+      .a-button__icon--arrow {
+        transform: rotate(180deg);
+      }
+    }
+
+    &--accent {
+      --button-color-background: var(--t--accent);
+      --button-color-background-hover: var(--t--accent--tint);
+      --button-color-text: var(--t--accent--contrast);
+      --button-color-hover-glow: var(--t--accent--glow-small);
     }
 
     &--complementary {
-      --button-color-background: var(--theme--color-complementary);
-      --button-color-background-hover: var(--theme--color-complementary-tint);
-      --button-color-text: var(--theme--color-complementary-contrast);
-      --button-color-hover-glow: var(--theme--color-complementary-glow);
+      --button-color-background: var(--t--complementary);
+      --button-color-background-hover: var(--t--complementary--tint);
+      --button-color-text: var(--t--complementary--contrast);
+      --button-color-hover-glow: var(--t--complementary--glow-small);
     }
 
-    &--green {
-      --button-color-background: var(--color--green);
-      --button-color-background-hover: var(--color--green-tint);
-      --button-color-text: var(--color--green-contrast);
-      --button-color-hover-glow: var(--theme--glow-green);
+    &--blog {
+      --button-color-background: var(--t--blog);
+      --button-color-background-hover: var(--t--blog--tint);
+      --button-color-text: var(--t--blog--contrast);
+      --button-color-hover-glow: var(--t--blog--glow-small);
     }
 
-    &--yellow {
-      --button-color-background: var(--color--yellow);
-      --button-color-background-hover: var(--color--yellow-tint);
-      --button-color-text: var(--color--yellow-contrast);
-      --button-color-hover-glow: var(--theme--glow-yellow);
+    &--quick-review {
+      --button-color-background: var(--t--quick-review);
+      --button-color-background-hover: var(--t--quick-review--tint);
+      --button-color-text: var(--t--quick-review--contrast);
+      --button-color-hover-glow: var(--t--quick-review--glow-small);
     }
 
-    &--peach {
-      --button-color-background: var(--color--peach);
-      --button-color-background-hover: var(--color--peach-tint);
-      --button-color-text: var(--color--peach-contrast);
-      --button-color-hover-glow: var(--theme--glow-peach);
+    &--cool-link {
+      --button-color-background: var(--t--cool-link);
+      --button-color-background-hover: var(--t--cool-link--tint);
+      --button-color-text: var(--t--cool-link--contrast);
+      --button-color-hover-glow: var(--t--cool-link--glow-small);
     }
 
-    &--red {
-      --button-color-background: var(--color--red);
-      --button-color-background-hover: var(--color--red-tint);
-      --button-color-text: var(--color--red-contrast);
-      --button-color-hover-glow: var(--theme--glow-red);
-    }
-
-    &--mauve {
-      --button-color-background: var(--color--mauve);
-      --button-color-background-hover: var(--color--mauve-tint);
-      --button-color-text: var(--color--mauve-contrast);
-      --button-color-hover-glow: var(--theme--glow-mauve);
-    }
-
-    &--blue {
-      --button-color-background: var(--color--blue);
-      --button-color-background-hover: var(--color--blue-tint);
-      --button-color-text: var(--color--blue-contrast);
-      --button-color-hover-glow: var(--theme--glow-blue);
-    }
-
-    &--teal {
-      --button-color-background: var(--color--teal);
-      --button-color-background-hover: var(--color--teal-tint);
-      --button-color-text: var(--color--teal-contrast);
-      --button-color-hover-glow: var(--theme--glow-teal);
-    }
-
-    &--maroon {
-      --button-color-background: var(--color--maroon);
-      --button-color-background-hover: var(--color--maroon-tint);
-      --button-color-text: var(--color--maroon-contrast);
-      --button-color-hover-glow: var(--theme--glow-maroon);
+    &--photography {
+      --button-color-background: var(--t--photography);
+      --button-color-background-hover: var(--t--photography--tint);
+      --button-color-text: var(--t--photography--contrast);
+      --button-color-hover-glow: var(--t--photography--glow-small);
     }
   }
 </style>

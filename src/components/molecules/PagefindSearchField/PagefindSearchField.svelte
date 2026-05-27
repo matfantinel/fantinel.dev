@@ -1,29 +1,26 @@
 <script lang="ts">
   import ChevronRight from '@assets/icons/chevron-right.svelte';
   import Field from '../Field/Field.svelte';
+  import type { BaseProps } from '@utils/types';
+
+  export type PagefindSearchFieldProps = BaseProps & {
+    id?: string;
+    value?: string;
+    onsubmit?: (event: Event) => void;
+  };
 
   let {
     id,
     value,
-    expandable,
     onsubmit,
     class: className,
     ...props
-  }: {
-    id?: string;
-    value?: string;
-    expandable?: boolean;
-    onsubmit?: (event: Event) => void;
-    class?: string;
-    [key: string]: any;
-  } = $props();
+  }: PagefindSearchFieldProps = $props();
 
-  let isExpandable = $state(expandable && !value);
   let hasValue = $state(value);
   let classList = ['m-pagefind-search-field', className];
 
   $effect(() => {
-    isExpandable = expandable && !value;
     hasValue = value;
   });
 
@@ -43,7 +40,6 @@
 
 <form
   class={classList}
-  class:m-pagefind-search-field--expandable={isExpandable}
   class:m-pagefind-search-field--has-value={hasValue}
   action="/search"
   method="get"
@@ -76,47 +72,12 @@
 </form>
 
 <style lang="scss">
-  @use '/src/styles/breakpoints';
   @use '/src/styles/typography';
 
   .m-pagefind-search-field {
     width: min(280px, 100%);
     position: relative;
     container-type: inline-size;
-
-    @include breakpoints.for-tablet-portrait-up {
-      @container (min-width: 320px) {
-        &--expandable {
-          width: 54px;
-          transition: all 0.2s cubic-bezier(0.3, 0.8, 0.4, 1);
-
-          &:focus-within {
-            width: min(280px, 100%);
-
-            :global(.m-field__input) {
-              padding-left: var(--spacing-xl);
-              padding-right: var(--spacing-xl);
-            }
-          }
-
-          &:not(:focus-within) {
-            :global(.m-field__input) {
-              padding-left: var(--spacing-md);
-              padding-right: var(--spacing-md);
-              --theme--color-input-empty-border: transparent;
-              // Placeholder
-              &::placeholder {
-                color: transparent;
-              }
-            }
-          }
-
-          .m-pagefind-search-field__submit {
-            display: none;
-          }
-        }
-      }
-    }
 
     :global(.m-field__input) {
       padding-right: min(100px, 33%);
@@ -152,10 +113,11 @@
       border-radius: var(--border-radius--small);
       transition: all 0.15s ease;
       padding: var(--spacing-xxs);
-      color: var(--theme--text-accent-color);
+      color: var(--t--text--medium);
 
       &:hover {
-        background: var(--theme--color-input-hover-background);
+        box-shadow: inset var(--t--accent--glow);
+        color: var(--t--input--text--value);
       }
     }
 

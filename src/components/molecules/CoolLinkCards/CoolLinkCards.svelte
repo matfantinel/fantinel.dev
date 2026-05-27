@@ -3,16 +3,17 @@
   import type { CoolLink } from '@schemas/cool-link';
   import type { Snippet } from 'svelte';
   import { coolLinkToCoolLinkCardProps } from '@utils/prop-mapping';
+  import type { BaseProps } from '@utils/types';
+
+  export type CoolLinkCardsProps = BaseProps & {
+    links?: CoolLink[];
+  };
 
   let {
     class: className,
     links,
     children,
-  }: {
-    class?: string;
-    links?: CoolLink[];
-    children?: Snippet;
-  } = $props();
+  }: CoolLinkCardsProps & { children?: Snippet } = $props();
 </script>
 
 <div class={['m-cool-link-cards', className]}>

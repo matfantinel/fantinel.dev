@@ -11,28 +11,6 @@
   @include mixins.padded-container-small;
 }
 
-.u-spaced-content {
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-xxl);
-}
-
-.u-noise {
-	pointer-events: none;
-	mix-blend-mode: color-burn;
-	will-change: opacity;
-	-webkit-backface-visibility: hidden;
-	backface-visibility: hidden;
-	background-image: url("/images/noise-texture.webp");
-	position: absolute;
-  height: 100%;
-  width: 100%;
-	top: 0;
-  left: 0;
-  opacity: var(--background-noise-opacity, 1);
-  z-index: -1;
-}
-
 ul,
 ol {
   margin: var(--spacing-xs) 0 var(--spacing-xs) var(--spacing-lg);
@@ -49,7 +27,7 @@ ol {
     }
 
     &::marker {
-      color: var(--theme--color-accent);
+      color: var(--t--accent);
     }
   }
 }
@@ -59,21 +37,21 @@ ul {
 
 code:not([class^='language-']) {
   font-family: var(--font--mono);
-  background: var(--theme--background-accent-color);
+  background: var(--t--surface--accent);
   padding: var(--spacing-xxs) var(--spacing-xs);
   border-radius: var(--border-radius--small);
-  box-shadow: var(--theme--shadow-card);
+  box-shadow: var(--t--shadow--base);
 }
 
 hr {
   border: unset;
-  border-top: 1px solid var(--theme--border-base-color);
+  border-top: 1px solid var(--t--border--base);
 }
 
 a:not(.md-button),
 a:not([class^='a-']) {
-  color: var(--theme--color-links);
-  text-decoration-color: var(--theme--color-links);
+  color: var(--t--accent);
+  text-decoration-color: var(--t--accent);
   text-underline-offset: 0.1em;
   text-decoration-thickness: 1px;
   transition: all 0.2s ease-in-out;
@@ -81,12 +59,33 @@ a:not([class^='a-']) {
   @media (hover: hover) {
     &:hover {
       text-underline-offset: 0.3em;
-      filter: drop-shadow(var(--theme--glow-links));
+      // filter: drop-shadow(var(--t--accent--glow-tiny));
     }
   }
 }
 
 mark {
-	background: var(--theme--color-marker-highlight);
-	color: var(--theme--color-marker-highlight-contrast);
+  background: var(--t--marker-highlight);
+  color: var(--t--marker-highlight--contrast);
+}
+
+// Ensures that the iOS 26 Safari toolbar will remain transparent 
+// regardless of what content is near the bottom of the screen.
+// Took the idea from a comment here: https://www.reddit.com/r/webdev/comments/1savcsm/ios_26_safari_liquid_glass_toolbar_tinting_how_to/
+// Doesn't work when a <dialog> is open, but recovers the transparency as soon as the <dialog> is closed.
+.safari-liquid-glass-toolbar-fixer {
+  position: sticky;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 6px;
+  background-color: transparent;
+  z-index: 999;
+
+  display: none;
+
+  // Make it apply only to iOS Safari
+  @supports (-webkit-touch-callout: none) {
+    display: block;
+  }
 }

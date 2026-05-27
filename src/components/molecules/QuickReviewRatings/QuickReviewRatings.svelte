@@ -1,17 +1,20 @@
 <script lang="ts">
   import { QuickReviewRating } from '@schemas/quick-review-types';
+  import type { BaseProps } from '@utils/types';
+
+  export type QuickReviewRatingsProps = BaseProps & {
+    rating: QuickReviewRating;
+    theme?: string;
+    monochrome?: boolean;
+  };
 
   let {
     rating,
     theme,
-    monochrome,
+    // monochrome,
     class: className,
-  }: {
-    rating: QuickReviewRating;
-    theme?: string;
-    monochrome?: boolean;
-    class?: string;
-  } = $props();
+  }: QuickReviewRatingsProps = $props();
+  let monochrome = false;
 
   let ratings = $derived(
     Object.values(QuickReviewRating).map((value) => {
@@ -19,16 +22,16 @@
       if (!monochrome || value === QuickReviewRating.LovedIt) {
         switch (value) {
           case QuickReviewRating.LovedIt:
-            color = 'var(--theme--qr-loved-color)';
+            color = 'var(--t--qr-loved-color)';
             break;
           case QuickReviewRating.LikeIt:
-            color = 'var(--theme--qr-liked-color)';
+            color = 'var(--t--qr-liked-color)';
             break;
           case QuickReviewRating.Decent:
-            color = 'var(--theme--qr-decent-color)';
+            color = 'var(--t--qr-decent-color)';
             break;
           case QuickReviewRating.DidntLikeIt:
-            color = 'var(--theme--qr-not-liked-color)';
+            color = 'var(--t--qr-not-liked-color)';
             break;
           default:
             break;
@@ -83,21 +86,21 @@
     align-items: center;
     justify-content: space-between;
 
-    --text-color: var(--theme--qr-base-light-color);
-    --rating-color: var(--theme--color-accent);
+    --text-color: var(--t--qr-base-light-color);
+    --rating-color: var(--t--accent);
 
     border: 1px solid var(--text-color);
     color: var(--text-color);
 
     &--monochrome {
-      --rating-color: var(--theme--qr-base-dark-color);
+      --rating-color: var(--t--qr-base-dark-color);
     }
 
     &--light {
-      --text-color: var(--theme--qr-base-dark-color);
+      --text-color: var(--t--qr-base-dark-color);
 
       &.m-quick-review-ratings--monochrome {
-        --rating-color: var(--theme--qr-base-light-color);
+        --rating-color: var(--t--qr-base-light-color);
       }
     }
 
@@ -109,7 +112,7 @@
 
       &--active {
         background: var(--rating-color);
-        box-shadow: var(--theme--shadow-card-high);
+        box-shadow: var(--t--shadow--high);
 
         &:first-child {
           margin-left: calc(var(--spacing-md) * -1);
@@ -119,13 +122,13 @@
         }
 
         &:not(.m-quick-review-ratings__rating--monochrome) {
-          color: var(--theme--qr-base-dark-color);
+          color: var(--t--qr-base-dark-color);
         }
 
         &.m-quick-review-ratings__rating--loved {
-          color: var(--theme--qr-base-dark-color);
+          color: var(--t--qr-base-dark-color);
 
-          --glow-color: var(--color--yellow-rgb);
+          --glow-color: var(--t--qr-loved-color-rgb);
           animation: text-glow 3.5s cubic-bezier(0.66, 0, 0.34, 1) infinite alternate;
         }
       }

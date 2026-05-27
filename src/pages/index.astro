@@ -1,54 +1,113 @@
 ---
+import ContentWithImage from '@components/organisms/ContentWithImage';
 import HomePageHero from '@components/organisms/HomePageHero';
 import PostsTimeline from '@components/organisms/PostsTimeline';
-import UnderConstructionDisclaimer from '@components/organisms/UnderConstructionDisclaimer';
 import { getPaginatedTimelineEntries } from '@data/everything';
+import { getHomeConfig, getSiteMeta } from '@data/yaml';
 import BaseLayout from '@layouts/BaseLayout.astro';
-import metaConfig from '@public/cms/meta.yml';
-import type { SiteMeta } from '@schemas/site-meta';
 
+const siteMeta = getSiteMeta();
+const data = getHomeConfig();
 
-const siteMeta: SiteMeta = metaConfig;
-
-// const recentPosts = await getRecentBlogPosts();
 const latestTimelineEntries = (await getPaginatedTimelineEntries(1)).posts;
 ---
 
 <BaseLayout>
-  <div class="u-spaced-content">
-    <HomePageHero
-      kicker='Hey, I’m'
-      title={`${siteMeta.author.name}.`}
-      body={siteMeta.author.bio}
-      image={siteMeta.author.image}
-      extraImages={siteMeta.author.extraImages}
-      client:load
-    />    
+  {
+    data?.hero && (
+      <div class='p-home__hero full-width'>
+        <HomePageHero
+          {...data.hero}
+          image={siteMeta.author.image}
+          extraImages={siteMeta.author.extraImages}
+          socials={siteMeta.author.socials}
+          client:load
+        />
+      </div>
+    )
+  }
 
-    <UnderConstructionDisclaimer />
+  <div class='p-home__content full-width u-content-grid'>
+    {
+      data?.blogSection && (
+        <ContentWithImage
+          class='p-home__section smol'
+          {...data.blogSection}
+          imageBehavior={data.blogSection.imageBehavior || 'contain'}
+          animateOnEntry={data.blogSection.animateOnEntry || true}
+        />
+      )
+    }
 
-    <!-- {recentPosts?.length > 0 && (
-      <PostsSection
-        title="Latest on the blog"
-        button={{
-          text: 'See all posts',
-          url: '/blog'
-        }}
-        posts={recentPosts}
-      />
-    )} -->
+    {
+      data?.coolLinksSection && (
+        <ContentWithImage
+          class='p-home__section smol'
+          {...data.coolLinksSection}
+          imageBehavior={data.coolLinksSection.imageBehavior || 'contain'}
+          imagePosition={data.coolLinksSection.imagePosition || 'before'}
+          animateOnEntry={data.coolLinksSection.animateOnEntry || true}
+        />
+      )
+    }
 
-    {latestTimelineEntries?.length > 0 && (
-      <PostsTimeline
-        title="Latest posts"
-        bottomButton={{
-          text: 'View more',
-          url: '/timeline/page/2'
-        }}
-        postGroups={latestTimelineEntries}
-        client:load
-      />
-    )}
-    
+    {
+      data?.quickReviewsSection && (
+        <ContentWithImage
+          class='p-home__section smol'
+          {...data.quickReviewsSection}
+          imageBehavior={data.quickReviewsSection.imageBehavior || 'contain'}
+          animateOnEntry={data.quickReviewsSection.animateOnEntry || true}
+        />
+      )
+    }
+
+    {
+      data?.photographySection && (
+        <ContentWithImage
+          class='p-home__section smol'
+          {...data.photographySection}
+          imageBehavior={data.photographySection.imageBehavior || 'contain'}
+          imagePosition={data.photographySection.imagePosition || 'before'}
+          animateOnEntry={data.photographySection.animateOnEntry || true}
+        />
+      )
+    }
+
+    <hr class='p-home__divider smol' />
+
+    {
+      latestTimelineEntries?.length > 0 && data?.latestSection && (
+        <div class='p-home__archive smol'>
+          <PostsTimeline
+            title={data.latestSection.title ?? 'The Latest'}
+            headerBody={data.latestSection.headerBody}
+            headerCentered={false}
+            button={{
+              text: data.latestSection.button?.text ?? 'To the Archives',
+              href: data.latestSection.button?.href ?? '/archive',
+              icon: data.latestSection.button?.icon ?? 'arrow',
+              iconPosition: (data.latestSection.button?.iconPosition as 'right' | 'left' | undefined) ?? 'right',
+            }}
+            bottomButton={{
+              text: data.latestSection.button?.text ?? 'To the Archives',
+              href: data.latestSection.button?.href ?? '/archive',
+              icon: data.latestSection.button?.icon ?? 'arrow',
+              iconPosition: (data.latestSection.button?.iconPosition as 'right' | 'left' | undefined) ?? 'right',
+            }}
+            postGroups={latestTimelineEntries}
+            client:load
+          />
+        </div>
+      )
+    }
   </div>
 </BaseLayout>
+
+<style lang='scss'>
+  .p-home {
+    &__divider {
+      border-color: var(--t--border--medium);
+    }
+  }
+</style>

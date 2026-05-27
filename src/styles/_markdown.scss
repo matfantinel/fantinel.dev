@@ -21,7 +21,7 @@
     height: auto;
     width: auto;
 
-    box-shadow: var(--theme--shadow-image);
+    box-shadow: var(--t--shadow--base);
     border-radius: var(--border-radius--small);
 
     + figcaption {
@@ -59,6 +59,14 @@
     // Target links in cool links posts. Make them closer to their commentary.
     &:has(> strong > a) {
       margin-bottom: -1.5rem;
+    }
+
+    > .md-button {
+      // Single buttons should be centered
+      &:first-of-type:last-of-type {
+        display: flex;
+        margin-inline: auto;
+      }
     }
   }
 
