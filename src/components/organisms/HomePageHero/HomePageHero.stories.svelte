@@ -48,7 +48,7 @@
       },
       {
         name: "Email",
-        url: "mailto:matt@fantinel.dev",
+        url: "mailto:hello@fantinel.dev",
         label: "Send me an email"
       }
     ],

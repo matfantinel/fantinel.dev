@@ -182,6 +182,7 @@
       align-items: center;
       justify-content: center;
       gap: var(--spacing-md);
+      color: var(--t--text--base);
     }
 
     &__about {
