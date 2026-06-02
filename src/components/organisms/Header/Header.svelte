@@ -15,13 +15,7 @@
     navigation?: NavigationLink[];
   };
 
-  let {
-    currentSearch,
-    currentUrl,
-    socials,
-    navigation,
-    class: className,
-  }: HeaderProps = $props();
+  let { currentSearch, currentUrl, socials, navigation, class: className }: HeaderProps = $props();
 
   let pathname = $state('/');
 
@@ -66,12 +60,18 @@
     (navigation ?? []).map((link) => ({
       ...link,
       active: link.href === '/' ? pathname === '/' : pathname.startsWith(link.href),
-    }))
+    })),
   );
 </script>
 
 <header class={['o-header', className]} style="view-transition-name: header">
   <div class="o-header__container">
+    <div class="o-header__seasonal-message">
+      <sparkly-text number-of-sparkles="2" style="--sparkly-text-color: rainbow;">
+        🏳️‍🌈 <span>Happy Pride month!</span>
+      </sparkly-text>
+    </div>
+
     <a href="/" aria-label="Home" class="o-header__logo">
       <Logo size="80px" />
     </a>
@@ -106,6 +106,7 @@
 
 <style lang="scss">
   @use '/src/styles/breakpoints';
+  @use '/src/styles/typography';
 
   .o-header {
     position: relative;
@@ -113,6 +114,20 @@
     container-type: inline-size;
     width: 100%;
     overflow: auto;
+
+    &__seasonal-message {
+      @include typography.b3;
+      text-align: center;
+
+      position: absolute;
+      top: var(--spacing-xs);
+      left: 0;
+      width: 100%;
+
+      span {
+        @include typography.gradient-pride;
+      }
+    }
 
     &__container {
       display: flex;
@@ -161,6 +176,10 @@
     }
 
     @include breakpoints.for-phone-only {
+      &__seasonal-message {
+        display: none;
+      }
+
       &__container {
         flex-direction: row;
         padding: var(--spacing-sm);
