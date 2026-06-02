@@ -64,13 +64,16 @@ const latestTimelineEntries = (await getPaginatedTimelineEntries(1)).posts;
 
     {
       data?.photographySection && (
-        <ContentWithImage
-          class='p-home__section smol'
-          {...data.photographySection}
-          imageBehavior={data.photographySection.imageBehavior || 'contain'}
-          imagePosition={data.photographySection.imagePosition || 'before'}
-          animateOnEntry={data.photographySection.animateOnEntry || true}
-        />
+        <div class="smol">
+          <ContentWithImage
+            class='p-home__section'
+            {...data.photographySection}
+            imageBehavior={data.photographySection.imageBehavior || 'contain'}
+            imagePosition={data.photographySection.imagePosition || 'before'}
+            animateOnEntry={data.photographySection.animateOnEntry || true}
+            client:load
+          />
+        </div>
       )
     }
 

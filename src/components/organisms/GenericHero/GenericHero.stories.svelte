@@ -35,10 +35,10 @@
   }} 
 />
 
-<Story 
-  name="No Image" 
-  args={{ 
-    title: LoremIpsum.words, 
+<Story
+  name="No Image"
+  args={{
+    title: LoremIpsum.words,
     body: LoremIpsum.sentence,
     button: {
       text: 'Primary',
@@ -48,5 +48,51 @@
       text: 'Secondary',
       url: '#'
     },
-  }} 
+  }}
+/>
+
+<Story
+  name="Single Polaroid"
+  args={{
+    title: LoremIpsum.words,
+    body: LoremIpsum.sentence,
+    button: {
+      text: 'Primary',
+      url: '#'
+    },
+    polaroids: {
+      title: 'Nice Photo',
+      image: 'https://placedog.net/400/300',
+      imageAlt: 'A nice polaroid photo'
+    }
+  }}
+/>
+
+<Story
+  name="Multiple Polaroids"
+  args={{
+    title: LoremIpsum.words,
+    body: LoremIpsum.sentence,
+    button: {
+      text: 'Primary',
+      url: '#'
+    },
+    polaroids: [
+      {
+        title: 'First',
+        image: 'https://placedog.net/400/300',
+        imageAlt: 'First polaroid'
+      },
+      {
+        title: 'Second',
+        image: 'https://placedog.net/400/300',
+        imageAlt: 'Second polaroid'
+      },
+      {
+        title: 'Third',
+        image: 'https://placedog.net/400/300',
+        imageAlt: 'Third polaroid'
+      }
+    ]
+  }}
 />

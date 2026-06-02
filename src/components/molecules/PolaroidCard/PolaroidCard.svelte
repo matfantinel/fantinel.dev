@@ -27,16 +27,26 @@
       supportsInvokerCommands = 'commandForElement' in HTMLButtonElement.prototype;
     }
   });
+
+  let hasContent = $derived(!!(photoDate || content));
+  let tag = $derived(hasContent ? 'button' : 'article');
 </script>
 
 <div class="m-polaroid-card__scale-container">
-  <article class={classList} style="--polaroid-rotation: {rotation}deg">
+  <svelte:element
+    this={tag}
+    class={classList}
+    style="--polaroid-rotation: {rotation}deg"
+    role={hasContent ? 'button' : 'article'}
+    aria-label={hasContent ? `View details for ${title}` : undefined}
+    {...hasContent ? { type: 'button' } : {}}
+  >
     <div class="m-polaroid-card__quadrant left" aria-hidden="true"></div>
     <div class="m-polaroid-card__quadrant right" aria-hidden="true"></div>
     <div class="m-polaroid-card__container">
       <div class="m-polaroid-card__front">
         <div class="m-polaroid-card__image-area">
-          <Image class="m-polaroid-thumbnail__image" src={image} alt={imageAlt || title} />
+          <Image class="m-polaroid-card__image" src={image} alt={imageAlt || title} />
         </div>
         <div class="m-polaroid-card__label-area">
           {#if title}
@@ -61,7 +71,7 @@
         </div>
       {/if}
     </div>
-  </article>
+  </svelte:element>
 </div>
 
 <style lang="scss">
@@ -87,6 +97,10 @@
     transform-origin: center;
     scale: var(--polaroid-scale, 1);
     aspect-ratio: 350 / 420;
+
+    border: none;
+    appearance: none;
+    background: transparent;
 
     rotate: var(--polaroid-rotation, 0deg);
 
@@ -141,6 +155,7 @@
       opacity: 1;
 
       transition: all 0.25s ease-out;
+      transition-delay: 0.25s;
     }
 
     &__image-area {
@@ -183,14 +198,14 @@
 
     &__date {
       @include typography.b2;
-      font-family: var(--font--spicy);
+      font-family: var(--font--mono);
       color: #5C5F77;
     }
 
     &__description {
       @include typography.b1;
       font-weight: 500;
-      font-family: var(--font--spicy);
+      font-family: var(--font--mono);
       text-align: left;
       color: #4C4F69;
     }
@@ -203,6 +218,7 @@
 
         &__front {
           opacity: 0;
+          transition-delay: 0s;
         }
 
         &__back {
@@ -213,18 +229,17 @@
     }
 
     &--has-back {
-      &:hover {
+      &:active,
+      &:focus-within {
         @include turned-around-card;
       }
     }
 
-    &:not(.m-polaroid-card--has-back) {
-      &:has(.m-polaroid-card__quadrant.left:hover) {
-        transform: rotateX(15deg) rotateY(-10deg);
-      }
-      &:has(.m-polaroid-card__quadrant.right:hover) {
-        transform: rotateX(15deg) rotateY(10deg);
-      }
+    &:has(.m-polaroid-card__quadrant.left:hover) {
+      transform: rotateX(15deg) rotateY(-10deg);
+    }
+    &:has(.m-polaroid-card__quadrant.right:hover) {
+      transform: rotateX(15deg) rotateY(10deg);
     }
 
     @keyframes toggleDisplay {

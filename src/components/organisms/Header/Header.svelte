@@ -67,9 +67,7 @@
 <header class={['o-header', className]} style="view-transition-name: header">
   <div class="o-header__container">
     <div class="o-header__seasonal-message">
-      <sparkly-text number-of-sparkles="2" style="--sparkly-text-color: rainbow;">
-        🏳️‍🌈 <span>Happy Pride month!</span>
-      </sparkly-text>
+      🏳️‍🌈 <span>Happy Pride month!</span>
     </div>
 
     <a href="/" aria-label="Home" class="o-header__logo">
@@ -116,7 +114,7 @@
     overflow: auto;
 
     &__seasonal-message {
-      @include typography.b3;
+      @include typography.icon-label;
       text-align: center;
 
       position: absolute;

@@ -1,0 +1,27 @@
+---
+import { sanitizeMdPageData } from '@data/mdPages';
+import MdPageLayout from '@layouts/MdPageLayout.astro';
+import type { MdPage } from '@schemas/md-pages';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const pages = await getCollection('mdPages');
+  const sanitizedPages = pages.map((page) => {
+    return {
+      data: sanitizeMdPageData(page.data as unknown as MdPage, page.rendered),
+      body: page.body,
+    };
+  });
+
+  return sanitizedPages.map((page) => ({
+    params: {
+      slug: page.data.slug,
+    },
+    props: { page },
+  }));
+}
+
+const { page } = Astro.props;
+---
+
+<MdPageLayout page={{ body: page.body, data: page.data }} />

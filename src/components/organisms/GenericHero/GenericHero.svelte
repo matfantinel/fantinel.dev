@@ -4,6 +4,9 @@
   import Image from '@components/atoms/Image';
   import HeroWaves from '@components/molecules/HeroWaves';
   import MarkdownRenderer from '@components/molecules/MarkdownRenderer';
+  import PolaroidCard from '@components/molecules/PolaroidCard';
+  import type { PolaroidCardProps } from '@components/molecules/PolaroidCard';
+  import Stack from '@components/molecules/Stack';
   import type { Snippet } from 'svelte';
   import type { BaseProps } from '@utils/types';
 
@@ -14,6 +17,7 @@
     secondaryButton?: ButtonProps & { icon?: any };
     image?: string;
     imageAlt?: string;
+    polaroids?: Omit<PolaroidCardProps, 'class'> | Omit<PolaroidCardProps, 'class'>[];
   };
 
   let {
@@ -23,11 +27,16 @@
     secondaryButton,
     image,
     imageAlt,
+    polaroids,
     children,
     class: className,
   }: GenericHeroProps & { children?: Snippet } = $props();
 
-  let classList = $derived(['o-generic-hero u-content-grid', image ? 'o-generic-hero--has-image' : '', className]);
+  let resolvedPolaroids = $derived(
+    polaroids ? (Array.isArray(polaroids) ? polaroids : [polaroids]) : []
+  );
+  let hasVisual = $derived(!!(image || resolvedPolaroids.length > 0));
+  let classList = $derived(['o-generic-hero u-content-grid', hasVisual ? 'o-generic-hero--has-image' : '', className]);
 </script>
 
 <div class={classList}>
@@ -64,7 +73,19 @@
       {/if}
     </div>
 
-    {#if image}
+    {#if resolvedPolaroids.length > 1}
+      <div class="o-generic-hero__image o-generic-hero__image--slot">
+        <Stack itemCount={resolvedPolaroids.length}>
+          {#each resolvedPolaroids as polaroid}
+            <PolaroidCard {...polaroid} />
+          {/each}
+        </Stack>
+      </div>
+    {:else if resolvedPolaroids.length === 1}
+      <div class="o-generic-hero__image o-generic-hero__image--slot">
+        <PolaroidCard {...resolvedPolaroids[0]} />
+      </div>
+    {:else if image}
       <Image class="o-generic-hero__image" src={image} alt={imageAlt || title} />
     {/if}
   </div>
@@ -85,6 +106,7 @@
 
     &__container {
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
       gap: var(--spacing-md);
@@ -105,6 +127,15 @@
     :global(.o-generic-hero__image) {
       display: none;
       border-radius: var(--border-radius--small);
+      min-height: 260px;
+    }
+
+    :global(.o-generic-hero__image--slot) {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 260px;
     }
 
     &__title {
@@ -136,7 +167,7 @@
           &__container {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            align-items: start;
+            align-items: center;
             justify-items: center;
           }
 
@@ -157,6 +188,10 @@
         }
         :global(.o-generic-hero__image) {
           display: block;
+        }
+        :global(.o-generic-hero__image--slot) {
+          display: flex;
+          height: 100%;
         }
       }
     }

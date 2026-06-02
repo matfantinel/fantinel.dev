@@ -87,6 +87,9 @@ $palette-colors: (
   @include mixins.set-named-color('cool-link', 'blue');
   @include mixins.set-named-color('photography', 'maroon');
 
+  @include mixins.set-named-color('about', 'lavender');
+  @include mixins.set-named-color('project', 'flamingo');
+
   @include mixins.set-named-color('info', 'blue');
   @include mixins.set-named-color('warning', 'yellow');
   @include mixins.set-named-color('success', 'green');
@@ -187,6 +190,16 @@ $palette-colors: (
     var(--palette--pink),
     var(--palette--mauve),
     var(--palette--lavender)
+  );
+
+  --t--gradient--pride: linear-gradient(
+    to right,
+    var(--palette--red),
+    var(--palette--peach),
+    var(--palette--yellow),
+    var(--palette--green),
+    var(--palette--blue),
+    var(--palette--mauve)
   );
 
   // Always the Mocha (dark) palette, regardless of the active theme.

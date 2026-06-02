@@ -99,20 +99,32 @@
   }}
 />
 
-<!-- polaroidProps prop -->
+<!-- Single polaroid -->
 <Story
-  name="With Polaroid Props"
+  name="With Single Polaroid"
   args={{
-    polaroidProps: { title: 'A cute dog', image: 'https://placedog.net/600/600', rotation: 3 },
+    polaroids: { title: 'A cute dog', image: 'https://placedog.net/600/600', rotation: 3 },
   }}
 />
 
-<!-- polaroidProps prop, image before -->
+<!-- Single polaroid, image before -->
 <Story
-  name="With Polaroid Props + Before"
+  name="With Single Polaroid + Before"
   args={{
     imagePosition: 'before',
-    polaroidProps: { title: 'A cute dog', image: 'https://placedog.net/600/600', rotation: -3 },
+    polaroids: { title: 'A cute dog', image: 'https://placedog.net/600/600', rotation: -3 },
+  }}
+/>
+
+<!-- Multiple polaroids -->
+<Story
+  name="With Multiple Polaroids"
+  args={{
+    polaroids: [
+      { title: 'First', image: 'https://placedog.net/400/300', },
+      { title: 'Second', image: 'https://placedog.net/400/300', },
+      { title: 'Third', image: 'https://placedog.net/400/300', },
+    ],
   }}
 />
 

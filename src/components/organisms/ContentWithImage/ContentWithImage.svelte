@@ -21,8 +21,7 @@
     background?: 'clear' | 'card';
     animateOnEntry?: boolean;
     headingColor?: string;
-    polaroidProps?: Omit<PolaroidCardProps, 'class'>;
-    polaroids?: Omit<PolaroidCardProps, 'class'>[];
+    polaroids?: Omit<PolaroidCardProps, 'class'> | Omit<PolaroidCardProps, 'class'>[];
   };
 
   let {
@@ -37,13 +36,15 @@
     background = 'clear',
     animateOnEntry = false,
     headingColor,
-    polaroidProps,
     polaroids,
     imageSlot,
     class: className,
   }: ContentWithImageProps & { imageSlot?: Snippet } = $props();
 
-  let hasSlotContent = $derived(!!(imageSlot || polaroidProps || (polaroids && polaroids.length > 0)));
+  let resolvedPolaroids = $derived(
+    polaroids ? (Array.isArray(polaroids) ? polaroids : [polaroids]) : []
+  );
+  let hasSlotContent = $derived(!!(imageSlot || resolvedPolaroids.length > 0));
   let resolvedImageBehavior = $derived(hasSlotContent ? 'contain' : imageBehavior);
 
   let classList = $derived([
@@ -99,17 +100,17 @@
       <div class="o-content-with-image__image o-content-with-image__image--slot">
         {@render imageSlot()}
       </div>
-    {:else if polaroids && polaroids.length > 0}
+    {:else if resolvedPolaroids.length > 1}
       <div class="o-content-with-image__image o-content-with-image__image--slot">
-        <Stack itemCount={polaroids.length}>
-          {#each polaroids as polaroid}
-            <PolaroidCard {...polaroid as PolaroidCardProps} />
+        <Stack itemCount={resolvedPolaroids.length}>
+          {#each resolvedPolaroids as polaroid}
+            <PolaroidCard {...polaroid} />
           {/each}
         </Stack>
       </div>
-    {:else if polaroidProps}
+    {:else if resolvedPolaroids.length === 1}
       <div class="o-content-with-image__image o-content-with-image__image--slot">
-        <PolaroidCard {...polaroidProps as PolaroidCardProps} />
+        <PolaroidCard {...resolvedPolaroids[0]} />
       </div>
     {:else if image}
       <Image class="o-content-with-image__image" src={image} alt={imageAlt ?? ''} />
@@ -200,13 +201,7 @@
     }
 
     &--image-behavior-contain {
-      // .o-content-with-image {
-      //   &__container {
-      //     grid-template-columns: auto auto;
-      //   }
-      // }
       :global(.o-content-with-image__image) {
-        // padding-block: var(--spacing-md);
         width: auto;
         height: auto;
       }

@@ -4,6 +4,7 @@ import { blogSchema } from "@schemas/blog";
 import { quickReviewSchema } from "@schemas/quick-review";
 import { coolLinkSchema } from "@schemas/cool-link";
 import { photographySchema } from "@schemas/photography";
+import { mdPageSchema } from "@schemas/md-pages";
 
 const blog = defineCollection({
   loader: glob({ pattern: "**/*.md", base: "./public/cms/articles" }),
@@ -25,4 +26,9 @@ const photographies = defineCollection({
   schema: photographySchema
 });
 
-export const collections = { blog, quickReviews, coolLinks, photographies };
+const mdPages = defineCollection({
+  loader: glob({ pattern: "**/*.md", base: "./public/cms/md-pages" }),
+  schema: mdPageSchema
+});
+
+export const collections = { blog, quickReviews, coolLinks, photographies, mdPages };

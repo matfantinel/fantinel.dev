@@ -40,14 +40,7 @@
   let classList = $derived(['a-icon-link', className]);
 </script>
 
-<svelte:element
-  this={tag}
-  {...linkProps}
-  class={classList}
-  {...props}
-  title={title}
-  {onclick}
->
+<svelte:element this={tag} {...linkProps} class={classList} {...props} {title} {onclick}>
   {#if IconComponent && iconPosition === 'left'}
     <div class="a-icon-link__icon">
       <IconComponent size="24px" />
@@ -67,9 +60,10 @@
   @use '/src/styles/typography';
 
   .a-icon-link {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     gap: var(--spacing-xxs);
+    vertical-align: middle;
 
     text-decoration: none;
     color: currentColor;

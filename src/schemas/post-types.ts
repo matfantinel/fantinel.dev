@@ -4,4 +4,5 @@ export enum PostType {
   COOL_LINK = 'cool-link',
   PHOTOGRAPHY = 'photography',
   PAGE = 'page',
+  MD_PAGE = 'md-page',
 }

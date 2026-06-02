@@ -17,6 +17,7 @@
     extraImages?: string[];
     socials?: SocialLinkType[];
     button?: ButtonProps & { icon?: any };
+    secondaryButton?: ButtonProps & { icon?: any };
   };
 
   let {
@@ -27,6 +28,7 @@
     extraImages,
     socials,
     button,
+    secondaryButton,
     class: className,
   }: HomePageHeroProps = $props();
 
@@ -51,9 +53,14 @@
 
       {#if button}
         <div class="o-home-page-hero__buttons">
-          <Button href={button.href} class="o-home-page-hero__button">
+          <Button href={button.href} color={button.color} icon={button.icon} iconPosition={button.iconPosition}>
             {button.text}
           </Button>
+          {#if secondaryButton}
+            <Button href={secondaryButton.href} color={secondaryButton.color} icon={secondaryButton.icon} iconPosition={secondaryButton.iconPosition}>
+              {secondaryButton.text}
+            </Button>
+          {/if}
         </div>
       {/if}
     </div>
@@ -161,6 +168,14 @@
 
       width: fit-content;
       margin-inline: auto;
+    }
+
+    &__buttons {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--spacing-sm);
+      margin-top: var(--spacing-sm);
     }
 
     @container (max-width: 768px) {

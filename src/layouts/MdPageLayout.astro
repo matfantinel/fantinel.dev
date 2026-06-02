@@ -1,0 +1,124 @@
+---
+import MarkdownRenderer from '@components/molecules/MarkdownRenderer';
+import TableOfContents from '@components/molecules/TableOfContents';
+import GenericHero from '@components/organisms/GenericHero';
+import { getSiteMeta } from '@data/yaml';
+import type { MdPage } from '@schemas/md-pages';
+import { handleCmsMediaPath } from '@utils/functions';
+import BaseLayout from './BaseLayout.astro';
+
+interface Props {
+  page: {
+    body?: string;
+    data: MdPage;
+  };
+}
+
+const { page }: Props = Astro.props;
+
+const showToc = page.data.showToc && page.data.toc && page.data.toc.length > 0;
+
+const accentColor = page.data.accentColor;
+const colorClass = accentColor ? `l-md-page--${accentColor}` : '';
+
+const siteMeta = getSiteMeta();
+// Use ogImage if provided, otherwise fall back to heroImage
+let ogImage = page.data.ogImage;
+if (!ogImage && page.data.heroImage) {
+  ogImage = page.data.heroImage;
+}
+
+let coverImage;
+if (ogImage) {
+  if (ogImage.includes(siteMeta.baseUrl)) {
+    coverImage = ogImage;
+  } else {
+    coverImage = `${siteMeta.baseUrl}${handleCmsMediaPath(ogImage)}`;
+  }
+}
+
+// Process heroPolaroids - normalize to array and handle image paths
+function processPolaroids(polaroids: typeof page.data.heroPolaroids) {
+  if (!polaroids) return undefined;
+  const arr = Array.isArray(polaroids) ? polaroids : [polaroids];
+  return arr.map(p => ({
+    ...p,
+    image: handleCmsMediaPath(p.image)
+  }));
+}
+
+const heroPolaroids = processPolaroids(page.data.heroPolaroids);
+const hasHeroVisual = !!(page.data.heroImage || heroPolaroids?.length);
+---
+
+<BaseLayout
+  title={page.data.title}
+  description={page.data.excerpt}
+  image={coverImage}
+  autoGenerateImage={!ogImage}
+  slug={page.data.slug}
+>
+  <div class={`l-md-page full-width u-content-grid ${colorClass}`}>
+    <div class='l-md-page__hero full-width' data-pagefind-body>
+      <GenericHero
+        title={page.data.title}
+        body={page.data.heroBody}
+        image={!heroPolaroids && page.data.heroImage ? handleCmsMediaPath(page.data.heroImage) : undefined}
+        imageAlt={page.data.heroImageAlt}
+        polaroids={heroPolaroids}
+        client:load
+      />
+    </div>
+
+    <div class='l-md-page__content full-width u-content-grid'>
+      {
+        showToc && (
+          <div class='l-md-page__toc on-sidebar' data-pagefind-body>
+            <TableOfContents headings={page.data.toc} client:load />
+          </div>
+        )
+      }
+
+      <div id='page-content' class='l-md-page__content-inner u-markdown' data-pagefind-body>
+        <MarkdownRenderer content={page.body} addAnchorToHeadings={true} client:load />
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<style lang='scss'>
+  @use '/src/styles/breakpoints';
+  @use '/src/styles/typography';
+  @use '/src/styles/mixins';
+
+  :root:has(.l-md-page--about) {
+    @include mixins.set-accent-color('about');
+  }
+
+  :root:has(.l-md-page--project) {
+    @include mixins.set-accent-color('project');
+  }
+
+  .l-md-page {
+    &__hero {
+      margin-bottom: 0;
+    }
+
+    &__content {
+      --content-max-width: 68ch;
+      padding-top: var(--spacing-lg);
+    }
+
+    &__toc {
+      @include breakpoints.for-tablet-landscape-up {
+        position: sticky;
+        top: var(--spacing-lg);
+        align-self: start;
+      }
+    }
+
+    &__content-inner {
+      min-width: 0;
+    }
+  }
+</style>
