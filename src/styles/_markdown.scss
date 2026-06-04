@@ -1,10 +1,22 @@
 .u-markdown {
   display: flex;
   flex-direction: column;
-  gap: 1.8rem;
   text-align: justify;
 
   font-family: var(--font--article);
+
+  // "Prose" styling
+  // From https://youtu.be/CU8Plk-53RU
+  > * + * {
+    margin-top: var(--markdown-spacing, 1.4em);
+  }
+
+  // astro-island is a pain in the ass sometimes
+  > astro-island {
+    > * + * {
+      margin-top: var(--markdown-spacing, 1.4em);
+    }
+  }
 
   picture {
     display: inline;
@@ -51,9 +63,10 @@
     }
   }
 
-  ul, ol {
-    margin: 0 0 0 var(--spacing-lg);
-  }
+  // ul,
+  // ol {
+  //   margin: 0 0 0 var(--spacing-lg);
+  // }
 
   p {
     // Target links in cool links posts. Make them closer to their commentary.
@@ -70,19 +83,10 @@
     }
   }
 
-  blockquote {
-    + h1,
-    + h2,
-    + h3,
-    + h4,
-    + h5 {
-      margin-top: var(--spacing-md);
-    }
-  }
-
-  em, i {
+  em,
+  i {
     font-family: var(--font--spicy);
-    letter-spacing: -.25px;
+    letter-spacing: -0.25px;
     font-style: normal;
   }
 
