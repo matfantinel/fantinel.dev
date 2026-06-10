@@ -31,7 +31,6 @@
           {/each}
         {/if}
 
-        <SocialLink name="RSS" url="/rss.xml" label="RSS" class="o-footer__link" />
         <ThemeToggle class="o-footer__theme-toggle" />
       </div>
 
