@@ -215,6 +215,9 @@
       &__socials {
         display: none;
       }
+      &__buttons {
+        justify-content: center;
+      }
     }
 
     @keyframes rainbow-breathe {
