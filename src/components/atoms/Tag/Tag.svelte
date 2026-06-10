@@ -56,7 +56,7 @@
   {/if}
   {#if IconComponent}
     <div class="a-tag__icon">
-      <IconComponent size="22px" />
+      <IconComponent size={size === 'small' ? '16px' : '22px'} />
     </div>
   {/if}
   <span class="a-tag__text">
