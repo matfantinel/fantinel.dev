@@ -34,7 +34,7 @@ const latestTimelineEntries = (await getPaginatedTimelineEntries(1)).posts;
           class='p-home__section smol'
           {...data.blogSection}
           imageBehavior={data.blogSection.imageBehavior || 'contain'}
-          animateOnEntry={data.blogSection.animateOnEntry || true}
+          animateOnEntry={data.blogSection.animateOnEntry || false}
         />
       )
     }
@@ -46,7 +46,7 @@ const latestTimelineEntries = (await getPaginatedTimelineEntries(1)).posts;
           {...data.coolLinksSection}
           imageBehavior={data.coolLinksSection.imageBehavior || 'contain'}
           imagePosition={data.coolLinksSection.imagePosition || 'before'}
-          animateOnEntry={data.coolLinksSection.animateOnEntry || true}
+          animateOnEntry={data.coolLinksSection.animateOnEntry || false}
         />
       )
     }
@@ -57,7 +57,7 @@ const latestTimelineEntries = (await getPaginatedTimelineEntries(1)).posts;
           class='p-home__section smol'
           {...data.quickReviewsSection}
           imageBehavior={data.quickReviewsSection.imageBehavior || 'contain'}
-          animateOnEntry={data.quickReviewsSection.animateOnEntry || true}
+          animateOnEntry={data.quickReviewsSection.animateOnEntry || false}
         />
       )
     }
@@ -70,7 +70,7 @@ const latestTimelineEntries = (await getPaginatedTimelineEntries(1)).posts;
             {...data.photographySection}
             imageBehavior={data.photographySection.imageBehavior || 'contain'}
             imagePosition={data.photographySection.imagePosition || 'before'}
-            animateOnEntry={data.photographySection.animateOnEntry || true}
+            animateOnEntry={data.photographySection.animateOnEntry || false}
             client:load
           />
         </div>
