@@ -89,6 +89,7 @@ $palette-colors: (
 
   @include mixins.set-named-color('about', 'lavender');
   @include mixins.set-named-color('project', 'flamingo');
+  @include mixins.set-named-color('garden', 'green');
 
   @include mixins.set-named-color('info', 'blue');
   @include mixins.set-named-color('warning', 'yellow');

@@ -9,6 +9,7 @@ export type HomeConfig = {
   coolLinksSection: ContentWithImageProps;
   quickReviewsSection: ContentWithImageProps;
   photographySection: ContentWithImageProps;
+  gardenSection: ContentWithImageProps;
   latestSection?: {
     title?: string;
     headerBody?: string;
@@ -64,6 +65,20 @@ export type QuickReviewSingleConfig = {
 export type PhotographySingleConfig = {
   about?: string;
   timelineIntro?: string;
+};
+
+export type GardenPageLink = {
+  title: string;
+  url: string;
+  excerpt: string;
+};
+
+export type GardenConfig = {
+  pageTitle: string;
+  pageDescription: string;
+  pagePreviewImage?: string;
+  hero: GenericHeroProps;
+  pages: GardenPageLink[];
 };
 
 export type BlogSingleConfig = {

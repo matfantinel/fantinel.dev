@@ -1,7 +1,7 @@
 // This file gets the YAML settings, types them and exports them
 // And also does some handling of the images
 
-import type { CoolLinkSingleConfig, HomeConfig, QuickReviewSingleConfig, PhotographySingleConfig, CoolLinkArchiveConfig, QuickReviewArchiveConfig, PhotographyArchiveConfig, BlogArchiveConfig, BlogSingleConfig, TimelineArchiveConfig } from '@schemas/pages-config';
+import type { CoolLinkSingleConfig, HomeConfig, QuickReviewSingleConfig, PhotographySingleConfig, CoolLinkArchiveConfig, QuickReviewArchiveConfig, PhotographyArchiveConfig, BlogArchiveConfig, BlogSingleConfig, TimelineArchiveConfig, GardenConfig } from '@schemas/pages-config';
 import type { SiteMeta } from '@schemas/site-meta';
 import homeConfig from '@public/cms/home.yml';
 import metaConfig from '@public/cms/meta.yml';
@@ -14,6 +14,7 @@ import timelineArchiveConfig from '@public/cms/page-configs/timeline/archive.yam
 import blogSingleConfig from '@public/cms/page-configs/blog/single.yaml';
 import quickReviewSingleConfig from '@public/cms/page-configs/quick-reviews/single.yaml';
 import photographySingleConfig from '@public/cms/page-configs/photography/single.yaml';
+import gardenConfig from '@public/cms/page-configs/garden.yaml';
 import { handleCmsMediaPath, transformStrings } from '@utils/functions';
 
 export function getSiteMeta(): SiteMeta {
@@ -78,6 +79,12 @@ export function getQuickReviewSingleConfig(): QuickReviewSingleConfig {
 
 export function getPhotographySingleConfig(): PhotographySingleConfig {
   return transformStrings(photographySingleConfig as PhotographySingleConfig, (value: string) =>
+    value.startsWith('/media/') ? handleCmsMediaPath(value) : value
+  );
+}
+
+export function getGardenConfig(): GardenConfig {
+  return transformStrings(gardenConfig as GardenConfig, (value: string) =>
     value.startsWith('/media/') ? handleCmsMediaPath(value) : value
   );
 }

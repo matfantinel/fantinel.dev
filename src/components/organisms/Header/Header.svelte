@@ -76,7 +76,7 @@
 
     <nav class="o-header__navigation" data-nav>
       {#each links as link}
-        <NavMenuLink href={link.href} icon={link.icon} active={link.active} color={link.color} title={link.title}>
+        <NavMenuLink class="o-header__nav-link" href={link.href} icon={link.icon} active={link.active} color={link.color} title={link.title}>
           {link.label}
         </NavMenuLink>
       {/each}
@@ -201,6 +201,10 @@
 
       :global(.o-header__search-field.mobile-only) {
         display: block;
+      }
+
+      :global(.o-header__nav-link[href="/"]) {
+        display: none;
       }
 
       &__navigation {

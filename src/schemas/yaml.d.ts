@@ -63,3 +63,9 @@ declare module '@public/cms/page-configs/blog/single.yaml' {
   const value: BlogSingleConfig;
   export default value;
 }
+
+declare module '@public/cms/page-configs/garden.yaml' {
+  import type { GardenConfig } from '@schemas/pages-config';
+  const value: GardenConfig;
+  export default value;
+}

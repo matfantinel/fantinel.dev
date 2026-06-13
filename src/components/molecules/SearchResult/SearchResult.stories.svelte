@@ -47,6 +47,14 @@
 />
 
 <Story
+  name="Image Hidden"
+  args={{
+    type: PostType.BLOG_POST,
+    hideImage: true,
+  }}
+/>
+
+<Story
   name="Quick Review"
   args={{
     type: PostType.QUICK_REVIEW,

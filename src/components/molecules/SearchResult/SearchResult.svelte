@@ -16,6 +16,8 @@
     imageAlt?: string;
     excerpt?: string;
     subResults?: { excerpt: string }[];
+    hideImage?: boolean;
+    isExcerptAQuote?: boolean;
   };
 
   let {
@@ -26,18 +28,25 @@
     subResults,
     image,
     imageAlt,
+    hideImage = false,
+    isExcerptAQuote = true,
     class: className,
   }: SearchResultProps = $props();
+
+  let excerptPrefix = isExcerptAQuote ? '(...) ' : '';
+  let excerptSuffix = isExcerptAQuote ? ' (...)' : '';
 </script>
 
 <article class={['m-search-result', className]}>
   <div class="m-search-result__container" style={`--tint: var(--t--${type}--rgb, var(--t--accent--rgb))`}>
-    <div class="m-search-result__image-container">
-      <div class="m-search-result__image-placeholder">{title.substring(0, 5)}</div>
-      {#if image}
-        <Image class="m-search-result__image" src={image} alt={imageAlt || title} />
-      {/if}
-    </div>
+    {#if !hideImage}
+      <div class="m-search-result__image-container">
+        <div class="m-search-result__image-placeholder">{title.substring(0, 5)}</div>
+        {#if image}
+          <Image class="m-search-result__image" src={image} alt={imageAlt || title} />
+        {/if}
+      </div>
+    {/if}
 
     <div class="m-search-result__content">
       {#if type}
@@ -61,10 +70,10 @@
       </p>
       {#if subResults && subResults.length}
         {#each subResults.slice(0, 3) as subResult}
-          <p class="m-search-result__excerpt">“(...) {@html subResult.excerpt} (...)”</p>
+          <p class="m-search-result__excerpt">{excerptPrefix}{@html subResult.excerpt}{excerptSuffix}</p>
         {/each}
       {:else if excerpt}
-        <p class="m-search-result__excerpt">“(...) {@html excerpt} (...)”</p>
+        <p class="m-search-result__excerpt">{excerptPrefix}{@html excerpt}{excerptSuffix}</p>
       {/if}
 
       {#if url}

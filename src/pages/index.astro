@@ -80,6 +80,17 @@ const latestTimelineEntries = (await getPaginatedTimelineEntries(1)).posts;
       )
     }
 
+    {
+      data?.gardenSection && (
+        <ContentWithImage
+          class='p-home__section smol'
+          {...data.gardenSection}
+          imageBehavior={data.gardenSection.imageBehavior || 'contain'}
+          animateOnEntry={data.gardenSection.animateOnEntry || false}
+        />
+      )
+    }
+
     <hr class='p-home__divider smol' />
 
     {
