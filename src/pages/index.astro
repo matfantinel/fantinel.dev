@@ -30,12 +30,15 @@ const latestTimelineEntries = (await getPaginatedTimelineEntries(1)).posts;
   <div class='p-home__content full-width u-content-grid'>
     {
       data?.blogSection && (
-        <ContentWithImage
-          class='p-home__section smol'
-          {...data.blogSection}
-          imageBehavior={data.blogSection.imageBehavior || 'contain'}
-          animateOnEntry={data.blogSection.animateOnEntry || false}
-        />
+        <div class="smol">
+          <ContentWithImage
+            class='p-home__section'
+            {...data.blogSection}
+            imageBehavior={data.blogSection.imageBehavior || 'contain'}
+            animateOnEntry={data.blogSection.animateOnEntry || false}
+            client:load
+          />
+        </div>
       )
     }
 

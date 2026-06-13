@@ -3,6 +3,7 @@
   import MarkdownRenderer from '@components/molecules/MarkdownRenderer';
   import dateformat from 'dateformat';
   import type { BaseProps } from '@utils/types';
+  import { onMount } from 'svelte';
 
   export type PolaroidCardProps = BaseProps & {
     title: string;
@@ -28,11 +29,30 @@
     }
   });
 
+  let scaleContainer: HTMLElement;
+
+  onMount(() => {
+    const setScale = (width: number, height: number) => {
+      const scale = Math.min(width / 350, height / 420);
+      scaleContainer.style.setProperty('--polaroid-scale', scale.toString());
+    };
+
+    const { width, height } = scaleContainer.getBoundingClientRect();
+    setScale(width, height);
+
+    const observer = new ResizeObserver(([entry]) => {
+      const { width, height } = entry.contentRect;
+      setScale(width, height);
+    });
+    observer.observe(scaleContainer);
+    return () => observer.disconnect();
+  });
+
   let hasContent = $derived(!!(photoDate || content));
   let tag = $derived(hasContent ? 'button' : 'article');
 </script>
 
-<div class="m-polaroid-card__scale-container">
+<div class="m-polaroid-card__scale-container" bind:this={scaleContainer}>
   <svelte:element
     this={tag}
     class={classList}
@@ -88,6 +108,14 @@
     max-width: 350px;
     height: min(420px, 100%);
     max-height: 420px;
+
+    //
+    // Dividing two length values in calc() produces a <length>, not a <number>,
+    // so this is technically invalid CSS — scale expects a unitless <number>.
+    // Firefox correctly rejects it; Chromium and Safari accept it anyway.
+    // I added some JS code above that does the same thing, but I'm keeping this here
+    // to make sure it will correctly scale, at least in Chromium/Safari, if JS is disabled.
+    //
     --polaroid-scale: min(calc(100cqw / 350px), calc(100cqh / 420px));
   }
 
@@ -138,7 +166,7 @@
         grid-column: 1;
         grid-row: 1;
       }
-      
+
       &.right {
         grid-column: 2;
         grid-row: 1;
@@ -179,7 +207,7 @@
 
     &__title {
       font-family: var(--font--spicy);
-      color: #4C4F69;
+      color: #4c4f69;
       font-size: 24px;
     }
 
@@ -199,7 +227,7 @@
     &__date {
       @include typography.b2;
       font-family: var(--font--mono);
-      color: #5C5F77;
+      color: #5c5f77;
     }
 
     &__description {
@@ -207,7 +235,7 @@
       font-weight: 500;
       font-family: var(--font--mono);
       text-align: left;
-      color: #4C4F69;
+      color: #4c4f69;
     }
 
     @mixin turned-around-card {
