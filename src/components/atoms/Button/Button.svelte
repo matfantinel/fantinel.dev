@@ -9,7 +9,7 @@
     href?: string;
     target?: string;
     rel?: string;
-    color?: 'accent' | 'complementary' | 'blog' | 'quick-review' | 'cool-link' | 'photography' | 'about' | 'project';
+    color?: 'accent' | 'complementary' | 'blog' | 'quick-review' | 'cool-link' | 'photography' | 'about' | 'project' | 'garden';
     icon?: string | 'arrow';
     iconPosition?: 'left' | 'right';
     text?: string;
@@ -189,6 +189,13 @@
       --button-color-background-hover: var(--t--project--tint);
       --button-color-text: var(--t--project--contrast);
       --button-color-hover-glow: var(--t--project--glow-small);
+    }
+    
+    &--garden {
+      --button-color-background: var(--t--garden);
+      --button-color-background-hover: var(--t--garden--tint);
+      --button-color-text: var(--t--garden--contrast);
+      --button-color-hover-glow: var(--t--garden--glow-small);
     }
   }
 </style>
