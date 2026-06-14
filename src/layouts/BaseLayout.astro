@@ -73,15 +73,23 @@ const pathname = new URL(Astro.request.url).pathname;
   </head>
   <body>
     <div class='l-base'>
-      <Header {currentSearch} socials={siteMeta.author?.socials} navigation={siteMeta.navigation} {currentUrl} client:load transition:name="header" transition:persist />
+      <Header
+        {currentSearch}        
+        navigation={siteMeta.navigation}
+        secondaryNavigation={siteMeta.secondaryNavigation}
+        {currentUrl}
+        client:load
+        transition:name='header'
+        transition:persist
+      />
 
-      <main class="u-content-grid" style="view-transition-name: main-content;">
+      <main class='u-content-grid' style='view-transition-name: main-content;'>
         <slot />
 
-        <div class="safari-liquid-glass-toolbar-fixer" aria-hidden="true"></div>
+        <div class='safari-liquid-glass-toolbar-fixer' aria-hidden='true'></div>
       </main>
 
-      <Footer socials={siteMeta.author?.socials} client:load transition:name="footer" transition:persist />      
+      <Footer socials={siteMeta.author?.socials} client:load transition:name='footer' transition:persist />
     </div>
     <script>
       import(/* @vite-ignore */ '@stefanjudis/sparkly-text');
@@ -123,7 +131,7 @@ const pathname = new URL(Astro.request.url).pathname;
 </html>
 
 <style lang='scss'>
-  @use '/src/styles/breakpoints';  
+  @use '/src/styles/breakpoints';
   .l-base {
     display: grid;
     grid-template-columns: 1fr;

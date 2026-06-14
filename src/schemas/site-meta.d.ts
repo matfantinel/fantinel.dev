@@ -15,6 +15,7 @@ export type SiteMeta = {
     formUrl: string;
   };
   navigation?: NavigationLink[];
+  secondaryNavigation?: NavigationLink[];
 };
 
 export type NavigationLink = {

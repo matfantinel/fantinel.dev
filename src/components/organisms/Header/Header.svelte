@@ -7,15 +7,17 @@
   import PagefindSearchField from '@components/molecules/PagefindSearchField';
 
   import type { BaseProps } from '@utils/types';
+  import IconLink from '@components/atoms/IconLink';
 
   export type HeaderProps = BaseProps & {
     currentSearch?: string;
     currentUrl?: string;
     socials?: SocialLinkType[];
     navigation?: NavigationLink[];
+    secondaryNavigation?: NavigationLink[];
   };
 
-  let { currentSearch, currentUrl, socials, navigation, class: className }: HeaderProps = $props();
+  let { currentSearch, currentUrl, socials, navigation, secondaryNavigation, class: className }: HeaderProps = $props();
 
   let pathname = $state('/');
 
@@ -62,6 +64,13 @@
       active: link.href === '/' ? pathname === '/' : pathname.startsWith(link.href),
     })),
   );
+
+  const secondaryLinks = $derived(
+    (secondaryNavigation ?? []).map((link) => ({
+      ...link,
+      active: link.href === '/' ? pathname === '/' : pathname.startsWith(link.href),
+    })),
+  );
 </script>
 
 <header class={['o-header', className]} style="view-transition-name: header">
@@ -76,10 +85,35 @@
 
     <nav class="o-header__navigation" data-nav>
       {#each links as link}
-        <NavMenuLink class="o-header__nav-link" href={link.href} icon={link.icon} active={link.active} color={link.color} title={link.title}>
+        <NavMenuLink
+          class="o-header__nav-link"
+          href={link.href}
+          icon={link.icon}
+          active={link.active}
+          color={link.color}
+          title={link.title}
+        >
           {link.label}
         </NavMenuLink>
       {/each}
+
+      {#if secondaryNavigation}
+        <div class="o-header__navigation-secondary" data-nav>
+          {#each secondaryLinks as link}
+            <NavMenuLink
+              class="o-header__nav-link"
+              href={link.href}
+              icon={link.icon}
+              color={link.color}
+              title={link.title}
+              active={link.active}
+              size="small"
+            >
+              {link.label}
+            </NavMenuLink>
+          {/each}
+        </div>
+      {/if}
 
       <ThemeToggle class="o-header__theme-toggle mobile-only" />
 
@@ -147,6 +181,7 @@
       width: 100%;
     }
 
+    &__navigation-secondary,
     &__contact,
     &__actions {
       display: flex;
@@ -156,6 +191,10 @@
 
       padding-top: var(--spacing-md);
       border-top: 1px solid var(--t--border--medium);
+    }
+
+    &__navigation-secondary {
+      margin-top: var(--spacing-xs);
     }
 
     :global(.o-header__theme-toggle) {
@@ -203,7 +242,7 @@
         display: block;
       }
 
-      :global(.o-header__nav-link[href="/"]) {
+      :global(.o-header__nav-link[href='/']) {
         display: none;
       }
 
@@ -255,6 +294,16 @@
         animation: scrollfade;
         animation-timeline: --scrollfade;
         scroll-timeline: --scrollfade x;
+      }
+
+      &__navigation-secondary {
+        flex-direction: row;
+        align-items: center;
+        gap: var(--spacing-xs);
+        padding-top: 0;
+        border: none;
+        margin-top: 0;
+        width: fit-content;
       }
 
       &__contact,

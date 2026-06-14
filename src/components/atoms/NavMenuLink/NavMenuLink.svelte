@@ -11,7 +11,7 @@
     rel?: string;
     title?: string;
     active?: boolean;
-    isMobile?: boolean;
+    size?: 'default' | 'small';
     color?: string;
     icon?: string;
     text?: string;
@@ -24,7 +24,7 @@
     rel,
     title,
     active,
-    isMobile,
+    size = 'default',
     color,
     icon,
     children,
@@ -46,7 +46,7 @@
   let classList = $derived([
     'a-nav-menu-link',
     className,
-    { 'a-nav-menu-link--active': active, 'a-nav-menu-link--mobile': isMobile },
+    { 'a-nav-menu-link--active': active, 'a-nav-menu-link--small': size === 'small' },
   ]);
 
   let customStyles = $derived([color ? `--color: var(--t--${color})` : '']);
@@ -100,6 +100,21 @@
       font-weight: 500;
     }
 
+    @mixin small-styles {
+      gap: var(--spacing-xxs);
+      padding: var(--spacing-xxs) var(--spacing-xs);
+
+      width: unset;
+      margin-inline: 0;
+      text-wrap: nowrap;
+
+      .a-nav-menu-link {
+        &__text {
+          @include typography.icon-label;
+        }
+      }
+    }
+
     @mixin mobile-styles {
       gap: var(--spacing-xxs);
       padding: var(--spacing-xxs) var(--spacing-xs);
@@ -125,11 +140,17 @@
     }
 
     @include breakpoints.for-phone-only {
-      @include mobile-styles;
+      @include small-styles;
+
+      .a-nav-menu-link {
+        &__icon {
+          display: none;
+        }
+      }
     }
 
-    &--mobile {
-      @include mobile-styles;
+    &--small {
+      @include small-styles;
     }
 
     &:hover,
