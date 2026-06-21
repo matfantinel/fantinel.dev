@@ -89,7 +89,7 @@ const pathname = new URL(Astro.request.url).pathname;
         <div class='safari-liquid-glass-toolbar-fixer' aria-hidden='true'></div>
       </main>
 
-      <Footer socials={siteMeta.author?.socials} client:load transition:name='footer' transition:persist />
+      <Footer socials={siteMeta.author?.socials} client:load transition:name='footer' />
     </div>
     <script>
       import(/* @vite-ignore */ '@stefanjudis/sparkly-text');
