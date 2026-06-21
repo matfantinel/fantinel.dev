@@ -19,7 +19,7 @@
         siteKey: 'site_k_9oCjUr9qDV93xm',
         scene: {
           benches: 3,
-          benchXs: [0.2, 0.72, 0.64],
+          benchXs: [0.2, 0.72, 0.48],
           trees: 2,
           treeXs: [0.8, 0.3],
           lamps: 3,

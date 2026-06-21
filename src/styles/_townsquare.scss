@@ -4,8 +4,8 @@
   --surface: var(--t--surface--accent);
   --ink: var(--t--text--base);
   --you: var(--t--accent);
-  --tree-trunk: var(--t--text--medium);
-  --tree-canopy: var(--t--text--medium);
+  --tree-trunk: #b0636b;
+  --tree-canopy: var(--palette--green);
   --other: var(--t--text--base);
   --ground: rgba(42, 41, 38, 0.16);
   --scene-edge: color-mix(in oklab, var(--scene) 88%, var(--page) 12%);
@@ -19,8 +19,8 @@
   --surface: var(--t--surface--accent);
   --ink: var(--t--text--base);
   --you: var(--t--accent);
-  --tree-trunk: var(--t--text--medium);
-  --tree-canopy: var(--t--text--medium);
+  --tree-trunk: var(--palette--maroon);
+  --tree-canopy: var(--palette--green);
   --other: var(--t--text--base);
   --ground: rgba(242, 238, 230, 0.18);
   --scene-edge: color-mix(in oklab, var(--scene) 88%, var(--page) 12%);
