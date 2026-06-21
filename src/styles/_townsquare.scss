@@ -1,7 +1,7 @@
 #townsquare-root#townsquare-root {
-  --scene: var(--t--surface--card);
-  --page: var(--t--surface--base);
-  --surface: var(--t--surface--card);
+  --scene: var(--t--surface--accent);
+  --page: var(--t--surface--accent);
+  --surface: var(--t--surface--accent);
   --ink: var(--t--text--base);
   --you: var(--t--accent);
   --tree-trunk: var(--t--text--medium);
@@ -14,9 +14,9 @@
   --muted: var(--ink);
 }
 #townsquare-root#townsquare-root[data-townsquare-theme='dark'] {
-  --scene: var(--t--surface--card);
-  --page: var(--t--surface--base);
-  --surface: var(--t--surface--card);
+  --scene: var(--t--surface--accent);
+  --page: var(--t--surface--accent);
+  --surface: var(--t--surface--accent);
   --ink: var(--t--text--base);
   --you: var(--t--accent);
   --tree-trunk: var(--t--text--medium);

@@ -1,4 +1,5 @@
 <script lang="ts">
+  import TownSquare from '@components/molecules/TownSquare';
   import ThemeToggle from '@components/molecules/ThemeToggle';
 
   import SocialLink from '@components/atoms/SocialLink';
@@ -53,28 +54,8 @@
         </div>
       </div>
     </div>
+    <TownSquare />
   </div>
-
-  <link rel="stylesheet" href="https://townsquare.cauenapier.com/widget.css" />
-  <div id="townsquare-root"></div>
-  <script type="module">
-    import { mountTownSquare } from 'https://townsquare.cauenapier.com/townsquare.mjs';
-
-    mountTownSquare(document.getElementById('townsquare-root'), {
-      serverOrigin: 'https://townsquare.cauenapier.com',
-      siteKey: 'site_k_9oCjUr9qDV93xm',
-      scene: {
-        benches: 3,
-        benchXs: [0.2, 0.72, 0.64],
-        trees: 2,
-        treeXs: [0.8, 0.3],
-        lamps: 3,
-        lampXs: [0.16, 0.68, 0.44],
-        birds: 3,
-      },
-      theme: 'host',
-    });
-  </script>
 </footer>
 
 <style lang="scss">
