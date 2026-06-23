@@ -55,7 +55,7 @@
       </div>
     </div>
     <div class="o-footer__townsquare">
-      <TownSquare />
+      <TownSquare mode="mobile" />
     </div>
   </div>
 </footer>
