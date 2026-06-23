@@ -25,7 +25,7 @@
 {#snippet children()}
   {#each Array(10) as _, index}
     <QuickReviewCard
-      title="Title of movie, tv show, game or music album"
+      title="Title of movie, tv show, game, music album, or book"
       slug="slug-of-the-review"
       metadata="2025 - Director, Artist, Publisher, Developer"
       image="https://placedog.net/220/330"

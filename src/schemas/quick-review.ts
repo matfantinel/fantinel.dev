@@ -2,7 +2,7 @@ import { z } from 'astro:content';
 import { QuickReviewRating, QuickReviewType } from './quick-review-types';
 
 export const quickReviewSchema = z.object({
-  type: z.enum([QuickReviewType.Movie, QuickReviewType.TvShow, QuickReviewType.Game, QuickReviewType.Album]),
+  type: z.enum([QuickReviewType.Movie, QuickReviewType.TvShow, QuickReviewType.Game, QuickReviewType.Album, QuickReviewType.Book]),
   metadata: z.string().optional().nullable(),
   image: z.string().optional().nullable(),
   rating: z.enum([QuickReviewRating.DidntLikeIt, QuickReviewRating.Decent, QuickReviewRating.LikeIt, QuickReviewRating.LovedIt]),

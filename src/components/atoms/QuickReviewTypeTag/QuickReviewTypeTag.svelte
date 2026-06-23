@@ -23,6 +23,7 @@
     type === QuickReviewType.TvShow ? 'tv' :
     type === QuickReviewType.Game ? 'game' :
     type === QuickReviewType.Album ? 'album' :
+    type === QuickReviewType.Book ? 'book' :
     undefined
   );
 
@@ -98,6 +99,10 @@
 
     &--album {
       --icon-color: var(--t--qr-album-color);
+    }
+
+    &--book {
+      --icon-color: var(--t--qr-book-color);
     }
   }
 </style>

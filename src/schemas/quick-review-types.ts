@@ -2,7 +2,8 @@ export enum QuickReviewType {
   Movie = 'Movie',
   TvShow = 'TV Show',
   Game = 'Game',
-  Album = 'Album'
+  Album = 'Album',
+  Book = 'Book'
 }
 
 export enum QuickReviewRating {

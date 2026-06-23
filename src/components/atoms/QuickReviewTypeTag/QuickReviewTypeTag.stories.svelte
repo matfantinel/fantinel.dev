@@ -27,3 +27,4 @@
 <Story name="TV Show" args={{ type: 'TV Show' }} />
 <Story name="Game" args={{ type: 'Game' }} />
 <Story name="Album" args={{ type: 'Album' }} />
+<Story name="Book" args={{ type: 'Book' }} />
