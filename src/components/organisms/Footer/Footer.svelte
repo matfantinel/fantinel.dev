@@ -17,7 +17,7 @@
 
 <footer class={['o-footer', className]} style="view-transition-name: footer">
   <div class="o-footer__wrapper">
-    <div class="o-footer__container u-container">
+    <div class="o-footer__container u-content-grid">
       <div class="o-footer__copyright">
         © {currentYear} Matheus Fantinel
       </div>
@@ -53,9 +53,12 @@
           <img src="/badges/TransRights.svg" alt="Trans Rights are Human Rights" />
         </div>
       </div>
-    </div>
-    <div class="o-footer__townsquare">
-      <TownSquare mode="mobile" />
+
+      <div class="o-footer__townsquare-container u-content-grid full-width">
+        <div class="o-footer__townsquare smol">
+          <TownSquare excludePaths={['/garden']} />
+        </div>
+      </div>
     </div>
   </div>
 </footer>
@@ -97,13 +100,8 @@
     }
 
     &__container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: var(--spacing-md);
-
-      padding: var(--spacing-xl) var(--spacing-lg) var(--spacing-xxl);
+      row-gap: var(--spacing-md);
+      padding-block: var(--spacing-xl) var(--spacing-xxl);
     }
 
     &__copyright {
@@ -125,6 +123,11 @@
       display: flex;
       align-items: center;
       justify-content: center;
+    }
+
+    &__townsquare-container {
+      --smol-max-width: 504px;
+      width: 100%;
     }
   }
 

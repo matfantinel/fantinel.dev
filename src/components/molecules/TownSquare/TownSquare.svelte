@@ -1,19 +1,13 @@
 <script lang="ts">
   import { onMount, onDestroy } from 'svelte';
 
-  type TownSquareMode = 'desktop' | 'mobile';
-
   type Props = {
-    mode: TownSquareMode;
+    excludePaths?: string[];
   };
 
-  let { mode }: Props = $props();
-
-  const BREAKPOINT = 768;
+  let { excludePaths = [] }: Props = $props();
 
   let isBrowser = $state(false);
-  let windowWidth = $state(BREAKPOINT);
-  let shouldRegister = $derived(isBrowser && (mode === 'desktop' ? windowWidth >= BREAKPOINT : windowWidth < BREAKPOINT));
   let isRegistered = $state(false);
   let containerEl: HTMLDivElement | null = null;
   let unmountFn: (() => void) | null = null;
@@ -39,7 +33,6 @@
       return cssLoadedPromise;
     }
 
-    // Link exists but may have been removed from DOM by Astro transitions
     if (!document.head.contains(linkEl)) {
       document.head.appendChild(linkEl);
     }
@@ -55,26 +48,28 @@
     return modulePromise;
   }
 
-  async function register() {
-    if (isRegistered || isRegistering || !containerEl || !isBrowser) {
-      return;
+  function internalCleanup() {
+    if (unmountFn) {
+      unmountFn();
+      unmountFn = null;
     }
+    if (containerEl) {
+      containerEl.style.display = 'none';
+    }
+    isRegistering = false;
+    isRegistered = false;
+  }
+
+  async function register() {
+    if (isRegistered || isRegistering || !containerEl || !isBrowser) return;
+    const path = window.location.pathname.replace(/\/$/, '') || '/';
+    if (excludePaths.includes(path)) return;
 
     isRegistering = true;
-
     await loadStylesheet();
-
-    if (!containerEl) {
-      isRegistering = false;
-      return;
-    }
-
+    if (!containerEl) { isRegistering = false; return; }
     const mod = await getModule();
-
-    if (!containerEl) {
-      isRegistering = false;
-      return;
-    }
+    if (!containerEl) { isRegistering = false; return; }
 
     containerEl.style.display = 'block';
 
@@ -102,41 +97,17 @@
   }
 
   function unregister() {
-    if (!isBrowser || (!isRegistered && !isRegistering)) {
-      return;
-    }
-
-    if (unmountFn) {
-      unmountFn();
-      unmountFn = null;
-    }
-
-    if (containerEl) {
-      containerEl.style.display = 'none';
-    }
-
-    isRegistering = false;
-    isRegistered = false;
-  }
-
-  function onResize() {
-    const newWidth = window.innerWidth;
-    if (newWidth !== windowWidth) {
-      windowWidth = newWidth;
-    }
+    if (!isBrowser || (!isRegistered && !isRegistering)) return;
+    internalCleanup();
   }
 
   function onAstroPageLoad() {
-    if (!shouldRegister) {
-      return;
-    }
-
     if (isRegistered) {
       if (!linkEl || !document.head.contains(linkEl)) {
         linkEl = null;
         cssLoadedPromise = null;
       }
-      unregister();
+      internalCleanup();
       register();
     } else {
       register();
@@ -145,30 +116,19 @@
 
   onMount(() => {
     isBrowser = true;
-    windowWidth = window.innerWidth;
-    window.addEventListener('resize', onResize);
     document.addEventListener('astro:page-load', onAstroPageLoad);
   });
 
   onDestroy(() => {
     unregister();
-    if (typeof window !== 'undefined') {
-      window.removeEventListener('resize', onResize);
-    }
     if (typeof document !== 'undefined') {
       document.removeEventListener('astro:page-load', onAstroPageLoad);
     }
   });
 
   $effect(() => {
-    if (!isBrowser) {
-      return;
-    }
-    if (shouldRegister) {
-      register();
-    } else {
-      unregister();
-    }
+    if (!isBrowser) return;
+    register();
   });
 </script>
 

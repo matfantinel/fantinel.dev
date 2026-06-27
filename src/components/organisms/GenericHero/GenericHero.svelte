@@ -9,6 +9,7 @@
   import Stack from '@components/molecules/Stack';
   import type { Snippet } from 'svelte';
   import type { BaseProps } from '@utils/types';
+  import TownSquare from '@components/molecules/TownSquare';
 
   export type GenericHeroProps = BaseProps & {
     title: string;
@@ -18,6 +19,7 @@
     image?: string;
     imageAlt?: string;
     polaroids?: Omit<PolaroidCardProps, 'class'> | Omit<PolaroidCardProps, 'class'>[];
+    hasTownSquare?: boolean;
   };
 
   let {
@@ -29,13 +31,12 @@
     imageAlt,
     polaroids,
     children,
+    hasTownSquare,
     class: className,
   }: GenericHeroProps & { children?: Snippet } = $props();
 
-  let resolvedPolaroids = $derived(
-    polaroids ? (Array.isArray(polaroids) ? polaroids : [polaroids]) : []
-  );
-  let hasVisual = $derived(!!(image || resolvedPolaroids.length > 0));
+  let resolvedPolaroids = $derived(polaroids ? (Array.isArray(polaroids) ? polaroids : [polaroids]) : []);
+  let hasVisual = $derived(!!(image || resolvedPolaroids.length > 0 || hasTownSquare));
   let classList = $derived(['o-generic-hero u-content-grid', hasVisual ? 'o-generic-hero--has-image' : '', className]);
 </script>
 
@@ -87,6 +88,10 @@
       </div>
     {:else if image}
       <Image class="o-generic-hero__image" src={image} alt={imageAlt || title} />
+    {:else if hasTownSquare}
+      <div class="o-generic-hero__town-square">
+        <TownSquare />
+      </div>
     {/if}
   </div>
 
@@ -136,6 +141,10 @@
       justify-content: center;
       width: 100%;
       height: 260px;
+    }
+
+    &__town-square {
+      width: 100%;
     }
 
     &__title {

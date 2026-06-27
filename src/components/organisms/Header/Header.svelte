@@ -7,7 +7,6 @@
   import PagefindSearchField from '@components/molecules/PagefindSearchField';
 
   import type { BaseProps } from '@utils/types';
-  import TownSquare from '@components/molecules/TownSquare';
 
   export type HeaderProps = BaseProps & {
     currentSearch?: string;
@@ -134,9 +133,6 @@
       <ThemeToggle class="o-header__theme-toggle" />
     </div>
 
-    <div class="o-header__townsquare">
-      <TownSquare mode="desktop" />
-    </div>
   </div>
 </header>
 
@@ -202,20 +198,6 @@
       margin-top: var(--spacing-xs);
     }
 
-    &__townsquare {
-      margin-inline: calc(var(--spacing-md) * -1);
-      margin-top: auto;
-
-      :global(#townsquare-root#townsquare-root) {
-        --scene: var(--t--surface--root);
-        --page: var(--t--surface--root);
-
-        :global(.townsquare) {
-          --ts-toolbar-reserve: 0px;
-        }
-      }
-    }
-
     :global(.o-header__theme-toggle) {
       align-self: center;
     }
@@ -232,8 +214,7 @@
     }
 
     @include breakpoints.for-phone-only {
-      &__seasonal-message,
-      &__townsquare {
+      &__seasonal-message {
         display: none;
       }
 

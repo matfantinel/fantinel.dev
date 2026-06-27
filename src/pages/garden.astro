@@ -1,6 +1,7 @@
 ---
 import GenericHero from '@components/organisms/GenericHero';
 import SearchResult from '@components/molecules/SearchResult';
+import TownSquare from '@components/molecules/TownSquare';
 import { PostType } from '@schemas/post-types';
 import BaseLayout from '@layouts/BaseLayout.astro';
 import { getGardenConfig, getSiteMeta } from '@data/yaml';
@@ -15,11 +16,14 @@ const siteMeta = getSiteMeta();
   image={pageData.pagePreviewImage ? siteMeta.baseUrl + pageData.pagePreviewImage : undefined}
 >
   <div class="p-garden full-width u-content-grid">
+
     <div class="p-garden__hero full-width">
       <GenericHero
         title={pageData.hero?.title}
         body={pageData.hero?.body}
         image={pageData.hero?.image}
+        hasTownSquare={pageData.hero?.hasTownSquare}
+        client:load
       />
     </div>
 
