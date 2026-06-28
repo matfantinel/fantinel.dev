@@ -76,15 +76,6 @@
     const mountResult = mod.mountTownSquare(containerEl, {
       serverOrigin: 'https://townsquare.cauenapier.com',
       siteKey: 'site_k_9oCjUr9qDV93xm',
-      scene: {
-        benches: 2,
-        benchXs: [0.2, 0.72],
-        trees: 2,
-        treeXs: [0.85, 0.4],
-        lamps: 2,
-        lampXs: [0.12, 0.64],
-        birds: 2,
-      },
       theme: 'host',
     });
 
