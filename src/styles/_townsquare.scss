@@ -44,6 +44,7 @@
 }
 #townsquare-root#townsquare-root .townsquare__stage {
   border-radius: var(--border-radius);
+  box-shadow: var(--t--shadow--base);
   background: linear-gradient(
     180deg,
     var(--scene) 0%,
