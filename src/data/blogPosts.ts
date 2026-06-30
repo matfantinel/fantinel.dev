@@ -56,8 +56,11 @@ export function sanitizeBlogPostData(post: BlogPost, postBody?: string, rendered
 
   if (!post.coverImage) {
     if (isCoolLinksPost) {
-      post.coverImage = `${siteMeta.baseUrl}${generateOgPathFromCoolLinksPost(post)}`;
-      post.ogImage = post.coverImage;
+      // post.coverImage = `${siteMeta.baseUrl}${generateOgPathFromCoolLinksPost(post)}`;
+      // post.ogImage = post.coverImage;
+
+      // Let's hide Cool Links post from archive
+      post.hidden = true;
     } else if (post.title) {
       post.ogImage = `${siteMeta.baseUrl}${generateOgPathFromPost(post)}`;
     }
@@ -170,7 +173,9 @@ export async function getBlogPostsByDate(dateSlug: string): Promise<BlogPost[]> 
  */
 export async function getAllCategories(): Promise<BlogPostCategory[]> {
   const posts = await getCollection("blog");
-  const sanitizedPosts = posts.map((post) => sanitizeBlogPostData(post.data as unknown as BlogPost, post.body, post.rendered));
+  const sanitizedPosts = posts
+    .map((post) => sanitizeBlogPostData(post.data as unknown as BlogPost, post.body, post.rendered))
+    .filter((p) => !p.hidden);
 
   // First collect all categories from all posts
   const allCategories: BlogPostCategory[] = [];
@@ -214,7 +219,9 @@ export async function getAllCategories(): Promise<BlogPostCategory[]> {
  */
 export async function getCategoryFilters(activeSlug?: string): Promise<FilterTag[]> {
   const posts = await getCollection("blog");
-  const sanitizedPosts = posts.map((post) => sanitizeBlogPostData(post.data as unknown as BlogPost, post.body, post.rendered));
+  const sanitizedPosts = posts
+    .map((post) => sanitizeBlogPostData(post.data as unknown as BlogPost, post.body, post.rendered))
+    .filter((p) => !p.hidden);
 
   // First collect all categories from all posts
   const allCategories: BlogPostCategory[] = [];
