@@ -91,6 +91,10 @@ const processedFilterGroups = setActiveFilterGroups(filterGroups, baseUrl);
 
   .l-base-archive {
     --content-max-width: 1100px;
+    // Repeating just to create specificity
+    &:has(> .on-sidebar) {
+      --content-max-width: 1100px;
+    }
 
     &__content {
       display: flex;
