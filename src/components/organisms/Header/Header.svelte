@@ -75,7 +75,7 @@
 <header class={['o-header', className]} style="view-transition-name: header">
   <div class="o-header__container">
     <div class="o-header__seasonal-message">
-      🏳️‍🌈 <span>Happy Pride month!</span>
+      🇧🇷 <span>VAI BRASIL!</span>
     </div>
 
     <a href="/" aria-label="Home" class="o-header__logo">
@@ -150,6 +150,7 @@
     &__seasonal-message {
       @include typography.icon-label;
       text-align: center;
+      font-weight: 700;
 
       position: absolute;
       top: var(--spacing-xs);
@@ -157,7 +158,8 @@
       width: 100%;
 
       span {
-        @include typography.gradient-pride;
+        @include typography.gradient(linear-gradient(to right, #019441, #FFCB00, #019441));
+        text-shadow: 0px 0px 2px rgba(0, 0, 0, 0.1);
       }
     }
 
