@@ -50,6 +50,10 @@ export function sanitizeBlogPostData(post: BlogPost, postBody?: string, rendered
   }
 
   const isCoolLinksPost = post.categories?.some((cat) => cat.slug === 'cool-links');
+  if (isCoolLinksPost) {
+    // Let's hide Cool Links post from archive
+    post.hidden = true;
+  }
 
   // Handle cover images
   post.ogImage = post.coverImage;
@@ -58,9 +62,6 @@ export function sanitizeBlogPostData(post: BlogPost, postBody?: string, rendered
     if (isCoolLinksPost) {
       // post.coverImage = `${siteMeta.baseUrl}${generateOgPathFromCoolLinksPost(post)}`;
       // post.ogImage = post.coverImage;
-
-      // Let's hide Cool Links post from archive
-      post.hidden = true;
     } else if (post.title) {
       post.ogImage = `${siteMeta.baseUrl}${generateOgPathFromPost(post)}`;
     }
