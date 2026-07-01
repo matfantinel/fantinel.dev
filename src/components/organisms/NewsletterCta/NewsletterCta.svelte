@@ -62,6 +62,7 @@
 
       opacity: 0.2;      
       overflow: hidden;
+      border-radius: inherit;
 
       &:before,
       &:after {
