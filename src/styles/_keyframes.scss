@@ -37,6 +37,24 @@
   }
 }
 
+@keyframes floating-large {
+  0% {
+    transform: translateY(0%);
+  }
+  25% {
+    transform: translateY(15%);
+  }
+  50% {
+    transform: translateY(0%);
+  }
+  75% {
+    transform: translateY(-15%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
+}
+
 @keyframes nudge {
   0% {
     transform: rotate(-10deg);

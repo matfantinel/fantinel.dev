@@ -10,6 +10,7 @@ import type { BlogPost } from '@schemas/blog';
 import { handleCmsMediaPath } from '@utils/functions';
 import BaseLayout from './BaseLayout.astro';
 import CommentCta from '@components/organisms/CommentCta';
+import NewsletterCta from '@components/organisms/NewsletterCta';
 
 interface Props {
   post: {
@@ -122,6 +123,17 @@ if (post.data.ogImage) {
                 href: pageData.relatedPosts?.button?.href ?? '/blog',
               }}
               posts={post.data.relatedPosts}
+            />
+          )
+        }
+
+        {
+          siteMeta.newsletterCta && (
+            <NewsletterCta
+              heading={siteMeta.newsletterCta.heading}
+              body={siteMeta.newsletterCta.body}
+              formUrl={siteMeta.newsletterCta.formUrl}
+              tag={siteMeta.newsletterCta.tag}
             />
           )
         }

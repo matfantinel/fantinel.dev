@@ -13,6 +13,7 @@ export type SiteMeta = {
     heading: string;
     body: string;
     formUrl: string;
+    tag?: string;
   };
   navigation?: NavigationLink[];
   secondaryNavigation?: NavigationLink[];

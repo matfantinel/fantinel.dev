@@ -1,0 +1,47 @@
+---
+import GenericHero from '@components/organisms/GenericHero';
+import NewsletterCta from '@components/organisms/NewsletterCta';
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { getNewsletterConfig, getSiteMeta } from '@data/yaml';
+
+const pageData = getNewsletterConfig();
+const siteMeta = getSiteMeta();
+---
+
+<BaseLayout
+  title={pageData.pageTitle}
+  description={pageData.pageDescription}
+  image={pageData.pagePreviewImage ? siteMeta.baseUrl + pageData.pagePreviewImage : undefined}
+>
+  <div class="p-newsletter full-width u-content-grid">
+
+    <div class="p-newsletter__hero full-width">
+      <GenericHero
+        title={pageData.hero?.title}
+        body={pageData.hero?.body}
+        image={pageData.hero?.image}
+        hasTownSquare={pageData.hero?.hasTownSquare}
+        client:load
+      />
+    </div>
+
+    <div class="p-newsletter__cta">
+      <NewsletterCta
+        heading={siteMeta.newsletterCta.heading}
+        body={siteMeta.newsletterCta.body}
+        formUrl={siteMeta.newsletterCta.formUrl}
+        tag={siteMeta.newsletterCta.tag}
+      />
+    </div>
+  </div>
+</BaseLayout>
+
+<style lang="scss">
+  @use '/src/styles/mixins';
+
+  .p-newsletter {
+    &__cta {
+      margin-top: var(--spacing-lg);
+    }
+  }
+</style>

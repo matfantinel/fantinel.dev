@@ -81,6 +81,13 @@ export type GardenConfig = {
   pages: GardenPageLink[];
 };
 
+export type NewsletterConfig = {
+  pageTitle: string;
+  pageDescription: string;
+  pagePreviewImage?: string;
+  hero: GenericHeroProps;
+};
+
 export type BlogSingleConfig = {
   commentCta?: {
     content?: string;
