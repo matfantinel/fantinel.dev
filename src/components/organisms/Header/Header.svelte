@@ -74,9 +74,7 @@
 
 <header class={['o-header', className]} style="view-transition-name: header">
   <div class="o-header__container">
-    <div class="o-header__seasonal-message">
-      🇧🇷 <span>VAI BRASIL!</span>
-    </div>
+    <!-- <div class="o-header__seasonal-message"></div> -->
 
     <a href="/" aria-label="Home" class="o-header__logo">
       <Logo size="80px" />

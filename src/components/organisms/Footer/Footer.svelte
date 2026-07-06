@@ -1,5 +1,4 @@
 <script lang="ts">
-  import TownSquare from '@components/molecules/TownSquare';
   import ThemeToggle from '@components/molecules/ThemeToggle';
 
   import SocialLink from '@components/atoms/SocialLink';
@@ -51,12 +50,6 @@
 
         <div class="o-footer__badge">
           <img src="/badges/TransRights.svg" alt="Trans Rights are Human Rights" />
-        </div>
-      </div>
-
-      <div class="o-footer__townsquare-container u-content-grid full-width">
-        <div class="o-footer__townsquare smol">
-          <TownSquare excludePaths={['/garden']} />
         </div>
       </div>
     </div>
@@ -123,11 +116,6 @@
       display: flex;
       align-items: center;
       justify-content: center;
-    }
-
-    &__townsquare-container {
-      --smol-max-width: 504px;
-      width: 100%;
     }
   }
 
