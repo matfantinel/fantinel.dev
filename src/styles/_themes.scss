@@ -282,6 +282,9 @@ $palette-colors: (
   --t--surface--accent: var(--palette--gray-1000);
   --t--surface--card: var(--palette--gray-1000);
   --t--surface--card--rgb: var(--palette--gray-1000--rgb);
+
+  --t--codeblock--bg: var(--palette--gray-max);
+  --t--codeblock--text: var(--palette--gray-0);
 }
 
 @mixin light-theme {
