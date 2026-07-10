@@ -19,7 +19,7 @@
 		figcaption,
 		lazy = true,
 		skipSrcset = false,
-		formats = ['avif', 'webp', 'png'],
+		formats = ['webp', 'png'],
 		widths,
 		class: className,
 		...props
