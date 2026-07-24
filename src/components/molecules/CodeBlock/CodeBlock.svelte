@@ -66,7 +66,6 @@
 		box-shadow: var(--t--shadow--base);
 
 		padding: var(--spacing-lg) var(--spacing-sm) var(--spacing-md);
-		margin: var(--spacing-lg) 0;
 
 		:global(pre) {
 			font-family: var(--font--mono);
