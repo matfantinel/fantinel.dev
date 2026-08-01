@@ -25,7 +25,7 @@ export async function GET() {
     } else if (item.type === PostType.QUICK_REVIEW) {
       return quickReviewToRssItem(item.data as QuickReview);
     } else if (item.type === PostType.COOL_LINK) {
-      return coolLinkToRssItem(item.data as CoolLink);
+      return coolLinkToRssItem(item.data as CoolLink, { useSelfUrl: false });
     } else if (item.type === PostType.PHOTOGRAPHY) {
       return photographyToRssItem(item.data as Photography);
     }

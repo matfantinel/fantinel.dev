@@ -240,12 +240,13 @@ export async function getLinksByDate(dateSlug: string): Promise<CoolLink[]> {
  * @param link The cool link to convert.
  * @returns The RSS item string.
  */
-export function coolLinkToRssItem(link: CoolLink): string {
+export function coolLinkToRssItem(link: CoolLink, options: { useSelfUrl?: boolean } = {}): string {
+  const { useSelfUrl = true } = options;
   return `
     <item>
       <guid>${link.url}</guid>
       <title>Cool Link: ${escapeXml(link.title as string)}</title>
-      <link>${link.url}</link>
+      <link>${useSelfUrl && link.selfUrl ? link.selfUrl : link.url}</link>
       <pubDate>${dateformat(link.savedOn, 'ddd, dd mmm yyyy HH:MM:ss o', true)}</pubDate>
       <content:encoded><![CDATA[
         ${link.author ? `<p>by ${link.author}</p>` : ''}
