@@ -19,7 +19,7 @@
 
   let results = $state<PagefindResult[]>([]);
   let isLoading = $state<boolean>(true);
-  let noExactMatches = $state<boolean>(false);
+  // let noExactMatches = $state<boolean>(false);
 
   onMount(async () => {
     if (!query) {
@@ -43,15 +43,17 @@
     //   });
     // }
 
-    // By default, Pagefind looks for similar words
-    // e.g. searching for "useful" would return "use" and "using"
-    // I don't want that, so I'm wrapping the query in quotes so it only fetches exact matches.
-    let search = await pagefind.search(`"${query}"`);
-    // If there's no results for an exact match, then do a fuzzy search instead.
-    if (search && (!search.results || !search.results.length)) {
-      noExactMatches = true;
-      search = await pagefind.search(query);
-    }
+    // // By default, Pagefind looks for similar words
+    // // e.g. searching for "useful" would return "use" and "using"
+    // // I don't want that, so I'm wrapping the query in quotes so it only fetches exact matches.
+    // let search = await pagefind.search(`"${query}"`);
+    // // If there's no results for an exact match, then do a fuzzy search instead.
+    // if (search && (!search.results || !search.results.length)) {
+    //   noExactMatches = true;
+    //   search = await pagefind.search(query);
+    // }
+
+    let search = await pagefind.search(query);
 
     results = await Promise.all(search.results.map(async (result) => await result.data()));
     console.log({results});
@@ -111,13 +113,13 @@
         </ArrowLink>
       </div>
     {:else}
-      {#if noExactMatches}
+      <!-- {#if noExactMatches}
         <div class="o-pagefind-search-results__no-results">
           <span>
             No exact matches, but maybe some of these might help:
           </span>
         </div>
-      {/if}
+      {/if} -->
       {#if results && results.length > 0}
         <SearchResults
           class="o-pagefind-search-results__results"
