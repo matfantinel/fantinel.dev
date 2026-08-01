@@ -37,13 +37,8 @@
         ranking: {
           // https://pagefind.app/docs/ranking
           termFrequency: 0.0,
-          // termSimilarity: 0.0,
-          termSaturation: 0.0,
-          // Strongly boost pages whose title contains the search terms.
-          // Requires Pagefind >= 1.5.0; ignored by older versions.
-          metaWeights: {
-            title: 20.0
-          }
+          termSimilarity: 0.0,
+          termSaturation: 0.0
         }
       });
     }
