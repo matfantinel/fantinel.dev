@@ -43,7 +43,7 @@
 <div class={classList}>
   <div class="o-generic-hero__container">
     <div class="o-generic-hero__content">
-      <h1 class="o-generic-hero__title" data-pagefind-meta="title">
+      <h1 class="o-generic-hero__title" data-pagefind-meta="title" data-pagefind-weight="10">
         {title}
       </h1>
 

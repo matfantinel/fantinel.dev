@@ -31,7 +31,7 @@
 
 <div class={['o-post-hero u-content-grid', className]}>
   <div class="o-post-hero__container">
-    <h1 class="o-post-hero__title" data-pagefind-meta="title">
+    <h1 class="o-post-hero__title" data-pagefind-meta="title" data-pagefind-weight="10">
       {title}
     </h1>
 
