@@ -43,12 +43,12 @@
 <div class={classList}>
   <div class="o-generic-hero__container">
     <div class="o-generic-hero__content">
-      <h1 class="o-generic-hero__title" data-pagefind-meta="title">
+      <h1 class="o-generic-hero__title" data-pagefind-body>
         {title}
       </h1>
 
       {#if body}
-        <div class="o-generic-hero__body u-markdown">
+        <div class="o-generic-hero__body u-markdown" data-pagefind-body>
           <MarkdownRenderer content={body} />
         </div>
       {/if}

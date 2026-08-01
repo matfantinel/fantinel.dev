@@ -73,7 +73,7 @@ const hasHeroVisual = !!(page.data.heroImage || heroPolaroids?.length);
     <div class='l-md-page__content full-width u-content-grid'>
       {
         showToc && (
-          <div class='l-md-page__toc on-sidebar' data-pagefind-body>
+          <div class='l-md-page__toc on-sidebar'>
             <TableOfContents headings={page.data.toc} client:load />
           </div>
         )

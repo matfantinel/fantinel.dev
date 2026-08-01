@@ -36,9 +36,9 @@
       await pagefind.options({
         ranking: {
           // https://pagefind.app/docs/ranking
-          termFrequency: 0.0,
-          termSimilarity: 0.0,
-          termSaturation: 0.0
+          // termFrequency: 0.0,
+          // termSimilarity: 0.0,
+          // termSaturation: 0.0
         }
       });
     }
