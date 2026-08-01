@@ -15,7 +15,13 @@ export default defineConfig({
   devToolbar: { enabled: false },
 
   vite: {
-    plugins: [yaml()]
+    plugins: [yaml()],
+    // Vite 8 / Astro 7 now use Lightning CSS for CSS minification by default.
+    // Some generated CSS causes Lightning CSS to throw "Unexpected token Delim('.')".
+    // Revert to esbuild until the underlying CSS is fixed.
+    build: {
+      cssMinify: 'esbuild'
+    }
   },
 
   adapter: vercel()
