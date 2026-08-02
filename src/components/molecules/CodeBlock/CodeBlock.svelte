@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Prism from 'prismjs';
+	import Prism from '@utils/prism';
 	import 'prismjs/components/prism-json';
 	import 'prismjs/components/prism-bash';
 	import 'prismjs/components/prism-css';
