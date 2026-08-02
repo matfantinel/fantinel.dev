@@ -24,11 +24,11 @@ export const highlighter = await createHighlighter({
 		'css',
 		'scss',
 		'markdown',
-		'powershell',
 		'svelte',
 		'yaml',
 		'html',
-		'diff'
+		'diff',
+		'xml'
 	]
 });
 
