@@ -35,7 +35,7 @@ ul {
   list-style: outside;
 }
 
-code:not([class^='language-']) {
+code:not(.m-code-block__code) {
   font-family: var(--font--mono);
   background: var(--t--surface--accent);
   padding: var(--spacing-xxs) var(--spacing-xs);
