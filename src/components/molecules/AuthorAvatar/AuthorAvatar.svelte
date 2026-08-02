@@ -50,7 +50,7 @@
       in:fly={{ delay: 700, duration: 500, y: '100%', opacity: 0 }}
       out:fly={{ duration: 500, y: '100%', opacity: 0 }}
     >
-      <Image class="m-author-avatar__image" src={images[currentImage]} {alt} height={size} width={size} lazy={false} />
+      <Image class="m-author-avatar__image" src={images[currentImage]} {alt} lazy={false} sizes="164px" />
     </div>
   {/key}
 </svelte:element>

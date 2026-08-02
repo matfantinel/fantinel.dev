@@ -5,6 +5,9 @@ dist/
 # generated types
 .astro/
 
+# generated at build/dev startup by integrations/image-manifest.mjs
+src/data/generated/
+
 # dependencies
 node_modules/
 package-lock.json

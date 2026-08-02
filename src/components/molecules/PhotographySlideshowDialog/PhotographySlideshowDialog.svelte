@@ -60,9 +60,9 @@
 
     <carousel-pilot centered>
       <div class="m-photography-slideshow-dialog__list" data-carousel-track>
-        <Image class="m-photography-slideshow-dialog__image" src={image} alt={imageAlt} />
+        <Image class="m-photography-slideshow-dialog__image" src={image} alt={imageAlt} sizes="100vw" />
         {#each additionalImages as additionalImage}
-          <Image class="m-photography-slideshow-dialog__image" src={additionalImage.src} alt={additionalImage.alt} />
+          <Image class="m-photography-slideshow-dialog__image" src={additionalImage.src} alt={additionalImage.alt} sizes="100vw" />
         {/each}
       </div>
 

@@ -7,11 +7,12 @@ import yaml from '@modyfi/vite-plugin-yaml';
 import vercel from '@astrojs/vercel';
 import sitemap from '@astrojs/sitemap';
 import sitemapNoindexFilter from './integrations/sitemap-noindex-filter.mjs';
+import imageManifest from './integrations/image-manifest.mjs';
 
 // https://astro.build/config
 export default defineConfig({
   site: "https://fantinel.dev",
-  integrations: [svelte(), sitemap(), sitemapNoindexFilter()],
+  integrations: [svelte(), sitemap(), sitemapNoindexFilter(), imageManifest()],
   devToolbar: { enabled: false },
 
   vite: {
