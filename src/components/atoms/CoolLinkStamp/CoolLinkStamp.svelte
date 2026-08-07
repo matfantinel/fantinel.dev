@@ -75,7 +75,6 @@
       font-weight: 600;
       text-align: center;
       color: var(--t--cool-link);
-      filter: drop-shadow(var(--t--cool-link--glow-tiny));
     }
   }
 </style>
