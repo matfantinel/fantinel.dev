@@ -91,6 +91,7 @@ export type NewsletterConfig = {
 export type BlogSingleConfig = {
   commentCta?: {
     content?: string;
+    contentBr?: string;
   };
   relatedPosts?: {
     heading?: string;

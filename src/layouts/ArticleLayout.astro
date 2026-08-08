@@ -92,7 +92,7 @@ if (post.data.ogImage) {
           <CommentCta
             email={post.data.author.socials.find((s) => s.name === 'Email')!.url.replace('mailto:', '')}
             emailSubject={`I read "${post.data.title}" and have thoughts`}
-            content={pageData.commentCta?.content}
+            content={post.data.slug.endsWith('-pt-br') ? pageData.commentCta?.contentBr : pageData.commentCta?.content}
           />
         )
       }
