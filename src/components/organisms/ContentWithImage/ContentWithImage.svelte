@@ -201,10 +201,11 @@
     }
 
     &--image-behavior-contain {
-      :global(.o-content-with-image__image) {
-        width: auto;
-        height: auto;
-      }
+      // I don't remember why I had this in the first place, but it was making images too small in Safari 26
+      // :global(.o-content-with-image__image) {
+        // width: auto;
+        // height: auto;
+      // }
       :global(.o-content-with-image__image--slot) {
         width: 100%;
         height: 100%;
