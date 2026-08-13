@@ -99,6 +99,10 @@ const hasHeroVisual = !!(page.data.heroImage || heroPolaroids?.length);
     @include mixins.set-accent-color('project');
   }
 
+  :root:has(.l-md-page--garden) {
+    @include mixins.set-accent-color('garden');
+  }
+
   .l-md-page {
     &__hero {
       margin-bottom: 0;
