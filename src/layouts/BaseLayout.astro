@@ -92,7 +92,7 @@ const pathname = new URL(Astro.request.url).pathname;
       <Footer socials={siteMeta.author?.socials} client:load transition:persist transition:name='footer' />
     </div>
     <script>
-      import(/* @vite-ignore */ '@stefanjudis/sparkly-text');
+      import '@stefanjudis/sparkly-text';
 
       document.addEventListener('DOMContentLoaded', () => {
         // Add smooth-scroll class to html element on page load
