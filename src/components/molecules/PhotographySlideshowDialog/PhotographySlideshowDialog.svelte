@@ -62,7 +62,12 @@
       <div class="m-photography-slideshow-dialog__list" data-carousel-track>
         <Image class="m-photography-slideshow-dialog__image" src={image} alt={imageAlt} sizes="100vw" />
         {#each additionalImages as additionalImage}
-          <Image class="m-photography-slideshow-dialog__image" src={additionalImage.src} alt={additionalImage.alt} sizes="100vw" />
+          <Image
+            class="m-photography-slideshow-dialog__image"
+            src={additionalImage.src}
+            alt={additionalImage.alt}
+            sizes="100vw"
+          />
         {/each}
       </div>
 
@@ -186,10 +191,10 @@
     }
 
     &__about {
-      max-width: 480px;
+      max-width: 908px;
       display: flex;
       flex-direction: column;
-      align-items: center;
+      align-items: flex-start;
       gap: var(--spacing-xs);
 
       padding: var(--spacing-md) var(--spacing-md) var(--spacing-lg);
@@ -199,20 +204,61 @@
       @include typography.h4;
       font-family: var(--font--spicy);
       color: var(--t--photography);
-      text-align: center;
     }
 
     &__date {
       @include typography.b3;
       color: var(--t--text--medium);
-      text-align: center;
     }
 
     &__description {
       @include typography.b2;
       color: var(--t--text--base);
-      text-align: center;
-      gap: 1rem;
+      text-align: justify;
+      --markdown-spacing: 0.5em;
+
+      max-height: 5lh;
+      overflow: auto;
+      overscroll-behavior: contain;
+
+      // Add dynamic fade effects to the top/bottom of the description to indicate
+      // the user can scroll vertically
+      // From https://css-tricks.com/modern-scroll-shadows-using-scroll-driven-animations/
+
+      @property --top-fade {
+        syntax: '<length>';
+        inherits: false;
+        initial-value: 0;
+      }
+
+      @property --bottom-fade {
+        syntax: '<length>';
+        inherits: false;
+        initial-value: 0;
+      }
+
+      @keyframes scrollfade {
+        0% {
+          --top-fade: 0px;
+          --bottom-fade: var(--spacing-lg);
+        }
+        10% {
+          --top-fade: var(--spacing-lg);
+        }
+        90% {
+          --top-fade: var(--spacing-lg);
+          --bottom-fade: var(--spacing-lg);
+        }
+        100% {
+          --top-fade: var(--spacing-lg);
+          --bottom-fade: 0px;
+        }
+      }
+
+      mask: linear-gradient(to bottom, transparent, #000 var(--top-fade) calc(100% - var(--bottom-fade)), transparent);
+      animation: scrollfade;
+      animation-timeline: --scrollfade;
+      scroll-timeline: --scrollfade block;
     }
 
     &__list {
