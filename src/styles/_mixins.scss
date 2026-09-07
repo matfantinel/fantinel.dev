@@ -23,9 +23,8 @@
   --palette--#{$title}--rgb: #{functions.red($color)}, #{functions.green($color)}, #{functions.blue($color)};
 
   --palette--#{$title}--contrast: #{if(
-      functions.brightness($color) > 186,
-      var(--t--text--base),
-      var(--t--text--inverse)
+      sass(functions.brightness($color) > 186): var(--t--text--base);
+      else: var(--t--text--inverse)
     )};
 
   --palette--#{$title}--shade: hsl(
@@ -61,7 +60,7 @@
     @error "set-named-color('#{$name}'): provide either a palette color or $from-named.";
   }
 
-  $source: if($from-named != null, --t--#{$from-named}, --palette--#{$palette-color});
+  $source: if(sass($from-named != null): --t--#{$from-named}; else: --palette--#{$palette-color});
 
   --t--#{$name}: var(#{$source});
   --t--#{$name}--rgb: var(#{$source}--rgb);
