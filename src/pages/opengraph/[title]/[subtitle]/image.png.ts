@@ -30,7 +30,8 @@ export async function getStaticPaths() {
       params: {
         title,
         subtitle,
-      }
+      },
+      cacheKey: `1-${title}-${subtitle}`,
     }
   });
 }

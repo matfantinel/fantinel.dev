@@ -2,6 +2,7 @@
 import { getPaginatedReviews, getTypeFilters, getRatingFilters, getYearFilters } from '@data/quickReviews';
 import QuickReviewsArchiveLayout from '@layouts/QuickReviewsArchiveLayout.astro';
 import { QuickReviewType } from '@schemas/quick-review-types';
+import { buildCacheKey } from '@utils/cacheKey';
 
 const { type } = Astro.params;
 const { reviews, currentPage, totalPages, totalReviews } = await getPaginatedReviews(1, undefined, type as QuickReviewType);
@@ -14,9 +15,20 @@ const [typeFilters, ratingFilters, yearFilters] = await Promise.all([
 ]);
 
 export async function getStaticPaths() {
-  const paths = Object.keys(QuickReviewType).map((key) => ({
-    params: { type: key.toLowerCase() },
-  }));
+  const [ratingFilters, yearFilters] = await Promise.all([getRatingFilters(), getYearFilters()]);
+
+  const paths = await Promise.all(
+    Object.keys(QuickReviewType).map(async (key) => ({
+      params: { type: key.toLowerCase() },
+      cacheKey: buildCacheKey(
+        1,
+        await getPaginatedReviews(1, undefined, key as QuickReviewType),
+        await getTypeFilters(key),
+        ratingFilters,
+        yearFilters
+      ),
+    }))
+  );
 
   return paths;
 }

@@ -1,13 +1,17 @@
 ---
 import { getPaginatedPhotographies } from '@data/photographies';
 import PhotographyArchiveLayout from '@layouts/PhotographyArchiveLayout.astro';
+import { buildCacheKey } from '@utils/cacheKey';
 
 export async function getStaticPaths() {
   const { totalPages } = await getPaginatedPhotographies(1); // Just to get count
 
-  return Array.from({ length: totalPages }).map((_, i) => ({
-    params: { page: String(i + 2) }, // start at page 2
-  }));
+  return Promise.all(
+    Array.from({ length: totalPages }).map(async (_, i) => ({
+      params: { page: String(i + 2) }, // start at page 2
+      cacheKey: buildCacheKey(1, await getPaginatedPhotographies(i + 2)),
+    }))
+  );
 }
 
 const { page } = Astro.params;

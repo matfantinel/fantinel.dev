@@ -28,7 +28,8 @@ export async function getStaticPaths() {
     return {
       params: {
         title,
-      }
+      },
+      cacheKey: `1-${title}`
     }
   });
 }

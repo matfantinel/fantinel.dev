@@ -1,13 +1,24 @@
 ---
 import BlogArchiveLayout from "@layouts/BlogArchiveLayout.astro";
 import { getAllCategories, getCategoryFilters, getDateFilters, getPaginatedBlogPosts } from "@data/blogPosts";
+import { buildCacheKey } from "@utils/cacheKey";
 
 export async function getStaticPaths() {
   const categories = await getAllCategories();
+  const dateFilters = await getDateFilters();
 
-  return categories.map((category) => ({
-    params: { category: category.slug },
-  }));
+  return Promise.all(
+    categories.map(async (category) => ({
+      params: { category: category.slug },
+      cacheKey: buildCacheKey(
+        1,
+        await getPaginatedBlogPosts(1, category.slug),
+        await getCategoryFilters(category.slug),
+        dateFilters,
+        categories
+      ),
+    }))
+  );
 }
 
 const { category } = Astro.params;

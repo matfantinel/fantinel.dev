@@ -26,5 +26,9 @@ export default defineConfig({
     }
   },
 
-  adapter: vercel()
+  adapter: vercel(),
+
+  experimental: {
+    incrementalBuild: true
+  }
 });

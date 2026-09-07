@@ -1,6 +1,7 @@
 ---
 import { getEntriesByDate, getDateFilters } from '@data/everything';
 import TimelineArchiveLayout from '@layouts/TimelineArchiveLayout.astro';
+import { buildCacheKey } from '@utils/cacheKey';
 
 export async function getStaticPaths() {
   const dateFilters = await getDateFilters();
@@ -13,7 +14,12 @@ export async function getStaticPaths() {
     });
   });
 
-  return dates.map((date) => ({ params: { date } }));
+  return Promise.all(
+    dates.map(async (date) => ({
+      params: { date },
+      cacheKey: buildCacheKey(1, await getEntriesByDate(date), await getDateFilters(date)),
+    }))
+  );
 }
 
 const { date } = Astro.params;

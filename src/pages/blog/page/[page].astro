@@ -1,13 +1,18 @@
 ---
 import BlogArchiveLayout from "@layouts/BlogArchiveLayout.astro";
 import { getCategoryFilters, getDateFilters, getPaginatedBlogPosts } from "@data/blogPosts";
+import { buildCacheKey } from "@utils/cacheKey";
 
 export async function getStaticPaths() {
   const { totalPages } = await getPaginatedBlogPosts(1); // Just to get count
+  const [categoryFilters, dateFilters] = await Promise.all([getCategoryFilters(), getDateFilters()]);
 
-  return Array.from({ length: totalPages }).map((_, i) => ({
-    params: { page: String(i + 2) }, // start at page 2
-  }));
+  return Promise.all(
+    Array.from({ length: totalPages }).map(async (_, i) => ({
+      params: { page: String(i + 2) }, // start at page 2
+      cacheKey: buildCacheKey(1, await getPaginatedBlogPosts(i + 2), categoryFilters, dateFilters),
+    }))
+  );
 }
 
 const { page } = Astro.params;

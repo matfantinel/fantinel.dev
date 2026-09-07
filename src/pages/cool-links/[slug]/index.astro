@@ -2,13 +2,17 @@
 import { getPaginatedCoolLinks } from '@data/coolLinks';
 import { getPaginatedTimelineEntries } from '@data/everything';
 import CoolLinkLayout from '@layouts/CoolLinkLayout.astro';
+import { buildCacheKey } from '@utils/cacheKey';
 
 export async function getStaticPaths() {
   const { links } = await getPaginatedCoolLinks(1, undefined, { postsPerPage: 999 });
+  // The layout renders this too, so it must be part of the cacheKey
+  const latestTimelineEntries = (await getPaginatedTimelineEntries(1)).posts;
 
   const paths = links.map((link) => ({
     params: { slug: link.slug },
     props: { link },
+    cacheKey: buildCacheKey(1, link, latestTimelineEntries),
   }));
 
   return paths;

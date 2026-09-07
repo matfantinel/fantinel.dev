@@ -2,13 +2,17 @@
 import { getPaginatedPhotographies } from '@data/photographies';
 import { getPaginatedTimelineEntries } from '@data/everything';
 import PhotographyLayout from '@layouts/PhotographyLayout.astro';
+import { buildCacheKey } from '@utils/cacheKey';
 
 export async function getStaticPaths() {
   const { photographies } = await getPaginatedPhotographies(1, { postsPerPage: 999 });
+  // The layout renders this too, so it must be part of the cacheKey
+  const latestTimelineEntries = (await getPaginatedTimelineEntries(1)).posts;
 
   const paths = photographies.map((photography) => ({
     params: { slug: photography.slug },
     props: { photography },
+    cacheKey: buildCacheKey(1, photography, latestTimelineEntries)
   }));
 
   return paths;

@@ -1,16 +1,28 @@
 ---
 import CoolLinksArchiveLayout from "@layouts/CoolLinksArchiveLayout.astro";
 import { getAllTags, getPaginatedCoolLinks, getTagFilters, getDateFilters } from "@data/coolLinks";
+import { buildCacheKey } from "@utils/cacheKey";
 
 export async function getStaticPaths() {
   const tags = await getAllTags();
-  
+  const dateFilters = await getDateFilters();
+
   const paths = await Promise.all(
     tags.map(async (tag) => {
+      const tagFilters = await getTagFilters(tag.slug);
       const { totalPages } = await getPaginatedCoolLinks(1, tag.slug);
-      return Array.from({ length: totalPages }).map((_, i) => ({
-        params: { tag: tag.slug, page: String(i + 2) }, // start at page 2
-      }));
+      return Promise.all(
+        Array.from({ length: totalPages }).map(async (_, i) => ({
+          params: { tag: tag.slug, page: String(i + 2) }, // start at page 2
+          cacheKey: buildCacheKey(
+            1,
+            await getPaginatedCoolLinks(i + 2, tag.slug),
+            tagFilters,
+            dateFilters,
+            tags
+          ),
+        }))
+      );
     })
   );
 
