@@ -4,7 +4,6 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev --host",
-    "prebuild": "ls -la node_modules/.astro || echo 'ASTRO CACHE MISSING'",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
