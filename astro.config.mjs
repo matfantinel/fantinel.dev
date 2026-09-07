@@ -8,11 +8,12 @@ import vercel from '@astrojs/vercel';
 import sitemap from '@astrojs/sitemap';
 import sitemapNoindexFilter from './integrations/sitemap-noindex-filter.mjs';
 import imageManifest from './integrations/image-manifest.mjs';
+import cmsDotfilesCleanup from './integrations/cms-dotfiles-cleanup.mjs';
 
 // https://astro.build/config
 export default defineConfig({
   site: "https://fantinel.dev",
-  integrations: [svelte(), sitemap(), sitemapNoindexFilter(), imageManifest()],
+  integrations: [svelte(), sitemap(), sitemapNoindexFilter(), imageManifest(), cmsDotfilesCleanup()],
   devToolbar: { enabled: false },
 
   vite: {

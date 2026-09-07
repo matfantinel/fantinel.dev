@@ -30,7 +30,7 @@
     "@svelte-put/copy": "^4.0.0",
     "@sveltejs/vite-plugin-svelte": "^5.0.3",
     "@types/node": "^22.15.2",
-    "astro": "^7.1.6",
+    "astro": "^7.3.1",
     "carousel-pilot": "^1.0.1",
     "dateformat": "^5.0.3",
     "github-slugger": "^2.0.0",
@@ -50,8 +50,8 @@
     "vite-tsconfig-paths": "^5.1.4"
   },
   "dependencies": {
-    "@astrojs/sitemap": "^3.7.3",
-    "@astrojs/vercel": "^11.0.4",
+    "@astrojs/sitemap": "^3.7.4",
+    "@astrojs/vercel": "^11.0.10",
     "html-to-image": "^1.11.13"
   },
   "optionalDependencies": {

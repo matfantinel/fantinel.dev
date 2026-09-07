@@ -1,4 +1,4 @@
-import { z } from 'astro:content';
+import { z } from 'astro/zod';
 import type { SiteAuthor } from './site-meta';
 
 // Blog post schema definition

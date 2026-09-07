@@ -26,13 +26,18 @@ export function sanitizePhotography(photography: Photography, filepath: string, 
   }
 
   if (photography.additionalImages) {
-    photography.additionalImages = photography.additionalImages.map(
-      (img, index) => {
-        return {
-          src: handleCmsMediaPath(img as unknown as string),
-          alt: (photography .additionalImageAlts?.[index] || "") as string
-        }
-      }
+    const rawImages = photography.additionalImages as unknown as (
+      | string
+      | { src: string; alt: string }
+    )[];
+
+    photography.additionalImages = rawImages.map((img, index) =>
+      typeof img === "string"
+        ? {
+            src: handleCmsMediaPath(img),
+            alt: photography.additionalImageAlts?.[index] || ""
+          }
+        : img
     );
 
     delete photography.additionalImageAlts;

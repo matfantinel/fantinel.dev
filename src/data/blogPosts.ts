@@ -438,7 +438,11 @@ export function getRelatedBlogPosts(post: BlogPost, allPosts: BlogPost[]): BlogP
     // Extract just the posts
     .map(item => item.post)
     // Limit to 4 related posts
-    .slice(0, 4);
+    .slice(0, 4)
+    // Return decoupled copies without relatedPosts to avoid cyclic references
+    // (these objects are shared with the collection data and would otherwise
+    // link back to posts that themselves link here)
+    .map((post): BlogPost => ({ ...post, relatedPosts: undefined }));
 
   return relatedPosts;
 }

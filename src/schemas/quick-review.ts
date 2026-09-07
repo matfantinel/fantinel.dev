@@ -1,4 +1,4 @@
-import { z } from 'astro:content';
+import { z } from 'astro/zod';
 import { QuickReviewRating, QuickReviewType } from './quick-review-types';
 
 export const quickReviewSchema = z.object({
