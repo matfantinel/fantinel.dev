@@ -28,11 +28,6 @@ export default defineConfig({
 
   adapter: vercel(),
 
-  // Outside node_modules so package managers can't prune it, and persisted on
-  // Vercel via the "cache" field injected into .vercel/output/config.json
-  // by scripts/patch-vercel-cache.mjs
-  cacheDir: './.astro-cache',
-
   experimental: {
     incrementalBuild: true
   }

@@ -10,7 +10,7 @@
     "storybook": "storybook dev -p 6006 --no-open",
     "build-storybook": "storybook build",
     "pagefind-serve": "npm run build && npx pagefind --site dist/client --serve",
-    "postbuild": "node scripts/patch-vercel-cache.mjs && pagefind --site .vercel/output/static/"
+    "postbuild": "pagefind --site .vercel/output/static/"
   },
   "devDependencies": {
     "@astrojs/svelte": "^9.0.1",

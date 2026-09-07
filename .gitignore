@@ -5,9 +5,6 @@ dist/
 # generated types
 .astro/
 
-# build cache (incremental builds, content layer)
-.astro-cache/
-
 # generated at build/dev startup by integrations/image-manifest.mjs
 src/data/generated/
 
