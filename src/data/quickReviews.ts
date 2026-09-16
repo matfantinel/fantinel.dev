@@ -1,5 +1,5 @@
 import type { QuickReview } from "@schemas/quick-review";
-import { handleCmsMediaPath } from "@utils/functions";
+import { handleCmsMediaPath, handleCmsOptimizedMediaPath } from "@utils/functions";
 import { getCollection } from "astro:content";
 import { slug } from 'github-slugger';
 import { QuickReviewType, QuickReviewRating, getTypeFromLowercaseKey, getRatingFromLowercaseKey } from "@schemas/quick-review-types";
@@ -204,7 +204,7 @@ export function quickReviewToRssItem(review: QuickReview): string {
   const date = new Date(review.date);
   date.setUTCHours(12, 0, 0, 0);
 
-  let coverImage = review.image ? escapeXml(review.image) : null;
+  let coverImage = review.image ? escapeXml(handleCmsOptimizedMediaPath(review.image)) : null;
   if (coverImage && !coverImage.includes(siteMeta.baseUrl) && !coverImage.startsWith('http')) {
     coverImage = `${siteMeta.baseUrl}${coverImage}`;
   }

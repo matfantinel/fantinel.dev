@@ -1,5 +1,15 @@
 import type { BlogPost } from "@schemas/blog";
+import imageManifest from '@data/generated/image-manifest.json';
 import dateformat from "dateformat";
+
+type ImageManifestEntry = {
+  width: number;
+  height: number;
+  hasOptimized: boolean;
+  availableWidths: string[];
+};
+
+const manifest = imageManifest as Record<string, ImageManifestEntry>;
 
 export const calculateYearsSince = (date: Date) => {
   const ageDifMs = Date.now() - date.getTime();
@@ -30,6 +40,39 @@ export const handleCmsMediaPath = (path: string) => {
   }
 
   return path;
+}
+
+/**
+ * Maps a CMS media path to its optimized counterpart in /cms/optimized-media.
+ * Falls back to the original /cms/media path when no optimized variant exists
+ * (e.g. locally, right after adding an image, before image-transmutation has run).
+ * Optionally requests a specific width variant when one was generated.
+ */
+export const handleCmsOptimizedMediaPath = (
+  path: string,
+  options: { format?: 'jpg' | 'webp'; width?: number } = {}
+) => {
+  const { format = 'jpg', width } = options;
+  const mediaPath = handleCmsMediaPath(path);
+
+  if (mediaPath.startsWith('http')) {
+    return mediaPath;
+  }
+
+  const manifestEntry = manifest[mediaPath];
+  if (!manifestEntry?.hasOptimized) {
+    return mediaPath;
+  }
+
+  const optimizedBase = mediaPath
+    .replace('/cms/media/', '/cms/optimized-media/')
+    .replace(/\.(png|jpe?g|webp|avif)$/i, '');
+
+  if (width && manifestEntry.availableWidths.includes(String(width))) {
+    return `${optimizedBase}-${width}w.${format}`;
+  }
+
+  return `${optimizedBase}.${format}`;
 }
 
 export const isInViewport = (el: HTMLElement) => {

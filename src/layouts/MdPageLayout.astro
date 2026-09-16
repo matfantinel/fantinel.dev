@@ -4,7 +4,7 @@ import TableOfContents from '@components/molecules/TableOfContents';
 import GenericHero from '@components/organisms/GenericHero';
 import { getSiteMeta } from '@data/yaml';
 import type { MdPage } from '@schemas/md-pages';
-import { handleCmsMediaPath } from '@utils/functions';
+import { handleCmsMediaPath, handleCmsOptimizedMediaPath } from '@utils/functions';
 import BaseLayout from './BaseLayout.astro';
 
 interface Props {
@@ -33,9 +33,14 @@ if (ogImage) {
   if (ogImage.includes(siteMeta.baseUrl)) {
     coverImage = ogImage;
   } else {
-    coverImage = `${siteMeta.baseUrl}${handleCmsMediaPath(ogImage)}`;
+    coverImage = `${siteMeta.baseUrl}${handleCmsOptimizedMediaPath(ogImage)}`;
   }
 }
+
+// Point search result thumbnails at the optimized webp variant
+const pagefindImage = page.data.heroImage
+  ? handleCmsOptimizedMediaPath(page.data.heroImage, { format: 'webp', width: 1000 })
+  : undefined;
 
 // Process heroPolaroids - normalize to array and handle image paths
 function processPolaroids(polaroids: typeof page.data.heroPolaroids) {
@@ -80,6 +85,8 @@ const hasHeroVisual = !!(page.data.heroImage || heroPolaroids?.length);
       }
 
       <div id='page-content' class='l-md-page__content-inner u-markdown' data-pagefind-body>
+        {pagefindImage && <meta data-pagefind-meta="image[content]" content={pagefindImage} />}
+       
         <MarkdownRenderer content={page.body} addAnchorToHeadings={true} client:load />
       </div>
     </div>

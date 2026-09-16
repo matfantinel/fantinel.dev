@@ -1,5 +1,5 @@
 import type { Photography } from "@schemas/photography";
-import { handleCmsMediaPath } from "@utils/functions";
+import { handleCmsMediaPath, handleCmsOptimizedMediaPath } from "@utils/functions";
 import { getCollection } from "astro:content";
 import { slug } from 'github-slugger';
 import { escapeXml, siteMeta } from "@utils/rss";
@@ -100,14 +100,20 @@ export async function getAllPhotographyPosts(): Promise<Photography[]> {
  * @returns The RSS item string.
  */
 export function photographyToRssItem(photo: Photography): string {
-  const additionalImagesHtml = photo.additionalImages?.map(img => 
-    `<p><img src="${img.src}" alt="${img.alt || ''}" /></p>`
+  // Point RSS images at the optimized JPG variant when one exists
+  const toAbsoluteImage = (src: string) => {
+    const optimized = handleCmsOptimizedMediaPath(src);
+    return optimized.startsWith('http') ? optimized : `${siteMeta.baseUrl}${optimized}`;
+  };
+
+  const additionalImagesHtml = photo.additionalImages?.map(img =>
+    `<p><img src="${toAbsoluteImage(img.src)}" alt="${img.alt || ''}" /></p>`
   ).join('\n        ') || '';
-  
-  const additionalMediaContent = photo.additionalImages?.map(img => 
-    `<media:content xmlns:media="http://search.yahoo.com/mrss/" medium="image" url="${img.src}"/>`
+
+  const additionalMediaContent = photo.additionalImages?.map(img =>
+    `<media:content xmlns:media="http://search.yahoo.com/mrss/" medium="image" url="${toAbsoluteImage(img.src)}"/>`
   ).join('\n      ') || '';
-  
+
   return `
     <item>
       <guid>${siteMeta.baseUrl}/photography/${photo.slug}</guid>
@@ -119,11 +125,11 @@ export function photographyToRssItem(photo: Photography): string {
 
         ${photo.photoDate ? `<p>Photo${additionalImagesHtml ? 's' : ''} taken on ${dateformat(photo.photoDate, 'dddd, dd mmm yyyy', true)}</p>` : ''}
 
-        ${photo.image ? `<p><img src="${siteMeta.baseUrl}${photo.image}" alt="${photo.imageAlt || ''}" /></p>` : ''}
+        ${photo.image ? `<p><img src="${toAbsoluteImage(photo.image)}" alt="${photo.imageAlt || ''}" /></p>` : ''}
         ${additionalImagesHtml}        
       ]]></content:encoded>
-      ${photo.image ? `<media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="${photo.image}"/>` : ''}
-      ${photo.image ? `<media:content xmlns:media="http://search.yahoo.com/mrss/" medium="image" url="${photo.image}"/>` : ''}
+      ${photo.image ? `<media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="${toAbsoluteImage(photo.image)}"/>` : ''}
+      ${photo.image ? `<media:content xmlns:media="http://search.yahoo.com/mrss/" medium="image" url="${toAbsoluteImage(photo.image)}"/>` : ''}
       ${additionalMediaContent}
     </item>
   `;

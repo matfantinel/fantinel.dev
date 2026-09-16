@@ -7,7 +7,7 @@ import PostHero from '@components/organisms/PostHero';
 import FeaturedPosts from '@components/organisms/FeaturedPosts';
 import { getSiteMeta, getBlogSingleConfig } from '@data/yaml';
 import type { BlogPost } from '@schemas/blog';
-import { handleCmsMediaPath } from '@utils/functions';
+import { handleCmsMediaPath, handleCmsOptimizedMediaPath } from '@utils/functions';
 import BaseLayout from './BaseLayout.astro';
 import CommentCta from '@components/organisms/CommentCta';
 import NewsletterCta from '@components/organisms/NewsletterCta';
@@ -30,9 +30,14 @@ if (post.data.ogImage) {
   if (post.data.ogImage.includes(siteMeta.baseUrl)) {
     coverImage = post.data.ogImage;
   } else {
-    coverImage = `${siteMeta.baseUrl}${handleCmsMediaPath(post.data.ogImage)}`;
+    coverImage = `${siteMeta.baseUrl}${handleCmsOptimizedMediaPath(post.data.ogImage)}`;
   }
 }
+
+// Point search result thumbnails at the optimized webp variant
+const pagefindImage = post.data.coverImage
+  ? handleCmsOptimizedMediaPath(post.data.coverImage, { format: 'webp', width: 1000 })
+  : undefined;
 ---
 
 <BaseLayout
@@ -84,6 +89,8 @@ if (post.data.ogImage) {
       }
 
       <div id='post-content' class='l-article__post-content u-markdown' data-pagefind-body>
+        {pagefindImage && <meta data-pagefind-meta="image[content]" content={pagefindImage} />}
+       
         <MarkdownRenderer content={post.body} addAnchorToHeadings={true} client:load />
       </div>
 

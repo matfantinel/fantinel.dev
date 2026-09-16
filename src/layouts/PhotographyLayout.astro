@@ -6,7 +6,8 @@ import dateformat from 'dateformat';
 import BaseLayout from './BaseLayout.astro';
 import striptags from 'striptags';
 import PostsTimeline from '@components/organisms/PostsTimeline';
-import { getPhotographySingleConfig } from '@data/yaml';
+import { getPhotographySingleConfig, getSiteMeta } from '@data/yaml';
+import { handleCmsOptimizedMediaPath } from '@utils/functions';
 
 interface Props {
   photography: Photography;
@@ -15,19 +16,32 @@ interface Props {
 
 const { photography, latestTimelineEntries }: Props = Astro.props;
 const pageData = getPhotographySingleConfig();
+const siteMeta = getSiteMeta();
+
+const ogImage = photography.image
+  ? photography.image.startsWith('http')
+    ? photography.image
+    : `${siteMeta.baseUrl}${handleCmsOptimizedMediaPath(photography.image)}`
+  : undefined;
+
+// Point search result thumbnails at the optimized webp variant
+const pagefindImage = photography.image
+  ? handleCmsOptimizedMediaPath(photography.image, { format: 'webp', width: 1000 })
+  : undefined;
 ---
 
 <BaseLayout
   title={photography.title}
   keywords={photography.title}
   description={striptags(photography.content || '')}
-  image={photography.image}
+  image={ogImage}
   autoGenerateImage={!photography.image}
   slug={`photography/${photography.slug}`}
   publishedDate={photography.publishedDate}
 >
   <div class='l-photography y-content-grid'>
     <div class='l-photography__container' data-pagefind-body>
+      {pagefindImage && <meta data-pagefind-meta="image[content]" content={pagefindImage} />}
       <h1 class='l-photography__title'>Photography: {photography.title}</h1>
 
       <div class='l-photography__about u-markdown'>

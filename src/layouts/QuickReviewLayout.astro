@@ -6,7 +6,8 @@ import { quickReviewToQuickReviewCardProps } from '@utils/prop-mapping';
 import striptags from 'striptags';
 import BaseLayout from './BaseLayout.astro';
 import MarkdownRenderer from '@components/molecules/MarkdownRenderer';
-import { getQuickReviewSingleConfig } from '@data/yaml';
+import { getQuickReviewSingleConfig, getSiteMeta } from '@data/yaml';
+import { handleCmsOptimizedMediaPath } from '@utils/functions';
 
 interface Props {
   review: QuickReview;
@@ -15,19 +16,32 @@ interface Props {
 
 const { review, latestTimelineEntries }: Props = Astro.props;
 const pageData = getQuickReviewSingleConfig();
+const siteMeta = getSiteMeta();
+
+const ogImage = review.image
+  ? review.image.startsWith('http')
+    ? review.image
+    : `${siteMeta.baseUrl}${handleCmsOptimizedMediaPath(review.image)}`
+  : undefined;
+
+// Point search result thumbnails at the optimized webp variant
+const pagefindImage = review.image
+  ? handleCmsOptimizedMediaPath(review.image, { format: 'webp', width: 1000 })
+  : undefined;
 ---
 
 <BaseLayout
   title={review.title}
   keywords={review.title}
   description={striptags(review.content || '')}
-  image={review.image}
+  image={ogImage}
   autoGenerateImage={!review.image}
   slug={`quick-reviews/${review.slug}`}
   publishedDate={review.date}
 >
   <div class='l-quick-review u-content-grid'>
     <div class='l-quick-review__container' data-pagefind-body>
+      {pagefindImage && <meta data-pagefind-meta="image[content]" content={pagefindImage} />}
       <h1 class='l-quick-review__title'>Quick Review: {review.title}</h1>
 
       <QuickReviewCard class='l-quick-review__review' {...quickReviewToQuickReviewCardProps(review)} client:load />

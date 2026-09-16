@@ -1,5 +1,5 @@
 import { getSiteMeta } from "@data/yaml";
-import { handleCmsMediaPath } from "@utils/functions";
+import { handleCmsMediaPath, handleCmsOptimizedMediaPath } from "@utils/functions";
 import type { RenderedContent } from "astro:content";
 import { getCollection } from "astro:content";
 import readingTime from 'reading-time/lib/reading-time';
@@ -460,7 +460,7 @@ export function blogPostToRssItem(post: BlogPost, options: { excerptOnly?: boole
   // Their URL will redirect automatically, but I don't wanna change the RSS guid
   // To avoid the post being duplicated in the RSS feed of existing subscribers
   const guid = rssSiteMeta.baseUrl + (post.date < new Date('2025-06-01') ? '' : '/blog') + '/' + post.slug;
-  let coverImage = post.coverImage ? escapeXml(post.coverImage) : null;
+  let coverImage = post.coverImage ? escapeXml(handleCmsOptimizedMediaPath(post.coverImage)) : null;
   if (coverImage && !coverImage.includes(rssSiteMeta.baseUrl)) {
     coverImage = `${rssSiteMeta.baseUrl}${coverImage}`;
   }
@@ -470,6 +470,13 @@ export function blogPostToRssItem(post: BlogPost, options: { excerptOnly?: boole
   content = content.replaceAll('<a href="/', `<a href="${rssSiteMeta.baseUrl}/`);
   content = content.replaceAll('<img src="/', `<img src="${rssSiteMeta.baseUrl}/cms/media/`);
   content = content.replaceAll(`<img src="${rssSiteMeta.baseUrl}/cms/media/media/`, `<img src="${rssSiteMeta.baseUrl}/cms/media/`);
+
+  // Point content images at their optimized JPG variant when one exists
+  content = content.replace(/(<img src=")([^"]+)(")/g, (_match, prefix, url, suffix) => {
+    const path = url.startsWith(rssSiteMeta.baseUrl) ? url.slice(rssSiteMeta.baseUrl.length) : url;
+    const optimized = handleCmsOptimizedMediaPath(path);
+    return `${prefix}${optimized.startsWith('http') ? optimized : `${rssSiteMeta.baseUrl}${optimized}`}${suffix}`;
+  });
 
   const contentEncoded = excerptOnly
     ? ``
