@@ -1,15 +1,9 @@
 import type { ButtonProps } from "@components/atoms/Button";
-import type { ContentWithImageProps } from "@components/organisms/ContentWithImage";
 import type { GenericHeroProps } from "@components/organisms/GenericHero";
 import type { HomePageHeroProps } from "@components/organisms/HomePageHero";
 
 export type HomeConfig = {
   hero: HomePageHeroProps;
-  blogSection: ContentWithImageProps;
-  coolLinksSection: ContentWithImageProps;
-  quickReviewsSection: ContentWithImageProps;
-  photographySection: ContentWithImageProps;
-  gardenSection: ContentWithImageProps;
   latestSection?: {
     title?: string;
     headerBody?: string;

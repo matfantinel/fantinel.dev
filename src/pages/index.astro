@@ -5,6 +5,7 @@ import PostsTimeline from '@components/organisms/PostsTimeline';
 import { getPaginatedTimelineEntries } from '@data/everything';
 import { getHomeConfig, getSiteMeta } from '@data/yaml';
 import BaseLayout from '@layouts/BaseLayout.astro';
+import { PostType } from '@schemas/post-types.ts';
 
 const siteMeta = getSiteMeta();
 const data = getHomeConfig();
@@ -28,71 +29,6 @@ const latestTimelineEntries = (await getPaginatedTimelineEntries(1)).posts;
   }
 
   <div class='p-home__content full-width u-content-grid'>
-    {
-      data?.blogSection && (
-        <div class="smol">
-          <ContentWithImage
-            class='p-home__section'
-            {...data.blogSection}
-            imageBehavior={data.blogSection.imageBehavior || 'contain'}
-            animateOnEntry={data.blogSection.animateOnEntry || false}
-            client:load
-          />
-        </div>
-      )
-    }
-
-    {
-      data?.coolLinksSection && (
-        <ContentWithImage
-          class='p-home__section smol'
-          {...data.coolLinksSection}
-          imageBehavior={data.coolLinksSection.imageBehavior || 'contain'}
-          imagePosition={data.coolLinksSection.imagePosition || 'before'}
-          animateOnEntry={data.coolLinksSection.animateOnEntry || false}
-        />
-      )
-    }
-
-    {
-      data?.quickReviewsSection && (
-        <ContentWithImage
-          class='p-home__section smol'
-          {...data.quickReviewsSection}
-          imageBehavior={data.quickReviewsSection.imageBehavior || 'contain'}
-          animateOnEntry={data.quickReviewsSection.animateOnEntry || false}
-        />
-      )
-    }
-
-    {
-      data?.photographySection && (
-        <div class="smol">
-          <ContentWithImage
-            class='p-home__section'
-            {...data.photographySection}
-            imageBehavior={data.photographySection.imageBehavior || 'contain'}
-            imagePosition={data.photographySection.imagePosition || 'before'}
-            animateOnEntry={data.photographySection.animateOnEntry || false}
-            client:load
-          />
-        </div>
-      )
-    }
-
-    {
-      data?.gardenSection && (
-        <ContentWithImage
-          class='p-home__section smol'
-          {...data.gardenSection}
-          imageBehavior={data.gardenSection.imageBehavior || 'contain'}
-          animateOnEntry={data.gardenSection.animateOnEntry || false}
-        />
-      )
-    }
-
-    <hr class='p-home__divider smol' />
-
     {
       latestTimelineEntries?.length > 0 && data?.latestSection && (
         <div class='p-home__archive smol'>
@@ -125,6 +61,21 @@ const latestTimelineEntries = (await getPaginatedTimelineEntries(1)).posts;
   .p-home {
     &__divider {
       border-color: var(--t--border--medium);
+    }
+
+    &__archive {
+      animation: 500ms ease-in-out entry 2750ms both;
+
+      @keyframes entry {
+        from {
+          translate: 0 200px;
+          opacity: 0;
+        }
+        to {
+          translate: 0 0;
+          opacity: 1;
+        }
+      }
     }
   }
 </style>
