@@ -62,24 +62,24 @@
 
       transition: .15s ease-out;
 
-      // Run after the strip's animation
-      // animation: auto-hover-pulse 3s ease-out .75s both infinite;
+      animation: auto-hover-pulse 3s ease-out .75s both infinite;
+      animation-play-state: var(--inner-animation-state, paused);
 
       &:not(:first-child) {
         margin-left: -36px;
       }
 
-      // stagger — add delay on top of the .75s base offset
-      // @for $i from 1 through 7 {
-      //   &:nth-child(#{$i}) {
-      //     animation-delay: #{.75 + ($i - 1) * .12}s;
-      //   }
-      // }
-
-      &:hover,
-      &.active {
-        scale: 1.2;
+      // stagger
+      @for $i from 1 through 7 {
+        &:nth-child(#{$i}) {
+          animation-delay: #{($i - 1) * .12}s;
+        }
       }
+
+      // &:hover,
+      // &.active {
+      //   scale: 1.2;
+      // }
     }
   }
 </style>
