@@ -63,18 +63,18 @@
       transition: .15s ease-out;
 
       // Run after the strip's animation
-      animation: auto-hover-pulse 3s ease-out .75s both infinite;
+      // animation: auto-hover-pulse 3s ease-out .75s both infinite;
 
       &:not(:first-child) {
         margin-left: -36px;
       }
 
       // stagger — add delay on top of the .75s base offset
-      @for $i from 1 through 7 {
-        &:nth-child(#{$i}) {
-          animation-delay: #{.75 + ($i - 1) * .12}s;
-        }
-      }
+      // @for $i from 1 through 7 {
+      //   &:nth-child(#{$i}) {
+      //     animation-delay: #{.75 + ($i - 1) * .12}s;
+      //   }
+      // }
 
       &:hover,
       &.active {

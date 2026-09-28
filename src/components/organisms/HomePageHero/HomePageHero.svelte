@@ -50,17 +50,17 @@
 
   const cardAnimationConsts = {
     cardEntryDelay: 500,
-    cardEntryStaggerDelay: 750,
-    cardEntryDuration: 500,
-    coolLinksAnimationDelay: 6000,
+    cardEntryStaggerDelay: 300,
+    cardEntryDuration: 400,
+    coolLinksAnimationDelay: 4000,
     coolLinksAnimationDuration: 300,
-    cardCrookDelay: 6300, // coolLinksAnimationDelay + coolLinksAnimationDuration
+    cardCrookDelay: 4300, // coolLinksAnimationDelay + coolLinksAnimationDuration
     cardCrookDuration: 250,
     crookDegrees: [-2, 2, -4],
-    shakeDelay: 6300,
+    shakeDelay: 4300,
     shakeDuration: 400,
-    blogAnimationDelay: 3500,
-    quickReviewsAnimationDelay: 3500,
+    blogAnimationDelay: 1500,
+    quickReviewsAnimationDelay: 1500,
   };
 </script>
 
@@ -283,7 +283,7 @@
 
     :global(.o-home-page-hero__section-card) {
       animation:
-        var(--card-entry-duration) ease-in-out card-entry var(--card-entry-delay) both,
+        var(--card-entry-duration) ease-out card-entry var(--card-entry-delay) both,
         0.25s ease-out card-crook var(--card-crook-delay) both;
     }
 
