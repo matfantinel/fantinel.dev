@@ -19,9 +19,10 @@
     posts,
     class: className,
   }: FeaturedPostsProps = $props();
+  let classList = $derived(['o-featured-posts', className]);
 </script>
 
-<div class={['o-featured-posts', className]}>
+<div class={classList}>
   <div class="o-featured-posts__container">
     <SectionHeader 
       class="o-featured-posts__header"

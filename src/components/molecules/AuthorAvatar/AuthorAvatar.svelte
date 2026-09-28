@@ -27,6 +27,12 @@
   );
 
   let currentImage = $state(0);
+  let classList = $derived([
+    'm-author-avatar',
+    animated ? 'm-author-avatar--animated' : '',
+    `m-author-avatar--size--${size}`,
+    className,
+  ]);
 
   function onclick() {
     currentImage = (currentImage + 1) % images.length;
@@ -35,12 +41,7 @@
 
 <svelte:element
   this={tag}
-  class={[
-    'm-author-avatar',
-    animated ? 'm-author-avatar--animated' : '',
-    `m-author-avatar--size--${size}`,
-    className,
-  ]}
+  class={classList}
   {onclick}
   role="button"
   tabindex="-1"

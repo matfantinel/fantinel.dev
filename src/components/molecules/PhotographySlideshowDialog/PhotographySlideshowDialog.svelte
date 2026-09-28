@@ -36,9 +36,10 @@
       import('carousel-pilot');
     }
   });
+  let classList = $derived(['m-photography-slideshow-dialog', className]);
 </script>
 
-<dialog class={['m-photography-slideshow-dialog', className]} id={slug}>
+<dialog class={classList} id={slug}>
   <div class="m-photography-slideshow-dialog__container">
     <CloseButton {slug} />
 

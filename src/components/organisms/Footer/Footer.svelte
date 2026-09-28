@@ -12,9 +12,10 @@
   let { socials, class: className }: FooterProps = $props();
 
   const currentYear = new Date().getFullYear();
+  let classList = $derived(['o-footer', className]);
 </script>
 
-<footer class={['o-footer', className]} style="view-transition-name: footer">
+<footer class={classList} style="view-transition-name: footer">
   <div class="o-footer__wrapper">
     <div class="o-footer__container u-content-grid">
       <div class="o-footer__copyright">

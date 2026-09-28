@@ -35,11 +35,12 @@
   ];
 
   const backgroundColor = background || monthColors[currentMonth - 1] || '#1E1E2E'; // Default to gray-800
+  let classList = $derived(['m-cool-links-image', className]);
 </script>
 
 <div
   aria-hidden="true"
-  class={['m-cool-links-image', className]}
+  class={classList}
   style={`
   width: 100%;
   height: 100%;

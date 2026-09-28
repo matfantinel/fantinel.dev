@@ -14,9 +14,10 @@
     links,
     children,
   }: CoolLinkCardsProps & { children?: Snippet } = $props();
+  let classList = $derived(['m-cool-link-cards', className]);
 </script>
 
-<div class={['m-cool-link-cards', className]}>
+<div class={classList}>
   {@render children?.()}
 
   {#if links}

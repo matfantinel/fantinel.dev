@@ -16,9 +16,10 @@
     children,
   }: PhotographyCardsProps & { children?: Snippet } = $props();
 
+  let classList = $derived(['m-photography-cards', className]);
 </script>
 
-<div class={['m-photography-cards', className]}>
+<div class={classList}>
   {@render children?.()}
 
   {#if photographies}

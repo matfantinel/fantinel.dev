@@ -19,6 +19,7 @@
   }: TableOfContentsProps = $props();
 
   let currentHeading = $state<string | undefined>(undefined);
+  let classList = $derived(['m-table-of-contents', 'm-table-of-contents--off-screen', className]);
 
   onMount(() => {
     const items = Array.from(document.querySelectorAll('.m-table-of-contents__item'));
@@ -99,7 +100,7 @@
   });
 </script>
 
-<div class={['m-table-of-contents', 'm-table-of-contents--off-screen', className]}>
+<div class={classList}>
   <div class="m-table-of-contents__main">
     <div class="m-table-of-contents__heading">Table of Contents</div>
     <ol class="m-table-of-contents__list">

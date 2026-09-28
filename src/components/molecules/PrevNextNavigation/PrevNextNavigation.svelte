@@ -14,9 +14,14 @@
     order = 'regular',
     class: className,
   }: PrevNextNavigationProps = $props();
+  let classList = $derived([
+    'm-prev-next-navigation',
+    order === 'reverse' ? 'm-prev-next-navigation--reverse' : '',
+    className,
+  ]);
 </script>
 
-<nav class={['m-prev-next-navigation', order === 'reverse' ? 'm-prev-next-navigation--reverse' : '', className]}>
+<nav class={classList}>
   <div class="m-prev-next-navigation__prev">
     {#if prev}
       <ArrowLink href={prev.url} arrowPosition={order === 'regular' ? 'left' : 'right'}>{prev.label}</ArrowLink>

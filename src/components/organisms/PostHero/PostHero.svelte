@@ -27,9 +27,10 @@
     tags,
     class: className,
   }: PostHeroProps = $props();
+  let classList = $derived(['o-post-hero u-content-grid', className]);
 </script>
 
-<div class={['o-post-hero u-content-grid', className]}>
+<div class={classList}>
   <div class="o-post-hero__container">
     <h1 class="o-post-hero__title" data-pagefind-body>
       {title}

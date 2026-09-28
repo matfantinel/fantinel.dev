@@ -31,9 +31,10 @@
         return 'socials/email';
     }
   };
+  let classList = $derived(['m-social-link', className]);
 </script>
 
-<div class={['m-social-link', className]}>
+<div class={classList}>
   <IconLink
     icon={getIconName(name)}
     href={url}

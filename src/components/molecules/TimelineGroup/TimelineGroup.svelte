@@ -24,9 +24,10 @@
   onMount(() => {
     isToday = dateformat(date, 'UTC:dd mmm yyyy') === dateformat(new Date(), 'UTC:dd mmm yyyy');
   });
+  let classList = $derived(['m-timeline-group', className]);
 </script>
 
-<div class={['m-timeline-group', className]}>
+<div class={classList}>
   <div class="m-timeline-group__header">
     <h2 class="m-timeline-group__heading">{dateformat(date, 'UTC:dd mmm yyyy')}</h2>
     {#if isToday}

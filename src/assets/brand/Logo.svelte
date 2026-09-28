@@ -9,9 +9,10 @@
 
   const logoColor1 = 'var(--palette--gray-min)';
   const logoColor2 = 'var(--palette--gray-0)';
+  let classList = $derived(['logo', className]);
 </script>
 
-<div class={['logo', className]} style={`width: ${size}; height: ${size};`}>
+<div class={classList} style={`width: ${size}; height: ${size};`}>
   <svg width="100%" height="100%" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path
       d="M46.4742 60.9505C50.099 62.457 54.1746 62.4639 57.8045 60.9697C61.4345 59.4754 64.3213 56.6023 65.83 52.9825L79.9872 19.0141C76.3624 17.5075 72.2868 17.5006 68.6569 18.9949C65.027 20.4891 62.1402 23.3622 60.6316 26.9821L46.4742 60.9505Z"

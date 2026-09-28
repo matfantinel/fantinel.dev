@@ -29,9 +29,10 @@
   if (!slug) {
     slug = `photography-thumbnail-${Math.random()}`;
   }
+  let classList = $derived(['m-photography-thumbnail', className]);
 </script>
 
-<div class={['m-photography-thumbnail', className]}>
+<div class={classList}>
   <button class="m-photography-thumbnail__zoom-button" aria-label="Zoom image" commandfor={slug} command="show-modal">
     <div class="m-photography-thumbnail__container">
       <Image

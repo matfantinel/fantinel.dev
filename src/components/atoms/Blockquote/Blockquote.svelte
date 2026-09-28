@@ -15,10 +15,11 @@
     children,
     ...props
   } : BlockquoteProps & { children?: Snippet } = $props();
+  let classList = $derived(['a-blockquote', className]);
 </script>
 
 <blockquote
-  class={['a-blockquote', className]}
+  class={classList}
   {cite}
   {...props}
 >

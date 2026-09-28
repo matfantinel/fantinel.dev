@@ -20,9 +20,10 @@
     centered,
     class: className,
   }: SectionHeaderProps = $props();
+  let classList = $derived(['m-section-header', centered ? 'm-section-header--centered' : '', className]);
 </script>
 
-<div class={['m-section-header', centered ? 'm-section-header--centered' : '', className]}>
+<div class={classList}>
   <div class="m-section-header__text">
     <p class="m-section-header__title">{title}</p>
     {#if body}

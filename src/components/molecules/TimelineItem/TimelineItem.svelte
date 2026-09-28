@@ -53,9 +53,10 @@
       return 'published <em>something</em>';
     }
   }
+  let classList = $derived(['m-timeline-item', className]);
 </script>
 
-<div class={['m-timeline-item', className]} style="--color: var(--t--{type});">
+<div class={classList} style="--color: var(--t--{type});">
   <div class="m-timeline-item__icon">
     {#if type === PostType.BLOG_POST}
       <BlogPostIcon size="32px" />

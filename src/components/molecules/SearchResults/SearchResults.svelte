@@ -13,9 +13,10 @@
     results,
     children,
   }: SearchResultsProps & { children?: Snippet } = $props();
+  let classList = $derived(['m-search-results', className]);
 </script>
 
-<div class={['m-search-results', className]}>
+<div class={classList}>
   {@render children?.()}
 
   {#if results}

@@ -14,9 +14,10 @@
     reviews,
     children,
   }: QuickReviewCardsProps & { children?: Snippet } = $props();
+  let classList = $derived(['m-quick-review-cards', className]);
 </script>
 
-<div class={['m-quick-review-cards', className]}>
+<div class={classList}>
   {@render children?.()}
 
   {#if reviews}

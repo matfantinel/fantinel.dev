@@ -126,9 +126,10 @@
   );
 
   const processedFilterGroups = $derived(setActiveFilterGroups(allFilterGroups, baseUrl));
+  let classList = $derived(['o-posts-timeline u-content-grid', className]);
 </script>
 
-<div class={['o-posts-timeline u-content-grid', className]}>
+<div class={classList}>
   {#if processedFilterGroups && processedFilterGroups.length > 0}
     <div class="o-posts-timeline__filters on-sidebar">
       <Filters

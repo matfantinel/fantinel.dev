@@ -11,9 +11,14 @@
     maxPerRow,
     children,
   }: BlogPostCardsProps & { children?: Snippet } = $props();
+  let classList = $derived([
+    'm-blog-post-cards',
+    maxPerRow ? `m-blog-post-cards--max-per-row-${maxPerRow}` : undefined,
+    className,
+  ]);
 </script>
 
-<div class={['m-blog-post-cards', maxPerRow ? `m-blog-post-cards--max-per-row-${maxPerRow}` : undefined, className]}>
+<div class={classList}>
   {@render children?.()}
 </div>
 

@@ -21,9 +21,10 @@
         })
       : '',
   );
+  let classList = $derived(['m-code-block', className]);
 </script>
 
-<div class={['m-code-block', className]}>
+<div class={classList}>
   {#if filename}
     <div class="m-code-block__filename">{filename}</div>
   {/if}

@@ -35,9 +35,10 @@
       }
     }
   }
+  let classList = $derived(['m-bottom-sheet-dialog u-content-grid', className]);
 </script>
 
-<dialog class={['m-bottom-sheet-dialog u-content-grid', className]} id={slug} bind:this={dialogEl}>
+<dialog class={classList} id={slug} bind:this={dialogEl}>
   <div
     class="m-bottom-sheet-dialog__container"
     bind:this={containerEl}

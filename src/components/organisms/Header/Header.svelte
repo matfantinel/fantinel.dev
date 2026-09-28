@@ -70,9 +70,10 @@
       active: link.href === '/' ? pathname === '/' : pathname.startsWith(link.href),
     })),
   );
+  let classList = $derived(['o-header', className]);
 </script>
 
-<header class={['o-header', className]} style="view-transition-name: header">
+<header class={classList} style="view-transition-name: header">
   <div class="o-header__container">
     <!-- <div class="o-header__seasonal-message"></div> -->
 

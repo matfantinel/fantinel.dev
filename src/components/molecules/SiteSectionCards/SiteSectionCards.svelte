@@ -6,9 +6,10 @@
     class: className,
     children,
   }: BaseProps & { children?: Snippet } = $props();
+  let classList = $derived(['m-site-section-cards', className]);
 </script>
 
-<div class={['m-site-section-cards', className]}>
+<div class={classList}>
   {@render children?.()}
 </div>
 

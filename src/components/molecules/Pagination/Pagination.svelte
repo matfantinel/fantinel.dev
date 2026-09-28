@@ -52,9 +52,11 @@
         : []),
     ...endPages,
   ];
+
+  let classList = $derived(['m-pagination', className]);
 </script>
 
-<ul class={['m-pagination', className]}>
+<ul class={classList}>
   {#each items as item}
     {#if item === 'ellipsis'}
       <li class="m-pagination__item">...</li>

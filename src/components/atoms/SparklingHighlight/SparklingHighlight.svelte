@@ -11,10 +11,11 @@
 		children,
 		class: className,
 	} : SparklingHighlightProps & { children?: Snippet } = $props();
+	let classList = $derived(['a-sparkling-highlight', className]);
 </script>
 
 <sparkly-text number-of-sparkles="5" style="--sparkly-text-color: var(--t--sparkles); --sparkly-text-size: 1.25rem">
-	<strong class={['a-sparkling-highlight', className]}>
+	<strong class={classList}>
 		{#if text}
 			{text}
 		{:else}

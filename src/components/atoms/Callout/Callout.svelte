@@ -11,9 +11,10 @@
   };
 
   let { type = 'info', text, class: className, children }: CalloutProps & { children?: Snippet } = $props();
+  let classList = $derived(['a-callout', `a-callout--${type}`, className]);
 </script>
 
-<div class={['a-callout', `a-callout--${type}`, className]}>
+<div class={classList}>
   {#if type}
     <div class="a-callout__icon">
       {#if type == 'info'}

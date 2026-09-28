@@ -27,9 +27,10 @@
     button,
     class: className,
   }: AboutAuthorProps = $props();
+  let classList = $derived(['o-about-author', className]);
 </script>
 
-<div class={['o-about-author', className]}>
+<div class={classList}>
   <div class="o-about-author__container">
     <div class="o-about-author__image-container">
       <AuthorAvatar class="o-about-author__image" src={image} alt={name} {extraImages} size="large" animated />

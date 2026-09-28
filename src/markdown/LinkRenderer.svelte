@@ -18,6 +18,7 @@
 	const target = href.startsWith('#') ? '_self' : '_blank';
 
 	const isExternalLink = !!href && HttpRegex.test(href) && !href.startsWith(siteMeta.baseUrl);
+	let classList = $derived(['md-link', isExternalLink ? 'md-link--external' : '']);
 
 	// We'll use the title attribute to check if a link should be rendered as a Button
 	const isButton = title && title.indexOf('button') > -1;
@@ -40,7 +41,7 @@
 {#if isButton}
 	<Button {href} {...buttonProps} class="md-button">{text}</Button>
 {:else}
-	<a {href} {target} class={["md-link", isExternalLink ? 'md-link--external' : '']} rel="noopener">
+	<a {href} {target} class={classList} rel="noopener">
 		{text}{#if isExternalLink} <ExternalLink size="14px" />{/if}
 	</a>
 {/if}

@@ -87,9 +87,10 @@
       imageAlt: result.meta.image_alt,
     };
   }
+  let classList = $derived(['o-pagefind-search-results', className]);
 </script>
 
-<section class={['o-pagefind-search-results', className]}>
+<section class={classList}>
   <div class="o-pagefind-search-results__container">
     {#if isLoading}
       <div class="o-pagefind-search-results__loading">

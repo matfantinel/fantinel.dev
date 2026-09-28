@@ -12,9 +12,10 @@
   };
 
   let { heading, body, formUrl, tag = 'website', class: className }: NewsletterCtaProps = $props();
+  let classList = $derived(['o-newsletter-cta', className]);
 </script>
 
-<div class={['o-newsletter-cta', className]}>
+<div class={classList}>
   <div class="o-newsletter-cta__container">
     <div class="o-newsletter-cta__overlay"></div>
     <div class="o-newsletter-cta__content">

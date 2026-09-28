@@ -11,9 +11,10 @@
     class: className,
     children,
   }: TagsProps & { children?: Snippet } = $props();
+  let classList = $derived(['m-tags', size ? `m-tags--${size}` : undefined, className]);
 </script>
 
-<div class={['m-tags', size ? `m-tags--${size}` : undefined, className]}>
+<div class={classList}>
   {@render children?.()}
 </div>
 

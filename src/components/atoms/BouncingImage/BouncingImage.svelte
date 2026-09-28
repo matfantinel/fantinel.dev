@@ -253,9 +253,10 @@
       stopMomentum();
     };
   });
+  let classList = $derived(['a-bouncing-image', className]);
 </script>
 
-<img bind:this={img} {src} {alt} draggable="false" loading="eager" class={['a-bouncing-image', className]} {...props} />
+<img bind:this={img} {src} {alt} draggable="false" loading="eager" class={classList} {...props} />
 
 <style lang="scss">
   .a-bouncing-image {

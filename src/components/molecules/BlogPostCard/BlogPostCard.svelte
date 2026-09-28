@@ -33,9 +33,10 @@
   }: BlogPostCardProps = $props();
 
   const cardGoesWide = $derived(goesWide && !hideImage);
+  let classList = $derived(['m-blog-post-card', className, cardGoesWide ? 'm-blog-post-card--wide' : '']);
 </script>
 
-<article class={['m-blog-post-card', className, cardGoesWide ? 'm-blog-post-card--wide' : '']}>
+<article class={classList}>
   <div class="m-blog-post-card__container">
     {#if !hideImage}
       <div class="m-blog-post-card__image-container">

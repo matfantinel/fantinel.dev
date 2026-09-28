@@ -35,9 +35,10 @@
 
   let excerptPrefix = isExcerptAQuote ? '(...) ' : '';
   let excerptSuffix = isExcerptAQuote ? ' (...)' : '';
+  let classList = $derived(['m-search-result', className]);
 </script>
 
-<article class={['m-search-result', className]}>
+<article class={classList}>
   <div class="m-search-result__container" style={`--tint: var(--t--${type}--rgb, var(--t--accent--rgb))`}>
     {#if !hideImage}
       <div class="m-search-result__image-container">

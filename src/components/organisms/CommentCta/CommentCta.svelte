@@ -15,9 +15,10 @@
     emailSubject,
     class: className,
   }: CommentCtaProps = $props();
+  let classList = $derived(['o-comment-cta', className]);
 </script>
 
-<div class={['o-comment-cta', className]}>
+<div class={classList}>
   {#if content}
     <div class="o-comment-cta__content u-markdown">
       <MarkdownRenderer {content} />

@@ -53,6 +53,8 @@
 
 	let computedSizes = $derived(explicitSizes ?? (usesResponsiveWidths && lazy ? 'auto' : ''));
 
+	let classList = $derived(['a-image', className]);
+
 	function buildSrcset() {
 		if (HttpRegex.test(src)) return;
 
@@ -127,7 +129,7 @@
 
 {#if src}
 	{#if figcaption}
-		<figure class={['a-image', className]} {...props}>
+		<figure class={classList} {...props}>
 			<img
 				srcset={srcSet}
 				sizes={computedSizes}
@@ -150,7 +152,7 @@
 			height={finalHeight}
 			loading={lazy ? 'lazy' : 'eager'}
 			decoding="async"
-			class={['a-image', className]}
+			class={classList}
 			{...props}
 		/>
 	{/if}

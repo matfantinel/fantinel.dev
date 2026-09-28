@@ -12,9 +12,10 @@
     class: className,
     ...props
   }: BaseProps = $props();
+  let classList = $derived(['a-quick-reviews-strip', className]);
 </script>
 
-<div class={['a-quick-reviews-strip', className]} {...props}>
+<div class={classList} {...props}>
     <FakeReview1 />
     <FakeReview2 />
     <FakeReview3 />

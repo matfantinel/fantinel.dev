@@ -15,6 +15,8 @@
     dark: 'Dark',
   };
 
+  let classList = $derived(['m-theme-toggle', className]);
+
   function toggleTheme() {
     if ($theme === 'auto') {
       theme.set('light');
@@ -51,7 +53,7 @@
 </noscript>
 
 <button
-  class={['m-theme-toggle', className]}
+  class={classList}
   title="Toggle between light and dark theme. Current theme: {$theme}"
   aria-label="Toggle between light and dark theme. Current theme: {$theme}"
   data-theme={$theme}

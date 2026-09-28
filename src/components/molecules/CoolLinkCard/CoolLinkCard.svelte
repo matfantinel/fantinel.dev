@@ -28,9 +28,10 @@
   }: CoolLinkCardProps = $props();
 
   const slugger = new GithubSlugger();
+  let classList = $derived(['m-cool-link-card', className]);
 </script>
 
-<article class={['m-cool-link-card', className]} {...props}>
+<article class={classList} {...props}>
   <div class="m-cool-link-card__container">
     <div class="m-cool-link-card__header">
       <p class="m-cool-link-card__title">
