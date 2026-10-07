@@ -62,7 +62,7 @@
 
       transition: .15s ease-out;
 
-      animation: auto-hover-pulse 3s ease-out .75s both infinite;
+      animation: auto-hover-pulse 3s ease-out both infinite;
       animation-play-state: var(--inner-animation-state, paused);
 
       &:not(:first-child) {

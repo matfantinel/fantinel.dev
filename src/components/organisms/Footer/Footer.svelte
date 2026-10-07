@@ -53,6 +53,12 @@
           <img src="/badges/TransRights.svg" alt="Trans Rights are Human Rights" />
         </div>
       </div>
+
+      <div class="o-footer__badges">
+        <a href="https://destroy.spritefusion.com/?from=badge&url=fantinel.dev" target="_blank">
+          <img src="https://destroy.spritefusion.com/badge.svg" alt="Destroy this website" width="143" height="31" />
+        </a>
+      </div>
     </div>
   </div>
 </footer>
