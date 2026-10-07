@@ -22,14 +22,16 @@
     display: inline;
   }
 
-  img {
+  img,
+  video {
     display: block;
     margin-left: auto;
     margin-right: auto;
     // margin-top: var(--spacing-lg);
     // margin-bottom: var(--spacing-lg);
 
-    max-width: 100%;
+    // Never stretch media beyond its intrinsic width
+    max-width: min(100%, var(--image-intrinsic-width, 100%));
     height: auto;
     width: 100%;
 
@@ -41,8 +43,15 @@
     }
   }
 
+  // Videos have no manifest entry, so let them size to their own intrinsic width
+  video {
+    width: auto;
+    max-width: 100%;
+  }
+
   .no-shadow {
-    > img {
+    > img,
+    > video {
       box-shadow: none;
     }
   }

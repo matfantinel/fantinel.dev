@@ -29,7 +29,7 @@
 	};
 
 	let {
-		src,
+		src: originalSrc,
 		alt,
 		figcaption,
 		lazy = true,
@@ -40,38 +40,46 @@
 		...props
 	} : ImageProps = $props();
 
-	let fileName = src ? src.split('.')[0] : '';
-	let usesResponsiveWidths = false;
-	let imgWidth: number | undefined;
-	let imgHeight: number | undefined;
-	let srcSet = buildSrcset();
+	let image = $derived(buildImage(originalSrc, lazy, explicitSizes));
+	let src = $derived(image.src);
+	let srcSet = $derived(image.srcSet);
 
 	// An explicitly-passed width/height (e.g. AuthorAvatar's fixed circular sizing) always wins
 	// over the manifest-derived intrinsic dimensions
-	let finalWidth = $derived(explicitWidth ?? imgWidth);
-	let finalHeight = $derived(explicitHeight ?? imgHeight);
+	let finalWidth = $derived(explicitWidth ?? image.width);
+	let finalHeight = $derived(explicitHeight ?? image.height);
 
-	let computedSizes = $derived(explicitSizes ?? (usesResponsiveWidths && lazy ? 'auto' : ''));
+	let computedSizes = $derived(explicitSizes ?? (image.usesResponsiveWidths && lazy ? 'auto' : ''));
 
 	let classList = $derived(['a-image', className]);
+	let intrinsicWidth = $derived(image.width ? `${image.width}px` : undefined);
 
-	function buildSrcset() {
-		if (HttpRegex.test(src)) return;
+	function buildImage(src: string, lazy: boolean, explicitSizes?: string) {
+		let fileName = src ? src.split('.')[0] : '';
+		const result: {
+			src: string;
+			srcSet?: string;
+			width?: number;
+			height?: number;
+			usesResponsiveWidths: boolean;
+		} = { src, usesResponsiveWidths: false };
+
+		if (!src || HttpRegex.test(src)) return result;
 
 		// Only build srcset if files are png, jpg, jpeg, webp or avif
-		if (!src.match(/\.(png|jpe?g|webp|avif)$/)) return;
+		if (!src.match(/\.(png|jpe?g|webp|avif)$/)) return result;
 
 		// The image manifest is generated automatically (image-manifest.mjs)
 		// and contains image info like sizes and whether or not they exist on disk
 		const manifestEntry = manifest[src];
 
 		if (manifestEntry) {
-			imgWidth = manifestEntry.width;
-			imgHeight = manifestEntry.height;
+			result.width = manifestEntry.width;
+			result.height = manifestEntry.height;
 		}
 
 		if (!manifestEntry?.hasOptimized) {
-			return;
+			return result;
 		}
 
 		// If src is the cms/media folder, replace it with cms/optimized-media
@@ -90,7 +98,7 @@
 		// rendered size via `sizes`. Otherwise, a wrongly-sized image could be requested
 		// (e.g. a small eager avatar defaulting to the "sizes=100vw" spec fallback).
 		if (manifestEntry.availableWidths.length > 0 && (lazy || explicitSizes)) {
-			usesResponsiveWidths = true;
+			result.usesResponsiveWidths = true;
 
 			const widths = manifestEntry.availableWidths;
 
@@ -123,7 +131,9 @@
 			}
 		}
 
-		return srcset;
+		result.src = src;
+		result.srcSet = srcset;
+		return result;
 	}
 </script>
 
@@ -139,6 +149,7 @@
 				height={finalHeight}
 				loading={lazy ? 'lazy' : 'eager'}
 				decoding="async"
+				style:--image-intrinsic-width={intrinsicWidth}
 			/>
 			<figcaption>{@html figcaption}</figcaption>
 		</figure>
@@ -152,6 +163,7 @@
 			height={finalHeight}
 			loading={lazy ? 'lazy' : 'eager'}
 			decoding="async"
+			style:--image-intrinsic-width={intrinsicWidth}
 			class={classList}
 			{...props}
 		/>
