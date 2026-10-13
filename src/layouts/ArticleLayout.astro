@@ -10,7 +10,7 @@ import type { BlogPost } from '@schemas/blog';
 import { handleCmsMediaPath, handleCmsOptimizedMediaPath } from '@utils/functions';
 import BaseLayout from './BaseLayout.astro';
 import CommentCta from '@components/organisms/CommentCta';
-import NewsletterCta from '@components/organisms/NewsletterCta';
+import SubscribeCta from '@components/organisms/SubscribeCta';
 
 interface Props {
   post: {
@@ -136,12 +136,13 @@ const pagefindImage = post.data.coverImage
         }
 
         {
-          siteMeta.newsletterCta && (
-            <NewsletterCta
-              heading={siteMeta.newsletterCta.heading}
-              body={siteMeta.newsletterCta.body}
-              formUrl={siteMeta.newsletterCta.formUrl}
-              tag={siteMeta.newsletterCta.tag}
+          siteMeta.subscribeCta && (
+            <SubscribeCta
+              heading={siteMeta.subscribeCta.heading}
+              body={siteMeta.subscribeCta.body}
+              baseUrl={siteMeta.baseUrl}
+              items={siteMeta.subscribeCta.items}
+              client:load
             />
           )
         }

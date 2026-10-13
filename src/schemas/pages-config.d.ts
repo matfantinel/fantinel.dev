@@ -1,6 +1,7 @@
 import type { ButtonProps } from "@components/atoms/Button";
 import type { GenericHeroProps } from "@components/organisms/GenericHero";
 import type { HomePageHeroProps } from "@components/organisms/HomePageHero";
+import type { SubscribeCtaProps } from "@components/organisms/SubscribeCta";
 
 export type HomeConfig = {
   hero: HomePageHeroProps;
@@ -75,11 +76,13 @@ export type GardenConfig = {
   pages: GardenPageLink[];
 };
 
-export type NewsletterConfig = {
+export type SubscribeConfig = {
   pageTitle: string;
   pageDescription: string;
   pagePreviewImage?: string;
   hero: GenericHeroProps;
+  // Any field left empty falls back to the site meta's subscribeCta
+  subscribeCta?: Partial<Pick<SubscribeCtaProps, 'heading' | 'body' | 'items'>>;
 };
 
 export type BlogSingleConfig = {

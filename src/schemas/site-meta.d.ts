@@ -1,3 +1,5 @@
+import type { SubscribeCtaProps } from '@components/organisms/SubscribeCta';
+
 export type SiteMeta = {
   baseUrl: string;
   title: string;
@@ -9,12 +11,7 @@ export type SiteMeta = {
   lightThemeColor: string;
   darkThemeColor: string;
   fediverseCreator: string;
-  newsletterCta: {
-    heading: string;
-    body: string;
-    formUrl: string;
-    tag?: string;
-  };
+  subscribeCta: Pick<SubscribeCtaProps, 'heading' | 'body' | 'items'>;
   navigation?: NavigationLink[];
   secondaryNavigation?: NavigationLink[];
 };

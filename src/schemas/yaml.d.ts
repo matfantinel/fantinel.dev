@@ -70,8 +70,8 @@ declare module '@public/cms/page-configs/garden.yaml' {
   export default value;
 }
 
-declare module '@public/cms/page-configs/newsletter.yaml' {
-  import type { NewsletterConfig } from '@schemas/pages-config';
-  const value: NewsletterConfig;
+declare module '@public/cms/page-configs/subscribe.yaml' {
+  import type { SubscribeConfig } from '@schemas/pages-config';
+  const value: SubscribeConfig;
   export default value;
 }

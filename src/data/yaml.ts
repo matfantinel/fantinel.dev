@@ -1,7 +1,7 @@
 // This file gets the YAML settings, types them and exports them
 // And also does some handling of the images
 
-import type { CoolLinkSingleConfig, HomeConfig, QuickReviewSingleConfig, PhotographySingleConfig, CoolLinkArchiveConfig, QuickReviewArchiveConfig, PhotographyArchiveConfig, BlogArchiveConfig, BlogSingleConfig, TimelineArchiveConfig, GardenConfig, NewsletterConfig } from '@schemas/pages-config';
+import type { CoolLinkSingleConfig, HomeConfig, QuickReviewSingleConfig, PhotographySingleConfig, CoolLinkArchiveConfig, QuickReviewArchiveConfig, PhotographyArchiveConfig, BlogArchiveConfig, BlogSingleConfig, TimelineArchiveConfig, GardenConfig, SubscribeConfig } from '@schemas/pages-config';
 import type { SiteMeta } from '@schemas/site-meta';
 import homeConfig from '@public/cms/home.yml';
 import metaConfig from '@public/cms/meta.yml';
@@ -15,7 +15,7 @@ import blogSingleConfig from '@public/cms/page-configs/blog/single.yaml';
 import quickReviewSingleConfig from '@public/cms/page-configs/quick-reviews/single.yaml';
 import photographySingleConfig from '@public/cms/page-configs/photography/single.yaml';
 import gardenConfig from '@public/cms/page-configs/garden.yaml';
-import newsletterConfig from '@public/cms/page-configs/newsletter.yaml';
+import subscribeConfig from '@public/cms/page-configs/subscribe.yaml';
 import { handleCmsMediaPath, transformStrings } from '@utils/functions';
 
 export function getSiteMeta(): SiteMeta {
@@ -90,8 +90,8 @@ export function getGardenConfig(): GardenConfig {
   );
 }
 
-export function getNewsletterConfig(): NewsletterConfig {
-  return transformStrings(newsletterConfig as NewsletterConfig, (value: string) =>
+export function getSubscribeConfig(): SubscribeConfig {
+  return transformStrings(subscribeConfig as SubscribeConfig, (value: string) =>
     value.startsWith('/media/') ? handleCmsMediaPath(value) : value
   );
 }
