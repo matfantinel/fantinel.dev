@@ -54,21 +54,22 @@
   animation-duration: .5s;
 }
 
-html[data-transition="slide"] {
-  &::view-transition-old(main-content) {
-    animation: slide-out-to-right .5s cubic-bezier(0.4, 0, 0.2, 1) both;
+// <main> is named after the current site section (see BaseLayout.astro). When
+// navigating between sections, the old and new names don't match, so each one
+// has no counterpart (:only-child) and slides instead of cross-fading
+::view-transition-old(.main-content):only-child {
+  animation: slide-out-to-right .5s cubic-bezier(0.4, 0, 0.2, 1) both;
 
-    @include breakpoints.for-phone-only {
-      animation: slide-out-to-bottom .75s cubic-bezier(0.4, 0, 0.2, 1) both;
-    }
+  @include breakpoints.for-phone-only {
+    animation: slide-out-to-bottom .75s cubic-bezier(0.4, 0, 0.2, 1) both;
   }
+}
 
-  &::view-transition-new(main-content) {
-    animation: slide-in-from-right .5s cubic-bezier(0.4, 0, 0.2, 1) both;
+::view-transition-new(.main-content):only-child {
+  animation: slide-in-from-right .5s cubic-bezier(0.4, 0, 0.2, 1) both;
 
-    @include breakpoints.for-phone-only {
-      animation: slide-in-from-bottom .75s cubic-bezier(0.4, 0, 0.2, 1) both;
-    }
+  @include breakpoints.for-phone-only {
+    animation: slide-in-from-bottom .75s cubic-bezier(0.4, 0, 0.2, 1) both;
   }
 }
 

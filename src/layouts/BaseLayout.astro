@@ -48,6 +48,12 @@ const searchParams = new URL(Astro.request.url).searchParams;
 const currentSearch = searchParams.get('search');
 const currentUrl = Astro.request.url;
 const pathname = new URL(Astro.request.url).pathname;
+
+// Each top-level path is a site section (/blog/post -> blog). Giving <main> a
+// per-section transition name makes view transitions between sections slide,
+// see _view-transitions.scss
+const sectionSlug = pathname.split('/').filter(Boolean)[0]?.toLowerCase().replace(/[^a-z0-9-]/g, '-') || 'home';
+const mainTransitionName = `section-${sectionSlug}`;
 ---
 
 <!doctype html>
@@ -83,7 +89,7 @@ const pathname = new URL(Astro.request.url).pathname;
         transition:persist
       />
 
-      <main class='u-content-grid' style='view-transition-name: main-content;'>
+      <main class='u-content-grid' style={`view-transition-name: ${mainTransitionName}; view-transition-class: main-content;`}>
         <slot />
 
         <div class='safari-liquid-glass-toolbar-fixer' aria-hidden='true'></div>
