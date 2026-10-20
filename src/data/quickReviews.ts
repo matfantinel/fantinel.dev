@@ -3,7 +3,7 @@ import { handleCmsMediaPath, handleCmsOptimizedMediaPath } from "@utils/function
 import { getCollection } from "astro:content";
 import { slug } from 'github-slugger';
 import { QuickReviewType, QuickReviewRating, getTypeFromLowercaseKey, getRatingFromLowercaseKey } from "@schemas/quick-review-types";
-import { escapeXml, siteMeta } from "@utils/rss";
+import { escapeXml, siteMeta, toAbsoluteFeedUrl } from "@utils/rss";
 import dateformat from "dateformat";
 import type { FilterTag } from "@schemas/filter";
 
@@ -210,9 +210,9 @@ export function quickReviewToRssItem(review: QuickReview): string {
   }
   return `
     <item>
-      <guid>${siteMeta.baseUrl}/quick-reviews/${review.slug}</guid>
+      <guid>${toAbsoluteFeedUrl(`/quick-reviews/${review.slug}`)}</guid>
       <title>Quick Review: ${escapeXml(review.title)}</title>
-      <link>${siteMeta.baseUrl}/quick-reviews/${review.slug}</link>
+      <link>${toAbsoluteFeedUrl(`/quick-reviews/${review.slug}`)}</link>
       <pubDate>${dateformat(date, 'ddd, dd mmm yyyy HH:MM:ss o', true)}</pubDate>
       <content:encoded><![CDATA[
         ${review.title ? `<p>${review.title}${review.metadata ? ` <br> ${review.metadata}` : ''}</p>` : ''}

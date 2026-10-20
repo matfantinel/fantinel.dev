@@ -11,6 +11,14 @@ export function escapeXml(str: string): string {
     .replace(/'/g, '&apos;');
 }
 
+/**
+ * Builds an absolute URL for a site path, percent-encoding non-ASCII
+ * characters (e.g. "ç", "á" in slugs) so feeds contain URLs instead of IRIs.
+ */
+export function toAbsoluteFeedUrl(path: string): string {
+  return escapeXml(encodeURI(`${siteMeta.baseUrl}${path}`));
+}
+
 export interface RssFeedOptions {
   title: string;
   description: string;

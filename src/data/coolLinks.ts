@@ -1,7 +1,7 @@
 import type { CoolLink, CoolLinkTag } from "@schemas/cool-link";
 import { getCollection } from "astro:content";
 import { slug } from 'github-slugger';
-import { escapeXml } from "@utils/rss";
+import { escapeXml, toAbsoluteFeedUrl } from "@utils/rss";
 import dateformat from "dateformat";
 import type { FilterTag, FilterGroup } from "@schemas/filter";
 
@@ -243,9 +243,9 @@ export async function getLinksByDate(dateSlug: string): Promise<CoolLink[]> {
 export function coolLinkToRssItem(link: CoolLink): string {
   return `
     <item>
-      <guid>${link.url}</guid>
+      <guid>${escapeXml(link.url)}</guid>
       <title>Cool Link: ${escapeXml(link.title as string)}</title>
-      <link>${link.selfUrl ? link.selfUrl : link.url}</link>
+      <link>${link.selfUrl ? toAbsoluteFeedUrl(link.selfUrl) : escapeXml(link.url)}</link>
       <pubDate>${dateformat(link.savedOn, 'ddd, dd mmm yyyy HH:MM:ss o', true)}</pubDate>
       <content:encoded><![CDATA[
         ${link.author ? `<p>by ${link.author}</p>` : ''}
