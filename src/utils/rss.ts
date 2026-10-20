@@ -1,4 +1,5 @@
 import { getSiteMeta } from "@data/yaml";
+import striptags from 'striptags';
 
 const siteMeta = getSiteMeta();
 
@@ -17,6 +18,18 @@ export function escapeXml(str: string): string {
  */
 export function toAbsoluteFeedUrl(path: string): string {
   return escapeXml(encodeURI(`${siteMeta.baseUrl}${path}`));
+}
+
+/**
+ * Builds a short plain-text <description> from HTML content, truncated on a
+ * word boundary. Wrapped in CDATA so existing HTML entities stay intact.
+ */
+export function toRssDescription(html: string = '', maxLength = 300): string {
+  let text = striptags(html).replace(/\s+/g, ' ').trim();
+  if (text.length > maxLength) {
+    text = text.slice(0, text.lastIndexOf(' ', maxLength)) + '…';
+  }
+  return `<description><![CDATA[${text.replaceAll(']]>', ']]&gt;')}]]></description>`;
 }
 
 export interface RssFeedOptions {

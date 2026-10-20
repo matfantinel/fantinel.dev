@@ -2,7 +2,7 @@ import type { Photography } from "@schemas/photography";
 import { handleCmsMediaPath, handleCmsOptimizedMediaPath } from "@utils/functions";
 import { getCollection } from "astro:content";
 import { slug } from 'github-slugger';
-import { escapeXml, siteMeta, toAbsoluteFeedUrl } from "@utils/rss";
+import { escapeXml, siteMeta, toAbsoluteFeedUrl, toRssDescription } from "@utils/rss";
 import dateformat from "dateformat";
 
 /**
@@ -120,6 +120,7 @@ export function photographyToRssItem(photo: Photography): string {
       <title>Photography: ${escapeXml(photo.title)}</title>
       <link>${toAbsoluteFeedUrl(photo.url)}</link>
       <pubDate>${dateformat(photo.publishedDate, 'ddd, dd mmm yyyy HH:MM:ss o', true)}</pubDate>
+      ${toRssDescription(photo.content)}
       <content:encoded><![CDATA[
         ${photo.content}
 
