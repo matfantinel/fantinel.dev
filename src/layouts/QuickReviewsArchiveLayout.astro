@@ -92,7 +92,7 @@ if (totalReviews) {
     // I'm passing reviews as a prop here to avoid having multiple
     // Elements with client:load. Having multiple islands like that
     // can cause issues.
-    reviews && <QuickReviewCards reviews={reviews} client:load />
+    reviews && <QuickReviewCards reviews={reviews} client:idle />
   }
 </BaseArchiveLayout>
 
