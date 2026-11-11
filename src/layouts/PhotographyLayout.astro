@@ -52,7 +52,7 @@ const pagefindImage = photography.image
 
       <div class='l-photography__images'>
         <Image
-          class='m-photography-card__image'
+          class='l-photography__image'
           src={photography.image}
           alt={photography.imageAlt || photography.content || ''}
         />
@@ -136,6 +136,10 @@ const pagefindImage = photography.image
         display: flex;
         flex-direction: column;
         gap: var(--spacing-lg);
+      }
+      &__image {
+        width: var(--image-intrinsic-width);
+        max-height: 100vh;
       }
     }
   </style>

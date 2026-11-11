@@ -231,7 +231,7 @@
       padding: var(--spacing-xxs) var(--spacing-sm);
       box-shadow: var(--t--shadow--high);
 
-      &:-webkit-details-marker {
+      &::-webkit-details-marker {
         display: none;
       }
 

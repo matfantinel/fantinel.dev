@@ -28,3 +28,5 @@ pnpm-debug.log*
 .idea/
 
 *storybook.log
+
+.bench/
